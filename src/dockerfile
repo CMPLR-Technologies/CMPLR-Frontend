@@ -1,0 +1,4 @@
+FROM baseImage
+#npm i -g sass
+#npm install -g json-server
+#npm install json-server --save-dev
