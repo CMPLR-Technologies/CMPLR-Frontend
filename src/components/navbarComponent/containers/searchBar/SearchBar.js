@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import "../../../styles//scss/navbarComponent/Navbar.css";
+import "../../../../styles/scss/navbarComponent/Navbar.css";
 const SearchBar = () => {
     const [isHover,setIsHover] = useState(false);
     const changeHover=()=>{
