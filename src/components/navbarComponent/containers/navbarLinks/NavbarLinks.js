@@ -52,17 +52,17 @@ const NavbarLinks = () => {
         <i class="fas fa-envelope"></i>
       </li>
 
-      <li
-        onClick={clickMessagePopup}
-        className={`link-icon message ${openMessagePopup ? "active" : ""}`}
-      >
-        <div className="link-popup">
-          <OnOutsiceClick onOutsideClick={closeMessagePopup}>
+      <div className="link-popup">
+        <OnOutsiceClick onOutsideClick={closeMessagePopup}>
+          <li
+            onClick={clickMessagePopup}
+            className={`link-icon message ${openMessagePopup ? "active" : ""}`}
+          >
             <i class="fas fa-comment-dots"></i>
-            {openMessagePopup && <MessagesPopUp />}
-          </OnOutsiceClick>
-        </div>
-      </li>
+          </li>
+          {openMessagePopup && <MessagesPopUp />}
+        </OnOutsiceClick>
+      </div>
 
       <li
         onClick={clickNotificationsPopup}
