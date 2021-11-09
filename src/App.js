@@ -1,5 +1,5 @@
 import './styles/styles.css';
-
+import './styles/homeStyles.css'
 function App() {
   return (
     <div>
