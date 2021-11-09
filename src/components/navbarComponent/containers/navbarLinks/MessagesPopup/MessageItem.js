@@ -4,7 +4,8 @@ const MessageItem = (props) => {
   {
     /*to do load the real data(photo sender,rec,message*/
   }
-  let { sender, receiver, message } = props;
+  
+  let { sender, receiver, message, chat, shortParagrah } = props;
   return (
     <div className="popup-messages-message">
       <div className="popup-messages-message-img">
@@ -12,10 +13,15 @@ const MessageItem = (props) => {
       </div>
       <div className="popup-messages-message-text">
         <h3 className="receiver">{receiver}</h3>
-        <h3 className="sender">
-          {sender + ": "}
-          <span className="message">{message}</span>
-        </h3>
+        {/*if chat==true then i call compenent from messages popup else i call it from new message search*/}
+        {chat ? (
+          <h3 className="sender">
+            {sender + ": "}
+            <span className="message">{message}</span>
+          </h3>
+        ) : (
+          <span className="message">{shortParagrah}</span>
+        )}
       </div>
     </div>
   );

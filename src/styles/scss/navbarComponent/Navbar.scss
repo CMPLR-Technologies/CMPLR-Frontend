@@ -9,7 +9,7 @@ $sender-color: #787878;
 $receive-color: #2f2f2f;
 // logo of the site
 .fa-downcase-t:before {
-  font-family: Favorit, "Helvetica Neue", HelveticaNeue, Helvetica, Arial,
+  font-family: "Favorit", "Helvetica Neue", HelveticaNeue, Helvetica, Arial,
     sans-serif; /* your font family here! */
   font-weight: 800;
   content: "t";
@@ -21,7 +21,6 @@ $receive-color: #2f2f2f;
   border: none;
   padding: 0;
   font: inherit;
-  cursor: pointer;
   outline: inherit;
 }
 .nav {
@@ -29,6 +28,7 @@ $receive-color: #2f2f2f;
   background-color: $primiry-bg;
   color: $primiry-color;
   border-bottom: 0.5px solid #21374f;
+
   &-container {
     width: 100%;
     box-sizing: border-box;
@@ -46,6 +46,11 @@ $receive-color: #2f2f2f;
   .section1 {
     display: flex;
     align-items: center;
+    //icons for mobile screen
+    .menu-mobile-icon,
+    .search-mobile-icon {
+      display: none;
+    }
     .logo {
       padding-right: 18px;
     }
@@ -152,10 +157,12 @@ $receive-color: #2f2f2f;
     color: #2f2f2f;
     font-size: 0.875rem;
   }
+  //header contains name and new message button
   &-header {
     display: flex;
     justify-content: space-between;
-    padding: 5px 7px;
+    padding: 10px;
+    border-bottom: 1px solid #dedede;
     span {
       display: none;
     }
@@ -164,6 +171,10 @@ $receive-color: #2f2f2f;
       color: $button-color;
       text-transform: capitalize;
       font-weight: bold;
+      cursor: pointer;
+    }
+    .never {
+      color: $secondary-color;
     }
   }
   &-messages {
@@ -174,7 +185,8 @@ $receive-color: #2f2f2f;
       cursor: pointer;
       display: flex;
       align-items: center;
-      border-top: 1px solid #dedede;
+
+      border-bottom: 1px solid #dedede;
       padding: 15px 5px;
       &:hover {
         background-color: rgb(229, 231, 234);
@@ -196,6 +208,20 @@ $receive-color: #2f2f2f;
       color: $receive-color;
     }
   }
+
+  //new message button view
+  &-newmessage {
+    font-size: 1rem;
+    color: $sender-color;
+    font-weight: 400;
+    line-height: 1.5;
+    &-header {
+      padding: 15px;
+    }
+    input {
+      @extend %defultbtn;
+    }
+  }
 }
 
 // big screen
@@ -212,15 +238,50 @@ $receive-color: #2f2f2f;
 // mobile screen
 @media screen and (max-width: 960px) {
   .nav {
+    height: 44px;
     &-container {
       max-width: 970px;
       flex-direction: column;
+      padding: 5px 10px;
     }
-    .search {
-      width: 100%;
-      &-input {
-        width: 100%;
+    .section1 {
+      justify-content: space-between;
+      //icons for mobile screen
+      
+      .menu-mobile-icon,
+      .search-mobile-icon {
+        display: inline-flex;
+        color: $secondary-color;
+        font-size: 20px;
       }
+      .logo.main {
+        display: none;
+      }
+      .logo span:before {
+        font-size: 33px;
+      }
+      .search {
+        width: 75%;
+        background-color: $primiry-color;
+        border-radius: 85px;
+       
+        &-input {
+          width: 100%;
+         // padding-left: 15px;
+          padding: 8px 0 8px 15px;
+          &::placeholder{
+            font-size: 17px;
+          }
+        }
+        .search-icon{
+          display: none;
+        }
+
+      }
+    }
+
+    .section2 {
+      display: none;
     }
   }
   .popup {

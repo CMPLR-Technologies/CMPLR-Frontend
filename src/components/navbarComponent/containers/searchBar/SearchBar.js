@@ -8,7 +8,7 @@ const SearchBar = () => {
     return (
         <div className={`search ${isHover?'focus':''}`}>
             <div className='search-icon'>
-                <i class="fas fa-search"></i>
+                <i className="fas fa-search"></i>
             </div>
             <input onFocus={changeHover} onBlur={changeHover} focus className='search-input' placeholder='Search Tumblr'></input>
           </div>

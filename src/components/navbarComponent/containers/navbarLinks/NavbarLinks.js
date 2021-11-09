@@ -45,11 +45,11 @@ const NavbarLinks = () => {
       </li>
       {/*TODO make this link to recommended for you */}
       <li className="link-icon">
-        <i class="far fa-compass"></i>
+        <i className="far fa-compass"></i>
       </li>
       {/*TODO make this link to inbox */}
       <li className="link-icon">
-        <i class="fas fa-envelope"></i>
+        <i className="fas fa-envelope"></i>
       </li>
 
       <div className="link-popup">
@@ -58,7 +58,7 @@ const NavbarLinks = () => {
             onClick={clickMessagePopup}
             className={`link-icon message ${openMessagePopup ? "active" : ""}`}
           >
-            <i class="fas fa-comment-dots"></i>
+            <i className="fas fa-comment-dots"></i>
           </li>
           {openMessagePopup && <MessagesPopUp />}
         </OnOutsiceClick>
@@ -68,16 +68,16 @@ const NavbarLinks = () => {
         onClick={clickNotificationsPopup}
         className={`link-icon  ${openNotificationsPopup ? "active" : ""}`}
       >
-        <i class="fas fa-bolt"></i>
+        <i className="fas fa-bolt"></i>
       </li>
       <li
         onClick={clickAccountPopup}
         className={`link-icon  ${openAccountPopup ? "active" : ""}`}
       >
-        <i class="fas fa-user"></i>
+        <i className="fas fa-user"></i>
       </li>
       <li className="link-icon pen">
-        <i class="fas fa-pen"></i>
+        <i className="fas fa-pen"></i>
       </li>
     </ul>
   );
