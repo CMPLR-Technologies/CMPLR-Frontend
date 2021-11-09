@@ -26,6 +26,7 @@ const Section1 = () => {
   }, []);
   window.addEventListener("resize", chaneMobileView);
 
+
   return (
     <div className="section1">
       {mobileView && (

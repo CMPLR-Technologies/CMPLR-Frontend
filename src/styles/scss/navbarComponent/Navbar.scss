@@ -3,17 +3,23 @@ $secondary-bg: #405368;
 $primiry-color: white;
 $secondary-color: #a5aeb8;
 $button-color: #00b8ff;
-
+$button-color-secondary: #00cf35;
 //message popup colors
 $sender-color: #787878;
 $receive-color: #2f2f2f;
+
+
+//dark mode colors
+$primiry-color-dark:#000;
+$secondary-color-dark:#222;
+$border-radius-primary:10px;
 // logo of the site
 .fa-downcase-t:before {
   font-family: "Favorit", "Helvetica Neue", HelveticaNeue, Helvetica, Arial,
     sans-serif; /* your font family here! */
   font-weight: 800;
   content: "t";
-  font-size: 50px;
+  font-size: 45px;
 }
 %defultbtn {
   background: none;
@@ -25,22 +31,19 @@ $receive-color: #2f2f2f;
 }
 .nav {
   // navber class
-  background-color: $primiry-bg;
+  background-color: transparent;
   color: $primiry-color;
-  border-bottom: 0.5px solid #21374f;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.15);
 
   &-container {
     width: 100%;
     box-sizing: border-box;
-    padding-right: 20px;
-    padding-left: 22px;
     max-width: 1716px;
     margin-right: auto;
     margin-left: auto;
     display: flex;
     justify-content: space-between;
-    padding-top: 7px;
-    padding-bottom: 7px;
+    padding: 5px 20px 5px 22px;
   }
   //section1 contains logo and searchbar
   .section1 {
@@ -59,32 +62,36 @@ $receive-color: #2f2f2f;
       transition: all 0.3s ease-in-out;
       display: flex;
       align-items: center;
-      background-color: $secondary-bg;
-      border-radius: 3px;
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: $border-radius-primary;
+      height: 36px;
       &-icon {
+        background-color: inherit;
         padding-left: 10px;
         padding-right: 5px;
-        height: 35px;
+        height: 36px;
         display: flex;
         align-items: center;
         color: $secondary-color;
-        font-size: 20px;
+        font-size: 19px;
+        border-radius: $border-radius-primary 0 0 $border-radius-primary;
       }
       &-input {
         background-color: inherit;
-        border-radius: inherit;
-        color: $primiry-color;
+        border-radius: 0 $border-radius-primary $border-radius-primary 0;
+        color: $secondary-color;
         padding: 10px 0;
-        font-size: 15px;
+        //font-size: 15px;
         outline: none;
         box-shadow: none;
         -webkit-appearance: none;
         border: none;
-
+        font-weight: 550;
         &::placeholder {
           color: $secondary-color;
-          font-size: 18px;
+          font-size: 17px;
           transform: translate3d(0, 1.5px, 0);
+          font-weight: 400;
         }
       }
     }
@@ -97,6 +104,15 @@ $receive-color: #2f2f2f;
         color: black;
       }
     }
+    .search.focus.dark {
+      background-color: $secondary-color-dark;
+      .search-icon {
+        color: $primiry-color;
+      }
+      .search-input {
+        color: $primiry-color;
+      }
+    }
   }
 
   //section2 contains navbar links
@@ -107,9 +123,9 @@ $receive-color: #2f2f2f;
     margin: 0;
     .link-icon {
       cursor: pointer;
-      margin-left: 35px;
+      margin-left: 33px;
       i {
-        font-size: 27px;
+        font-size: 22px;
         color: $secondary-color;
       }
     }
@@ -132,6 +148,24 @@ $receive-color: #2f2f2f;
     .link-popup {
       position: relative;
       // popup of messages
+    }
+
+    // button in un auth navbar
+    .log,.sign {
+      @extend %defultbtn;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.5;
+      padding: 6px 15px;
+      color:#000;
+      border-radius: $border-radius-primary
+    }
+    .log {
+      margin-right: 10px;
+      background-color: $button-color-secondary;
+    }
+    .sign {
+      background-color: $button-color;
     }
   }
 }
@@ -213,7 +247,7 @@ $receive-color: #2f2f2f;
   &-newmessage {
     font-size: 1rem;
     color: $sender-color;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.5;
     &-header {
       padding: 15px;
@@ -223,13 +257,27 @@ $receive-color: #2f2f2f;
     }
   }
 }
-
+.popup.dark{
+  background-color: $secondary-color-dark;
+  .popup-messages-message,.popup-header{
+      border-bottom-color: rgba(255, 255, 255, 0.15);
+  }
+  .popup-messages-message:hover{
+    background-color: lighten($secondary-color-dark, 10);
+  }
+  h3 {
+    color: $primiry-color;
+  }
+  .sender {
+    color: #9A9A9A;
+  }
+}
 // big screen
 @media screen and (min-width: 961px) {
   .nav {
     .search {
       &-input {
-        width: 500px;
+        width: 450px;
       }
     }
   }
@@ -247,7 +295,7 @@ $receive-color: #2f2f2f;
     .section1 {
       justify-content: space-between;
       //icons for mobile screen
-      
+
       .menu-mobile-icon,
       .search-mobile-icon {
         display: inline-flex;
@@ -264,19 +312,21 @@ $receive-color: #2f2f2f;
         width: 75%;
         background-color: $primiry-color;
         border-radius: 85px;
-       
         &-input {
+          border-radius: 85px;
           width: 100%;
-         // padding-left: 15px;
+          // padding-left: 15px;
           padding: 8px 0 8px 15px;
-          &::placeholder{
+          &::placeholder {
             font-size: 17px;
           }
         }
-        .search-icon{
+        .search-icon {
           display: none;
         }
-
+      }
+      .search.dark,.search.focus{
+        background-color: $secondary-color-dark;
       }
     }
 

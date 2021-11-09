@@ -1,0 +1,86 @@
+import React, { useState } from "react";
+import OnOutsiceClick from "react-outclick";
+import "../../../../../styles/scss/navbarComponent/Navbar.css";
+import MessagesPopUp from "../MessagesPopup/MessagesPopUp";
+const AuthLinks = () => {
+  const [openMessagePopup, setOpenMessagePopup] = useState(false);
+  const [openNotificationsPopup, setOpenNotificationsPopup] = useState(false);
+  const [openAccountPopup, setOpenAccountPopup] = useState(false);
+
+  const closeMessagePopup = () => {
+    setOpenMessagePopup(false);
+  };
+  const clickMessagePopup = () => {
+    // if i open it
+    if (!openMessagePopup) {
+      //close other popup
+      setOpenNotificationsPopup(false);
+      setOpenAccountPopup(false);
+    }
+    setOpenMessagePopup(!openMessagePopup);
+  };
+  const clickNotificationsPopup = () => {
+    // if i open it
+    if (!openNotificationsPopup) {
+      //close other popup
+      setOpenMessagePopup(false);
+      setOpenAccountPopup(false);
+    }
+    setOpenNotificationsPopup(!openMessagePopup);
+  };
+  const clickAccountPopup = () => {
+    // if i open it
+    if (!openAccountPopup) {
+      //close other popup
+      setOpenMessagePopup(false);
+      setOpenNotificationsPopup(false);
+    }
+    setOpenAccountPopup(!openMessagePopup);
+  };
+  return (
+    <>
+      {/*TODO make this link to dashboard */}
+      <li className="link-icon active">
+        <i className="fas fa-home"></i>
+      </li>
+      {/*TODO make this link to recommended for you */}
+      <li className="link-icon">
+        <i className="far fa-compass"></i>
+      </li>
+      {/*TODO make this link to inbox */}
+      <li className="link-icon">
+        <i className="fas fa-envelope"></i>
+      </li>
+
+      <div className="link-popup">
+        <OnOutsiceClick onOutsideClick={closeMessagePopup}>
+          <li
+            onClick={clickMessagePopup}
+            className={`link-icon message ${openMessagePopup ? "active" : ""}`}
+          >
+            <i className="fas fa-comment-dots"></i>
+          </li>
+          {openMessagePopup && <MessagesPopUp />}
+        </OnOutsiceClick>
+      </div>
+
+      <li
+        onClick={clickNotificationsPopup}
+        className={`link-icon  ${openNotificationsPopup ? "active" : ""}`}
+      >
+        <i className="fas fa-bolt"></i>
+      </li>
+      <li
+        onClick={clickAccountPopup}
+        className={`link-icon  ${openAccountPopup ? "active" : ""}`}
+      >
+        <i className="fas fa-user"></i>
+      </li>
+      <li className="link-icon pen">
+        <i className="fas fa-pen"></i>
+      </li>
+    </>
+  );
+};
+
+export default AuthLinks;
