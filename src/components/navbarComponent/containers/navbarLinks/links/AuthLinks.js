@@ -1,12 +1,43 @@
 import React, { useState } from "react";
 import OnOutsiceClick from "react-outclick";
 import "../../../../../styles/scss/navbarComponent/Navbar.css";
-import MessagesPopUp from "../MessagesPopup/MessagesPopUp";
+import MessagesPopUp from "../messagesPopup/MessagesPopUp";
+import { Link } from "react-router-dom";
+
 const AuthLinks = () => {
+  //dropdown lists
   const [openMessagePopup, setOpenMessagePopup] = useState(false);
   const [openNotificationsPopup, setOpenNotificationsPopup] = useState(false);
   const [openAccountPopup, setOpenAccountPopup] = useState(false);
 
+  const [openHome, setOpenHome] = useState(false);
+  const [openRecommended, setOpenRecommended] = useState(false);
+  const [openInbox, setOpenInbox] = useState(false);
+
+  const [openPopup, setOpenPopup] = useState(false);
+
+  const openHomeFun = () => {
+    if (openHome) return;
+    setOpenHome(true);
+    setOpenRecommended(false);
+    setOpenInbox(false);
+  };
+
+  const openRecommendedFun = () => {
+    if (openRecommended) return;
+    setOpenRecommended(true);
+    setOpenInbox(false);
+    setOpenHome(false);
+  };
+
+  const openInboxFun = () => {
+    if (openInbox) return;
+    setOpenInbox(true);
+    setOpenHome(false);
+    setOpenRecommended(false);
+  };
+
+  //close dropdown message list
   const closeMessagePopup = () => {
     setOpenMessagePopup(false);
   };
@@ -37,19 +68,39 @@ const AuthLinks = () => {
     }
     setOpenAccountPopup(!openMessagePopup);
   };
+
+/*  const clickOpenPopup = () => {
+    console.log("closeg");
+    setOpenPopup(!openPopup);
+  };*/
   return (
     <>
       {/*TODO make this link to dashboard */}
-      <li className="link-icon active">
-        <i className="fas fa-home"></i>
+      <li
+        className={`link-icon ${openHome ? "active" : ""}`}
+        onClick={openHomeFun}
+      >
+        <Link to="/">
+          <i className="fas fa-home"></i>
+        </Link>
       </li>
       {/*TODO make this link to recommended for you */}
-      <li className="link-icon">
-        <i className="far fa-compass"></i>
+      <li
+        className={`link-icon ${openRecommended ? "active" : ""}`}
+        onClick={openRecommendedFun}
+      >
+        <Link to="/home">
+          <i className="far fa-compass"></i>
+        </Link>
       </li>
       {/*TODO make this link to inbox */}
-      <li className="link-icon">
-        <i className="fas fa-envelope"></i>
+      <li
+        className={`link-icon ${openInbox ? "active" : ""}`}
+        onClick={openInboxFun}
+      >
+        <Link to="/home">
+          <i className="fas fa-envelope"></i>
+        </Link>
       </li>
 
       <div className="link-popup">
@@ -77,7 +128,9 @@ const AuthLinks = () => {
         <i className="fas fa-user"></i>
       </li>
       <li className="link-icon pen">
-        <i className="fas fa-pen"></i>
+        <Link to="/new">
+          <i className="fas fa-pen"></i>
+        </Link>
       </li>
     </>
   );

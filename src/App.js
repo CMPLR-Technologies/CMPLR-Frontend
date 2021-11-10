@@ -1,12 +1,23 @@
-import React from 'react'
-import './styles/styles.css';
-import Navbar from './components/navbarComponent/View'
-import MessagesPageMobile from './components/navbarComponent/containers/navbarLinks/MessagesPopup/MessagesPageMobile'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./styles/styles.css";
+import Navbar from "./components/navbarComponent/View";
+import MessagesPageMobile from "./components/navbarComponent/containers/navbarLinks/messagesPopup/MessagesPageMobile";
+import NewPostPopup from "./components/navbarComponent/containers/navbarLinks/newPost/NewPostPopup";
 function App() {
   return (
-    <div style={{background:"#001935",height:"100vh"}}>
-      <Navbar />
-    </div>
+    <Router>
+      <div style={{ background: "#001935", height: "100vh" }}>
+        <Navbar />
+        <Routes>
+          <Route path="/home" element={<MessagesPageMobile />} />
+          <Route
+            path="/new"
+            element={({ match }) => <NewPostPopup open={match} />}
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
