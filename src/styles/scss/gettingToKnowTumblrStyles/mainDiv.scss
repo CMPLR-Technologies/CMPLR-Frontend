@@ -1,0 +1,142 @@
+.tile_manager {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+  width: 368px;
+  @media (min-width: 992px) {
+    width: 920px;
+  }
+  @media (min-width: 768px) {
+    margin-top: 92px;
+    width: 690px;
+  }
+  @media (min-width: 550px) {
+    width: 525px;
+  }
+  .clearfix {
+    zoom: 1;
+    .titledDiv {
+      opacity: 1;
+      display: block;
+      transform: translateY(0px);
+      float: left;
+      background: #7c5cff;
+      color: #fff;
+      text-align: center;
+      width: 430px;
+      height: 430px;
+      border-radius: 3px;
+      margin-left: 10px;
+      margin-top: 10px;
+      @media (min-width: 550px) {
+        width: 515px;
+        height: 280px;
+      }
+      @media (min-width: 768px) {
+        width: 430px;
+        height: 430px;
+      }
+      .sub_header {
+        font-size: 48px;
+        font-family: Gibson, Helvetica Neue, HelveticaNeue, Helvetica, Arial,
+          sans-serif;
+        width: 300px;
+        margin: auto;
+        font-weight: 700;
+        line-height: 50px;
+        margin-top: 125px;
+        @media (min-width: 768px) {
+          margin-top: 110px;
+        }
+        @media (min-width: 550px) {
+          margin-top: 35px;
+        }
+      }
+      .sub_text {
+        opacity: 0.5;
+        font-size: 20px;
+        max-width: 188px;
+        padding-top: 20px;
+        margin: auto;
+      }
+    }
+  }
+
+  .smallDiv_large {
+    position: relative;
+    height: 220px;
+    width: 220px;
+    .title_inner {
+      display: inline-block;
+      position: absolute;
+      margin: 10px;
+      width: 210px;
+      height: 210px;
+      .sub_block_parent {
+        width: 220px;
+        height: 220px;
+        .block_image {
+          background-position: 50% 50%;
+          background-repeat: no-repeat;
+          background-size: cover;
+          position: relative;
+          overflow: hidden;
+          left: 0;
+          top: 0;
+          width: 164px;
+          height: 164px;
+          background-image: url(https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg);
+          @media (min-width: 768px) {
+            width: 210px;
+            height: 210px;
+          }
+        }
+        .block_vignette {
+          background: radial-gradient(
+            ellipse at center,
+            transparent 0,
+            rgba(0, 0, 0, 0.36) 100%
+          );
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          left: 0;
+          top: 0;
+        }
+        .check_mark {
+          position: absolute;
+          display: none;
+          height: 100%;
+          width: 100%;
+          opacity: 0;
+          left: 0;
+          top: 0;
+          font-size: 80px;
+          margin-top: 40px;
+          color: #fff;
+          text-align: center;
+        }
+        .block_title_container {
+          position: absolute;
+          left: 0;
+          top: 0;
+          .block_title_text {
+            font-family: inherit;
+            color: #fff;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 0;
+            font-size: 14px;
+            padding-left: 11px;
+            padding-top: 9px;
+          }
+        }
+      }
+    }
+  }
+  .smallDiv_normal {
+    float: left;
+  }
+}

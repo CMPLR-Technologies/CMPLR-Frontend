@@ -1,5 +1,16 @@
+@import "./partials/centerComponents.scss";
+@import "./registerStyles/textinput.scss";
+@import "./registerStyles/header.scss";
+@import "./gettingToKnowTumblrStyles/topDiv.scss";
+@import "./gettingToKnowTumblrStyles/mainDiv.scss";
 body {
   margin: 0;
+  background-color: #001935;
+  color: white;
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-size: auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
