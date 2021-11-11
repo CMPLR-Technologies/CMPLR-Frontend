@@ -1,34 +1,3 @@
-.centerContents {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.registerTextInput {
-  margin-bottom: 1%;
-}
-
-.registerTextInputDiv {
-  margin: 2%;
-  width: 75%;
-}
-
-.signupbtn {
-  background-color: #00b8ff !important;
-  color: black !important;
-}
-
-.googlebtn {
-  background-color: white !important;
-  color: black !important;
-}
-
-.titleHeader {
-  font-weight: bolder;
-  color: white;
-}
-
 .interestsTop {
   background-color: #c0c0c0;
   position: fixed;
@@ -307,6 +276,33 @@
   float: left;
 }
 
+.register_explore_anchor {
+  align-items: center;
+  color: #fff;
+  display: flex;
+  font-weight: 700;
+  justify-content: center;
+  margin-top: 17px;
+  text-decoration: none;
+}
+.register_explore_anchor svg {
+  padding-right: 8px;
+}
+
+.auth_alert {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin: 15px 0;
+  padding: 14px 15px;
+}
+.auth_alert h3 {
+  font-family: var(--font-family);
+  line-height: 1.5;
+}
+
 body {
   margin: 0;
   background-color: #001935;
@@ -315,13 +311,144 @@ body {
   padding: 0;
   background-repeat: no-repeat;
   background-size: auto;
+}
+body * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-code {
+body code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+body .AuthBtn {
+  width: 300px;
+  padding: 10px 15px;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  line-height: 1.5;
+  background-color: white;
+  font-family: "Favorit", Arial, Helvetica, sans-serif;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+}
+body .AuthInput {
+  width: 300px;
+  margin-top: 6px;
+  padding: 11px 13px;
+  line-height: 1.4;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+}
+body .OrBar {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+body .OrBar .OrLeftBar,
+body .OrBar .OrRightBar {
+  height: 1px;
+  width: 100%;
+  margin-left: 0.5rem;
+  margin-top: 5px;
+  background-color: white;
+}
+body .OrBar .OrLeftBar {
+  margin-right: 0.5rem;
+}
+body .AuthFooter {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 10px;
+}
+body .AuthFooter a {
+  color: white;
+  text-decoration: none;
+  padding-left: 10px;
+}
+body .LoginCard {
+  width: 300px;
+  height: 100%;
+  padding-top: 4rem;
+}
+body .LoginCard .LoginCard__a {
+  width: 300px;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+body .LoginCard__logo-container {
+  text-align: center;
+}
+body .LoginCard__logo-container p {
+  margin: 0;
+}
+body .LoginCard__logo {
+  font-size: 6rem;
+  color: white;
+  font-weight: bold;
+  font-family: "Bookman Old Style Regular";
+}
+body .login-form p {
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+body .LoginView {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: url("./background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+body .LoginCard__stores-logos {
+  display: none;
+}
+@media screen and (max-width: 900px) {
+  body .AuthFooter {
+    justify-content: center;
+    font-weight: 500;
+  }
+  body .AuthFooter .AuthFooter__right {
+    display: none;
+  }
+  body .LoginCard__stores-logos {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  body .LoginCard__stores-logos img {
+    width: 100%;
+    height: 65px;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -1,13 +1,14 @@
-import './styles/styles.css';
-import React from 'react';
-import MainRoutes from './components/routes/Routes';
-import Register from './components/registerComponent/View';
-import background1 from "./assets/images/background1.jpg";
+import React from "react";
+import "./styles/styles.css";
+import MainRoutes from "./components/routes/Routes";
+import UserContextProvider from "./contexts/userContext/UserContext";
 
 function App() {
   return (
-    <div >
-      <MainRoutes/>
+    <div>
+      <UserContextProvider>
+        <MainRoutes />
+      </UserContextProvider>
     </div>
   );
 }
