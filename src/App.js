@@ -10,11 +10,8 @@ function App() {
       <div style={{ background: "#001935", height: "100vh" }}>
         <Navbar />
         <Routes>
-          <Route path="/home" element={<MessagesPageMobile />} />
-          <Route
-            path="/new"
-            element={({ match }) => <NewPostPopup open={match} />}
-          />
+          <Route path="/messaging" element={<MessagesPageMobile />} />
+          <Route path="/new" element={<NewPostPopup />} />
         </Routes>
       </div>
     </Router>

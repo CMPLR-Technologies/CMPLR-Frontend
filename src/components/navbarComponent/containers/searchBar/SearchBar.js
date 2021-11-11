@@ -1,26 +1,50 @@
 import React, { useState } from "react";
 import "../../../../styles/scss/navbarComponent/Navbar.css";
+import SearchResult from "./searchBarResults/SearchResult";
+import OnOutsiceClick from "react-outclick";
+
 const SearchBar = () => {
   const [isHover, setIsHover] = useState(false);
-  const changeHover = () => {
-    setIsHover(!isHover);
+  const [searchWord, setSearchWord] = useState("");
+  const [openSearch, setOpenSearch] = useState(false);
+  const onChange = (e) => {
+    setSearchWord(e.target.value);
+    //TO DO : send req to backend and get the users
+    setOpenSearch(true);
   };
+  const changeHover = () => {
+    if (!isHover&&searchWord!="")setOpenSearch(true);
+    setIsHover(!isHover);
+    
+  };
+  const closeOpenSearch=()=>{
+    setOpenSearch(false);
+  }
   //TO DO change it to know the real auth or not
   const isAuth = false;
-  const darkTheme=false;
+  const darkTheme = false;
   return (
-    <div className={`search ${isHover ? "focus " : ""} ${!isAuth?"not-auth ":""}${darkTheme?"dark":""}`}>
-      <div className="search-icon">
-        <i className="fas fa-search"></i>
+    <OnOutsiceClick onOutsideClick={closeOpenSearch}>
+      <div
+        className={`search ${isHover ? "focus " : ""} ${
+          !isAuth ? "not-auth " : ""
+        }${darkTheme ? "dark" : ""}`}
+      >
+        <div className="search-icon">
+          <i className="fas fa-search"></i>
+        </div>
+        <input
+          onFocus={changeHover}
+          onBlur={changeHover}
+          onChange={onChange}
+          focus
+          className="search-input"
+          placeholder="Search Tumblr"
+          value={searchWord}
+        ></input>
+        {openSearch && <SearchResult search={searchWord} theme="normal" />}
       </div>
-      <input
-        onFocus={changeHover}
-        onBlur={changeHover}
-        focus
-        className="search-input"
-        placeholder="Search Tumblr"
-      ></input>
-    </div>
+    </OnOutsiceClick>
   );
 };
 

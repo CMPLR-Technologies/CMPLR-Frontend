@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../../../styles/scss/navbarComponent/Navbar.css";
 import SearchBar from "../searchBar/SearchBar";
+import NavbarMenuMobile from "./NavbarMenuMobile";
 const Section1 = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -12,6 +13,9 @@ const Section1 = () => {
     setSearchOpen(!searchOpen);
   };
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
   //this funcion is made to if the screen is big so make searchOpen to true to show the search bar
   const chaneMobileView = () => {
     if (window.innerWidth > 960) {
@@ -25,7 +29,6 @@ const Section1 = () => {
     chaneMobileView();
   }, []);
   window.addEventListener("resize", chaneMobileView);
-
 
   return (
     <div className="section1">
@@ -49,6 +52,8 @@ const Section1 = () => {
       <div className="search-mobile-icon" onClick={toggleSearch}>
         <i className={!searchOpen ? "fas fa-search" : "fas fa-times"}></i>
       </div>
+
+      <NavbarMenuMobile active={menuOpen} close={closeMenu} />
     </div>
   );
 };

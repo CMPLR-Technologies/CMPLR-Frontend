@@ -1,7 +1,9 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import NewPostPopupItem from "./NewPostPopupItem";
+import { useNavigate } from "react-router-dom";
 
 const NewPostPopup = (props) => {
+  const  navigate = useNavigate();
   let items = [
     {
       id: 1,
@@ -39,22 +41,33 @@ const NewPostPopup = (props) => {
       icon: "fas fa-font",
     },
   ];
-  console.log("hello new post");
+  useEffect(() => {
+    console.log("hello new post useEffect");
+    console.log(props);
+  });
+  const close = () => {
+    console.log("close");
+    navigate(-1);
+  };
   //const { openPopup } = props;
-  const openPopup = props.open;
+  const openPopup = true;
   let darkTheme = false;
-  let res = null;
-  if (openPopup)
-    res = (
-      <div className={`new-post-popup ${darkTheme ? "dark" : ""}`}>
-        <div className="new-post-popup-items">
-          {items.map((item) => (
-            <NewPostPopupItem type={item.type} id={item.id} icon={item.icon} />
-          ))}
-        </div>
+  return (
+    <div className={`new-post-popup ${darkTheme ? "dark" : ""}`}>
+      <button
+        aria-label="Close"
+        className="new-post-popup-close"
+        onClick={close}
+      >
+        <span></span>
+      </button>
+      <div className="new-post-popup-items">
+        {items.map((item) => (
+          <NewPostPopupItem type={item.type} id={item.id} icon={item.icon} />
+        ))}
       </div>
-    );
-  return res;
+    </div>
+  );
 };
 
 export default NewPostPopup;
