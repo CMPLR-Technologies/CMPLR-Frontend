@@ -1,10 +1,8 @@
-import './styles/styles.css';
-import './styles/homeStyles.css'
+import React from 'react';
+import MainComponent from './components/MainComponent';
 function App() {
   return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
+    <MainComponent />
   );
 }
 

@@ -1,10 +1,17 @@
+@import "../scss/homeStyles/_homeStyles.scss";
 * {
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  scrollbar-color: #555555 #060022;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
 }
-
 body {
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -15,123 +22,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-.LoginBtn {
-  // dimensions and behaviour
-  width: 300px;
-  padding: 10px 15px;
-  margin-top: 12px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  // font
-  font-weight: 700;
-  line-height: 1.5;
-
-  // decoration and borders
-  background-color: white;
-  font-family: "Favorit", Arial, Helvetica, sans-serif;
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-  border-radius: 3px;
-}
-
-.LoginInput {
-  // dimensions and behaviour
-  width: 300px;
-  margin-top: 6px;
-  padding: 11px 13px;
-
-  // font
-  line-height: 1.4;
-  font-size: 16px;
-
-  // decoration and borders
-  outline: none;
-  border: none;
-  border-radius: 3px;
-}
-
-.OrBar {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  color: white;
-}
-
-.OrLeftBar,
-.OrRightBar {
-  height: 1px;
-  width: 100%;
-  margin-left: 0.5rem;
-  margin-top: 5px;
-  background-color: white;
-}
-
-.OrLeftBar {
-  margin-right: 0.5rem;
-}
-
-.LoginCard {
-  width: 300px;
-  height: 100%;
-
-  a {
-    width: 300px;
-    display: block;
-
-    color: white;
-
-    text-decoration: none;
-    text-align: center;
-  }
-}
-
-.LoginCard__logo-container {
-  text-align: center;
-
-  p {
-    margin: 0;
-  }
-}
-
-.LoginCard__logo {
-  font-size: 6rem;
-  color: white;
-  font-weight: bold;
-  font-family: "Bookman Old Style Regular";
-}
-
-.login-form {
-  p {
-    color: white;
-    font-size: 12px;
-    text-align: center;
-    line-height: 20px;
-
-    padding-bottom: 10px;
-    padding-top: 10px;
-  }
-}
-
-.LoginView {
-  width: 100vw;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  background: url("./background.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
 }
