@@ -23,7 +23,8 @@
     "styles": "sass --watch ./src/styles/scss/styles.scss ./src/styles/styles.css",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "coverageTest": "react-scripts test --coverage"
   },
   "eslintConfig": {
     "extends": [

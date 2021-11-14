@@ -8,12 +8,12 @@ import {
 } from "react-router-dom";
 import LoginView from "../loginComponent/View";
 import Register from "../registerComponent/View";
+import HomePage from "../homeComponent/View";
 
 export default function MainRoutes(){
 
     return <>
     <Router>
-      
         <Switch>
           <Route path="/register">
           <Register/>
@@ -22,7 +22,7 @@ export default function MainRoutes(){
           <LoginView/>
           </Route>
           <Route exact path="/">
-            <p>Home</p>
+            <HomePage/>
           </Route>
         </Switch>
     </Router>
