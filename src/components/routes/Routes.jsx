@@ -6,7 +6,6 @@ import {
     Link,
     Switch
 } from "react-router-dom";
-import Interests from "../gettingToKnowTumblrComponent/View";
 import LoginView from "../loginComponent/View";
 import Register from "../registerComponent/View";
 
@@ -18,9 +17,6 @@ export default function MainRoutes(){
         <Switch>
           <Route path="/register">
           <Register/>
-          </Route>
-          <Route path="/getting_to_know_tumblr">
-          <Interests/>
           </Route>
           <Route path="/login">
           <LoginView/>

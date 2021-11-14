@@ -20,5 +20,14 @@
   ],
   "profile": {
     "name": "typicode"
-  }
+  },
+  "register": [
+    {
+      "email": "hazem@gmail.com",
+      "age": 20,
+      "password": "hazem",
+      "blogname": "hazemkak",
+      "id": 1
+    }
+  ]
 }

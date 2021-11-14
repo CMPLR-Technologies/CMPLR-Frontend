@@ -20,6 +20,8 @@ export default function RegisterCard() {
   const [registerStep, setRegisterStep] = useState(1);
 
   const handleStepOne = () => {
+    setRegisterStep(2);
+    return;
     Axios({
       method: "POST",
       url: `${apiBaseUrl}/register/validate`,
@@ -45,7 +47,7 @@ export default function RegisterCard() {
   const handleStepTwo = () => {
     Axios({
       method: "POST",
-      url: `${apiBaseUrl}/register/insert`,
+      url: `${apiBaseUrl}/register`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -53,7 +55,7 @@ export default function RegisterCard() {
         email: email,
         password: password,
         blogName: blogName,
-        age: age,
+        age: parseInt(age),
       },
     })
       .then((res) => {

@@ -276,6 +276,101 @@
   float: left;
 }
 
+.aboutDiv {
+  opacity: 1;
+  display: block;
+  transform: translateY(0px);
+  float: left;
+  background: #7c5cff;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+}
+.aboutDiv .sub_header {
+  font-size: 48px;
+  font-family: Gibson, Helvetica Neue, HelveticaNeue, Helvetica, Arial, sans-serif;
+  width: 100%;
+  margin: auto;
+  font-weight: 700;
+  line-height: 50px;
+  margin-top: 125px;
+}
+.aboutDiv .sub_text {
+  opacity: 0.5;
+  font-size: 20px;
+  max-width: 100%;
+  padding-top: 20px;
+  padding-bottom: 150px;
+  margin: auto;
+}
+
+.categoryDiv {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  display: "block";
+  transform: translateY(0px);
+}
+.categoryDiv .title_inner .sub_block_parent {
+  width: 100%;
+  height: 100%;
+}
+.categoryDiv .title_inner .sub_block_parent .block_image {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  width: 164px;
+  height: 164px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  background-image: url(https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg);
+}
+.categoryDiv .title_inner .sub_block_parent .block_vignette {
+  background: radial-gradient(ellipse at center, transparent 0, rgba(0, 0, 0, 0.36) 100%);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+.categoryDiv .title_inner .sub_block_parent .check_mark {
+  position: absolute;
+  display: none;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  font-size: 80px;
+  margin-top: 40px;
+  color: #fff;
+  text-align: center;
+}
+.categoryDiv .title_inner .sub_block_parent .block_title_container {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.categoryDiv .title_inner .sub_block_parent .block_title_container .block_title_text {
+  font-family: inherit;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0;
+  font-size: 14px;
+  padding-left: 11px;
+  padding-top: 9px;
+}
+
 .register_explore_anchor {
   align-items: center;
   color: #fff;

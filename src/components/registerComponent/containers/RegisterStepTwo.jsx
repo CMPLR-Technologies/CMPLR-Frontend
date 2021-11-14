@@ -22,7 +22,7 @@ export default function RegisterStepTwo(props) {
           value={age}
           setValue={setAge}
           name="register_age"
-          type="text"
+          type="number"
           placeholder="How old are you?"
         />
         <p>
