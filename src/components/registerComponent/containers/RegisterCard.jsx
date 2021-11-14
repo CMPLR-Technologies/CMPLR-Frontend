@@ -45,6 +45,12 @@ export default function RegisterCard() {
       });
   };
   const handleStepTwo = () => {
+    console.log({
+      email: email,
+      password: password,
+      blogName: blogName,
+      age: parseInt(age),
+    })
     Axios({
       method: "POST",
       url: `${apiBaseUrl}/register`,
@@ -60,7 +66,7 @@ export default function RegisterCard() {
     })
       .then((res) => {
         //TODO: setUser"context"
-        history.push("/getting_to_know_tumblr")
+        history.push("/")
         setOpenError(false);
       })
       .catch((err) => {

@@ -1,5 +1,3 @@
-@import "./gettingToKnowTumblrStyles/topDiv.scss";
-@import "./gettingToKnowTumblrStyles/mainDiv.scss";
 @import "./registerStyles/exploreAnchor.scss";
 @import "./partials/authAlert.scss";
 body {
@@ -157,7 +155,7 @@ body {
     justify-content: center;
     align-items: center;
 
-    background: url("./background.jpg");
+    background: url("./background2.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
