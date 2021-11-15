@@ -594,20 +594,22 @@
 .nav {
   background-color: transparent;
   border-bottom: 0.5px solid rgba(255, 255, 255, 0.15);
-  position: fixed;
-  width: 100%;
+  position: absolute;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 99;
+  height: 54px;
 }
 .nav-container {
+  height: 54px;
   width: 100%;
-  box-sizing: border-box;
   max-width: 1716px;
   margin-right: auto;
   margin-left: auto;
   display: flex;
   justify-content: space-between;
-  padding: 5px 20px 5px 22px;
+  padding: 5px 32px 5px 22px;
 }
 .nav .section1 {
   display: flex;
@@ -622,6 +624,7 @@
 }
 .nav .section1 .logo {
   padding-right: 18px;
+  font-size: 0.9rem;
 }
 .nav .section1 .search {
   transition: all 0.3s ease-in-out;
@@ -643,6 +646,9 @@
   font-size: 19px;
   border-radius: 3px 0 0 3px;
 }
+.nav .section1 .search-icon i {
+  color: #BCC3CA;
+}
 .nav .section1 .search-input {
   background-color: inherit;
   border-radius: 0 3px 3px 0;
@@ -655,7 +661,7 @@
   font-weight: 550;
 }
 .nav .section1 .search-input::placeholder {
-  color: #a5aeb8;
+  color: #BCC3CA;
   font-size: 17px;
   transform: translate3d(0, 1.5px, 0);
   font-weight: 400;
@@ -687,6 +693,7 @@
   padding: 8px;
   text-decoration: none;
   cursor: pointer;
+  color: #000;
 }
 .nav .section1 .search .search-result ul li:hover {
   background-color: #ededed;
@@ -697,8 +704,8 @@
 }
 .nav .section1 .search .search-result ul .search-result-dis {
   align-items: center;
-  background: rgba(var(--black), 0.07);
-  color: rgba(var(--black), 0.65);
+  background: rgba(0, 0, 0, 0.07);
+  color: rgba(0, 0, 0, 0.65);
   display: flex;
   font-family: var(--font-family);
   font-size: 0.875rem;
@@ -731,6 +738,7 @@
 }
 .nav .section1 .search .search-result ul .search-result-blog-section1-text h3,
 .nav .section1 .search .search-result ul .search-result-blog-section1-text h4 {
+  color: #000;
   margin: 0;
   font-size: 1rem;
   font-weight: 400;
@@ -827,11 +835,20 @@
 .nav .section2 .sign {
   cursor: pointer;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.5;
   padding: 6px 15px;
   color: #000;
   border-radius: 3px;
+}
+.nav .section2 .log a,
+.nav .section2 .sign a {
+  text-decoration: none;
+  color: inherit;
+}
+.nav .section2 .log a:hover,
+.nav .section2 .sign a:hover {
+  text-decoration: none;
 }
 .nav .section2 .log {
   margin-right: 10px;
@@ -908,11 +925,18 @@
 .popup-messages .receiver {
   color: #2f2f2f;
 }
+.popup-messages .message {
+  color: #878787;
+  font-weight: 400;
+}
 .popup-newmessage {
   font-size: 1rem;
   color: #787878;
   font-weight: 500;
   line-height: 1.5;
+}
+.popup-newmessage span {
+  color: #787878;
 }
 .popup-newmessage-header {
   padding: 15px;
@@ -1075,6 +1099,7 @@
 @media screen and (max-width: 960px) {
   .nav {
     height: 44px;
+    background: #001935;
   }
   .nav-container {
     max-width: 970px;
@@ -1202,7 +1227,7 @@
     font-size: 33px;
   }
   .nav .section1 .search {
-    width: 100%;
+    width: 80%;
     background-color: white;
     border-radius: 85px;
   }

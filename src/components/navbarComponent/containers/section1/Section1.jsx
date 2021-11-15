@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../../../styles/styles.css";
 import SearchBar from "../searchBar/SearchBar";
 import NavbarMenuMobile from "./NavbarMenuMobile";
+import {Link} from 'react-router-dom'
 const Section1 = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -38,7 +39,9 @@ const Section1 = () => {
         </div>
       )}
       <div className="logo main">
-        <span className="fa fa-downcase-t"></span>
+        <Link to='/'>
+          <span className="fa fa-downcase-t"></span>
+        </Link>
       </div>
       {!mobileView && <SearchBar />}
       {searchOpen && mobileView ? (

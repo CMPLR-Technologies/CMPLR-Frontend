@@ -33,21 +33,22 @@ $border-radius-primary: 3px;
 .nav {
   // navber class
   background-color: transparent;
-  //color: $primiry-color;
   border-bottom: 0.5px solid rgba(255, 255, 255, 0.15);
-  position: fixed;
-  width: 100%;
+  position: absolute;
   top: 0;
+  left:0;
+  width: 100%;
   z-index: 99;
+  height:54px;
   &-container {
+    height:54px;
     width: 100%;
-    box-sizing: border-box;
     max-width: 1716px;
     margin-right: auto;
     margin-left: auto;
     display: flex;
     justify-content: space-between;
-    padding: 5px 20px 5px 22px;
+    padding: 5px 32px 5px 22px;
   }
   //section1 contains logo and searchbar
   .section1 {
@@ -64,6 +65,7 @@ $border-radius-primary: 3px;
     }
     .logo {
       padding-right: 18px;
+      font-size:.9rem;
     }
     //searchbar classs
     .search {
@@ -84,6 +86,9 @@ $border-radius-primary: 3px;
         color: $secondary-color;
         font-size: 19px;
         border-radius: $border-radius-primary 0 0 $border-radius-primary;
+        i{
+          color: #BCC3CA;
+        }
       }
       &-input {
         background-color: inherit;
@@ -97,7 +102,7 @@ $border-radius-primary: 3px;
         border: none;
         font-weight: 550;
         &::placeholder {
-          color: $secondary-color;
+          color: #BCC3CA;
           font-size: 17px;
           transform: translate3d(0, 1.5px, 0);
           font-weight: 400;
@@ -130,6 +135,7 @@ $border-radius-primary: 3px;
             padding: 8px;
             text-decoration: none;
             cursor: pointer;
+            color: $primiry-color-dark;
             &:hover {
               background-color: #ededed;
             }
@@ -140,8 +146,8 @@ $border-radius-primary: 3px;
           }
           .search-result-dis {
             align-items: center;
-            background: rgba(var(--black), 0.07);
-            color: rgba(var(--black), 0.65);
+            background: rgba(#000, 0.07);
+            color: rgba(#000, 0.65);
             display: flex;
             font-family: var(--font-family);
             font-size: 0.875rem;
@@ -157,6 +163,7 @@ $border-radius-primary: 3px;
           }
           //seach result blogs
           .search-result-blog {
+         
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -174,6 +181,7 @@ $border-radius-primary: 3px;
               &-text {
                 h3,
                 h4 {
+                  color: $primiry-color-dark;
                   margin: 0;
                   font-size: 1rem;
                   font-weight: 400;
@@ -291,11 +299,19 @@ $border-radius-primary: 3px;
       @extend %defultbtn;
       cursor: pointer;
       font-size: 1rem;
-      font-weight: 500;
+      font-weight: 600;
       line-height: 1.5;
       padding: 6px 15px;
+      
       color: #000;
       border-radius: 3px;
+      a{
+        text-decoration:none;
+        color:inherit;
+        &:hover{
+          text-decoration:none;
+        }
+      }
     }
     .log {
       margin-right: 10px;
@@ -378,6 +394,10 @@ $border-radius-primary: 3px;
     .receiver {
       color: $receive-color;
     }
+    .message{
+        color:#878787;
+        font-weight:400
+    }
   }
 
   //new message button view
@@ -386,7 +406,11 @@ $border-radius-primary: 3px;
     color: $sender-color;
     font-weight: 500;
     line-height: 1.5;
+    span{
+      color: $sender-color;
+    }
     &-header {
+      
       padding: 15px;
     }
     input {
@@ -546,6 +570,7 @@ $border-radius-primary: 3px;
 @media screen and (max-width: 960px) {
   .nav {
     height: 44px;
+    background:$primiry-bg;
     &-container {
       max-width: 970px;
       flex-direction: column;
@@ -678,7 +703,7 @@ $border-radius-primary: 3px;
         font-size: 33px;
       }
       .search {
-        width: 100%;
+        width: 80%;
         background-color: $primiry-color;
         border-radius: 85px;
         &-input {
