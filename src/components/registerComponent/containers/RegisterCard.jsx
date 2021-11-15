@@ -4,10 +4,10 @@ import RegisterStepTwo from "./RegisterStepTwo";
 import { apiBaseUrl } from "../../../config.json";
 import Axios from "axios";
 import { UserContext } from "../../../contexts/userContext/UserContext";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterCard() {
-    let history=useHistory();
+  const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
   const logo_url =
     "https://upload.wikimedia.org/wikipedia/commons/archive/5/53/20210618182605%21Google_%22G%22_Logo.svg";
@@ -66,7 +66,7 @@ export default function RegisterCard() {
     })
       .then((res) => {
         //TODO: setUser"context"
-        history.push("/")
+        navigate("/");
         setOpenError(false);
       })
       .catch((err) => {

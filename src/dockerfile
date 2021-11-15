@@ -3,3 +3,5 @@ FROM baseImage
 #npm install -g json-server
 #npm install json-server --save-dev
 #npm install react-router-dom@5.2.0
+#yarn add react-outclick
+#yarn add react-router-dom

@@ -3,7 +3,7 @@ import "./styles/styles.css";
 import MainRoutes from "./components/routes/Routes";
 import UserContextProvider from "./contexts/userContext/UserContext";
 
-function App() {
+export default function App() {
   return (
     <div>
       <UserContextProvider>
@@ -12,5 +12,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

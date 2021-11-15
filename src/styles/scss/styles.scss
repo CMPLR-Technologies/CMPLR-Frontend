@@ -1,6 +1,7 @@
 @import "./registerStyles/exploreAnchor.scss";
 @import "./partials/authAlert.scss";
-@import "../scss/homeStyles/_homeStyles.scss";
+@import "./homeStyles/_homeStyles.scss";
+@import "./navbarComponent/navbar.scss";
 * {
   margin: 0;
   padding: 0;
