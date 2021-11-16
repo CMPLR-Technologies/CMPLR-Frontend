@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { backgroundImages } from "../../../../assets/js/backgroundImages";
 
 export default function Footer(props) {
-  const { imageNum, last } = props;
+  const { imageNum, last, isBrowserSize } = props;
   return (
     <>
       <div className="first-page-footer">
@@ -22,7 +22,7 @@ export default function Footer(props) {
         </div>
       </div>
 
-      {!last && (
+      {!last && isBrowserSize && (
         <a href="/#Easy to use" className="first-page-bottom">
           <span>What is cmplr</span>
         </a>

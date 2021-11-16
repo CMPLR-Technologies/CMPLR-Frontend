@@ -9,7 +9,7 @@ const images = ["1.jpg", "2.jpg", "3.png", "4.jpg", "5.jpg"];
 const imageNum = Math.floor(Math.random() * 5);
 
 export default function HomeSec1(props) {
-  const { heading, paragraph, last } = props;
+  const { heading, paragraph, last, isBrowserSize } = props;
   return (
     <>
       <section
@@ -81,7 +81,7 @@ export default function HomeSec1(props) {
             <span className="explore-text"> Here's what's trending</span>
           </Button>
         </div>
-        <Footer imageNum={imageNum} last={last} />
+        <Footer imageNum={imageNum} last={last} isBrowserSize={isBrowserSize} />
       </section>
     </>
   );

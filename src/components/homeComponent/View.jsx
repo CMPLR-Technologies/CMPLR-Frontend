@@ -72,7 +72,8 @@ export default function HomePage() {
       <HomeSec1
         heading="cmplr"
         paragraph="Make stuff, look at stuff, talk about stuff, find your people."
-        last={!isBrowserSize}
+        last={false}
+        isBrowserSize={isBrowserSize}
       />
 
       {isBrowserSize && (
@@ -85,6 +86,7 @@ export default function HomePage() {
             heading="Okay, it’s not actually hard to explain."
             paragraph="We lied. But now you understand this thing. So come on in."
             last={true}
+            isBrowserSize={isBrowserSize}
           />
           <SideNav activeSection={activeSection} />
         </>
