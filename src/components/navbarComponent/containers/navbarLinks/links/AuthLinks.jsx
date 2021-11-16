@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import OnOutsiceClick from "react-outclick";
+import ClickAwayListener from "@mui/base/ClickAwayListener";
 import "../../../../../styles/styles.css";
 import MessagesPopUp from "../MessagesPopup/MessagesPopUp";
 import { Link, NavLink } from "react-router-dom";
@@ -15,6 +15,7 @@ const AuthLinks = () => {
   //close dropdown message list
   const closeMessagePopup = () => {
     setOpenMessagePopup(false);
+    console.log("colse");
   };
   const clickMessagePopup = () => {
     // if i open it
@@ -78,8 +79,8 @@ const AuthLinks = () => {
         </NavLink>
       </li>
 
-      <div className="link-popup">
-        {/* <OnOutsiceClick onOutsideClick={closeMessagePopup}> */}
+      <ClickAwayListener onClickAway={closeMessagePopup}>
+        <div className="link-popup">
           <li
             onClick={clickMessagePopup}
             className={`link-icon message ${openMessagePopup ? "active" : ""}`}
@@ -87,9 +88,9 @@ const AuthLinks = () => {
             <i className="fas fa-comment-dots"></i>
           </li>
           {openMessagePopup && <MessagesPopUp />}
-        {/* </OnOutsiceClick> */}
-      </div>
-
+        </div>
+      </ClickAwayListener>
+      
       <li
         onClick={clickNotificationsPopup}
         className={`link-icon  ${openNotificationsPopup ? "active" : ""}`}

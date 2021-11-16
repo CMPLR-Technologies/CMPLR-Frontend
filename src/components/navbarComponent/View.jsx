@@ -5,7 +5,7 @@ import NavbarLinks from "./containers/navbarLinks/NavbarLinks";
 import Section1 from "./containers/section1/Section1";
 const Navbar = () => {
   const [mobileView, setMobileView] = useState(false);
-  const isAuth=false;
+  const isAuth=true;
    const chaneMobileView = () => {
     if (window.innerWidth > 960) {
       setMobileView(false);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../../../styles/styles.css";
 import SearchResult from "./searchBarResults/SearchResult";
-// import OnOutsiceClick from "react-outclick";
+import ClickAwayListener from "@mui/base/ClickAwayListener";
 
 const SearchBar = () => {
   const [isHover, setIsHover] = useState(false);
@@ -13,18 +13,17 @@ const SearchBar = () => {
     setOpenSearch(true);
   };
   const changeHover = () => {
-    if (!isHover&&searchWord!="")setOpenSearch(true);
+    if (!isHover && searchWord != "") setOpenSearch(true);
     setIsHover(!isHover);
-    
   };
-  const closeOpenSearch=()=>{
+  const closeOpenSearch = () => {
     setOpenSearch(false);
-  }
+  };
   //TO DO change it to know the real auth or not
-  const isAuth = false;
+  const isAuth = true;
   const darkTheme = false;
   return (
-    // <OnOutsiceClick onOutsideClick={closeOpenSearch}>
+    <ClickAwayListener onClickAway={closeOpenSearch}>
       <div
         className={`search ${isHover ? "focus " : ""} ${
           !isAuth ? "not-auth " : ""
@@ -44,7 +43,7 @@ const SearchBar = () => {
         ></input>
         {openSearch && <SearchResult search={searchWord} theme="normal" />}
       </div>
-    // </OnOutsiceClick>
+    </ClickAwayListener>
   );
 };
 
