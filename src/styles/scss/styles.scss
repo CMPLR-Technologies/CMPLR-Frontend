@@ -1,4 +1,7 @@
-@import "../scss/homeStyles/_homeStyles.scss";
+@import "./registerStyles/exploreAnchor.scss";
+@import "./partials/authAlert.scss";
+@import "./homeStyles/_homeStyles.scss";
+@import "./navbarComponent/navbar.scss";
 * {
   margin: 0;
   padding: 0;
@@ -12,14 +15,190 @@
 }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  background-color: #001935;
+  color: white;
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-size: auto;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+
+  .AuthBtn {
+    // dimensions and behaviour
+    width: 300px;
+    padding: 10px 15px;
+    margin-top: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // font
+    font-weight: 700;
+    line-height: 1.5;
+
+    // decoration and borders
+    background-color: white;
+    font-family: "Favorit", Arial, Helvetica, sans-serif;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+  }
+
+  .AuthInput {
+    // dimensions and behaviour
+    width: 300px;
+    margin-top: 6px;
+    padding: 11px 13px;
+
+    // font
+    line-height: 1.4;
+    font-size: 16px;
+
+    // decoration and borders
+    outline: none;
+    border: none;
+    border-radius: 3px;
+  }
+
+  .OrBar {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+    .OrLeftBar,
+    .OrRightBar {
+      height: 1px;
+      width: 100%;
+      margin-left: 0.5rem;
+      margin-top: 5px;
+      background-color: white;
+    }
+
+    .OrLeftBar {
+      margin-right: 0.5rem;
+    }
+  }
+
+  .AuthFooter {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 10px;
+
+    a {
+      color: white;
+      text-decoration: none;
+      padding-left: 10px;
+    }
+  }
+
+  .LoginCard {
+    width: 300px;
+    height: 100%;
+    padding-top: 4rem;
+
+    .LoginCard__a {
+      width: 300px;
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 5px;
+
+      color: white;
+
+      text-decoration: none;
+      text-align: center;
+    }
+  }
+
+  .LoginCard__logo-container {
+    text-align: center;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .LoginCard__logo {
+    font-size: 6rem;
+    color: white;
+    font-weight: bold;
+    font-family: "Bookman Old Style Regular";
+  }
+
+  .login-form {
+    p {
+      color: white;
+      font-size: 12px;
+      text-align: center;
+      line-height: 20px;
+
+      padding-bottom: 10px;
+      padding-top: 10px;
+    }
+  }
+
+  .LoginView {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url("../assets/images/bg6.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .LoginCard__stores-logos {
+    display: none;
+  }
+
+  @media screen and (max-width: 900px) {
+    .AuthFooter {
+      justify-content: center;
+      font-weight: 500;
+
+      .AuthFooter__right {
+        display: none;
+      }
+    }
+
+    .LoginCard__stores-logos {
+      width: 300px;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+
+      img {
+        width: 100%;
+        height: 65px;
+      }
+    }
+  }
 }

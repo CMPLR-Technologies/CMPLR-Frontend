@@ -1,9 +1,14 @@
-import React from 'react';
-import MainComponent from './components/MainComponent';
-function App() {
+import React from "react";
+import "./styles/styles.css";
+import MainRoutes from "./components/routes/Routes";
+import UserContextProvider from "./contexts/userContext/UserContext";
+
+export default function App() {
   return (
-    <MainComponent />
+    <div>
+      <UserContextProvider>
+        <MainRoutes />
+      </UserContextProvider>
+    </div>
   );
 }
-
-export default App;

@@ -48,7 +48,7 @@ export default function HomeSec1(props) {
 
           <Button
             dataTestid="signup-btn"
-            href="/signup"
+            href="/register"
             className="sign-btn"
             title="Sign up"
           />
