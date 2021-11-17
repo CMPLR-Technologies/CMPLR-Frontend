@@ -1,10 +1,21 @@
-@import "./gettingToKnowTumblrStyles/topDiv.scss";
-@import "./gettingToKnowTumblrStyles/mainDiv.scss";
 @import "./registerStyles/exploreAnchor.scss";
 @import "./partials/authAlert.scss";
 @import url(//db.onlinewebfonts.com/c/d73d37902ec72250867b578d3763ee38?family=Favorit);
 
 
+@import "./homeStyles/_homeStyles.scss";
+@import "./navbarComponent/navbar.scss";
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  scrollbar-color: #555555 #060022;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
 body {
   margin: 0;
   background-color: #001935;
@@ -65,6 +76,7 @@ body {
     // font
     line-height: 1.4;
     font-size: 16px;
+    color: black;
 
     // decoration and borders
     outline: none;

@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 import { useState } from "react";
 import AuthInput from "../../partials/AuthInput";
 import AuthBtn from "../../partials/AuthBtn";
@@ -61,9 +62,9 @@ const LoginCard = () => {
 
       <p className="LoginCard__a">
         New to Cmplr?{" "}
-        <a href="/" style={{ color: "white" }}>
+        <Link to="/register" style={{ color: "white" }}>
           Sign up!
-        </a>
+        </Link>
       </p>
 
       <div className="LoginCard__stores-logos">

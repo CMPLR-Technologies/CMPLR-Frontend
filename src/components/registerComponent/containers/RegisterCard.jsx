@@ -4,10 +4,10 @@ import RegisterStepTwo from "./RegisterStepTwo";
 import { apiBaseUrl } from "../../../config.json";
 import Axios from "axios";
 import { UserContext } from "../../../contexts/userContext/UserContext";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterCard() {
-    let history=useHistory();
+  const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
   const logo_url =
     "https://upload.wikimedia.org/wikipedia/commons/archive/5/53/20210618182605%21Google_%22G%22_Logo.svg";
@@ -20,6 +20,8 @@ export default function RegisterCard() {
   const [registerStep, setRegisterStep] = useState(1);
 
   const handleStepOne = () => {
+    setRegisterStep(2);
+    return;
     Axios({
       method: "POST",
       url: `${apiBaseUrl}/register/validate`,
@@ -43,9 +45,15 @@ export default function RegisterCard() {
       });
   };
   const handleStepTwo = () => {
+    console.log({
+      email: email,
+      password: password,
+      blogName: blogName,
+      age: parseInt(age),
+    })
     Axios({
       method: "POST",
-      url: `${apiBaseUrl}/register/insert`,
+      url: `${apiBaseUrl}/register`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -53,12 +61,12 @@ export default function RegisterCard() {
         email: email,
         password: password,
         blogName: blogName,
-        age: age,
+        age: parseInt(age),
       },
     })
       .then((res) => {
         //TODO: setUser"context"
-        history.push("/getting_to_know_tumblr")
+        navigate("/");
         setOpenError(false);
       })
       .catch((err) => {
