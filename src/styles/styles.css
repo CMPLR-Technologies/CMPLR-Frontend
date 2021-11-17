@@ -26,6 +26,76 @@
   line-height: 1.5;
 }
 
+.AuthBtn {
+  width: 300px;
+  padding: 10px 15px;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  line-height: 1.5;
+  background-color: white;
+  font-family: "Favorit", Arial, Helvetica, sans-serif;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+}
+
+.AuthInput {
+  width: 300px;
+  margin-top: 6px;
+  padding: 11px 13px;
+  line-height: 1.4;
+  font-size: 16px;
+  color: black;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+}
+
+.OrBar {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.OrBar .OrLeftBar,
+.OrBar .OrRightBar {
+  height: 1px;
+  width: 100%;
+  margin-left: 0.5rem;
+  margin-top: 5px;
+  background-color: white;
+}
+.OrBar .OrLeftBar {
+  margin-right: 0.5rem;
+}
+
+.AuthFooter {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 10px;
+}
+.AuthFooter a {
+  color: white;
+  text-decoration: none;
+  padding-left: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .AuthFooter {
+    justify-content: center;
+    font-weight: 500;
+  }
+  .AuthFooter .AuthFooter__right {
+    display: none;
+  }
+}
 * {
   margin: 0;
   padding: 0;
@@ -1294,6 +1364,76 @@
       width: 1170px;
     }
   }*/
+.LoginCard {
+  width: 300px;
+  height: 100%;
+  padding-top: 4rem;
+}
+.LoginCard .LoginCard__a {
+  width: 300px;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+.LoginCard__logo-container {
+  text-align: center;
+}
+.LoginCard__logo-container p {
+  margin: 0;
+}
+
+.LoginCard__logo {
+  font-size: 6rem;
+  color: white;
+  font-weight: bold;
+  font-family: "Bookman Old Style Regular";
+}
+
+.login-form p {
+  color: white;
+  font-size: 12px;
+  font-weight: 100;
+  text-align: center;
+  line-height: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.LoginCard__stores-logos {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .LoginCard__stores-logos {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  .LoginCard__stores-logos img {
+    width: 100%;
+    height: 65px;
+  }
+}
+.LoginView {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Favorit", Arial, Helvetica, sans-serif;
+  background: url("../assets/backgrounds/b1.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -1327,134 +1467,6 @@ body body {
 }
 body code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-body .AuthBtn {
-  width: 300px;
-  padding: 10px 15px;
-  margin-top: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  line-height: 1.5;
-  background-color: white;
-  font-family: "Favorit", Arial, Helvetica, sans-serif;
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-  border-radius: 3px;
-}
-body .AuthInput {
-  width: 300px;
-  margin-top: 6px;
-  padding: 11px 13px;
-  line-height: 1.4;
-  font-size: 16px;
-  color: black;
-  outline: none;
-  border: none;
-  border-radius: 3px;
-}
-body .OrBar {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  color: white;
-}
-body .OrBar .OrLeftBar,
-body .OrBar .OrRightBar {
-  height: 1px;
-  width: 100%;
-  margin-left: 0.5rem;
-  margin-top: 5px;
-  background-color: white;
-}
-body .OrBar .OrLeftBar {
-  margin-right: 0.5rem;
-}
-body .AuthFooter {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 15px 10px;
-}
-body .AuthFooter a {
-  color: white;
-  text-decoration: none;
-  padding-left: 10px;
-}
-body .LoginCard {
-  width: 300px;
-  height: 100%;
-  padding-top: 4rem;
-}
-body .LoginCard .LoginCard__a {
-  width: 300px;
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  color: white;
-  text-decoration: none;
-  text-align: center;
-}
-body .LoginCard__logo-container {
-  text-align: center;
-}
-body .LoginCard__logo-container p {
-  margin: 0;
-}
-body .LoginCard__logo {
-  font-size: 6rem;
-  color: white;
-  font-weight: bold;
-  font-family: "Bookman Old Style Regular";
-}
-body .login-form p {
-  color: white;
-  font-size: 12px;
-  font-weight: 100;
-  text-align: center;
-  line-height: 20px;
-  padding-bottom: 10px;
-  padding-top: 10px;
-}
-body .LoginView {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: "Favorit", Arial, Helvetica, sans-serif;
-  background: url("../assets/backgrounds/b1.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-}
-body .LoginCard__stores-logos {
-  display: none;
-}
-@media screen and (max-width: 900px) {
-  body .AuthFooter {
-    justify-content: center;
-    font-weight: 500;
-  }
-  body .AuthFooter .AuthFooter__right {
-    display: none;
-  }
-  body .LoginCard__stores-logos {
-    width: 300px;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-  }
-  body .LoginCard__stores-logos img {
-    width: 100%;
-    height: 65px;
-  }
 }
 
 /*# sourceMappingURL=styles.css.map */
