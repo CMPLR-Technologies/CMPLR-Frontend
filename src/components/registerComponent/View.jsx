@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React from "react";
 import '../../styles/styles.css';
 import AuthFooter from '../partials/AuthFooter';
 import RegisterCard from './containers/RegisterCard';

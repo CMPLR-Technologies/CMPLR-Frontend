@@ -1,8 +1,8 @@
 import { render, screen, fireEvent} from "@testing-library/react";
 import React from "react";
-import MessageItem from "../containers/navbarLinks/MessagesPopup/MessageItem";
-import SearchBar from '../containers/searchBar/SearchBar'
-import MessagesContainer from '../containers/navbarLinks/MessagesPopup/MessagesContainer'
+import MessageItem from "./containers/navbarLinks/MessagesPopup/MessageItem";
+import SearchBar from './containers/searchBar/SearchBar'
+import MessagesContainer from './containers/navbarLinks/MessagesPopup/MessagesContainer'
 describe("test searchbar", () => {
   it("test type in the searchbar", () => {
     render(

@@ -16,6 +16,7 @@ export default function MainRoutes() {
           <Route path="/register" element={<Register />} />
           <Route path="/messaging" element={<MessagesPageMobile />} />
           <Route path="/new" element={<NewPostPopup />} />
+          <Route path="/explore" element={<h1 >Explore</h1>} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<LoginView />} />
           <Route path="/" element={<HomePage />} />

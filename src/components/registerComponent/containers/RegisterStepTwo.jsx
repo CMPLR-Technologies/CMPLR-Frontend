@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import AuthInput from "../../partials/AuthInput";
 import AuthBtn from "../../partials/AuthBtn";
-import OrBar from "../../partials/OrBar";
 import GoogleMedia from "./RegisterGoogleMedia";
 import AuthAlert from "../../partials/AuthAlert";
 
 export default function RegisterStepTwo(props) {
   const { age, setAge, handleStepTwo, openError, errorMessage } = props;
-  const logo_url =
-    "https://upload.wikimedia.org/wikipedia/commons/archive/5/53/20210618182605%21Google_%22G%22_Logo.svg";
 
   return (
     <div style={{ paddingTop: "15%" }} className="LoginCard">

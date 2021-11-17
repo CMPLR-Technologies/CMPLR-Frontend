@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import AuthInput from "../../partials/AuthInput";
 import AuthBtn from "../../partials/AuthBtn";
 import OrBar from "../../partials/OrBar";
 import GoogleMedia from "./RegisterGoogleMedia";
 import AuthAlert from "../../partials/AuthAlert";
+import { Link, NavLink, Router } from "react-router-dom";
 
 export default function RegisterStepOne(props) {
   const {
