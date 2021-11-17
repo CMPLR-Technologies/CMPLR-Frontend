@@ -1,3 +1,4 @@
+@import url(//db.onlinewebfonts.com/c/d73d37902ec72250867b578d3763ee38?family=Favorit);
 .interestsTop {
   background-color: #c0c0c0;
   position: fixed;
@@ -410,6 +411,7 @@ body .LoginCard__logo {
 body .login-form p {
   color: white;
   font-size: 12px;
+  font-weight: 100;
   text-align: center;
   line-height: 20px;
   padding-bottom: 10px;
@@ -422,7 +424,8 @@ body .LoginView {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url("./background.jpg");
+  font-family: "Favorit", Arial, Helvetica, sans-serif;
+  background: url("../assets/backgrounds/b1.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;

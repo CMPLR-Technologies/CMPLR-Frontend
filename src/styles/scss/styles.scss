@@ -2,6 +2,9 @@
 @import "./gettingToKnowTumblrStyles/mainDiv.scss";
 @import "./registerStyles/exploreAnchor.scss";
 @import "./partials/authAlert.scss";
+@import url(//db.onlinewebfonts.com/c/d73d37902ec72250867b578d3763ee38?family=Favorit);
+
+
 body {
   margin: 0;
   background-color: #001935;
@@ -140,6 +143,7 @@ body {
     p {
       color: white;
       font-size: 12px;
+      font-weight: 100;
       text-align: center;
       line-height: 20px;
 
@@ -157,7 +161,8 @@ body {
     justify-content: center;
     align-items: center;
 
-    background: url("./background.jpg");
+    font-family: "Favorit", Arial, Helvetica, sans-serif;
+    background: url("../assets/backgrounds/b1.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
