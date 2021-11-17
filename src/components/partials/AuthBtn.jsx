@@ -6,6 +6,7 @@ const AuthBtn = ({ text, color, logo = null, handleClick }) => {
       onClick={handleClick}
       className="AuthBtn"
       style={{ backgroundColor: color, color: "black" }}
+      title={text}
     >
       {logo && (
         <img

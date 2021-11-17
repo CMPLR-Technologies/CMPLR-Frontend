@@ -3,7 +3,7 @@ import MessagesContainer from "./MessagesContainer";
 
 const MessagesPageMobile = () => {
     return (
-        <div>
+        <div className='messagepage-mobile'>
             <MessagesContainer />
         </div>
     )

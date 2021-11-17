@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import RegisterStepOne from "./RegisterStepOne";
 import RegisterStepTwo from "./RegisterStepTwo";
 import { apiBaseUrl } from "../../../config.json";
@@ -9,8 +9,6 @@ import { useNavigate } from "react-router-dom";
 export default function RegisterCard() {
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
-  const logo_url =
-    "https://upload.wikimedia.org/wikipedia/commons/archive/5/53/20210618182605%21Google_%22G%22_Logo.svg";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [blogName, setBlogName] = useState("");
@@ -21,29 +19,30 @@ export default function RegisterCard() {
 
   const handleStepOne = () => {
     setRegisterStep(2);
-    return;
+    return true;
     Axios({
-      method: "POST",
-      url: `${apiBaseUrl}/register/validate`,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: {
-        email: email,
-        password: password,
-        blogName: blogName,
-      },
-    })
-      .then((res) => {
-        //all data is validated go to age page
-        setOpenError(false);
-        setRegisterStep(2);
+        method: "POST",
+        url: `${apiBaseUrl}/register/validate`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: {
+          email: email,
+          password: password,
+          blogName: blogName,
+        },
       })
-      .catch((err) => {
-        setErrorMessage(""); //TODO: set the msg which comes from backend
-        setOpenError(true);
-      });
+        .then((res) => {
+          //all data is validated go to age page
+          setOpenError(false);
+          setRegisterStep(2);
+        })
+        .catch((err) => {
+          setErrorMessage(""); //TODO: set the msg which comes from backend
+          setOpenError(true);
+        });
   };
+
   const handleStepTwo = () => {
     console.log({
       email: email,
@@ -66,7 +65,7 @@ export default function RegisterCard() {
     })
       .then((res) => {
         //TODO: setUser"context"
-        navigate("/");
+        navigate("/dashboard");
         setOpenError(false);
       })
       .catch((err) => {

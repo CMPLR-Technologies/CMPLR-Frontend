@@ -1,15 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import MockedComponent from "../../partials/MockedComponent.jsx";
-import { backgroundImages } from "../../../assets/js/backgroundImages";
-import Footer from "../containers/Sec1/Footer.jsx";
-import HomeSec1 from "../containers/Sec1/HomeSec1.jsx";
-import HomeSec2 from "../containers/Sec2/HomeSec2.jsx";
-import HomeSec3 from "../containers/Sec3/HomeSec3.jsx";
-import HomeSec4 from "../containers/Sec4/HomeSec4.jsx";
-import HomeSec5 from "../containers/Sec5/HomeSec5.jsx";
-import SideNav from "../containers/SideNav/SideNav.jsx";
-import HomePage from "../View.jsx";
+import MockedComponent from "../partials/MockedComponent.jsx";
+import { backgroundImages } from "../../assets/js/backgroundImages";
+import Footer from "./containers/Sec1/Footer.jsx";
+import HomeSec1 from "./containers/Sec1/HomeSec1.jsx";
+import HomeSec2 from "./containers/Sec2/HomeSec2.jsx";
+import HomeSec3 from "./containers/Sec3/HomeSec3.jsx";
+import HomeSec4 from "./containers/Sec4/HomeSec4.jsx";
+import HomeSec5 from "./containers/Sec5/HomeSec5.jsx";
+import SideNav from "./containers/SideNav/SideNav.jsx";
+import HomePage from "./View.jsx";
 
 describe("Home Component in browser size", () => {
   Object.defineProperty(window, "matchMedia", {
