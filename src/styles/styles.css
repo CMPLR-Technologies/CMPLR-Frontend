@@ -1,3 +1,4 @@
+@import url(//db.onlinewebfonts.com/c/d73d37902ec72250867b578d3763ee38?family=Favorit);
 .register_explore_anchor {
   align-items: center;
   color: #fff;
@@ -573,11 +574,11 @@
 }
 
 .fa-downcase-t {
-  margin-top: -5px;
+  margin-top: -2px;
 }
 
 .fa-downcase-t:before {
-  font-family: "Favorit", "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   /* your font family here! */
   font-weight: 800;
   content: "t";
@@ -1226,7 +1227,7 @@
   }
   .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu ul li i {
     font-size: 1.4rem;
-    margin-right: 20px;
+    min-width: 45px;
   }
   .nav .section1 .navbar-menu-mobile.active {
     left: 0;
@@ -1370,6 +1371,7 @@ body .AuthInput {
   padding: 11px 13px;
   line-height: 1.4;
   font-size: 16px;
+  color: black;
   outline: none;
   border: none;
   border-radius: 3px;
@@ -1432,6 +1434,7 @@ body .LoginCard__logo {
 body .login-form p {
   color: white;
   font-size: 12px;
+  font-weight: 100;
   text-align: center;
   line-height: 20px;
   padding-bottom: 10px;
@@ -1444,7 +1447,8 @@ body .LoginView {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("../assets/images/bg6.jpg");
+  font-family: "Favorit", Arial, Helvetica, sans-serif;
+  background: url("../assets/backgrounds/b1.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;

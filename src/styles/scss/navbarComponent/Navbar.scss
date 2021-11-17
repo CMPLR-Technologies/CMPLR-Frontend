@@ -15,11 +15,10 @@ $border-radius-primary: 3px;
 
 // logo of the site
 .fa-downcase-t{
-  margin-top: -5px;
+  margin-top: -2px;
 }
 .fa-downcase-t:before {
-  font-family: "Favorit", "Helvetica Neue", HelveticaNeue, Helvetica, Arial,
-    sans-serif; /* your font family here! */
+  font-family:  Arial,sans-serif; /* your font family here! */
   font-weight: 800;
   content: "t";
   font-size: 45px;
@@ -697,7 +696,8 @@ $border-radius-primary: 3px;
               }
               i {
                 font-size: 1.4rem;
-                margin-right: 20px;
+                min-width: 45px;
+  
               }
             }
           }

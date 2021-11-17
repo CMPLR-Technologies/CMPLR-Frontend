@@ -1,5 +1,8 @@
 @import "./registerStyles/exploreAnchor.scss";
 @import "./partials/authAlert.scss";
+@import url(//db.onlinewebfonts.com/c/d73d37902ec72250867b578d3763ee38?family=Favorit);
+
+
 @import "./homeStyles/_homeStyles.scss";
 @import "./navbarComponent/navbar.scss";
 * {
@@ -73,6 +76,7 @@ body {
     // font
     line-height: 1.4;
     font-size: 16px;
+    color: black;
 
     // decoration and borders
     outline: none;
@@ -151,6 +155,7 @@ body {
     p {
       color: white;
       font-size: 12px;
+      font-weight: 100;
       text-align: center;
       line-height: 20px;
 
@@ -168,7 +173,8 @@ body {
     justify-content: center;
     align-items: center;
 
-    background-image: url("../assets/images/bg6.jpg");
+    font-family: "Favorit", Arial, Helvetica, sans-serif;
+    background: url("../assets/backgrounds/b1.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
