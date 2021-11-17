@@ -3,7 +3,7 @@ import MessagesContainer from "./MessagesContainer";
 const MessagesPopUp = () => {
   const darkTheme=false;
   return (
-    <div className={`popup ${darkTheme?"dark ":""}`}>
+    <div data-testid='dropDownMessage' className={`popup ${darkTheme?"dark ":""}`}>
       <MessagesContainer />
     </div>
   );

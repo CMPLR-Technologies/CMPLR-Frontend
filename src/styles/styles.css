@@ -572,6 +572,10 @@
   line-height: 1.5;
 }
 
+.fa-downcase-t {
+  margin-top: -5px;
+}
+
 .fa-downcase-t:before {
   font-family: "Favorit", "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
   /* your font family here! */
@@ -958,8 +962,24 @@
   color: #9a9a9a;
 }
 
+.messagepage-mobile .popup-header {
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+  left: 0;
+  width: 100%;
+  height: 54px;
+}
+.messagepage-mobile .popup-messages {
+  padding-top: 54px;
+  background-color: white;
+}
+
 .popup-header {
   background-color: white;
+}
+.popup-header h3 {
+  color: #000;
 }
 
 .popup-messages {

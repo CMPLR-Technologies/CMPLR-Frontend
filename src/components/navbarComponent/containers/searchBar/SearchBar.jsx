@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import "../../../../styles/styles.css";
 import SearchResult from "./searchBarResults/SearchResult";
 import ClickAwayListener from "@mui/base/ClickAwayListener";
@@ -9,9 +9,13 @@ const SearchBar = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const onChange = (e) => {
     setSearchWord(e.target.value);
-    //TO DO : send req to backend and get the users
-    setOpenSearch(true);
+    console.log(searchWord);
   };
+  useEffect(()=>{
+    //TO DO : send req to backend and get the users
+    if (searchWord.length > 0) setOpenSearch(true);
+    else setOpenSearch(false);
+  },[searchWord])
   const changeHover = () => {
     if (!isHover && searchWord != "") setOpenSearch(true);
     setIsHover(!isHover);
@@ -33,15 +37,16 @@ const SearchBar = () => {
           <i className="fas fa-search"></i>
         </div>
         <input
+          type="text"
+          value={searchWord}
           onFocus={changeHover}
           onBlur={changeHover}
           onChange={onChange}
           focus
           className="search-input"
           placeholder="Search Tumblr"
-          value={searchWord}
         ></input>
-        {openSearch && <SearchResult search={searchWord} theme="normal" />}
+        {openSearch && <SearchResult data-testid='search-result' search={searchWord} theme="normal" />}
       </div>
     </ClickAwayListener>
   );

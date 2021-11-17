@@ -58,7 +58,7 @@ const Section1 = () => {
         <i className={!searchOpen ? "fas fa-search" : "fas fa-times"}></i>
       </div>
 
-      <NavbarMenuMobile active={menuOpen} close={closeMenu} />
+      <NavbarMenuMobile active={menuOpen} closeMenu={closeMenu} />
     </div>
   );
 };

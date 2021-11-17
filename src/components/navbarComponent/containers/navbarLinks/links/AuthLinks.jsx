@@ -15,7 +15,7 @@ const AuthLinks = () => {
   //close dropdown message list
   const closeMessagePopup = () => {
     setOpenMessagePopup(false);
-    console.log("colse");
+    //console.log("colse");
   };
   const clickMessagePopup = () => {
     // if i open it
@@ -90,7 +90,7 @@ const AuthLinks = () => {
           {openMessagePopup && <MessagesPopUp />}
         </div>
       </ClickAwayListener>
-      
+
       <li
         onClick={clickNotificationsPopup}
         className={`link-icon  ${openNotificationsPopup ? "active" : ""}`}

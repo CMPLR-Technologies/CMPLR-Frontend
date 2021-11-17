@@ -23,11 +23,12 @@ const Navbar = () => {
         {/*section 1 contains logo and search bar*/}
         <Section1 />
         {/*section 2 contains links*/}
-        <NavbarLinks />
+        <NavbarLinks isAuth={isAuth} />
       </div>
     </div>);
+
   // if not user auth and mobile view hide navbar
-  if(mobileView&&!isAuth)nav =null;
+  if((mobileView&&!isAuth))nav =null;
   return nav;
 };
 
