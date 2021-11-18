@@ -1,18 +1,16 @@
-import React from "react";
+import React from 'react';
 
-const AuthFooter = () => {
-  return (
-    <div className="AuthFooter">
-      <div className="AuthFooter__left">
-        <a href="/">Terms</a>
-        <a href="/">Privacy</a>
-        <a href="/">Jobs</a>
-        <a href="/">Support</a>
-      </div>
+export default function AuthFooter() {
+    return (
+        <div className="AuthFooter">
+            <div className="AuthFooter__left">
+                <a href="/">Terms</a>
+                <a href="/">Privacy</a>
+                <a href="/">Jobs</a>
+                <a href="/">Support</a>
+            </div>
 
-      <div className="AuthFooter__right"></div>
-    </div>
-  );
-};
-
-export default AuthFooter;
+            <div className="AuthFooter__right"></div>
+        </div>
+    );
+}
