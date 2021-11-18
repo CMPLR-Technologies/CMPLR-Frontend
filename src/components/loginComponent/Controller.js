@@ -2,6 +2,8 @@ import b1 from "../../assets/backgrounds/b1.jpg";
 import b2 from "../../assets/backgrounds/b2.jpg";
 import b3 from "../../assets/backgrounds/b3.jpg";
 import b4 from "../../assets/backgrounds/b4.jpg";
+import { apiBaseUrl } from "../../config.json";
+import Axios from "axios";
 
 const getRandomImage = () => {
   const k = Math.floor(Math.random() * 4);
@@ -13,17 +15,17 @@ const handleLogin = (Email, Password, setError) => {
   if (Email.length == 0) setError("Please Enter Your Email");
   else if (Password.length == 0) setError("Please Enter Your Password");
   else
-    fetch("/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ Email, Password }),
-    }).then((res) => {
-      if (!res.ok) {
-        setError("Coudn't Log in");
-      }
-    });
+  {
+    Axios.post(`${apiBaseUrl}/login`, {
+      Email, 
+      Password 
+    }).then((res)=>{
+      // @Todo: update context provider 
+    }).catch(()=>{
+      setError("Error log in")
+    })
+  }
+
 };
 
 export { getRandomImage, handleLogin };
