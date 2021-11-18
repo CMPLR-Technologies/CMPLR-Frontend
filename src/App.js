@@ -1,10 +1,16 @@
-import './styles/styles.css';
+import "./styles/styles.css";
+import React from "react";
+import { ThemeContextProvider } from "./contexts/themeContext/ThemeContext";
+import ThemeToggle from "./components/ThemeToggle";
 
 function App() {
   return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
+    <ThemeContextProvider>
+      <div>
+        {/* <ThemeToggle /> */}
+        
+      </div>
+    </ThemeContextProvider>
   );
 }
 
