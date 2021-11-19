@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: loginComponent/containers/LoginCard.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: loginComponent/containers/LoginCard.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import AuthInput from '../../partials/AuthInput';
+import AuthBtn from '../../partials/AuthBtn';
+import OrBar from '../../partials/OrBar';
+import AuthAlert from '../../partials/AuthAlert';
+import { handleLogin } from '../Controller';
+
+/**
+ * LoginCard Component
+ * @function LoginCard
+ * @description The component that contains content fo login page
+ * @returns {Component} Input fields for email and password,
+ * forget password button, continue with Google button and two icons for downloading app on
+ * Apple store and Google play
+ */
+
+export default function LoginCard() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+
+    return (
+        &lt;div className="LoginCard">
+            &lt;div className="LoginCard__logo-container">
+                &lt;p className="LoginCard__logo">cmplr&lt;/p>
+            &lt;/div>
+            &lt;AuthAlert errorMessage={error} openError={error.length !== 0} />
+
+            &lt;div className="login-form">
+                &lt;AuthInput
+                    name="email"
+                    type="text"
+                    placeholder="Email"
+                    value={email}
+                    setValue={setEmail}
+                >&lt;/AuthInput>
+
+                &lt;AuthInput
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    setValue={setPassword}
+                >&lt;/AuthInput>
+
+                &lt;p>
+                    {'By clicking "log in", or continuing with the other options' +
+                        'below, you agree to Tumblr’s Terms of Service and have read' +
+                        'the Privacy Policy'}
+                &lt;/p>
+
+                &lt;AuthBtn
+                    text="Log in"
+                    color="#00b8ff"
+                    handleClick={() => handleLogin(email, password, setError)}
+                >&lt;/AuthBtn>
+            &lt;/div>
+
+            &lt;a className="LoginCard__a" href="/">
+                Forgot your password?
+            &lt;/a>
+
+            &lt;OrBar>&lt;/OrBar>
+
+            &lt;AuthBtn
+                text="Continue with Google"
+                color="white"
+                logo="https://upload.wikimedia.org/wikipedia/commons/archive/5/53/20210618182605%21Google_%22G%22_Logo.svg"
+            >&lt;/AuthBtn>
+
+            &lt;p className="LoginCard__a">
+                New to Cmplr?{' '}
+                &lt;Link to="/register" style={{ color: 'white' }}>
+                    Sign up!
+                &lt;/Link>
+            &lt;/p>
+
+            &lt;div className="LoginCard__stores-logos">
+                &lt;a href="/">
+                    &lt;img
+                        src="https://assets.tumblr.com/pop/src/assets/images/download-on-the-appstore/en-8c4986ee.svg"
+                        alt="Download on the Apple Store"
+                        style={{ paddingRight: '20px' }}
+                    />
+                &lt;/a>
+
+                &lt;a href="/">
+                    &lt;img
+                        src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                        alt=""
+                    />
+                &lt;/a>
+            &lt;/div>
+        &lt;/div>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#GoogleMedia">GoogleMedia</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Nov 19 2021 22:52:41 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

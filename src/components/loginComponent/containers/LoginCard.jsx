@@ -7,6 +7,15 @@ import OrBar from '../../partials/OrBar';
 import AuthAlert from '../../partials/AuthAlert';
 import { handleLogin } from '../Controller';
 
+/**
+ * LoginCard Component
+ * @function LoginCard
+ * @description The component that contains content fo login page
+ * @returns {Component} Input fields for email and password,
+ * forget password button, continue with Google button and two icons for downloading app on
+ * Apple store and Google play
+ */
+
 export default function LoginCard() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

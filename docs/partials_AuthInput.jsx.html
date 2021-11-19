@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: navbarComponent/containers/navbarLinks/links/UnAuthLinks.jsx</title>
+    <title>JSDoc: Source: partials/AuthInput.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: navbarComponent/containers/navbarLinks/links/UnAuthLinks.jsx</h1>
+    <h1 class="page-title">Source: partials/AuthInput.jsx</h1>
 
     
 
@@ -27,26 +27,42 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react';
-import '../../../../../styles/styles.css';
-import { Link } from 'react-router-dom';
-/**
- * Navbar UnAuthLinks: includes two buttons login and sign up
- * @function NavbarUnAuthLinks
- * @returns {Component} two buttons login and sign up
- */
-export default function UnAuthLinks() {
-    return (
-        &lt;>
-            &lt;button className="log">
-                &lt;Link to="/login">Log in&lt;/Link>
-            &lt;/button>
-            &lt;button className="sign">
-                &lt;Link to="/register">Sign up&lt;/Link>
-            &lt;/button>
-        &lt;/>
-    );
-};
+import PropTypes from 'prop-types';
 
+/**
+ * @function AuthInput
+ * @description Custom input field for sign up and login pages
+ * @property { string } name - Name of the input field in html tag
+ * @property { string } type - Type of the input field in html tag
+ * @property { string } placeholder - Initial text on input field
+ * @property { stateful_value } value - Internal state of the input field
+ * @property { function } setValue - Setter for the internal state
+ * @returns Input field with the given parameters
+ */
+
+export default function AuthInput(props) {
+    const { name, type, placeholder, value, setValue } = props;
+    return (
+        &lt;input
+            onChange={e => {
+                setValue(e.target.value);
+            }}
+            className="AuthInput"
+            value={value}
+            type={type}
+            name={name}
+            placeholder={placeholder}
+        />
+    );
+}
+
+AuthInput.propTypes = {
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    placeholder: PropTypes,
+    value: PropTypes,
+    setValue: PropTypes.func.isRequired
+};
 </code></pre>
         </article>
     </section>

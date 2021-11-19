@@ -1,6 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Authentication Button
+ * @function AuthBtn
+ * @description Custom button for sign up and login pages
+ * @property { string } text - the text to be displayed on button
+ * @property { string } color - background color of the button
+ * @property { function } handleClick - handler for click event
+ * @returns Button with the given parameters
+ */
+
 export default function AuthBtn(props) {
     const { text, color, logo = null, handleClick } = props;
     return (
