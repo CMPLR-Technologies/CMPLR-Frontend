@@ -1,12 +1,10 @@
-import React from 'react'
-import MessagesContainer from "./MessagesContainer";
+import React from 'react';
+import MessagesContainer from './MessagesContainer';
 
-const MessagesPageMobile = () => {
+export default function MessagesPageMobile() {
     return (
-        <div className='messagepage-mobile'>
+        <div className="messagepage-mobile">
             <MessagesContainer />
         </div>
-    )
-}
-
-export default MessagesPageMobile
+    );
+};

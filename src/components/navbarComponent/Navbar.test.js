@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
 import { render, screen, fireEvent} from "@testing-library/react";
 import React from "react";
 import MessageItem from "./containers/navbarLinks/MessagesPopup/MessageItem";
-import SearchBar from './containers/searchBar/SearchBar'
-import MessagesContainer from './containers/navbarLinks/MessagesPopup/MessagesContainer'
+import SearchBar from './containers/searchBar/SearchBar';
+import MessagesContainer from './containers/navbarLinks/MessagesPopup/MessagesContainer';
 describe("test searchbar", () => {
   it("test type in the searchbar", () => {
     render(
@@ -10,7 +11,7 @@ describe("test searchbar", () => {
       />
     );
     const inputElement = screen.getByPlaceholderText("Search Tumblr");
-    fireEvent.change(inputElement,{target:{value:"gaser"}})
+    fireEvent.change(inputElement,{target:{value:"gaser"}});
     expect(inputElement.value).toBe("gaser");
   });
 
@@ -21,9 +22,9 @@ describe("test searchbar", () => {
       />
     );
     const inputElement = screen.getByPlaceholderText("Search Tumblr");
-    fireEvent.change(inputElement,{target:{value:"gaser"}})
-    fireEvent.change(inputElement,{target:{value:""}})
-    const searchBarResultDev=screen.queryByTestId("search-result")
+    fireEvent.change(inputElement,{target:{value:"gaser"}});
+    fireEvent.change(inputElement,{target:{value:""}});
+    const searchBarResultDev=screen.queryByTestId("search-result");
     expect(searchBarResultDev).toBeNull();
   });
 
