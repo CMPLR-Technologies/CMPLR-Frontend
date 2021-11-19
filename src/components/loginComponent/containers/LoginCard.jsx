@@ -17,7 +17,7 @@ export default function LoginCard() {
             <div className="LoginCard__logo-container">
                 <p className="LoginCard__logo">cmplr</p>
             </div>
-            <AuthAlert errorMessage={error} openError={error.length != 0} />
+            <AuthAlert errorMessage={error} openError={error.length !== 0} />
 
             <div className="login-form">
                 <AuthInput

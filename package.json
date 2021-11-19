@@ -25,7 +25,8 @@
         "test": "react-scripts test",
         "lint": "eslint ./src --ext .jsx",
         "eject": "react-scripts eject",
-        "coverageTest": "react-scripts test --coverage"
+        "coverageTest": "react-scripts test --coverage",
+        "doc": "jsdoc -c jsdoc.json"
     },
     "eslintConfig": {
         "extends": [
@@ -56,6 +57,7 @@
         "eslint-plugin-prettier": "^4.0.0",
         "eslint-plugin-react": "^7.27.0",
         "eslint-plugin-react-hooks": "^4.3.0",
+        "jsdoc": "^3.6.7",
         "json-server": "^0.17.0",
         "prettier": "^2.4.1",
         "webpack": "^4.46.0",

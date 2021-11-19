@@ -17,6 +17,9 @@ module.exports = {
     rules: {
         'no-console': 'warn',
         'semi':'warn',
-        'no-var':'error'
+        'no-var':'error',
+        'camelcase':'error',
+        'no-useless-call':'error',
+        'eqeqeq':'error'
     }
 };

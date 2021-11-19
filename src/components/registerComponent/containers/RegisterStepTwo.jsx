@@ -5,6 +5,16 @@ import GoogleMedia from './RegisterGoogleMedia';
 import AuthAlert from '../../partials/AuthAlert';
 import PropTypes from 'prop-types';
 
+/**
+ * @function RegisterStepTwo
+ * @description this is the last step in registeration where user should enter his age
+ * @property {string} age - Age state
+ * @property {function} setAge - Age Setter state
+ * @property {function} handleStepTwo - To handle pressing next after entering your age
+ * @property {boolean} openError - To check if there is an error
+ * @property {string} errorMessage - State to store the message error from backend
+ * @returns {Component} the age input & a next button to finish registeration
+ */
 export default function RegisterStepTwo(props) {
     const { age, setAge, handleStepTwo, openError, errorMessage } = props;
     return (

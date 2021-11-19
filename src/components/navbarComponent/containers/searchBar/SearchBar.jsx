@@ -16,7 +16,7 @@ const SearchBar = () => {
         else setOpenSearch(false);
     }, [searchWord]);
     const changeHover = () => {
-        if (!isHover && searchWord != '') setOpenSearch(true);
+        if (!isHover && searchWord !== '') setOpenSearch(true);
         setIsHover(!isHover);
     };
     const closeOpenSearch = () => {

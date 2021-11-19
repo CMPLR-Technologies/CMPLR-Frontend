@@ -13,7 +13,7 @@ export default function SearchResult(props) {
         { blogName: 'ahmed123', name: 'ahmed' },
         { blogName: 'ahmed123', name: 'ahmed' }
     ];
-    const darkTheme = props.theme == 'dark' ? true : false;
+    const darkTheme = props.theme === 'dark' ? true : false;
     return (
         <div className={`search-result  ${darkTheme ? 'dark ' : ''} `}>
             <ul>

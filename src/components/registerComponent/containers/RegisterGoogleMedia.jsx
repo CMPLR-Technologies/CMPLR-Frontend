@@ -1,5 +1,11 @@
 import React from 'react';
 
+/**
+ * Register Main Component
+ * @function GoogleMedia
+ * @description used in mobile browser mood for showing google/apple stores logos
+ * @returns {Component} images of google_store/play_store when browser in mobile mode
+ */
 export default function GoogleMedia() {
     return (
         <div className="LoginCard__stores-logos">
