@@ -53,16 +53,16 @@ function ShortcutsContainer() {
       name: "Composing",
       list: [
         {
-          name: "New post",
-          keys: ["alt", "C"],
+          name: "Bold",
+          keys: ["ctrl", "B"],
         },
         {
-          name: "MoveForward",
-          keys: ["tab"],
+          name: "Italic",
+          keys: ["ctrl", "I"],
         },
         {
-          name: "MoveForward",
-          keys: ["shift", "tab"],
+          name: "Insert a photo",
+          keys: ["ctrl", "shift", "P"],
         },
       ],
     },
