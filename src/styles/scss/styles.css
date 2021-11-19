@@ -1,21 +1,560 @@
-@charset "UTF-8";
-* {
-  margin: 0;
-  padding: 0;
+.interestsTop {
+  background-color: #c0c0c0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.top {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+  background-color: #001935;
+  height: 74px;
+  width: 100%;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  overflow: hidden;
+}
+
+.chipsDiv {
+  height: inherit;
+  -ms-flex: 1;
+  -webkit-box-flex: 1;
+          flex: 1;
+  position: relative;
+}
+
+.chipsSubDiv {
+  white-space: nowrap;
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-bottom: -20px;
+}
+
+.chip {
+  display: inline-block;
+  margin-left: 10px;
+  cursor: pointer;
+  border: 1px dashed #86909e;
+  border-radius: 40px;
+  -webkit-transition: -webkit-transform 275ms cubic-bezier(0.86, 0, 0.07, 1);
+  transition: -webkit-transform 275ms cubic-bezier(0.86, 0, 0.07, 1);
+  transition: transform 275ms cubic-bezier(0.86, 0, 0.07, 1);
+  transition: transform 275ms cubic-bezier(0.86, 0, 0.07, 1), -webkit-transform 275ms cubic-bezier(0.86, 0, 0.07, 1);
+  vertical-align: top;
+  margin-top: 16px;
+}
+
+.chip .circleChip {
+  -webkit-transition: opacity 0.5s linear, width 1s linear;
+  transition: opacity 0.5s linear, width 1s linear;
+  width: 110px;
+  height: 42px;
+  opacity: 1;
+}
+
+.chip .circleChip .innerFont {
+  font-weight: 700;
+  height: 44px;
+  position: relative;
+}
+
+.chip .circleChip .innerFont .inner {
+  text-align: center;
+  border-radius: 40px;
+  margin-left: -1px;
+  margin-top: -2px;
+  -webkit-transition: width 0.6s ease-in-out;
+  transition: width 0.6s ease-in-out;
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  z-index: 0;
+  padding: 0 20px;
+  background: transparent;
+}
+
+.spaceTopDiv {
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 25, 53, 0)), to(#001935));
+  background-image: linear-gradient(90deg, rgba(0, 25, 53, 0), #001935);
+  position: absolute;
+  right: 0;
+  height: inherit;
+  width: 60px;
+}
+
+.chipsButtonsDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.chipsButtonsDiv .chipsButtonStyle {
+  border: 1px solid rgba(0, 184, 255, 0.5);
+  -webkit-transition: all 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+  transition: all 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+  border-radius: 3px;
+  overflow: hidden;
+  cursor: pointer;
+  width: 120px;
+  height: 44px;
+  margin-right: 15px;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+  top: 15px;
+  position: relative;
+  background-color: #00b8ff;
+}
+
+.chipsButtonsDiv .chipsButtonStyle :disabled {
+  background-color: #405368;
+}
+
+.chipsButtonsDiv .chipsButtonStyle :hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.chipsButtonsDiv .chipsButtonStyle .skip {
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  position: relative;
+  color: rgba(0, 184, 255, 0.5);
+}
+
+.chipsButtonsDiv .chipsButtonStyle .progressMarker {
+  background: #00b8ff;
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.chipsButtonsDiv .chipsButtonStyle .progressText {
+  color: #001935;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  position: relative;
+}
+
+.tile_manager {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+  width: 368px;
+}
+
+@media (min-width: 992px) {
+  .tile_manager {
+    width: 920px;
+  }
+}
+
+@media (min-width: 768px) {
+  .tile_manager {
+    margin-top: 92px;
+    width: 690px;
+  }
+}
+
+@media (min-width: 550px) {
+  .tile_manager {
+    width: 525px;
+  }
+}
+
+.tile_manager .clearfix {
+  zoom: 1;
+}
+
+.tile_manager .clearfix .titledDiv {
+  opacity: 1;
+  display: block;
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+  float: left;
+  background: #7c5cff;
+  color: #fff;
+  text-align: center;
+  width: 430px;
+  height: 430px;
+  border-radius: 3px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+@media (min-width: 550px) {
+  .tile_manager .clearfix .titledDiv {
+    width: 515px;
+    height: 280px;
+  }
+}
+
+@media (min-width: 768px) {
+  .tile_manager .clearfix .titledDiv {
+    width: 430px;
+    height: 430px;
+  }
+}
+
+.tile_manager .clearfix .titledDiv .sub_header {
+  font-size: 48px;
+  font-family: Gibson, Helvetica Neue, HelveticaNeue, Helvetica, Arial, sans-serif;
+  width: 300px;
+  margin: auto;
+  font-weight: 700;
+  line-height: 50px;
+  margin-top: 125px;
+}
+
+@media (min-width: 768px) {
+  .tile_manager .clearfix .titledDiv .sub_header {
+    margin-top: 110px;
+  }
+}
+
+@media (min-width: 550px) {
+  .tile_manager .clearfix .titledDiv .sub_header {
+    margin-top: 35px;
+  }
+}
+
+.tile_manager .clearfix .titledDiv .sub_text {
+  opacity: 0.5;
+  font-size: 20px;
+  max-width: 188px;
+  padding-top: 20px;
+  margin: auto;
+}
+
+.tile_manager .smallDiv_large {
+  position: relative;
+  height: 220px;
+  width: 220px;
+}
+
+.tile_manager .smallDiv_large .title_inner {
+  display: inline-block;
+  position: absolute;
+  margin: 10px;
+  width: 210px;
+  height: 210px;
+}
+
+.tile_manager .smallDiv_large .title_inner .sub_block_parent {
+  width: 220px;
+  height: 220px;
+}
+
+.tile_manager .smallDiv_large .title_inner .sub_block_parent .block_image {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  width: 164px;
+  height: 164px;
+  background-image: url(https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg);
+}
+
+@media (min-width: 768px) {
+  .tile_manager .smallDiv_large .title_inner .sub_block_parent .block_image {
+    width: 210px;
+    height: 210px;
+  }
+}
+
+.tile_manager .smallDiv_large .title_inner .sub_block_parent .block_vignette {
+  background: radial-gradient(ellipse at center, transparent 0, rgba(0, 0, 0, 0.36) 100%);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.tile_manager .smallDiv_large .title_inner .sub_block_parent .check_mark {
+  position: absolute;
+  display: none;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  font-size: 80px;
+  margin-top: 40px;
+  color: #fff;
+  text-align: center;
+}
+
+.tile_manager .smallDiv_large .title_inner .sub_block_parent .block_title_container {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.tile_manager .smallDiv_large .title_inner .sub_block_parent .block_title_container .block_title_text {
+  font-family: inherit;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0;
+  font-size: 14px;
+  padding-left: 11px;
+  padding-top: 9px;
+}
+
+.tile_manager .smallDiv_normal {
+  float: left;
+}
+
+.register_explore_anchor {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: 700;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 17px;
+  text-decoration: none;
+}
+
+.register_explore_anchor svg {
+  padding-right: 8px;
+}
+
+.auth_alert {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin: 15px 0;
+  padding: 14px 15px;
+}
+
+.auth_alert h3 {
+  font-family: var(--font-family);
+  line-height: 1.5;
 }
 
 body {
   margin: 0;
-  font-family: "Favorit", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
+  background-color: #001935;
+  color: white;
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+body * {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+body code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+body .AuthBtn {
+  width: 300px;
+  padding: 10px 15px;
+  margin-top: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-weight: 700;
+  line-height: 1.5;
+  background-color: white;
+  font-family: "Favorit", Arial, Helvetica, sans-serif;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+}
+
+body .AuthInput {
+  width: 300px;
+  margin-top: 6px;
+  padding: 11px 13px;
+  line-height: 1.4;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+}
+
+body .OrBar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+}
+
+body .OrBar .OrLeftBar,
+body .OrBar .OrRightBar {
+  height: 1px;
+  width: 100%;
+  margin-left: 0.5rem;
+  margin-top: 5px;
+  background-color: white;
+}
+
+body .OrBar .OrLeftBar {
+  margin-right: 0.5rem;
+}
+
+body .AuthFooter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  padding: 15px 10px;
+}
+
+body .AuthFooter a {
+  color: white;
+  text-decoration: none;
+  padding-left: 10px;
+}
+
+body .LoginCard {
+  width: 300px;
+  height: 100%;
+  padding-top: 4rem;
+}
+
+body .LoginCard .LoginCard__a {
+  width: 300px;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+body .LoginCard__logo-container {
+  text-align: center;
+}
+
+body .LoginCard__logo-container p {
+  margin: 0;
+}
+
+body .LoginCard__logo {
+  font-size: 6rem;
+  color: white;
+  font-weight: bold;
+  font-family: "Bookman Old Style Regular";
+}
+
+body .login-form p {
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+body .LoginView {
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: url("./background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+body .LoginCard__stores-logos {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  body .AuthFooter {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    font-weight: 500;
+  }
+  body .AuthFooter .AuthFooter__right {
+    display: none;
+  }
+  body .LoginCard__stores-logos {
+    width: 300px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin-top: 30px;
+  }
+  body .LoginCard__stores-logos img {
+    width: 100%;
+    height: 65px;
+  }
 }
 
 @media (max-width: 988px) {
