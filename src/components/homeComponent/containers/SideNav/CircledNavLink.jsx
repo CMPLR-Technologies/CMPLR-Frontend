@@ -5,7 +5,7 @@ CircledNavLink.propTypes = {
     href: PropTypes.string,
     activeSectionNum: PropTypes.number,
     activeSection: PropTypes.number,
-    dataTestid: PropTypes,
+    dataTestid: PropTypes.string,
     className: PropTypes.string
 };
 export default function CircledNavLink(props) {

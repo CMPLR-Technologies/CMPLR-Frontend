@@ -2,8 +2,15 @@ import React from 'react';
 import CircledNavLink from './CircledNavLink';
 import PropTypes from 'prop-types';
 
+/**
+ * @function CircledSideNavbar
+ * @description side navbar used to navigate through different sections in homepage
+ * @param {number} activeSection - Number of active section to fill its nav with background white
+ * @returns {Component} CicledSideNavbar
+ */
+
 SideNav.propTypes = {
-    activeSection: PropTypes.string
+    activeSection: PropTypes.any
 };
 export default function SideNav(props) {
     const { activeSection } = props;

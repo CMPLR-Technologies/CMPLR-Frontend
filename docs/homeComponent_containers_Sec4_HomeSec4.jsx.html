@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: registerComponent/View.jsx</title>
+    <title>JSDoc: Source: homeComponent/containers/Sec4/HomeSec4.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: registerComponent/View.jsx</h1>
+    <h1 class="page-title">Source: homeComponent/containers/Sec4/HomeSec4.jsx</h1>
 
     
 
@@ -26,24 +26,42 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
-import '../../styles/styles.css';
-import AuthFooter from '../partials/AuthFooter';
-import RegisterCard from './containers/RegisterCard';
+            <pre class="prettyprint source linenums"><code>import React from "react";
 
 /**
- * Register Main Component
- * @function Register
- * @description this is the main Component of register contains in it's body all the register cards
- * @returns {Component} register_card &amp; auth_footer
+ * @function HomeSectionTwo
+ * @description [Static page ]Section Four Component of HomePage
+ * @returns {Component} the Component of the Section Four
  */
-export default function Register() {
-    return (
-        &lt;div className="LoginView">
-            &lt;RegisterCard />
-            &lt;AuthFooter />
+
+export default function HomeSec4() {
+  return (
+    &lt;>
+      &lt;section
+        data-testid="home-sec4"
+        id="You already know how this works."
+        className="fourth-page  section"
+      >
+        &lt;div className="fourth-page-content">
+          &lt;div className="fourth-page-post">
+            &lt;img src="" alt="" />
+          &lt;/div>
+          &lt;div className="fourth-page-info">
+            &lt;h1 data-testid="sec4-heading" className="sec-page-heading">
+              You already know how this works.
+            &lt;/h1>
+            &lt;p data-testid="sec4-paragraph" className="sec-page-para">
+              Once you follow a blog, all of its posts show up in your
+              dashboard, just like you’d expect. See something great? Reblog it
+              to your own blog. Add commentary if you like. Make it your own.
+              Other people will do the same to your posts. That’s how you meet
+              people here.
+            &lt;/p>
+          &lt;/div>
         &lt;/div>
-    );
+      &lt;/section>
+    &lt;/>
+  );
 }
 </code></pre>
         </article>

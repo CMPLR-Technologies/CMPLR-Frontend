@@ -1,5 +1,11 @@
 import React from "react";
 
+/**
+ * @function HomeSectionTwo
+ * @description [Static page ]Section Four Component of HomePage
+ * @returns {Component} the Component of the Section Four
+ */
+
 export default function HomeSec4() {
   return (
     <>

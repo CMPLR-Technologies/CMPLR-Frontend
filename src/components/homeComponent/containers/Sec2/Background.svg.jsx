@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 Background.propTypes = {
-    dataTestid: PropTypes
+    dataTestid: PropTypes.string,
 };
 export default function Background(props) {
     const { dataTestid } = props;

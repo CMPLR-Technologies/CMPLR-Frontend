@@ -8,5 +8,5 @@ export default function MockedComponent(props) {
 }
 
 MockedComponent.propTypes = {
-    component: PropTypes
+    component: PropTypes.element
 };

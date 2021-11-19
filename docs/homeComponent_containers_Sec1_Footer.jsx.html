@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: registerComponent/View.jsx</title>
+    <title>JSDoc: Source: homeComponent/containers/Sec1/Footer.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: registerComponent/View.jsx</h1>
+    <h1 class="page-title">Source: homeComponent/containers/Sec1/Footer.jsx</h1>
 
     
 
@@ -27,22 +27,48 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react';
-import '../../styles/styles.css';
-import AuthFooter from '../partials/AuthFooter';
-import RegisterCard from './containers/RegisterCard';
+import { Link } from 'react-router-dom';
+import { backgroundImages } from '../../../../assets/js/backgroundImages';
+import PropTypes from 'prop-types';
 
 /**
- * Register Main Component
- * @function Register
- * @description this is the main Component of register contains in it's body all the register cards
- * @returns {Component} register_card &amp; auth_footer
+ * @function HomeFooter
+ * @description Footer Component of HomePage
+ * @param {number} imageNum - index of the image to be used to get name of the author
+ * @param {bool} last - boolean to detect if it is the last section
+ * @returns {Component} the Component of the Footer
  */
-export default function Register() {
+
+Footer.propTypes = {
+    imageNum: PropTypes.number,
+    last: PropTypes.bool
+};
+export default function Footer(props) {
+    const { imageNum, last } = props;
     return (
-        &lt;div className="LoginView">
-            &lt;RegisterCard />
-            &lt;AuthFooter />
-        &lt;/div>
+        &lt;>
+            &lt;div className="first-page-footer">
+                &lt;div className="left-footer">
+                    &lt;Link to="/terms">Terms&lt;/Link>
+                    &lt;Link to="/privacy">Privacy&lt;/Link>
+                    &lt;Link to="/jobs">Jobs&lt;/Link>
+                    &lt;Link to="/support">Support&lt;/Link>
+                &lt;/div>
+
+                &lt;div className="right-footer">
+                    Posted by{' '}
+                    &lt;strong data-testid="bg-author">
+                        {backgroundImages[imageNum].author}
+                    &lt;/strong>{' '}
+                &lt;/div>
+            &lt;/div>
+
+            {!last &amp;&amp; (
+                &lt;a href="/#Easy to use" className="first-page-bottom">
+                    &lt;span>What is cmplr&lt;/span>
+                &lt;/a>
+            )}
+        &lt;/>
     );
 }
 </code></pre>
