@@ -1,0 +1,23 @@
+.AuthFooter {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 10px;
+
+  a {
+    color: white;
+    text-decoration: none;
+    padding-left: 10px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .AuthFooter {
+    justify-content: center;
+    font-weight: 500;
+
+    .AuthFooter__right {
+      display: none;
+    }
+  }
+}

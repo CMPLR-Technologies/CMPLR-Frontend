@@ -1,277 +1,55 @@
-@import "./gettingToKnowTumblrStyles/topDiv.scss";
-@import "./gettingToKnowTumblrStyles/mainDiv.scss";
-@import "./registerStyles/exploreAnchor.scss";
-@import "./partials/authAlert.scss";
-body {
-  margin: 0;
-  background-color: #001935;
-  color: white;
-  margin: 0;
-  padding: 0;
-  background-repeat: no-repeat;
-  background-size: auto;
-  * {
+@import './registerStyles/exploreAnchor.scss';
+@import './partials/authAlert.scss';
+@import './partials/AuthBtn.scss';
+@import './partials/AuthInput.scss';
+@import './partials/OrBar.scss';
+@import './partials/AuthFooter.scss';
+
+@import url(//db.onlinewebfonts.com/c/d73d37902ec72250867b578d3763ee38?family=Favorit);
+
+@import './homeStyles/_homeStyles.scss';
+@import './navbarComponent/navbar.scss';
+@import './loginStyles/LoginCard.scss';
+@import './loginStyles/LoginView.scss';
+
+* {
     margin: 0;
     padding: 0;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
-  }
-
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-      "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-      "Helvetica Neue", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-      monospace;
-  }
-
-  .AuthBtn {
-    // dimensions and behaviour
-    width: 300px;
-    padding: 10px 15px;
-    margin-top: 12px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    // font
-    font-weight: 700;
-    line-height: 1.5;
-
-    // decoration and borders
-    background-color: white;
-    font-family: "Favorit", Arial, Helvetica, sans-serif;
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-    border-radius: 3px;
-  }
-
-  .AuthInput {
-    // dimensions and behaviour
-    width: 300px;
-    margin-top: 6px;
-    padding: 11px 13px;
-
-    // font
-    line-height: 1.4;
-    font-size: 16px;
-
-    // decoration and borders
-    outline: none;
-    border: none;
-    border-radius: 3px;
-  }
-
-  .OrBar {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
     color: white;
+    scrollbar-color: #555555 #060022;
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+}
 
-    .OrLeftBar,
-    .OrRightBar {
-      height: 1px;
-      width: 100%;
-      margin-left: 0.5rem;
-      margin-top: 5px;
-      background-color: white;
-    }
-
-    .OrLeftBar {
-      margin-right: 0.5rem;
-    }
-  }
-
-  .AuthFooter {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 15px 10px;
-
-    a {
-      color: white;
-      text-decoration: none;
-      padding-left: 10px;
-    }
-  }
-
-  .LoginCard {
-    width: 300px;
-    height: 100%;
-    padding-top: 4rem;
-
-    .LoginCard__a {
-      width: 300px;
-      display: block;
-      margin-top: 10px;
-      margin-bottom: 5px;
-
-      color: white;
-
-      text-decoration: none;
-      text-align: center;
-    }
-  }
-
-  .LoginCard__logo-container {
-    text-align: center;
-
-    p {
-      margin: 0;
-    }
-  }
-
-  .LoginCard__logo {
-    font-size: 6rem;
+body {
+    margin: 0;
+    background-color: #001935;
     color: white;
-    font-weight: bold;
-    font-family: "Bookman Old Style Regular";
-  }
-
-  .login-form {
-    p {
-      color: white;
-      font-size: 12px;
-      text-align: center;
-      line-height: 20px;
-
-      padding-bottom: 10px;
-      padding-top: 10px;
-    }
-  }
-
-  .LoginView {
-    width: 100vw;
-    height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    background: url("./background.jpg");
+    margin: 0;
+    padding: 0;
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-  }
-
-  .LoginCard__stores-logos {
-    display: none;
-  }
-
-  @media screen and (max-width: 900px) {
-    .AuthFooter {
-      justify-content: center;
-      font-weight: 500;
-
-      .AuthFooter__right {
-        display: none;
-      }
+    background-size: auto;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
-    .LoginCard__stores-logos {
-      width: 300px;
-      display: flex;
-      justify-content: space-between;
-      margin-top: 30px;
-
-      img {
-        width: 100%;
-        height: 65px;
-      }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+            'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+            'Helvetica Neue', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
-  }
+
+    code {
+        font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+            monospace;
+    }
 }
-@media (max-width: 988px) {
-  .overlay-container {
-    display: none !important;
-  }
-}
-.overlay-container {
-  height: 100%;
-  z-index: 1000;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  display: flex;
-  flex-direction: row;
 
-  .overlay-div {
-    opacity: 0.95;
-    background-color: rgb(0, 25, 53);
-    flex-grow: 1;
-  }
-  .shortcut-container {
-    width: 400px;
-    padding: 20px;
-    background-color: white;
-    height: 100vh;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-
-    h1 {
-      font-size: 2rem;
-      font-weight: 400;
-      line-height: 1.25;
-      letter-spacing: 0.02rem;
-    }
-    h2 {
-      border-bottom: 2px solid rgba(0, 0, 0, 0.13);
-      line-height: 1.5238;
-      font-size: 1.3125rem;
-      font-weight: 700;
-      margin: 20px 0;
-      padding-bottom: 5px;
-    }
-
-    .shortcut {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.5;
-      margin: -10px -10px 10px;
-      padding: 10px;
-      border-radius: 3px;
-
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.07);
-      }
-      .shortcut-name {
-        flex-grow: 1;
-        max-width: 100%;
-        word-wrap: break-word;
-      }
-      .shortcut-key-container {
-        white-space: nowrap;
-
-        .shortcut-key {
-          display: inline-block;
-          background: rgba(85, 82, 82, 0.13);
-          border-radius: 3px;
-          font-family: inherit;
-          font-size: 1rem;
-          font-weight: 400;
-          line-height: 1.5;
-          min-width: 1em;
-          padding: 5px;
-          text-align: center;
-        }
-      }
-    }
-  }
-}
+@import './shortcutsStyles/shortcuts.scss';

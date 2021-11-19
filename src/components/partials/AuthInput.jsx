@@ -1,12 +1,26 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const AuthInput = ({ name, type, placeholder,value,setValue }) => {
+export default function AuthInput(props) {
+    const { name, type, placeholder, value, setValue } = props;
     return (
-        <input onChange={(e)=>setValue(e.target.value)} className="AuthInput" value={value}
+        <input
+            onChange={e => {
+                setValue(e.target.value);
+            }}
+            className="AuthInput"
+            value={value}
             type={type}
             name={name}
-            placeholder={placeholder} />
+            placeholder={placeholder}
+        />
     );
 }
 
-export default AuthInput;
+AuthInput.propTypes = {
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    placeholder: PropTypes,
+    value: PropTypes,
+    setValue: PropTypes.func.isRequired
+};
