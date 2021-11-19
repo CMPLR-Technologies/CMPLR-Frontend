@@ -12,6 +12,8 @@ export default function HomePage() {
     window.matchMedia("(min-width: 990px)").matches
   );
 
+  //detect if section is active while scrolling and set active section
+
   const handleScroll = (e) => {
     const scrollTop = e.target.scrollTop;
     const section1 = document.getElementById("Get started");
@@ -26,6 +28,7 @@ export default function HomePage() {
     const section6 = document.getElementById(
       "Okay, it’s not actually hard to explain."
     );
+    
 
     if (section1 && scrollTop >= section1.offsetTop) {
       setActiveSection(1);

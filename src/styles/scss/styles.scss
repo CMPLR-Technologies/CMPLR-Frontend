@@ -1,7 +1,7 @@
-@import "./registerStyles/exploreAnchor.scss";
-@import "./partials/authAlert.scss";
+@import "./registerStyles/_exploreAnchor.scss";
+@import "./partials/_authAlert.scss";
 @import "./homeStyles/_homeStyles.scss";
-@import "./navbarComponent/navbar.scss";
+@import "./navbarComponent/_navbar.scss";
 * {
   margin: 0;
   padding: 0;
@@ -73,6 +73,7 @@ body {
     // font
     line-height: 1.4;
     font-size: 16px;
+    color: black;
 
     // decoration and borders
     outline: none;

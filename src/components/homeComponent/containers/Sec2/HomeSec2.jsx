@@ -4,7 +4,7 @@ import Background from "./Background.svg";
 export default function HomeSec2() {
   return (
     <>
-      <section data-testid="home-sec2" id="Easy to use" className="second-page">
+      <section data-testid="home-sec2" id="Easy to use" className="second-page  section">
         <div className="second-page-content">
           <Background dataTestid="sec2-bg" />
           <div className="second-page-info">

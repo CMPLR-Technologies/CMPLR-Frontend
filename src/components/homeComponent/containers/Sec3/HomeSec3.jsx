@@ -6,7 +6,7 @@ export default function HomeSec3() {
       <section
         data-testid="home-sec3"
         id="Cmplr is blogs."
-        className="third-page"
+        className="third-page section"
       >
         <div className="third-page-content">
           <div className="third-page-info">

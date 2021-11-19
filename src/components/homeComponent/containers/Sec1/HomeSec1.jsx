@@ -16,7 +16,7 @@ export default function HomeSec1(props) {
         id={`${
           !last ? "Get started" : "Okay, it’s not actually hard to explain."
         }`}
-        className="first-page"
+        className="first-page section"
         style={{
           backgroundImage: `url(${require(`../../../../assets/images/bg${images[imageNum]}`)})`,
         }}
