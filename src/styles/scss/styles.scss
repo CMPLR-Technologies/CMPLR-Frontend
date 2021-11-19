@@ -1,7 +1,24 @@
+<<<<<<< HEAD
 @import "./registerStyles/_exploreAnchor.scss";
 @import "./partials/_authAlert.scss";
 @import "./homeStyles/_homeStyles.scss";
 @import "./navbarComponent/_navbar.scss";
+=======
+@import "./registerStyles/exploreAnchor.scss";
+@import "./partials/authAlert.scss";
+@import "./partials/AuthBtn.scss";
+@import "./partials/AuthInput.scss";
+@import "./partials/OrBar.scss";
+@import "./partials/AuthFooter.scss";
+
+@import url(//db.onlinewebfonts.com/c/d73d37902ec72250867b578d3763ee38?family=Favorit);
+
+@import "./homeStyles/_homeStyles.scss";
+@import "./navbarComponent/navbar.scss";
+@import "./loginStyles/LoginCard.scss";
+@import "./loginStyles/LoginView.scss";
+
+>>>>>>> 186fb4a4d2ccb820296e5f246ec3fa0cd67062e7
 * {
   margin: 0;
   padding: 0;
@@ -13,6 +30,7 @@
   scrollbar-width: thin;
   scroll-behavior: smooth;
 }
+
 body {
   margin: 0;
   background-color: #001935;
@@ -39,6 +57,7 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;
   }
+<<<<<<< HEAD
 
   .AuthBtn {
     // dimensions and behaviour
@@ -202,4 +221,6 @@ body {
       }
     }
   }
+=======
+>>>>>>> 186fb4a4d2ccb820296e5f246ec3fa0cd67062e7
 }
