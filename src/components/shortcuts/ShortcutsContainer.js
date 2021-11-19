@@ -69,7 +69,7 @@ function ShortcutsContainer() {
   };
 
   return (
-    <div className="shortcut-container">
+    <div className="shortcut-container" data-testid="shortcutsContainer">
       <h1>Keyboard shortcuts</h1>
       <ShortcutGroup data={shortcuts.dashboard} />
       <ShortcutGroup data={shortcuts.lightbox} />

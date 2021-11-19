@@ -7,8 +7,8 @@ function ShortcutsPageOverlay() {
   };
 
   return (
-    <div className="overlay-container">
-      <div className="overlay-div" onClick={unOverlay}>
+    <div className="overlay-container" data-testid="overlayContainer">
+      <div className="overlay-div" onClick={unOverlay} data-testid="overlayDiv">
         {" "}
       </div>
       <ShortcutsContainer />

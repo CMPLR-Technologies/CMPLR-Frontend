@@ -20,8 +20,7 @@ function ThemeToggle() {
 
   return (
     <div>
-      <input type="button" onClick={toggleTheme} />
-      {theme}
+      <input type="button" value={theme} onClick={toggleTheme} />
     </div>
   );
 }

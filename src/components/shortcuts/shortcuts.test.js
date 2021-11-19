@@ -2,21 +2,20 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import React from "react";
 import ShortcutsPageOverlay from "./ShortcutsPageOverlay";
 
-describe("test shortcuts", () => {
-  it("test Responsivity: should only show up in Desktop width", () => {
+describe("test Shortcut Overlay", () => {
+  it("Should cancel only on click outside of shortcut container", () => {
     render(<ShortcutsPageOverlay />);
-    const inputElement =
-      screen.getByPlaceholderText("Search Tumblr").childElementCount;
-    fireEvent.change(inputElement, { target: { value: "gaser" } });
-    expect(inputElement.value).toBe("gaser");
+    const overlayArea = screen.getByTestId("overlayDiv");
+    const overlayContainer = screen.getByTestId("overlayContainer");
+    fireEvent.click(overlayArea);
+    expect(overlayContainer.style.display).toBe("none");
   });
 
-  it("test search bar to hide results show when no type", () => {
-    render(<SearchBar />);
-    const inputElement = screen.getByPlaceholderText("Search Tumblr");
-    fireEvent.change(inputElement, { target: { value: "gaser" } });
-    fireEvent.change(inputElement, { target: { value: "" } });
-    const searchBarResultDev = screen.queryByTestId("search-result");
-    expect(searchBarResultDev).toBeNull();
+  it("Should not cancel on click inside shortcut container", () => {
+    render(<ShortcutsPageOverlay />);
+    const shortcutsContainer = screen.getByTestId("shortcutsContainer");
+    const overlayContainer = screen.getByTestId("overlayContainer");
+    fireEvent.click(shortcutsContainer);
+    expect(overlayContainer).toBeVisible();
   });
 });
