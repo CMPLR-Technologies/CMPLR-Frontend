@@ -1,12 +1,92 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  z-index: 0;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Favorit", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+@media (max-width: 600px) {
+  .overlay-container {
+    display: none !important;
+  }
+}
+.overlay-container {
+  height: 100%;
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0.95;
+  background-color: #001935;
+}
+.overlay-container .shortcut-container {
+  width: 400px;
+  padding: 20px;
+  background-color: white;
+  height: 100vh;
+  overflow-y: auto;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  right: 0;
+}
+.overlay-container .shortcut-container h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 0.02rem;
+}
+.overlay-container .shortcut-container h2 {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.13);
+  line-height: 1.5238;
+  font-size: 1.3125rem;
+  font-weight: 700;
+  margin: 20px 0;
+  padding-bottom: 5px;
+}
+.overlay-container .shortcut-container .shortcut {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: -10px -10px 10px;
+  padding: 10px;
+  border-radius: 3px;
+}
+.overlay-container .shortcut-container .shortcut:hover {
+  background-color: rgba(0, 0, 0, 0.07);
+}
+.overlay-container .shortcut-container .shortcut .shortcut-name {
+  flex-grow: 1;
+}
+.overlay-container .shortcut-container .shortcut .shortcut-key-container .shortcut-key {
+  display: inline-block;
+  background: rgba(85, 82, 82, 0.13);
+  border-radius: 3px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  min-width: 1em;
+  padding: 5px;
+  text-align: center;
 }
 
 /*# sourceMappingURL=styles.css.map */

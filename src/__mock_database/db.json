@@ -20,5 +20,8 @@
   ],
   "profile": {
     "name": "typicode"
+  },
+  "users": {
+    "theme": "cement"
   }
 }
