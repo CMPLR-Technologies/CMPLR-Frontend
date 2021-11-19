@@ -19,3 +19,21 @@ describe("test Shortcut Overlay", () => {
     expect(overlayContainer).toBeVisible();
   });
 });
+
+describe("test Shortcut keypresses", () => {
+  it("console {action} when {key/s} is/are pressed", () => {
+    render(<ShortcutsPageOverlay />);
+    const overlayArea = screen.getByTestId("overlayDiv");
+    const overlayContainer = screen.getByTestId("overlayContainer");
+    fireEvent.click(overlayArea);
+    expect(overlayContainer.style.display).toBe("none");
+  });
+
+  it("Should not cancel on click inside shortcut container", () => {
+    render(<ShortcutsPageOverlay />);
+    const shortcutsContainer = screen.getByTestId("shortcutsContainer");
+    const overlayContainer = screen.getByTestId("overlayContainer");
+    fireEvent.click(shortcutsContainer);
+    expect(overlayContainer).toBeVisible();
+  });
+});
