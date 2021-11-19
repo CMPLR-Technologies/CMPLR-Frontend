@@ -27,15 +27,6 @@ export default function Footer(props) {
                 </div>
             </div>
 
-<<<<<<< HEAD
-      {!last && isBrowserSize && (
-        <a href="/#Easy to use" className="first-page-bottom">
-          <span>What is cmplr</span>
-        </a>
-      )}
-    </>
-  );
-=======
             {!last && (
                 <a href="/#Easy to use" className="first-page-bottom">
                     <span>What is cmplr</span>
@@ -43,5 +34,4 @@ export default function Footer(props) {
             )}
         </>
     );
->>>>>>> 186fb4a4d2ccb820296e5f246ec3fa0cd67062e7
 }

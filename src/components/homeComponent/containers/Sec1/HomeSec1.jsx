@@ -93,17 +93,6 @@ export default function HomeSec1(props) {
                         <div className="btn-text">Continue with Google</div>
                     </Button>
 
-<<<<<<< HEAD
-          <Button href="" className="explore-btn" title="">
-            <ExploreBtn />
-            <span className="explore-text"> Here's what's trending</span>
-          </Button>
-        </div>
-        <Footer imageNum={imageNum} last={last} isBrowserSize={isBrowserSize} />
-      </section>
-    </>
-  );
-=======
                     <Button href="" className="explore-btn" title="">
                         <ExploreBtn />
                         <span className="explore-text">
@@ -116,5 +105,4 @@ export default function HomeSec1(props) {
             </section>
         </>
     );
->>>>>>> 186fb4a4d2ccb820296e5f246ec3fa0cd67062e7
 }
