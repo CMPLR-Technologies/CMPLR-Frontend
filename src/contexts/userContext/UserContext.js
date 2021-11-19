@@ -1,5 +1,6 @@
 import React,{createContext, useState} from "react";
 export const UserContext=createContext();
+import PropTypes from 'prop-types';
 
 export default function UserContextProvider(props){
     const [user,setUser]=useState(null);
@@ -9,3 +10,7 @@ export default function UserContextProvider(props){
         </UserContext.Provider>
     );
 }
+
+UserContextProvider.propTypes = {
+    children: PropTypes.any.isRequired,
+};
