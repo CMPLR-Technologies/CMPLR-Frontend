@@ -12,8 +12,6 @@ export default function HomePage() {
     window.matchMedia("(min-width: 990px)").matches
   );
 
-  //detect if section is active while scrolling and set active section
-
   const handleScroll = (e) => {
     const scrollTop = e.target.scrollTop;
     const section1 = document.getElementById("Get started");

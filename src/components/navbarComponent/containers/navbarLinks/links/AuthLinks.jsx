@@ -118,8 +118,13 @@ const AuthLinks = () => {
           <NewPostPopup onClose={history.goBack} open={match} />
         )}
         />*/}
+<<<<<<< HEAD
         </>
     );
+=======
+    </>
+  );
+>>>>>>> dfc0b2d987957ac7f06ac4b32fc4165362c6ff24
 };
 
 export default AuthLinks;

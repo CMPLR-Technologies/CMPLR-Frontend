@@ -1,9 +1,8 @@
-<<<<<<< HEAD
+
 @import "./registerStyles/_exploreAnchor.scss";
 @import "./partials/_authAlert.scss";
 @import "./homeStyles/_homeStyles.scss";
 @import "./navbarComponent/_navbar.scss";
-=======
 @import "./registerStyles/exploreAnchor.scss";
 @import "./partials/authAlert.scss";
 @import "./partials/AuthBtn.scss";
@@ -18,7 +17,7 @@
 @import "./loginStyles/LoginCard.scss";
 @import "./loginStyles/LoginView.scss";
 
->>>>>>> 186fb4a4d2ccb820296e5f246ec3fa0cd67062e7
+
 * {
   margin: 0;
   padding: 0;
@@ -30,7 +29,6 @@
   scrollbar-width: thin;
   scroll-behavior: smooth;
 }
-
 body {
   margin: 0;
   background-color: #001935;
@@ -57,7 +55,6 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;
   }
-<<<<<<< HEAD
 
   .AuthBtn {
     // dimensions and behaviour
@@ -98,6 +95,7 @@ body {
     outline: none;
     border: none;
     border-radius: 3px;
+    color: black;
   }
 
   .OrBar {
@@ -144,9 +142,8 @@ body {
       display: block;
       margin-top: 10px;
       margin-bottom: 5px;
-
       color: white;
-
+      color: white;
       text-decoration: none;
       text-align: center;
     }
@@ -182,7 +179,6 @@ body {
   .LoginView {
     width: 100vw;
     height: 100vh;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -221,6 +217,4 @@ body {
       }
     }
   }
-=======
->>>>>>> 186fb4a4d2ccb820296e5f246ec3fa0cd67062e7
 }
