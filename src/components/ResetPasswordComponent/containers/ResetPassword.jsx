@@ -38,8 +38,7 @@ export default function ResetPassword() {
                     readonly={true}
                     dataTestid="input-labels"
                 ></AuthInput>
-                {/* //--------------------------------------------------------------------------------- */}
-                {/* //--------------------------------------------------------------------------------- */}
+
                 <AuthInput
                     id="reset-auth-input"
                     name="password"
@@ -50,7 +49,7 @@ export default function ResetPassword() {
                     setValue={setFirstPassword}
                     dataTestid="input-labels"
                 ></AuthInput>
-                {/* //--------------------------------------------------------------------------------- */}
+
                 <AuthInput
                     id="reset-auth-input"
                     name="password"
@@ -61,7 +60,7 @@ export default function ResetPassword() {
                     setValue={setSecondPassword}
                     dataTestid="input-labels"
                 ></AuthInput>
-                {/* //--------------------------------------------------------------------------------- */}
+
                 {errorMsg.length !== 0 && (
                     <div data-testid="message-error" className="form-msg">
                         <p
@@ -75,7 +74,7 @@ export default function ResetPassword() {
                         </p>
                     </div>
                 )}
-                {/* //--------------------------------------------------------------------------------- */}
+
                 <AuthBtn
                     id="reset-password-btn"
                     text="set new password"

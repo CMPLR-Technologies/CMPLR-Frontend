@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from '../navbarComponent/View';
 import MessagesPageMobile from '../navbarComponent/containers/navbarLinks/MessagesPopup/MessagesPageMobile';
 import NewPostPopup from '../navbarComponent/containers/navbarLinks/newPost/NewPostPopup';
-import ForgetPasswordView from '../ForgetPasswordComponent/View';
+import ForgetPasswordView from '../forgetPasswordComponent/View';
 import ResetPasswordView from '../ResetPasswordComponent/View';
 export default function MainRoutes() {
     return (
