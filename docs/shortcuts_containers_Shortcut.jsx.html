@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: registerComponent/View.jsx</title>
+    <title>JSDoc: Source: shortcuts/containers/Shortcut.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: registerComponent/View.jsx</h1>
+    <h1 class="page-title">Source: shortcuts/containers/Shortcut.jsx</h1>
 
     
 
@@ -26,25 +26,40 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
-import '../../styles/styles.css';
-import AuthFooter from '../partials/AuthFooter';
-import RegisterCard from './containers/RegisterCard';
+            <pre class="prettyprint source linenums"><code>import '../../../styles/styles.css';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
- * Register Main Component
- * @function Register
- * @description this is the main Component of register contains in it's body all the register cards
- * @returns {Component} register_card &amp; auth_footer
+ * Shortcut: a single row in the shortcuts group
+ * @function Shortcut
+ * @property {string} name - name of shortcut (describes what it does)
+ * @property {object} keys - list of keys that are required combined to make the action
+ * @returns {Component}
  */
-export default function Register() {
+
+export default function Shortcut(props) {
+    const { name, keys } = props.data;
     return (
-        &lt;div className="LoginView">
-            &lt;RegisterCard />
-            &lt;AuthFooter />
+        &lt;div className="shortcut">
+            &lt;div className="shortcut-name">{name}&lt;/div>
+            &lt;div className="shortcut-key-container">
+                {keys.map((key, index) => {
+                    return (
+                        &lt;span key={index}>
+                            {Boolean(index) &amp;&amp; &lt;span>&amp;nbsp;+&amp;nbsp;&lt;/span>}
+                            &lt;span className="shortcut-key">{key}&lt;/span>
+                        &lt;/span>
+                    );
+                })}
+            &lt;/div>
         &lt;/div>
     );
 }
+
+Shortcut.propTypes = {
+    data: PropTypes.object.isRequired
+};
 </code></pre>
         </article>
     </section>

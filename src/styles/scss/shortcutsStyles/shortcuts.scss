@@ -15,7 +15,13 @@
     right: 0;
     display: flex;
     flex-direction: row;
-    color: black;
+
+    span,
+    h1,
+    h2,
+    div {
+        color: black;
+    }
 
     .overlay-div {
         opacity: 0.95;

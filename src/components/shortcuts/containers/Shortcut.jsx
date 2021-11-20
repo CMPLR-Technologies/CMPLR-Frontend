@@ -1,6 +1,14 @@
-import '../../styles/styles.css';
+import '../../../styles/styles.css';
 import React from 'react';
 import PropTypes from 'prop-types';
+
+/**
+ * Shortcut: a single row in the shortcuts group
+ * @function Shortcut
+ * @property {string} name - name of shortcut (describes what it does)
+ * @property {object} keys - list of keys that are required combined to make the action
+ * @returns {Component}
+ */
 
 export default function Shortcut(props) {
     const { name, keys } = props.data;

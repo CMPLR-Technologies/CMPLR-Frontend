@@ -1,7 +1,15 @@
 import Shortcut from './Shortcut';
 import React from 'react';
-import '../../styles/styles.css';
+import '../../../styles/styles.css';
 import PropTypes from 'prop-types';
+
+/**
+ * Shortcut Group: an inner container of shortcuts (for each group)
+ * @function ShortcutGroup
+ * @property {string} name - name of shortcut group
+ * @property {object} list - list of shortcuts
+ * @returns {Component} container
+ */
 
 export default function ShortcutGroup(props) {
     const { name, list } = props.data;
