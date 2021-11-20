@@ -12,6 +12,15 @@ HomeSec1.propTypes = {
     last: PropTypes.bool.isRequired
 };
 
+/**
+ * @function HomeSectionOne
+ * @description Section Two Component of HomePage
+ * @param {string} heading - main heading in section one
+ * @param {string} paragraph - subHeading of section one
+ * @param {bool} last - boolean to detect if it is the last section
+ * @returns {Component} the Component of the Button
+ */
+
 const images = ['1.jpg', '2.jpg', '3.png', '4.jpg', '5.jpg'];
 const imageNum = Math.floor(Math.random() * 5);
 

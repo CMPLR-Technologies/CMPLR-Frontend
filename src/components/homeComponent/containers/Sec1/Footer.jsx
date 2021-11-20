@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom';
 import { backgroundImages } from '../../../../assets/js/backgroundImages';
 import PropTypes from 'prop-types';
 
+/**
+ * @function HomeFooter
+ * @description Footer Component of HomePage
+ * @param {number} imageNum - index of the image to be used to get name of the author
+ * @param {bool} last - boolean to detect if it is the last section
+ * @returns {Component} the Component of the Footer
+ */
+
 Footer.propTypes = {
     imageNum: PropTypes.number,
     last: PropTypes.bool

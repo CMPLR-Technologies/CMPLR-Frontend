@@ -128,8 +128,8 @@ export default function AuthLinks(){
           <NewPostPopup onClose={history.goBack} open={match} />
         )}
         />*/}
-        </>
-    );
+    </>
+  );
 };
 
 
