@@ -29,7 +29,12 @@ export default function ThemeToggle() {
 
     return (
         <div>
-            <input type="button" value={theme} onClick={toggleTheme} />
+            <input
+                type="button"
+                value={theme}
+                onClick={toggleTheme}
+                Style={'color: black;'}
+            />
         </div>
     );
 }

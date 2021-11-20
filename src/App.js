@@ -1,19 +1,26 @@
 import './styles/styles.css';
-import { ThemeContextProvider } from './contexts/themeContext/ThemeContext';
-import ThemeToggle from './components/ThemeToggle.jsx';
+import {
+    ThemeContextProvider,
+    themes,
+    ThemeContext
+} from './contexts/themeContext/ThemeContext';
 import ShortcutsPageOverlay from './components/shortcuts/View.jsx';
-import { shortcutController } from './components/shortcuts/shortcutController';
-import React from 'react';
+import { shortcutController } from './components/shortcuts/ShortcutController';
+import React, { useContext } from 'react';
+import UserContextProvider from './contexts/userContext/UserContext';
+import MainRoutes from './components/routes/Routes';
 
 export default function App() {
     shortcutController();
 
     return (
-        <ThemeContextProvider>
-            <div>
-                <ThemeToggle />
-                <ShortcutsPageOverlay />
-            </div>
-        </ThemeContextProvider>
+        <UserContextProvider>
+            <ThemeContextProvider>
+                <div>
+                    <MainRoutes />
+                    <ShortcutsPageOverlay />
+                </div>
+            </ThemeContextProvider>
+        </UserContextProvider>
     );
 }
