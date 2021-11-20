@@ -2,7 +2,7 @@ import React from 'react';
 import AuthInput from '../../partials/AuthInput';
 import AuthBtn from '../../partials/AuthBtn';
 import OrBar from '../../partials/OrBar';
-import GoogleMedia from './RegisterGoogleMedia';
+import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
 import AuthAlert from '../../partials/AuthAlert';
 import PropTypes from 'prop-types';
 /**
@@ -92,7 +92,7 @@ export default function RegisterStepOne(props) {
                 </a>
             </p>
 
-            <GoogleMedia />
+            <PlaystoreApplestore />
         </div>
     );
 }

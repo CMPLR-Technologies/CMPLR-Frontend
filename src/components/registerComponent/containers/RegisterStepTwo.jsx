@@ -1,9 +1,9 @@
 import React from 'react';
 import AuthInput from '../../partials/AuthInput';
 import AuthBtn from '../../partials/AuthBtn';
-import GoogleMedia from './RegisterGoogleMedia';
 import AuthAlert from '../../partials/AuthAlert';
 import PropTypes from 'prop-types';
+import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
 
 /**
  * @function RegisterStepTwo
@@ -56,7 +56,7 @@ export default function RegisterStepTwo(props) {
                 </a>
             </p>
 
-            <GoogleMedia />
+            <PlaystoreApplestore />
         </div>
     );
 }

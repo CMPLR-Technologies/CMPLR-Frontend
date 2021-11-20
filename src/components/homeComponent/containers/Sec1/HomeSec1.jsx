@@ -5,6 +5,7 @@ import ExploreBtn from './ExploreBtn.svg';
 import Footer from './Footer';
 import GoogleButton from './GoogleButton.svg';
 import PropTypes from 'prop-types';
+import PlaystoreApplestore from '../../../partials/PlaystoreApplestore';
 
 HomeSec1.propTypes = {
     heading: PropTypes.string.isRequired,
@@ -101,14 +102,16 @@ export default function HomeSec1(props) {
                         <GoogleButton />
                         <div className="btn-text">Continue with Google</div>
                     </Button>
-
-                    <Button href="" className="explore-btn" title="">
-                        <ExploreBtn />
-                        <span className="explore-text">
-                            {' '}
-                            {"Here's what's trending"}
-                        </span>
-                    </Button>
+                    {last && <PlaystoreApplestore />}
+                    {!last && (
+                        <Button href="" className="explore-btn" title="">
+                            <ExploreBtn />
+                            <span className="explore-text">
+                                {' '}
+                                {"Here's what's trending"}
+                            </span>
+                        </Button>
+                    )}
                 </div>
                 <Footer imageNum={imageNum} last={last} />
             </section>

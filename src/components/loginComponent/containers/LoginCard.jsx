@@ -6,6 +6,7 @@ import AuthBtn from '../../partials/AuthBtn';
 import OrBar from '../../partials/OrBar';
 import AuthAlert from '../../partials/AuthAlert';
 import { handleLogin } from '../Controller';
+import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
 
 /**
  * LoginCard Component
@@ -77,22 +78,7 @@ export default function LoginCard() {
                 </Link>
             </p>
 
-            <div className="LoginCard__stores-logos">
-                <a href="/">
-                    <img
-                        src="https://assets.tumblr.com/pop/src/assets/images/download-on-the-appstore/en-8c4986ee.svg"
-                        alt="Download on the Apple Store"
-                        style={{ paddingRight: '20px' }}
-                    />
-                </a>
-
-                <a href="/">
-                    <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                        alt=""
-                    />
-                </a>
-            </div>
+            <PlaystoreApplestore />
         </div>
     );
 }

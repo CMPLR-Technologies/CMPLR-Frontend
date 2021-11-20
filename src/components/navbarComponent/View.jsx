@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import '../../styles/styles.css';
 import NavbarLinks from './containers/navbarLinks/NavbarLinks';
 import NavbarSection1 from './containers/section1/NavbarSection1';
+import { UserContext } from '../../contexts/userContext/UserContext';
 /**
  * Navbar Main Component
  * @function Navbar
@@ -10,7 +11,7 @@ import NavbarSection1 from './containers/section1/NavbarSection1';
  */
 export default function Navbar() {
     const [mobileView, setMobileView] = useState(false);
-    const isAuth = true;
+    const { user } = useContext(UserContext);
     const chaneMobileView = () => {
         if (window.innerWidth > 960) {
             setMobileView(false);
@@ -29,12 +30,12 @@ export default function Navbar() {
                 {/*section 1 contains logo and search bar*/}
                 <NavbarSection1 />
                 {/*section 2 contains links*/}
-                <NavbarLinks isAuth={isAuth} />
+                <NavbarLinks isAuth={user ? true : false} />
             </div>
         </div>
     );
 
     // if not user auth and mobile view hide navbar
-    if (mobileView && !isAuth) nav = null;
+    if (mobileView && (user ? false : true)) nav = null;
     return nav;
 }

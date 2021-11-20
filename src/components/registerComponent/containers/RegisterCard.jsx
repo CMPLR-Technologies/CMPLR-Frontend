@@ -63,8 +63,7 @@ export default function RegisterCard() {
             }
         })
             .then(res => {
-                //TODO: setUser"context"
-                setUser(res.data);
+                setUser(res);
                 navigate('/dashboard');
                 setOpenError(false);
             })
