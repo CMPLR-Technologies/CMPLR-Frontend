@@ -9,7 +9,7 @@ import AuthBtn from '../../partials/AuthBtn';
  * @returns {component} the component of ResetPassword
  */
 
-export default function ResetPassword() {
+export default function ResetPasswordCard() {
     const [email, setEmail] = React.useState('');
     const [firstPassword, setFirstPassword] = React.useState('');
     const [secondPassword, setSecondPassword] = React.useState('');

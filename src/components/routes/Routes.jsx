@@ -6,8 +6,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from '../navbarComponent/View';
 import MessagesPageMobile from '../navbarComponent/containers/navbarLinks/MessagesPopup/MessagesPageMobile';
 import NewPostPopup from '../navbarComponent/containers/navbarLinks/newPost/NewPostPopup';
-import ForgetPasswordView from '../forgetPasswordComponent/View';
-import ResetPasswordView from '../ResetPasswordComponent/View';
+import ForgetPassword from '../forgetPasswordComponent/View';
+import ResetPassword from '../resetPasswordComponent/View';
 export default function MainRoutes() {
     return (
         <>
@@ -23,12 +23,9 @@ export default function MainRoutes() {
                     <Route path="/" element={<HomePage />} />
                     <Route
                         path="/forget_password"
-                        element={<ForgetPasswordView />}
+                        element={<ForgetPassword />}
                     />
-                    <Route
-                        path="/reset_password"
-                        element={<ResetPasswordView />}
-                    />
+                    <Route path="/reset_password" element={<ResetPassword />} />
                 </Routes>
             </Router>
         </>

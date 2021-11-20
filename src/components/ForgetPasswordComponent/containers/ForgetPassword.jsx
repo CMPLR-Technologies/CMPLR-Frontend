@@ -13,7 +13,7 @@ import { apiBaseUrl } from '../../../config.json';
  * @returns {Component} the Component of the forget password page
  */
 
-export default function ForgetPassword() {
+export default function ForgetPasswordCard() {
     //to check if the email is valid or not
     function validateEmail(email) {
         const re =
