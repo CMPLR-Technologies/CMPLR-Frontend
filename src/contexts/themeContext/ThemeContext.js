@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 export const themes = {
     trueBlue: {
@@ -44,6 +45,7 @@ export const themes = {
 export const ThemeContext = createContext();
 
 export function ThemeContextProvider(props) {
+    const {children}=props;
     const [theme, setTheme] = useState('trueBlue');
 
     useEffect(() => {
@@ -54,7 +56,11 @@ export function ThemeContextProvider(props) {
 
     return (
         <ThemeContext.Provider value={[theme, setTheme]}>
-            {props.children}
+            {children}
         </ThemeContext.Provider>
     );
 }
+
+ThemeContextProvider.propTypes = {
+    children: PropTypes.any,
+};
