@@ -22,7 +22,7 @@
     "name": "typicode"
   },
   "forget-password": {
-    "email": "haz4450770@gmail.com"
+    "email": "hazem@gmail.com"
   },
   "register": [
     {
@@ -38,6 +38,13 @@
       "blogName": "kak",
       "age": 90,
       "id": 2
+    },
+    {
+      "email": "hazem@gmail.com",
+      "password": "hazem",
+      "blogName": "hazemkak",
+      "age": 20,
+      "id": 3
     }
   ]
 }

@@ -102,8 +102,7 @@ export default function ForgetPassword() {
                         setEmailEnteredIsTrue(false);
                     }
                 })
-                .catch(err => {
-                    console.log(err);
+                .catch(() => {
                     setEmailEnteredIsTrue(false);
                 });
         }

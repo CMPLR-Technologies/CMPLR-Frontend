@@ -49,7 +49,7 @@ export default function LoginCard() {
                 ></AuthBtn>
             </div>
 
-            <a className="LoginCard__a" href="/">
+            <a className="LoginCard__a" href="/forget_password">
                 Forgot your password?
             </a>
 
