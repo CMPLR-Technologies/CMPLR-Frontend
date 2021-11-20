@@ -1,50 +1,43 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+    "posts": [
+        {
+            "id": 1,
+            "title": "json-server",
+            "author": "typicode"
+        },
+        {
+            "title": "hazem0",
+            "author": "hazemkak0",
+            "id": 2
+        }
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "body": "some comment",
+            "postId": 1
+        }
+    ],
+    "profile": {
+        "name": "typicode"
     },
-    {
-      "title": "hazem0",
-      "author": "hazemkak0",
-      "id": 2
+    "register": [
+        {
+            "email": "hazem@gmail.com",
+            "age": 20,
+            "password": "hazem",
+            "blogname": "hazemkak",
+            "id": 1
+        },
+        {
+            "email": "hazemkak@gmail.com",
+            "password": "kakkak",
+            "blogName": "kak",
+            "age": 90,
+            "id": 2
+        }
+    ],
+    "forget-password": {
+        "email": "haz4450770@gmail.com"
     }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
-  "forget-password": {
-    "email": "hazem@gmail.com"
-  },
-  "register": [
-    {
-      "email": "hazem@gmail.com",
-      "age": 20,
-      "password": "hazem",
-      "blogname": "hazemkak",
-      "id": 1
-    },
-    {
-      "email": "hazemkak@gmail.com",
-      "password": "kakkak",
-      "blogName": "kak",
-      "age": 90,
-      "id": 2
-    },
-    {
-      "email": "hazem@gmail.com",
-      "password": "hazem",
-      "blogName": "hazemkak",
-      "age": 20,
-      "id": 3
-    }
-  ]
 }

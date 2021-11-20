@@ -13,7 +13,7 @@ import ClickAwayListener from '@mui/base/ClickAwayListener';
  * @property {function} setOpenSearch - Open search Setter state
  * @returns {Component} input field
  */
- export default function SearchBar() {
+export default function SearchBar() {
     const [isHover, setIsHover] = useState(false);
     const [searchWord, setSearchWord] = useState('');
     const [openSearch, setOpenSearch] = useState(false);
@@ -65,4 +65,4 @@ import ClickAwayListener from '@mui/base/ClickAwayListener';
             </div>
         </ClickAwayListener>
     );
-};
+}

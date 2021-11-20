@@ -14,7 +14,7 @@ import { Link, NavLink } from 'react-router-dom';
  * @property {function} setOpenAccountPopup - Open account popup Setter state
  * @returns {Component} links to all pages and drop down lists
  */
-export default function AuthLinks(){
+export default function AuthLinks() {
     //dropdown lists
     const [openMessagePopup, setOpenMessagePopup] = useState(false);
     const [openNotificationsPopup, setOpenNotificationsPopup] = useState(false);
@@ -128,8 +128,6 @@ export default function AuthLinks(){
           <NewPostPopup onClose={history.goBack} open={match} />
         )}
         />*/}
-    </>
-  );
-};
-
-
+        </>
+    );
+}

@@ -1,8 +1,9 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+/* eslint-disable no-undef */
+import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
-import ForgetPasswordView from '../View';
-import MockedComponent from '../../partials/MockedComponent.jsx';
-import ForgetPassword from '../containers/ForgetPassword';
+import ForgetPasswordView from './View';
+import MockedComponent from '../partials/MockedComponent.jsx';
+import ForgetPassword from './containers/ForgetPassword';
 
 describe('Forget Password Page', () => {
     it('should render without crashes', () => {

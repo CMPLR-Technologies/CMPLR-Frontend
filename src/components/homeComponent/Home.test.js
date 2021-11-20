@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-duplicate-props */
+/* eslint-disable no-undef */
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import MockedComponent from '../partials/MockedComponent.jsx';
@@ -46,7 +48,12 @@ describe('Home Section 1', () => {
         render(
             <MockedComponent
                 component={
-                    <HomeSec1 paragraph="" last={false} heading="head1" />
+                    <HomeSec1
+                        heading=""
+                        paragraph=""
+                        last={false}
+                        heading="head1"
+                    />
                 }
             />
         );

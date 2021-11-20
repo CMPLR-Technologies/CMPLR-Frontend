@@ -14,48 +14,39 @@ import { apiBaseUrl } from '../../../config.json';
  */
 
 export default function ForgetPassword() {
-    /*******************************************************************************/
     //to check if the email is valid or not
     function validateEmail(email) {
         const re =
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
     }
-    /*******************************************************************************/
-    /*******************************************************************************/
+
     const [email, setEmail] = React.useState('');
     const history = useNavigate();
-    /****************************************************************************** */
-    /****************************************************************************** */
+
     //check if the email is empty
     const [emptyEmail, setEmptyEmail] = React.useState(false);
     //check if recaptcha is checked or not
     const [reCAPTCHAFlag, setReCAPTCHAFlag] = React.useState(false);
     const [ReCAPTCHAIsClicked, setReCAPTCHAIsClicked] = React.useState(false);
-    //**************************************************************************/
     //check if the email is not a valid email
     const [emailEnteredIsTrue, setEmailEnteredIsTrue] = React.useState(false);
 
     //we are in page for forget password waiting page
     const [weAreInForgetPassPage, setWeAreInForgetPassPage] =
         React.useState(true);
-    /*******************************************************************************/
-    /****************************************************************************** */
     const handleCancel = () => {
         history('/login');
     };
 
-    //***************************************************************************** */
     const handleDone = () => {
         history('/');
     };
 
-    //***************************************************************************** */
     const recaptchaCallback = () => {
         setReCAPTCHAFlag(true);
     };
 
-    //***************************************************************************** */
     const handleResetPassword = () => {
         //empty email is true so we will show error message
         if (email.length === 0) {
@@ -81,7 +72,6 @@ export default function ForgetPassword() {
         return true;
     };
 
-    //***************************************************************************** */
     const emailInDtaBase = email => {
         if (handleResetPassword() === true) {
             axios({
@@ -113,7 +103,6 @@ export default function ForgetPassword() {
                 <p className="LoginCard__logo">cmplr</p>
             </div>
             <div className="login-form">
-                {/************************************************************************************/}
                 {weAreInForgetPassPage && (
                     <AuthInput
                         name="email"
@@ -126,7 +115,6 @@ export default function ForgetPassword() {
                         dataTestid="email-forget-password"
                     ></AuthInput>
                 )}
-                {/************************************************************************************/}
 
                 {emptyEmail && (
                     <div className="form-msg">
@@ -170,7 +158,6 @@ export default function ForgetPassword() {
                         </p>
                     </div>
                 )}
-                {/************************************************************************************/}
                 {weAreInForgetPassPage && (
                     <div
                         onClick={recaptchaCallback}
@@ -184,7 +171,6 @@ export default function ForgetPassword() {
                     </div>
                 )}
 
-                {/************************************************************************************/}
                 {!weAreInForgetPassPage && (
                     <div data-testid="confirmation-msg" className="show-msg">
                         <div className="form-msg">
@@ -228,7 +214,6 @@ export default function ForgetPassword() {
                         ></AuthBtn>
                     </div>
                 )}
-                {/************************************************************************************/}
             </div>
         </div>
     );
