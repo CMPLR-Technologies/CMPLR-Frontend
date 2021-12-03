@@ -21,6 +21,9 @@
   "profile": {
     "name": "typicode"
   },
+  "users": {
+    "theme": "trueBlue"
+  },
   "register": [
     {
       "email": "hazem@gmail.com",

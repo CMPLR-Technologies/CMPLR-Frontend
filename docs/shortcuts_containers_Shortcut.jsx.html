@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: homeComponent/containers/SideNav/SideNav.jsx</title>
+    <title>JSDoc: Source: shortcuts/containers/Shortcut.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: homeComponent/containers/SideNav/SideNav.jsx</h1>
+    <h1 class="page-title">Source: shortcuts/containers/Shortcut.jsx</h1>
 
     
 
@@ -26,71 +26,40 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
-import CircledNavLink from './CircledNavLink';
+            <pre class="prettyprint source linenums"><code>import '../../../styles/styles.css';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * @function CircledSideNavbar
- * @description side navbar used to navigate through different sections in homepage
- * @param {number} activeSection - Number of active section to fill its nav with background white
- * @returns {Component} CicledSideNavbar
+ * Shortcut: a single row in the shortcuts group
+ * @function Shortcut
+ * @property {string} name - name of shortcut (describes what it does)
+ * @property {object} keys - list of keys that are required combined to make the action
+ * @returns {Component}
  */
 
-SideNav.propTypes = {
-    activeSection: PropTypes.any
-};
-export default function SideNav(props) {
-    const { activeSection } = props;
+export default function Shortcut(props) {
+    const { name, keys } = props.data;
     return (
-        &lt;nav data-testid="side-nav" className="side-nav">
-            &lt;ul className="nav-list">
-                &lt;CircledNavLink
-                    dataTestid="nav-link"
-                    className="nav1"
-                    href="Get started"
-                    activeSection={activeSection}
-                    activeSectionNum={1}
-                />
-                &lt;CircledNavLink
-                    href="Easy to use"
-                    dataTestid="nav-link"
-                    className="nav2"
-                    activeSection={activeSection}
-                    activeSectionNum={2}
-                />
-                &lt;CircledNavLink
-                    dataTestid="nav-link"
-                    className="nav3"
-                    href="Cmplr is blogs."
-                    activeSection={activeSection}
-                    activeSectionNum={3}
-                />
-                &lt;CircledNavLink
-                    dataTestid="nav-link"
-                    className="nav4"
-                    href="You already know how this works."
-                    activeSection={activeSection}
-                    activeSectionNum={4}
-                />
-                &lt;CircledNavLink
-                    dataTestid="nav-link"
-                    className="nav5"
-                    href="Seriously, put anything you want here."
-                    activeSection={activeSection}
-                    activeSectionNum={5}
-                />
-                &lt;CircledNavLink
-                    dataTestid="nav-link"
-                    className="nav6"
-                    href="Okay, it’s not actually hard to explain."
-                    activeSection={activeSection}
-                    activeSectionNum={6}
-                />
-            &lt;/ul>
-        &lt;/nav>
+        &lt;div className="shortcut">
+            &lt;div className="shortcut-name">{name}&lt;/div>
+            &lt;div className="shortcut-key-container">
+                {keys.map((key, index) => {
+                    return (
+                        &lt;span key={index}>
+                            {Boolean(index) &amp;&amp; &lt;span>&amp;nbsp;+&amp;nbsp;&lt;/span>}
+                            &lt;span className="shortcut-key">{key}&lt;/span>
+                        &lt;/span>
+                    );
+                })}
+            &lt;/div>
+        &lt;/div>
     );
 }
+
+Shortcut.propTypes = {
+    data: PropTypes.object.isRequired
+};
 </code></pre>
         </article>
     </section>

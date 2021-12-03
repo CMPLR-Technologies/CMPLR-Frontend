@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: homeComponent/containers/SideNav/SideNav.jsx</title>
+    <title>JSDoc: Source: shortcuts/View.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: homeComponent/containers/SideNav/SideNav.jsx</h1>
+    <h1 class="page-title">Source: shortcuts/View.jsx</h1>
 
     
 
@@ -26,69 +26,37 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
-import CircledNavLink from './CircledNavLink';
-import PropTypes from 'prop-types';
+            <pre class="prettyprint source linenums"><code>import ShortcutsContainer from './containers/ShortcutsContainer';
+import React from 'react';
+import '../../styles/styles.css';
 
 /**
- * @function CircledSideNavbar
- * @description side navbar used to navigate through different sections in homepage
- * @param {number} activeSection - Number of active section to fill its nav with background white
- * @returns {Component} CicledSideNavbar
+ * Shortcuts Page Overlay: an Overlay Containter that is viewed over the page with opacity
+ * @function ShortcutsPageOverlay
+ * @property {function} unOverlay - Event handling func to make the overlay invisible when clicked outside of shorcut container
+ * @returns {Component} containter
  */
 
-SideNav.propTypes = {
-    activeSection: PropTypes.any
-};
-export default function SideNav(props) {
-    const { activeSection } = props;
+export default function ShortcutsPageOverlay() {
+    const unOverlay = () => {
+        document.querySelector('.overlay-container').style.display = 'none';
+    };
+
     return (
-        &lt;nav data-testid="side-nav" className="side-nav">
-            &lt;ul className="nav-list">
-                &lt;CircledNavLink
-                    dataTestid="nav-link"
-                    className="nav1"
-                    href="Get started"
-                    activeSection={activeSection}
-                    activeSectionNum={1}
-                />
-                &lt;CircledNavLink
-                    href="Easy to use"
-                    dataTestid="nav-link"
-                    className="nav2"
-                    activeSection={activeSection}
-                    activeSectionNum={2}
-                />
-                &lt;CircledNavLink
-                    dataTestid="nav-link"
-                    className="nav3"
-                    href="Cmplr is blogs."
-                    activeSection={activeSection}
-                    activeSectionNum={3}
-                />
-                &lt;CircledNavLink
-                    dataTestid="nav-link"
-                    className="nav4"
-                    href="You already know how this works."
-                    activeSection={activeSection}
-                    activeSectionNum={4}
-                />
-                &lt;CircledNavLink
-                    dataTestid="nav-link"
-                    className="nav5"
-                    href="Seriously, put anything you want here."
-                    activeSection={activeSection}
-                    activeSectionNum={5}
-                />
-                &lt;CircledNavLink
-                    dataTestid="nav-link"
-                    className="nav6"
-                    href="Okay, it’s not actually hard to explain."
-                    activeSection={activeSection}
-                    activeSectionNum={6}
-                />
-            &lt;/ul>
-        &lt;/nav>
+        &lt;div
+            className="overlay-container"
+            data-testid="overlayContainer"
+            Style="color: black !important;"
+        >
+            &lt;div
+                className="overlay-div"
+                onClick={unOverlay}
+                data-testid="overlayDiv"
+            >
+                {' '}
+            &lt;/div>
+            &lt;ShortcutsContainer />
+        &lt;/div>
     );
 }
 </code></pre>
