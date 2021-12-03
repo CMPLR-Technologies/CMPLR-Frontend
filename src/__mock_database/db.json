@@ -42,6 +42,13 @@
       "blogName": "kak",
       "age": 14,
       "id": 3
+    },
+    {
+      "email": "usf@gmail.com",
+      "password": "usfusf",
+      "blogName": "usf",
+      "age": 23,
+      "id": 4
     }
   ],
   "forget-password": {
