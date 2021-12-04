@@ -1406,41 +1406,6 @@ body #reset-pass-logo {
   margin-top: 14px;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-  color: white;
-  scrollbar-color: #555555 #060022;
-  scrollbar-width: thin;
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  background-color: #001935;
-  color: white;
-  margin: 0;
-  padding: 0;
-  background-repeat: no-repeat;
-  background-size: auto;
-}
-body * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-body code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
 @media (max-width: 988px) {
   .overlay-container {
     display: none !important;
@@ -1526,6 +1491,154 @@ body code {
   min-width: 1em;
   padding: 5px;
   text-align: center;
+}
+
+.create1div {
+  margin-top: 200px;
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  max-width: 625px;
+  width: 100%;
+}
+.create1div .create_main {
+  height: 100%;
+  max-width: 540px;
+  width: 100%;
+}
+.create1div .create_main .create_container {
+  align-items: center;
+  background: navy;
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  min-height: 100px;
+  padding: 15px 5px;
+  position: relative;
+}
+.create1div .create_main .create_container .profilepic_create {
+  color: whitesmoke;
+  left: -85px;
+  position: absolute;
+  top: 0;
+}
+.create1div .create_main .create_container .profilepic_create .profilepicinner_create {
+  position: relative;
+}
+.create1div .create_main .create_container .profilepic_create .profilepicinner_create .innerspan {
+  vertical-align: top;
+  width: inherit;
+  display: inline-block;
+}
+.create1div .create_main .create_container .profilepic_create .profilepicinner_create .innerspan .inneranchor {
+  cursor: pointer;
+  text-decoration: none;
+}
+.create1div .create_main .create_container .profilepic_create .profilepicinner_create .innerspan .inneranchor .picontainer {
+  width: 64px;
+  height: 64px;
+  position: relative;
+}
+.create1div .create_main .create_container .profilepic_create .profilepicinner_create .innerspan .inneranchor .picontainer .picStyles {
+  border-radius: 3px;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+.create1div .create_main .create_container .profilepic_create .profilepicinner_create .innerspan .inneranchor .picontainer .picStyles .picDiv {
+  line-height: 0;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+}
+.create1div .create_main .create_container .profilepic_create .profilepicinner_create .innerspan .inneranchor .picontainer .picStyles .picDiv img {
+  width: 64px;
+  height: 64px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  display: block;
+}
+.create1div .create_main .create_container ul {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  list-style: none;
+}
+.create1div .create_main .create_container ul li {
+  list-style-type: none;
+  width: 100%;
+}
+.create1div .create_main .create_container ul li .btncreateoption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  color: black;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  font-size: 16px;
+  font-weight: 400;
+  height: 100%;
+  justify-content: space-between;
+  line-height: 1.5;
+  padding: 5px 0;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  user-select: none;
+}
+.create1div .create_main .create_container ul li .btncreateoption .spanStyle {
+  transition: transform 80ms linear;
+  display: flex;
+  flex-direction: column;
+}
+.create1div .create_main .create_container ul li .btncreateoption .spanStyle svg {
+  margin-bottom: 5px;
+  overflow: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  scrollbar-color: #555555 #060022;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #001935;
+  color: white;
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+body * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 /*# sourceMappingURL=styles.css.map */

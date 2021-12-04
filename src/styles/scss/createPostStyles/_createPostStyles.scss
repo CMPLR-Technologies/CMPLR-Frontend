@@ -1,0 +1,112 @@
+.create1div {
+    margin-top: 200px; //TODO: to be removed
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    max-width: 625px;
+    width: 100%;
+    .create_main {
+        height: 100%;
+        max-width: 540px;
+        width: 100%;
+        .create_container {
+            align-items: center;
+            background: navy;
+            border-radius: 3px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            min-height: 100px;
+            padding: 15px 5px;
+            position: relative;
+            .profilepic_create {
+                color: whitesmoke;
+                left: -85px;
+                position: absolute;
+                top: 0;
+                .profilepicinner_create {
+                    position: relative;
+                    .innerspan {
+                        vertical-align: top;
+                        width: inherit;
+                        display: inline-block;
+                        .inneranchor {
+                            cursor: pointer;
+                            text-decoration: none;
+                            .picontainer {
+                                width: 64px;
+                                height: 64px;
+                                position: relative;
+                                .picStyles {
+                                    border-radius: 3px;
+                                    height: 100%;
+                                    overflow: hidden;
+                                    width: 100%;
+                                    .picDiv {
+                                        line-height: 0;
+                                        position: relative;
+                                        width: 100%;
+                                        padding-bottom: 100%;
+                                        img {
+                                            width: 64px;
+                                            height: 64px;
+                                            left: 0;
+                                            position: absolute;
+                                            top: 0;
+                                            display: block;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            ul {
+                display: flex;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                list-style: none;
+                li {
+                    list-style-type: none;
+                    width: 100%;
+                    .btncreateoption {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        box-sizing: border-box;
+                        color: black;
+                        font-family: var(--font-family);
+                        font-size: 1rem;
+                        font-size: 16px;
+                        font-weight: 400;
+                        height: 100%;
+                        justify-content: space-between;
+                        line-height: 1.5;
+                        padding: 5px 0;
+                        text-align: center;
+                        text-decoration: none;
+                        width: 100%;
+                        background-color: transparent;
+                        border: none;
+                        cursor: pointer;
+                        margin: 0;
+                        user-select: none;
+                        .spanStyle {
+                            transition: transform 80ms linear;
+                            display: flex;
+                            flex-direction: column;
+                            svg {
+                                margin-bottom: 5px;
+                                overflow: hidden;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
