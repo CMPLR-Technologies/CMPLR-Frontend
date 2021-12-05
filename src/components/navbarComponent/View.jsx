@@ -5,7 +5,7 @@ import NavbarSection1 from './containers/section1/NavbarSection1';
 import { UserContext } from '../../contexts/userContext/UserContext';
 import ThemeToggle from '../ThemeToggle.jsx';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
-
+import ChatView from '../chatComponent/View';
 /**
  * Navbar Main Component
  * @function Navbar
@@ -165,11 +165,13 @@ export default function Navbar() {
     let nav = (
         <div className="nav">
             <div className="nav-container">
+                <ChatView />
                 {/*section 1 contains logo and search bar*/}
                 <NavbarSection1 />
                 <ThemeToggle />
                 {/*section 2 contains links*/}
-                <NavbarLinks isAuth={user ? true : false} />
+                {/*<NavbarLinks isAuth={user ? true : false} />*/}
+                <NavbarLinks isAuth={true}/>
             </div>
             <style>{css}</style>
         </div>
