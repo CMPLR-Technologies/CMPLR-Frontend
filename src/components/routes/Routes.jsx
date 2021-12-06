@@ -8,6 +8,7 @@ import MessagesPageMobile from '../navbarComponent/containers/navbarLinks/Messag
 import NewPostPopup from '../navbarComponent/containers/navbarLinks/newPost/NewPostPopup';
 import ForgetPassword from '../forgetPasswordComponent/View';
 import ResetPassword from '../resetPasswordComponent/View';
+import PostComponent from '../partials/postComponent/View';
 export default function MainRoutes() {
     return (
         <>
@@ -26,6 +27,7 @@ export default function MainRoutes() {
                         element={<ForgetPassword />}
                     />
                     <Route path="/reset_password" element={<ResetPassword />} />
+                    <Route path="/post" element={<PostComponent />} />
                 </Routes>
             </Router>
         </>
