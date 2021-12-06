@@ -40,7 +40,7 @@ export default function AuthBtn(props) {
 AuthBtn.propTypes = {
     text: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
-    logo: PropTypes,
+    logo: PropTypes.string,
     handleClick: PropTypes.func.isRequired,
     id: PropTypes.string,
     dataTestid: PropTypes.string
