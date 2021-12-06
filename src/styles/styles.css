@@ -1508,7 +1508,6 @@ body #reset-pass-logo {
 }
 .create1div .create_main .create_container {
   align-items: center;
-  background: navy;
   border-radius: 3px;
   box-sizing: border-box;
   display: flex;
@@ -1519,7 +1518,6 @@ body #reset-pass-logo {
   position: relative;
 }
 .create1div .create_main .create_container .profilepic_create {
-  color: whitesmoke;
   left: -85px;
   position: absolute;
   top: 0;
@@ -1578,7 +1576,6 @@ body #reset-pass-logo {
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  color: black;
   font-family: var(--font-family);
   font-size: 1rem;
   font-size: 16px;
