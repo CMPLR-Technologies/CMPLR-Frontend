@@ -1,60 +1,79 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+    "posts": [
+        {
+            "id": 1,
+            "title": "json-server",
+            "author": "typicode"
+        },
+        {
+            "title": "hazem0",
+            "author": "hazemkak0",
+            "id": 2
+        }
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "body": "some comment",
+            "postId": 1
+        }
+    ],
+    "profile": {
+        "name": "typicode"
     },
-    {
-      "title": "hazem0",
-      "author": "hazemkak0",
-      "id": 2
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
-  "users": {
-    "theme": "trueBlue"
-  },
-  "register": [
-    {
-      "email": "hazem@gmail.com",
-      "age": 20,
-      "password": "hazem",
-      "blogname": "hazemkak",
-      "id": 1
+    "users": {
+        "theme": "trueBlue"
     },
-    {
-      "email": "hazemkak@gmail.com",
-      "password": "kakkak",
-      "blogName": "kak",
-      "age": 90,
-      "id": 2
+    "register": [
+        {
+            "email": "hazem@gmail.com",
+            "age": 20,
+            "password": "hazem",
+            "blogname": "hazemkak",
+            "id": 1
+        },
+        {
+            "email": "hazemkak@gmail.com",
+            "password": "kakkak",
+            "blogName": "kak",
+            "age": 90,
+            "id": 2
+        },
+        {
+            "email": "haz@gmail.com",
+            "password": "kak",
+            "blogName": "kak",
+            "age": 14,
+            "id": 3
+        },
+        {
+            "email": "usf@gmail.com",
+            "password": "usfusf",
+            "blogName": "usf",
+            "age": 23,
+            "id": 4
+        }
+    ],
+    "forget-password": {
+        "email": "haz4450770@gmail.com"
     },
-    {
-      "email": "haz@gmail.com",
-      "password": "kak",
-      "blogName": "kak",
-      "age": 14,
-      "id": 3
-    },
-    {
-      "email": "usf@gmail.com",
-      "password": "usfusf",
-      "blogName": "usf",
-      "age": 23,
-      "id": 4
-    }
-  ],
-  "forget-password": {
-    "email": "haz4450770@gmail.com"
-  }
+
+    "recommended-blogs": [
+        {
+            "blogName": "hello-world",
+            "blogDesc": "cpp"
+        },
+        {
+            "blogName": "print",
+            "blogDesc": "python"
+        },
+        {
+            "blogName": "every-thing-fox",
+            "blogDesc": "and other animals"
+        },
+        {
+            "blogName": "hello world",
+            "blogDesc": "cpp"
+        }
+    ]
 }

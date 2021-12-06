@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import img from './logo.png';
+import PropTypes from 'prop-types';
 import {
     themes,
     ThemeContext
 } from '../../../contexts/themeContext/ThemeContext';
 
-export default function BlogInfo() {
+// eslint-disable-next-line react/prop-types
+export default function BlogInfo({ blogName, blogDesc }) {
     const theme = useContext(ThemeContext)[0];
 
     return (
@@ -19,14 +21,14 @@ export default function BlogInfo() {
                                 color: `rgb(${themes[theme].whiteOnDark})`
                             }}
                         >
-                            Hello world
+                            {blogName}
                         </p>
                         <p
                             style={{
                                 color: `rgba(${themes[theme].whiteOnDark}, 0.65)`
                             }}
                         >
-                            Cpp
+                            {blogDesc}
                         </p>
                     </div>
                     <button
@@ -43,3 +45,8 @@ export default function BlogInfo() {
         </div>
     );
 }
+
+BlogInfo.prototype = {
+    blogName: PropTypes.string.isRequired,
+    blogDesc: PropTypes.string.isRequired
+};
