@@ -1,0 +1,72 @@
+// helper class
+.row {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.init-button {
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5;
+    padding-right: 24px;
+}
+
+.to-end {
+    justify-self: flex-end;
+}
+
+// main styles
+.dashboard {
+    display: flex;
+    justify-content: center;
+    margin: 94px auto;
+}
+
+.dashboard-sidebar {
+    width: 320px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        border-bottom: 2px solid rgba(255, 255, 255, 0.13);
+        padding: 0 10px 10px;
+        font-size: 1.3125rem;
+        font-weight: 700;
+    }
+
+    .dashboard-recommend-blogs {
+        padding: 10px 0;
+    }
+
+    .explore-link {
+        display: block;
+        margin-top: 30px;
+        padding-left: 10px;
+        text-decoration: none;
+    }
+}
+
+.dashboard-blogInfo {
+    padding: 8px 10px;
+    img {
+        width: 37px;
+        height: 37px;
+        border-radius: 3px;
+        margin-right: 11px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+}
