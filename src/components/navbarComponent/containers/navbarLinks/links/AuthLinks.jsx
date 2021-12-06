@@ -3,6 +3,7 @@ import ClickAwayListener from '@mui/base/ClickAwayListener';
 import '../../../../../styles/styles.css';
 import MessagesPopUp from '../MessagesPopup/MessagesPopUp';
 import { Link, NavLink } from 'react-router-dom';
+
 /**
  * Navbar AuthLinks: includes all links dashboard and inbox and expolre ...
  * @function NavbarAuthLinks
@@ -99,7 +100,7 @@ export default function AuthLinks() {
                     >
                         <i className="fas fa-comment-dots"></i>
                     </li>
-                    {openMessagePopup && <MessagesPopUp />}
+                    {openMessagePopup && <MessagesPopUp clickMessagePopup={clickMessagePopup} />}
                 </div>
             </ClickAwayListener>
 

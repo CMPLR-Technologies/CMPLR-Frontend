@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import MessageItem from './MessageItem';
-export default function Messages() {
-    const messages = [
+import { ChatContext } from '../../../../../contexts/chatContext/ChatContext';
+import PropTypes from 'prop-types';
+
+export default function Messages(props) {
+    let { chats } = useContext(ChatContext);
+    // eslint-disable-next-line react/prop-types
+    let { clickMessagePopup, mobile } = props;
+    /* const messages = [
         {
             id: 1,
             sender: 'gaser',
@@ -58,18 +64,35 @@ export default function Messages() {
             message: 'hi',
             chat: true
         }
-    ];
+    ];*/
     return (
         <div className="popup-messages">
-            {messages.map(message => (
-                <MessageItem
-                    key={message.id}
-                    sender={message.sender}
-                    receiver={message.receiver}
-                    message={message.message}
-                    chat={message.chat}
-                />
-            ))}
+            {chats && chats.length ? (
+                chats.map(message => (
+                    <MessageItem
+                        key={message.chatId}
+                        sender={message.sender}
+                        receiver={message.receiver}
+                        message={message.lastMsg}
+                        chat={true}
+                        photo={message.receiverPhoto}
+                        chatId={message.chatId}
+                        clickMessagePopup={clickMessagePopup}
+                        mobile={mobile}
+                    />
+                ))
+            ) : (
+                <div className="no-chat">
+                    <div className="icon">
+                        <i className="far fa-comment-dots"></i>
+                    </div>
+                    <div className="text">Talk to a Tumblr</div>
+                </div>
+            )}
         </div>
     );
 }
+PropTypes.propTypes = {
+    clickMessagePopup: PropTypes.func.isRequired,
+    mobile:PropTypes.bool
+};

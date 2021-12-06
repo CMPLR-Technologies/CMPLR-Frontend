@@ -5,6 +5,7 @@ import HomePage from '../homeComponent/View';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from '../navbarComponent/View';
 import MessagesPageMobile from '../navbarComponent/containers/navbarLinks/MessagesPopup/MessagesPageMobile';
+import ChatMessageMobileView from '../chatComponent/containers/ChatMessageMobileView';
 import NewPostPopup from '../navbarComponent/containers/navbarLinks/newPost/NewPostPopup';
 import ForgetPassword from '../forgetPasswordComponent/View';
 import ResetPassword from '../resetPasswordComponent/View';
@@ -27,6 +28,7 @@ export default function MainRoutes() {
                 <Routes>
                     <Route path="/register" element={<Register />} />
                     <Route path="/messaging" element={<MessagesPageMobile />} />
+                    <Route path="/messaging/conversation/:sender/:receiver" element={<ChatMessageMobileView />} />
                     <Route path="/new" element={<NewPostPopup />} />
                     <Route path="/explore" element={<h1>Explore</h1>} />
                     <Route path="/register" element={<Register />} />

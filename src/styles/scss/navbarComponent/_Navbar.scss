@@ -374,19 +374,37 @@ $border-radius-primary: 3px;
             cursor: pointer;
             display: flex;
             align-items: center;
-
+            overflow: hidden;
             //border-bottom: 1px solid #dedede;
-            padding: 15px 5px;
+            padding: 15px;
             // &:hover {
             //     background-color: rgb(229, 231, 234);
             // }
             &-img {
-                width: 34px;
-                height: 34px;
                 margin-right: 10px;
                 img {
-                    width: 100%;
+                    width: 34px;
+                    height: 34px;
                     border-radius: 50%;
+                }
+            }
+            &-text{
+                width: 100%;
+                overflow: hidden;
+                .sender-up{
+                    display: flex;
+                }
+                .sender{
+                    margin-right: 5px;
+                }
+                .message {
+                    //color: #878787;
+                    font-weight: 400;
+                    width: 100%;
+                    overflow: hidden;
+                    display: inline-block;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                 }
             }
         }
@@ -396,10 +414,7 @@ $border-radius-primary: 3px;
         // .receiver {
         //     color: $receive-color;
         // }
-        .message {
-            //color: #878787;
-            font-weight: 400;
-        }
+       
     }
 
     //new message button view
@@ -445,15 +460,58 @@ $border-radius-primary: 3px;
         height: 54px;
     }
     .popup-messages {
-        padding-top: 54px;
+        margin-top: 54px;
         background-color: $primiry-color;
+        min-height: calc(100vh - 54px);
+        height: 100%;
+        p,h2,h3,span,i{
+            color: black;
+        }
+        .sender{
+            color:rgba(0,0,0,.65);
+        }
+        .sender-up{
+            display: flex;
+            align-items: center;
+        }
+        .no-chat{
+            height: calc(100vh - 54px);
+        }
+       
+        &-message{
+            border-bottom: 1px solid rgba(0,0,0,.13);
+        }
+        
     }
+   
 }
 .popup-header {
     background-color: $primiry-color;
     // h3 {
     //     // color: $primiry-color-dark;
     // }
+}
+.popup-messages {
+    .no-chat {
+        align-items: center;
+        padding: 15px 0;
+        width: 100%;
+        height: 250px;
+        text-align: center;
+        .icon {
+            margin-bottom: 30px;
+            i {
+                font-size: 70px;
+            }
+        }
+        .icon i,
+        .text {
+            color: black;
+        }
+        .text {
+            font-size: 25px;
+        }
+    }
 }
 // .popup-messages {
 //     background-color: $primiry-color;

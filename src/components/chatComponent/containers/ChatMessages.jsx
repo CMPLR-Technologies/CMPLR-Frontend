@@ -1,38 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ChatMessageItem from './ChatMessageItem';
-export default function ChatMessages() {
-    let senderName = 'gaser';
-    let senderPhoto =
-        'https://assets.tumblr.com/images/default_avatar/sphere_open_64.png';
-    let senderLink = '#';
+import { ChatContext } from '../../../contexts/chatContext/ChatContext';
+import PropTypes from 'prop-types';
 
-    let receiverName = 'omda';
-    let receiverPhoto =
-        'https://assets.tumblr.com/images/default_avatar/pyramid_closed_64.png';
-    let receiverLink = '#';
+export default function ChatMessages(props) {
+    let { currPopUpOpenChat } = useContext(ChatContext);
+    let { messagesEndRef } = props;
+    let {
+        sender = 'gaser',
+        senderPhoto = 'gaser',
+        senderLink = '#',
+        receiver = 'omda',
+        receiverPhoto = 'gaser',
+        receiverLink = '#',
+        chatMessage = 'bla'
+    } = currPopUpOpenChat || {};
 
-    let messages = [
-        {
-            id: 0,
-            type: 's',
-            message: 'hi'
-        },
-        {
-            id: 1,
-            type: 'r',
-            message: 'hi hello man'
-        },
-        {
-            id: 2,
-            type: 'r',
-            message: 'how are you'
-        },
-        {
-            id: 3,
-            type: 's',
-            message: 'how are you how are you how are you how are you how are you '
-        }
-    ];
     return (
         <div className="chat-popup-chat">
             <div className="chat-popup-chat-header">
@@ -41,23 +24,32 @@ export default function ChatMessages() {
                 </div>
                 <div className="receiver-link">
                     <a href={receiverLink} className="main">
-                        receiverName
+                        {receiver}
                     </a>
                 </div>
             </div>
             <div className="chat-popup-chat-messages">
-                {messages.map(message => (
-                    <ChatMessageItem
-                        key={message.id}
-                        name={message.type === 's' ? senderName : receiverName}
-                        link={message.type === 's' ? senderLink : receiverLink}
-                        photo={
-                            message.type === 's' ? senderPhoto : receiverPhoto
-                        }
-                        message={message.message}
-                    />
-                ))}
+                {currPopUpOpenChat &&
+                    chatMessage.map(message => (
+                        <ChatMessageItem
+                            key={message.id}
+                            name={message.type === 's' ? sender : receiver}
+                            link={
+                                message.type === 's' ? senderLink : receiverLink
+                            }
+                            photo={
+                                message.type === 's'
+                                    ? senderPhoto
+                                    : receiverPhoto
+                            }
+                            message={message.message}
+                        />
+                    ))}
             </div>
+            <div ref={messagesEndRef}></div>
         </div>
     );
 }
+ChatMessages.propTypes = {
+    messagesEndRef: PropTypes.object.isRequired
+};

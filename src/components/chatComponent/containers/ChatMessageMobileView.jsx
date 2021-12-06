@@ -1,22 +1,20 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 import { ChatContext } from '../../../contexts/chatContext/ChatContext';
 import ChatMessages from './ChatMessages';
 import ChatOption from './ChatOption';
-
-export default function ChatPopUp() {
+export default function ChatMessageMobileView() {
+    // eslint-disable-next-line react/prop-types
+    //let { sender, receiver } = props.match.params;
+    useEffect(() => {
+        // to do get chat data
+    }, []);
     const messagesEndRef = useRef(null);
     const scrollToBottom = () => {
-        console.log('scroll');
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
-    let {
-        currPopUpOpenChat,
-        closeChatPopup,
-        paritialCloseChatPopup,
-        sideIconOpenChat,
-        sendMessage
-    } = useContext(ChatContext);
+    let { currPopUpOpenChat, sendMessage } = useContext(ChatContext);
     let {
         sender = 'gaser',
         senderLink = '#',
@@ -34,6 +32,8 @@ export default function ChatPopUp() {
     const onChange = e => {
         setMessageToSend(e.target.value);
     };
+
+    // send message on submit
     const sendMessageTo = () => {
         if (messageToSend.length !== 0 && messageToSend.trim() !== '') {
             sendMessage(messageToSend);
@@ -41,6 +41,7 @@ export default function ChatPopUp() {
         }
     };
 
+    // send message when enter
     const onEnterPress = e => {
         if (e.keyCode === 13 && e.shiftKey === false) {
             e.preventDefault();
@@ -49,26 +50,23 @@ export default function ChatPopUp() {
     };
     const [showOption, setShowOption] = useState(false);
     const toggleOption = () => {
-        setShowOption(!showOption);
+        console.log('gas');
+        if (showOption) setShowOption(false);
+        else setShowOption(!showOption);
     };
-    const close = () => {
-        closeChatPopup();
-    };
-    const partialClose = () => {
-        paritialCloseChatPopup();
+    const closeOption = () => {
+        setShowOption(false);
     };
     return (
-        <div
-            className={`chat-popup-container ${
-                sideIconOpenChat && sideIconOpenChat.length ? 'side' : ''
-            }`}
-        >
+        <div className="chat-mobileview">
             <div className="chat-popup">
                 <div className="chat-popup-header">
                     {showOption && (
-                        <ChatOption close={toggleOption} name={receiver} />
+                        <ChatOption close={closeOption} name={receiver} />
                     )}
-
+                    <NavLink to="/messaging">
+                        <i className="fas fa-angle-left"></i>
+                    </NavLink>
                     <div className="names">
                         <a href={senderLink}>{sender}</a>
                         {' + '}
@@ -78,27 +76,19 @@ export default function ChatPopUp() {
                         <button onClick={toggleOption}>
                             <i className="fas fa-ellipsis-h"></i>
                         </button>
-                        <button onClick={partialClose}>
-                            <i className="fas fa-compress-alt"></i>
-                        </button>
-                        <button onClick={close}>
-                            <i className="fas fa-times"></i>
-                        </button>
                     </div>
                 </div>
 
                 <ChatMessages messagesEndRef={messagesEndRef} />
                 <div className="chat-popup-footer">
-                    <div className="input">
-                        <textarea
-                            autoFocus
-                            type="text"
-                            placeholder="Say something"
-                            onChange={onChange}
-                            value={messageToSend}
-                            onKeyDown={onEnterPress}
-                        />
-                    </div>
+                    <textarea
+                        autoFocus
+                        type="text"
+                        placeholder="Say something"
+                        onChange={onChange}
+                        value={messageToSend}
+                        onKeyDown={onEnterPress}
+                    />
                     <div className="send" onClick={sendMessageTo}>
                         <i className="far fa-paper-plane"></i>
                     </div>
