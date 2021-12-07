@@ -326,6 +326,87 @@ $border-radius-primary: 3px;
 }
 
 // popup messages inbox and message page when moblie view
+.account-popup {
+    position: absolute;
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    max-height: 490px;
+    //color: black;
+    right: -115px;
+    top: 40px;
+    overflow-y: scroll;
+    border-radius: 2px;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    &-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.875rem;
+        font-weight: 400;
+        height: 36px;
+        line-height: 1.5;
+        padding: 5px 20px 5px 10px;
+
+        .clickable {
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
+    &-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 0.75rem;
+        font-weight: 400;
+        height: 36px;
+        line-height: 1.5;
+        padding: 6px 4px;
+        .clickable {
+            padding: 0 6px;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    &-actions {
+        display: flex;
+        flex-direction: column;
+        .account-action-link {
+            text-decoration: none;
+            color: inherit;
+        }
+        .account-action-row {
+            cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0 20px 0 10px;
+            .action-left {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                height: auto;
+                .action-icon {
+                    margin-right: 10px;
+                }
+                .action-title {
+                    line-height: 1.6;
+                    font-size: 1rem;
+                    padding: 5px 0;
+                }
+            }
+        }
+    }
+}
 .popup {
     position: absolute;
     //background-color: $primiry-color;
@@ -333,7 +414,7 @@ $border-radius-primary: 3px;
     height: auto;
     max-height: 490px;
     //color: black;
-    left: -124px;
+    left: -107px;
     top: 40px;
     font-size: 0.875rem;
     overflow-y: scroll;

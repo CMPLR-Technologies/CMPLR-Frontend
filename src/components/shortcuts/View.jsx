@@ -1,6 +1,7 @@
 import ShortcutsContainer from './containers/ShortcutsContainer';
-import React from 'react';
+import React, { useContext } from 'react';
 import '../../styles/styles.css';
+import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 
 /**
  * Shortcuts Page Overlay: an Overlay Containter that is viewed over the page with opacity
@@ -13,6 +14,32 @@ export default function ShortcutsPageOverlay() {
     const unOverlay = () => {
         document.querySelector('.overlay-container').style.display = 'none';
     };
+    const theme = useContext(ThemeContext)[0];
+
+    const css = `
+        .overlay-div {
+            background-color: rgb(${themes[theme].navy});
+        }
+        .shortcut-container {
+            background-color: rgb(${themes[theme].white});
+        }
+        .shortcut-container h2{
+            border-bottom: 2px solid rgba(${themes[theme].black}, 0.13);
+        }
+        .overlay-container span,
+        .overlay-container h1,
+        .overlay-container h2,
+        .overlay-container div {
+            color: rgb(${themes[theme].black});
+        }
+        .shortcut:hover {
+            background-color: rgba(${themes[theme].black}, .07);
+        }
+        .shortcut-key{
+            background: rgba(${themes[theme].black}, .13);
+        }
+
+    `;
 
     return (
         <div
@@ -28,6 +55,7 @@ export default function ShortcutsPageOverlay() {
                 {' '}
             </div>
             <ShortcutsContainer />
+            <style>{css}</style>
         </div>
     );
 }

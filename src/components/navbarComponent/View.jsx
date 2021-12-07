@@ -3,7 +3,6 @@ import '../../styles/styles.css';
 import NavbarLinks from './containers/navbarLinks/NavbarLinks';
 import NavbarSection1 from './containers/section1/NavbarSection1';
 import { UserContext } from '../../contexts/userContext/UserContext';
-import ThemeToggle from '../ThemeToggle.jsx';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 
 /**
@@ -28,6 +27,9 @@ export default function Navbar() {
             color: rgba(${themes[theme].whiteOnDark}, 0.65);
         }
         .search-input{
+            color: rgba(${themes[theme].whiteOnDark}, 0.65);
+        }
+        .search-input::placeholder{
             color: rgba(${themes[theme].whiteOnDark}, 0.65);
         }
 
@@ -167,7 +169,6 @@ export default function Navbar() {
             <div className="nav-container">
                 {/*section 1 contains logo and search bar*/}
                 <NavbarSection1 />
-                <ThemeToggle />
                 {/*section 2 contains links*/}
                 <NavbarLinks isAuth={user ? true : false} />
             </div>
