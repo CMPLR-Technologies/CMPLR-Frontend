@@ -10,11 +10,11 @@
         {
           "postType": "text",
           "postTitle": "d7ko",
-          "postText": "<p style=\"color:black\">d7kawya</p>"
+          "postText": "<p >d7kawya</p>"
         },
         {
           "postType": "chat",
-          "postText": "<span style=\"color:black\" ><strong style=\"color:black;font-weight:900\">ah: </strong>kak</span><br/> <span style=\"color:black\"><strong style=\"color:black;font-weight:900\">ahen: </strong>kaaaak</span>"
+          "postText": "<span ><strong style=\"font-weight:900\">ah: </strong>kak</span><br/> <span ><strong style=\"font-weight:900\">ahen: </strong>kaaaak</span>"
         },
         {
           "postType": "image",
@@ -46,7 +46,7 @@
         {
           "postType": "text",
           "postTitle": "d7ko",
-          "postText": "<p style=\"color:black\">d7kawya</p>"
+          "postText": "<p >d7kawya</p>"
         },
         {
           "postType": "image",
@@ -74,8 +74,8 @@
     }
   ],
   "like": {
-    "id": "45124d120",
-    "reblogKey": "18518"
+    "id": "669549196154634240",
+    "reblogKey": "18528"
   },
   "unlike": {
     "id": "669549196154634240",
@@ -112,7 +112,7 @@
     "name": "typicode"
   },
   "users": {
-    "theme": "trueBlue"
+    "theme": "darkMode"
   },
   "register": [
     {

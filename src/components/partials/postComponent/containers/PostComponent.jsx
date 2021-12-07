@@ -285,36 +285,43 @@ export default function PostComponent(props) {
                     </div>
                 </header>
                 {textPost !== undefined && (
-                    <TextPost
-                        title={textPost.postTitle}
-                        text={textPost.postText}
-                    />
+                    <>
+                        <TextPost
+                            title={textPost.postTitle}
+                            text={textPost.postText}
+                        />
+                        <Divider />
+                    </>
                 )}
-                <Divider />
                 {imagePost !== undefined && (
-                    <ImageList
-                        imageUrl={imagePost.imageUrl}
-                        caption={imagePost.caption}
-                        altText={imagePost.altText}
-                        postId={postId}
-                    />
+                    <>
+                        <ImageList
+                            imageUrl={imagePost.imageUrl}
+                            caption={imagePost.caption}
+                            altText={imagePost.altText}
+                            postId={postId}
+                        />
+                        <Divider />
+                    </>
                 )}
-                <Divider />
-                {/* {postType === 'chat' && <ChatPost />} */}{' '}
                 {audioPost !== undefined && (
-                    <AudioPost
-                        url={audioPost.url}
-                        artist={audioPost.artist}
-                        track={audioPost.track}
-                        description={audioPost.description}
-                    />
+                    <>
+                        <AudioPost
+                            url={audioPost.url}
+                            artist={audioPost.artist}
+                            track={audioPost.track}
+                            description={audioPost.description}
+                        />
+                        <Divider />
+                    </>
                 )}
-                <Divider />
                 {videoPost !== undefined && (
-                    <VideoPost
-                        id={postId + videoPost.url}
-                        url={videoPost.url}
-                    />
+                    <>
+                        <VideoPost
+                            id={postId + videoPost.url}
+                            url={videoPost.url}
+                        />
+                    </>
                 )}
                 {/* todo:Link Post */}
                 <div className="post-footer">
