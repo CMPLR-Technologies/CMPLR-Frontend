@@ -1,5 +1,5 @@
-@import './registerStyles/_exploreAnchor.scss';
-@import './partials/_authAlert.scss';
+@import './registerStyles/exploreAnchor.scss';
+@import './partials/authAlert.scss';
 @import './partials/AuthBtn.scss';
 @import './partials/AuthInput.scss';
 @import './partials/OrBar.scss';
@@ -13,6 +13,11 @@
 @import './loginStyles/LoginCard.scss';
 @import './loginStyles/LoginView.scss';
 @import './forgetPasswordStyles/_forgetPasswordStyles.scss';
+
+@import './shortcutsStyles/shortcuts.scss';
+@import './createPostStyles/createPostStyles.scss';
+@import './dashboardStyles/dashboardStyles';
+
 * {
     margin: 0;
     padding: 0;

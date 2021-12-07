@@ -1,14 +1,22 @@
-import React from "react";
-import "./styles/styles.css";
-import MainRoutes from "./components/routes/Routes";
-import UserContextProvider from "./contexts/userContext/UserContext";
+import './styles/styles.css';
+import { ThemeContextProvider } from './contexts/themeContext/ThemeContext';
+import ShortcutsPageOverlay from './components/shortcuts/View.jsx';
+import { shortcutController } from './components/shortcuts/shortcutController';
+import React from 'react';
+import UserContextProvider from './contexts/userContext/UserContext';
+import MainRoutes from './components/routes/Routes';
 
 export default function App() {
-  return (
-    <div>
-      <UserContextProvider>
-        <MainRoutes />
-      </UserContextProvider>
-    </div>
-  );
+    shortcutController();
+
+    return (
+        <UserContextProvider>
+            <ThemeContextProvider>
+                <div>
+                    <MainRoutes />
+                    <ShortcutsPageOverlay />
+                </div>
+            </ThemeContextProvider>
+        </UserContextProvider>
+    );
 }

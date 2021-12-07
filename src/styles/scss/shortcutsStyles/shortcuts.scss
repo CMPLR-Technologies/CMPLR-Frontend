@@ -1,0 +1,93 @@
+@media (max-width: 988px) {
+    .overlay-container {
+        display: none !important;
+    }
+}
+.overlay-container {
+    font: 'Favorit', 'Helvetica Neue', 'HelveticaNeue', Helvetica, Arial,
+        sans-serif;
+    height: 100%;
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+
+    span,
+    h1,
+    h2,
+    div {
+        color: black;
+    }
+
+    .overlay-div {
+        opacity: 0.95;
+        background-color: rgb(0, 25, 53);
+        flex-grow: 1;
+    }
+    .shortcut-container {
+        width: 400px;
+        padding: 20px;
+        background-color: white;
+        height: 100vh;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 400;
+            line-height: 1.25;
+            letter-spacing: 0.02rem;
+        }
+        h2 {
+            border-bottom: 2px solid rgba(0, 0, 0, 0.13);
+            line-height: 1.5238;
+            font-size: 1.3125rem;
+            font-weight: 700;
+            margin: 20px 0;
+            padding-bottom: 5px;
+        }
+
+        .shortcut {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            margin: -10px -10px 10px;
+            padding: 10px;
+            border-radius: 3px;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.07);
+            }
+            .shortcut-name {
+                flex-grow: 1;
+                max-width: 100%;
+                word-wrap: break-word;
+            }
+            .shortcut-key-container {
+                white-space: nowrap;
+
+                .shortcut-key {
+                    display: inline-block;
+                    background: rgba(85, 82, 82, 0.13);
+                    border-radius: 3px;
+                    font-family: inherit;
+                    font-size: 1rem;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    min-width: 1em;
+                    padding: 5px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
