@@ -9,6 +9,7 @@ import UserContextProvider from './contexts/userContext/UserContext';
 import MainRoutes from './components/routes/Routes';
 
 export default function App() {
+<<<<<<< HEAD
     shortcutController();
 
     return (
@@ -22,3 +23,13 @@ export default function App() {
         </UserContextProvider>
     );
 }
+=======
+  return (
+    <div>
+      <UserContextProvider>
+        <MainRoutes />
+      </UserContextProvider>
+    </div>
+  );
+}
+>>>>>>> origin/Task11

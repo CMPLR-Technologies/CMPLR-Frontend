@@ -8,9 +8,13 @@ import MessagesPageMobile from '../navbarComponent/containers/navbarLinks/Messag
 import NewPostPopup from '../navbarComponent/containers/navbarLinks/newPost/NewPostPopup';
 import ForgetPassword from '../forgetPasswordComponent/View';
 import ResetPassword from '../resetPasswordComponent/View';
+<<<<<<< HEAD
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 import Dashboard from '../dashboardComponent/View';
 
+=======
+import PostComponent from '../partials/postComponent/View';
+>>>>>>> origin/Task11
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
     const css = `
@@ -39,6 +43,7 @@ export default function MainRoutes() {
                         element={<ForgetPassword />}
                     />
                     <Route path="/reset_password" element={<ResetPassword />} />
+                    <Route path="/post" element={<PostComponent />} />
                 </Routes>
                 <style>{css}</style>
             </Router>
