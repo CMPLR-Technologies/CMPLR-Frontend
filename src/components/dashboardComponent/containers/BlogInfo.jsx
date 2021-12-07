@@ -11,11 +11,11 @@ export default function BlogInfo({ blogName, blogDesc }) {
     const theme = useContext(ThemeContext)[0];
 
     return (
-        <div className="dashboard-blogInfo">
+        <div className="dashboard-blogInfo" style={{ position: 'relative' }}>
             <a href="/">
-                <div className="row">
+                <div className="blogInfo-row">
                     <img src={img} alt="" />
-                    <div className="column">
+                    <div className="blogInfo-column">
                         <p
                             style={{
                                 color: `rgb(${themes[theme].whiteOnDark})`
@@ -35,17 +35,26 @@ export default function BlogInfo({ blogName, blogDesc }) {
                         style={{
                             color: `rgb(${themes[theme].accent})`
                         }}
-                        className="to-end init-button"
+                        className="to-end init-btn follow-btn"
                         href="/"
                     >
                         Follow
                     </button>
                 </div>
             </a>
+            <button className="init-btn remove-btn">
+                <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 14 14"
+                    fill={`rgba(${themes[theme].whiteOnDark}, 0.13)`}
+                >
+                    <path d="M14 2.8L11.2 0 7 4.2 2.8 0 0 2.8 4.2 7 0 11.2 2.8 14 7 9.8l4.2 4.2 2.8-2.8L9.8 7 14 2.8z"></path>
+                </svg>
+            </button>
         </div>
     );
 }
-
 BlogInfo.prototype = {
     blogName: PropTypes.string.isRequired,
     blogDesc: PropTypes.string.isRequired

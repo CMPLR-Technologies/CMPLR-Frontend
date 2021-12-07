@@ -2111,26 +2111,23 @@ body #reset-pass-logo {
   overflow: hidden;
 }
 
-.row {
+.blogInfo-row {
   display: flex;
   width: 100%;
   align-items: center;
 }
 
-.column {
+.blogInfo-column {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.init-button {
+.init-btn {
   text-decoration: none;
   background-color: transparent;
   border: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.5;
-  padding-right: 24px;
+  cursor: pointer;
 }
 
 .to-end {
@@ -2157,6 +2154,7 @@ body #reset-pass-logo {
 }
 .dashboard-sidebar .dashboard-recommend-blogs {
   padding: 10px 0;
+  margin-bottom: 30px;
 }
 .dashboard-sidebar .explore-link {
   display: block;
@@ -2176,6 +2174,33 @@ body #reset-pass-logo {
 }
 .dashboard-blogInfo a {
   text-decoration: none;
+}
+.dashboard-blogInfo .follow-btn {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  padding-right: 10px;
+}
+.dashboard-blogInfo .remove-btn {
+  position: absolute;
+  top: 20px;
+  right: -15px;
+  width: 10px;
+  height: 20px;
+}
+.dashboard-blogInfo .remove-btn svg {
+  display: none;
+}
+
+.remove-btn:hover svg {
+  display: block;
+}
+
+.dashboard-blogInfo:hover {
+  background-color: rgba(255, 255, 255, 0.13);
+}
+.dashboard-blogInfo:hover .remove-btn svg {
+  display: block;
 }
 
 * {

@@ -1,24 +1,21 @@
 // helper class
-.row {
+.blogInfo-row {
     display: flex;
     width: 100%;
     align-items: center;
 }
 
-.column {
+.blogInfo-column {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.init-button {
+.init-btn {
     text-decoration: none;
     background-color: transparent;
     border: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.5;
-    padding-right: 24px;
+    cursor: pointer;
 }
 
 .to-end {
@@ -47,6 +44,7 @@
 
     .dashboard-recommend-blogs {
         padding: 10px 0;
+        margin-bottom: 30px;
     }
 
     .explore-link {
@@ -68,5 +66,35 @@
 
     a {
         text-decoration: none;
+    }
+
+    .follow-btn {
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 1.5;
+        padding-right: 10px;
+    }
+
+    .remove-btn {
+        position: absolute;
+        top: 20px;
+        right: -15px;
+        width: 10px;
+        height: 20px;
+        svg {
+            display: none;
+        }
+    }
+}
+
+.remove-btn:hover {
+    svg {
+        display: block;
+    }
+}
+.dashboard-blogInfo:hover {
+    background-color: rgba(255, 255, 255, 0.13);
+    .remove-btn svg {
+        display: block;
     }
 }
