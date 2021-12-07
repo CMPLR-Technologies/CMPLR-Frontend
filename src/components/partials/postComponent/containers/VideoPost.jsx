@@ -2,40 +2,38 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import ToggleFullScreen from './ToggleFullScreen.svg';
 import ToggleSound from './ToggleSound.svg';
 import PlayButton from './PlayButton';
-import { PostContext } from '../Controller';
+import {
+    handlePlayVideo,
+    handleFullscreen,
+    handleSlider,
+    changeCurrentTimePlayed
+} from '../Controller';
 
 export default function VideoPost(props) {
     const { url, id } = props;
-    const [videoUrl, setVideoUrl] = useState(
-        'https://va.media.tumblr.com/tumblr_r3kt8jhh6v1ztmy6m.mp4'
-    );
+    const [videUrl, setVidUrl] = useState('');
+    const [played, setPlayed] = useState(false);
+    const [mute, setMute] = useState(false);
+    const [elapsedTime, setElapsedTime] = useState(0);
+    const [displayedTime, setDisplayedTime] = useState('00:00');
+    const [playedTimePercentage, setPlayedTimePercentage] = useState(0);
 
     useEffect(() => {
-        let cont = document.createElement('div');
-        cont.innerHTML = url;
-        setVideoUrl(cont.children[0].src);
-    }, [url]);
-    const {
-        played,
-        setPlayed,
-        displayedTime,
-        playedTimePercentage,
-        handlePlayVideo,
-        changeCurrentTimePlayed,
-        mute,
-        setMute,
-        handleFullscreen,
-        handleSlider
-    } = useContext(PostContext);
+        if (url) {
+            setVidUrl(url.replace('video', 'source'));
+        }
+    });
     const videoRef = useRef();
 
     return (
         <div
             onMouseOver={e => {
-                document.getElementById(id).style.display = 'flex';
+                document.getElementById(`controller-${id}`).style.display =
+                    'flex';
             }}
             onMouseLeave={() => {
-                document.getElementById(id).style.display = 'none';
+                document.getElementById(`controller-${id}`).style.display =
+                    'none';
             }}
             className="video-post"
             id={`video-post${id}`}
@@ -45,16 +43,28 @@ export default function VideoPost(props) {
                 role="button"
                 aria-label="Play"
                 className="video-post-content"
-                onClick={e => handlePlayVideo(e, videoRef)}
-                onTimeUpdate={() => handleSlider(videoRef)}
+                onClick={e => handlePlayVideo(e, videoRef, played, setPlayed)}
+                onTimeUpdate={() =>
+                    handleSlider(
+                        videoRef,
+                        elapsedTime,
+                        setElapsedTime,
+                        setPlayedTimePercentage,
+                        setDisplayedTime
+                    )
+                }
                 onEnded={() => setPlayed(false)}
                 loop={true}
                 muted={mute}
-                src={videoUrl}
+                dangerouslySetInnerHTML={{ __html: videUrl }}
             >
-                <source src={videoUrl} type="video/mp4" />
+                {/* <source src={url} /> */}
             </video>
-            <div style={{ display: 'none' }} className="controllers" id={id}>
+            <div
+                style={{ display: 'none' }}
+                className="controllers"
+                id={`controller-${id}`}
+            >
                 <button
                     onClick={e => handlePlayVideo(e, videoRef)}
                     className="play-pause-button btn"
@@ -63,7 +73,11 @@ export default function VideoPost(props) {
                 </button>
                 <div
                     onClick={e => {
-                        changeCurrentTimePlayed(e, videoRef);
+                        changeCurrentTimePlayed(
+                            e,
+                            videoRef,
+                            setPlayedTimePercentage
+                        );
                     }}
                     className="progreesbar"
                     role="progressbar"

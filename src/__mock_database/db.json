@@ -1,12 +1,4 @@
 {
-  "like": {
-    "id": "669549196154634240",
-    "reblogKey": "18528"
-  },
-  "unlike": {
-    "id": "669549196154634240",
-    "reblogKey": "18528"
-  },
   "post": [
     {
       "avatar": "https://64.media.tumblr.com/avatar_1a8182dd0f91_64.pnj",
@@ -21,13 +13,17 @@
           "postText": "<p style=\"color:black\">d7kawya</p>"
         },
         {
+          "postType": "chat",
+          "postText": "<span style=\"color:black\" ><strong style=\"color:black;font-weight:900\">ah: </strong>kak</span><br/> <span style=\"color:black\"><strong style=\"color:black;font-weight:900\">ahen: </strong>kaaaak</span>"
+        },
+        {
           "postType": "image",
           "imageUrl": "<img src='https://64.media.tumblr.com/2b6e72c559394259976170140737732a/a722176fd8a580bd-7a/s540x810/7599caa6eceab157e9a643c609b174d8413fabf1.png' alt='photo about friend taking a photo in university'/>",
           "caption": "my image in cmp"
         },
         {
           "postType": "video",
-          "url": "<video src='https://va.media.tumblr.com/tumblr_r3kt8jhh6v1ztmy6m.mp4'/>"
+          "url": "<video src='https://va.media.tumblr.com/tumblr_r3kt8jhh6v1ztmy6m.mp4' type='video/mp4'/>"
         }
       ],
       "tagsArray": [
@@ -59,7 +55,11 @@
         },
         {
           "postType": "video",
-          "url": "<video src='https://va.media.tumblr.com/tumblr_r3kt8jhh6v1ztmy6m.mp4'/>"
+          "url": "<video src='https://va.media.tumblr.com/tumblr_r3kt8jhh6v1ztmy6m.mp4' type='video/mp4'/>"
+        },
+        {
+          "postType": "audio",
+          "url": "https://a.tumblr.com/tumblr_r3m84sc6Yw1ztmy6mo1.mp3?play_key=e6ba8f023e92bbb5aaf06052cd0c6551"
         }
       ],
       "tagsArray": [
@@ -70,11 +70,19 @@
       "postLink": "https://kholdbold.tumblr.com/post/669549196154634240/aaaaaaaaaa",
       "numberNotes": "1",
       "reblogKey": "18518",
-      "postId": "669549116154634240"
+      "postId": "45124d120"
     }
   ],
+  "like": {
+    "id": "45124d120",
+    "reblogKey": "18518"
+  },
+  "unlike": {
+    "id": "669549196154634240",
+    "reblogKey": "18528"
+  },
   "follow": {
-    "url": "ddd",
+    "url": "dddd",
     "email": "dsada"
   },
   "delete": {
@@ -101,8 +109,10 @@
     }
   ],
   "profile": {
-    "id": "669549196154634240",
-    "reblogKey": "18528"
+    "name": "typicode"
+  },
+  "users": {
+    "theme": "trueBlue"
   },
   "register": [
     {
@@ -110,83 +120,49 @@
       "age": 20,
       "password": "hazem",
       "blogname": "hazemkak",
-      "id": 1,
-      "posts": [
-        {
-          "id": 1,
-          "title": "json-server",
-          "author": "typicode"
-        },
-        {
-          "title": "hazem0",
-          "author": "hazemkak0",
-          "id": 2
-        }
-      ],
-      "comments": [
-        {
-          "id": 1,
-          "body": "some comment",
-          "postId": 1
-        }
-      ],
-      "profile": {
-        "name": "typicode"
-      },
-      "users": {
-        "theme": "trueBlue"
-      },
-      "register": [
-        {
-          "email": "hazem@gmail.com",
-          "age": 20,
-          "password": "hazem",
-          "blogname": "hazemkak",
-          "id": 1
-        },
-        {
-          "email": "hazemkak@gmail.com",
-          "password": "kakkak",
-          "blogName": "kak",
-          "age": 90,
-          "id": 2
-        },
-        {
-          "email": "haz@gmail.com",
-          "password": "kak",
-          "blogName": "kak",
-          "age": 14,
-          "id": 3
-        },
-        {
-          "email": "usf@gmail.com",
-          "password": "usfusf",
-          "blogName": "usf",
-          "age": 23,
-          "id": 4
-        }
-      ],
-      "forget-password": {
-        "email": "haz4450770@gmail.com"
-      },
-      "recommended-blogs": [
-        {
-          "blogName": "hello-world",
-          "blogDesc": "cpp"
-        },
-        {
-          "blogName": "print",
-          "blogDesc": "python"
-        },
-        {
-          "blogName": "every-thing-fox",
-          "blogDesc": "and other animals"
-        },
-        {
-          "blogName": "hello world",
-          "blogDesc": "cpp"
-        }
-      ]
+      "id": 1
+    },
+    {
+      "email": "hazemkak@gmail.com",
+      "password": "kakkak",
+      "blogName": "kak",
+      "age": 90,
+      "id": 2
+    },
+    {
+      "email": "haz@gmail.com",
+      "password": "kak",
+      "blogName": "kak",
+      "age": 14,
+      "id": 3
+    },
+    {
+      "email": "usf@gmail.com",
+      "password": "usfusf",
+      "blogName": "usf",
+      "age": 23,
+      "id": 4
+    }
+  ],
+  "forget-password": {
+    "email": "haz4450770@gmail.com"
+  },
+  "recommended-blogs": [
+    {
+      "blogName": "hello-world",
+      "blogDesc": "cpp"
+    },
+    {
+      "blogName": "print",
+      "blogDesc": "python"
+    },
+    {
+      "blogName": "every-thing-fox",
+      "blogDesc": "and other animals"
+    },
+    {
+      "blogName": "hello world",
+      "blogDesc": "cpp"
     }
   ]
 }

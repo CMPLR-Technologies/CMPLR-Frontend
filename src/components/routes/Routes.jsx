@@ -12,7 +12,7 @@ import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 import Dashboard from '../dashboardComponent/View';
 
 import PostComponent from '../partials/postComponent/View';
-export default function MainRoutes() {
+export default function MainRoutes() {  
     const theme = useContext(ThemeContext)[0];
     const css = `
         body{
