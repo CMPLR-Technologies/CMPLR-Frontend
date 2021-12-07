@@ -8,7 +8,10 @@ export default function TextPost(props) {
                 <span className="text-title-content">{title}</span>
             </div>
             <div className="text-body">
-                <span className="body-content">{text}</span>
+                <span
+                    className="body-content"
+                    dangerouslySetInnerHTML={{ __html: text }}
+                />
             </div>
         </div>
     );

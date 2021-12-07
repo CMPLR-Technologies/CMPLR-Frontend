@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "db": "json-server --watch ./src/__mock_database/db.json -p 3333",
+    "db": "json-server --watch ./src/__mock_database/db.json -p 3333 --routes ./src/__mock_database/routes.json",
     "styles": "sass --watch ./src/styles/scss/styles.scss ./src/styles/styles.css",
     "build": "react-scripts build",
     "test": "react-scripts test",

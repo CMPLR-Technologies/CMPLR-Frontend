@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AudioPost from './AudioPost';
 import ImageList from './ImageList';
 import OptionsButton from './OptionsButton.svg';
@@ -22,7 +22,11 @@ export default function PostComponent(props) {
         tagsArray,
         content,
         postLink,
-        blogIdentifier
+        blogIdentifier,
+        avatar,
+        numberNotes,
+        reblogKey,
+        postId
     } = post;
     let textPost, imagePost, videoPost, audioPost;
     content &&
@@ -34,16 +38,24 @@ export default function PostComponent(props) {
             else if (item.postType === 'video') videoPost = item;
         });
 
+    useEffect(() => {
+        if (videoPost) {
+            let cont = document.createElement('div');
+            cont.innerHTML = videoPost.url;
+            videoPost.url = cont.children[0].src;
+        }
+    }, []);
+
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);
     const [following, setFollowing] = useState(isFollowed);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
     const copyLink = () => {
         navigator.clipboard.writeText(postLink);
-        document.getElementsByClassName('copy-btn')[0].textContent =
+        document.getElementById(`copy-btn${postId}`).textContent =
             'Link Copied!';
         setTimeout(() => {
-            document.getElementsByClassName('copy-btn')[0].textContent =
+            document.getElementById(`copy-btn${postId}`).textContent =
                 'Copy link';
         }, 2000);
     };
@@ -141,8 +153,13 @@ export default function PostComponent(props) {
                     />
                 </Modal>
             )}
+
             <article className="post-container">
-                <div className="author-avatar"></div>
+                <div className="author-avatar">
+                    <div className="sticky-avatar">
+                        <img src={avatar} />
+                    </div>
+                </div>
                 <header className="post-header">
                     <div className="header-flex">
                         <div className="header-title">
@@ -182,6 +199,7 @@ export default function PostComponent(props) {
                                                 <div
                                                     onClick={() => copyLink()}
                                                     className="opt-btn copy-btn"
+                                                    id={`copy-btn${postId}`}
                                                 >
                                                     Copy Link
                                                 </div>
@@ -228,6 +246,7 @@ export default function PostComponent(props) {
                                                 <div
                                                     onClick={() => copyLink()}
                                                     className="opt-btn copy-btn"
+                                                    id={`copy-btn${postId}`}
                                                 >
                                                     Copy Link
                                                 </div>
@@ -261,6 +280,7 @@ export default function PostComponent(props) {
                         imageUrl={imagePost.imageUrl}
                         caption={imagePost.caption}
                         altText={imagePost.altText}
+                        postId={postId}
                     />
                 )}
                 <Divider />
@@ -274,11 +294,22 @@ export default function PostComponent(props) {
                     />
                 )}
                 <Divider />
-                {videoPost !== undefined && <VideoPost url={videoPost.url} />}
+                {videoPost !== undefined && (
+                    <VideoPost
+                        id={postId + videoPost.url}
+                        url={videoPost.url}
+                    />
+                )}
                 {/* todo:Link Post */}
                 <div className="post-footer">
                     <Tags tagsArray={tagsArray} />
-                    <Footer />
+                    <Footer
+                        isAuthor={userBlogName === blogName}
+                        postLink={postLink}
+                        numberNotes={numberNotes}
+                        reblogKey={reblogKey}
+                        postId={postId}
+                    />
                 </div>
             </article>
         </div>

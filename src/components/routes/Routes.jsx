@@ -27,7 +27,17 @@ export default function MainRoutes() {
                         element={<ForgetPassword />}
                     />
                     <Route path="/reset_password" element={<ResetPassword />} />
-                    <Route path="/post" element={<PostComponent />} />
+                    <Route
+                        path="/post"
+                        element={
+                            <>
+                                <PostComponent
+                                    userBlogName="kholdbold"
+                                    isFollowed={false}
+                                />
+                            </>
+                        }
+                    />
                 </Routes>
             </Router>
         </>

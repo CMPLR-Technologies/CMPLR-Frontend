@@ -11,9 +11,8 @@ export default function Controller(props) {
     const [elapsedTime, setElapsedTime] = useState(0);
     const [displayedTime, setDisplayedTime] = useState('00:00');
     const [playedTimePercentage, setPlayedTimePercentage] = useState(0);
-    const videoRef = useRef();
 
-    const handlePlayVideo = e => {
+    const handlePlayVideo = (e, videoRef) => {
         e.preventDefault();
         e.stopPropagation();
         setPlayed(!played);
@@ -22,7 +21,7 @@ export default function Controller(props) {
         } else videoRef.current.play();
     };
 
-    const changeCurrentTimePlayed = e => {
+    const changeCurrentTimePlayed = (e, videoRef) => {
         e.preventDefault();
         e.stopPropagation();
         let rect = e.target.getBoundingClientRect();
@@ -34,8 +33,8 @@ export default function Controller(props) {
             (relativeMouseClickedPosition / rect.width) *
             videoRef.current.duration;
     };
-    const handleFullscreen = () => {
-        const video = document.getElementsByClassName('video-post')[0];
+    const handleFullscreen = id => {
+        const video = document.getElementById(`video-post${id}`);
         if (video.requestFullscreen) {
             video.requestFullscreen();
         } else if (video.webkitRequestFullscreen) {
@@ -56,7 +55,7 @@ export default function Controller(props) {
         return { minutes, secondes };
     };
 
-    const handleSlider = () => {
+    const handleSlider = videoRef => {
         setElapsedTime(
             videoRef.current.duration - videoRef.current.currentTime
         );
@@ -83,7 +82,6 @@ export default function Controller(props) {
                 setPlayedTimePercentage,
                 handlePlayVideo,
                 changeCurrentTimePlayed,
-                videoRef,
                 handleFullscreen,
                 displayElapsedTime,
                 handleSlider
