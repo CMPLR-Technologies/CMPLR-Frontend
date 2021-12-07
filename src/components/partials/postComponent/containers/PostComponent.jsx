@@ -13,7 +13,7 @@ import Modal from '../../Modal';
 import AuthBtn from '../../AuthBtn';
 
 export default function PostComponent(props) {
-    const { post, isFollowed, userBlogName } = props;
+    const { post, isFollowed, userBlogName, radar } = props;
     const {
         blogName,
         blogEmail,
@@ -31,25 +31,19 @@ export default function PostComponent(props) {
     let textPost, imagePost, videoPost, audioPost;
     content &&
         content.map(item => {
-            if (item.postType === 'text') textPost = item;
+            if (item.postType === 'text' || item.postType === 'chat')
+                textPost = item;
             else if (item.postType === 'image') imagePost = item;
             else if (item.postType === 'link') linkPost = item;
             else if (item.postType === 'audio') audioPost = item;
             else if (item.postType === 'video') videoPost = item;
         });
 
-    useEffect(() => {
-        if (videoPost) {
-            let cont = document.createElement('div');
-            cont.innerHTML = videoPost.url;
-            videoPost.url = cont.children[0].src;
-        }
-    }, []);
-
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);
     const [following, setFollowing] = useState(isFollowed);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
+    const [mobileView, setMobileView] = useState(false);
     const copyLink = () => {
         navigator.clipboard.writeText(postLink);
         document.getElementById(`copy-btn${postId}`).textContent =
@@ -59,6 +53,19 @@ export default function PostComponent(props) {
                 'Copy link';
         }, 2000);
     };
+
+    const chaneMobileView = () => {
+        if (window.innerWidth > 960) {
+            setMobileView(false);
+        } else {
+            setMobileView(true);
+        }
+    };
+
+    useEffect(() => {
+        chaneMobileView();
+    }, []);
+    window.addEventListener('resize', chaneMobileView);
 
     //axios requests
     const unfollow = () => {
@@ -155,12 +162,21 @@ export default function PostComponent(props) {
             )}
 
             <article className="post-container">
-                <div className="author-avatar">
-                    <div className="sticky-avatar">
-                        <img src={avatar} />
+                {!radar && !mobileView && (
+                    <div className="author-avatar">
+                        <div className="sticky-avatar">
+                            <img src={avatar} className="avatar-img" />
+                        </div>
                     </div>
-                </div>
+                )}
                 <header className="post-header">
+                    {(mobileView || radar) && (
+                        <div className="author-avatar mob">
+                            <div className="sticky-avatar mob">
+                                <img src={avatar} className="avatar-img mob" />
+                            </div>
+                        </div>
+                    )}
                     <div className="header-flex">
                         <div className="header-title">
                             <span className="post-heading">{blogName}</span>

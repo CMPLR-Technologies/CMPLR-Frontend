@@ -4,14 +4,16 @@
 }
 .post-wrapper {
     position: relative;
-    margin-bottom: 25px;
     justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin: 80px auto 0;
-    padding: 0 8;
+    left: 40px;
+
+    @media (max-width: 800px) {
+        width: 80%;
+    }
 }
 
 .post-container {
@@ -29,17 +31,39 @@
 
 .author-avatar {
     position: absolute;
-    left: -75px;
+    left: -83px;
     height: 100%;
     width: 64px;
     &:hover {
         cursor: pointer;
     }
+
     .sticky-avatar {
         position: sticky;
         top: 10px;
+        .avatar-img {
+            border-radius: 3px;
+        }
     }
 }
+
+.author-avatar.mob {
+    position: unset;
+    left: 0;
+    width: 38px;
+    height: 38px;
+}
+
+.sticky-avatar.mob {
+    position: unset;
+}
+
+.avatar-img.mob {
+    width: 38px;
+    height: 38px;
+    margin-top: 5px;
+}
+
 .post-header {
     align-items: center;
     border-radius: 3px 3px 0 0;
