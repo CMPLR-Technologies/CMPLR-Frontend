@@ -1,13 +1,9 @@
 //import { apiBaseUrl } from '../../config.json';
 //import Axios from 'axios';
 
-const logUser = (Email, Password) => {
-    const [done, error, userData] = [
-        true,
-        null,
-        { name: Email, pass: Password }
-    ];
-    return { done, error, userData };
+// eslint-disable-next-line no-unused-vars
+const logUser = (email, password, setUser, setError) => {
+    return null;
 };
 
 /*{

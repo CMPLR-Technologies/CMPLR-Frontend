@@ -73,7 +73,7 @@ export default function LoginCard() {
                 text="Continue with Google"
                 color="white"
                 logo="https://upload.wikimedia.org/wikipedia/commons/archive/5/53/20210618182605%21Google_%22G%22_Logo.svg"
-                handleClick={() => handleLogin(email, password, setError)}
+                handleClick={() => '@todo'}
             ></AuthBtn>
 
             <p className="LoginCard__a">

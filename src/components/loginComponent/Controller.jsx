@@ -10,19 +10,16 @@ const getRandomImage = () => {
     return bs[k];
 };
 
-const handleLogin = (Email, Password, setError, user, setUser) => {
-    if (Email.length === 0) {
-        setError('Please Enter Your Email');
-    } else if (Password.length === 0) {
-        setError('Please Enter Your Password');
-    } else {
-        const { done, error, userData } = logUser(Email, Password);
-        if (done === true) {
-            setUser(userData);
-        } else {
-            setError(error);
-        }
-    }
+const inputCheck = (email, password) => {
+    if (email.length === 0) return 'please enter your email';
+    if (password.length === 0) return 'please enter your password';
+    return null;
+};
+
+const handleLogin = (email, password, setError, setUser) => {
+    const err = inputCheck(email, password);
+    if (err) setError(err);
+    else logUser(email, password, setUser, setError);
 };
 
 export { getRandomImage, handleLogin };
