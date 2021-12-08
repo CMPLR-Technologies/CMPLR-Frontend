@@ -1589,14 +1589,15 @@ body code {
 }
 .overlay-container {
   font: "Favorit", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
   z-index: 1000;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  display: none;
+  display: flex;
   flex-direction: row;
 }
 .overlay-container .overlay-div {

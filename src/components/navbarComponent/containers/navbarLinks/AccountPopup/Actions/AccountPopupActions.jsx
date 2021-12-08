@@ -1,37 +1,68 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import {
     ThemeContext,
     themes
 } from '../../../../../../contexts/themeContext/ThemeContext';
 import AccountPopupActionRow from './AccountPopupActionRow';
+import ShortcutsPageOverlay from './shortcuts/ShortcutsPageOverlay';
+import axios from 'axios';
+
+/**
+ * @function AccountPopupActions
+ * @description Account Popup Actions Container
+ * @property {bool} paletteChanged - state set to false at first and is changed to true if palette is changed
+ * @property {function} setPaletteChanged - paletteChanged state setter
+ * @property {bool} shortcutOverlay - boolean to manage visibility of shortcuts list
+ * @property {function} setShortcutOverlay - shortcutOverlay state setter
+ * @property {number} likesCount
+ * @property {function} setLikesCount - likesCount state setter
+ * @property {number} followingCount
+ * @property {function} setFollowingCount - followingCount state setter
+ * @property {function} viewShortcuts - Event Handler to call setShortcutOverlay(true)
+ * @property {function} toggleTheme - calls changeTheme in ThemeContext
+ * @returns {Component}
+ */
 
 export default function AccountPopupActions() {
     const [theme, changeTheme] = useContext(ThemeContext);
     const [paletteChanged, setPaletteChanged] = useState(false);
+    const [shortcutOverlay, setShortcutOverlay] = useState(false);
+    const [likesCount, setLikesCount] = useState(0);
+    const [followingCount, setFollowingCount] = useState(0);
+
     const toggleTheme = () => {
-        //console.log(theme, themes[theme]);
         setPaletteChanged(true);
         changeTheme(theme);
     };
     const viewShortcuts = () => {
-        document.querySelector('.overlay-container').style.display = 'flex';
+        setShortcutOverlay(true);
     };
 
-    const likesCount = 10;
-    const followingCount = 5;
+    useEffect(() => {
+        axios.get('http://localhost:3333/likes').then(response => {
+            setLikesCount(response.data.length);
+        });
+        axios.get('http://localhost:3333/following').then(response => {
+            setFollowingCount(response.data.length);
+        });
+    }, []);
 
     return (
         <div
             data-testid="dropDownAccountActions"
             className={`account-popup-actions`}
         >
+            {shortcutOverlay && (
+                <ShortcutsPageOverlay setShortcutOverlay={setShortcutOverlay} />
+            )}
+
             <NavLink to="/likes" className={`account-action-link`}>
                 <AccountPopupActionRow
                     key="1"
                     icon="likes"
                     title="Likes"
-                    count={likesCount}
+                    count={likesCount ? likesCount : ' '}
                 />
             </NavLink>
             <NavLink to="/following" className={`account-action-link`}>
@@ -39,7 +70,7 @@ export default function AccountPopupActions() {
                     key="2"
                     icon="following"
                     title="Following"
-                    count={followingCount}
+                    count={followingCount ? followingCount : ' '}
                 />
             </NavLink>
             <NavLink to="/settings/account" className={`account-action-link`}>

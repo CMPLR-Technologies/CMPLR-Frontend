@@ -1,6 +1,5 @@
 import Shortcut from './Shortcut';
 import React from 'react';
-import '../../../styles/styles.css';
 import PropTypes from 'prop-types';
 
 /**

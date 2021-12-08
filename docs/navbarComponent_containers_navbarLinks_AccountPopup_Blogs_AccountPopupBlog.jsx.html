@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: navbarComponent/containers/navbarLinks/AccountPopup/Blogs/AccountPopupBlog.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: navbarComponent/containers/navbarLinks/AccountPopup/Blogs/AccountPopupBlog.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
+import {
+    ThemeContext,
+    themes
+} from '../../../../../../contexts/themeContext/ThemeContext';
+import { NavLink } from 'react-router-dom';
+
+/**
+ * @function AccountPopupBlogsContainer
+ * @description in between seperator in the Account Popup Container
+ * @property {string} avatar
+ * @property {string} url
+ * @property {string} title
+ * @property {number} posts
+ * @property {number} followers
+ * @property {number} drafts
+ * @property {number} queue
+ * @property {bool} primary
+ * @property {array} rows
+ * @property {bool} expanded - storing state of expansion of blog links (posts, followers ...)
+ * @property {function} setExpanded - expanded setter
+ * @returns {Component}
+ */
+
+export default function AccountPopupBlog(props) {
+    const { avatar, url, title, posts, followers, drafts, queue, primary } =
+        props.blog;
+
+    const [expanded, setExpanded] = useState(primary);
+    const theme = useContext(ThemeContext)[0];
+    const rows = [
+        {
+            title: 'Posts',
+            link: `/blog/${url}`,
+            count: posts.length
+        },
+        {
+            title: 'Followers',
+            link: `/blog/${url}/followers`,
+            count: followers.length
+        },
+        {
+            title: 'Activity',
+            link: `/blog/${url}/activity`,
+            count: ' '
+        },
+        {
+            title: 'Drafts',
+            link: `/blog/${url}/drafts`,
+            count: drafts.length
+        },
+        {
+            title: 'Queue',
+            link: `/blog/${url}/queue`,
+            count: queue.length
+        },
+        {
+            title: 'Edit Appearence',
+            link: `/settings/blog/${url}`,
+            count: ' '
+        }
+    ];
+
+    const toggleExpanded = () => {
+        setExpanded(!expanded);
+    };
+
+    const css = `
+        .account-popup-blog *{
+            color: rgba(${themes[theme].black},.65);
+        }
+        .account-popup-blog-head-text h1{
+            color: rgb(${themes[theme].black});
+        }
+        .account-popup-blog-head:hover, .account-popup-blog-link-row:hover{
+            background-color: rgb(${themes[theme].secondaryAccent});
+
+        }
+    `;
+
+    return (
+        &lt;div className="account-popup-blog">
+            &lt;div className="account-popup-blog-head">
+                &lt;NavLink
+                    to={`/blog/${url}`}
+                    className="account-popup-blog-head-img"
+                >
+                    &lt;img src={`${avatar}`} alt="ava" />
+                &lt;/NavLink>
+                &lt;NavLink
+                    to={`/blog/${url}`}
+                    className="account-popup-blog-head-text"
+                >
+                    &lt;h1>{url}&lt;/h1>
+                    &lt;div>{title === '' ? 'untitled' : title}&lt;/div>
+                &lt;/NavLink>
+                &lt;div
+                    className="account-popup-blog-head-button"
+                    onClick={() => toggleExpanded()}
+                >
+                    &lt;svg
+                        width="20"
+                        height="20"
+                        fill={`rgb(${themes[theme].black},.65)`}
+                    >
+                        &lt;path d="M15 8.015v1.984h6V8.015h-6zm-1.004 5.976H21v-2.014h-7.004v2.014zm2.003 3.982h4.998V15.99H16v1.984zm-6.966-5.93c2.238 0 4.06-1.563 4.06-3.867C13.093 5.875 11.271 4 9.033 4 6.793 4 4.97 5.875 4.97 8.176c.003 2.307 1.825 3.867 4.063 3.867zm-.036 1.93C5.635 13.972 3 16.33 3 19.978 3 20.54 3.43 21 3.96 21h10.077c.528 0 .958-.457.958-1.02 0-3.649-2.635-6.008-5.998-6.008z" />
+                    &lt;/svg>
+                &lt;/div>
+            &lt;/div>
+
+            {expanded &amp;&amp; (
+                &lt;div className="account-popup-blog-links">
+                    {rows.map((row, index) => (
+                        &lt;NavLink
+                            key={index}
+                            to={row.link}
+                            className="account-popup-blog-link-row"
+                        >
+                            &lt;div className="link-row-title">{row.title}&lt;/div>
+                            &lt;div className="link-row-count">
+                                {row.count ? row.count : ' '}
+                            &lt;/div>
+                        &lt;/NavLink>
+                    ))}
+                &lt;/div>
+            )}
+            &lt;style>{css}&lt;/style>
+        &lt;/div>
+    );
+}
+AccountPopupBlog.propTypes = {
+    blog: PropTypes.object.isRequired
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#ThemeToggle">ThemeToggle</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Dec 08 2021 20:47:59 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

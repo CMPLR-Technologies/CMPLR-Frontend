@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: homeComponent/containers/Sec1/Button.jsx</title>
+    <title>JSDoc: Source: navbarComponent/containers/navbarLinks/AccountPopup/Blogs/AccountPopupBlogsContainer.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: homeComponent/containers/Sec1/Button.jsx</h1>
+    <h1 class="page-title">Source: navbarComponent/containers/navbarLinks/AccountPopup/Blogs/AccountPopupBlogsContainer.jsx</h1>
 
     
 
@@ -26,35 +26,33 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from 'react';
+import AccountPopupBlog from './AccountPopupBlog';
+import axios from 'axios';
 
 /**
- * @function HomeButtons
- * @description this is the base of buttons used in home component
- * @param {string} href - href of the button if any
- * @param {string} title - text body of button
- * @param {array} children - children of component if any
- * @param {string} className - className of button
- * @param {string} dataTestid - test id used in unit testing
- * @returns {Component} the Component of the Button
+ * @function AccountPopupBlogsContainer
+ * @description in between seperator in the Account Popup Container
+ * @property {array} blogs - a state array storing all blogs data of current user
+ * @property {function} setBlogs - blog state setter initialized to empty array
+ * @returns {Component}
  */
 
-Button.propTypes = {
-    href: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    children: PropTypes.array,
-    dataTestid: PropTypes.string,
-    className: PropTypes.string.isRequired
-};
-export default function Button(props) {
-    const { href, className, title, children, dataTestid } = props;
+export default function AccountPopupBlogsContainer() {
+    const [blogs, setBlogs] = useState([]);
+    useEffect(() => {
+        axios.get('http://localhost:3333/blogs').then(response => {
+            setBlogs(response.data);
+        });
+    }, []);
+
     return (
-        &lt;Link data-testid={dataTestid} to={href} className={className}>
-            {title}
-            {children}
-        &lt;/Link>
+        &lt;div className="account-popup-blogs-container">
+            {blogs &amp;&amp;
+                blogs.map((blog, index) => (
+                    &lt;AccountPopupBlog blog={blog} key={index} />
+                ))}
+        &lt;/div>
     );
 }
 </code></pre>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: homeComponent/containers/Sec1/Button.jsx</title>
+    <title>JSDoc: Source: navbarComponent/containers/navbarLinks/AccountPopup/AccountPopup.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: homeComponent/containers/Sec1/Button.jsx</h1>
+    <h1 class="page-title">Source: navbarComponent/containers/navbarLinks/AccountPopup/AccountPopup.jsx</h1>
 
     
 
@@ -26,35 +26,78 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+            <pre class="prettyprint source linenums"><code>import React, { useContext } from 'react';
+import AccountPopupSeperator from './Seperators/AccountPopupSeperator';
+import AccountPopupHeader from './Seperators/AccountPopupHeader';
+import AccountPopupFooter from './Seperators/AccountPopupFooter';
+import AccountPopupActions from './Actions/AccountPopupActions';
+import AccountPopupBlogsContainer from './Blogs/AccountPopupBlogsContainer';
+
+import {
+    ThemeContext,
+    themes
+} from '../../../../../contexts/themeContext/ThemeContext';
 
 /**
- * @function HomeButtons
- * @description this is the base of buttons used in home component
- * @param {string} href - href of the button if any
- * @param {string} title - text body of button
- * @param {array} children - children of component if any
- * @param {string} className - className of button
- * @param {string} dataTestid - test id used in unit testing
- * @returns {Component} the Component of the Button
+ * @function AccountPopup
+ * @description Account Popup Main Component (Container)
+ * @returns {Component}
  */
 
-Button.propTypes = {
-    href: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    children: PropTypes.array,
-    dataTestid: PropTypes.string,
-    className: PropTypes.string.isRequired
-};
-export default function Button(props) {
-    const { href, className, title, children, dataTestid } = props;
+export default function AccountPopup() {
+    const theme = useContext(ThemeContext)[0];
+    const css = `
+    .account-popup {
+        background-color: rgb(${themes[theme].white});
+    }   
+    .account-popup-header{
+        background-color: rgb(${themes[theme].black}, 0.07);
+        color: rgba(${themes[theme].black} ,.65);
+    }
+    .account-popup .clickable {
+        color: rgba(${themes[theme].black} ,.65);
+    }
+    .clickable:hover {
+        color: rgba(${themes[theme].black} ,.85);
+    }
+    .account-popup-actions{
+        color: rgb(${themes[theme].black});
+    }
+    .account-action-row:hover{
+        background-color:  rgb(${themes[theme].secondaryAccent});
+    }
+    .overlay-div {
+        background-color: rgb(${themes[theme].navy});
+    }
+    .shortcut-container {
+        background-color: rgb(${themes[theme].white});
+    }
+    .shortcut-container h2{
+        border-bottom: 2px solid rgba(${themes[theme].black}, 0.13);
+    }
+    .overlay-container span,
+    .overlay-container h1,
+    .overlay-container h2,
+    .overlay-container div {
+        color: rgb(${themes[theme].black});
+    }
+    .shortcut:hover {
+        background-color: rgba(${themes[theme].black}, .07);
+    }
+    .shortcut-key{
+        background: rgba(${themes[theme].black}, .13);
+    }
+    `;
+
     return (
-        &lt;Link data-testid={dataTestid} to={href} className={className}>
-            {title}
-            {children}
-        &lt;/Link>
+        &lt;div data-testid="dropDownAccount" className={`account-popup`}>
+            &lt;AccountPopupHeader />
+            &lt;AccountPopupActions />
+            &lt;AccountPopupSeperator />
+            &lt;AccountPopupBlogsContainer />
+            &lt;AccountPopupFooter />
+            &lt;style>{css}&lt;/style>
+        &lt;/div>
     );
 }
 </code></pre>

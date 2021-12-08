@@ -10,6 +10,12 @@ import {
     themes
 } from '../../../../../contexts/themeContext/ThemeContext';
 
+/**
+ * @function AccountPopup
+ * @description Account Popup Main Component (Container)
+ * @returns {Component}
+ */
+
 export default function AccountPopup() {
     const theme = useContext(ThemeContext)[0];
     const css = `
@@ -32,6 +38,27 @@ export default function AccountPopup() {
     .account-action-row:hover{
         background-color:  rgb(${themes[theme].secondaryAccent});
     }
+    .overlay-div {
+        background-color: rgb(${themes[theme].navy});
+    }
+    .shortcut-container {
+        background-color: rgb(${themes[theme].white});
+    }
+    .shortcut-container h2{
+        border-bottom: 2px solid rgba(${themes[theme].black}, 0.13);
+    }
+    .overlay-container span,
+    .overlay-container h1,
+    .overlay-container h2,
+    .overlay-container div {
+        color: rgb(${themes[theme].black});
+    }
+    .shortcut:hover {
+        background-color: rgba(${themes[theme].black}, .07);
+    }
+    .shortcut-key{
+        background: rgba(${themes[theme].black}, .13);
+    }
     `;
 
     return (
@@ -41,8 +68,6 @@ export default function AccountPopup() {
             <AccountPopupSeperator />
             <AccountPopupBlogsContainer />
             <AccountPopupFooter />
-            {/*
-             */}
             <style>{css}</style>
         </div>
     );

@@ -6,41 +6,59 @@ import {
 } from '../../../../../../contexts/themeContext/ThemeContext';
 import { NavLink } from 'react-router-dom';
 
+/**
+ * @function AccountPopupBlogsContainer
+ * @description in between seperator in the Account Popup Container
+ * @property {string} avatar
+ * @property {string} url
+ * @property {string} title
+ * @property {number} posts
+ * @property {number} followers
+ * @property {number} drafts
+ * @property {number} queue
+ * @property {bool} primary
+ * @property {array} rows
+ * @property {bool} expanded - storing state of expansion of blog links (posts, followers ...)
+ * @property {function} setExpanded - expanded setter
+ * @returns {Component}
+ */
+
 export default function AccountPopupBlog(props) {
     const { avatar, url, title, posts, followers, drafts, queue, primary } =
         props.blog;
+
     const [expanded, setExpanded] = useState(primary);
     const theme = useContext(ThemeContext)[0];
     const rows = [
         {
             title: 'Posts',
             link: `/blog/${url}`,
-            count: posts
+            count: posts ? posts.length : 0
         },
         {
             title: 'Followers',
             link: `/blog/${url}/followers`,
-            count: followers
+            count: followers ? followers.length : 0
         },
         {
             title: 'Activity',
             link: `/blog/${url}/activity`,
-            count: ' '
+            count: 0
         },
         {
             title: 'Drafts',
             link: `/blog/${url}/drafts`,
-            count: drafts
+            count: drafts ? drafts.length : 0
         },
         {
             title: 'Queue',
             link: `/blog/${url}/queue`,
-            count: queue
+            count: queue ? queue.length : 0
         },
         {
             title: 'Edit Appearence',
             link: `/settings/blog/${url}`,
-            count: ' '
+            count: 0
         }
     ];
 
@@ -101,7 +119,7 @@ export default function AccountPopupBlog(props) {
                         >
                             <div className="link-row-title">{row.title}</div>
                             <div className="link-row-count">
-                                {row.count ? row.count : ' '}
+                                {row.count > 0 ? row.count : ' '}
                             </div>
                         </NavLink>
                     ))}
@@ -112,13 +130,5 @@ export default function AccountPopupBlog(props) {
     );
 }
 AccountPopupBlog.propTypes = {
-    blog: PropTypes.object,
-    avatar: PropTypes.string,
-    url: PropTypes.string,
-    title: PropTypes.string,
-    posts: PropTypes.number,
-    followers: PropTypes.number,
-    drafts: PropTypes.number,
-    queue: PropTypes.number,
-    primary: PropTypes.bool
+    blog: PropTypes.object.isRequired
 };

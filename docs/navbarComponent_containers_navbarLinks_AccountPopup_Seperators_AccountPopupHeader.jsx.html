@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: homeComponent/containers/Sec1/Button.jsx</title>
+    <title>JSDoc: Source: navbarComponent/containers/navbarLinks/AccountPopup/Seperators/AccountPopupHeader.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: homeComponent/containers/Sec1/Button.jsx</h1>
+    <h1 class="page-title">Source: navbarComponent/containers/navbarLinks/AccountPopup/Seperators/AccountPopupHeader.jsx</h1>
 
     
 
@@ -26,35 +26,34 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+            <pre class="prettyprint source linenums"><code>import React, { useContext } from 'react';
+import { UserContext } from '../../../../../../contexts/userContext/UserContext';
+import { NavLink } from 'react-router-dom';
 
 /**
- * @function HomeButtons
- * @description this is the base of buttons used in home component
- * @param {string} href - href of the button if any
- * @param {string} title - text body of button
- * @param {array} children - children of component if any
- * @param {string} className - className of button
- * @param {string} dataTestid - test id used in unit testing
- * @returns {Component} the Component of the Button
+ * @function AccountPopupHeader
+ * @description Account Popup Header with a log out button
+ * @property {function} logOut - even handling function to handle loging out
+ * @returns {Component}
  */
 
-Button.propTypes = {
-    href: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    children: PropTypes.array,
-    dataTestid: PropTypes.string,
-    className: PropTypes.string.isRequired
-};
-export default function Button(props) {
-    const { href, className, title, children, dataTestid } = props;
+export default function AccountPopupHeader() {
+    const { setUser } = useContext(UserContext);
+
+    const logOut = () => {
+        setUser(null);
+    };
+
     return (
-        &lt;Link data-testid={dataTestid} to={href} className={className}>
-            {title}
-            {children}
-        &lt;/Link>
+        &lt;div
+            data-testid="dropDownAccountHeader"
+            className={`account-popup-header`}
+        >
+            &lt;div>Account&lt;/div>
+            &lt;NavLink to="/" className={`clickable`}>
+                &lt;div onClick={() => logOut()}>Log out&lt;/div>
+            &lt;/NavLink>
+        &lt;/div>
     );
 }
 </code></pre>

@@ -3,6 +3,16 @@ import {
     ThemeContext,
     themes
 } from '../../../../../../contexts/themeContext/ThemeContext';
+import PropTypes from 'prop-types';
+
+/**
+ * @function AccountPopupActionRow
+ * @description a single row in the Account Popup actions
+ * @property {string} icon - icon of action
+ * @property {object} title - text displayed on action row
+ * @property {object} count - if passed signifies count for some rows like count of likes or following
+ * @returns {Component}
+ */
 
 export default function AccountPopupActionRow(props) {
     const { icon, title, count } = { ...props };
@@ -74,7 +84,12 @@ export default function AccountPopupActionRow(props) {
                 ></svg>
                 <div className="action-title">{title}</div>
             </div>
-            <div className="action-count">{count}</div>
+            {count && <div className="action-count">{count}</div>}
         </div>
     );
 }
+AccountPopupActionRow.propTypes = {
+    icon: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    count: PropTypes.number
+};

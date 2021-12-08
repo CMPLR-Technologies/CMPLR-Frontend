@@ -1,6 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+/**
+ * @function AccountPopupFooter
+ * @description Account Popup Footer with some links
+ * @returns {Component}
+ */
+
 export default function AccountPopupFooter() {
     return (
         <div
