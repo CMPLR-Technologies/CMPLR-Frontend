@@ -7,6 +7,8 @@ import OrBar from '../../partials/OrBar';
 import AuthAlert from '../../partials/AuthAlert';
 import { handleLogin } from '../Controller';
 import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
+import { useContext } from 'react';
+import { UserContext } from '../../../contexts/userContext/UserContext';
 
 /**
  * LoginCard Component
@@ -18,6 +20,7 @@ import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
  */
 
 export default function LoginCard() {
+    const { setUser } = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -54,7 +57,9 @@ export default function LoginCard() {
                 <AuthBtn
                     text="Log in"
                     color="#00b8ff"
-                    handleClick={() => handleLogin(email, password, setError)}
+                    handleClick={() =>
+                        handleLogin(email, password, setError, setUser)
+                    }
                 ></AuthBtn>
             </div>
 
@@ -68,6 +73,7 @@ export default function LoginCard() {
                 text="Continue with Google"
                 color="white"
                 logo="https://upload.wikimedia.org/wikipedia/commons/archive/5/53/20210618182605%21Google_%22G%22_Logo.svg"
+                handleClick={() => '@todo'}
             ></AuthBtn>
 
             <p className="LoginCard__a">
