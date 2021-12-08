@@ -1,5 +1,5 @@
 import React from 'react';
-import p0 from '../../../assets/images/profile_pic0.png';
+import p0 from '../../../../assets/images/profile_pic0.png';
 
 export default function ProfilePicContainer() {
     return (

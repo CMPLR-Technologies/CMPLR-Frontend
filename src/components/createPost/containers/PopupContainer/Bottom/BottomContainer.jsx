@@ -1,0 +1,49 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import PostButton from './PostButton';
+
+export default function BottomMainControllers(props) {
+    const { handleCloseModal, handlePost, postType, setPostType } = props;
+
+    return (
+        <>
+            <div className="post-form-bottom">
+                <div className="post-form--controls">
+                    <div className="controls-container">
+                        <div className="control-left">
+                            <button
+                                onClick={handleCloseModal}
+                                className="tx-button"
+                            >
+                                Close
+                            </button>
+                        </div>
+                        <div className="control-right">
+                            <div>
+                                <ul className="social-buttons">
+                                    <li className="social-button">
+                                        <label className="social-button--twitter"></label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="control-right">
+                            <PostButton
+                                handlePost={handlePost}
+                                postType={postType}
+                                setPostType={setPostType}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
+
+BottomMainControllers.propTypes = {
+    handleCloseModal: PropTypes.func.isRequired,
+    handlePost: PropTypes.func.isRequired,
+    postType: PropTypes.string.isRequired,
+    setPostType: PropTypes.func.isRequired
+};

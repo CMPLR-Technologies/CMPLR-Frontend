@@ -52,6 +52,20 @@
       "blogName": "usf",
       "age": 23,
       "id": 4
+    },
+    {
+      "email": "hazem@gmail.com",
+      "password": "jnndkj",
+      "blogName": "jnjknkd",
+      "age": 33,
+      "id": 5
+    },
+    {
+      "email": "hazem@gmail.com",
+      "password": "anjskjnjjkn",
+      "blog_name": "sjnkjnsjk",
+      "age": 19,
+      "id": 6
     }
   ],
   "forget-password": {

@@ -10,6 +10,8 @@ import ForgetPassword from '../forgetPasswordComponent/View';
 import ResetPassword from '../resetPasswordComponent/View';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 import CreatePost from '../createPost/View';
+import ContainerCKeditor from '../createPost/containers/CKeditor';
+import HandMadeTextEditor from '../RichTextEditor/View';
 
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
@@ -30,6 +32,7 @@ export default function MainRoutes() {
                     <Route path="/messaging" element={<MessagesPageMobile />} />
                     <Route path="/new" element={<NewPostPopup />} />
                     <Route path="/explore" element={<h1>Explore</h1>} />
+                    <Route path="/rich" element={<HandMadeTextEditor />} />
                     <Route path="/dashboard" element={<CreatePost />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<LoginView />} />
