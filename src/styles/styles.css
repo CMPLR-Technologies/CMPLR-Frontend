@@ -908,20 +908,23 @@
   vertical-align: baseline;
 }
 .account-popup-blog-head {
-  padding: 8px 10px;
   display: flex;
   flex-direction: row;
-  text-decoration: none;
-  align-items: center;
+  align-items: stretch;
 }
 .account-popup-blog-head-img img {
-  margin-right: 11px;
+  margin: 8px 11px;
   width: 37px;
   height: 37px;
   object-fit: cover;
   border-radius: 2px;
 }
 .account-popup-blog-head-text {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 11px;
   font-size: 0.875rem;
   white-space: nowrap;
   overflow: hidden;
@@ -936,6 +939,9 @@
   text-overflow: ellipsis;
 }
 .account-popup-blog-head-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 10px;
   cursor: pointer;
 }

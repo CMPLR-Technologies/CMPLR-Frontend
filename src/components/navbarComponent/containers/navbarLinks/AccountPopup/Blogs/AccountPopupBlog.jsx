@@ -7,17 +7,9 @@ import {
 import { NavLink } from 'react-router-dom';
 
 export default function AccountPopupBlog(props) {
-    const {
-        avatar,
-        url,
-        title,
-        posts,
-        followers,
-        drafts,
-        queue,
-        expandedInital
-    } = props.blog;
-    const [expanded, setExpanded] = useState(expandedInital);
+    const { avatar, url, title, posts, followers, drafts, queue, primary } =
+        props.blog;
+    const [expanded, setExpanded] = useState(primary);
     const theme = useContext(ThemeContext)[0];
     const rows = [
         {
@@ -71,14 +63,20 @@ export default function AccountPopupBlog(props) {
 
     return (
         <div className="account-popup-blog">
-            <NavLink to={`/blog/${url}`} className="account-popup-blog-head">
-                <div className="account-popup-blog-head-img">
+            <div className="account-popup-blog-head">
+                <NavLink
+                    to={`/blog/${url}`}
+                    className="account-popup-blog-head-img"
+                >
                     <img src={`${avatar}`} alt="ava" />
-                </div>
-                <div className="account-popup-blog-head-text">
+                </NavLink>
+                <NavLink
+                    to={`/blog/${url}`}
+                    className="account-popup-blog-head-text"
+                >
                     <h1>{url}</h1>
                     <div>{title === '' ? 'untitled' : title}</div>
-                </div>
+                </NavLink>
                 <div
                     className="account-popup-blog-head-button"
                     onClick={() => toggleExpanded()}
@@ -91,7 +89,7 @@ export default function AccountPopupBlog(props) {
                         <path d="M15 8.015v1.984h6V8.015h-6zm-1.004 5.976H21v-2.014h-7.004v2.014zm2.003 3.982h4.998V15.99H16v1.984zm-6.966-5.93c2.238 0 4.06-1.563 4.06-3.867C13.093 5.875 11.271 4 9.033 4 6.793 4 4.97 5.875 4.97 8.176c.003 2.307 1.825 3.867 4.063 3.867zm-.036 1.93C5.635 13.972 3 16.33 3 19.978 3 20.54 3.43 21 3.96 21h10.077c.528 0 .958-.457.958-1.02 0-3.649-2.635-6.008-5.998-6.008z" />
                     </svg>
                 </div>
-            </NavLink>
+            </div>
 
             {expanded && (
                 <div className="account-popup-blog-links">
@@ -122,5 +120,5 @@ AccountPopupBlog.propTypes = {
     followers: PropTypes.number,
     drafts: PropTypes.number,
     queue: PropTypes.number,
-    expandedInital: PropTypes.bool
+    primary: PropTypes.bool
 };

@@ -55,7 +55,6 @@ export function ThemeContextProvider(props) {
     }, []);
 
     const changeTheme = currentTheme => {
-        console.log(currentTheme);
         const keys = Object.keys(themes);
         const nextIndex = (keys.indexOf(currentTheme) + 1) % keys.length;
         axios

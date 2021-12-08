@@ -1,60 +1,92 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+    "posts": [
+        {
+            "id": 1,
+            "title": "json-server",
+            "author": "typicode"
+        },
+        {
+            "title": "hazem0",
+            "author": "hazemkak0",
+            "id": 2
+        }
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "body": "some comment",
+            "postId": 1
+        }
+    ],
+    "profile": {
+        "name": "typicode"
     },
-    {
-      "title": "hazem0",
-      "author": "hazemkak0",
-      "id": 2
+    "users": {
+        "theme": "trueBlue",
+        "blogs": [
+            {
+                "avatar": "https://wallpaperaccess.com/full/5389873.jpg",
+                "url": "Xasm",
+                "title": "hmmmm lol man",
+                "posts": 9,
+                "followers": 1,
+                "drafts": 0,
+                "queue": 0,
+                "primary": true
+            },
+            {
+                "avatar": "https://i.stack.imgur.com/9j9hj.jpg?s=64&g=1",
+                "url": "Xashwfafhawhfaifhafalhaihflwahlfm",
+                "title": "hmmgagahgiwalhawfwalfanm lol man",
+                "posts": 0,
+                "followers": 0,
+                "drafts": 0,
+                "queue": 0,
+                "primary": false
+            },
+            {
+                "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRutoiZclWjivCs1VLSdaeDh67ITMbP0XUVFA&usqp=CAU",
+                "url": "awawuhawo",
+                "title": "",
+                "posts": 400,
+                "followers": 300,
+                "drafts": 10,
+                "queue": 5,
+                "primary": false
+            }
+        ]
+    },
+    "register": [
+        {
+            "email": "hazem@gmail.com",
+            "age": 20,
+            "password": "hazem",
+            "blogname": "hazemkak",
+            "id": 1
+        },
+        {
+            "email": "hazemkak@gmail.com",
+            "password": "kakkak",
+            "blogName": "kak",
+            "age": 90,
+            "id": 2
+        },
+        {
+            "email": "haz@gmail.com",
+            "password": "kak",
+            "blogName": "kak",
+            "age": 14,
+            "id": 3
+        },
+        {
+            "email": "usf@gmail.com",
+            "password": "usfusf",
+            "blogName": "usf",
+            "age": 23,
+            "id": 4
+        }
+    ],
+    "forget-password": {
+        "email": "haz4450770@gmail.com"
     }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
-  "users": {
-    "theme": "trueBlue"
-  },
-  "register": [
-    {
-      "email": "hazem@gmail.com",
-      "age": 20,
-      "password": "hazem",
-      "blogname": "hazemkak",
-      "id": 1
-    },
-    {
-      "email": "hazemkak@gmail.com",
-      "password": "kakkak",
-      "blogName": "kak",
-      "age": 90,
-      "id": 2
-    },
-    {
-      "email": "haz@gmail.com",
-      "password": "kak",
-      "blogName": "kak",
-      "age": 14,
-      "id": 3
-    },
-    {
-      "email": "usf@gmail.com",
-      "password": "usfusf",
-      "blogName": "usf",
-      "age": 23,
-      "id": 4
-    }
-  ],
-  "forget-password": {
-    "email": "haz4450770@gmail.com"
-  }
 }

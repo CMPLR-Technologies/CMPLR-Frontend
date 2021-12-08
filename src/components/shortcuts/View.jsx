@@ -2,7 +2,7 @@ import ShortcutsContainer from './containers/ShortcutsContainer';
 import React, { useContext } from 'react';
 import '../../styles/styles.css';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
-
+//import { useNavigate } from 'react-router-dom';
 /**
  * Shortcuts Page Overlay: an Overlay Containter that is viewed over the page with opacity
  * @function ShortcutsPageOverlay
@@ -15,24 +15,26 @@ export default function ShortcutsPageOverlay() {
         document.querySelector('.overlay-container').style.display = 'none';
     };
     const [theme, changeTheme] = useContext(ThemeContext);
+    //const navigate = useNavigate();
 
     document.addEventListener('keydown', e => {
         if (e.altKey && e.code === 'KeyC') {
-            console.log('New Post!');
+            //console.log('lol');
+            //navigate('/new');
         } else if (e.shiftKey && e.code === 'Slash') {
-            console.log('Go to SearchBar?');
+            //console.log('Go to SearchBar?');
             //document.querySelector("search-bar").focus();
         } else if (e.code === 'Period') {
-            console.log('Back to the top ^^');
+            //console.log('Back to the top ^^');
         } else if (e.code === 'KeyL') {
-            console.log('Like This one <3');
+            //console.log('Like This one <3');
             // } else if (e.code === "KeyJ") {
             //   console.log("Scroll to next post ->");
             // } else if (e.code === "KeyK") {
             //   console.log("Scroll to prev post <-");
             // }
         } else if (e.altKey && e.code === 'KeyQ') {
-            console.log('Queue this post ~');
+            //console.log('Queue this post ~');
         } else if (e.altKey && e.code === 'KeyP') {
             changeTheme(theme);
         }

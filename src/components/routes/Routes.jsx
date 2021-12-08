@@ -9,6 +9,7 @@ import NewPostPopup from '../navbarComponent/containers/navbarLinks/newPost/NewP
 import ForgetPassword from '../forgetPasswordComponent/View';
 import ResetPassword from '../resetPasswordComponent/View';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
+import ShortcutsPageOverlay from '../shortcuts/View';
 
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
@@ -24,6 +25,7 @@ export default function MainRoutes() {
         <>
             <Router>
                 <Navbar />
+                <ShortcutsPageOverlay />
                 <Routes>
                     <Route path="/register" element={<Register />} />
                     <Route path="/messaging" element={<MessagesPageMobile />} />
