@@ -9,6 +9,7 @@ import HeaderCreatePost from '../PopupContainer/Header';
 import BottomMainControllers from '../PopupContainer/Bottom/BottomContainer';
 import { UserContext } from '../../../../contexts/userContext/UserContext';
 import { useContext } from 'react';
+import HandMadeTextEditor from '../../../RichTextEditor/View';
 
 export default function OptionIcon(props) {
     const { typeName, draw, fill } = props;
@@ -81,7 +82,7 @@ export default function OptionIcon(props) {
                                                 <div>
                                                     <div className="editor-wrapper">
                                                         <div className="editor-slot">
-                                                            <RichTextEditor />
+                                                            <HandMadeTextEditor />
                                                         </div>
                                                     </div>
                                                 </div>
