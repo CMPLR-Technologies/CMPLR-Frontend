@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: loginComponent/View.jsx</title>
+    <title>JSDoc: Source: partials/postComponent/containers/TextPost.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: loginComponent/View.jsx</h1>
+    <h1 class="page-title">Source: partials/postComponent/containers/TextPost.jsx</h1>
 
     
 
@@ -27,22 +27,34 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react';
-import LoginCard from './containers/LoginCard';
-import AuthFooter from '../partials/AuthFooter';
-import { getRandomImage } from './Controller';
+import PropTypes from 'prop-types';
 
 /**
- * Login Main Component
- * @function LoginView
- * @description The main container for the login page
- * @returns {Component} Component that contains LoginCard and AuthFooter
+ * @function TextPost
+ * @description Component used to view text post in postComponent Container
+ * @param {string} title - Heading of text post
+ * @param {HtmlTags} text - content of text post
+ * @returns {Component} TextPost Component
  */
-export default function LoginView() {
-    const b = getRandomImage();
+
+TextPost.propTypes = {
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string
+};
+
+export default function TextPost(props) {
+    const { title, text } = props;
     return (
-        &lt;div className="LoginView" style={{ backgroundImage: `url(${b})` }}>
-            &lt;LoginCard>&lt;/LoginCard>
-            &lt;AuthFooter>&lt;/AuthFooter>
+        &lt;div className="post-body">
+            &lt;div className="text-title">
+                &lt;span className="text-title-content">{title}&lt;/span>
+            &lt;/div>
+            &lt;div className="text-body">
+                &lt;span
+                    className="body-content"
+                    dangerouslySetInnerHTML={{ __html: text }}
+                />
+            &lt;/div>
         &lt;/div>
     );
 }

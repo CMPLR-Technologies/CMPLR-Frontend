@@ -10,16 +10,21 @@ export default function Dashboard() {
     useEffect(() => {
         Axios({
             method: 'GET',
-            url: `${apiBaseUrl}/post`
+            url: `${apiBaseUrl}/posts`,
+            params: {
+                'blog-identifier': 'blog-identifier'
+            }
         }).then(res => {
-            setResponse(res.data);
+            if (res.data.Meta.Status === 200) {
+                setResponse(res.data.response.posts);
+            }
         });
     }, []);
     return (
         <div className="dashboard">
             <div className="posts-region">
                 <CreatePost />
-                <PostComponent posts={response} />
+                <PostComponent posts={response} userBlogName="kholbold" />
             </div>
             <Sidebar />
         </div>

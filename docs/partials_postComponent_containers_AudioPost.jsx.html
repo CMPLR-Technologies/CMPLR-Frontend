@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: loginComponent/View.jsx</title>
+    <title>JSDoc: Source: partials/postComponent/containers/AudioPost.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: loginComponent/View.jsx</h1>
+    <h1 class="page-title">Source: partials/postComponent/containers/AudioPost.jsx</h1>
 
     
 
@@ -26,24 +26,88 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
-import LoginCard from './containers/LoginCard';
-import AuthFooter from '../partials/AuthFooter';
-import { getRandomImage } from './Controller';
+            <pre class="prettyprint source linenums"><code>import React, { useRef, useState } from 'react';
+import PlayButton from './PlayButton';
+import {
+    handlePlayAudio,
+    changeCurrentTimePlayedAudio,
+    handleAudioSlider
+} from '../Controller';
+
+import PropTypes from 'prop-types';
 
 /**
- * Login Main Component
- * @function LoginView
- * @description The main container for the login page
- * @returns {Component} Component that contains LoginCard and AuthFooter
+ * Audio Post
+ * @function AudioPost
+ * @description Component used to view audio post in postComponent Container
+ * @param {string} url - url of audio file
+ * @param {string} track - track name of audio file
+ * @param {string} artist - artist name of audio file
+ * @param {string} description - content of audio post
+ * @returns {Component} AudioPost Component
  */
-export default function LoginView() {
-    const b = getRandomImage();
+
+AudioPost.propTypes = {
+    url: PropTypes.string.isRequired,
+    track: PropTypes.string,
+    artist: PropTypes.string,
+    description: PropTypes.string
+};
+
+export default function AudioPost(props) {
+    const { url, track, artist, description } = props;
+    const audioRef = useRef();
+    const [played, setPlayed] = useState(false);
+    const [playedTimePercentage, setPlayedTimePercentage] = useState(0);
+
     return (
-        &lt;div className="LoginView" style={{ backgroundImage: `url(${b})` }}>
-            &lt;LoginCard>&lt;/LoginCard>
-            &lt;AuthFooter>&lt;/AuthFooter>
-        &lt;/div>
+        &lt;>
+            &lt;div
+                onClick={e => {
+                    changeCurrentTimePlayedAudio(
+                        e,
+                        setPlayedTimePercentage,
+                        audioRef
+                    );
+                }}
+                className="audio-post"
+            >
+                &lt;div
+                    type="range"
+                    className="seek-bar"
+                    style={{
+                        width: playedTimePercentage + '%'
+                    }}
+                >
+                    &lt;div className="song-slider">&lt;/div>
+                &lt;/div>
+                &lt;div
+                    onClick={e =>
+                        handlePlayAudio(e, played, setPlayed, audioRef)
+                    }
+                    className="play-button"
+                >
+                    &lt;PlayButton played={played} />
+                    &lt;div className="artist-track">
+                        &lt;div className="track">{track}&lt;/div>
+                        &lt;div className="artist">{artist}&lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+            &lt;div className="audio-desc">
+                &lt;span className="body-content">{description}&lt;/span>
+            &lt;/div>
+            &lt;audio
+                ref={audioRef}
+                onTimeUpdate={() =>
+                    handleAudioSlider(audioRef, setPlayedTimePercentage)
+                }
+                onEnded={() => setPlayed(false)}
+                className="audio"
+                src={url}
+                preload="auto"
+            />
+        &lt;/>
     );
 }
 </code></pre>

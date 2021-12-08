@@ -1,4 +1,3 @@
-import Axios from 'axios';
 import React, { useState } from 'react';
 import CopyLink from './CopyLink.svg';
 import DeleteBtn from './DeleteBtn.svg';
@@ -7,69 +6,36 @@ import LoveBtn from './LoveBtn.svg';
 import Note from './Note.svg';
 import ReblogBtn from './ReblogBtn.svg';
 import ShareBtn from './ShareBtn.svg';
-import { apiBaseUrl } from '../../../../config.json';
 import Modal from '../../Modal';
 import AuthBtn from '../../AuthBtn';
+import { toggleShareList, copyLink } from '../Controller';
+import { handleLikePost, deletePost } from '../Services';
+import PropTypes from 'prop-types';
+
+/**
+ * @function Footer
+ * @description Post Component containg icons like love,share,reblog,edit,delete,...etc and notes count
+ * @param {number} numberNotes - number of notes relate to post
+ * @param {boolean} isAuth - boolean value to check if the user logged in is the author of viewed post
+ * @param {string} postLink - link of the post
+ * @param {string} reblogKey -the key used to reblog this post
+ * @param {string} postId - id of the post
+ * @returns {Component} Footer Component
+ */
+
+Footer.propTypes = {
+    numberNotes: PropTypes.number.isRequired,
+    isAuthor: PropTypes.bool.isRequired,
+    postLink: PropTypes.string.isRequired,
+    reblogKey: PropTypes.string.isRequired,
+    postId: PropTypes.string.isRequired
+};
 
 export default function Footer(props) {
     const { numberNotes, isAuthor, postLink, reblogKey, postId } = props;
     const [isShareListOpen, setIsShareListOpen] = useState(false);
     const [loveFillColor, setLoveFillColor] = useState('gray');
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const toggleShareList = () => {
-        setIsShareListOpen(!isShareListOpen);
-    };
-    const copyLink = () => {
-        navigator.clipboard.writeText(postLink);
-        document.getElementById(`copy-btn${postId}`).textContent =
-            'Link Copied!';
-        setTimeout(() => {
-            document.getElementById(`copy-btn${postId}`).textContent =
-                'Copy link';
-        }, 2000);
-    };
-
-    const handleLikePost = () => {
-        const url =
-            loveFillColor === 'gray'
-                ? `${apiBaseUrl}/user/like`
-                : `${apiBaseUrl}/user/unlike`;
-        Axios({
-            method: 'POST',
-            url: url,
-            headers: {
-                'content-type': 'application/json'
-            },
-            data: {
-                id: postId,
-                reblogKey: reblogKey
-            }
-        }).then(res => {
-            if (res.status === 200) {
-                setLoveFillColor(
-                    loveFillColor === 'gray' ? 'rgb(255,73,47)' : 'gray'
-                );
-            }
-        });
-    };
-
-    const deletePost = () => {
-        Axios({
-            method: 'DELETE',
-            url: `${apiBaseUrl}/post/delete`,
-            headers: {
-                'content-type': 'application/json'
-            },
-            data: {
-                id: postId
-            }
-        }).then(res => {
-            if (res.status === 200) {
-                setIsModalOpen(false);
-            }
-        });
-    };
 
     return (
         <footer className="post-footer-icons">
@@ -90,7 +56,7 @@ export default function Footer(props) {
                         text="Ok"
                         color="rgb(0, 184, 255)"
                         handleClick={() => {
-                            deletePost();
+                            deletePost(postId, setIsModalOpen);
                         }}
                     />
                 </Modal>
@@ -105,7 +71,10 @@ export default function Footer(props) {
             {isShareListOpen && (
                 <div className="share-options">
                     <div className="options">
-                        <div onClick={() => copyLink()} className="list ">
+                        <div
+                            onClick={() => copyLink(postLink, postId)}
+                            className="list "
+                        >
                             <div className="circled-border">
                                 <CopyLink />
                             </div>
@@ -120,7 +89,12 @@ export default function Footer(props) {
                 </div>
             )}
             <div className="footer-icons">
-                <button onClick={() => toggleShareList()} className="icon">
+                <button
+                    onClick={() =>
+                        toggleShareList(isShareListOpen, setIsShareListOpen)
+                    }
+                    className="icon"
+                >
                     <ShareBtn />
                 </button>
                 <button className="icon">
@@ -129,7 +103,17 @@ export default function Footer(props) {
                 <button className="icon">
                     <ReblogBtn />
                 </button>
-                <button onClick={() => handleLikePost()} className="icon ">
+                <button
+                    onClick={() =>
+                        handleLikePost(
+                            loveFillColor,
+                            setLoveFillColor,
+                            postId,
+                            reblogKey
+                        )
+                    }
+                    className="icon "
+                >
                     <LoveBtn fillColor={loveFillColor} />
                 </button>
                 {isAuthor && (

@@ -1,37 +1,30 @@
 import React, { useEffect, useState } from 'react';
+import { extractImageData, showImage, closeImagePreview } from '../Controller';
+import PropTypes from 'prop-types';
+
+/**
+ * @function ImagePost
+ * @description Component used to view image post in postComponent Container
+ * @param {HtmlTag} imageTag - image HTML tag containing src and alt attributes
+ * @param {boolean} caption - caption of the image viewed as description to the post
+ * @param {string} postId - id of the post
+ * @returns {Component} ImagePost Component
+ */
+
+ImageList.propTypes = {
+    imageTag: PropTypes.string.isRequired,
+    caption: PropTypes.string,
+    postId: PropTypes.string.isRequired
+};
 
 export default function ImageList(props) {
-    const { imageUrl, caption, postId } = props;
+    const { imageTag, caption, postId } = props;
     const [imgSrcUrl, setImgSrcUrl] = useState('');
     const [imgAlt, setImgAlt] = useState('');
 
     useEffect(() => {
-        let cont = document.createElement('div');
-        cont.innerHTML = imageUrl;
-        setImgSrcUrl(cont.children[0].src);
-        setImgAlt(cont.children[0].alt);
-    }, [imageUrl]);
-
-    const showImage = () => {
-        document.getElementById(
-            `preview-img${imgSrcUrl}-${postId}`
-        ).style.visibility = 'visible';
-
-        document.getElementById(
-            `show-image-modal${imgSrcUrl}-${postId}`
-        ).style.display = 'flex';
-        document.getElementById(
-            `preview-img${imgSrcUrl}-${postId}`
-        ).style.display = 'flex';
-        document.getElementById(`preview-img${imgSrcUrl}-${postId}`).src =
-            imgSrcUrl;
-    };
-
-    const closeImagePreview = () => {
-        document.getElementById(
-            `show-image-modal${imgSrcUrl}-${postId}`
-        ).style.display = 'none';
-    };
+        extractImageData(imageTag, setImgSrcUrl, setImgAlt);
+    }, [imageTag]);
 
     return (
         <>
@@ -42,7 +35,7 @@ export default function ImageList(props) {
                 role="dialog"
                 aria-modal="true"
                 onClick={() => {
-                    closeImagePreview();
+                    closeImagePreview(imgSrcUrl, postId);
                 }}
             >
                 <div className="img-preview-container">
@@ -59,7 +52,7 @@ export default function ImageList(props) {
                 <div className="image">
                     <button
                         onClick={() => {
-                            showImage(imgSrcUrl);
+                            showImage(imgSrcUrl, postId);
                         }}
                         className="img-link btn"
                     >

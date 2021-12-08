@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: partials/postComponent/containers/VideoPost.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: partials/postComponent/containers/VideoPost.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useRef, useState } from 'react';
+import ToggleFullScreen from './ToggleFullScreen.svg';
+import ToggleSound from './ToggleSound.svg';
+import PlayButton from './PlayButton';
+import {
+    handlePlayVideo,
+    handleFullscreen,
+    handleSlider,
+    changeCurrentTimePlayed,
+    handleVideoTag
+} from '../Controller';
+
+import PropTypes from 'prop-types';
+
+/**
+ * @function VideoPost
+ * @description Component used to view video post in postComponent Container
+ * @param {HtmlTag} videoTag - void video HTML tag containing src attribute
+ * @param {string} id - id used to identify some video post tags to be used in the controller
+ * @returns {Component} VideoPost Component
+ */
+
+VideoPost.propTypes = {
+    videoTag: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired
+};
+
+export default function VideoPost(props) {
+    const { videoTag, id } = props;
+    const [videUrl, setVidUrl] = useState('');
+    const [played, setPlayed] = useState(false);
+    const [mute, setMute] = useState(false);
+    const [elapsedTime, setElapsedTime] = useState(0);
+    const [displayedTime, setDisplayedTime] = useState('00:00');
+    const [playedTimePercentage, setPlayedTimePercentage] = useState(0);
+    const videoRef = useRef();
+
+    useEffect(() => {
+        handleVideoTag(videoTag, setVidUrl);
+    }, [videoTag]);
+
+    return (
+        &lt;div
+            onMouseOver={() => {
+                document.getElementById(`controller-${id}`).style.display =
+                    'flex';
+            }}
+            onMouseLeave={() => {
+                document.getElementById(`controller-${id}`).style.display =
+                    'none';
+            }}
+            className="video-post"
+            id={`video-post${id}`}
+        >
+            &lt;video
+                ref={videoRef}
+                role="button"
+                aria-label="Play"
+                className="video-post-content"
+                onClick={e => handlePlayVideo(e, videoRef, played, setPlayed)}
+                onTimeUpdate={() =>
+                    handleSlider(
+                        videoRef,
+                        elapsedTime,
+                        setElapsedTime,
+                        setPlayedTimePercentage,
+                        setDisplayedTime
+                    )
+                }
+                onEnded={() => setPlayed(false)}
+                loop={true}
+                muted={mute}
+                dangerouslySetInnerHTML={{ __html: videUrl }}
+            >&lt;/video>
+            &lt;div
+                style={{ display: 'none' }}
+                className="controllers"
+                id={`controller-${id}`}
+            >
+                &lt;button
+                    onClick={e =>
+                        handlePlayVideo(e, videoRef, played, setPlayed)
+                    }
+                    className="play-pause-button btn"
+                >
+                    &lt;PlayButton played={played} />
+                &lt;/button>
+                &lt;div
+                    onClick={e => {
+                        changeCurrentTimePlayed(
+                            e,
+                            videoRef,
+                            setPlayedTimePercentage
+                        );
+                    }}
+                    className="progreesbar"
+                    role="progressbar"
+                >
+                    &lt;div className="bar">
+                        &lt;div
+                            style={{
+                                width: playedTimePercentage + '%'
+                            }}
+                            className="slider"
+                        >&lt;/div>
+                        &lt;div
+                            style={{
+                                left: playedTimePercentage + '%'
+                            }}
+                            className="circle"
+                        >&lt;/div>
+                    &lt;/div>
+                &lt;/div>
+                &lt;div className="elapsed-time">
+                    {videoRef.current &amp;&amp; displayedTime}
+                &lt;/div>
+                &lt;button
+                    className="full-screen-button btn"
+                    onClick={() => handleFullscreen(id)}
+                >
+                    &lt;ToggleFullScreen />
+                &lt;/button>
+                &lt;button
+                    className="toggle-sound-button btn"
+                    onClick={() => setMute(!mute)}
+                >
+                    &lt;ToggleSound mute={mute} />
+                &lt;/button>
+            &lt;/div>
+        &lt;/div>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#ThemeToggle">ThemeToggle</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed Dec 08 2021 17:49:06 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

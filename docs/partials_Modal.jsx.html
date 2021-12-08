@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: loginComponent/View.jsx</title>
+    <title>JSDoc: Source: partials/Modal.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: loginComponent/View.jsx</h1>
+    <h1 class="page-title">Source: partials/Modal.jsx</h1>
 
     
 
@@ -27,22 +27,31 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react';
-import LoginCard from './containers/LoginCard';
-import AuthFooter from '../partials/AuthFooter';
-import { getRandomImage } from './Controller';
+import PropTypes from 'prop-types';
 
 /**
- * Login Main Component
- * @function LoginView
- * @description The main container for the login page
- * @returns {Component} Component that contains LoginCard and AuthFooter
+ * @function Modal
+ * @description Compoenent for alert modal used to display diffrent messages to the user
+ * @param {string} messageHeading- heading of alert message
+ * @param {string} messageDesc - content of alert message
+ * @param {node} children - buttons dispalyed in modal sucha s cancel ,confirm ,...etc
+ * @returns {Component} Alert Modal Component
  */
-export default function LoginView() {
-    const b = getRandomImage();
+
+Modal.propTypes = {
+    messageHeading: PropTypes.string.isRequired,
+    messageDesc: PropTypes.string,
+    children: PropTypes.node
+};
+export default function Modal(props) {
+    const { messageHeading, messageDesc, children } = props;
     return (
-        &lt;div className="LoginView" style={{ backgroundImage: `url(${b})` }}>
-            &lt;LoginCard>&lt;/LoginCard>
-            &lt;AuthFooter>&lt;/AuthFooter>
+        &lt;div className="modal">
+            &lt;div className="modal-container">
+                &lt;div className="msg-heading">{messageHeading}&lt;/div>
+                &lt;div className="msg-description">{messageDesc}&lt;/div>
+                &lt;div className="buttons-box modal-btns">{children}&lt;/div>
+            &lt;/div>
         &lt;/div>
     );
 }

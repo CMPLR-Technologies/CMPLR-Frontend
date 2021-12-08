@@ -12,7 +12,8 @@ export const themes = {
         accent: `0, 184, 255`,
         secondaryAccent: `229, 231, 234`,
         follow: `243, 248, 251`,
-        purple: `124, 92, 255`
+        purple: `124, 92, 255`,
+        red: `255, 73, 47`
     },
     darkMode: {
         black: `255, 255, 255`,
@@ -22,7 +23,8 @@ export const themes = {
         accent: `0, 184, 255`,
         secondaryAccent: `57, 57, 57`,
         follow: `36, 54, 62`,
-        purple: `124, 92, 255`
+        purple: `124, 92, 255`,
+        red: `255, 73, 47`
     },
     lowContrast: {
         black: `191, 191, 191`,
@@ -32,7 +34,8 @@ export const themes = {
         accent: `32, 185, 252`,
         secondaryAccent: `71,87,109`,
         follow: `43,76,104`,
-        purple: `124, 92, 255`
+        purple: `124, 92, 255`,
+        red: `255, 73, 47`
     },
     cement: {
         black: `0, 0, 0`,
@@ -42,7 +45,8 @@ export const themes = {
         accent: `0,0,0`,
         secondaryAccent: `221, 221, 221`,
         follow: `209, 227, 235`,
-        purple: `124, 92, 255`
+        purple: `124, 92, 255`,
+        red: `255, 73, 47`
     }
 };
 

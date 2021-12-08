@@ -7,115 +7,57 @@ import Tags from './Tags';
 import VideoPost from './VideoPost';
 import Footer from './Footer';
 import Divider from './Divider';
-import Axios from 'axios';
-import { apiBaseUrl } from '../../../../config.json';
 import Modal from '../../Modal';
 import AuthBtn from '../../AuthBtn';
+import { extractPostContent, copyLink, chaneMobileView } from '../Controller';
+import { follow, unfollow, block } from '../Services';
+import PropTypes from 'prop-types';
+
+/**
+ * @function PostComponent
+ * @description Base Unit Component for all post compoennt types
+ * @param {object} post - object containg post data response received from server
+ * @param {boolean} isFollowed - boolean used to determine if user is following the post author
+ * @param {string} userBlogName - blog name of the user who is logged in
+ * @param {boolean} radar - boolean used to determine if the post viewed in radar section or not
+ * @returns {Component} PostComponent
+ */
+
+PostComponent.propTypes = {
+    post: PropTypes.object.isRequired,
+    isFollowed: PropTypes.bool.isRequired,
+    userBlogName: PropTypes.string.isRequired,
+    radar: PropTypes.bool
+};
 
 export default function PostComponent(props) {
     const { post, isFollowed, userBlogName, radar } = props;
-    const {
-        blogName,
-        blogEmail,
-        blogUrl,
-        postTime,
-        tagsArray,
-        content,
-        postLink,
-        blogIdentifier,
-        avatar,
-        numberNotes,
-        reblogKey,
-        postId
-    } = post;
-    let textPost, imagePost, videoPost, audioPost;
-    content &&
-        content.map(item => {
-            if (item.postType === 'text' || item.postType === 'chat')
-                textPost = item;
-            else if (item.postType === 'image') imagePost = item;
-            else if (item.postType === 'link') linkPost = item;
-            else if (item.postType === 'audio') audioPost = item;
-            else if (item.postType === 'video') videoPost = item;
-        });
 
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);
     const [following, setFollowing] = useState(isFollowed);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
     const [mobileView, setMobileView] = useState(false);
-    const copyLink = () => {
-        navigator.clipboard.writeText(postLink);
-        document.getElementById(`copy-btn${postId}`).textContent =
-            'Link Copied!';
-        setTimeout(() => {
-            document.getElementById(`copy-btn${postId}`).textContent =
-                'Copy link';
-        }, 2000);
-    };
-
-    const chaneMobileView = () => {
-        if (window.innerWidth > 960) {
-            setMobileView(false);
-        } else {
-            setMobileView(true);
-        }
-    };
-
+    const {
+        blog_name: blogName,
+        blog_email: blogEmail,
+        blog_url: blogUrl,
+        post_timestamp: postTime,
+        tags: tags,
+        content: content,
+        post_link: postLink,
+        blog_identifier: blogIdentifier,
+        blog_avatar: avatar,
+        number_notes: numberNotes,
+        reblog_key: reblogKey,
+        post_id: postId
+    } = post;
     useEffect(() => {
-        chaneMobileView();
+        chaneMobileView(setMobileView);
     }, []);
-    window.addEventListener('resize', chaneMobileView);
+    let returned = extractPostContent(content);
 
-    //axios requests
-    const unfollow = () => {
-        Axios({
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            url: `${apiBaseUrl}/user/unfollow`,
-            data: {
-                url: blogUrl
-            }
-        }).then(response => {
-            if (response.status === 200) {
-                setFollowing(false);
-                setIsOptionListOpen(false);
-            }
-        });
-    };
-    const follow = () => {
-        Axios({
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            url: `${apiBaseUrl}/user/follow`,
-            data: {
-                url: blogUrl,
-                email: blogEmail
-            }
-        }).then(response => {
-            if (response.status === 200) setFollowing(true);
-        });
-    };
-
-    const block = () => {
-        Axios({
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            url: `${apiBaseUrl}/blog/${blogIdentifier}/blocks}`
-        }).then(response => {
-            if (response.data.meta.status === 200) {
-                setIsOptionListOpen(false);
-                setIsModalOpen(false);
-                setIsMsgModalOpen(true);
-            }
-        });
-    };
+    window.addEventListener('resize', () => chaneMobileView(setMobileView));
 
     return (
         <div className="post-wrapper">
@@ -155,7 +97,12 @@ export default function PostComponent(props) {
                         text="Block"
                         color="rgb(255, 73, 47)"
                         handleClick={() => {
-                            block();
+                            block(
+                                blogIdentifier,
+                                setIsOptionListOpen,
+                                setIsModalOpen,
+                                setIsMsgModalOpen
+                            );
                         }}
                     />
                 </Modal>
@@ -182,7 +129,9 @@ export default function PostComponent(props) {
                             <span className="post-heading">{blogName}</span>
                             {!following && (
                                 <button
-                                    onClick={() => follow()}
+                                    onClick={() =>
+                                        follow(blogUrl, blogEmail, setFollowing)
+                                    }
                                     className="follow-btn"
                                 >
                                     Follow
@@ -213,7 +162,12 @@ export default function PostComponent(props) {
                                         {userBlogName !== blogName && (
                                             <>
                                                 <div
-                                                    onClick={() => copyLink()}
+                                                    onClick={() =>
+                                                        copyLink(
+                                                            postLink,
+                                                            postId
+                                                        )
+                                                    }
                                                     className="opt-btn copy-btn"
                                                     id={`copy-btn${postId}`}
                                                 >
@@ -222,7 +176,11 @@ export default function PostComponent(props) {
                                                 {following && (
                                                     <div
                                                         onClick={() =>
-                                                            unfollow()
+                                                            unfollow(
+                                                                blogUrl,
+                                                                setFollowing,
+                                                                setIsOptionListOpen
+                                                            )
                                                         }
                                                         className="opt-btn follow-btn"
                                                     >
@@ -260,7 +218,12 @@ export default function PostComponent(props) {
                                                     Pin
                                                 </div>
                                                 <div
-                                                    onClick={() => copyLink()}
+                                                    onClick={() =>
+                                                        copyLink(
+                                                            postLink,
+                                                            postId
+                                                        )
+                                                    }
                                                     className="opt-btn copy-btn"
                                                     id={`copy-btn${postId}`}
                                                 >
@@ -284,48 +247,48 @@ export default function PostComponent(props) {
                         </div>
                     </div>
                 </header>
-                {textPost !== undefined && (
+                {returned.textPost !== undefined && (
                     <>
                         <TextPost
-                            title={textPost.postTitle}
-                            text={textPost.postText}
+                            title={returned.textPost.postTitle}
+                            text={returned.textPost.postText}
                         />
                         <Divider />
                     </>
                 )}
-                {imagePost !== undefined && (
+                {returned.imagePost !== undefined && (
                     <>
                         <ImageList
-                            imageUrl={imagePost.imageUrl}
-                            caption={imagePost.caption}
-                            altText={imagePost.altText}
+                            imageTag={returned.imagePost.imageTag}
+                            caption={returned.imagePost.caption}
+                            altText={returned.imagePost.altText}
                             postId={postId}
                         />
                         <Divider />
                     </>
                 )}
-                {audioPost !== undefined && (
+                {returned.audioPost !== undefined && (
                     <>
                         <AudioPost
-                            url={audioPost.url}
-                            artist={audioPost.artist}
-                            track={audioPost.track}
-                            description={audioPost.description}
+                            url={returned.audioPost.url}
+                            artist={returned.audioPost.artist}
+                            track={returned.audioPost.track}
+                            description={returned.audioPost.description}
                         />
                         <Divider />
                     </>
                 )}
-                {videoPost !== undefined && (
+                {returned.videoPost !== undefined && (
                     <>
                         <VideoPost
-                            id={postId + videoPost.url}
-                            url={videoPost.url}
+                            id={postId + returned.videoPost.videoTag}
+                            videoTag={returned.videoPost.videoTag}
                         />
                     </>
                 )}
                 {/* todo:Link Post */}
                 <div className="post-footer">
-                    <Tags tagsArray={tagsArray} />
+                    <Tags tagsArray={tags} />
                     <Footer
                         isAuthor={userBlogName === blogName}
                         postLink={postLink}
