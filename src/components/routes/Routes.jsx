@@ -12,7 +12,7 @@ import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 import Dashboard from '../dashboardComponent/View';
 
 import PostComponent from '../partials/postComponent/View';
-export default function MainRoutes() {  
+export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
     const css = `
         body{
@@ -31,7 +31,9 @@ export default function MainRoutes() {
                     <Route path="/messaging" element={<MessagesPageMobile />} />
                     <Route path="/new" element={<NewPostPopup />} />
                     <Route path="/explore" element={<h1>Explore</h1>} />
+
                     <Route path="/dashboard" element={<Dashboard />} />
+
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<LoginView />} />
                     <Route path="/" element={<HomePage />} />

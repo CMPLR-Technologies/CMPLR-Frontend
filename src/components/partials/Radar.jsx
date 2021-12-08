@@ -15,7 +15,15 @@ export default function Radar() {
             <h3>Radar</h3>
             {error && <div>{"Couldn't load"}</div>}
             {isPending && <LinearProgress />}
-            {radarPost && <PostComponent post={radarPost} />}
+            {radarPost && (
+                <div className="radar-warper">
+                    <PostComponent
+                        post={radarPost}
+                        radar={true}
+                        otherClass="radar-post"
+                    />
+                </div>
+            )}
         </div>
     );
 }

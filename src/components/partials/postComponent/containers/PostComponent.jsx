@@ -13,7 +13,7 @@ import Modal from '../../Modal';
 import AuthBtn from '../../AuthBtn';
 
 export default function PostComponent(props) {
-    const { post, isFollowed, userBlogName, radar } = props;
+    const { post, isFollowed, userBlogName, radar, otherClass } = props;
     const {
         blogName,
         blogEmail,
@@ -118,7 +118,7 @@ export default function PostComponent(props) {
     };
 
     return (
-        <div className="post-wrapper">
+        <div className={`post-wrapper ${otherClass}`}>
             {isMsgModalOpen && (
                 <Modal messageHeading={`${blogName} has been blocked`}>
                     <AuthBtn
