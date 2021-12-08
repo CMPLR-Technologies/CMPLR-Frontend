@@ -341,6 +341,60 @@ $border-radius-primary: 3px;
     &::-webkit-scrollbar {
         display: none;
     }
+    &-blogs-container {
+        display: flex;
+        flex-direction: column;
+    }
+    &-blog {
+        display: flex;
+        flex-direction: column;
+        &-links {
+            margin: 0 20px 0 55px;
+        }
+        &-link-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 3px 4px;
+            text-decoration: none;
+            width: 100%;
+            font-size: 0.875rem;
+            vertical-align: baseline;
+        }
+        &-head {
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: row;
+            text-decoration: none;
+            align-items: center;
+            &-img img {
+                margin-right: 11px;
+                width: 37px;
+                height: 37px;
+                object-fit: cover;
+                border-radius: 2px;
+            }
+            &-text {
+                font-size: 0.875rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                flex-grow: 1;
+                h1 {
+                    font-weight: 700;
+                    font-size: 0.875rem;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+            &-button {
+                margin: 0 10px;
+                cursor: pointer;
+            }
+        }
+    }
     &-header {
         display: flex;
         flex-direction: row;

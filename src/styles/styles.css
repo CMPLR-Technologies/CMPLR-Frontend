@@ -885,6 +885,60 @@
 .account-popup::-webkit-scrollbar {
   display: none;
 }
+.account-popup-blogs-container {
+  display: flex;
+  flex-direction: column;
+}
+.account-popup-blog {
+  display: flex;
+  flex-direction: column;
+}
+.account-popup-blog-links {
+  margin: 0 20px 0 55px;
+}
+.account-popup-blog-link-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 4px;
+  text-decoration: none;
+  width: 100%;
+  font-size: 0.875rem;
+  vertical-align: baseline;
+}
+.account-popup-blog-head {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  align-items: center;
+}
+.account-popup-blog-head-img img {
+  margin-right: 11px;
+  width: 37px;
+  height: 37px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+.account-popup-blog-head-text {
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
+.account-popup-blog-head-text h1 {
+  font-weight: 700;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.account-popup-blog-head-button {
+  margin: 0 10px;
+  cursor: pointer;
+}
 .account-popup-header {
   display: flex;
   flex-direction: row;

@@ -3,27 +3,23 @@ import { NavLink } from 'react-router-dom';
 import {
     ThemeContext,
     themes
-} from '../../../../../contexts/themeContext/ThemeContext';
-import axios from 'axios';
+} from '../../../../../../contexts/themeContext/ThemeContext';
 import AccountPopupActionRow from './AccountPopupActionRow';
 
 export default function AccountPopupActions() {
-    const [theme, setTheme] = useContext(ThemeContext);
+    const [theme, changeTheme] = useContext(ThemeContext);
     const [paletteChanged, setPaletteChanged] = useState(false);
     const toggleTheme = () => {
         //console.log(theme, themes[theme]);
         setPaletteChanged(true);
-        const keys = Object.keys(themes);
-        const nextIndex = (keys.indexOf(theme) + 1) % keys.length;
-        axios
-            .put('http://localhost:3333/users', { theme: keys[nextIndex] })
-            .then(() => {
-                setTheme(keys[nextIndex]);
-            });
+        changeTheme(theme);
     };
-    const ViewShortcuts = () => {
+    const viewShortcuts = () => {
         document.querySelector('.overlay-container').style.display = 'flex';
     };
+
+    const likesCount = 10;
+    const followingCount = 5;
 
     return (
         <div
@@ -35,7 +31,7 @@ export default function AccountPopupActions() {
                     key="1"
                     icon="likes"
                     title="Likes"
-                    count="x"
+                    count={likesCount}
                 />
             </NavLink>
             <NavLink to="/following" className={`account-action-link`}>
@@ -43,7 +39,7 @@ export default function AccountPopupActions() {
                     key="2"
                     icon="following"
                     title="Following"
-                    count="y"
+                    count={followingCount}
                 />
             </NavLink>
             <NavLink to="/settings/account" className={`account-action-link`}>
@@ -70,7 +66,7 @@ export default function AccountPopupActions() {
                     count=" "
                 />
             </NavLink>
-            <div onClick={ViewShortcuts}>
+            <div onClick={viewShortcuts}>
                 <AccountPopupActionRow
                     key="6"
                     icon="shortcuts"

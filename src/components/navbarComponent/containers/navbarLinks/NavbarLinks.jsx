@@ -4,6 +4,7 @@ import '../../../../styles/styles.css';
 import AuthLinks from './links/AuthLinks';
 import UnAuthLinks from './links/UnAuthLinks';
 import PropTypes from 'prop-types';
+
 /**
  * Navbar Links: includes navbar links when is user auth or not
  * @function NavbarLinks

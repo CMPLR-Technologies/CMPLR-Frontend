@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import AccountPopupSeperator from './AccountPopupSeperator';
-import AccountPopupHeader from './AccountPopupHeader';
-import AccountPopupFooter from './AccountPopupFooter';
-import AccountPopupActions from './AccountPopupActions';
+import AccountPopupSeperator from './Seperators/AccountPopupSeperator';
+import AccountPopupHeader from './Seperators/AccountPopupHeader';
+import AccountPopupFooter from './Seperators/AccountPopupFooter';
+import AccountPopupActions from './Actions/AccountPopupActions';
+import AccountPopupBlogsContainer from './Blogs/AccountPopupBlogsContainer';
 
 import {
     ThemeContext,
@@ -38,10 +39,9 @@ export default function AccountPopup() {
             <AccountPopupHeader />
             <AccountPopupActions />
             <AccountPopupSeperator />
-
+            <AccountPopupBlogsContainer />
             <AccountPopupFooter />
-            {/* 
-            <AccountPopupBlogs />
+            {/*
              */}
             <style>{css}</style>
         </div>
