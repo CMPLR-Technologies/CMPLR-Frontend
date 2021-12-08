@@ -1,22 +1,17 @@
-//import { apiBaseUrl } from '../../config.json';
-//import Axios from 'axios';
+import { apiBaseUrl } from '../../config.json';
+import Axios from 'axios';
 
-// eslint-disable-next-line no-unused-vars
 const logUser = (email, password, setUser, setError) => {
-    return null;
-};
-
-/*{
-        Axios.post(`${apiBaseUrl}/login`, {
-            Email,
-            Password
+    Axios.post(`${apiBaseUrl}/login`, {
+        email,
+        password
+    })
+        .then(res => {
+            const user = { token: res.data.token, userData: res.data.user };
+            setUser(user);
         })
-            .then(() => {
-                // @Todo: update context provider
-            })
-            .catch(() => {
-                setError('Error log in');
-            });
-    }*/
-
+        .catch(err => {
+            setError(err.response.data.error[0]);
+        });
+};
 export { logUser };

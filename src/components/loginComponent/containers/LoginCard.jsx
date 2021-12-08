@@ -20,7 +20,7 @@ import { UserContext } from '../../../contexts/userContext/UserContext';
  */
 
 export default function LoginCard() {
-    const { user, setUser } = useContext(UserContext);
+    const { setUser } = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -58,7 +58,7 @@ export default function LoginCard() {
                     text="Log in"
                     color="#00b8ff"
                     handleClick={() =>
-                        handleLogin(email, password, setError, user, setUser)
+                        handleLogin(email, password, setError, setUser)
                     }
                 ></AuthBtn>
             </div>
