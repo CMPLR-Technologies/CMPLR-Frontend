@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { apiBaseUrl } from '../../../../../../config.json';
+import Axios from 'axios';
 import {
     ThemeContext,
     themes
@@ -17,12 +19,16 @@ import { useNavigate } from 'react-router-dom';
 
 export default function LogOutOverlay(props) {
     const theme = useContext(ThemeContext)[0];
-    const { setUser } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
     const logOut = () => {
-        setUser(null);
-        navigate('/');
+        const config = { headers: { Authorization: `Bearer ${user.token}` } };
+        Axios.post(`${apiBaseUrl}/logout`, {}, config).then(() => {
+            setUser(null);
+            localStorage.removeItem('user');
+            navigate('/');
+        });
     };
 
     const { hideOverlay } = props;
