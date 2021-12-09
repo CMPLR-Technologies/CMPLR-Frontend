@@ -4,11 +4,12 @@
 @import './partials/AuthInput.scss';
 @import './partials/OrBar.scss';
 @import './partials/AuthFooter.scss';
+@import './partials/_postComponent';
 
 @import url(//db.onlinewebfonts.com/c/d73d37902ec72250867b578d3763ee38?family=Favorit);
 
 @import './homeStyles/_homeStyles.scss';
-@import './navbarComponent/_navbar.scss';
+@import './navbarComponent/_Navbar.scss';
 @import './loginStyles/LoginCard.scss';
 @import './loginStyles/LoginView.scss';
 @import './forgetPasswordStyles/_forgetPasswordStyles.scss';
@@ -17,6 +18,7 @@
 @import './createPostStyles/createPostStyles.scss';
 @import './createPostStyles/createPostPopup.scss';
 @import './richTextEditorStyles/rich.scss';
+@import './dashboardStyles/dashboardStyles';
 
 * {
     margin: 0;

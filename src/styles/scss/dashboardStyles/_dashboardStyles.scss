@@ -1,0 +1,118 @@
+// helper class
+.blogInfo-row {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.blogInfo-column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.init-btn {
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.to-end {
+    justify-self: flex-end;
+}
+
+.no-data-error {
+    padding-left: 10px;
+    padding-top: 10px;
+    color: brown;
+}
+
+// main styles
+.dashboard {
+    display: flex;
+    justify-content: center;
+    margin: 94px auto;
+}
+
+.dashboard-sidebar {
+    width: 320px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        border-bottom: 2px solid rgba(255, 255, 255, 0.13);
+        padding: 0 10px 10px;
+        font-size: 1.3125rem;
+        font-weight: 700;
+    }
+
+    .dashboard-recommend-blogs {
+        padding: 10px 0;
+        margin-bottom: 30px;
+    }
+
+    .explore-link {
+        display: block;
+        margin-top: 30px;
+        padding-left: 10px;
+        text-decoration: none;
+    }
+}
+
+.dashboard-blogInfo {
+    padding: 8px 10px;
+    img {
+        width: 37px;
+        height: 37px;
+        border-radius: 3px;
+        margin-right: 11px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .follow-btn {
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 1.5;
+        padding-right: 10px;
+    }
+
+    .remove-btn {
+        position: absolute;
+        top: 20px;
+        right: -15px;
+        width: 10px;
+        height: 20px;
+        svg {
+            display: none;
+        }
+    }
+}
+
+.remove-btn:hover {
+    svg {
+        display: block;
+    }
+}
+.dashboard-blogInfo:hover {
+    background-color: rgba(255, 255, 255, 0.13);
+    .remove-btn svg {
+        display: block;
+    }
+}
+
+.radar-post {
+    left: 0px;
+    margin-top: 10px;
+    width: 95%;
+}
+
+.radar-warper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}

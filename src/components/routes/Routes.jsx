@@ -11,7 +11,9 @@ import ResetPassword from '../resetPasswordComponent/View';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 import CreatePost from '../createPost/View';
 import HandMadeTextEditor from '../RichTextEditor/View';
+import Dashboard from '../dashboardComponent/View';
 
+import PostComponent from '../partials/postComponent/View';
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
     const css = `
@@ -32,7 +34,7 @@ export default function MainRoutes() {
                     <Route path="/new" element={<NewPostPopup />} />
                     <Route path="/explore" element={<h1>Explore</h1>} />
                     <Route path="/rich" element={<HandMadeTextEditor />} />
-                    <Route path="/dashboard" element={<CreatePost />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<LoginView />} />
                     <Route path="/" element={<HomePage />} />
