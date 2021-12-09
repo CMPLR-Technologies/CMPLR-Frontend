@@ -1,0 +1,55 @@
+import React, { useContext } from 'react';
+import {
+    ThemeContext,
+    themes
+} from '../../../../../../contexts/themeContext/ThemeContext';
+import { UserContext } from '../../../../../../contexts/userContext/UserContext';
+import AuthBtn from '../../../../../partials/AuthBtn';
+import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+
+/** EDIT THIS!!!!
+ * @function LogOutOverlay
+ * @property {function} hideOverlay - sets overlay to false in parent component
+ * @property {function} logOut - event handling function to handle loging out
+ * @returns {Component}
+ */
+
+export default function LogOutOverlay(props) {
+    const theme = useContext(ThemeContext)[0];
+    const { setUser } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    const logOut = () => {
+        setUser(null);
+        navigate('/');
+    };
+
+    const { hideOverlay } = props;
+
+    return (
+        <div data-testid="logOutOverlay" className={'log-out-overlay'}>
+            <div className="log-out-overlay-text">
+                Are you sure you want to log out?
+            </div>
+            <div className="log-out-overlay-buttons-row">
+                <AuthBtn
+                    key="1"
+                    color={`rgba(${themes[theme].whiteOnDark} ,.65)`}
+                    text="Cancel"
+                    handleClick={hideOverlay}
+                />{' '}
+                <AuthBtn
+                    key="2"
+                    color={`rgb(${themes[theme].accent})`}
+                    text="OK"
+                    handleClick={logOut}
+                />
+            </div>
+        </div>
+    );
+}
+
+LogOutOverlay.propTypes = {
+    hideOverlay: PropTypes.func.isRequired
+};

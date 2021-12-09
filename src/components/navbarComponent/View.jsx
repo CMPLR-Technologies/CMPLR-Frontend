@@ -29,6 +29,9 @@ export default function Navbar() {
         .search-input{
             color: rgba(${themes[theme].whiteOnDark}, 0.65);
         }
+        .search-input::placeholder{
+            color: rgba(${themes[theme].whiteOnDark}, 0.65);
+        }
 
         .search-result{
             background-color: rgb(${themes[theme].white});

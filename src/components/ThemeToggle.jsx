@@ -24,6 +24,9 @@ export default function ThemeToggle() {
             .put('http://localhost:3333/users', { theme: keys[nextIndex] })
             .then(() => {
                 setTheme(keys[nextIndex]);
+            })
+            .catch(() => {
+                setTheme(theme);
             });
     };
 
