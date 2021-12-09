@@ -2110,7 +2110,13 @@ body #reset-pass-logo {
   align-items: flex-end;
   display: flex;
   flex-direction: column;
-  width: 625px;
+  display: none;
+}
+@media screen and (min-width: 950px) {
+  .create1div {
+    width: 625px;
+    display: flex;
+  }
 }
 .create1div .create_main {
   height: 100%;

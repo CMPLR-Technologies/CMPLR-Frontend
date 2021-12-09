@@ -2,8 +2,12 @@
     align-items: flex-end;
     display: flex;
     flex-direction: column;
-    width: 625px;
+    display: none;
     //width: 100%;
+    @media screen and (min-width: 950px) {
+        width: 625px;
+        display: flex;
+    }
     .create_main {
         height: 100%;
         max-width: 540px;
