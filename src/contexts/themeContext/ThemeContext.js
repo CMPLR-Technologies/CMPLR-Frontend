@@ -45,7 +45,7 @@ export const themes = {
 export const ThemeContext = createContext();
 
 export function ThemeContextProvider(props) {
-    const {children}=props;
+    const { children } = props;
     const [theme, setTheme] = useState('trueBlue');
 
     useEffect(() => {
@@ -54,13 +54,23 @@ export function ThemeContextProvider(props) {
         });
     }, []);
 
+    const changeTheme = currentTheme => {
+        const keys = Object.keys(themes);
+        const nextIndex = (keys.indexOf(currentTheme) + 1) % keys.length;
+        axios
+            .put('http://localhost:3333/users', { theme: keys[nextIndex] })
+            .then(() => {
+                setTheme(keys[nextIndex]);
+            });
+    };
+
     return (
-        <ThemeContext.Provider value={[theme, setTheme]}>
+        <ThemeContext.Provider value={[theme, changeTheme]}>
             {children}
         </ThemeContext.Provider>
     );
 }
 
 ThemeContextProvider.propTypes = {
-    children: PropTypes.any,
+    children: PropTypes.any
 };

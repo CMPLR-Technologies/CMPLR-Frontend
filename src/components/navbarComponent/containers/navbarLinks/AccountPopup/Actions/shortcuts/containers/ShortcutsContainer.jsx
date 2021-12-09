@@ -1,6 +1,5 @@
 import ShortcutGroup from './ShortcutGroup';
 import React from 'react';
-import '../../../styles/styles.css';
 
 /**
  * Shortcuts Container: an outer container of shortcuts
