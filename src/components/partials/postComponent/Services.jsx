@@ -78,7 +78,7 @@ export function follow(blogUrl, blogEmail, setFollowing) {
             email: blogEmail
         }
     }).then(response => {
-        if (response.status === 201) setFollowing(true);
+        if (response.status === 200) setFollowing(true);
     });
 }
 
@@ -100,5 +100,66 @@ export function block(
             setIsModalOpen(false);
             setIsMsgModalOpen(true);
         }
+    });
+}
+
+//=================================================Notes Services============================================
+export function getPostNotes(blogIdentifier, setNotes, setCounts) {
+    Axios({
+        url: `${apiBaseUrl}/post/notes`,
+        method: 'GET',
+        params: {
+            'blog-identifier': blogIdentifier
+        }
+    }).then(res => {
+        if (res.data.Meta.Status === 200) {
+            setNotes(res.data.response.notes);
+            setCounts(res.data.response.counts);    
+        }
+    });
+}
+
+export function submitNote(
+    e,
+    type,
+    reply,
+    blogIdentifier,
+    setNotes = null,
+    setCounts = null
+) {
+    e.preventDefault();
+    Axios({
+        url: `${apiBaseUrl}/post/notes`,
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        data: {
+            Meta: {
+                Status: 200,
+                msg: 'OK'
+            },
+            response: {
+                counts: {
+                    totalLikes: 3,
+                    totalReblogs: 1
+                },
+                notes: [
+                    {
+                        type: type,
+                        blog_name: 'hazom',
+                        blog_url: 'https://hazom.com',
+                        followed: true,
+                        post_id: 2541652,
+                        reblog_parent_blog_name: 'kholdbold',
+                        reblog_parent_blog_url: 'https://kholdbold.com',
+                        avatar: 'https://64.media.tumblr.com/5d65e6564325029026372d750047aca2/da25d5299e6bc43a-9a/s64x64u_c1/d33411435f6a25c6182f6d780030d659f917766b.jpg',
+                        content: reply
+                    }
+                ]
+            }
+        }
+    }).then(() => {
+        getPostNotes(blogIdentifier, setNotes, setCounts);
     });
 }

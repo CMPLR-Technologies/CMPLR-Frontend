@@ -6,6 +6,7 @@ import ViewTagsBtn from './ViewTagsBtn.svg';
 import PropsTypes from 'prop-types';
 import ReblogReact from './ReblogReact.svg';
 import LoveReact from './LoveReact.svg';
+import CommentReact from './CommentReact.svg';
 
 NotesHeader.propTypes = {
     numberNotes: PropsTypes.number.isRequired,
@@ -67,8 +68,10 @@ export default function NotesHeader(props) {
                                     <div className="avatar-react">
                                         {note.type === 'reblog' ? (
                                             <ReblogReact />
-                                        ) : (
+                                        ) : note.type === 'love' ? (
                                             <LoveReact />
+                                        ) : (
+                                            <CommentReact />
                                         )}
                                     </div>
                                 </div>

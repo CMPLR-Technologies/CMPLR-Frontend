@@ -9,8 +9,8 @@ import Footer from './Footer';
 import Divider from './Divider';
 import Modal from '../../Modal';
 import AuthBtn from '../../AuthBtn';
-import { extractPostContent, copyLink, chaneMobileView } from '../Controller';
-import { follow, unfollow, block } from '../Services';
+import { extractPostContent, chaneMobileView } from '../Controller';
+import { follow, block } from '../Services';
 import PropTypes from 'prop-types';
 import OptionsList from './OptionsList';
 
@@ -168,8 +168,8 @@ export default function PostComponent(props) {
                 {returned.textPost !== undefined && (
                     <>
                         <TextPost
-                            title={returned.textPost.postTitle}
-                            text={returned.textPost.postText}
+                            title={returned.textPost.title}
+                            content={returned.textPost.content}
                         />
                         <Divider />
                     </>

@@ -24,7 +24,18 @@ export default function RegisterStepTwo(props) {
             </div>
 
             <div className="login-form">
-                <AuthAlert openError={openError} errorMessage={errorMessage} />
+                {openError &&
+                    errorMessage &&
+                    errorMessage?.length !== 0 &&
+                    errorMessage?.map((errorMsg, index) => {
+                        return (
+                            <AuthAlert
+                                key={index}
+                                openError={openError}
+                                errorMessage={errorMsg}
+                            />
+                        );
+                    })}
                 <AuthInput
                     value={age}
                     setValue={setAge}

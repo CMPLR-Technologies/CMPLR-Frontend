@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ReblogReact from './ReblogReact.svg';
 import LoveReact from './LoveReact.svg';
-import OptionsList from '../OptionsList';
+import CommentReact from './CommentReact.svg';
 
 NotePost.propTypes = {
     note: PropTypes.object.isRequired
@@ -33,7 +33,13 @@ export default function NotePost(props) {
                     />
                 </div>
                 <div className="avatar-react">
-                    {type === 'reblog' ? <ReblogReact /> : <LoveReact />}
+                    {type === 'reblog' ? (
+                        <ReblogReact />
+                    ) : type === 'love' ? (
+                        <LoveReact />
+                    ) : (
+                        <CommentReact />
+                    )}
                 </div>
             </div>
             <div className="note-content">

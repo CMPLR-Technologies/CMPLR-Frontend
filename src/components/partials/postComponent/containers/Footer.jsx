@@ -9,10 +9,11 @@ import ShareBtn from './ShareBtn.svg';
 import Modal from '../../Modal';
 import AuthBtn from '../../AuthBtn';
 import { toggleShareList, copyLink } from '../Controller';
-import { handleLikePost, deletePost } from '../Services';
+import { handleLikePost, deletePost, submitNote } from '../Services';
 import PropTypes from 'prop-types';
 import NotesHeader from './Notes/NotesHeader';
 import NotesContent from './Notes/NotesContent';
+import { getPostNotes } from '../Services';
 
 /**
  * @function Footer
@@ -51,47 +52,14 @@ export default function Footer(props) {
     const [loveFillColor, setLoveFillColor] = useState('gray');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [notesView, setNotesView] = useState(true);
+    const [noteType, setNoteType] = useState('');
     const [notes, setNotes] = useState([]);
     const [counts, setCounts] = useState({});
 
     useEffect(() => {
-        setCounts({ totalLikes: 1, totalReblogs: 2 });
-        setNotes([
-            {
-                type: 'reblog',
-                blog_name: 'hazom',
-                blog_url: 'https://hazom.com',
-                followed: true,
-                post_id: 2541652,
-                reblog_parent_blog_name: 'kholdbold',
-                reblog_parent_blog_url: 'https://kholdbold.com',
-                avatar: 'https://64.media.tumblr.com/5d65e6564325029026372d750047aca2/da25d5299e6bc43a-9a/s64x64u_c1/d33411435f6a25c6182f6d780030d659f917766b.jpg',
-                content: 'kak'
-            },
-            {
-                type: 'reblog',
-                blog_name: 'saeedElgaymed',
-                blog_url: 'https://saeedElgaymed.com',
-                followed: true,
-                post_id: 12720,
-                reblog_parent_blog_name: 'kholdbold',
-                reblog_parent_blog_url: 'https://kholdbold.com',
-                avatar: 'https://64.media.tumblr.com/cfd224af0124f026a7e115699a0bd0cd/9ce36ef73413611c-ea/s64x64u_c1/c328738a921143c812b946326d40590c4039d742.jpg',
-                content: 'kak'
-            },
-            {
-                type: 'love',
-                blog_name: 'Gaser ElGaser',
-                blog_url: 'https://Gaser.com',
-                followed: false,
-                post_id: 74108,
-                reblog_parent_blog_name: 'kholdbold',
-                reblog_parent_blog_url: 'https://kholdbold.com',
-                avatar: 'https://64.media.tumblr.com/d7f27872651508653e4300eca228b755/82608b9adeef872d-c1/s64x64u_c1/407233e812ff6522dd4b7b2f49135bc8f81b34b0.jpg',
-                content: 'kak'
-            }
-        ]);
+        getPostNotes('fds', setNotes, setCounts);
     }, []);
+
     return (
         <footer className="post-footer-icons">
             {isModalOpen && (
@@ -117,7 +85,12 @@ export default function Footer(props) {
                 </Modal>
             )}
             <div className="notes-count">
-                <span onClick={() => setNotesView(!notesView)}>
+                <span
+                    onClick={() => {
+                        setNotesView(!notesView);
+                        setNoteType('comment');
+                    }}
+                >
                     {numberNotes > 1
                         ? `${numberNotes} notes`
                         : numberNotes === undefined || numberNotes === 0
@@ -139,6 +112,9 @@ export default function Footer(props) {
                                 postAuthor={postAuthor}
                                 authorAvatar={authorAvatar}
                                 notes={notes}
+                                setNotes={setNotes}
+                                setCounts={setCounts}
+                                type={noteType}
                             />
                         </div>
                     </div>
@@ -173,21 +149,33 @@ export default function Footer(props) {
                 >
                     <ShareBtn />
                 </button>
-                <button className="icon">
+                <button
+                    onClick={() => {
+                        setNotesView(true);
+                        setNoteType('comment');
+                    }}
+                    className="icon"
+                >
                     <Note />
                 </button>
-                <button className="icon">
+                <button
+                    onClick={() => {
+                        setNoteType('reblog');
+                    }}
+                    className="icon"
+                >
                     <ReblogBtn />
                 </button>
                 <button
-                    onClick={() =>
+                    onClick={e => {
+                        submitNote(e, 'love', '', 'fds', setNotes, setCounts);
                         handleLikePost(
                             loveFillColor,
                             setLoveFillColor,
                             postId,
                             reblogKey
-                        )
-                    }
+                        );
+                    }}
                     className="icon "
                 >
                     <LoveBtn fillColor={loveFillColor} />

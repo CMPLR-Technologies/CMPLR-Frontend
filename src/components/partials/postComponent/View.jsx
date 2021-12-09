@@ -5,6 +5,7 @@ import {
     themes
 } from '../../../contexts/themeContext/ThemeContext';
 import PropTypes from 'prop-types';
+import NotesContextProvider from '../../../contexts/notesContext/NotesContext';
 
 /**
  * @function PostsComponentView
@@ -160,9 +161,16 @@ export default function View(props) {
         border-top:1px solid rgba(${themes[theme].black}, 0.13);
     }
 
+    .reply-btn{
+        color:rgb(${themes[theme].accent})
+    }
+
+    .reply-btn:disabled{
+        color:rgba(${themes[theme].black},.4)
+    }
     `;
     return (
-        <>
+        <NotesContextProvider>
             {posts &&
                 posts.map((item, index) => (
                     <PostComponent
@@ -174,6 +182,6 @@ export default function View(props) {
                     />
                 ))}
             <style>{css}</style>
-        </>
+        </NotesContextProvider>
     );
 }

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NotePost from './NotePost';
 import PropTypes from 'prop-types';
-import ReblogReact from './ReblogReact.svg';
+import { submitNote } from '../../Services';
 
 NotesContent.propTypes = {
     postAuthor: PropTypes.string.isRequired,
@@ -10,7 +10,10 @@ NotesContent.propTypes = {
 };
 
 export default function NotesContent(props) {
-    const { postAuthor, authorAvatar, notes } = props;
+    const { postAuthor, authorAvatar, notes, setNotes, setCounts, type } =
+        props;
+    const [reply, setReply] = useState('');
+
     return (
         <>
             <div className="notes-view-content">
@@ -38,8 +41,19 @@ export default function NotesContent(props) {
                 <input
                     className="note-reply"
                     placeholder="type your replay here"
+                    value={reply}
+                    onChange={e => setReply(e.target.value)}
                 />
-                <button className="reply-btn btn">Reply</button>
+                <button
+                    disabled={reply === ''}
+                    onClick={e => {
+                        submitNote(e, type, reply, 'fds', setNotes, setCounts);
+                        setReply('');
+                    }}
+                    className="reply-btn btn"
+                >
+                    Reply
+                </button>
             </div>
         </>
     );
