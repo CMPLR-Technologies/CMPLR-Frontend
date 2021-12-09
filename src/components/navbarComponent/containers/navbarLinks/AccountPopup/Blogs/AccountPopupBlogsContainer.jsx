@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { apiBaseUrl } from '../../../../../../config.json';
 import AccountPopupBlog from './AccountPopupBlog';
 import axios from 'axios';
 
@@ -13,7 +14,7 @@ import axios from 'axios';
 export default function AccountPopupBlogsContainer() {
     const [blogs, setBlogs] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:3333/blogs').then(response => {
+        axios.get(`${apiBaseUrl}/blogs`).then(response => {
             setBlogs(response.data);
         });
     }, []);

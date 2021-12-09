@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { apiBaseUrl } from '../../../../../../config.json';
 import { NavLink } from 'react-router-dom';
 import {
     ThemeContext,
@@ -40,10 +41,10 @@ export default function AccountPopupActions() {
     };
 
     useEffect(() => {
-        axios.get('http://localhost:3333/likes').then(response => {
+        axios.get(`${apiBaseUrl}/likes`).then(response => {
             setLikesCount(response.data.length);
         });
-        axios.get('http://localhost:3333/following').then(response => {
+        axios.get(`${apiBaseUrl}/following`).then(response => {
             setFollowingCount(response.data.length);
         });
     }, []);

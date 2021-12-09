@@ -1,4 +1,6 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
+import { apiBaseUrl } from '../../config.json';
+import { UserContext } from '../userContext/UserContext';
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -45,20 +47,31 @@ export const themes = {
 export const ThemeContext = createContext();
 
 export function ThemeContextProvider(props) {
-    const { children } = props;
     const [theme, setTheme] = useState('trueBlue');
+    const user = useContext(UserContext).user;
+    const { children } = props;
 
     useEffect(() => {
-        axios.get('http://localhost:3333/users').then(response => {
-            setTheme(response.data.theme);
-        });
-    }, []);
+        if (user) {
+            const config = {
+                headers: { Authorization: `Bearer ${user.token}` }
+            };
+            axios.get(`${apiBaseUrl}/user_theme`, {}, config).then(response => {
+                console.log('KKKKK');
+                console.log(response.data.theme);
+                setTheme(response.data.theme);
+            });
+        }
+    }, [user]);
 
     const changeTheme = currentTheme => {
+        const config = {
+            headers: { Authorization: `Bearer ${user.token}` }
+        };
         const keys = Object.keys(themes);
         const nextIndex = (keys.indexOf(currentTheme) + 1) % keys.length;
         axios
-            .put('http://localhost:3333/users', { theme: keys[nextIndex] })
+            .put(`${apiBaseUrl}/user_theme`, { theme: keys[nextIndex] }, config)
             .then(() => {
                 setTheme(keys[nextIndex]);
             });

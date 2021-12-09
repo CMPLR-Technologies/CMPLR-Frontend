@@ -91,5 +91,5 @@ export default function AccountPopupActionRow(props) {
 AccountPopupActionRow.propTypes = {
     icon: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    count: PropTypes.number
+    count: PropTypes.string
 };
