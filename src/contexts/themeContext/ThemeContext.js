@@ -45,7 +45,7 @@ export const themes = {
 export const ThemeContext = createContext();
 
 export function ThemeContextProvider(props) {
-    const {children}=props;
+    const { children } = props;
     const [theme, setTheme] = useState('trueBlue');
 
     useEffect(() => {
@@ -62,5 +62,5 @@ export function ThemeContextProvider(props) {
 }
 
 ThemeContextProvider.propTypes = {
-    children: PropTypes.any,
+    children: PropTypes.any
 };

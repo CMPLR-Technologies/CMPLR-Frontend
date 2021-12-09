@@ -1,29 +1,18 @@
-<<<<<<< HEAD
 @import './registerStyles/_exploreAnchor.scss';
 @import './partials/_authAlert.scss';
-=======
-@import './registerStyles/exploreAnchor.scss';
-@import './partials/authAlert.scss';
->>>>>>> Task13
 @import './partials/AuthBtn.scss';
 @import './partials/AuthInput.scss';
 @import './partials/OrBar.scss';
 @import './partials/AuthFooter.scss';
-
+@import './partials/_onOffSwitch.scss';
 @import url(//db.onlinewebfonts.com/c/d73d37902ec72250867b578d3763ee38?family=Favorit);
-
 @import './homeStyles/_homeStyles.scss';
-<<<<<<< HEAD
-@import './navbarComponent/_navbar.scss';
+@import './navbarComponent/_Navbar.scss';
 @import './loginStyles/LoginCard.scss';
 @import './loginStyles/LoginView.scss';
 @import './forgetPasswordStyles/_forgetPasswordStyles.scss';
-=======
-@import './navbarComponent/navbar.scss';
-@import './loginStyles/LoginCard.scss';
-@import './loginStyles/LoginView.scss';
-
->>>>>>> Task13
+@import './settingsStyles/settingsStyles';
+@import './shortcutsStyles/shortcuts.scss';
 * {
     margin: 0;
     padding: 0;
@@ -63,5 +52,3 @@ body {
             monospace;
     }
 }
-
-@import './shortcutsStyles/shortcuts.scss';

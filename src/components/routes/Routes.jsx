@@ -8,6 +8,7 @@ import MessagesPageMobile from '../navbarComponent/containers/navbarLinks/Messag
 import NewPostPopup from '../navbarComponent/containers/navbarLinks/newPost/NewPostPopup';
 import ForgetPassword from '../forgetPasswordComponent/View';
 import ResetPassword from '../resetPasswordComponent/View';
+import Settings from '../settingsComponent/View';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 
 export default function MainRoutes() {
@@ -37,6 +38,10 @@ export default function MainRoutes() {
                         element={<ForgetPassword />}
                     />
                     <Route path="/reset_password" element={<ResetPassword />} />
+                    <Route path="/a" element={<Settings page={'account'} />} />
+                    <Route path="/settings/dashboard" element={<Settings />} />
+                    <Route path="/settings/apps" element={<Settings />} />
+                    <Route path="/settings/privacy" element={<Settings />} />
                 </Routes>
                 <style>{css}</style>
             </Router>

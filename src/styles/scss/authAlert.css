@@ -1,0 +1,15 @@
+.auth_alert {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin: 15px 0;
+  padding: 14px 15px;
+}
+
+.auth_alert h3 {
+  font-family: var(--font-family);
+  line-height: 1.5;
+}
+/*# sourceMappingURL=authAlert.css.map */

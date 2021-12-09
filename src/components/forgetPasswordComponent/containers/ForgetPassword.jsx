@@ -8,7 +8,7 @@ import { apiBaseUrl } from '../../../config.json';
 
 /**
  * @function ForgetPassword
- * @description this is the statful component of the forget password page
+ * @description this is the stateful component of the forget password page
  * @param {email} email - the email of the user
  * @returns {Component} the Component of the forget password page
  */
