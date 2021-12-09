@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import LoginView from '../loginComponent/View';
 import Register from '../registerComponent/View';
 import HomePage from '../homeComponent/View';
@@ -8,13 +8,17 @@ import MessagesPageMobile from '../navbarComponent/containers/navbarLinks/Messag
 import NewPostPopup from '../navbarComponent/containers/navbarLinks/newPost/NewPostPopup';
 import ForgetPassword from '../forgetPasswordComponent/View';
 import ResetPassword from '../resetPasswordComponent/View';
+import { UserContext } from '../../contexts/userContext/UserContext';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
-import CreatePost from '../createPost/View';
 import HandMadeTextEditor from '../RichTextEditor/View';
 import Dashboard from '../dashboardComponent/View';
-
-import PostComponent from '../partials/postComponent/View';
 export default function MainRoutes() {
+    const user = useContext(UserContext);
+    useEffect(() => {
+        if (localStorage.getItem('user')) {
+            user.setUser(JSON.parse(localStorage.getItem('user')));
+        }
+    }, []);
     const theme = useContext(ThemeContext)[0];
     const css = `
         body{

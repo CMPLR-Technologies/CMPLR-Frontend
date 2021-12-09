@@ -116,3 +116,9 @@
     width: 100%;
     justify-content: center;
 }
+
+@media screen and (max-width: 950px) {
+    .dashboard-sidebar {
+        display: none;
+    }
+}

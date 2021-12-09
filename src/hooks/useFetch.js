@@ -9,26 +9,25 @@ const useFetch = url => {
     const abortCont = new AbortController();
 
     useEffect(() => {
-        setTimeout(() => {
-            Axios.get(url, {
-                signal: abortCont.signal
+        Axios.get(url, {
+            signal: abortCont.signal
+        })
+            .then(res => {
+                if (!res.error) {
+                    setData(res.data);
+                    setIsPending(false);
+                    setError(null);
+                } else {
+                    throw Error(res.error);
+                }
             })
-                .then(res => {
-                    if (!res.error) {
-                        setData(res.data);
-                        setIsPending(false);
-                        setError(null);
-                    } else {
-                        throw Error(res.error);
-                    }
-                })
-                .catch(err => {
-                    if (err.name !== 'AbortError') {
-                        setIsPending(false);
-                        setError(err.message);
-                    }
-                });
-        }, 3000);
+            .catch(err => {
+                if (err.name !== 'AbortError') {
+                    setIsPending(false);
+                    setError(err.message);
+                }
+            });
+
         return () => {
             return abortCont.abort();
         };

@@ -62,6 +62,7 @@ export default function RegisterStepOne(props) {
                     name="register_email"
                     type="text"
                     placeholder="Email"
+                    dataTestid="register_email"
                 />
                 <AuthInput
                     value={password}
@@ -69,6 +70,7 @@ export default function RegisterStepOne(props) {
                     name="register_password"
                     type="password"
                     placeholder="Password"
+                    dataTestid="register_password"
                 />
                 <AuthInput
                     value={blogName}
@@ -76,6 +78,7 @@ export default function RegisterStepOne(props) {
                     name="register_blogname"
                     type="text"
                     placeholder="Blog Name"
+                    dataTestid="register_blogName"
                 />
                 <p>
                     {
@@ -84,6 +87,7 @@ export default function RegisterStepOne(props) {
                 </p>
                 <AuthBtn
                     handleClick={handleStepOne}
+                    dataTestid="register_step1"
                     text="Sign up"
                     color="#00b8ff"
                 />

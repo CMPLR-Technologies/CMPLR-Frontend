@@ -7,9 +7,9 @@ const useAuth = () => {
     const navigate = useNavigate();
     useEffect(() => {
         if (!user) {
-            navigate('/');
+            navigate('/login');
         }
-    }, []);
+    }, [user]);
 };
 
 export default useAuth;

@@ -50,6 +50,7 @@ export default function LoginCard() {
                     placeholder="Email"
                     value={email}
                     setValue={setEmail}
+                    dataTestid="email"
                 ></AuthInput>
 
                 <AuthInput
@@ -58,6 +59,7 @@ export default function LoginCard() {
                     placeholder="Password"
                     value={password}
                     setValue={setPassword}
+                    dataTestid="password"
                 ></AuthInput>
 
                 <p>
@@ -69,6 +71,7 @@ export default function LoginCard() {
                 <AuthBtn
                     text="Log in"
                     color="#00b8ff"
+                    dataTestid="login"
                     handleClick={() =>
                         handleLogin(
                             email,

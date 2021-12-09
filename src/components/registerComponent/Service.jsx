@@ -74,6 +74,7 @@ export const handleStepTwo = (
             .then(res => {
                 setOpenError(false);
                 setUser(res.data.response);
+                localStorage.setItem('user', JSON.stringify(res.data.response));
                 navigate('/dashboard');
                 setIsPending(false);
             })

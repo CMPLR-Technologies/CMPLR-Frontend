@@ -2736,6 +2736,11 @@ body #reset-pass-logo {
   justify-content: center;
 }
 
+@media screen and (max-width: 950px) {
+  .dashboard-sidebar {
+    display: none;
+  }
+}
 * {
   margin: 0;
   padding: 0;

@@ -44,6 +44,7 @@ export default function RegisterStepTwo(props) {
                     name="register_age"
                     type="number"
                     placeholder="How old are you?"
+                    dataTestid="register_age"
                 />
                 <p>
                     This site is protected by reCAPTCHA and the Google Terms of
@@ -53,6 +54,7 @@ export default function RegisterStepTwo(props) {
                     handleClick={handleStepTwo}
                     text="Next"
                     color="#00b8ff"
+                    dataTestid="register_step2"
                 />
                 {isPending && (
                     <div className="load-circle">
