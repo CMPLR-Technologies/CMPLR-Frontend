@@ -121,6 +121,45 @@ export default function View(props) {
     .msg-heading, .msg-description{
         color:rgb(${themes[theme].whiteOnDark});
     }
+    .notes-view-container {
+        background-color:rgb(${themes[theme].white});
+        color:rgb(${themes[theme].black})
+    }
+    .notes-view-header-icons,.notes-summary{
+        border-bottom: 1px solid rgba(${themes[theme].black}, 0.13);
+    }
+    .notes-view-content {
+        background-color:rgba(${themes[theme].black},.07);
+        scrollbar-color: rgba(${themes[theme].black},.4) rgba(${themes[theme].white},.1);
+        scrollbar-width: thin;
+    }
+
+    .notes-summary-count{
+        color:rgb(${themes[theme].black})
+
+    }
+    .notes-view-header-icons .btn svg{
+        fill:rgb(${themes[theme].black})
+    }
+    .notes-list .note-content{
+        background-color:rgb(${themes[theme].white});
+    }
+    .note-author{
+        color:rgb(${themes[theme].black})
+    }
+    .reblog-sign-span{
+        fill:rgba(${themes[theme].black},.65);
+    }
+
+    .reblogger-name{
+        color:rgba(${themes[theme].black},.65);
+    }
+    
+    .input-area{
+        background-color:rgb(${themes[theme].white});
+        border-top:1px solid rgba(${themes[theme].black}, 0.13);
+    }
+
     `;
     return (
         <>

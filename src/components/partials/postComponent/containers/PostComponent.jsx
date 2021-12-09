@@ -12,6 +12,7 @@ import AuthBtn from '../../AuthBtn';
 import { extractPostContent, copyLink, chaneMobileView } from '../Controller';
 import { follow, unfollow, block } from '../Services';
 import PropTypes from 'prop-types';
+import OptionsList from './OptionsList';
 
 /**
  * @function PostComponent
@@ -148,101 +149,18 @@ export default function PostComponent(props) {
                                 <OptionsButton />
                             </button>
                             {isOptionListOpen && (
-                                <div className="options">
-                                    <div className="list">
-                                        <a
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="post-time"
-                                        >
-                                            <span className="post-time-text">
-                                                Posted - {postTime}
-                                            </span>
-                                        </a>
-                                        {userBlogName !== blogName && (
-                                            <>
-                                                <div
-                                                    onClick={() =>
-                                                        copyLink(
-                                                            postLink,
-                                                            postId
-                                                        )
-                                                    }
-                                                    className="opt-btn copy-btn"
-                                                    id={`copy-btn${postId}`}
-                                                >
-                                                    Copy Link
-                                                </div>
-                                                {following && (
-                                                    <div
-                                                        onClick={() =>
-                                                            unfollow(
-                                                                blogUrl,
-                                                                setFollowing,
-                                                                setIsOptionListOpen
-                                                            )
-                                                        }
-                                                        className="opt-btn follow-btn"
-                                                    >
-                                                        Unfollow
-                                                    </div>
-                                                )}
-                                                <div className="opt-btn report-btn">
-                                                    Report
-                                                </div>
-                                                <div
-                                                    onClick={() =>
-                                                        setIsModalOpen(true)
-                                                    }
-                                                    className="opt-btn block-btn"
-                                                >
-                                                    Block
-                                                </div>
-                                                <div
-                                                    onClick={() => {
-                                                        setIsOptionListOpen(
-                                                            false
-                                                        );
-                                                    }}
-                                                    className="opt-btn close-btn"
-                                                >
-                                                    Close
-                                                </div>
-                                            </>
-                                        )}
-                                        {/**Post's author is logged user */}
-                                        {userBlogName === blogName && (
-                                            <>
-                                                {' '}
-                                                <div className="opt-btn pin-btn">
-                                                    Pin
-                                                </div>
-                                                <div
-                                                    onClick={() =>
-                                                        copyLink(
-                                                            postLink,
-                                                            postId
-                                                        )
-                                                    }
-                                                    className="opt-btn copy-btn"
-                                                    id={`copy-btn${postId}`}
-                                                >
-                                                    Copy Link
-                                                </div>
-                                                <div
-                                                    onClick={() => {
-                                                        setIsOptionListOpen(
-                                                            false
-                                                        );
-                                                    }}
-                                                    className="opt-btn close-btn"
-                                                >
-                                                    Close
-                                                </div>
-                                            </>
-                                        )}
-                                    </div>
-                                </div>
+                                <OptionsList
+                                    postTime={postTime}
+                                    userBlogName={userBlogName}
+                                    blogName={blogName}
+                                    postLink={postLink}
+                                    postId={postId}
+                                    following={following}
+                                    blogUrl={blogUrl}
+                                    setFollowing={setFollowing}
+                                    setIsModalOpen={setIsModalOpen}
+                                    setIsOptionListOpen={setIsOptionListOpen}
+                                />
                             )}
                         </div>
                     </div>
@@ -295,6 +213,8 @@ export default function PostComponent(props) {
                         numberNotes={numberNotes}
                         reblogKey={reblogKey}
                         postId={postId}
+                        postAuthor={userBlogName}
+                        authorAvatar={avatar}
                     />
                 </div>
             </article>
