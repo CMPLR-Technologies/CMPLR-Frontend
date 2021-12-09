@@ -22,6 +22,12 @@
     justify-self: flex-end;
 }
 
+.no-data-error {
+    padding-left: 10px;
+    padding-top: 10px;
+    color: brown;
+}
+
 // main styles
 .dashboard {
     display: flex;

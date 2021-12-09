@@ -13,7 +13,7 @@ export default function Radar() {
     return (
         <div className="Radar">
             <h3>Radar</h3>
-            {error && <div>{"Couldn't load"}</div>}
+            {error && <div className="no-data-error">{"Couldn't load"}</div>}
             {isPending && <LinearProgress />}
             {radarPost && (
                 <div className="radar-warper">

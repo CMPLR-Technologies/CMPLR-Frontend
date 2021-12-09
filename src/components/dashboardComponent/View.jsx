@@ -18,7 +18,9 @@ export default function Dashboard() {
         <div className="dashboard">
             <div className="posts-region">
                 <CreatePost />
-                {error && <div>{"Couldn't load"}</div>}
+                {error && (
+                    <div className="no-data-error">{"Couldn't load"}</div>
+                )}
                 {isPending && <LinearProgress />}
                 {radarPost && (
                     <div className="radar-warper">

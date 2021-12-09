@@ -2232,6 +2232,12 @@ body #reset-pass-logo {
   justify-self: flex-end;
 }
 
+.no-data-error {
+  padding-left: 10px;
+  padding-top: 10px;
+  color: brown;
+}
+
 .dashboard {
   display: flex;
   justify-content: center;

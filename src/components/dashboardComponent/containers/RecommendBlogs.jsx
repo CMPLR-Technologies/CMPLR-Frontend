@@ -18,7 +18,7 @@ export default function RecommendBlogs() {
 
     return (
         <div className="dashboard-recommend-blogs">
-            {error && <div>{"Couldn't load"}</div>}
+            {error && <div className="no-data-error">{"Couldn't load"}</div>}
             {isPending && <LinearProgress />}
             {recommendedBlogs &&
                 recommendedBlogs.map(blog => (
