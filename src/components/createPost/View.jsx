@@ -2,11 +2,13 @@ import React, { useContext } from 'react';
 import OptionsCreatePost from './containers/DashboardContainer/OptionsCard';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 import ProfilePicContainer from './containers/DashboardContainer/ProfilePicContainer';
-import { useState } from 'react';
 import { useEffect } from 'react';
+import { UserContext } from '../../contexts/userContext/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreatePost() {
-    const [mode, setMode] = useState('CREATE');
+    const { user } = useContext(UserContext);
+    const navigate = useNavigate();
     const theme = useContext(ThemeContext)[0];
     const css = `
         .create_container {
@@ -28,9 +30,11 @@ export default function CreatePost() {
             color:rgba(${themes[theme].black});
         }
     `;
+
     useEffect(() => {
-        console.log(mode);
-        setMode('CREATE');
+        if (!user) {
+            navigate('/');
+        }
     }, []);
     return (
         <>
@@ -38,7 +42,6 @@ export default function CreatePost() {
 
             <div className="create1div">
                 <main className="create_main">
-                    {/* */}
                     <div className="create_container">
                         <ProfilePicContainer />
                         <OptionsCreatePost />

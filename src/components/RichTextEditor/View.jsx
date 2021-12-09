@@ -1,69 +1,62 @@
 import React from 'react';
-import { useState } from 'react';
 import {
     AiOutlineBold,
     AiOutlineItalic,
     AiOutlineUnderline,
-    AiFillCamera
+    AiFillCamera,
+    AiOutlineUnorderedList,
+    AiOutlineOrderedList,
+    AiOutlineStrikethrough,
+    AiOutlineLink
 } from 'react-icons/ai';
+import { FaPencilAlt } from 'react-icons/fa';
+import { RiPaintFill } from 'react-icons/ri';
+import PropTypes from 'prop-types';
+import { styled } from '@mui/material/styles';
+import {
+    handleChanges,
+    handleHeading,
+    handleActionWithoutArg,
+    handleUploadImage,
+    handleCreateLink,
+    handleColor
+} from './Controller';
 
-export default function HandMadeTextEditor() {
-    const [content, setContent] = useState();
-    const handleBold = () => {
-        console.log('bold called');
-        let command =
-            document.getElementById('to-bold-words').dataset['element'];
-        document.execCommand(command, false, null);
-        console.log(document.getElementById('editable-content').innerHTML);
-    };
-    const handleItalic = () => {
-        console.log('italic called');
-        let command =
-            document.getElementById('to-italic-words').dataset['element'];
-        document.execCommand(command, false, null);
-    };
-    const handleUnderline = () => {
-        console.log('underline called');
-        let command =
-            document.getElementById('to-underline-words').dataset['element'];
-        document.execCommand(command, false, null);
-    };
-    const handleUploadImage = () => {
-        console.log('image upload called');
-        let command =
-            document.getElementById('to-image-words').dataset['element'];
-        const url =
-            'https://www.bing.com/th?id=OIP.xVhP7ICLDeHprTWGBsMZCQHaFG&w=178&h=106&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2';
-        document.execCommand(command, false, url);
-    };
-    const handleHeading = () => {
-        console.log('heading upload called');
-        let command =
-            document.getElementById('to-heading-words').dataset['element'];
-        const url =
-            'https://www.bing.com/th?id=OIP.xVhP7ICLDeHprTWGBsMZCQHaFG&w=178&h=106&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2';
-        document.execCommand(command, false, url);
-    };
-    const handleUnorderedList = () => {
-        console.log('heading upload called');
-        let command =
-            document.getElementById('to-unorder-words').dataset['element'];
-        document.execCommand(command, false, null);
-    };
-    const handleOrderedList = () => {
-        console.log('heading upload called');
-        let command =
-            document.getElementById('to-order-words').dataset['element'];
-        const url =
-            'https://www.bing.com/th?id=OIP.xVhP7ICLDeHprTWGBsMZCQHaFG&w=178&h=106&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2';
-        document.execCommand(command, false, url);
-    };
+const Input = styled('input')({
+    display: 'none'
+});
+export default function HandMadeTextEditor(props) {
+    const { setContent } = props;
+
     return (
         <>
             <div className="main-richeditor">
+                <div
+                    className="content"
+                    contentEditable="true"
+                    id="editable-content"
+                    onInput={() => handleChanges(setContent)}
+                    data-placeholder="Your text here"
+                ></div>
                 <div className="text-editor-header">
+                    <select
+                        onChange={() =>
+                            handleHeading('formatBlock', setContent)
+                        }
+                        id="headSelector"
+                    >
+                        <option value="H1">H1</option>
+                        <option value="H2">H2</option>
+                        <option value="H3">H3</option>
+                        <option value="H4">H4</option>
+                        <option value="H5">H5</option>
+                        <option value="H6">H6</option>
+                    </select>
+
                     <button
-                        onClick={handleBold}
+                        onClick={() =>
+                            handleActionWithoutArg('to-bold-words', setContent)
+                        }
                         data-element="bold"
                         type="button"
                         id="to-bold-words"
@@ -71,8 +64,14 @@ export default function HandMadeTextEditor() {
                     >
                         <AiOutlineBold />
                     </button>
+
                     <button
-                        onClick={handleItalic}
+                        onClick={() =>
+                            handleActionWithoutArg(
+                                'to-italic-words',
+                                setContent
+                            )
+                        }
                         data-element="italic"
                         type="button"
                         id="to-italic-words"
@@ -80,8 +79,14 @@ export default function HandMadeTextEditor() {
                     >
                         <AiOutlineItalic />
                     </button>
+
                     <button
-                        onClick={handleUnderline}
+                        onClick={() =>
+                            handleActionWithoutArg(
+                                'to-underline-words',
+                                setContent
+                            )
+                        }
                         data-element="underline"
                         type="button"
                         id="to-underline-words"
@@ -89,49 +94,109 @@ export default function HandMadeTextEditor() {
                     >
                         <AiOutlineUnderline />
                     </button>
-                    <button
-                        onClick={handleHeading}
-                        data-element="heading"
-                        type="button"
-                        id="to-heading-words"
-                        className="btn"
-                    >
+
+                    <label htmlFor="to-image-words">
+                        <Input
+                            onChange={e =>
+                                handleUploadImage(e.target.files[0], setContent)
+                            }
+                            accept="image/*"
+                            data-element="insertImage"
+                            id="to-image-words"
+                            type="file"
+                        />
+
                         <AiFillCamera />
-                    </button>
+                    </label>
+
                     <button
-                        onClick={handleUploadImage}
-                        data-element="insertImage"
-                        type="button"
-                        id="to-image-words"
-                        className="btn"
-                    >
-                        <AiFillCamera />
-                    </button>
-                    <button
-                        onClick={handleUnorderedList}
+                        onClick={() =>
+                            handleActionWithoutArg(
+                                'to-unorder-words',
+                                setContent
+                            )
+                        }
                         data-element="insertUnorderedList"
                         type="button"
                         id="to-unorder-words"
                         className="btn"
                     >
-                        <AiFillCamera />
+                        <AiOutlineUnorderedList />
                     </button>
                     <button
-                        onClick={handleOrderedList}
+                        onClick={() =>
+                            handleActionWithoutArg('to-order-words', setContent)
+                        }
                         data-element="insertOrderedList"
                         type="button"
                         id="to-order-words"
                         className="btn"
                     >
-                        <AiFillCamera />
+                        <AiOutlineOrderedList />
                     </button>
+                    <button
+                        onClick={() =>
+                            handleActionWithoutArg(
+                                'to-strike-words',
+                                setContent
+                            )
+                        }
+                        data-element="strikeThrough"
+                        type="button"
+                        id="to-strike-words"
+                        className="btn"
+                    >
+                        <AiOutlineStrikethrough />
+                    </button>
+
+                    <button
+                        onClick={() => handleCreateLink(setContent)}
+                        data-element="createLink"
+                        type="button"
+                        id="to-link-words"
+                        className="btn"
+                    >
+                        <AiOutlineLink />
+                    </button>
+
+                    <span style={{ float: 'right' }}>
+                        <span>
+                            <RiPaintFill className="printable_btn" />
+                            <input
+                                type="color"
+                                data-element="hiliteColor"
+                                onChange={() =>
+                                    handleColor(
+                                        'to-hilitecolor-words',
+                                        setContent
+                                    )
+                                }
+                                id="to-hilitecolor-words"
+                                className="colorStyle"
+                            />
+                        </span>
+                        <span style={{ marginLeft: '10px' }}>
+                            <FaPencilAlt className="foreColor_btn" />
+                            <input
+                                type="color"
+                                data-element="foreColor"
+                                onChange={() =>
+                                    handleColor(
+                                        'to-forecolor-words',
+                                        setContent
+                                    )
+                                }
+                                id="to-forecolor-words"
+                                className="colorStyle"
+                            />
+                        </span>
+                    </span>
                 </div>
-                <div
-                    className="content"
-                    contentEditable="true"
-                    id="editable-content"
-                ></div>
             </div>
         </>
     );
 }
+
+HandMadeTextEditor.propTypes = {
+    setContent: PropTypes.func.isRequired
+};

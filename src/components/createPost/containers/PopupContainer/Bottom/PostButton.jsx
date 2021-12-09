@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import DropDownPostList from './DropDownPostList';
 
 export default function PostButton(props) {
-    const { handlePost, postType, setPostType } = props;
+    const { handlePost, postType, setPostType, content, titlePost } = props;
     const [anchorEl, setAnchorEl] = React.useState(null);
     const handlePopover = event => {
         setAnchorEl(event.currentTarget);
@@ -24,7 +24,7 @@ export default function PostButton(props) {
                     <button
                         className="to-post-button"
                         onClick={handlePost}
-                        disabled
+                        disabled={content === '' || titlePost === ''}
                     >
                         Post
                     </button>
@@ -68,5 +68,7 @@ export default function PostButton(props) {
 PostButton.propTypes = {
     handlePost: PropTypes.func.isRequired,
     postType: PropTypes.string.isRequired,
-    setPostType: PropTypes.func.isRequired
+    setPostType: PropTypes.func.isRequired,
+    content: PropTypes.any.isRequired,
+    titlePost: PropTypes.string.isRequired
 };

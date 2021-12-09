@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import PostButton from './PostButton';
 
 export default function BottomMainControllers(props) {
-    const { handleCloseModal, handlePost, postType, setPostType } = props;
+    const {
+        handleCloseModal,
+        handlePost,
+        content,
+        titlePost,
+        postType,
+        setPostType
+    } = props;
 
     return (
         <>
@@ -29,6 +36,8 @@ export default function BottomMainControllers(props) {
                         </div>
                         <div className="control-right">
                             <PostButton
+                                content={content}
+                                titlePost={titlePost}
                                 handlePost={handlePost}
                                 postType={postType}
                                 setPostType={setPostType}
@@ -45,5 +54,7 @@ BottomMainControllers.propTypes = {
     handleCloseModal: PropTypes.func.isRequired,
     handlePost: PropTypes.func.isRequired,
     postType: PropTypes.string.isRequired,
-    setPostType: PropTypes.func.isRequired
+    setPostType: PropTypes.func.isRequired,
+    content: PropTypes.any.isRequired,
+    titlePost: PropTypes.string.isRequired
 };
