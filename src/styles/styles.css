@@ -1824,6 +1824,10 @@ body #reset-pass-logo {
   box-sizing: border-box;
   cursor: auto;
 }
+.post-form .post-container .post-container-inner .post-form--form .title-field .editor-wrapper .editor-slot .editor-plain-text:empty::before {
+  content: attr(data-placeholder);
+  color: #595959;
+}
 .post-form .post-container .post-container-inner .post-form--form .title-field .editor-wrapper .editor-slot .editor-plain-text:active {
   outline: 0;
   outline-style: none;
@@ -1933,6 +1937,9 @@ body #reset-pass-logo {
   font-size: 13px;
   font-weight: 700;
 }
+.post-form .post-container .post-container-inner .post-form-bottom .post-form--controls .controls-container .control-right .post-form-save-button .split-button .to-post-button:disabled {
+  color: #80dcff;
+}
 .post-form .post-container .post-container-inner .post-form-bottom .post-form--controls .controls-container .control-right .post-form-save-button .split-button .dropdown-area {
   position: relative;
   width: 25px;
@@ -1985,9 +1992,11 @@ body #reset-pass-logo {
 }
 
 .text-editor-header {
+  width: 100%;
   background-color: whitesmoke;
   padding: 5px;
   outline: none;
+  margin: auto;
 }
 .text-editor-header :focus {
   outline: none;
@@ -1998,6 +2007,7 @@ body #reset-pass-logo {
   outline: none;
   background-color: transparent;
   margin: 0 7px;
+  border-radius: 10%;
 }
 .text-editor-header .btn :focus {
   outline: none;
@@ -2007,10 +2017,18 @@ body #reset-pass-logo {
   border-radius: 50%;
   height: 15px;
   width: 15px;
-  margin: 0 7px;
+  margin: 0 5px;
   border: none;
   outline: none;
   -webkit-appearance: none;
+}
+
+.foreColor_btn {
+  color: darkblue;
+}
+
+.printable_btn {
+  color: orangered;
 }
 
 .colorStyle::-webkit-color-swatch-wrapper {
@@ -2030,16 +2048,19 @@ body #reset-pass-logo {
   padding: 20px;
   outline: none;
 }
-.content :focus {
-  outline: none;
+.content:empty::before {
+  content: attr(data-placeholder);
+  color: #8e8e8e;
 }
-
 .content img {
   width: 100%;
   height: 100%;
   outline: none;
   max-width: none;
   max-height: 400px;
+}
+.content input:focus {
+  outline: none !important;
 }
 
 * {
