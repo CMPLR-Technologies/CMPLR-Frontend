@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
-
+/**
+ * ChatOption Component
+ * @function ChatOption
+ * @description this is the Component ChatOption section which a dropdown list have a few options
+ * @property {string} name - name of blog sender
+ * @property {fuction} close - function to close the ChatOption dropdown list
+ * @returns {Component} list of option
+ */
 export default function ChatOption(props) {
     let name = props.name;
     let close = props.close;

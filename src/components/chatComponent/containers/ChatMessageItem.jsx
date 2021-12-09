@@ -1,5 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+/**
+ * ChatMessageItem Component
+ * @function ChatMessageItem
+ * @description this is the main Component ChatMessageItem section which have a message items
+ * @property {string} name - name of blog sender
+ * @property {string} link - link of blog sender
+ * @property {string} photo - photo of blog sender
+ * @property {string} message - name of blog sender
+ * @returns {Component} message item
+ */
 export default function ChatMessageItem(props) {
     let name = props.name;
     let photo = props.photo;
@@ -8,7 +18,7 @@ export default function ChatMessageItem(props) {
     return (
         <div className="message">
             <a className="img" src={link}>
-                <img src={photo} />
+                <img src={photo} title={name} alt={name} />
             </a>
             <div className="text">
                 <div className="main">{name}</div>

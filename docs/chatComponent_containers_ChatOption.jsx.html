@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: shortcuts/containers/Shortcut.jsx</title>
+    <title>JSDoc: Source: chatComponent/containers/ChatOption.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: shortcuts/containers/Shortcut.jsx</h1>
+    <h1 class="page-title">Source: chatComponent/containers/ChatOption.jsx</h1>
 
     
 
@@ -26,39 +26,36 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import '../../../styles/styles.css';
-import React from 'react';
+            <pre class="prettyprint source linenums"><code>import React from 'react';
 import PropTypes from 'prop-types';
-
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 /**
- * Shortcut: a single row in the shortcuts group
- * @function Shortcut
- * @property {string} name - name of shortcut (describes what it does)
- * @property {object} keys - list of keys that are required combined to make the action
- * @returns {Component}
+ * ChatOption Component
+ * @function ChatOption
+ * @description this is the Component ChatOption section which a dropdown list have a few options
+ * @property {string} name - name of blog sender
+ * @property {fuction} close - function to close the ChatOption dropdown list
+ * @returns {Component} list of option
  */
-
-export default function Shortcut(props) {
-    const { name, keys } = props.data;
+export default function ChatOption(props) {
+    let name = props.name;
+    let close = props.close;
     return (
-        &lt;div className="shortcut">
-            &lt;div className="shortcut-name">{name}&lt;/div>
-            &lt;div className="shortcut-key-container">
-                {keys.map((key, index) => {
-                    return (
-                        &lt;span key={index}>
-                            {Boolean(index) &amp;&amp; &lt;span>&amp;nbsp;+&amp;nbsp;&lt;/span>}
-                            &lt;span className="shortcut-key">{key}&lt;/span>
-                        &lt;/span>
-                    );
-                })}
-            &lt;/div>
-        &lt;/div>
+        &lt;ClickAwayListener onClickAway={() => close()}>
+            &lt;ul className="chat-popup-header-option">
+                &lt;li>
+                    &lt;span>Sound setting&lt;/span>
+                    &lt;i className="fas fa-angle-right">&lt;/i>
+                &lt;/li>
+                &lt;li>Delete conversation&lt;/li>
+                &lt;li>Block {name}&lt;/li>
+            &lt;/ul>
+        &lt;/ClickAwayListener>
     );
 }
-
-Shortcut.propTypes = {
-    data: PropTypes.object.isRequired
+ChatOption.propTypes = {
+    name: PropTypes.string.isRequired,
+    close: PropTypes.func.isRequired
 };
 </code></pre>
         </article>

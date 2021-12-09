@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: shortcuts/containers/Shortcut.jsx</title>
+    <title>JSDoc: Source: chatComponent/containers/ChatSideIcons.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: shortcuts/containers/Shortcut.jsx</h1>
+    <h1 class="page-title">Source: chatComponent/containers/ChatSideIcons.jsx</h1>
 
     
 
@@ -26,40 +26,33 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import '../../../styles/styles.css';
-import React from 'react';
-import PropTypes from 'prop-types';
-
+            <pre class="prettyprint source linenums"><code>import React, { useContext } from 'react';
+import { ChatContext } from '../../../contexts/chatContext/ChatContext';
+import ChatSideIconItem from './ChatSideIconItem';
 /**
- * Shortcut: a single row in the shortcuts group
- * @function Shortcut
- * @property {string} name - name of shortcut (describes what it does)
- * @property {object} keys - list of keys that are required combined to make the action
- * @returns {Component}
+ * chatSideIcons Component
+ * @function chatSideIcons
+ * @description this is the main Component ChatSideIconItem section a messages sideicon
+ * @property {array} sideIconOpenChat - array of sideIconOpenChat
+ * @returns {Component} array of message item
  */
+export default function chatSideIcons() {
+    let { sideIconOpenChat } = useContext(ChatContext);
 
-export default function Shortcut(props) {
-    const { name, keys } = props.data;
     return (
-        &lt;div className="shortcut">
-            &lt;div className="shortcut-name">{name}&lt;/div>
-            &lt;div className="shortcut-key-container">
-                {keys.map((key, index) => {
-                    return (
-                        &lt;span key={index}>
-                            {Boolean(index) &amp;&amp; &lt;span>&amp;nbsp;+&amp;nbsp;&lt;/span>}
-                            &lt;span className="shortcut-key">{key}&lt;/span>
-                        &lt;/span>
-                    );
-                })}
-            &lt;/div>
+        &lt;div className="chat-side-icons">
+            {sideIconOpenChat &amp;&amp;
+                sideIconOpenChat.map(chatIcon => (
+                    &lt;ChatSideIconItem
+                        key={chatIcon.chatId}
+                        name={chatIcon.receiver}
+                        chatId={chatIcon.chatId}
+                        photo={chatIcon.receiverPhoto}
+                    />
+                ))}
         &lt;/div>
     );
 }
-
-Shortcut.propTypes = {
-    data: PropTypes.object.isRequired
-};
 </code></pre>
         </article>
     </section>

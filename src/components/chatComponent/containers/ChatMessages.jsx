@@ -2,7 +2,19 @@ import React, { useContext } from 'react';
 import ChatMessageItem from './ChatMessageItem';
 import { ChatContext } from '../../../contexts/chatContext/ChatContext';
 import PropTypes from 'prop-types';
-
+/**
+ * ChatMessages Component
+ * @function ChatMessages
+ * @description this is the main Component ChatMessages section which have a messages items
+ * @property {string} sender - name of blog sender
+ * @property {string} senderLink - link of blog sender
+ * @property {string} senderPhoto - photo of blog sender
+ * @property {string} receiver - name of blog receiver
+ * @property {string} receiverLink - link of blog receiver
+ * @property {string} receiverPhoto - photo of blog receiver
+ * @property {array} chatMessage - array of messages
+ * @returns {Component} array of ChatMessageItem
+ */
 export default function ChatMessages(props) {
     let { currPopUpOpenChat } = useContext(ChatContext);
     let { messagesEndRef } = props;
@@ -13,7 +25,7 @@ export default function ChatMessages(props) {
         receiver = 'omda',
         receiverPhoto = 'gaser',
         receiverLink = '#',
-        chatMessage = 'bla'
+        chatMessage = []
     } = currPopUpOpenChat || {};
 
     return (

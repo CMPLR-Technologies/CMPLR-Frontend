@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: shortcuts/containers/Shortcut.jsx</title>
+    <title>JSDoc: Source: chatComponent/containers/ChatMessages.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: shortcuts/containers/Shortcut.jsx</h1>
+    <h1 class="page-title">Source: chatComponent/containers/ChatMessages.jsx</h1>
 
     
 
@@ -26,39 +26,72 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import '../../../styles/styles.css';
-import React from 'react';
+            <pre class="prettyprint source linenums"><code>import React, { useContext } from 'react';
+import ChatMessageItem from './ChatMessageItem';
+import { ChatContext } from '../../../contexts/chatContext/ChatContext';
 import PropTypes from 'prop-types';
-
 /**
- * Shortcut: a single row in the shortcuts group
- * @function Shortcut
- * @property {string} name - name of shortcut (describes what it does)
- * @property {object} keys - list of keys that are required combined to make the action
- * @returns {Component}
+ * ChatMessages Component
+ * @function ChatMessages
+ * @description this is the main Component ChatMessages section which have a messages items
+ * @property {string} sender - name of blog sender
+ * @property {string} senderLink - link of blog sender
+ * @property {string} senderPhoto - photo of blog sender
+ * @property {string} receiver - name of blog receiver
+ * @property {string} receiverLink - link of blog receiver
+ * @property {string} receiverPhoto - photo of blog receiver
+ * @property {array} chatMessage - array of messages
+ * @returns {Component} array of ChatMessageItem
  */
+export default function ChatMessages(props) {
+    let { currPopUpOpenChat } = useContext(ChatContext);
+    let { messagesEndRef } = props;
+    let {
+        sender = 'gaser',
+        senderPhoto = 'gaser',
+        senderLink = '#',
+        receiver = 'omda',
+        receiverPhoto = 'gaser',
+        receiverLink = '#',
+        chatMessage = []
+    } = currPopUpOpenChat || {};
 
-export default function Shortcut(props) {
-    const { name, keys } = props.data;
     return (
-        &lt;div className="shortcut">
-            &lt;div className="shortcut-name">{name}&lt;/div>
-            &lt;div className="shortcut-key-container">
-                {keys.map((key, index) => {
-                    return (
-                        &lt;span key={index}>
-                            {Boolean(index) &amp;&amp; &lt;span>&amp;nbsp;+&amp;nbsp;&lt;/span>}
-                            &lt;span className="shortcut-key">{key}&lt;/span>
-                        &lt;/span>
-                    );
-                })}
+        &lt;div className="chat-popup-chat">
+            &lt;div className="chat-popup-chat-header">
+                &lt;div className="img">
+                    &lt;img src={receiverPhoto} />
+                &lt;/div>
+                &lt;div className="receiver-link">
+                    &lt;a href={receiverLink} className="main">
+                        {receiver}
+                    &lt;/a>
+                &lt;/div>
             &lt;/div>
+            &lt;div className="chat-popup-chat-messages">
+                {currPopUpOpenChat &amp;&amp;
+                    chatMessage.map(message => (
+                        &lt;ChatMessageItem
+                            key={message.id}
+                            name={message.type === 's' ? sender : receiver}
+                            link={
+                                message.type === 's' ? senderLink : receiverLink
+                            }
+                            photo={
+                                message.type === 's'
+                                    ? senderPhoto
+                                    : receiverPhoto
+                            }
+                            message={message.message}
+                        />
+                    ))}
+            &lt;/div>
+            &lt;div ref={messagesEndRef}>&lt;/div>
         &lt;/div>
     );
 }
-
-Shortcut.propTypes = {
-    data: PropTypes.object.isRequired
+ChatMessages.propTypes = {
+    messagesEndRef: PropTypes.object.isRequired
 };
 </code></pre>
         </article>

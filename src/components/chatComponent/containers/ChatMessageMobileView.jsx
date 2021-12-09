@@ -3,6 +3,17 @@ import { NavLink } from 'react-router-dom';
 import { ChatContext } from '../../../contexts/chatContext/ChatContext';
 import ChatMessages from './ChatMessages';
 import ChatOption from './ChatOption';
+/**
+ * ChatMessageMobileView Component
+ * @function ChatMessageMobileView
+ * @description this is the main Component ChatMessage in mobile view
+ * @property {string} sender - name of blog sender
+ * @property {string} senderLink - link of blog sender
+ * @property {string} receiver - name of blog receiver
+ * @property {string} receiverLink - link of blog receiver
+ * @property {string} chatId - chat id
+ * @returns {Component} chat container in mobile view
+ */
 export default function ChatMessageMobileView() {
     // eslint-disable-next-line react/prop-types
     //let { sender, receiver } = props.match.params;
@@ -50,7 +61,7 @@ export default function ChatMessageMobileView() {
     };
     const [showOption, setShowOption] = useState(false);
     const toggleOption = () => {
-        console.log('gas');
+        //console.log('gas');
         if (showOption) setShowOption(false);
         else setShowOption(!showOption);
     };

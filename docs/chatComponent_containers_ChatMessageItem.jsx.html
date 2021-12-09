@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: shortcuts/containers/Shortcut.jsx</title>
+    <title>JSDoc: Source: chatComponent/containers/ChatMessageItem.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: shortcuts/containers/Shortcut.jsx</h1>
+    <h1 class="page-title">Source: chatComponent/containers/ChatMessageItem.jsx</h1>
 
     
 
@@ -26,39 +26,40 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import '../../../styles/styles.css';
-import React from 'react';
+            <pre class="prettyprint source linenums"><code>import React from 'react';
 import PropTypes from 'prop-types';
-
 /**
- * Shortcut: a single row in the shortcuts group
- * @function Shortcut
- * @property {string} name - name of shortcut (describes what it does)
- * @property {object} keys - list of keys that are required combined to make the action
- * @returns {Component}
+ * ChatMessageItem Component
+ * @function ChatMessageItem
+ * @description this is the main Component ChatMessageItem section which have a message items
+ * @property {string} name - name of blog sender
+ * @property {string} link - link of blog sender
+ * @property {string} photo - photo of blog sender
+ * @property {string} message - name of blog sender
+ * @returns {Component} message item
  */
-
-export default function Shortcut(props) {
-    const { name, keys } = props.data;
+export default function ChatMessageItem(props) {
+    let name = props.name;
+    let photo = props.photo;
+    let message = props.message;
+    let link = props.link;
     return (
-        &lt;div className="shortcut">
-            &lt;div className="shortcut-name">{name}&lt;/div>
-            &lt;div className="shortcut-key-container">
-                {keys.map((key, index) => {
-                    return (
-                        &lt;span key={index}>
-                            {Boolean(index) &amp;&amp; &lt;span>&amp;nbsp;+&amp;nbsp;&lt;/span>}
-                            &lt;span className="shortcut-key">{key}&lt;/span>
-                        &lt;/span>
-                    );
-                })}
+        &lt;div className="message">
+            &lt;a className="img" src={link}>
+                &lt;img src={photo} title={name} alt={name} />
+            &lt;/a>
+            &lt;div className="text">
+                &lt;div className="main">{name}&lt;/div>
+                &lt;div className="msg">{message}&lt;/div>
             &lt;/div>
         &lt;/div>
     );
 }
-
-Shortcut.propTypes = {
-    data: PropTypes.object.isRequired
+ChatMessageItem.propTypes = {
+    name: PropTypes.string.isRequired,
+    photo: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
+    link: PropTypes.string.isRequired
 };
 </code></pre>
         </article>

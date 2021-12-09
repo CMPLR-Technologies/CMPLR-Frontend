@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: chatComponent/containers/ChatPopUp.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: chatComponent/containers/ChatPopUp.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useContext, useEffect, useRef } from 'react';
+import { ChatContext } from '../../../contexts/chatContext/ChatContext';
+import ChatMessages from './ChatMessages';
+import ChatOption from './ChatOption';
+/**
+ * ChatPopUp Component
+ * @function ChatPopUp
+ * @description this is the main Component ChatPopUp section which the part you can chat with other blog
+ * @property {string} sender - name of blog sender
+ * @property {string} senderLink - link of blog sender
+ * @property {string} receiver - name of blog receiver
+ * @property {string} receiverLink - link of blog receiver
+ * @property {string} chatId - chat id
+ * @returns {Component} ChatPopUp header &amp; ChatPopUp messages &amp; ChatPopUp footer
+ */
+export default function ChatPopUp() {
+    const messagesEndRef = useRef(null);
+    const scrollToBottom = () => {
+        console.log('scroll');
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    let {
+        currPopUpOpenChat,
+        closeChatPopup,
+        paritialCloseChatPopup,
+        sideIconOpenChat,
+        sendMessage
+    } = useContext(ChatContext);
+    let {
+        sender = 'gaser',
+        senderLink = '#',
+        receiver = 'omda',
+        receiverLink = '#',
+        chatId = 0
+    } = currPopUpOpenChat || {};
+    const [messageToSend, setMessageToSend] = useState('');
+    useEffect(() => {
+        setMessageToSend('');
+    }, [chatId]);
+    useEffect(() => {
+        scrollToBottom();
+    }, [currPopUpOpenChat]);
+    const onChange = e => {
+        setMessageToSend(e.target.value);
+    };
+    const sendMessageTo = () => {
+        if (messageToSend.length !== 0 &amp;&amp; messageToSend.trim() !== '') {
+            sendMessage(messageToSend);
+            setMessageToSend('');
+        }
+    };
+
+    const onEnterPress = e => {
+        if (e.keyCode === 13 &amp;&amp; e.shiftKey === false) {
+            e.preventDefault();
+            sendMessageTo();
+        }
+    };
+    const [showOption, setShowOption] = useState(false);
+    const toggleOption = () => {
+        setShowOption(!showOption);
+    };
+    const close = () => {
+        closeChatPopup();
+    };
+    const partialClose = () => {
+        paritialCloseChatPopup();
+    };
+    return (
+        &lt;div
+            className={`chat-popup-container ${
+                sideIconOpenChat &amp;&amp; sideIconOpenChat.length ? 'side' : ''
+            }`}
+        >
+            &lt;div className="chat-popup">
+                &lt;div className="chat-popup-header">
+                    {showOption &amp;&amp; (
+                        &lt;ChatOption close={toggleOption} name={receiver} />
+                    )}
+
+                    &lt;div className="names">
+                        &lt;a href={senderLink}>{sender}&lt;/a>
+                        {' + '}
+                        &lt;a href={receiverLink}>{receiver}&lt;/a>
+                    &lt;/div>
+                    &lt;div className="btns">
+                        &lt;button onClick={toggleOption}>
+                            &lt;i className="fas fa-ellipsis-h">&lt;/i>
+                        &lt;/button>
+                        &lt;button onClick={partialClose}>
+                            &lt;i className="fas fa-compress-alt">&lt;/i>
+                        &lt;/button>
+                        &lt;button onClick={close}>
+                            &lt;i className="fas fa-times">&lt;/i>
+                        &lt;/button>
+                    &lt;/div>
+                &lt;/div>
+
+                &lt;ChatMessages messagesEndRef={messagesEndRef} />
+                &lt;div className="chat-popup-footer">
+                    &lt;div className="input">
+                        &lt;textarea
+                            autoFocus
+                            type="text"
+                            placeholder="Say something"
+                            onChange={onChange}
+                            value={messageToSend}
+                            onKeyDown={onEnterPress}
+                        />
+                    &lt;/div>
+                    &lt;div className="send" onClick={sendMessageTo}>
+                        &lt;i className="far fa-paper-plane">&lt;/i>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#ThemeToggle">ThemeToggle</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 09 2021 15:17:05 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

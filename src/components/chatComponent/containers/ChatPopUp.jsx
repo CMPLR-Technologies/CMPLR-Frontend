@@ -2,7 +2,17 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import { ChatContext } from '../../../contexts/chatContext/ChatContext';
 import ChatMessages from './ChatMessages';
 import ChatOption from './ChatOption';
-
+/**
+ * ChatPopUp Component
+ * @function ChatPopUp
+ * @description this is the main Component ChatPopUp section which the part you can chat with other blog
+ * @property {string} sender - name of blog sender
+ * @property {string} senderLink - link of blog sender
+ * @property {string} receiver - name of blog receiver
+ * @property {string} receiverLink - link of blog receiver
+ * @property {string} chatId - chat id
+ * @returns {Component} ChatPopUp header & ChatPopUp messages & ChatPopUp footer
+ */
 export default function ChatPopUp() {
     const messagesEndRef = useRef(null);
     const scrollToBottom = () => {
