@@ -69,7 +69,7 @@ export default function AccountPopupActionRow(props) {
 
     return (
         <div
-            data-testid="dropDownAccountActionRow"
+            data-testid="AccountActionPopupRow"
             className={`account-action-row`}
         >
             <div className="action-left">

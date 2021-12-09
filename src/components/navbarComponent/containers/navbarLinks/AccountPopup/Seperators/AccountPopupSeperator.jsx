@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom';
 export default function AccountPopupSeperator() {
     return (
         <div
-            data-testid="dropDownAccountSeperator"
+            data-testid="AccountPopupSeperator"
             className={`account-popup-header`}
         >
             <div>Tumblrs</div>

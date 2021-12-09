@@ -59,10 +59,19 @@ export default function AccountPopup() {
     .shortcut-key{
         background: rgba(${themes[theme].black}, .13);
     }
+    .log-out-overlay{
+        background: rgb(${themes[theme].navy});
+    }
+    .AuthBtn{
+        color: rgb(${themes[theme].navy});
+    }
+    .log-out-overlay-text{
+        color: rgb(${themes[theme].whiteOnDark});
+    }
     `;
 
     return (
-        <div data-testid="dropDownAccount" className={`account-popup`}>
+        <div data-testid="AccountPopup" className={`account-popup`}>
             <AccountPopupHeader />
             <AccountPopupActions />
             <AccountPopupSeperator />

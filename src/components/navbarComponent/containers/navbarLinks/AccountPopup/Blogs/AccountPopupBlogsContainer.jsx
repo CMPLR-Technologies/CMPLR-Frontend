@@ -19,7 +19,10 @@ export default function AccountPopupBlogsContainer() {
     }, []);
 
     return (
-        <div className="account-popup-blogs-container">
+        <div
+            data-testid="AccountPopupBlogsContainer"
+            className="account-popup-blogs-container"
+        >
             {blogs &&
                 blogs.map((blog, index) => (
                     <AccountPopupBlog blog={blog} key={index} />

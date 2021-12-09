@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: homeComponent/containers/Sec4/HomeSec4.jsx</title>
+    <title>JSDoc: Source: navbarComponent/containers/navbarLinks/AccountPopup/Seperators/LogOutOverlay.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: homeComponent/containers/Sec4/HomeSec4.jsx</h1>
+    <h1 class="page-title">Source: navbarComponent/containers/navbarLinks/AccountPopup/Seperators/LogOutOverlay.jsx</h1>
 
     
 
@@ -26,43 +26,61 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from "react";
+            <pre class="prettyprint source linenums"><code>import React, { useContext } from 'react';
+import {
+    ThemeContext,
+    themes
+} from '../../../../../../contexts/themeContext/ThemeContext';
+import { UserContext } from '../../../../../../contexts/userContext/UserContext';
+import AuthBtn from '../../../../../partials/AuthBtn';
+import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
-/**
- * @function HomeSectionTwo
- * @description [Static page ]Section Four Component of HomePage
- * @returns {Component} the Component of the Section Four
+/** EDIT THIS!!!!
+ * @function LogOutOverlay
+ * @property {function} hideOverlay - sets overlay to false in parent component
+ * @property {function} logOut - event handling function to handle loging out
+ * @returns {Component}
  */
 
-export default function HomeSec4() {
-  return (
-    &lt;>
-      &lt;section
-        data-testid="home-sec4"
-        id="You already know how this works."
-        className="fourth-page  section"
-      >
-        &lt;div className="fourth-page-content">
-          &lt;div className="fourth-page-post">
-            &lt;img src="" alt="" />
-          &lt;/div>
-          &lt;div className="fourth-page-info">
-            &lt;h1 data-testid="sec4-heading" className="sec-page-heading">
-              You already know how this works.
-            &lt;/h1>
-            &lt;p data-testid="sec4-paragraph" className="sec-page-para">
-              Once you follow a blog, all of its posts show up in your
-              dashboard, just like you’d expect. See something great? Reblog it
-              to your own blog. Add commentary if you like. Make it your own.
-              Other people will do the same to your posts. That’s how you meet
-              people here.
-            &lt;/p>
-          &lt;/div>
+export default function LogOutOverlay(props) {
+    const theme = useContext(ThemeContext)[0];
+    const { setUser } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    const logOut = () => {
+        setUser(null);
+        navigate('/');
+    };
+
+    const { hideOverlay } = props;
+
+    return (
+        &lt;div data-testid="logOutOverlay" className={'log-out-overlay'}>
+            &lt;div className="log-out-overlay-text">
+                Are you sure you want to log out?
+            &lt;/div>
+            &lt;div className="log-out-overlay-buttons-row">
+                &lt;AuthBtn
+                    key="1"
+                    color={`rgba(${themes[theme].whiteOnDark} ,.65)`}
+                    text="Cancel"
+                    handleClick={hideOverlay}
+                />{' '}
+                &lt;AuthBtn
+                    key="2"
+                    color={`rgb(${themes[theme].accent})`}
+                    text="OK"
+                    handleClick={logOut}
+                />
+            &lt;/div>
         &lt;/div>
-      &lt;/section>
-    &lt;/>
-  );
+    );
 }
+
+LogOutOverlay.propTypes = {
+    hideOverlay: PropTypes.func.isRequired
+};
 </code></pre>
         </article>
     </section>

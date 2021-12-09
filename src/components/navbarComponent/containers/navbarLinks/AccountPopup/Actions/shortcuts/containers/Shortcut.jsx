@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 export default function Shortcut(props) {
     const { name, keys } = props.data;
     return (
-        <div className="shortcut">
+        <div className="shortcut" data-testid="Shortcuts">
             <div className="shortcut-name">{name}</div>
             <div className="shortcut-key-container">
                 {keys.map((key, index) => {

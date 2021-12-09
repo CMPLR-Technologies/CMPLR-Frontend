@@ -18,7 +18,7 @@ export default function AuthBtn(props) {
         <a
             onClick={handleClick}
             className="AuthBtn "
-            style={{ backgroundColor: color, color: 'black' }}
+            style={{ backgroundColor: color }}
             id={id}
             data-testid={dataTestid}
             title={text}

@@ -43,7 +43,7 @@ export default function ShortcutsPageOverlay(props) {
     return (
         <div
             className="overlay-container"
-            data-testid="overlayContainer"
+            data-testid="OverlayContainer"
             Style="color: black !important;"
         >
             <div

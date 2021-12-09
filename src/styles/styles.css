@@ -38,7 +38,6 @@
   line-height: 1.5;
   background-color: white;
   font-family: "Favorit", Arial, Helvetica, sans-serif;
-  color: black;
   text-decoration: none;
   cursor: pointer;
   border: none;
@@ -870,146 +869,6 @@
   background-color: #00b8ff;
 }
 
-.account-popup {
-  position: absolute;
-  width: 240px;
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  max-height: 490px;
-  right: -115px;
-  top: 40px;
-  overflow-y: scroll;
-  border-radius: 2px;
-}
-.account-popup::-webkit-scrollbar {
-  display: none;
-}
-.account-popup-blogs-container {
-  display: flex;
-  flex-direction: column;
-}
-.account-popup-blog {
-  display: flex;
-  flex-direction: column;
-}
-.account-popup-blog-links {
-  margin: 0 20px 0 55px;
-}
-.account-popup-blog-link-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 3px 4px;
-  text-decoration: none;
-  width: 100%;
-  font-size: 0.875rem;
-  vertical-align: baseline;
-}
-.account-popup-blog-head {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-.account-popup-blog-head-img img {
-  margin: 8px 11px;
-  width: 37px;
-  height: 37px;
-  object-fit: cover;
-  border-radius: 2px;
-}
-.account-popup-blog-head-text {
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-right: 11px;
-  font-size: 0.875rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  flex-grow: 1;
-}
-.account-popup-blog-head-text h1 {
-  font-weight: 700;
-  font-size: 0.875rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.account-popup-blog-head-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 10px;
-  cursor: pointer;
-}
-.account-popup-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.875rem;
-  font-weight: 400;
-  height: 36px;
-  line-height: 1.5;
-  padding: 5px 20px 5px 10px;
-}
-.account-popup-header .clickable {
-  text-decoration: none;
-  cursor: pointer;
-}
-.account-popup-footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 0.75rem;
-  font-weight: 400;
-  height: 36px;
-  line-height: 1.5;
-  padding: 6px 4px;
-}
-.account-popup-footer .clickable {
-  padding: 0 6px;
-}
-.account-popup-footer .clickable:hover {
-  text-decoration: underline;
-}
-.account-popup-actions {
-  display: flex;
-  flex-direction: column;
-}
-.account-popup-actions .account-action-link {
-  text-decoration: none;
-  color: inherit;
-}
-.account-popup-actions .account-action-row {
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 0 20px 0 10px;
-}
-.account-popup-actions .account-action-row .action-left {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  height: auto;
-}
-.account-popup-actions .account-action-row .action-left .action-icon {
-  margin-right: 10px;
-}
-.account-popup-actions .account-action-row .action-left .action-title {
-  line-height: 1.6;
-  font-size: 1rem;
-  padding: 5px 0;
-}
-
 .popup {
   position: absolute;
   width: 295px;
@@ -1397,6 +1256,179 @@
       width: 1170px;
     }
   }*/
+.account-popup {
+  position: absolute;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  max-height: 490px;
+  right: -115px;
+  top: 40px;
+  overflow-y: scroll;
+  border-radius: 2px;
+}
+.account-popup::-webkit-scrollbar {
+  display: none;
+}
+.account-popup-blogs-container {
+  display: flex;
+  flex-direction: column;
+}
+.account-popup-blog {
+  display: flex;
+  flex-direction: column;
+}
+.account-popup-blog-links {
+  margin: 0 20px 0 55px;
+}
+.account-popup-blog-link-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 4px;
+  text-decoration: none;
+  width: 100%;
+  font-size: 0.875rem;
+  vertical-align: baseline;
+}
+.account-popup-blog-head {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+.account-popup-blog-head-img img {
+  margin: 8px 11px;
+  width: 37px;
+  height: 37px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+.account-popup-blog-head-text {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 11px;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
+.account-popup-blog-head-text h1 {
+  font-weight: 700;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.account-popup-blog-head-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  cursor: pointer;
+}
+.account-popup-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 400;
+  height: 36px;
+  line-height: 1.5;
+  padding: 5px 20px 5px 10px;
+}
+.account-popup-header .clickable {
+  text-decoration: none;
+  cursor: pointer;
+}
+.account-popup-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 400;
+  height: 36px;
+  line-height: 1.5;
+  padding: 6px 4px;
+}
+.account-popup-footer .clickable {
+  padding: 0 6px;
+}
+.account-popup-footer .clickable:hover {
+  text-decoration: underline;
+}
+.account-popup-actions {
+  display: flex;
+  flex-direction: column;
+}
+.account-popup-actions .account-action-link {
+  text-decoration: none;
+  color: inherit;
+}
+.account-popup-actions .account-action-row {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 20px 0 10px;
+}
+.account-popup-actions .account-action-row .action-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: auto;
+}
+.account-popup-actions .account-action-row .action-left .action-icon {
+  margin-right: 10px;
+}
+.account-popup-actions .account-action-row .action-left .action-title {
+  line-height: 1.6;
+  font-size: 1rem;
+  padding: 5px 0;
+}
+
+.log-out-overlay {
+  font: "Favorit", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.95;
+}
+.log-out-overlay-text {
+  font-size: 1.625rem;
+  font-weight: bolder;
+  line-height: 1.3077;
+  margin-bottom: 30px;
+}
+.log-out-overlay-buttons-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.log-out-overlay-buttons-row a {
+  margin: 15px 8px 0;
+  width: auto;
+  font-weight: bold;
+}
+
 .LoginCard {
   width: 300px;
   height: 100%;

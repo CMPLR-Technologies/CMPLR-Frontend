@@ -80,7 +80,7 @@ export default function AccountPopupBlog(props) {
     `;
 
     return (
-        <div className="account-popup-blog">
+        <div data-testid="AccountPopupBlog" className="account-popup-blog">
             <div className="account-popup-blog-head">
                 <NavLink
                     to={`/blog/${url}`}

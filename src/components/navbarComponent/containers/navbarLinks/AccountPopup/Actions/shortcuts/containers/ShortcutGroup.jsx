@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 export default function ShortcutGroup(props) {
     const { name, list } = props.data;
     return (
-        <div>
+        <div data-testid="ShortcutsGroup">
             <h2>{name}</h2>
             <div className="shortcut-group">
                 {list.map((shortcut, index) => (

@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom';
 export default function AccountPopupFooter() {
     return (
         <div
-            data-testid="dropDownAccountFooter"
+            data-testid="AccountPopupFooter"
             className={`account-popup-footer account-popup-header`}
         >
             <NavLink to="/about" className={`clickable`}>

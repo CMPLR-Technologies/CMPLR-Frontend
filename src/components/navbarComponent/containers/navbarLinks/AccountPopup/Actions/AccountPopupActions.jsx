@@ -50,7 +50,7 @@ export default function AccountPopupActions() {
 
     return (
         <div
-            data-testid="dropDownAccountActions"
+            data-testid="AccountPopupActions"
             className={`account-popup-actions`}
         >
             {shortcutOverlay && (
