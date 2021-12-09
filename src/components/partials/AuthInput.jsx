@@ -43,7 +43,7 @@ AuthInput.propTypes = {
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
-    value: PropTypes,
+    value: PropTypes.string,
     setValue: PropTypes.func.isRequired,
     id: PropTypes.string,
     readonly: PropTypes.bool,

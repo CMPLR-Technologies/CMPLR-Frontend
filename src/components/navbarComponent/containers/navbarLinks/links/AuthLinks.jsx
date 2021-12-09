@@ -65,7 +65,7 @@ export default function AuthLinks() {
             <li className="link-icon">
                 <NavLink
                     className={navData => (navData.isActive ? 'active' : '')}
-                    to="/dashbord"
+                    to="/dashboard"
                 >
                     <i className="fas fa-home"></i>
                 </NavLink>

@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import useRedirect from '../../hooks/useRedirect';
 import '../../styles/styles.css';
 import AuthFooter from '../partials/AuthFooter';
 import RegisterCard from './containers/RegisterCard';
-import { UserContext } from '../../contexts/userContext/UserContext';
-import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
 
 /**
  * Register Main Component
@@ -14,15 +12,7 @@ import { useContext } from 'react';
  */
 
 export default function Register() {
-    const navigate = useNavigate();
-    const { user } = useContext(UserContext);
-
-    useEffect(() => {
-        if (user) {
-            navigate('/dashboard');
-        }
-    }, []);
-
+    useRedirect();
     return (
         <div className="LoginView">
             <RegisterCard />

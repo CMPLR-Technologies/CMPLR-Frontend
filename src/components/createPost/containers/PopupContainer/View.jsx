@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Modal from '@mui/material/Modal';
 import { ProfilePic } from './ProfilePicturePopup';
 import { useState } from 'react';
@@ -33,11 +33,11 @@ export default function CreateModal() {
         handlePosting(dataBody, navigate);
     };
 
-    // useEffect(() => {
-    //     if (!user) {
-    //         navigate('/');
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (!user) {
+            navigate('/');
+        }
+    }, []);
 
     return (
         <>

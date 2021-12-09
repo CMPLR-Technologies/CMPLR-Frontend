@@ -17,5 +17,5 @@ export default function NavbarLinks(props) {
 }
 
 NavbarLinks.propTypes = {
-    isAuth: PropTypes
+    isAuth: PropTypes.bool
 };

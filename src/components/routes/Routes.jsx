@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import LoginView from '../loginComponent/View';
 import Register from '../registerComponent/View';
 import HomePage from '../homeComponent/View';
@@ -7,12 +7,19 @@ import Navbar from '../navbarComponent/View';
 import MessagesPageMobile from '../navbarComponent/containers/navbarLinks/MessagesPopup/MessagesPageMobile';
 import ForgetPassword from '../forgetPasswordComponent/View';
 import ResetPassword from '../resetPasswordComponent/View';
+import { UserContext } from '../../contexts/userContext/UserContext';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
-import CreatePost from '../createPost/View';
 import HandMadeTextEditor from '../RichTextEditor/View';
 import CreateModal from '../createPost/containers/PopupContainer/View';
+import Dashboard from '../dashboardComponent/View';
 
 export default function MainRoutes() {
+    const user = useContext(UserContext);
+    useEffect(() => {
+        if (localStorage.getItem('user')) {
+            user.setUser(JSON.parse(localStorage.getItem('user')));
+        }
+    }, []);
     const theme = useContext(ThemeContext)[0];
     const css = `
         body{
@@ -31,7 +38,7 @@ export default function MainRoutes() {
                     <Route path="/messaging" element={<MessagesPageMobile />} />
                     <Route path="/new/post" element={<CreateModal />} />
                     <Route path="/rich" element={<HandMadeTextEditor />} />
-                    <Route path="/dashboard" element={<CreatePost />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<LoginView />} />
                     <Route path="/" element={<HomePage />} />

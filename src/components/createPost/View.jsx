@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import OptionsCreatePost from './containers/DashboardContainer/OptionsCard';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 import ProfilePicContainer from './containers/DashboardContainer/ProfilePicContainer';
-// import { useEffect } from 'react';
-// import { UserContext } from '../../contexts/userContext/UserContext';
-// import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { UserContext } from '../../contexts/userContext/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreatePost() {
-    // const { user } = useContext(UserContext);
-    // const navigate = useNavigate();
+    const { user } = useContext(UserContext);
+    const navigate = useNavigate();
     const theme = useContext(ThemeContext)[0];
     const css = `
         .create_container {
@@ -31,11 +31,11 @@ export default function CreatePost() {
         }
     `;
 
-    // useEffect(() => {
-    //     if (!user) {
-    //         navigate('/');
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (!user) {
+            navigate('/');
+        }
+    }, []);
     return (
         <>
             <style>{css}</style>

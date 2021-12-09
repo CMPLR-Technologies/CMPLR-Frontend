@@ -1,63 +1,72 @@
 .LoginCard {
-  width: 300px;
-  height: 100%;
-  padding-top: 4rem;
-
-  .LoginCard__a {
     width: 300px;
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    height: 100%;
+    padding-top: 1rem;
 
-    color: white;
+    .LoginCard__a {
+        width: 300px;
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 5px;
 
-    text-decoration: none;
-    text-align: center;
-  }
+        color: white;
+
+        text-decoration: none;
+        text-align: center;
+    }
+}
+
+.trending-link {
+    margin-bottom: 30px;
+    cursor: pointer;
 }
 
 .LoginCard__logo-container {
-  text-align: center;
+    text-align: center;
 
-  p {
-    margin: 0;
-  }
+    p {
+        margin: 0;
+    }
 }
 
 .LoginCard__logo {
-  font-size: 6rem;
-  color: white;
-  font-weight: bold;
-  font-family: "Bookman Old Style Regular";
+    font-size: 6rem;
+    color: white;
+    font-weight: bold;
+    font-family: 'Bookman Old Style Regular';
 }
 
 .login-form {
-  p {
-    color: white;
-    font-size: 12px;
-    font-weight: 100;
-    text-align: center;
-    line-height: 20px;
+    p {
+        color: white;
+        font-size: 12px;
+        font-weight: 100;
+        text-align: center;
+        line-height: 20px;
 
-    padding-bottom: 10px;
-    padding-top: 10px;
-  }
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
 }
 
 .LoginCard__stores-logos {
-  display: none;
+    display: none;
 }
-
-@media screen and (max-width: 900px) {
-  .LoginCard__stores-logos {
-    width: 300px;
+.load-circle {
     display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
+    justify-content: center;
+    margin-top: 10px;
+}
+@media screen and (max-width: 900px) {
+    .LoginCard__stores-logos {
+        width: 300px;
+        display: flex;
+        justify-content: space-between;
+        margin: 35px 0;
 
-    img {
-      width: 100%;
-      height: 65px;
+        img {
+            width: 100%;
+            height: 65px;
+        }
     }
-  }
 }

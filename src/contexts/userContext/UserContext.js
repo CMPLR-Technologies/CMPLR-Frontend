@@ -12,5 +12,5 @@ export default function UserContextProvider(props) {
 }
 
 UserContextProvider.propTypes = {
-    children: PropTypes.any.isRequired,
+    children: PropTypes.any.isRequired
 };
