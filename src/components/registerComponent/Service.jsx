@@ -6,16 +6,20 @@ export const handleStepOne = (
     bodyData,
     setOpenError,
     setRegisterStep,
-    setErrorMessage
+    setErrorMessage,
+    setIsPending
 ) => {
     let errorMsg = validateStepOne(
         bodyData.email,
         bodyData.password,
         bodyData.blog_name
     );
+    setIsPending(true);
+
     if (errorMsg?.length !== 0) {
         setErrorMessage(errorMsg); //TODO: set the msg which comes from backend
         setOpenError(true);
+        setIsPending(false);
         return;
     } else {
         Axios({
@@ -31,10 +35,13 @@ export const handleStepOne = (
                 //all data is validated go to age page
                 setOpenError(false);
                 setRegisterStep(2);
+                setIsPending(false);
             })
             .catch(err => {
-                setErrorMessage(err.response.data.error);
+                if (err.response) setErrorMessage(err.response.data.error);
+                else setErrorMessage(["Couldn't Sign Up"]);
                 setOpenError(true);
+                setIsPending(false);
             });
     }
 };
@@ -44,12 +51,15 @@ export const handleStepTwo = (
     setOpenError,
     setErrorMessage,
     setUser,
-    navigate
+    navigate,
+    setIsPending
 ) => {
     const errorMsg = validateStepTwo(bodyData.age);
+    setIsPending(true);
     if (errorMsg?.length !== 0) {
         setErrorMessage(errorMsg); //TODO: set the msg which comes from backend
         setOpenError(true);
+        setIsPending(false);
         return;
     } else {
         Axios({
@@ -65,10 +75,13 @@ export const handleStepTwo = (
                 setOpenError(false);
                 setUser(res.data.response);
                 navigate('/dashboard');
+                setIsPending(false);
             })
             .catch(err => {
-                setErrorMessage(err.response.data.error);
+                if (err.response) setErrorMessage(err.response.data.error);
+                else setErrorMessage(["Couldn't Sign Up"]);
                 setOpenError(true);
+                setIsPending(false);
                 return null;
             });
     }

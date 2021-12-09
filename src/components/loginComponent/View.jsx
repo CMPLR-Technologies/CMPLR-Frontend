@@ -2,6 +2,7 @@ import React from 'react';
 import LoginCard from './containers/LoginCard';
 import AuthFooter from '../partials/AuthFooter';
 import { getRandomImage } from './Controller';
+import useRedirect from '../../hooks/useRedirect';
 
 /**
  * Login Main Component
@@ -10,6 +11,7 @@ import { getRandomImage } from './Controller';
  * @returns {Component} Component that contains LoginCard and AuthFooter
  */
 export default function LoginView() {
+    useRedirect();
     const b = getRandomImage();
     return (
         <div className="LoginView" style={{ backgroundImage: `url(${b})` }}>

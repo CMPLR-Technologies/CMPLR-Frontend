@@ -4,6 +4,7 @@ import AuthBtn from '../../partials/AuthBtn';
 import AuthAlert from '../../partials/AuthAlert';
 import PropTypes from 'prop-types';
 import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
+import { CircularProgress } from '@mui/material';
 
 /**
  * @function RegisterStepTwo
@@ -16,9 +17,10 @@ import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
  * @returns {Component} the age input & a next button to finish registeration
  */
 export default function RegisterStepTwo(props) {
-    const { age, setAge, handleStepTwo, openError, errorMessage } = props;
+    const { age, setAge, handleStepTwo, openError, errorMessage, isPending } =
+        props;
     return (
-        <div style={{ paddingTop: '15%' }} className="LoginCard">
+        <div className="LoginCard">
             <div className="LoginCard__logo-container">
                 <p className="LoginCard__logo">cmplr</p>
             </div>
@@ -37,7 +39,7 @@ export default function RegisterStepTwo(props) {
                         );
                     })}
                 <AuthInput
-                    value={age}
+                    value={age || ''}
                     setValue={setAge}
                     name="register_age"
                     type="number"
@@ -52,6 +54,11 @@ export default function RegisterStepTwo(props) {
                     text="Next"
                     color="#00b8ff"
                 />
+                {isPending && (
+                    <div className="load-circle">
+                        <CircularProgress />
+                    </div>
+                )}
             </div>
             <p className="LoginCard__a">
                 <a className="register_explore_anchor">
@@ -73,9 +80,10 @@ export default function RegisterStepTwo(props) {
 }
 
 RegisterStepTwo.propTypes = {
-    age: PropTypes.number.isRequired,
+    age: PropTypes.string,
     setAge: PropTypes.func.isRequired,
     handleStepTwo: PropTypes.func.isRequired,
     openError: PropTypes.bool.isRequired,
-    errorMessage: PropTypes.string.isRequired
+    errorMessage: PropTypes.array.isRequired,
+    isPending: PropTypes.bool
 };

@@ -10,7 +10,6 @@ import ForgetPassword from '../forgetPasswordComponent/View';
 import ResetPassword from '../resetPasswordComponent/View';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 import CreatePost from '../createPost/View';
-import ContainerCKeditor from '../createPost/containers/CKeditor';
 import HandMadeTextEditor from '../RichTextEditor/View';
 
 export default function MainRoutes() {

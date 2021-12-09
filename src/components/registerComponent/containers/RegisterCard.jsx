@@ -23,6 +23,7 @@ export default function RegisterCard() {
     const [registerStep, setRegisterStep] = useState(1);
     const navigate = useNavigate();
     const { setUser } = useContext(UserContext);
+    const [isPending, setIsPending] = useState(false);
 
     const handleOne = () => {
         const dataBody = {
@@ -31,7 +32,13 @@ export default function RegisterCard() {
             // eslint-disable-next-line camelcase
             blog_name: blogName
         };
-        handleStepOne(dataBody, setOpenError, setRegisterStep, setErrorMessage);
+        handleStepOne(
+            dataBody,
+            setOpenError,
+            setRegisterStep,
+            setErrorMessage,
+            setIsPending
+        );
     };
 
     const handleTwo = () => {
@@ -47,7 +54,8 @@ export default function RegisterCard() {
             setOpenError,
             setErrorMessage,
             setUser,
-            navigate
+            navigate,
+            setIsPending
         );
     };
     return (
@@ -63,6 +71,7 @@ export default function RegisterCard() {
                     setBlogName={setBlogName}
                     openError={openError}
                     errorMessage={errorMessage}
+                    isPending={isPending}
                 />
             )}
             {registerStep === 2 && (
@@ -72,6 +81,7 @@ export default function RegisterCard() {
                     setAge={setAge}
                     openError={openError}
                     errorMessage={errorMessage}
+                    isPending={isPending}
                 />
             )}
         </>

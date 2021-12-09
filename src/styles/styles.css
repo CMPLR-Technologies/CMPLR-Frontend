@@ -78,9 +78,12 @@
 
 .AuthFooter {
   display: flex;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
   justify-content: space-between;
-  width: 100%;
   padding: 15px 10px;
+  align-self: flex-end;
 }
 .AuthFooter a {
   color: white;
@@ -1257,7 +1260,7 @@
 .LoginCard {
   width: 300px;
   height: 100%;
-  padding-top: 4rem;
+  padding-top: 1rem;
 }
 .LoginCard .LoginCard__a {
   width: 300px;
@@ -1267,6 +1270,11 @@
   color: white;
   text-decoration: none;
   text-align: center;
+}
+
+.trending-link {
+  margin-bottom: 30px;
+  cursor: pointer;
 }
 
 .LoginCard__logo-container {
@@ -1297,12 +1305,18 @@
   display: none;
 }
 
+.load-circle {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 900px) {
   .LoginCard__stores-logos {
     width: 300px;
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin: 35px 0;
   }
   .LoginCard__stores-logos img {
     width: 100%;
@@ -1310,8 +1324,8 @@
   }
 }
 .LoginView {
-  width: 100vw;
   min-height: 100vh;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;

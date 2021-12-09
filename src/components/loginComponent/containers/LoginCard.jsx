@@ -9,6 +9,7 @@ import { handleLogin } from '../Controller';
 import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
 import { useContext } from 'react';
 import { UserContext } from '../../../contexts/userContext/UserContext';
+import { CircularProgress } from '@mui/material';
 
 /**
  * LoginCard Component
@@ -24,12 +25,23 @@ export default function LoginCard() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [isPending, setIsPending] = useState(false);
     return (
         <div className="LoginCard">
             <div className="LoginCard__logo-container">
                 <p className="LoginCard__logo">cmplr</p>
             </div>
-            <AuthAlert errorMessage={error} openError={error.length !== 0} />
+            {error &&
+                error?.length !== 0 &&
+                error?.map((errorMsg, index) => {
+                    return (
+                        <AuthAlert
+                            key={index}
+                            openError={error.length !== 0}
+                            errorMessage={errorMsg}
+                        />
+                    );
+                })}
 
             <div className="login-form">
                 <AuthInput
@@ -58,9 +70,20 @@ export default function LoginCard() {
                     text="Log in"
                     color="#00b8ff"
                     handleClick={() =>
-                        handleLogin(email, password, setError, setUser)
+                        handleLogin(
+                            email,
+                            password,
+                            setError,
+                            setUser,
+                            setIsPending
+                        )
                     }
                 ></AuthBtn>
+                {isPending && (
+                    <div className="load-circle">
+                        <CircularProgress />
+                    </div>
+                )}
             </div>
 
             <a className="LoginCard__a" href="/forget_password">

@@ -16,10 +16,13 @@ const inputCheck = (email, password) => {
     return null;
 };
 
-const handleLogin = (email, password, setError, setUser) => {
+const handleLogin = (email, password, setError, setUser, setIsPending) => {
     const err = inputCheck(email, password);
-    if (err) setError(err);
-    else logUser(email, password, setUser, setError);
+    setIsPending(true);
+    if (err) {
+        setError([err]);
+        setIsPending(false);
+    } else logUser(email, password, setUser, setError, setIsPending);
 };
 
 export { getRandomImage, handleLogin };
