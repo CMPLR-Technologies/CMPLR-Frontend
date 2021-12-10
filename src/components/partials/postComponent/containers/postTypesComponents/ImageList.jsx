@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { extractImageData, showImage, closeImagePreview } from '../Controller';
+import {
+    extractImageData,
+    showImage,
+    closeImagePreview
+} from '../../Controller';
 import PropTypes from 'prop-types';
 
 /**

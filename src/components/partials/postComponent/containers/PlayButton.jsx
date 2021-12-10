@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 PlayButton.propTypes = {
-   played: PropTypes.bool.isRequired,
+    played: PropTypes.bool.isRequired
 };
 export default function PlayButton(props) {
     const { played } = props;

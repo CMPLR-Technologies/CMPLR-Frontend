@@ -21,15 +21,24 @@ import {
     handleCreateLink,
     handleColor
 } from './Controller';
-
+import PostComponent from '../partials/postComponent/containers/PostComponent';
 const Input = styled('input')({
     display: 'none'
 });
 export default function HandMadeTextEditor(props) {
-    const { setContent } = props;
+    const { setContent, reblog, post } = props;
 
     return (
         <>
+            {reblog && (
+                <PostComponent
+                    radar={true}
+                    reblog={true}
+                    padding="20px"
+                    left="-20px"
+                    post={post}
+                />
+            )}
             <div className="main-richeditor">
                 <div
                     className="content"
@@ -198,5 +207,7 @@ export default function HandMadeTextEditor(props) {
 }
 
 HandMadeTextEditor.propTypes = {
-    setContent: PropTypes.func.isRequired
+    setContent: PropTypes.func.isRequired,
+    reblog: PropTypes.bool,
+    post: PropTypes.object
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Modal from '@mui/material/Modal';
 import { ProfilePic } from './ProfilePicturePopup';
 import { useState } from 'react';
@@ -8,16 +8,20 @@ import BottomMainControllers from './Bottom/BottomContainer';
 import { UserContext } from '../../../../contexts/userContext/UserContext';
 import { useContext } from 'react';
 import HandMadeTextEditor from '../../../RichTextEditor/View';
-import { handlePosting } from '../../Service';
-import { useNavigate } from 'react-router-dom';
+import { handlePosting, reblogPost } from '../../Service';
+import { useNavigate, useParams } from 'react-router-dom';
+import { fetchPost } from '../../Service';
+import PropTypes from 'prop-types';
 
-export default function CreateModal() {
+export default function CreateModal(props) {
     const [titlePost, setTitlePost] = useState('');
     const [content, setContent] = useState('');
+    const [post, setPost] = useState({});
     const [postType, setPostType] = useState('Post now');
     const navigate = useNavigate();
-
     const { user } = useContext(UserContext);
+    const { postId } = useParams();
+    const { reblog } = props;
 
     const handleClose = () => {
         navigate('/dashboard');
@@ -33,11 +37,20 @@ export default function CreateModal() {
         handlePosting(dataBody, navigate);
     };
 
-    // useEffect(() => {
-    //     if (!user) {
-    //         navigate('/');
-    //     }
-    // }, []);
+    const handleReblog = () => {
+        const dataBody = {
+            content: content,
+            user: user
+        };
+
+        reblogPost(dataBody, navigate);
+    };
+
+    useEffect(() => {
+        if (postId !== undefined) {
+            fetchPost(postId, setPost);
+        }
+    }, [postId]);
 
     return (
         <>
@@ -62,20 +75,32 @@ export default function CreateModal() {
                                             {/**---------------------First hazemkak */}
                                             <HeaderCreatePost />
                                             <div className="post-form--form">
-                                                <div>
-                                                    <TitleField
-                                                        setTitlePost={
-                                                            setTitlePost
-                                                        }
-                                                    />
-                                                </div>
+                                                {!reblog && (
+                                                    <div>
+                                                        <TitleField
+                                                            titlePost={
+                                                                titlePost
+                                                            }
+                                                            cantedit={true}
+                                                            setTitlePost={
+                                                                setTitlePost
+                                                            }
+                                                        />
+                                                    </div>
+                                                )}
                                                 <div>
                                                     <div className="editor-wrapper">
                                                         <div className="editor-slot">
                                                             <HandMadeTextEditor
+                                                                content={
+                                                                    content
+                                                                }
+                                                                cantedit={true}
                                                                 setContent={
                                                                     setContent
                                                                 }
+                                                                reblog={reblog}
+                                                                post={post}
                                                             />
                                                         </div>
                                                     </div>
@@ -83,10 +108,16 @@ export default function CreateModal() {
                                             </div>
                                             <BottomMainControllers
                                                 handleCloseModal={handleClose}
-                                                handlePost={handlePost}
+                                                handlePost={
+                                                    reblog
+                                                        ? handleReblog
+                                                        : handlePost
+                                                }
                                                 postType={postType}
                                                 content={content}
-                                                titlePost={titlePost}
+                                                titlePost={
+                                                    reblog ? null : titlePost
+                                                }
                                                 setPostType={setPostType}
                                             />
                                         </div>
@@ -100,3 +131,7 @@ export default function CreateModal() {
         </>
     );
 }
+
+CreateModal.propTypes = {
+    reblog: PropTypes.bool
+};

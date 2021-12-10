@@ -1,5 +1,6 @@
 {
     "/user/*": "/$1",
     "/post/*": "/$1",
+    "/posts/*": "/$1",
     "/post/:blog_identifier/*": "/$1"
 }

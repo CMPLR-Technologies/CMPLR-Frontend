@@ -12,7 +12,8 @@ NotesHeader.propTypes = {
     numberNotes: PropsTypes.number.isRequired,
     totalLikes: PropsTypes.number.isRequired,
     totalReblogs: PropsTypes.number.isRequired,
-    setNotesView: PropsTypes.func.isRequired
+    setNotesView: PropsTypes.func.isRequired,
+    notes: PropsTypes.array
 };
 
 export default function NotesHeader(props) {

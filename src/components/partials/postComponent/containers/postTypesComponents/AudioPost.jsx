@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
-import PlayButton from './PlayButton';
+import PlayButton from '../PlayButton';
 import {
     handlePlayAudio,
     changeCurrentTimePlayedAudio,
     handleAudioSlider
-} from '../Controller';
+} from '../../Controller';
 
 import PropTypes from 'prop-types';
 

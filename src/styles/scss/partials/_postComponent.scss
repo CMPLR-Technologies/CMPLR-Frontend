@@ -593,6 +593,29 @@
                         .note-option-btn {
                             flex: 0 1 0%;
                             margin-left: auto;
+                            position: relative;
+                        }
+                        .option-list {
+                            position: absolute;
+                            height: auto;
+                            background-color: white;
+                            top: 40px;
+                            width: 60%;
+                            left: 50px;
+                            .opt-btn {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                padding: 10px;
+                                font-weight: 400;
+                                line-height: 1.5;
+                                font-size: 1rem;
+
+                                &:hover {
+                                    cursor: pointer;
+                                    background-color: gray ;
+                                }
+                            }
                         }
                     }
                 }

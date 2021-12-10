@@ -667,6 +667,28 @@
 .post-footer-icons .notes-view-container .notes-view-flex .notes-view-content .notes-list .note-content .note-option-btn {
   flex: 0 1 0%;
   margin-left: auto;
+  position: relative;
+}
+.post-footer-icons .notes-view-container .notes-view-flex .notes-view-content .notes-list .note-content .option-list {
+  position: absolute;
+  height: auto;
+  background-color: white;
+  top: 40px;
+  width: 60%;
+  left: 50px;
+}
+.post-footer-icons .notes-view-container .notes-view-flex .notes-view-content .notes-list .note-content .option-list .opt-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+.post-footer-icons .notes-view-container .notes-view-flex .notes-view-content .notes-list .note-content .option-list .opt-btn:hover {
+  cursor: pointer;
+  background-color: gray;
 }
 .post-footer-icons .notes-view-container .notes-view-flex .input-area {
   display: flex;

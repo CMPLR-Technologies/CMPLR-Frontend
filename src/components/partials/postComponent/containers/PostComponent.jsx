@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import AudioPost from './AudioPost';
-import ImageList from './ImageList';
-import OptionsButton from './OptionsButton.svg';
-import TextPost from './TextPost';
+import AudioPost from './postTypesComponents/AudioPost';
+import ImageList from './postTypesComponents/ImageList';
+import OptionsButton from './SVG/OptionsButton.svg';
+import TextPost from './postTypesComponents/TextPost';
 import Tags from './Tags';
-import VideoPost from './VideoPost';
+import VideoPost from './postTypesComponents/VideoPost';
 import Footer from './Footer';
 import Divider from './Divider';
 import Modal from '../../Modal';
@@ -28,11 +28,15 @@ PostComponent.propTypes = {
     post: PropTypes.object.isRequired,
     isFollowed: PropTypes.bool.isRequired,
     userBlogName: PropTypes.string.isRequired,
-    radar: PropTypes.bool
+    radar: PropTypes.bool,
+    left: PropTypes.string,
+    reblog: PropTypes.bool,
+    padding: PropTypes.string
 };
 
 export default function PostComponent(props) {
-    const { post, isFollowed, userBlogName, radar } = props;
+    const { post, isFollowed, userBlogName, radar, left, reblog, padding } =
+        props;
 
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);
     const [following, setFollowing] = useState(isFollowed);
@@ -61,7 +65,7 @@ export default function PostComponent(props) {
     window.addEventListener('resize', () => chaneMobileView(setMobileView));
 
     return (
-        <div className="post-wrapper">
+        <div style={{ left: left }} className="post-wrapper">
             {isMsgModalOpen && (
                 <Modal messageHeading={`${blogName} has been blocked`}>
                     <AuthBtn
@@ -117,7 +121,7 @@ export default function PostComponent(props) {
                         </div>
                     </div>
                 )}
-                <header className="post-header">
+                <header style={{ padding: padding }} className="post-header">
                     {(mobileView || radar) && (
                         <div className="author-avatar mob">
                             <div className="sticky-avatar mob">
@@ -128,7 +132,7 @@ export default function PostComponent(props) {
                     <div className="header-flex">
                         <div className="header-title">
                             <span className="post-heading">{blogName}</span>
-                            {!following && (
+                            {!following && !reblog && (
                                 <button
                                     onClick={() =>
                                         follow(blogUrl, blogEmail, setFollowing)
@@ -140,14 +144,16 @@ export default function PostComponent(props) {
                             )}
                         </div>
                         <div className="options-btn">
-                            <button
-                                onClick={() => {
-                                    setIsOptionListOpen(!isOptionListOpen);
-                                }}
-                                className="btn"
-                            >
-                                <OptionsButton />
-                            </button>
+                            {!reblog && (
+                                <button
+                                    onClick={() => {
+                                        setIsOptionListOpen(!isOptionListOpen);
+                                    }}
+                                    className="btn"
+                                >
+                                    <OptionsButton />
+                                </button>
+                            )}
                             {isOptionListOpen && (
                                 <OptionsList
                                     postTime={postTime}
@@ -204,19 +210,22 @@ export default function PostComponent(props) {
                         />
                     </>
                 )}
-                {/* todo:Link Post */}
-                <div className="post-footer">
-                    <Tags tagsArray={tags} />
-                    <Footer
-                        isAuthor={userBlogName === blogName}
-                        postLink={postLink}
-                        numberNotes={numberNotes}
-                        reblogKey={reblogKey}
-                        postId={postId}
-                        postAuthor={userBlogName}
-                        authorAvatar={avatar}
-                    />
-                </div>
+                {!reblog && (
+                    <div className="post-footer">
+                        <Tags tagsArray={tags} />
+                        <Footer
+                            isAuthor={userBlogName === blogName}
+                            postLink={postLink}
+                            numberNotes={numberNotes}
+                            reblogKey={reblogKey}
+                            postId={postId}
+                            blogName={blogName}
+                            postAuthor={userBlogName}
+                            authorAvatar={avatar}
+                            setIsModalOpenN={setIsModalOpen}
+                        />
+                    </div>
+                )}{' '}
             </article>
         </div>
     );

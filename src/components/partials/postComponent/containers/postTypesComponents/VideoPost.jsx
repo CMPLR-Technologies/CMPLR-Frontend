@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import ToggleFullScreen from './ToggleFullScreen.svg';
-import ToggleSound from './ToggleSound.svg';
-import PlayButton from './PlayButton';
+import ToggleFullScreen from '../SVG/ToggleFullScreen.svg';
+import ToggleSound from '../SVG/ToggleSound.svg';
+import PlayButton from '../PlayButton';
 import {
     handlePlayVideo,
     handleFullscreen,
     handleSlider,
     changeCurrentTimePlayed,
     handleVideoTag
-} from '../Controller';
+} from '../../Controller';
 
 import PropTypes from 'prop-types';
 

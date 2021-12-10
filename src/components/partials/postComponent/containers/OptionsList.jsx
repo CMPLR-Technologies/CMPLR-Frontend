@@ -1,6 +1,7 @@
 import React from 'react';
 import { copyLink } from '../Controller';
 import { unfollow } from '../Services';
+import PropTypes from 'prop-types';
 
 export default function OptionsList(props) {
     const {
@@ -87,3 +88,16 @@ export default function OptionsList(props) {
         </div>
     );
 }
+
+OptionsList.propTypes = {
+    postTime: PropTypes.string,
+    userBlogName: PropTypes.string,
+    blogName: PropTypes.string,
+    postLink: PropTypes.string,
+    postId: PropTypes.number,
+    following: PropTypes.bool,
+    blogUrl: PropTypes.string,
+    setFollowing: PropTypes.func,
+    setIsModalOpen: PropTypes.func,
+    setIsOptionListOpen: PropTypes.func
+};

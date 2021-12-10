@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import NotePost from './NotePost';
 import PropTypes from 'prop-types';
 import { submitNote } from '../../Services';
@@ -6,13 +6,27 @@ import { submitNote } from '../../Services';
 NotesContent.propTypes = {
     postAuthor: PropTypes.string.isRequired,
     authorAvatar: PropTypes.string.isRequired,
-    notes: PropTypes.array
+    notes: PropTypes.array,
+    setNotes: PropTypes.func,
+    setCounts: PropTypes.func,
+    type: PropTypes.bool.isRequired,
+    setIsModalOpen: PropTypes.func,
+    setNotesView: PropTypes.func
 };
 
 export default function NotesContent(props) {
-    const { postAuthor, authorAvatar, notes, setNotes, setCounts, type } =
-        props;
+    const {
+        postAuthor,
+        authorAvatar,
+        notes,
+        setNotes,
+        setCounts,
+        type,
+        setIsModalOpen,
+        setNotesView
+    } = props;
     const [reply, setReply] = useState('');
+    const blogIdentifier = 'yahia.tumblr.com';
 
     return (
         <>
@@ -33,7 +47,12 @@ export default function NotesContent(props) {
                 </div>
                 <div className="notes-list">
                     {notes.map((note, key) => (
-                        <NotePost key={key} note={note} />
+                        <NotePost
+                            key={key}
+                            note={note}
+                            setIsModalOpen={setIsModalOpen}
+                            setNotesView={setNotesView}
+                        />
                     ))}
                 </div>
             </div>
@@ -47,7 +66,14 @@ export default function NotesContent(props) {
                 <button
                     disabled={reply === ''}
                     onClick={e => {
-                        submitNote(e, type, reply, 'fds', setNotes, setCounts);
+                        submitNote(
+                            e,
+                            type,
+                            reply,
+                            blogIdentifier,
+                            setNotes,
+                            setCounts
+                        );
                         setReply('');
                     }}
                     className="reply-btn btn"
