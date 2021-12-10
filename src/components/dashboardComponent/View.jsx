@@ -3,6 +3,7 @@ import CreatePost from '../createPost/View';
 import Sidebar from './containers/Sidebar';
 import { apiBaseUrl } from '../../config.json';
 import PostComponent from '../partials/postComponent/View';
+import VerifyEmail from '../VerifyEmail/View';
 import { UserContext } from '../../contexts/userContext/UserContext';
 import Axios from 'axios';
 
@@ -29,6 +30,7 @@ export default function Dashboard() {
         <div className="dashboard">
             <div className="posts-region">
                 <CreatePost />
+                <VerifyEmail />
                 <PostComponent posts={response} userBlogName={user.blogName} />
             </div>
             <Sidebar />
