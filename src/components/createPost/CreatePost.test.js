@@ -2,18 +2,13 @@
 /* eslint-disable no-undef */
 import { fireEvent, render, screen } from "@testing-library/react";
 import React  from "react";
-import UserContextProvider from "../../contexts/userContext/UserContext";
-import { BrowserRouter } from "react-router-dom";
+import MockedComponent from '../partials/MockedComponent.jsx';
 import CreateModal from "./containers/PopupContainer/View";
 
 
 const MockCreateModal = () => {
     return (
-        <BrowserRouter>
-        <UserContextProvider>
-          <CreateModal/>
-          </UserContextProvider>
-        </BrowserRouter>
+        <MockedComponent component={<CreateModal/>}/>
     );
 };
 

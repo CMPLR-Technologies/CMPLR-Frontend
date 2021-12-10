@@ -56,10 +56,8 @@ export function ThemeContextProvider(props) {
             const config = {
                 headers: { Authorization: `Bearer ${user.token}` }
             };
-            axios.get(`${apiBaseUrl}/user_theme`, {}, config).then(response => {
-                console.log('KKKKK');
-                console.log(response.data.theme);
-                setTheme(response.data.theme);
+            axios.get(`${apiBaseUrl}/user_theme`, config).then(res => {
+                setTheme(res.data.response.theme);
             });
         }
     }, [user]);

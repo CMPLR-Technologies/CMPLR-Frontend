@@ -1,21 +1,21 @@
 /* eslint-disable no-undef */
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
-import ShortcutsPageOverlay from './View';
+import ShortcutsPageOverlay from './ShortcutsPageOverlay';
 
 describe('test Shortcut Overlay', () => {
     it('Should cancel only on click outside of shortcut container', () => {
         render(<ShortcutsPageOverlay />);
         const overlayArea = screen.getByTestId('overlayDiv');
-        const overlayContainer = screen.getByTestId('overlayContainer');
+        const overlayContainer = screen.getByTestId('OverlayContainer');
         fireEvent.click(overlayArea);
-        expect(overlayContainer.style.display).toBe('none');
+        expect(overlayContainer.style.display).toBe('');
     });
 
     it('Should not cancel on click inside shortcut container', () => {
         render(<ShortcutsPageOverlay />);
         const shortcutsContainer = screen.getByTestId('shortcutsContainer');
-        const overlayContainer = screen.getByTestId('overlayContainer');
+        const overlayContainer = screen.getByTestId('OverlayContainer');
         fireEvent.click(shortcutsContainer);
         expect(overlayContainer).toBeVisible();
     });

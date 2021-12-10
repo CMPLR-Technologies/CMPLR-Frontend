@@ -127,8 +127,8 @@
       "id": 6
     }
   ],
-  "users": {
-    "theme": "trueBlue"
+  "user_theme": {
+    "theme": "darkMode"
   },
   "register": [
     {
