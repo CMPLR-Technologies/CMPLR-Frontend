@@ -53,8 +53,8 @@ export function ThemeContextProvider(props) {
 
     useEffect(() => {
         if (user) {
-            if (user ? .userData ? .theme) {
-                setTheme(user ? .userData ? .theme);
+            if (user?.userData?.theme) {
+                setTheme(user?.userData?.theme);
             } else {
                 setTheme("trueBlue");
             }
@@ -76,13 +76,10 @@ export function ThemeContextProvider(props) {
                 localStorage.setItem('user', JSON.stringify(adjustUser));
                 setTheme(keys[nextIndex]);
             })
-            .catch(err => {});
+            .catch(() => {});
     };
 
-    return ( <
-        ThemeContext.Provider value = {
-            [theme, changeTheme] } > { children } <
-        /ThemeContext.Provider>
+    return ( <ThemeContext.Provider value = {[theme, changeTheme] } > { children } </ThemeContext.Provider>
     );
 }
 
