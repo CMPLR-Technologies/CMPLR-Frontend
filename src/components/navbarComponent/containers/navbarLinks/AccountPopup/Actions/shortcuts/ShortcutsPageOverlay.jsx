@@ -49,7 +49,7 @@ export default function ShortcutsPageOverlay(props) {
             <div
                 className="overlay-div"
                 onClick={unOverlay}
-                data-testid="overlayDiv"
+                data-testid="OverlayDiv"
             >
                 {' '}
             </div>

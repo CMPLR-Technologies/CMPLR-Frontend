@@ -41,12 +41,18 @@ export default function AccountPopupActions() {
     };
 
     useEffect(() => {
-        axios.get(`${apiBaseUrl}/likes`).then(response => {
-            setLikesCount(response.data.length);
-        });
-        axios.get(`${apiBaseUrl}/following`).then(response => {
-            setFollowingCount(response.data.length);
-        });
+        axios
+            .get(`${apiBaseUrl}/likes`)
+            .then(response => {
+                setLikesCount(response.data.length);
+            })
+            .catch();
+        axios
+            .get(`${apiBaseUrl}/following`)
+            .then(response => {
+                setFollowingCount(response.data.length);
+            })
+            .catch();
     }, []);
 
     return (
@@ -98,7 +104,7 @@ export default function AccountPopupActions() {
                     count=" "
                 />
             </NavLink>
-            <div onClick={viewShortcuts}>
+            <div onClick={viewShortcuts} data-testid="ViewShortcuts">
                 <AccountPopupActionRow
                     key="6"
                     icon="shortcuts"
