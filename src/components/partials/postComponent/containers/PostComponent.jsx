@@ -121,7 +121,7 @@ export default function PostComponent(props) {
                 {!radar && !mobileView && (
                     <div className="author-avatar">
                         <div className="sticky-avatar">
-                            <img src={avatar} className="avatar-img" />
+                            <img data-testid="avatar-img-ts"  src={avatar} className="avatar-img" />
                         </div>
                     </div>
                 )}

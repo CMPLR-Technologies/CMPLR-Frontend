@@ -34,7 +34,7 @@ Footer.propTypes = {
     isAuthor: PropTypes.bool.isRequired,
     postLink: PropTypes.string.isRequired,
     reblogKey: PropTypes.string.isRequired,
-    postId: PropTypes.string.isRequired,
+    postId: PropTypes.number.isRequired,
     postAuthor: PropTypes.string.isRequired,
     authorAvatar: PropTypes.string.isRequired,
     blogName: PropTypes.string.isRequired,

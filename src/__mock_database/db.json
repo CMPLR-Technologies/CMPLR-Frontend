@@ -46,7 +46,7 @@
   },
   "like": {
     "id": 13212383,
-    "reblogKey": 1253
+    "reblogKey": "1253"
   },
   "unlike": {
     "id": 13212383,
@@ -151,7 +151,7 @@
           "post_state": "published",
           "post_id": 13212383,
           "blog_id": 123123,
-          "blog_name": "1dsa",
+          "blog_name": "Yaia",
           "post_type": "text",
           "content": [
             {
@@ -164,7 +164,7 @@
               }
             }
           ],
-          "reblog_key": 1253,
+          "reblog_key": "1253",
           "limit": 5,
           "parent_blog_id": 12523,
           "parent_post_id": 1223,
@@ -202,7 +202,7 @@
       },
       "notes": [
         {
-          "type": "comment",
+          "type": "love",
           "blog_name": "hazom",
           "blog_url": "https://hazom.com",
           "followed": true,
@@ -210,7 +210,7 @@
           "reblog_parent_blog_name": "kholdbold",
           "reblog_parent_blog_url": "https://kholdbold.com",
           "avatar": "https://64.media.tumblr.com/5d65e6564325029026372d750047aca2/da25d5299e6bc43a-9a/s64x64u_c1/d33411435f6a25c6182f6d780030d659f917766b.jpg",
-          "content": "test note"
+          "content": ""
         }
       ]
     }
