@@ -8,21 +8,14 @@ import BottomMainControllers from './Bottom/BottomContainer';
 import { UserContext } from '../../../../contexts/userContext/UserContext';
 import { useContext } from 'react';
 import HandMadeTextEditor from '../../../RichTextEditor/View';
-<<<<<<< HEAD
-import { handlePosting } from '../../Service';
-import { useNavigate } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth';
-
-export default function CreateModal() {
-    useAuth();
-=======
 import { handlePosting, reblogPost } from '../../Service';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchPost } from '../../Service';
 import PropTypes from 'prop-types';
 
 export default function CreateModal(props) {
->>>>>>> Task11
+    useAuth();
     const [titlePost, setTitlePost] = useState('');
     const [content, setContent] = useState('');
     const [post, setPost] = useState({});
@@ -46,8 +39,6 @@ export default function CreateModal(props) {
         handlePosting(dataBody, navigate);
     };
 
-<<<<<<< HEAD
-=======
     const handleReblog = () => {
         const dataBody = {
             content: content,
@@ -63,7 +54,6 @@ export default function CreateModal(props) {
         }
     }, [postId]);
 
->>>>>>> Task11
     return (
         <>
             <Modal

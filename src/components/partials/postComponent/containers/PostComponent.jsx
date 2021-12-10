@@ -35,36 +35,8 @@ PostComponent.propTypes = {
 };
 
 export default function PostComponent(props) {
-<<<<<<< HEAD
-    const { post, isFollowed, userBlogName, radar, otherClass } = props;
-    const {
-        blogName,
-        blogEmail,
-        blogUrl,
-        postTime,
-        tagsArray,
-        content,
-        postLink,
-        blogIdentifier,
-        avatar,
-        numberNotes,
-        reblogKey,
-        postId
-    } = post;
-    let textPost, imagePost, videoPost, audioPost;
-    content &&
-        content.map(item => {
-            if (item.postType === 'text' || item.postType === 'chat')
-                textPost = item;
-            else if (item.postType === 'image') imagePost = item;
-            else if (item.postType === 'link') linkPost = item;
-            else if (item.postType === 'audio') audioPost = item;
-            else if (item.postType === 'video') videoPost = item;
-        });
-=======
     const { post, isFollowed, userBlogName, radar, left, reblog, padding } =
         props;
->>>>>>> Task11
 
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);
     const [following, setFollowing] = useState(isFollowed);
@@ -93,15 +65,11 @@ export default function PostComponent(props) {
     window.addEventListener('resize', () => chaneMobileView(setMobileView));
 
     return (
-<<<<<<< HEAD
-        <div className={`post-wrapper ${otherClass}`}>
-=======
         <div
             data-testid="post-wrapper-ts"
             style={{ left: left }}
             className="post-wrapper"
         >
->>>>>>> Task11
             {isMsgModalOpen && (
                 <Modal messageHeading={`${blogName} has been blocked`}>
                     <AuthBtn
