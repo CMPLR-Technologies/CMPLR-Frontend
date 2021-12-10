@@ -39,7 +39,10 @@ export default function MainRoutes() {
                         path="/forget_password"
                         element={<ForgetPassword />}
                     />
-                    <Route path="/reset_password" element={<ResetPassword />} />
+                    <Route
+                        path="/reset_password/:token"
+                        element={<ResetPassword />}
+                    />
                 </Routes>
                 <style>{css}</style>
             </Router>

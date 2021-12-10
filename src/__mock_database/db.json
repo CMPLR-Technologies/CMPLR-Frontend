@@ -1,232 +1,231 @@
 {
-  "like": {
-    "id": "669549196154634240",
-    "reblogKey": "18528"
-  },
-  "unlike": {
-    "id": "669549196154634240",
-    "reblogKey": "18528"
-  },
-  "post": [
-    {
-      "avatar": "https://64.media.tumblr.com/avatar_1a8182dd0f91_64.pnj",
-      "blogName": "kholdbold",
-      "blogUrl": "dddd",
-      "blogEmail": "dsada",
-      "postTime": "December 4th, 7:44 AM",
-      "content": [
+    "like": {
+        "id": "669549196154634240",
+        "reblogKey": "18528"
+    },
+    "unlike": {
+        "id": "669549196154634240",
+        "reblogKey": "18528"
+    },
+    "post": [
         {
-          "postType": "text",
-          "postTitle": "d7ko",
-          "postText": "<p style=\"color:black\">d7kawya</p>"
+            "avatar": "https://64.media.tumblr.com/avatar_1a8182dd0f91_64.pnj",
+            "blogName": "kholdbold",
+            "blogUrl": "dddd",
+            "blogEmail": "dsada",
+            "postTime": "December 4th, 7:44 AM",
+            "content": [
+                {
+                    "postType": "text",
+                    "postTitle": "d7ko",
+                    "postText": "<p style=\"color:black\">d7kawya</p>"
+                },
+                {
+                    "postType": "image",
+                    "imageUrl": "<img src='https://64.media.tumblr.com/2b6e72c559394259976170140737732a/a722176fd8a580bd-7a/s540x810/7599caa6eceab157e9a643c609b174d8413fabf1.png' alt='photo about friend taking a photo in university'/>",
+                    "caption": "my image in cmp"
+                },
+                {
+                    "postType": "video",
+                    "url": "<video src='https://va.media.tumblr.com/tumblr_r3kt8jhh6v1ztmy6m.mp4'/>"
+                }
+            ],
+            "tagsArray": ["pain", "kaaaak", "joker"],
+            "postLink": "https://kholdbold.tumblr.com/post/669549196154634240/aaaaaaaaaa",
+            "numberNotes": "1",
+            "reblogKey": "18528",
+            "postId": "669549196154634240"
         },
         {
-          "postType": "image",
-          "imageUrl": "<img src='https://64.media.tumblr.com/2b6e72c559394259976170140737732a/a722176fd8a580bd-7a/s540x810/7599caa6eceab157e9a643c609b174d8413fabf1.png' alt='photo about friend taking a photo in university'/>",
-          "caption": "my image in cmp"
-        },
-        {
-          "postType": "video",
-          "url": "<video src='https://va.media.tumblr.com/tumblr_r3kt8jhh6v1ztmy6m.mp4'/>"
+            "avatar": "https://64.media.tumblr.com/avatar_1a8182dd0f91_64.pnj",
+            "blogName": "kholdbold",
+            "blogUrl": "dddd",
+            "blogEmail": "dsada",
+            "postTime": "December 4th, 7:44 AM",
+            "content": [
+                {
+                    "postType": "text",
+                    "postTitle": "d7ko",
+                    "postText": "<p style=\"color:black\">d7kawya</p>"
+                },
+                {
+                    "postType": "image",
+                    "imageUrl": "<img src='https://64.media.tumblr.com/2b6e72c559394259976170140737732a/a722176fd8a580bd-7a/s540x810/7599caa6eceab157e9a643c609b174d8413fabf1.png' alt='photo about friend taking a photo in university'/>",
+                    "caption": "my image in cmp"
+                },
+                {
+                    "postType": "video",
+                    "url": "<video src='https://va.media.tumblr.com/tumblr_r3kt8jhh6v1ztmy6m.mp4'/>"
+                }
+            ],
+            "tagsArray": ["pain000", "kaaaak00", "joker"],
+            "postLink": "https://kholdbold.tumblr.com/post/669549196154634240/aaaaaaaaaa",
+            "numberNotes": "1",
+            "reblogKey": "18518",
+            "postId": "669549116154634240"
         }
-      ],
-      "tagsArray": [
-        "pain",
-        "kaaaak",
-        "joker"
-      ],
-      "postLink": "https://kholdbold.tumblr.com/post/669549196154634240/aaaaaaaaaa",
-      "numberNotes": "1",
-      "reblogKey": "18528",
-      "postId": "669549196154634240"
-    },
-    {
-      "avatar": "https://64.media.tumblr.com/avatar_1a8182dd0f91_64.pnj",
-      "blogName": "kholdbold",
-      "blogUrl": "dddd",
-      "blogEmail": "dsada",
-      "postTime": "December 4th, 7:44 AM",
-      "content": [
-        {
-          "postType": "text",
-          "postTitle": "d7ko",
-          "postText": "<p style=\"color:black\">d7kawya</p>"
-        },
-        {
-          "postType": "image",
-          "imageUrl": "<img src='https://64.media.tumblr.com/2b6e72c559394259976170140737732a/a722176fd8a580bd-7a/s540x810/7599caa6eceab157e9a643c609b174d8413fabf1.png' alt='photo about friend taking a photo in university'/>",
-          "caption": "my image in cmp"
-        },
-        {
-          "postType": "video",
-          "url": "<video src='https://va.media.tumblr.com/tumblr_r3kt8jhh6v1ztmy6m.mp4'/>"
-        }
-      ],
-      "tagsArray": [
-        "pain000",
-        "kaaaak00",
-        "joker"
-      ],
-      "postLink": "https://kholdbold.tumblr.com/post/669549196154634240/aaaaaaaaaa",
-      "numberNotes": "1",
-      "reblogKey": "18518",
-      "postId": "669549116154634240"
-    }
-  ],
-  "follow": {
-    "url": "ddd",
-    "email": "dsada"
-  },
-  "delete": {
-    "id": "669549196154634240"
-  },
-  "unfollow": {},
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
-      "title": "hazem0",
-      "author": "hazemkak0",
-      "id": 2
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": [
-    {
-      "id": "669549196154634240",
-      "reblogKey": "18528"
-    },
-    {
-      "email": "usf@gmail.com",
-      "password": "usfusf",
-      "blogName": "usf",
-      "age": 23,
-      "id": 4
-    },
-    {
-      "email": "hazem@gmail.com",
-      "password": "jnndkj",
-      "blogName": "jnjknkd",
-      "age": 33,
-      "id": 5
-    },
-    {
-      "email": "hazem@gmail.com",
-      "password": "anjskjnjjkn",
-      "blog_name": "sjnkjnsjk",
-      "age": 19,
-      "id": 6
-    }
-  ],
-  "user_theme": {
-    "theme": "darkMode"
-  },
-  "register": [
-    {
-      "email": "hazem@gmail.com",
-      "age": 20,
-      "password": "hazem",
-      "blogname": "hazemkak",
-      "id": 1,
-      "posts": [
-        {
-          "id": 1,
-          "title": "json-server",
-          "author": "typicode"
-        },
-        {
-          "title": "hazem0",
-          "author": "hazemkak0",
-          "id": 2
-        }
-      ],
-      "comments": [
-        {
-          "id": 1,
-          "body": "some comment",
-          "postId": 1
-        }
-      ],
-      "profile": {
-        "name": "typicode"
-      },
-      "register": [
-        {
-          "email": "hazem@gmail.com",
-          "age": 20,
-          "password": "hazem",
-          "blogname": "hazemkak",
-          "id": 1
-        },
-        {
-          "email": "hazemkak@gmail.com",
-          "password": "kakkak",
-          "blogName": "kak",
-          "age": 90,
-          "id": 2
-        },
-        {
-          "email": "haz@gmail.com",
-          "password": "kak",
-          "blogName": "kak",
-          "age": 14,
-          "id": 3
-        },
-        {
-          "email": "usf@gmail.com",
-          "password": "usfusf",
-          "blogName": "usf",
-          "age": 23,
-          "id": 4
-        }
-      ],
-      "forget-password": {
-        "email": "haz4450770@gmail.com"
-      }
-    }
-  ],
-  "recommended-blogs": [
-    {
-      "blogName": "hello-world",
-      "blogDesc": "cpp"
-    },
-    {
-      "blogName": "print",
-      "blogDesc": "python"
-    },
-    {
-      "blogName": "every-thing-fox",
-      "blogDesc": "and other animals"
-    },
-    {
-      "blogName": "hello world",
-      "blogDesc": "cpp"
-    }
-  ],
-  "radar-post": {
-    "avatar": "https://64.media.tumblr.com/avatar_1a8182dd0f91_64.pnj",
-    "blogName": "hello world",
-    "blogUrl": "hello",
-    "blogEmail": "hello@gmail",
-    "postTime": "December 4th, 7:44 AM",
-    "content": [
-      {
-        "postType": "image",
-        "imageUrl": "<img src='https://64.media.tumblr.com/ea4e14d28697d13ad8a2f49996c4be13/9b2285fd182031b7-79/s1280x1920/a60e3c43069ee4fedac986605bf131a479da48f0.jpg' alt='photo about friend taking a photo in university'/>"
-      }
     ],
-    "postLink": "https://kholdbold.tumblr.com/post/669549196154634240/aaaaaaaaaa",
-    "numberNotes": "1",
-    "reblogKey": "18528",
-    "postId": "669549196154634240"
-  }
+    "follow": {
+        "url": "ddd",
+        "email": "dsada"
+    },
+    "delete": {
+        "id": "669549196154634240"
+    },
+    "unfollow": {},
+    "posts": [
+        {
+            "id": 1,
+            "title": "json-server",
+            "author": "typicode"
+        },
+        {
+            "title": "hazem0",
+            "author": "hazemkak0",
+            "id": 2
+        }
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "body": "some comment",
+            "postId": 1
+        }
+    ],
+    "profile": [
+        {
+            "id": "669549196154634240",
+            "reblogKey": "18528"
+        },
+        {
+            "email": "usf@gmail.com",
+            "password": "usfusf",
+            "blogName": "usf",
+            "age": 23,
+            "id": 4
+        },
+        {
+            "email": "hazem@gmail.com",
+            "password": "jnndkj",
+            "blogName": "jnjknkd",
+            "age": 33,
+            "id": 5
+        },
+        {
+            "email": "hazem@gmail.com",
+            "password": "anjskjnjjkn",
+            "blog_name": "sjnkjnsjk",
+            "age": 19,
+            "id": 6
+        }
+    ],
+    "user_theme": {
+        "theme": "darkMode"
+    },
+    "register": [
+        {
+            "email": "hazem@gmail.com",
+            "age": 20,
+            "password": "hazem",
+            "blogname": "hazemkak",
+            "id": 1,
+            "posts": [
+                {
+                    "id": 1,
+                    "title": "json-server",
+                    "author": "typicode"
+                },
+                {
+                    "title": "hazem0",
+                    "author": "hazemkak0",
+                    "id": 2
+                }
+            ],
+            "comments": [
+                {
+                    "id": 1,
+                    "body": "some comment",
+                    "postId": 1
+                }
+            ],
+            "profile": {
+                "name": "typicode"
+            },
+            "register": [
+                {
+                    "email": "hazem@gmail.com",
+                    "age": 20,
+                    "password": "hazem",
+                    "blogname": "hazemkak",
+                    "id": 1
+                },
+                {
+                    "email": "hazemkak@gmail.com",
+                    "password": "kakkak",
+                    "blogName": "kak",
+                    "age": 90,
+                    "id": 2
+                },
+                {
+                    "email": "haz@gmail.com",
+                    "password": "kak",
+                    "blogName": "kak",
+                    "age": 14,
+                    "id": 3
+                },
+                {
+                    "email": "usf@gmail.com",
+                    "password": "usfusf",
+                    "blogName": "usf",
+                    "age": 23,
+                    "id": 4
+                }
+            ],
+
+            "reset_password": {
+                "meta": {
+                    "status": 200
+                },
+                "data": {
+                    "email": "hahah",
+                    "password": "pass1"
+                }
+            }
+        }
+    ],
+    "recommended-blogs": [
+        {
+            "blogName": "hello-world",
+            "blogDesc": "cpp"
+        },
+        {
+            "blogName": "print",
+            "blogDesc": "python"
+        },
+        {
+            "blogName": "every-thing-fox",
+            "blogDesc": "and other animals"
+        },
+        {
+            "blogName": "hello world",
+            "blogDesc": "cpp"
+        }
+    ],
+    "radar-post": {
+        "avatar": "https://64.media.tumblr.com/avatar_1a8182dd0f91_64.pnj",
+        "blogName": "hello world",
+        "blogUrl": "hello",
+        "blogEmail": "hello@gmail",
+        "postTime": "December 4th, 7:44 AM",
+        "content": [
+            {
+                "postType": "image",
+                "imageUrl": "<img src='https://64.media.tumblr.com/ea4e14d28697d13ad8a2f49996c4be13/9b2285fd182031b7-79/s1280x1920/a60e3c43069ee4fedac986605bf131a479da48f0.jpg' alt='photo about friend taking a photo in university'/>"
+            }
+        ],
+        "postLink": "https://kholdbold.tumblr.com/post/669549196154634240/aaaaaaaaaa",
+        "numberNotes": "1",
+        "reblogKey": "18528",
+        "postId": "669549196154634240"
+    }
 }

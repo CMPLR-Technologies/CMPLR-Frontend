@@ -34,7 +34,6 @@ export default function PostComponent(props) {
             if (item.postType === 'text' || item.postType === 'chat')
                 textPost = item;
             else if (item.postType === 'image') imagePost = item;
-            else if (item.postType === 'link') linkPost = item;
             else if (item.postType === 'audio') audioPost = item;
             else if (item.postType === 'video') videoPost = item;
         });
