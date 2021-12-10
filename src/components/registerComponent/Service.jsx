@@ -38,7 +38,10 @@ export const handleStepOne = (
                 setIsPending(false);
             })
             .catch(err => {
-                if (err.response) setErrorMessage(err.response.data.error);
+                let errors = [];
+                errors = getServiceErrors(err);
+
+                if (err.response) setErrorMessage(errors);
                 else setErrorMessage(["Couldn't Sign Up"]);
                 setOpenError(true);
                 setIsPending(false);
@@ -73,8 +76,13 @@ export const handleStepTwo = (
         })
             .then(res => {
                 setOpenError(false);
-                setUser(res.data.response);
-                localStorage.setItem('user', JSON.stringify(res.data.response));
+                const user = {
+                    token: res.data.response.token,
+                    userData: res.data.response.user,
+                    blogName: res.data.response.blog_name
+                };
+                setUser(user);
+                localStorage.setItem('user', JSON.stringify(user));
                 navigate('/dashboard');
                 setIsPending(false);
             })
@@ -86,4 +94,30 @@ export const handleStepTwo = (
                 return null;
             });
     }
+};
+
+const getServiceErrors = err => {
+    let errors = [];
+
+    if (err?.response?.data?.error?.blog_name) {
+        let len = err?.response?.data?.error?.blog_name?.length;
+        for (let i = 0; i < len; i++) {
+            errors.push(err?.response?.data?.error?.blog_name[i]);
+        }
+    }
+
+    if (err?.response?.data?.error?.email) {
+        let len = err?.response?.data?.error?.email?.length;
+        for (let i = 0; i < len; i++) {
+            errors.push(err?.response?.data?.error?.email[i]);
+        }
+    }
+
+    if (err.response.data.error?.password) {
+        let len = err.response.data.error?.password?.length;
+        for (let i = 0; i < len; i++) {
+            errors.push(err.response.data.error?.password[i]);
+        }
+    }
+    return errors;
 };
