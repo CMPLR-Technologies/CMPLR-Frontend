@@ -46,13 +46,13 @@ export default function AccountPopupActions() {
             .then(response => {
                 setLikesCount(response.data.length);
             })
-            .catch();
+            .catch(err=>{});
         axios
             .get(`${apiBaseUrl}/following`)
             .then(response => {
                 setFollowingCount(response.data.length);
             })
-            .catch();
+            .catch(err=>{});
     }, []);
 
     return (

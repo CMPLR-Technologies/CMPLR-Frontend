@@ -28,7 +28,7 @@ export default function PostComponent(props) {
         reblogKey,
         postId
     } = post;
-    let textPost, imagePost, videoPost, audioPost;
+    let textPost, imagePost, videoPost, audioPost, linkPost;
     content &&
         content.map(item => {
             if (item.postType === 'text' || item.postType === 'chat')

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useContext} from 'react';
 import '../../../../styles/styles.css';
 import SearchBar from '../searchBar/SearchBar';
 import NavbarMenuMobile from './NavbarMenuMobile';
 import { Link } from 'react-router-dom';
-import isAuth from '../../../../hooks/isAuth';
+import { UserContext } from '../../../../contexts/userContext/UserContext';
 /**
  * Navbar Section1: includes the logo and the searchbar
  * @function NavbarSection1
@@ -16,6 +16,7 @@ import isAuth from '../../../../hooks/isAuth';
  * @returns {Component} search bar component and logo and menu icon for mobild view
  */
 export default function NavbarSection1() {
+    const user = useContext(UserContext)?.user;
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
     const [mobileView, setMobileView] = useState(false);
@@ -51,7 +52,7 @@ export default function NavbarSection1() {
                 </div>
             )}
             <div className="logo main">
-                <Link to={isAuth() ? '/dashboard' : '/'}>
+                <Link to={user ? '/dashboard' : '/'}>
                     <span className="fa fa-downcase-t"></span>
                 </Link>
             </div>
@@ -60,7 +61,7 @@ export default function NavbarSection1() {
                 <SearchBar />
             ) : mobileView ? (
                 <div className="logo">
-                    <Link to={isAuth() ? '/dashboard' : '/'}>
+                    <Link to={user ? '/dashboard' : '/'}>
                         <span className="fa fa-downcase-t"></span>
                     </Link>
                 </div>
