@@ -3,6 +3,7 @@ import '../../../../styles/styles.css';
 import SearchBar from '../searchBar/SearchBar';
 import NavbarMenuMobile from './NavbarMenuMobile';
 import { Link } from 'react-router-dom';
+import isAuth from '../../../../hooks/isAuth';
 /**
  * Navbar Section1: includes the logo and the searchbar
  * @function NavbarSection1
@@ -14,7 +15,7 @@ import { Link } from 'react-router-dom';
  * @property {function} setMobileView - Search bar open Setter state
  * @returns {Component} search bar component and logo and menu icon for mobild view
  */
- export default function NavbarSection1() {
+export default function NavbarSection1() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
     const [mobileView, setMobileView] = useState(false);
@@ -50,7 +51,7 @@ import { Link } from 'react-router-dom';
                 </div>
             )}
             <div className="logo main">
-                <Link to="/">
+                <Link to={isAuth() ? '/dashboard' : '/'}>
                     <span className="fa fa-downcase-t"></span>
                 </Link>
             </div>
@@ -59,7 +60,7 @@ import { Link } from 'react-router-dom';
                 <SearchBar />
             ) : mobileView ? (
                 <div className="logo">
-                    <Link to="/">
+                    <Link to={isAuth() ? '/dashboard' : '/'}>
                         <span className="fa fa-downcase-t"></span>
                     </Link>
                 </div>
@@ -74,5 +75,4 @@ import { Link } from 'react-router-dom';
             <NavbarMenuMobile active={menuOpen} closeMenu={closeMenu} />
         </div>
     );
-};
-
+}

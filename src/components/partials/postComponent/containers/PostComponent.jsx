@@ -1,16 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import AudioPost from './AudioPost';
-import ImageList from './ImageList';
-import OptionsButton from './OptionsButton.svg';
-import TextPost from './TextPost';
+import AudioPost from './postTypesComponents/AudioPost';
+import ImageList from './postTypesComponents/ImageList';
+import OptionsButton from './SVG/OptionsButton.svg';
+import TextPost from './postTypesComponents/TextPost';
 import Tags from './Tags';
-import VideoPost from './VideoPost';
+import VideoPost from './postTypesComponents/VideoPost';
 import Footer from './Footer';
 import Divider from './Divider';
-import Axios from 'axios';
-import { apiBaseUrl } from '../../../../config.json';
 import Modal from '../../Modal';
 import AuthBtn from '../../AuthBtn';
+import { extractPostContent, chaneMobileView } from '../Controller';
+import { follow, block } from '../Services';
+import PropTypes from 'prop-types';
+import OptionsList from './OptionsList';
+
+/**
+ * @function PostComponent
+ * @description Base Unit Component for all post compoennt types
+ * @param {object} post - object containg post data response received from server
+ * @param {boolean} isFollowed - boolean used to determine if user is following the post author
+ * @param {string} userBlogName - blog name of the user who is logged in
+ * @param {boolean} radar - boolean used to determine if the post viewed in radar section or not
+ * @returns {Component} PostComponent
+ */
+
+PostComponent.propTypes = {
+    post: PropTypes.object.isRequired,
+    isFollowed: PropTypes.bool.isRequired,
+    userBlogName: PropTypes.string.isRequired,
+    radar: PropTypes.bool,
+    left: PropTypes.string,
+    reblog: PropTypes.bool,
+    padding: PropTypes.string
+};
 
 export default function PostComponent(props) {
     const { post, isFollowed, userBlogName, radar, otherClass } = props;
@@ -37,87 +59,41 @@ export default function PostComponent(props) {
             else if (item.postType === 'audio') audioPost = item;
             else if (item.postType === 'video') videoPost = item;
         });
+    const { post, isFollowed, userBlogName, radar, left, reblog, padding } =
+        props;
 
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);
     const [following, setFollowing] = useState(isFollowed);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
     const [mobileView, setMobileView] = useState(false);
-    const copyLink = () => {
-        navigator.clipboard.writeText(postLink);
-        document.getElementById(`copy-btn${postId}`).textContent =
-            'Link Copied!';
-        setTimeout(() => {
-            document.getElementById(`copy-btn${postId}`).textContent =
-                'Copy link';
-        }, 2000);
-    };
-
-    const chaneMobileView = () => {
-        if (window.innerWidth > 960) {
-            setMobileView(false);
-        } else {
-            setMobileView(true);
-        }
-    };
-
+    const {
+        blog_name: blogName,
+        blog_email: blogEmail,
+        blog_url: blogUrl,
+        post_timestamp: postTime,
+        tags: tags,
+        content: content,
+        post_link: postLink,
+        blog_identifier: blogIdentifier,
+        blog_avatar: avatar,
+        number_notes: numberNotes,
+        reblog_key: reblogKey,
+        post_id: postId
+    } = post;
     useEffect(() => {
-        chaneMobileView();
+        chaneMobileView(setMobileView);
     }, []);
-    window.addEventListener('resize', chaneMobileView);
+    let returned = extractPostContent(content);
 
-    //axios requests
-    const unfollow = () => {
-        Axios({
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            url: `${apiBaseUrl}/user/unfollow`,
-            data: {
-                url: blogUrl
-            }
-        }).then(response => {
-            if (response.status === 200) {
-                setFollowing(false);
-                setIsOptionListOpen(false);
-            }
-        });
-    };
-    const follow = () => {
-        Axios({
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            url: `${apiBaseUrl}/user/follow`,
-            data: {
-                url: blogUrl,
-                email: blogEmail
-            }
-        }).then(response => {
-            if (response.status === 200) setFollowing(true);
-        });
-    };
-
-    const block = () => {
-        Axios({
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            url: `${apiBaseUrl}/blog/${blogIdentifier}/blocks}`
-        }).then(response => {
-            if (response.data.meta.status === 200) {
-                setIsOptionListOpen(false);
-                setIsModalOpen(false);
-                setIsMsgModalOpen(true);
-            }
-        });
-    };
+    window.addEventListener('resize', () => chaneMobileView(setMobileView));
 
     return (
-        <div className={`post-wrapper ${otherClass}`}>
+        <div
+            data-testid="post-wrapper-ts"
+            style={{ left: left }}
+            className="post-wrapper"
+        >
             {isMsgModalOpen && (
                 <Modal messageHeading={`${blogName} has been blocked`}>
                     <AuthBtn
@@ -154,13 +130,18 @@ export default function PostComponent(props) {
                         text="Block"
                         color="rgb(255, 73, 47)"
                         handleClick={() => {
-                            block();
+                            block(
+                                blogIdentifier,
+                                setIsOptionListOpen,
+                                setIsModalOpen,
+                                setIsMsgModalOpen
+                            );
                         }}
                     />
                 </Modal>
             )}
 
-            <article className="post-container">
+            <article data-testid="post-container-ts" className="post-container">
                 {!radar && !mobileView && (
                     <div className="author-avatar">
                         <div className="sticky-avatar">
@@ -168,164 +149,132 @@ export default function PostComponent(props) {
                         </div>
                     </div>
                 )}
-                <header className="post-header">
+                <header
+                    data-testid="post-header-ts"
+                    style={{ padding: padding }}
+                    className="post-header"
+                >
                     {(mobileView || radar) && (
                         <div className="author-avatar mob">
                             <div className="sticky-avatar mob">
-                                <img src={avatar} className="avatar-img mob" />
+                                <img
+                                    data-testid="avatar-img-mob-ts"
+                                    src={avatar}
+                                    className="avatar-img mob"
+                                />
                             </div>
                         </div>
                     )}
-                    <div className="header-flex">
-                        <div className="header-title">
-                            <span className="post-heading">{blogName}</span>
-                            {!following && (
+                    <div data-testid="header-flex-ts" className="header-flex">
+                        <div
+                            data-testid="header-title-ts"
+                            className="header-title"
+                        >
+                            <span
+                                data-testid="post-heading-ts"
+                                className="post-heading"
+                            >
+                                {blogName}
+                            </span>
+                            {!following && !reblog && (
                                 <button
-                                    onClick={() => follow()}
+                                    onClick={() =>
+                                        follow(blogUrl, blogEmail, setFollowing)
+                                    }
                                     className="follow-btn"
+                                    data-testid="follow-btn-header-ts"
                                 >
                                     Follow
                                 </button>
                             )}
                         </div>
                         <div className="options-btn">
-                            <button
-                                onClick={() => {
-                                    setIsOptionListOpen(!isOptionListOpen);
-                                }}
-                                className="btn"
-                            >
-                                <OptionsButton />
-                            </button>
+                            {!reblog && (
+                                <button
+                                    onClick={() => {
+                                        setIsOptionListOpen(!isOptionListOpen);
+                                    }}
+                                    className="btn"
+                                    data-testid="opt-btn-header-ts"
+                                >
+                                    <OptionsButton />
+                                </button>
+                            )}
                             {isOptionListOpen && (
-                                <div className="options">
-                                    <div className="list">
-                                        <a
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="post-time"
-                                        >
-                                            <span className="post-time-text">
-                                                Posted - {postTime}
-                                            </span>
-                                        </a>
-                                        {userBlogName !== blogName && (
-                                            <>
-                                                <div
-                                                    onClick={() => copyLink()}
-                                                    className="opt-btn copy-btn"
-                                                    id={`copy-btn${postId}`}
-                                                >
-                                                    Copy Link
-                                                </div>
-                                                {following && (
-                                                    <div
-                                                        onClick={() =>
-                                                            unfollow()
-                                                        }
-                                                        className="opt-btn follow-btn"
-                                                    >
-                                                        Unfollow
-                                                    </div>
-                                                )}
-                                                <div className="opt-btn report-btn">
-                                                    Report
-                                                </div>
-                                                <div
-                                                    onClick={() =>
-                                                        setIsModalOpen(true)
-                                                    }
-                                                    className="opt-btn block-btn"
-                                                >
-                                                    Block
-                                                </div>
-                                                <div
-                                                    onClick={() => {
-                                                        setIsOptionListOpen(
-                                                            false
-                                                        );
-                                                    }}
-                                                    className="opt-btn close-btn"
-                                                >
-                                                    Close
-                                                </div>
-                                            </>
-                                        )}
-                                        {/**Post's author is logged user */}
-                                        {userBlogName === blogName && (
-                                            <>
-                                                {' '}
-                                                <div className="opt-btn pin-btn">
-                                                    Pin
-                                                </div>
-                                                <div
-                                                    onClick={() => copyLink()}
-                                                    className="opt-btn copy-btn"
-                                                    id={`copy-btn${postId}`}
-                                                >
-                                                    Copy Link
-                                                </div>
-                                                <div
-                                                    onClick={() => {
-                                                        setIsOptionListOpen(
-                                                            false
-                                                        );
-                                                    }}
-                                                    className="opt-btn close-btn"
-                                                >
-                                                    Close
-                                                </div>
-                                            </>
-                                        )}
-                                    </div>
-                                </div>
+                                <OptionsList
+                                    postTime={postTime}
+                                    userBlogName={userBlogName}
+                                    blogName={blogName}
+                                    postLink={postLink}
+                                    postId={postId}
+                                    following={following}
+                                    blogUrl={blogUrl}
+                                    setFollowing={setFollowing}
+                                    setIsModalOpen={setIsModalOpen}
+                                    setIsOptionListOpen={setIsOptionListOpen}
+                                />
                             )}
                         </div>
                     </div>
                 </header>
-                {textPost !== undefined && (
-                    <TextPost
-                        title={textPost.postTitle}
-                        text={textPost.postText}
-                    />
+                {returned.textPost !== undefined && (
+                    <>
+                        <TextPost
+                            title={returned.textPost.title}
+                            content={returned.textPost.content}
+                        />
+                        <Divider />
+                    </>
                 )}
-                <Divider />
-                {imagePost !== undefined && (
-                    <ImageList
-                        imageUrl={imagePost.imageUrl}
-                        caption={imagePost.caption}
-                        altText={imagePost.altText}
-                        postId={postId}
-                    />
+                {returned.imagePost !== undefined && (
+                    <>
+                        <ImageList
+                            imageTag={returned.imagePost.imageTag}
+                            caption={returned.imagePost.caption}
+                            altText={returned.imagePost.altText}
+                            postId={postId}
+                        />
+                        <Divider />
+                    </>
                 )}
-                <Divider />
-                {/* {postType === 'chat' && <ChatPost />} */}{' '}
-                {audioPost !== undefined && (
-                    <AudioPost
-                        url={audioPost.url}
-                        artist={audioPost.artist}
-                        track={audioPost.track}
-                        description={audioPost.description}
-                    />
+                {returned.audioPost !== undefined && (
+                    <>
+                        <AudioPost
+                            url={returned.audioPost.url}
+                            artist={returned.audioPost.artist}
+                            track={returned.audioPost.track}
+                            description={returned.audioPost.description}
+                        />
+                        <Divider />
+                    </>
                 )}
-                <Divider />
-                {videoPost !== undefined && (
-                    <VideoPost
-                        id={postId + videoPost.url}
-                        url={videoPost.url}
-                    />
+                {returned.videoPost !== undefined && (
+                    <>
+                        <VideoPost
+                            id={postId + returned.videoPost.videoTag}
+                            videoTag={returned.videoPost.videoTag}
+                        />
+                    </>
                 )}
-                {/* todo:Link Post */}
-                <div className="post-footer">
-                    <Tags tagsArray={tagsArray} />
-                    <Footer
-                        isAuthor={userBlogName === blogName}
-                        postLink={postLink}
-                        numberNotes={numberNotes}
-                        reblogKey={reblogKey}
-                        postId={postId}
-                    />
-                </div>
+                {!reblog && (
+                    <div
+                        data-testid="post-footer-cont-ts"
+                        className="post-footer"
+                    >
+                        <Tags tagsArray={tags} />
+                        <Footer
+                            isAuthor={userBlogName === blogName}
+                            postLink={postLink}
+                            numberNotes={numberNotes}
+                            reblogKey={reblogKey}
+                            postId={postId}
+                            blogName={blogName}
+                            postAuthor={userBlogName}
+                            authorAvatar={avatar}
+                            setIsModalOpenN={setIsModalOpen}
+                        />
+                    </div>
+                )}{' '}
             </article>
         </div>
     );

@@ -1,3 +1,33 @@
+//=================================================Audio Controller============================================
+export function handlePlayAudio(e, played, setPlayed, audioRef) {
+    e.preventDefault();
+    e.stopPropagation();
+    setPlayed(!played);
+    if (played) {
+        audioRef.current.pause();
+    } else audioRef.current.play();
+}
+
+export function changeCurrentTimePlayedAudio(
+    e,
+    setPlayedTimePercentage,
+    audioRef
+) {
+    e.preventDefault();
+    e.stopPropagation();
+    let rect = e.target.getBoundingClientRect();
+    let relativeMouseClickedPosition = e.clientX - rect.left;
+    setPlayedTimePercentage((relativeMouseClickedPosition / rect.width) * 100);
+    audioRef.current.currentTime =
+        (relativeMouseClickedPosition / rect.width) * audioRef.current.duration;
+}
+
+export function handleAudioSlider(audioRef, setPlayedTimePercentage) {
+    let sliderValue =
+        (100 / audioRef.current.duration) * audioRef.current.currentTime;
+    setPlayedTimePercentage(sliderValue);
+}
+//=================================================Video Controller============================================
 export function handlePlayVideo(e, videoRef, played, setPlayed) {
     e.preventDefault();
     e.stopPropagation();
@@ -54,4 +84,77 @@ export function handleSlider(
             ':' +
             displayElapsedTime(elapsedTime).secondes
     );
+}
+
+export function handleVideoTag(url, setVidUrl) {
+    if (url) {
+        setVidUrl(url.replace('video', 'source'));
+    }
+}
+
+//=================================================Footer Controller============================================
+export function toggleShareList(isShareListOpen, setIsShareListOpen) {
+    setIsShareListOpen(!isShareListOpen);
+}
+
+export function copyLink(postLink, postId) {
+    navigator.clipboard.writeText(postLink);
+    document.getElementById(`copy-btn${postId}`).textContent = 'Link Copied!';
+    setTimeout(() => {
+        document.getElementById(`copy-btn${postId}`).textContent = 'Copy link';
+    }, 2000);
+}
+
+//=================================================ImageList Controller============================================
+export function extractImageData(imageUrl, setImgSrcUrl, setImgAlt) {
+    let cont = document.createElement('div');
+    cont.innerHTML = imageUrl;
+    setImgSrcUrl(cont.children[0].src);
+    setImgAlt(cont.children[0].alt);
+}
+
+export function showImage(imgSrcUrl, postId) {
+    document.getElementById(
+        `preview-img${imgSrcUrl}-${postId}`
+    ).style.visibility = 'visible';
+
+    document.getElementById(
+        `show-image-modal${imgSrcUrl}-${postId}`
+    ).style.display = 'flex';
+    document.getElementById(`preview-img${imgSrcUrl}-${postId}`).style.display =
+        'flex';
+    document.getElementById(`preview-img${imgSrcUrl}-${postId}`).src =
+        imgSrcUrl;
+}
+
+export function closeImagePreview(imgSrcUrl, postId) {
+    document.getElementById(
+        `show-image-modal${imgSrcUrl}-${postId}`
+    ).style.display = 'none';
+}
+
+//=================================================ImageList Controller============================================
+export function extractPostContent(content) {
+    let textPost, imagePost, linkPost, audioPost, videoPost;
+    content &&
+        content.map(item => {
+            if (
+                item.type === 'text' ||
+                item.type === 'chat' ||
+                item.type === 'link'
+            )
+                textPost = item;
+            else if (item.type === 'image') imagePost = item;
+            else if (item.type === 'audio') audioPost = item;
+            else if (item.type === 'video') videoPost = item;
+        });
+    return { textPost, imagePost, linkPost, audioPost, videoPost };
+}
+
+export function chaneMobileView(setMobileView) {
+    if (window.innerWidth > 960) {
+        setMobileView(false);
+    } else {
+        setMobileView(true);
+    }
 }

@@ -13,7 +13,9 @@ export const themes = {
         navy: `0, 25, 53`,
         accent: `0, 184, 255`,
         secondaryAccent: `229, 231, 234`,
-        follow: `243, 248, 251`
+        follow: `243, 248, 251`,
+        purple: `124, 92, 255`,
+        red: `255, 73, 47`
     },
     darkMode: {
         black: `255, 255, 255`,
@@ -22,7 +24,9 @@ export const themes = {
         navy: `0, 0, 0`,
         accent: `0, 184, 255`,
         secondaryAccent: `57, 57, 57`,
-        follow: `36, 54, 62`
+        follow: `36, 54, 62`,
+        purple: `124, 92, 255`,
+        red: `255, 73, 47`
     },
     lowContrast: {
         black: `191, 191, 191`,
@@ -31,7 +35,9 @@ export const themes = {
         navy: `26, 39, 53`,
         accent: `32, 185, 252`,
         secondaryAccent: `71,87,109`,
-        follow: `43,76,104`
+        follow: `43,76,104`,
+        purple: `124, 92, 255`,
+        red: `255, 73, 47`
     },
     cement: {
         black: `0, 0, 0`,
@@ -40,7 +46,9 @@ export const themes = {
         navy: `247, 247, 247`,
         accent: `0,0,0`,
         secondaryAccent: `221, 221, 221`,
-        follow: `209, 227, 235`
+        follow: `209, 227, 235`,
+        purple: `124, 92, 255`,
+        red: `255, 73, 47`
     }
 };
 
@@ -48,17 +56,16 @@ export const ThemeContext = createContext();
 
 export function ThemeContextProvider(props) {
     const [theme, setTheme] = useState('trueBlue');
-    const user = useContext(UserContext).user;
+    const { user, setUser } = useContext(UserContext);
     const { children } = props;
 
     useEffect(() => {
         if (user) {
-            const config = {
-                headers: { Authorization: `Bearer ${user.token}` }
-            };
-            axios.get(`${apiBaseUrl}/user_theme`, config).then(res => {
-                setTheme(res.data.response.theme);
-            });
+            if (user?.userData?.theme) {
+                setTheme(user?.userData?.theme);
+            } else {
+                setTheme('trueBlue');
+            }
         }
     }, [user]);
 
@@ -71,8 +78,13 @@ export function ThemeContextProvider(props) {
         axios
             .put(`${apiBaseUrl}/user_theme`, { theme: keys[nextIndex] }, config)
             .then(() => {
+                let adjustUser = user;
+                adjustUser.userData.theme = keys[nextIndex];
+                setUser(adjustUser);
+                localStorage.setItem('user', JSON.stringify(adjustUser));
                 setTheme(keys[nextIndex]);
-            });
+            })
+            .catch(() => {});
     };
 
     return (

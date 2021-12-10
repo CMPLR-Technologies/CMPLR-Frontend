@@ -1,4 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+ToggleSound.propTypes = {
+    mute: PropTypes.bool.isRequired
+};
 
 export default function ToggleSound(props) {
     const { mute } = props;

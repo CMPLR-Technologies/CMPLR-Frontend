@@ -30,7 +30,7 @@ export default function LogOutOverlay(props) {
                 localStorage.removeItem('user');
                 navigate('/');
             })
-            .catch();
+            .catch(() => {});
     };
 
     const { hideOverlay } = props;

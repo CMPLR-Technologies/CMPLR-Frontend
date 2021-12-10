@@ -4937,20 +4937,6 @@
     "readable-stream" "^2.2.2"
     "typedarray" "^0.0.6"
 
-"concurrently@^6.4.0":
-  "integrity" "sha512-HZ3D0RTQMH3oS4gvtYj1P+NBc6PzE2McEra6yEFcQKrUQ9HvtTGU4Dbne083F034p+LRb7kWU0tPRNvSGs1UCQ=="
-  "resolved" "https://registry.npmjs.org/concurrently/-/concurrently-6.4.0.tgz"
-  "version" "6.4.0"
-  dependencies:
-    "chalk" "^4.1.0"
-    "date-fns" "^2.16.1"
-    "lodash" "^4.17.21"
-    "rxjs" "^6.6.3"
-    "spawn-command" "^0.0.2-1"
-    "supports-color" "^8.1.0"
-    "tree-kill" "^1.2.2"
-    "yargs" "^16.2.0"
-
 "configstore@^5.0.1":
   "integrity" "sha512-aMKprgk5YhBNyH25hj8wGt2+D52Sw1DRRIzqBwLp2Ya9mFmY8KPvvtvmna8SxVR9JMZ4kzMD68N22vlaRpkeFA=="
   "resolved" "https://registry.npmjs.org/configstore/-/configstore-5.0.1.tgz"
@@ -4972,17 +4958,6 @@
   "integrity" "sha512-e54B99q/OUoH64zYYRf3HBP5z24G38h5D3qXu23JGRoigpX5Ss4r9ZnDk3g0Z8uQC2x2lPaJ+UlWBc1ZWBWdLg=="
   "resolved" "https://registry.npmjs.org/connect-history-api-fallback/-/connect-history-api-fallback-1.6.0.tgz"
   "version" "1.6.0"
-
-"connect-multiparty@^2.2.0":
-  "integrity" "sha512-zKcpA7cuXGEhuw9Pz7JmVCFmp85jzGLGm/iiagXTwyEAJp4ypLPtRS/V4IGuGb9KjjrgHBs6P/gDCpZHnFzksA=="
-  "resolved" "https://registry.npmjs.org/connect-multiparty/-/connect-multiparty-2.2.0.tgz"
-  "version" "2.2.0"
-  dependencies:
-    "http-errors" "~1.7.0"
-    "multiparty" "~4.2.1"
-    "on-finished" "~2.3.0"
-    "qs" "~6.5.2"
-    "type-is" "~1.6.16"
 
 "connect-pause@^0.1.1":
   "integrity" "sha1-smmyu4Ldsaw9tQmcD7WCq6mfs3o="
@@ -10147,22 +10122,6 @@
   "integrity" "sha512-CqyzN6z7Q6aMeF/ktcMVTzhAHCEpf8SOarwpzpf8pNBY2k5/oM34UHldUwp8VKI7uxct2HxSRdJjBaZeESzcxA=="
   "resolved" "https://registry.npmjs.org/node-releases/-/node-releases-2.0.1.tgz"
   "version" "2.0.1"
-
-"nodemon@^2.0.15":
-  "integrity" "sha512-gdHMNx47Gw7b3kWxJV64NI+Q5nfl0y5DgDbiVtShiwa7Z0IZ07Ll4RLFo6AjrhzMtoEZn5PDE3/c2AbVsiCkpA=="
-  "resolved" "https://registry.npmjs.org/nodemon/-/nodemon-2.0.15.tgz"
-  "version" "2.0.15"
-  dependencies:
-    "chokidar" "^3.5.2"
-    "debug" "^3.2.7"
-    "ignore-by-default" "^1.0.1"
-    "minimatch" "^3.0.4"
-    "pstree.remy" "^1.1.8"
-    "semver" "^5.7.1"
-    "supports-color" "^5.5.0"
-    "touch" "^3.1.0"
-    "undefsafe" "^2.0.5"
-    "update-notifier" "^5.1.0"
 
 "nopt@~1.0.10":
   "integrity" "sha1-bd0hvSoxQXuScn3Vhfim83YI6+4="
