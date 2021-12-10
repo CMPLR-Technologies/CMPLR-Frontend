@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Modal from '@mui/material/Modal';
 import { ProfilePic } from './ProfilePicturePopup';
 import { useState } from 'react';
@@ -10,8 +10,10 @@ import { useContext } from 'react';
 import HandMadeTextEditor from '../../../RichTextEditor/View';
 import { handlePosting } from '../../Service';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../../../../hooks/useAuth';
 
 export default function CreateModal() {
+    useAuth();
     const [titlePost, setTitlePost] = useState('');
     const [content, setContent] = useState('');
     const [postType, setPostType] = useState('Post now');
@@ -32,12 +34,6 @@ export default function CreateModal() {
 
         handlePosting(dataBody, navigate);
     };
-
-    useEffect(() => {
-        if (!user) {
-            navigate('/');
-        }
-    }, []);
 
     return (
         <>

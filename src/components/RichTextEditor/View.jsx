@@ -35,6 +35,7 @@ export default function HandMadeTextEditor(props) {
                     className="content"
                     contentEditable="true"
                     id="editable-content"
+                    data-testid="content-postInput"
                     onInput={() => handleChanges(setContent)}
                     data-placeholder="Your text here"
                 ></div>

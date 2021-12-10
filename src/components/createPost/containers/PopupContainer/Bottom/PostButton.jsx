@@ -23,6 +23,7 @@ export default function PostButton(props) {
                     {/**TODO: add a spinner */}
                     <button
                         className="to-post-button"
+                        data-testid="post-postBtn"
                         onClick={handlePost}
                         disabled={content === '' || titlePost === ''}
                     >
