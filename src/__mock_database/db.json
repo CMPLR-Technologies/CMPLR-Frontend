@@ -156,8 +156,8 @@
           "content": [
             {
               "type": "text",
-              "title": "Kak",
-              "content": "<div>Heeeeeeelp</div><div><span style=\"background-color: rgb(255, 255, 255);\">Heeeeeeeelp</span><br></div>",
+              "title": "Test Post<br>",
+              "content": "Test Content<br>",
               "user": {
                 "name": "Yahia",
                 "blogName": "Yahia"
@@ -232,7 +232,7 @@
           "content": [
             {
               "type": "text",
-              "content": "Heeeeelp",
+              "content": "",
               "user": {
                 "name": "Yahia",
                 "blogName": "Yahia"
