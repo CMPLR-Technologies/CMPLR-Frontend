@@ -4,7 +4,6 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import MockedComponent from '../MockedComponent';
 import PostComponent from './containers/PostComponent';
-import axios from 'axios';
 const postResponse = {
     post_state: 'published',
     post_id: 13212383,
