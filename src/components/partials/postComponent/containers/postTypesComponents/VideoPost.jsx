@@ -1,33 +1,47 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import ToggleFullScreen from './ToggleFullScreen.svg';
-import ToggleSound from './ToggleSound.svg';
-import PlayButton from './PlayButton';
+import React, { useEffect, useRef, useState } from 'react';
+import ToggleFullScreen from '../SVG/ToggleFullScreen.svg';
+import ToggleSound from '../SVG/ToggleSound.svg';
+import PlayButton from '../PlayButton';
 import {
     handlePlayVideo,
     handleFullscreen,
     handleSlider,
-    changeCurrentTimePlayed
-} from '../Controller';
+    changeCurrentTimePlayed,
+    handleVideoTag
+} from '../../Controller';
+
+import PropTypes from 'prop-types';
+
+/**
+ * @function VideoPost
+ * @description Component used to view video post in postComponent Container
+ * @param {HtmlTag} videoTag - void video HTML tag containing src attribute
+ * @param {string} id - id used to identify some video post tags to be used in the controller
+ * @returns {Component} VideoPost Component
+ */
+
+VideoPost.propTypes = {
+    videoTag: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired
+};
 
 export default function VideoPost(props) {
-    const { url, id } = props;
+    const { videoTag, id } = props;
     const [videUrl, setVidUrl] = useState('');
     const [played, setPlayed] = useState(false);
     const [mute, setMute] = useState(false);
     const [elapsedTime, setElapsedTime] = useState(0);
     const [displayedTime, setDisplayedTime] = useState('00:00');
     const [playedTimePercentage, setPlayedTimePercentage] = useState(0);
+    const videoRef = useRef();
 
     useEffect(() => {
-        if (url) {
-            setVidUrl(url.replace('video', 'source'));
-        }
-    });
-    const videoRef = useRef();
+        handleVideoTag(videoTag, setVidUrl);
+    }, [videoTag]);
 
     return (
         <div
-            onMouseOver={e => {
+            onMouseOver={() => {
                 document.getElementById(`controller-${id}`).style.display =
                     'flex';
             }}
@@ -57,16 +71,16 @@ export default function VideoPost(props) {
                 loop={true}
                 muted={mute}
                 dangerouslySetInnerHTML={{ __html: videUrl }}
-            >
-                {/* <source src={url} /> */}
-            </video>
+            ></video>
             <div
                 style={{ display: 'none' }}
                 className="controllers"
                 id={`controller-${id}`}
             >
                 <button
-                    onClick={e => handlePlayVideo(e, videoRef)}
+                    onClick={e =>
+                        handlePlayVideo(e, videoRef, played, setPlayed)
+                    }
                     className="play-pause-button btn"
                 >
                     <PlayButton played={played} />

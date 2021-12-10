@@ -12,6 +12,7 @@ import HandMadeTextEditor from '../RichTextEditor/View';
 import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
 
+import PostComponent from '../partials/postComponent/View';
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
     const css = `
@@ -40,6 +41,21 @@ export default function MainRoutes() {
                         element={<ForgetPassword />}
                     />
                     <Route path="/reset_password" element={<ResetPassword />} />
+                    <Route
+                        path="/post"
+                        element={
+                            <>
+                                <PostComponent
+                                    userBlogName="kholdbold"
+                                    isFollowed={false}
+                                />
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/reblog/:blogName/:postId/:reblogKey"
+                        element={<CreateModal reblog={true} />}
+                    />
                 </Routes>
                 <style>{css}</style>
             </Router>

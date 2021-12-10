@@ -25,9 +25,12 @@ export default function PostButton(props) {
                         className="to-post-button"
                         data-testid="post-postBtn"
                         onClick={handlePost}
-                        disabled={content === '' || titlePost === ''}
+                        disabled={
+                            (content === '' || titlePost === '') &&
+                            !(titlePost === null)
+                        }
                     >
-                        Post
+                        {titlePost===null?"Reblog":"Post"}
                     </button>
                     <div
                         aria-describedby="popover_post"

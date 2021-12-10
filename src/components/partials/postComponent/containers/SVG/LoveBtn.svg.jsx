@@ -1,5 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+LoveBtn.propTypes = {
+    fillColor: PropTypes.string
+};
 export default function LoveBtn(props) {
     const { fillColor } = props;
     return (

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: navbarComponent/containers/navbarLinks/AccountPopup/Actions/AccountPopupActions.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: navbarComponent/containers/navbarLinks/AccountPopup/Actions/AccountPopupActions.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useContext, useState, useEffect } from 'react';
+import { apiBaseUrl } from '../../../../../../config.json';
+import { NavLink } from 'react-router-dom';
+import {
+    ThemeContext,
+    themes
+} from '../../../../../../contexts/themeContext/ThemeContext';
+import AccountPopupActionRow from './AccountPopupActionRow';
+import ShortcutsPageOverlay from './shortcuts/ShortcutsPageOverlay';
+import axios from 'axios';
+
+/**
+ * @function AccountPopupActions
+ * @description Account Popup Actions Container
+ * @property {bool} paletteChanged - state set to false at first and is changed to true if palette is changed
+ * @property {function} setPaletteChanged - paletteChanged state setter
+ * @property {bool} shortcutOverlay - boolean to manage visibility of shortcuts list
+ * @property {function} setShortcutOverlay - shortcutOverlay state setter
+ * @property {number} likesCount
+ * @property {function} setLikesCount - likesCount state setter
+ * @property {number} followingCount
+ * @property {function} setFollowingCount - followingCount state setter
+ * @property {function} viewShortcuts - Event Handler to call setShortcutOverlay(true)
+ * @property {function} toggleTheme - calls changeTheme in ThemeContext
+ * @returns {Component}
+ */
+
+export default function AccountPopupActions() {
+    const [theme, changeTheme] = useContext(ThemeContext);
+    const [paletteChanged, setPaletteChanged] = useState(false);
+    const [shortcutOverlay, setShortcutOverlay] = useState(false);
+    const [likesCount, setLikesCount] = useState(0);
+    const [followingCount, setFollowingCount] = useState(0);
+
+    const toggleTheme = () => {
+        setPaletteChanged(true);
+        changeTheme(theme);
+    };
+    const viewShortcuts = () => {
+        setShortcutOverlay(true);
+    };
+
+    useEffect(() => {
+        axios
+            .get(`${apiBaseUrl}/likes`)
+            .then(response => {
+                setLikesCount(response.data.length);
+            })
+            .catch();
+        axios
+            .get(`${apiBaseUrl}/following`)
+            .then(response => {
+                setFollowingCount(response.data.length);
+            })
+            .catch();
+    }, []);
+
+    return (
+        &lt;div
+            data-testid="AccountPopupActions"
+            className={`account-popup-actions`}
+        >
+            {shortcutOverlay &amp;&amp; (
+                &lt;ShortcutsPageOverlay setShortcutOverlay={setShortcutOverlay} />
+            )}
+
+            &lt;NavLink to="/likes" className={`account-action-link`}>
+                &lt;AccountPopupActionRow
+                    key="1"
+                    icon="likes"
+                    title="Likes"
+                    count={likesCount ? likesCount : ' '}
+                />
+            &lt;/NavLink>
+            &lt;NavLink to="/following" className={`account-action-link`}>
+                &lt;AccountPopupActionRow
+                    key="2"
+                    icon="following"
+                    title="Following"
+                    count={followingCount ? followingCount : ' '}
+                />
+            &lt;/NavLink>
+            &lt;NavLink to="/settings/account" className={`account-action-link`}>
+                &lt;AccountPopupActionRow
+                    key="3"
+                    icon="settings"
+                    title="Settings"
+                    count=" "
+                />
+            &lt;/NavLink>
+            &lt;NavLink to="/blog/view/changes" className={`account-action-link`}>
+                &lt;AccountPopupActionRow
+                    key="4"
+                    icon="new"
+                    title="What's new"
+                    count=" "
+                />
+            &lt;/NavLink>
+            &lt;NavLink to="/help" className={`account-action-link`}>
+                &lt;AccountPopupActionRow
+                    key="5"
+                    icon="help"
+                    title="Help"
+                    count=" "
+                />
+            &lt;/NavLink>
+            &lt;div onClick={viewShortcuts} data-testid="ViewShortcuts">
+                &lt;AccountPopupActionRow
+                    key="6"
+                    icon="shortcuts"
+                    title="Keyboard shortcuts"
+                    count=" "
+                />
+            &lt;/div>
+            &lt;div onClick={toggleTheme}>
+                &lt;AccountPopupActionRow
+                    key="7"
+                    icon="themes"
+                    title={paletteChanged ? theme : 'Change Palette'}
+                    count={`${Object.keys(themes).indexOf(theme) + 1}/${
+                        Object.keys(themes).length
+                    }`}
+                />
+            &lt;/div>
+        &lt;/div>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 10 2021 22:55:07 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

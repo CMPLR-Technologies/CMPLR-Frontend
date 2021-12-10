@@ -1,5 +1,7 @@
 import './styles/styles.css';
-import { ThemeContextProvider } from './contexts/themeContext/ThemeContext';
+import {
+    ThemeContextProvider,
+} from './contexts/themeContext/ThemeContext';
 import React from 'react';
 import UserContextProvider from './contexts/userContext/UserContext';
 import MainRoutes from './components/routes/Routes';
