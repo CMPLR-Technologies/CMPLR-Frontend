@@ -17,10 +17,20 @@ export default function OptionsList(props) {
         setIsOptionListOpen
     } = props;
     return (
-        <div className="options">
-            <div className="list">
-                <a target="_blank" rel="noreferrer" className="post-time">
-                    <span className="post-time-text">Posted - {postTime}</span>
+        <div data-testid="options-list-header-ts" className="options">
+            <div data-testid="list-header-ts" className="list">
+                <a
+                    data-testid="post-time-ts"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="post-time"
+                >
+                    <span
+                        data-testid="post-time-text-ts"
+                        className="post-time-text"
+                    >
+                        Posted - {postTime}
+                    </span>
                 </a>
                 {userBlogName !== blogName && (
                     <>
@@ -28,6 +38,7 @@ export default function OptionsList(props) {
                             onClick={() => copyLink(postLink, postId)}
                             className="opt-btn copy-btn"
                             id={`copy-btn${postId}`}
+                            data-testid={`copy-btn-header-ts${postId}`}
                         >
                             Copy Link
                         </div>
@@ -41,14 +52,21 @@ export default function OptionsList(props) {
                                     )
                                 }
                                 className="opt-btn follow-btn"
+                                data-testid={`unfollow-btn-header-ts${postId}`}
                             >
                                 Unfollow
                             </div>
                         )}
-                        <div className="opt-btn report-btn">Report</div>
+                        <div
+                            data-testid={`report-btn-header-ts${postId}`}
+                            className="opt-btn report-btn"
+                        >
+                            Report
+                        </div>
                         <div
                             onClick={() => setIsModalOpen(true)}
                             className="opt-btn block-btn"
+                            data-testid={`block-btn-header-ts${postId}`}
                         >
                             Block
                         </div>
@@ -57,6 +75,7 @@ export default function OptionsList(props) {
                                 setIsOptionListOpen(false);
                             }}
                             className="opt-btn close-btn"
+                            data-testid={`close-btn-header-ts${postId}`}
                         >
                             Close
                         </div>
@@ -66,11 +85,17 @@ export default function OptionsList(props) {
                 {userBlogName === blogName && (
                     <>
                         {' '}
-                        <div className="opt-btn pin-btn">Pin</div>
+                        <div
+                            data-testid={`pin-btn-header-ts${postId}`}
+                            className="opt-btn pin-btn"
+                        >
+                            Pin
+                        </div>
                         <div
                             onClick={() => copyLink(postLink, postId)}
                             className="opt-btn copy-btn"
                             id={`copy-btn${postId}`}
+                            data-testid={`copy-btn-header-ts${postId}`}
                         >
                             Copy Link
                         </div>
@@ -79,6 +104,7 @@ export default function OptionsList(props) {
                                 setIsOptionListOpen(false);
                             }}
                             className="opt-btn close-btn"
+                            data-testid={`close-btn-header-ts${postId}`}
                         >
                             Close
                         </div>

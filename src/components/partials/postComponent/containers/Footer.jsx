@@ -70,7 +70,10 @@ export default function Footer(props) {
 
     return (
         <>
-            <footer className="post-footer-icons">
+            <footer
+                data-testid="post-footer-icons-ts"
+                className="post-footer-icons"
+            >
                 {isModalOpen && (
                     <Modal
                         messageHeading={` Are you sure you want to delete this post?`}
@@ -93,12 +96,16 @@ export default function Footer(props) {
                         />
                     </Modal>
                 )}
-                <div className="notes-count">
+                <div
+                    data-testid={`notes-count-footer-ts`}
+                    className="notes-count"
+                >
                     <span
                         onClick={() => {
                             setNotesView(!notesView);
                             setNoteType('comment');
                         }}
+                        data-testid={`notes-count-text-ts`}
                     >
                         {numberNotes > 1
                             ? `${numberNotes} notes`
@@ -108,8 +115,14 @@ export default function Footer(props) {
                     </span>
 
                     {notesView && (
-                        <div className="notes-view-container">
-                            <div className="notes-view-flex">
+                        <div
+                            data-testid={`notes-view-container-ts`}
+                            className="notes-view-container"
+                        >
+                            <div
+                                data-testid={`notes-view-flex-ts`}
+                                className="notes-view-flex"
+                            >
                                 <NotesHeader
                                     numberNotes={numberNotes}
                                     totalLikes={counts.totalLikes}
@@ -132,18 +145,29 @@ export default function Footer(props) {
                     )}
                 </div>
                 {isShareListOpen && (
-                    <div className="share-options">
-                        <div className="options">
+                    <div
+                        data-testid={`share-options-ts`}
+                        className="share-options"
+                    >
+                        <div
+                            data-testid={`options-footer-ts`}
+                            className="options"
+                        >
                             <div
                                 onClick={() => copyLink(postLink, postId)}
-                                className="list "
+                                className="list"
+                                data-testid={`list-footer-ts`}
                             >
-                                <div className="circled-border">
+                                <div
+                                    data-testid={`circled-border-ts`}
+                                    className="circled-border"
+                                >
                                     <CopyLink />
                                 </div>
                                 <div
                                     className="opt-btn copy-btn btn"
                                     id={`copy-btn${postId}`}
+                                    data-testid={`copy-btn-footer-ts${postId}`}
                                 >
                                     Copy Link
                                 </div>
@@ -151,12 +175,13 @@ export default function Footer(props) {
                         </div>
                     </div>
                 )}
-                <div className="footer-icons">
+                <div data-testid={`footer-icons-ts`} className="footer-icons">
                     <button
                         onClick={() =>
                             toggleShareList(isShareListOpen, setIsShareListOpen)
                         }
                         className="icon"
+                        data-testid={`share-icon-footer-ts`}
                     >
                         <ShareBtn />
                     </button>
@@ -166,6 +191,7 @@ export default function Footer(props) {
                             setNoteType('comment');
                         }}
                         className="icon"
+                        data-testid={`note-icon-footer-ts${postId}`}
                     >
                         <Note />
                     </button>
@@ -177,6 +203,7 @@ export default function Footer(props) {
                             );
                         }}
                         className="icon"
+                        data-testid={`reblog-icon-footer${postId}`}
                     >
                         <ReblogBtn />
                     </button>
@@ -198,6 +225,7 @@ export default function Footer(props) {
                             );
                         }}
                         className="icon "
+                        data-testid={`love-icon-footer${postId}`}
                     >
                         <LoveBtn fillColor={loveFillColor} />
                     </button>
@@ -206,10 +234,14 @@ export default function Footer(props) {
                             <button
                                 onClick={() => setIsModalOpen(true)}
                                 className="icon"
+                                data-testid={`delete-footer-icon-ts${postId}`}
                             >
                                 <DeleteBtn />
                             </button>
-                            <button className="icon">
+                            <button
+                                data-testid={`edit-footer-icon-ts${postId}`}
+                                className="icon"
+                            >
                                 <EditBtn />
                             </button>
                         </>

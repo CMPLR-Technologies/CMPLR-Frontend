@@ -23,13 +23,15 @@ export function handleLikePost(
             id: postId,
             reblogKey: reblogKey
         }
-    }).then(res => {
-        if (res.status === 201) {
-            setLoveFillColor(
-                loveFillColor === 'gray' ? 'rgb(255,73,47)' : 'gray'
-            );
-        }
-    });
+    })
+        .then(res => {
+            if (res.status === 201) {
+                setLoveFillColor(
+                    loveFillColor === 'gray' ? 'rgb(255,73,47)' : 'gray'
+                );
+            }
+        })
+        .catch(() => {});
 }
 
 export function deletePost(postId, setIsModalOpen) {
@@ -42,11 +44,13 @@ export function deletePost(postId, setIsModalOpen) {
         data: {
             id: postId
         }
-    }).then(res => {
-        if (res.data.Meta.Status === 200) {
-            setIsModalOpen(false);
-        }
-    });
+    })
+        .then(res => {
+            if (res.data.Meta.Status === 200) {
+                setIsModalOpen(false);
+            }
+        })
+        .catch(() => {});
 }
 
 //=================================================PostComponent Services============================================
@@ -60,12 +64,14 @@ export function unfollow(blogUrl, setFollowing, setIsOptionListOpen) {
         data: {
             url: blogUrl
         }
-    }).then(response => {
-        if (response.status === 200) {
-            setFollowing(false);
-            setIsOptionListOpen(false);
-        }
-    });
+    })
+        .then(response => {
+            if (response.status === 200) {
+                setFollowing(false);
+                setIsOptionListOpen(false);
+            }
+        })
+        .catch(() => {});
 }
 export function follow(blogUrl, blogEmail, setFollowing) {
     Axios({
@@ -78,9 +84,11 @@ export function follow(blogUrl, blogEmail, setFollowing) {
             url: blogUrl,
             email: blogEmail
         }
-    }).then(response => {
-        if (response.status === 200) setFollowing(true);
-    });
+    })
+        .then(response => {
+            if (response.status === 200) setFollowing(true);
+        })
+        .catch(() => {});
 }
 
 export function block(
@@ -95,13 +103,15 @@ export function block(
             'content-type': 'application/json'
         },
         url: `${apiBaseUrl}/blog/${blogIdentifier}/blocks`
-    }).then(response => {
-        if (response.data.meta.status === 200) {
-            setIsOptionListOpen(false);
-            setIsModalOpen(false);
-            setIsMsgModalOpen(true);
-        }
-    });
+    })
+        .then(response => {
+            if (response.data.meta.status === 200) {
+                setIsOptionListOpen(false);
+                setIsModalOpen(false);
+                setIsMsgModalOpen(true);
+            }
+        })
+        .catch(() => {});
 }
 
 //=================================================Notes Services============================================
@@ -112,12 +122,14 @@ export function getPostNotes(blogIdentifier, setNotes, setCounts) {
         params: {
             'blog-identifier': blogIdentifier
         }
-    }).then(res => {
-        if (res.data.Meta.Status === 200) {
-            setNotes(res.data.response.notes);
-            setCounts(res.data.response.counts);    
-        }
-    });
+    })
+        .then(res => {
+            if (res.data.Meta.Status === 200) {
+                setNotes(res.data.response.notes);
+                setCounts(res.data.response.counts);
+            }
+        })
+        .catch(() => {});
 }
 
 export function submitNote(
@@ -160,7 +172,9 @@ export function submitNote(
                 ]
             }
         }
-    }).then(() => {
-        getPostNotes(blogIdentifier, setNotes, setCounts);
-    });
+    })
+        .then(() => {
+            getPostNotes(blogIdentifier, setNotes, setCounts);
+        })
+        .catch(() => {});
 }

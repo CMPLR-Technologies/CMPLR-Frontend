@@ -31,7 +31,10 @@ export default function NotePost(props) {
 
     return (
         <>
-            <div className="relative">
+            <div
+                data-testid={`relative-note-container-ts`}
+                className="relative"
+            >
                 <div className="notes-summary-avatars-react">
                     <div className="noter-avatar">
                         <img
@@ -40,9 +43,13 @@ export default function NotePost(props) {
                             sizes="24px"
                             alt="Avatar"
                             loading="eager"
+                            data-testid={`noter-avatar-img-ts`}
                         />
                     </div>
-                    <div className="avatar-react">
+                    <div
+                        data-testid={`avatar-react-ts`}
+                        className="avatar-react"
+                    >
                         {type === 'reblog' ? (
                             <ReblogReact />
                         ) : type === 'love' ? (
@@ -61,6 +68,7 @@ export default function NotePost(props) {
                                     target="_blank"
                                     role="link"
                                     className="note-author"
+                                    data-testid={`blog-name-note-content-ts`}
                                 >
                                     {blogName}
                                 </Link>
@@ -72,6 +80,7 @@ export default function NotePost(props) {
                                             width="14"
                                             height="14"
                                             className="reblog-sign-span"
+                                            data-testid={`reblog-sign-ts`}
                                         >
                                             <path d="M9.2.2C8.7-.2 8 .2 8 .8v1.1H3.1c-2 0-3.1 1-3.1 2.6v1.9c0 .5.4.9.9.9.1 0 .2 0 .3-.1.3-.1.6-.5.6-.8V5.2c0-1.4.3-1.5 1.3-1.5H8v1.1c0 .6.7 1 1.2.6l3.1-2.6L9.2.2zM12 7.4c0-.5-.4-.9-.9-.9s-.9.4-.9.9v1.2c0 1.4-.3 1.5-1.3 1.5H4.3V9c0-.6-.7-.9-1.2-.5L0 11l3.1 2.6c.5.4 1.2.1 1.2-.5v-1.2h4.6c2 0 3.1-1 3.1-2.6V7.4z"></path>
                                         </svg>
@@ -81,6 +90,7 @@ export default function NotePost(props) {
                                         target="_blank"
                                         role="link"
                                         className="reblogger-name"
+                                        data-testid={`reblog-parent-name-note-content-ts`}
                                     >
                                         {reblogParentBlogName}
                                     </Link>

@@ -65,7 +65,11 @@ export default function PostComponent(props) {
     window.addEventListener('resize', () => chaneMobileView(setMobileView));
 
     return (
-        <div style={{ left: left }} className="post-wrapper">
+        <div
+            data-testid="post-wrapper-ts"
+            style={{ left: left }}
+            className="post-wrapper"
+        >
             {isMsgModalOpen && (
                 <Modal messageHeading={`${blogName} has been blocked`}>
                     <AuthBtn
@@ -113,7 +117,7 @@ export default function PostComponent(props) {
                 </Modal>
             )}
 
-            <article className="post-container">
+            <article data-testid="post-container-ts" className="post-container">
                 {!radar && !mobileView && (
                     <div className="author-avatar">
                         <div className="sticky-avatar">
@@ -121,23 +125,40 @@ export default function PostComponent(props) {
                         </div>
                     </div>
                 )}
-                <header style={{ padding: padding }} className="post-header">
+                <header
+                    data-testid="post-header-ts"
+                    style={{ padding: padding }}
+                    className="post-header"
+                >
                     {(mobileView || radar) && (
                         <div className="author-avatar mob">
                             <div className="sticky-avatar mob">
-                                <img src={avatar} className="avatar-img mob" />
+                                <img
+                                    data-testid="avatar-img-mob-ts"
+                                    src={avatar}
+                                    className="avatar-img mob"
+                                />
                             </div>
                         </div>
                     )}
-                    <div className="header-flex">
-                        <div className="header-title">
-                            <span className="post-heading">{blogName}</span>
+                    <div data-testid="header-flex-ts" className="header-flex">
+                        <div
+                            data-testid="header-title-ts"
+                            className="header-title"
+                        >
+                            <span
+                                data-testid="post-heading-ts"
+                                className="post-heading"
+                            >
+                                {blogName}
+                            </span>
                             {!following && !reblog && (
                                 <button
                                     onClick={() =>
                                         follow(blogUrl, blogEmail, setFollowing)
                                     }
                                     className="follow-btn"
+                                    data-testid="follow-btn-header-ts"
                                 >
                                     Follow
                                 </button>
@@ -150,6 +171,7 @@ export default function PostComponent(props) {
                                         setIsOptionListOpen(!isOptionListOpen);
                                     }}
                                     className="btn"
+                                    data-testid="opt-btn-header-ts"
                                 >
                                     <OptionsButton />
                                 </button>
@@ -211,7 +233,10 @@ export default function PostComponent(props) {
                     </>
                 )}
                 {!reblog && (
-                    <div className="post-footer">
+                    <div
+                        data-testid="post-footer-cont-ts"
+                        className="post-footer"
+                    >
                         <Tags tagsArray={tags} />
                         <Footer
                             isAuthor={userBlogName === blogName}

@@ -72,9 +72,11 @@ export function fetchPost(postId, setPost) {
     Axios({
         method: 'GET',
         url: `${apiBaseUrl}/post/${postId}`
-    }).then(res => {
-        if (res.data.Meta.Status === 200) setPost(res.data.response);
-    });
+    })
+        .then(res => {
+            if (res.data.Meta.Status === 200) setPost(res.data.response);
+        })
+        .catch(() => {});
 }
 
 export function reblogPost(bodyData, navigate) {
@@ -132,7 +134,5 @@ export function reblogPost(bodyData, navigate) {
             navigate('/dashboard');
             return res;
         })
-        .catch(err => {
-            return err;
-        });
+        .catch(() => {});
 }

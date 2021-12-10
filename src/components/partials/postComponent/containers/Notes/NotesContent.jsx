@@ -39,10 +39,14 @@ export default function NotesContent(props) {
                             sizes="24px"
                             alt="Avatar"
                             loading="eager"
+                            data-testid={`post-author-note-content-ts`}
                         />
                     </span>
                     <div className="author-name">
-                        <strong>{postAuthor}</strong> posted this
+                        <strong data-testid={`post-author-note-content-ts`}>
+                            {postAuthor}
+                        </strong>{' '}
+                        posted this
                     </div>
                 </div>
                 <div className="notes-list">
@@ -56,12 +60,13 @@ export default function NotesContent(props) {
                     ))}
                 </div>
             </div>
-            <div className="input-area">
+            <div data-testid={`input-form-note-ts`} className="input-area">
                 <input
                     className="note-reply"
                     placeholder="type your replay here"
                     value={reply}
                     onChange={e => setReply(e.target.value)}
+                    data-testid={`reply-input-field-ts`}
                 />
                 <button
                     disabled={reply === ''}
@@ -77,6 +82,7 @@ export default function NotesContent(props) {
                         setReply('');
                     }}
                     className="reply-btn btn"
+                    data-testid={`reply-btn-note-ts`}
                 >
                     Reply
                 </button>

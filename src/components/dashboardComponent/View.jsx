@@ -17,11 +17,13 @@ export default function Dashboard() {
             params: {
                 'blog-identifier': blogIdentifier
             }
-        }).then(res => {
-            if (res.data.Meta.Status === 200) {
-                setResponse(res.data.response.posts);
-            }
-        });
+        })
+            .then(res => {
+                if (res.data.Meta.Status === 200) {
+                    setResponse(res.data.response.posts);
+                }
+            })
+            .catch(() => {});
     }, []);
     return (
         <div className="dashboard">

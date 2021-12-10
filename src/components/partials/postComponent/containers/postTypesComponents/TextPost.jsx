@@ -16,15 +16,22 @@ TextPost.propTypes = {
 
 export default function TextPost(props) {
     const { title, content } = props;
-    
+
     return (
-        <div className="post-body">
-            <div className="text-title">
+        <div data-testid={`post-body-ts`} className="post-body">
+            <div
+                data-testid={`post-text-title-ts-${title}`}
+                className="text-title"
+            >
                 <span className="text-title-content">{title}</span>
             </div>
-            <div className="text-body">
+            <div
+                data-testid={`post-body-content-ts-${title}`}
+                className="text-body"
+            >
                 <span
                     className="body-content"
+                    data-testid={`body-content-ts-${title}`}
                     dangerouslySetInnerHTML={{ __html: content }}
                 />
             </div>
