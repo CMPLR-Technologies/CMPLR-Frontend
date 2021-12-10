@@ -48,20 +48,20 @@ export const ThemeContext = createContext();
 
 export function ThemeContextProvider(props) {
     const [theme, setTheme] = useState('trueBlue');
-    const {user,setUser} = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const { children } = props;
 
     useEffect(() => {
         if (user) {
-            if(user?.userData?.theme){
+            if (user?.userData?.theme) {
                 setTheme(user?.userData?.theme);
-            }else{
-                setTheme("trueBlue");
+            } else {
+                setTheme('trueBlue');
             }
         }
     }, [user]);
 
-    const changeTheme = (currentTheme) => {
+    const changeTheme = currentTheme => {
         const config = {
             headers: { Authorization: `Bearer ${user.token}` }
         };
@@ -70,12 +70,13 @@ export function ThemeContextProvider(props) {
         axios
             .put(`${apiBaseUrl}/user_theme`, { theme: keys[nextIndex] }, config)
             .then(() => {
-                let adjustUser=user;
-                adjustUser.userData.theme=keys[nextIndex];
+                let adjustUser = user;
+                adjustUser.userData.theme = keys[nextIndex];
                 setUser(adjustUser);
-                localStorage.setItem('user',JSON.stringify(adjustUser));
+                localStorage.setItem('user', JSON.stringify(adjustUser));
                 setTheme(keys[nextIndex]);
-            });
+            })
+            .catch(() => {});
     };
 
     return (
