@@ -14,9 +14,12 @@ import axios from 'axios';
 export default function AccountPopupBlogsContainer() {
     const [blogs, setBlogs] = useState([]);
     useEffect(() => {
-        axios.get(`${apiBaseUrl}/blogs`).then(response => {
-            setBlogs(response.data);
-        });
+        axios
+            .get(`${apiBaseUrl}/blogs`)
+            .then(response => {
+                setBlogs(response.data);
+            })
+            .catch();
     }, []);
 
     return (

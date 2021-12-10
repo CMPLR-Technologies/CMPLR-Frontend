@@ -24,17 +24,19 @@ export default function LogOutOverlay(props) {
 
     const logOut = () => {
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
-        Axios.post(`${apiBaseUrl}/logout`, {}, config).then(() => {
-            setUser(null);
-            localStorage.removeItem('user');
-            navigate('/');
-        });
+        Axios.post(`${apiBaseUrl}/logout`, {}, config)
+            .then(() => {
+                setUser(null);
+                localStorage.removeItem('user');
+                navigate('/');
+            })
+            .catch();
     };
 
     const { hideOverlay } = props;
 
     return (
-        <div data-testid="logOutOverlay" className={'log-out-overlay'}>
+        <div data-testid="LogOutOverlay" className={'log-out-overlay'}>
             <div className="log-out-overlay-text">
                 Are you sure you want to log out?
             </div>

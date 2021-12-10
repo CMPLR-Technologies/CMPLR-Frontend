@@ -19,7 +19,11 @@ export default function AccountPopupHeader() {
         >
             {overlay && <LogOutOverlay hideOverlay={() => setOverlay(false)} />}
             <div>Account</div>
-            <div className={`clickable`} onClick={() => setOverlay(true)}>
+            <div
+                data-testid="LogOutButton"
+                className={`clickable`}
+                onClick={() => setOverlay(true)}
+            >
                 Log out
             </div>
 
