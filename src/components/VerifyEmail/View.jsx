@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { resendEmailVerification } from './Service';
 import { UserContext } from '../../contexts/userContext/UserContext';
 
 export default function VerifyEmail() {
     const { user } = useContext(UserContext);
-    return (
+    const [display, setDisplay] = useState(true);
+    return display ? (
         <>
             <div className="main_verify" tabIndex="-1">
                 <div className="mid_verify" tabIndex="-1">
@@ -28,7 +29,10 @@ export default function VerifyEmail() {
                                 </Link>
                                 <button
                                     onClick={() =>
-                                        resendEmailVerification(user?.token)
+                                        resendEmailVerification(
+                                            user?.token,
+                                            setDisplay
+                                        )
                                     }
                                     className="TRX6J"
                                 >
@@ -40,5 +44,7 @@ export default function VerifyEmail() {
                 </div>
             </div>
         </>
+    ) : (
+        <></>
     );
 }

@@ -1,13 +1,14 @@
 import axios from 'axios';
 import { apiBaseUrl } from '../../config.json';
-import { useNavigate } from 'react-router-dom';
 import { handleNewPssword } from './Controller';
+
 export function newPassword(
     firstPassword,
     secondPassword,
     email,
     setErrorMsg,
-    token
+    token,
+    setUser
 ) {
     if (handleNewPssword(firstPassword, secondPassword, setErrorMsg) === true) {
         axios({
@@ -21,23 +22,21 @@ export function newPassword(
             }
         })
             .then(res => {
-                // console.log(res.data.meta.status_code);
+              
                 if (res.data.meta.status_code === 200) {
                     const user = {
                         token: res.data.response.token,
                         userData: res.data.response.user,
                         blogName: res.data.response.blog_name
                     };
-                    console.log(user);
-                    // setUser(user);
-                    // localStorage.setItem('user', JSON.stringify(user));
-                    useNavigate('/dashboard');
+                    setUser(user);
+                    localStorage.setItem('user', JSON.stringify(user));
                 } else {
                     setErrorMsg('Invalid password please try again');
                 }
             })
             .catch(() => {
-                setErrorMsg('Invalid password please try again');
+                setErrorMsg('Could not change the password ');
             });
     }
 }

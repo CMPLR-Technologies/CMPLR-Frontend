@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useContext } from 'react';
 import AuthInput from '../../partials/AuthInput';
 import AuthBtn from '../../partials/AuthBtn';
 import { newPassword } from '../Service';
 import { getEmail } from '../Service';
 import { useParams } from 'react-router-dom';
+import {UserContext} from '../../../contexts/userContext/UserContext';
+import useRedirect from '../../../hooks/useRedirect';
 /**
  * @function ResetPassword
  * @description this is the statful component of the reset password page
@@ -12,6 +14,8 @@ import { useParams } from 'react-router-dom';
  */
 
 export default function ResetPasswordCard() {
+    const {setUser} =useContext(UserContext);
+    useRedirect();
     const [firstPassword, setFirstPassword] = React.useState('');
     const [secondPassword, setSecondPassword] = React.useState('');
     const [errorMsg, setErrorMsg] = React.useState('');
@@ -82,7 +86,8 @@ export default function ResetPasswordCard() {
                             secondPassword,
                             email,
                             setErrorMsg,
-                            token
+                            token,
+                            setUser
                         )
                     }
                     dataTestid="button-reset-password"
