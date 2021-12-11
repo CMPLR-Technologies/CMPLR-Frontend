@@ -1,5 +1,6 @@
 import { apiBaseUrl } from '../../config.json';
 import Axios from 'axios';
+import { getServiceErrors } from '../registerComponent/Service';
 
 const logUser = (email, password, setUser, setError, setIsPending) => {
     Axios.post(`${apiBaseUrl}/login`, {
@@ -13,8 +14,8 @@ const logUser = (email, password, setUser, setError, setIsPending) => {
             setIsPending(false);
         })
         .catch(err => {
-            if (err.response) setError(err.response.data.error);
-            else setError(["couldn't log in"]);
+            if (err.response) setError(getServiceErrors(err));
+            else setError(["Couldn't Log In"]);
             setIsPending(false);
         });
 };

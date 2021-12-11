@@ -96,7 +96,7 @@ export const handleStepTwo = (
     }
 };
 
-const getServiceErrors = err => {
+export const getServiceErrors = err => {
     let errors = [];
 
     if (err?.response?.data?.error?.blog_name) {

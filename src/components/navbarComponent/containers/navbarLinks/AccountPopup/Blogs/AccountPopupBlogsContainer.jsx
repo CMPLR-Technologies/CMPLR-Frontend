@@ -19,7 +19,7 @@ export default function AccountPopupBlogsContainer() {
             .then(response => {
                 setBlogs(response.data);
             })
-            .catch(() => {});
+            .catch(err => {});
     }, []);
 
     return (

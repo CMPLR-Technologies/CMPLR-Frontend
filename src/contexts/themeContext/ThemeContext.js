@@ -89,7 +89,8 @@ export function ThemeContextProvider(props) {
 
     return (
         <ThemeContext.Provider value={[theme, changeTheme]}>
-            {children}
+            {' '}
+            {children}{' '}
         </ThemeContext.Provider>
     );
 }
