@@ -1,0 +1,17 @@
+.LoginView {
+    min-height: 100vh;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Favorit', Arial, Helvetica, sans-serif;
+    background: url('../assets/backgrounds/b1.jpg');
+    height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}

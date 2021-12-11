@@ -1,0 +1,22 @@
+.AuthBtn {
+    // dimensions and behaviour
+    width: 300px;
+    padding: 10px 15px;
+    margin-top: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // font
+    font-weight: 700;
+    line-height: 1.5;
+
+    // decoration and borders
+    background-color: white;
+    font-family: 'Favorit', Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+}
