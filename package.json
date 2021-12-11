@@ -30,7 +30,7 @@
     "scripts": {
         "start": "react-scripts start",
         "db": "json-server --watch ./src/__mock_database/db.json -p 3333",
-        "styles": "sass --sourcemap=none --watch ./src/styles/scss/styles.scss ./src/styles/styles.css",
+        "styles": "sass --no-source-map --watch ./src/styles/scss/styles.scss ./src/styles/styles.css        ",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "lint": "eslint ./src --ext .jsx",

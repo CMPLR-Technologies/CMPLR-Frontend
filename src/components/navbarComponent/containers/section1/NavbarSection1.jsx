@@ -3,7 +3,7 @@ import '../../../../styles/styles.css';
 import SearchBar from '../searchBar/SearchBar';
 import NavbarMenuMobile from './NavbarMenuMobile';
 import { Link } from 'react-router-dom';
-import isAuth from '../../../../hooks/isAuth';
+// import isAuth from '../../../../hooks/isAuth';
 /**
  * Navbar Section1: includes the logo and the searchbar
  * @function NavbarSection1
@@ -51,7 +51,8 @@ export default function NavbarSection1() {
                 </div>
             )}
             <div className="logo main">
-                <Link to={isAuth() ? '/dashboard' : '/'}>
+                {/* <Link to={isAuth() ? '/dashboard' : '/'}> */}
+                <Link to="/">
                     <span className="fa fa-downcase-t"></span>
                 </Link>
             </div>
@@ -60,7 +61,8 @@ export default function NavbarSection1() {
                 <SearchBar />
             ) : mobileView ? (
                 <div className="logo">
-                    <Link to={isAuth() ? '/dashboard' : '/'}>
+                      {/* <Link to={isAuth() ? '/dashboard' : '/'}></Link> */}
+                    <Link to= '/'>
                         <span className="fa fa-downcase-t"></span>
                     </Link>
                 </div>

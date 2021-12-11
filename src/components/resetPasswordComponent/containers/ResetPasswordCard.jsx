@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect,useContext } from 'react';
 import AuthInput from '../../partials/AuthInput';
 import AuthBtn from '../../partials/AuthBtn';
-
+import { newPassword } from '../Service';
+import { getEmail } from '../Service';
+import { useParams } from 'react-router-dom';
+import {UserContext} from '../../../contexts/userContext/UserContext';
+import useRedirect from '../../../hooks/useRedirect';
 /**
  * @function ResetPassword
  * @description this is the statful component of the reset password page
@@ -10,17 +14,18 @@ import AuthBtn from '../../partials/AuthBtn';
  */
 
 export default function ResetPasswordCard() {
-    const [email, setEmail] = React.useState('');
+    const {setUser} =useContext(UserContext);
+    useRedirect();
     const [firstPassword, setFirstPassword] = React.useState('');
     const [secondPassword, setSecondPassword] = React.useState('');
     const [errorMsg, setErrorMsg] = React.useState('');
-    const handleNewPssword = () => {
-        if (firstPassword.length < 8 || secondPassword.length < 8) {
-            setErrorMsg('The password must be at least 8 characters.');
-        } else if (firstPassword !== secondPassword) {
-            setErrorMsg('The new passwords do not match.');
-        }
-    };
+
+    const { token } = useParams();
+    const [email, setEmail] = React.useState();
+    useEffect(() => {
+        getEmail(token,setEmail)
+    }, [])
+
     return (
         <div className="LoginCard">
             <div className="LoginCard__logo-container" id="reset-pass-logo">
@@ -31,10 +36,10 @@ export default function ResetPasswordCard() {
                     id="reset-auth-input"
                     name="email"
                     type="email"
-                    placeholder="hazemAbdo@gmail.com"
+                    placeholder={email}
                     className="text-field"
                     value={email}
-                    setValue={setEmail}
+                    setValue=""
                     readonly={true}
                     dataTestid="input-labels"
                 ></AuthInput>
@@ -75,7 +80,16 @@ export default function ResetPasswordCard() {
                     id="reset-password-btn"
                     text="set new password"
                     color="#405368"
-                    handleClick={handleNewPssword}
+                    handleClick={() =>
+                        newPassword(
+                            firstPassword,
+                            secondPassword,
+                            email,
+                            setErrorMsg,
+                            token,
+                            setUser
+                        )
+                    }
                     dataTestid="button-reset-password"
                 ></AuthBtn>
             </div>
