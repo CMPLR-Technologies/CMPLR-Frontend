@@ -70,7 +70,7 @@ export default function ForgetPasswordCard() {
                                 padding: '0'
                             }}
                         >
-                            please enter your email address
+                            Please enter your email address
                         </p>
                     </div>
                 )}
