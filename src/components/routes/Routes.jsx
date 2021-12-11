@@ -11,7 +11,7 @@ import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 import HandMadeTextEditor from '../RichTextEditor/View';
 import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
-
+import NewPostPopup from '../navbarComponent/containers/navbarLinks/newPost/NewPostPopup';
 import PostComponent from '../partials/postComponent/View';
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
@@ -30,6 +30,7 @@ export default function MainRoutes() {
                 <Routes>
                     <Route path="/register" element={<Register />} />
                     <Route path="/messaging" element={<MessagesPageMobile />} />
+                    <Route path="/new" element={<NewPostPopup />} />
                     <Route path="/new/post" element={<CreateModal />} />
                     <Route path="/rich" element={<HandMadeTextEditor />} />
                     <Route path="/dashboard" element={<Dashboard />} />
@@ -40,11 +41,11 @@ export default function MainRoutes() {
                         path="/forget_password"
                         element={<ForgetPassword />}
                     />
-<<<<<<< HEAD
+{/*<<<<<<< HEAD
                     <Route
                         path="/reset_password/:token"
                         element={<ResetPassword />}
-=======
+=======*/}
                     <Route path="/reset_password" element={<ResetPassword />} />
                     <Route
                         path="/post"
@@ -60,7 +61,6 @@ export default function MainRoutes() {
                     <Route
                         path="/reblog/:blogName/:postId/:reblogKey"
                         element={<CreateModal reblog={true} />}
->>>>>>> 8427e198f230cbc9d21707c28555170f2a801419
                     />
                 </Routes>
                 <style>{css}</style>
