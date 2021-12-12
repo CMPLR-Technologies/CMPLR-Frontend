@@ -1377,6 +1377,10 @@
   .nav .search .search-result {
     max-height: 70vh;
   }
+
+  .messagepage-mobile .popup-messages {
+    background-color: white;
+  }
 }
 @media screen and (max-width: 960px) {
   .nav {
@@ -2188,6 +2192,10 @@ body #reset-pass-logo {
   }
   .nav .search .search-result {
     max-height: 70vh;
+  }
+
+  .messagepage-mobile .popup-messages {
+    background-color: white;
   }
 }
 @media screen and (max-width: 960px) {

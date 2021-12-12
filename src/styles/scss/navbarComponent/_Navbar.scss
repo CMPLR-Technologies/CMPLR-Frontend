@@ -641,6 +641,11 @@ $border-radius-primary: 3px;
             }
         }
     }
+    .messagepage-mobile {
+        .popup-messages {
+            background-color: $primiry-color;
+        }
+    }
 }
 
 // mobile screen

@@ -121,7 +121,7 @@ export default function Navbar() {
         }
 
         .messagepage-mobile .popup-messages{
-            background-color: rgb(${themes[theme].navy});
+            background-color: rgb(${themes[theme].white});
         }
         .messagepage-mobile .popup-header{
             background-color: rgb(${themes[theme].navy});
@@ -171,7 +171,7 @@ export default function Navbar() {
                 <ThemeToggle />
                 {/*section 2 contains links*/}
                 {/*<NavbarLinks isAuth={user ? true : false} />*/}
-                <NavbarLinks isAuth={true}/>
+                <NavbarLinks isAuth={user ? true : true}/>
             </div>
             <style>{css}</style>
         </div>
