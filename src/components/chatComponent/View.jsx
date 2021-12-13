@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { ChatContext } from '../../contexts/chatContext/ChatContext';
+import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 
 import ChatPopUp from './containers/ChatPopUp';
 import ChatSideIcons from './containers/ChatSideIcons';
@@ -11,7 +12,25 @@ import ChatSideIcons from './containers/ChatSideIcons';
  */
 export default function View() {
     let { currPopUpOpenChat } = useContext(ChatContext);
-
+    const theme = useContext(ThemeContext)[0];
+    const css = `
+    .chat-popup-footer{
+        background-color: rgba(${themes[theme].white});
+    }
+    .chat-popup-footer textarea{
+        background-color: rgba(${themes[theme].white});
+        color:rgba(${themes[theme].black});
+    }
+    @media screen and (max-width: 960px) {
+        .chat-popup-footer,.send{
+            background-color: rgba(${themes[theme].white});
+        }
+        .chat-popup-footer textarea{
+            background-color: rgba(${themes[theme].white});
+            color:rgba(${themes[theme].black});
+        }
+    }
+    `;
     return (
         <div className='chat-container'>
             {currPopUpOpenChat && (
@@ -23,6 +42,7 @@ export default function View() {
                 />
             )}
             <ChatSideIcons />
+            <style>{css}</style>
         </div>
     );
 }

@@ -3,7 +3,6 @@ import '../../styles/styles.css';
 import NavbarLinks from './containers/navbarLinks/NavbarLinks';
 import NavbarSection1 from './containers/section1/NavbarSection1';
 import { UserContext } from '../../contexts/userContext/UserContext';
-import ThemeToggle from '../ThemeToggle.jsx';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 import ChatView from '../chatComponent/View';
 /**
@@ -28,6 +27,9 @@ export default function Navbar() {
             color: rgba(${themes[theme].whiteOnDark}, 0.65);
         }
         .search-input{
+            color: rgba(${themes[theme].whiteOnDark}, 0.65);
+        }
+        .search-input::placeholder{
             color: rgba(${themes[theme].whiteOnDark}, 0.65);
         }
 
@@ -68,6 +70,9 @@ export default function Navbar() {
 
         .search.focus {
             background-color:  rgb(${themes[theme].white});
+        }
+        .search.focus .search-input::placeholder {
+            color:  rgb(${themes[theme].black},.50);
         }
         .search.focus .search-input {
             color:  rgb(${themes[theme].black});
@@ -145,7 +150,77 @@ export default function Navbar() {
             color: rgb(${themes[theme].whiteOnDark});
         }
 
+        @media screen and (max-width: 960px) {
 
+            .nav {
+                background: rgba(${themes[theme].navy});
+            }
+            .nav .section1 .menu-mobile-icon {
+                color: rgba(${themes[theme].whiteOnDark});
+            }
+            .nav .section1 .search-mobile-icon {
+                color: rgba(${themes[theme].whiteOnDark});
+            }
+            .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-close{
+                background: none;
+                color: inherit;
+            }
+            .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-close span{
+                background-color: rgb(${
+                    themes[theme].navy
+                }, 0.95);
+            }
+            .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu {
+                background-color:rgb(${themes[theme].navy});
+            }
+            .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu .create-new-post  {
+               
+                color:rgb(${themes[theme].navy});
+            }
+           
+            .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu ul li a{
+                color: rgb(${themes[theme].whiteOnDark});
+            }
+         
+            .nav .section1 .search{
+                background-color: rgb(${themes[theme].white});
+            }
+            .nav .section1 .search search-input::placeholder{
+                background-color: $primiry-color;
+            }
+                
+            .messagepage-mobile .receiver{
+                color: rgb(${themes[theme].black});
+            }
+            .val{
+                color: rgba(${themes[theme].whiteOnDark},.65);
+                display:flex;
+                align-items:center;
+            }
+            .blogs h3{
+                color: rgba(${themes[theme].whiteOnDark});
+
+            }
+            .navbar-menu-mobile-footer footer a{
+                color: rgba(${themes[theme].whiteOnDark});
+            }
+            .log-out-overlay{
+                background: rgb(${themes[theme].navy});
+            }
+            .popup {
+                &-header {
+                    background-color: $primiry-bg;
+                    h3 {
+                        color: $primiry-color;
+                    }
+                    span {
+                        i {
+                            color: $primiry-color;
+                        }
+                    }
+                }
+            }
+        }
     `;
 
     const [mobileView, setMobileView] = useState(false);
@@ -168,10 +243,9 @@ export default function Navbar() {
                 <ChatView />
                 {/*section 1 contains logo and search bar*/}
                 <NavbarSection1 />
-                <ThemeToggle />
                 {/*section 2 contains links*/}
                 {/*<NavbarLinks isAuth={user ? true : false} />*/}
-                <NavbarLinks isAuth={user ? true : true}/>
+                <NavbarLinks isAuth={user ? true : false} />
             </div>
             <style>{css}</style>
         </div>

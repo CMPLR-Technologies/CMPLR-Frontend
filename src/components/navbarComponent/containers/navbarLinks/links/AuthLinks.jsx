@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import '../../../../../styles/styles.css';
 import MessagesPopUp from '../MessagesPopup/MessagesPopUp';
+import AccountPopup from '../AccountPopup/AccountPopup';
 import { Link, NavLink } from 'react-router-dom';
 
 /**
@@ -28,6 +29,10 @@ export default function AuthLinks() {
         setOpenMessagePopup(false);
         //console.log("colse");
     };
+    const closeAccountPopup = () => {
+        setOpenAccountPopup(false);
+        //console.log("colse");
+    };
     const clickMessagePopup = () => {
         // if i open it
         if (!openMessagePopup) {
@@ -44,7 +49,7 @@ export default function AuthLinks() {
             setOpenMessagePopup(false);
             setOpenAccountPopup(false);
         }
-        setOpenNotificationsPopup(!openMessagePopup);
+        setOpenNotificationsPopup(!openNotificationsPopup);
     };
     const clickAccountPopup = () => {
         // if i open it
@@ -53,7 +58,7 @@ export default function AuthLinks() {
             setOpenMessagePopup(false);
             setOpenNotificationsPopup(false);
         }
-        setOpenAccountPopup(!openMessagePopup);
+        setOpenAccountPopup(!openAccountPopup);
     };
 
     /*  const clickOpenPopup = () => {
@@ -66,7 +71,7 @@ export default function AuthLinks() {
             <li className="link-icon">
                 <NavLink
                     className={navData => (navData.isActive ? 'active' : '')}
-                    to="/dashbord"
+                    to="/dashboard"
                 >
                     <i className="fas fa-home"></i>
                 </NavLink>
@@ -112,12 +117,19 @@ export default function AuthLinks() {
             >
                 <i className="fas fa-bolt"></i>
             </li>
-            <li
-                onClick={clickAccountPopup}
-                className={`link-icon  ${openAccountPopup ? 'active' : ''}`}
-            >
-                <i className="fas fa-user"></i>
-            </li>
+            <ClickAwayListener onClickAway={closeAccountPopup}>
+                <div className="link-popup">
+                    <li
+                        onClick={clickAccountPopup}
+                        className={`link-icon  ${
+                            openAccountPopup ? 'active' : ''
+                        }`}
+                    >
+                        <i className="fas fa-user"></i>
+                    </li>
+                    {openAccountPopup && <AccountPopup />}
+                </div>
+            </ClickAwayListener>
             <li className="link-icon pen">
                 <Link to="/new">
                     <i className="fas fa-pen"></i>

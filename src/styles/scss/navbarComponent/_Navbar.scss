@@ -324,8 +324,6 @@ $border-radius-primary: 3px;
         }
     }
 }
-
-// popup messages inbox and message page when moblie view
 .popup {
     position: absolute;
     //background-color: $primiry-color;
@@ -333,7 +331,7 @@ $border-radius-primary: 3px;
     height: auto;
     max-height: 490px;
     //color: black;
-    left: -124px;
+    left: -107px;
     top: 40px;
     font-size: 0.875rem;
     overflow-y: scroll;
@@ -388,13 +386,13 @@ $border-radius-primary: 3px;
                     border-radius: 50%;
                 }
             }
-            &-text{
+            &-text {
                 width: 100%;
                 overflow: hidden;
-                .sender-up{
+                .sender-up {
                     display: flex;
                 }
-                .sender{
+                .sender {
                     margin-right: 5px;
                 }
                 .message {
@@ -414,7 +412,6 @@ $border-radius-primary: 3px;
         // .receiver {
         //     color: $receive-color;
         // }
-       
     }
 
     //new message button view
@@ -461,29 +458,36 @@ $border-radius-primary: 3px;
     }
     .popup-messages {
         margin-top: 54px;
-        background-color: $primiry-color;
+        //  background-color: $primiry-color;
         min-height: calc(100vh - 54px);
         height: 100%;
-        p,h2,h3,span,i{
-            color: black;
+        p,
+        h2,
+        h3,
+        span,
+        i {
+            // color: black;
         }
-        .sender{
-            color:rgba(0,0,0,.65);
+        .sender {
+            //  color:rgba(0,0,0,.65);
+            font-size: 15px;
         }
-        .sender-up{
+        .receiver {
+            font-size: 17px;
+        }
+        .sender-up {
             display: flex;
             align-items: center;
         }
-        .no-chat{
+        .no-chat {
             height: calc(100vh - 54px);
         }
-       
-        &-message{
-            border-bottom: 1px solid rgba(0,0,0,.13);
+
+        &-message {
+            font-size: 15px;
+            //border-bottom: 1px solid rgba(0,0,0,.13);
         }
-        
     }
-   
 }
 .popup-header {
     background-color: $primiry-color;
@@ -503,10 +507,6 @@ $border-radius-primary: 3px;
             i {
                 font-size: 70px;
             }
-        }
-        .icon i,
-        .text {
-            color: black;
         }
         .text {
             font-size: 25px;
@@ -628,7 +628,11 @@ $border-radius-primary: 3px;
         font-size: 30px;
     }
 }
-
+//logout popup
+.log-out-overlay-text{
+    padding:15px;
+    text-align: center;
+}
 // big screen
 @media screen and (min-width: 961px) {
     .nav {
@@ -689,7 +693,6 @@ $border-radius-primary: 3px;
                     position: absolute;
                     width: 100%;
                     span {
-                        background-color: rgba(0, 25, 53, 0.95);
                         height: 100%;
                         position: absolute;
                         width: 100%;
@@ -698,11 +701,11 @@ $border-radius-primary: 3px;
                     }
                 }
                 .navbar-menu-mobile-menu {
-                    background-color: $primiry-bg;
                     display: flex;
                     flex-direction: column;
                     z-index: 1000;
                     width: 90vw;
+
                     .create-new-post {
                         background: none;
                         color: inherit;
@@ -740,6 +743,10 @@ $border-radius-primary: 3px;
                             margin-right: 8px;
                         }
                     }
+                    .navbar-menu-mobile-menu-item-text {
+                        display: flex;
+                        justify-content: space-between;
+                    }
                     ul {
                         width: 100%;
                         list-style: none;
@@ -759,6 +766,32 @@ $border-radius-primary: 3px;
                             i {
                                 font-size: 1.4rem;
                                 min-width: 45px;
+                            }
+                        }
+                    }
+                    .blogs {
+                        h3 {
+                            padding: 13px 15px;
+                            font-size: 1.3125rem;
+                            font-weight: 700;
+                            line-height: 1.5238;
+                        }
+                    }
+                    .navbar-menu-mobile-footer {
+                        padding: 20px 10px 0;
+                        padding-bottom: 117px;
+                        footer {
+                            display: flex;
+                            flex-wrap: wrap;
+                            font-size: 0.78125rem;
+                            font-weight: 400;
+                            line-height: 1.44;
+                            a{
+                                padding: 0 14px;
+                                text-decoration: none;
+                                &:active,&:hover{
+                                    text-decoration: none;
+                                }
                             }
                         }
                     }
@@ -786,13 +819,14 @@ $border-radius-primary: 3px;
             }
             .search {
                 width: 80%;
+                height: 32px;
                 background-color: $primiry-color;
                 border-radius: 85px;
                 &-input {
+                    height: 32px;
                     border-radius: 85px;
                     width: 100%;
-                    // padding-left: 15px;
-                    padding: 8px 0 8px 15px;
+                    padding-left: 15px;
                     &::placeholder {
                         font-size: 17px;
                     }

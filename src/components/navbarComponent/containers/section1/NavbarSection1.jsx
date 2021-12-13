@@ -3,6 +3,7 @@ import '../../../../styles/styles.css';
 import SearchBar from '../searchBar/SearchBar';
 import NavbarMenuMobile from './NavbarMenuMobile';
 import { Link } from 'react-router-dom';
+import isAuth from '../../../../hooks/isAuth';
 /**
  * Navbar Section1: includes the logo and the searchbar
  * @function NavbarSection1
@@ -14,12 +15,19 @@ import { Link } from 'react-router-dom';
  * @property {function} setMobileView - Search bar open Setter state
  * @returns {Component} search bar component and logo and menu icon for mobild view
  */
- export default function NavbarSection1() {
+export default function NavbarSection1() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [isOpenSetting, setIsOpenSetting] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
     const [mobileView, setMobileView] = useState(false);
     const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
+        // if open setting list so the will close it
+        if (isOpenSetting) {
+            closeSetting();
+        } else {
+            // else it will close whole menu
+            setMenuOpen(!menuOpen);
+        }
     };
     const toggleSearch = () => {
         setSearchOpen(!searchOpen);
@@ -27,6 +35,13 @@ import { Link } from 'react-router-dom';
 
     const closeMenu = () => {
         setMenuOpen(false);
+        setIsOpenSetting(false);
+    };
+    const closeSetting = () => {
+        setIsOpenSetting(false);
+    };
+    const openSetting = () => {
+        setIsOpenSetting(true);
     };
     //this funcion is made to if the screen is big so make searchOpen to true to show the search bar
     const chaneMobileView = () => {
@@ -46,11 +61,19 @@ import { Link } from 'react-router-dom';
         <div className="section1">
             {mobileView && (
                 <div className="menu-mobile-icon" onClick={toggleMenu}>
-                    <i className={menuOpen ? 'fas fa-times' : 'fas fa-bars'} />
+                    <i
+                        className={
+                            menuOpen
+                                ? !isOpenSetting
+                                    ? 'fas fa-times'
+                                    : 'fas fa-angle-left'
+                                : 'fas fa-bars'
+                        }
+                    />
                 </div>
             )}
             <div className="logo main">
-                <Link to="/">
+                <Link to={isAuth() ? '/dashboard' : '/'}>
                     <span className="fa fa-downcase-t"></span>
                 </Link>
             </div>
@@ -59,7 +82,7 @@ import { Link } from 'react-router-dom';
                 <SearchBar />
             ) : mobileView ? (
                 <div className="logo">
-                    <Link to="/">
+                    <Link to={isAuth() ? '/dashboard' : '/'}>
                         <span className="fa fa-downcase-t"></span>
                     </Link>
                 </div>
@@ -70,9 +93,12 @@ import { Link } from 'react-router-dom';
                     className={!searchOpen ? 'fas fa-search' : 'fas fa-times'}
                 ></i>
             </div>
-
-            <NavbarMenuMobile active={menuOpen} closeMenu={closeMenu} />
+            <NavbarMenuMobile
+                active={menuOpen}
+                closeMenuPar={closeMenu}
+                openSetting={openSetting}
+                isOpenSetting={isOpenSetting}
+            />
         </div>
     );
-};
-
+}

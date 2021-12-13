@@ -1,0 +1,75 @@
+.main_verify {
+    outline: none;
+    margin-bottom: 20px;
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    width: 625px;
+    .mid_verify {
+        outline: none;
+        .inner_verify {
+            position: relative;
+            .qj1WD {
+                height: 1px;
+                position: absolute;
+                top: 50%;
+                width: 1px;
+            }
+            .Te4Pg {
+                background-color: #00b8ff;
+                border-radius: 6px;
+                box-sizing: border-box;
+                color: white;
+                line-height: 1.4;
+                padding: 14px 16px;
+                width: 100%;
+                .RUFdS {
+                    display: block;
+                }
+                .YEJRy {
+                    align-items: center;
+                    display: flex;
+                    color: white;
+                    justify-content: flex-end;
+                    margin-top: 10px;
+                    .bdzlZ {
+                        background-color: rgba(255, 255, 255, 0);
+                        color: white;
+                        border-radius: 3px;
+                        cursor: pointer;
+                        margin-left: 10px;
+                        padding: 6px 12px;
+                        text-decoration: none;
+                    }
+                    .TRX6J {
+                        color: inherit;
+                        font: inherit;
+                        background-color: transparent;
+                        border: none;
+                        cursor: pointer;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    .CFBrV {
+                        background-color: white;
+                        color: #00b8ff;
+                        font-weight: 700;
+                        border-radius: 3px;
+                        cursor: pointer;
+                        margin-left: 10px;
+                        padding: 6px 12px;
+                        text-decoration: none;
+                        display: block;
+                        font: inherit;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 960px) {
+    .main_verify {
+        width: 90%;
+        margin: auto;
+    }
+}

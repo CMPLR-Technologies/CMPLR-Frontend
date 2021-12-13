@@ -103,7 +103,7 @@ export default function ChatPopUp() {
                         <textarea
                             autoFocus
                             type="text"
-                            placeholder="Say something"
+                            placeholder="Say your thing"
                             onChange={onChange}
                             value={messageToSend}
                             onKeyDown={onEnterPress}

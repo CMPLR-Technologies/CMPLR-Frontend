@@ -18,7 +18,7 @@ export default function AuthBtn(props) {
         <a
             onClick={handleClick}
             className="AuthBtn "
-            style={{ backgroundColor: color, color: 'black' }}
+            style={{ backgroundColor: color }}
             id={id}
             data-testid={dataTestid}
             title={text}
@@ -40,7 +40,7 @@ export default function AuthBtn(props) {
 AuthBtn.propTypes = {
     text: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
-    logo: PropTypes,
+    logo: PropTypes.string,
     handleClick: PropTypes.func.isRequired,
     id: PropTypes.string,
     dataTestid: PropTypes.string

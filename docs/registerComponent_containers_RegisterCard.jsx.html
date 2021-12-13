@@ -26,13 +26,14 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React, { useContext, useState } from 'react';
+            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react';
 import RegisterStepOne from './RegisterStepOne';
 import RegisterStepTwo from './RegisterStepTwo';
-import { apiBaseUrl } from '../../../config.json';
-import Axios from 'axios';
 import { UserContext } from '../../../contexts/userContext/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+
+import { handleStepOne, handleStepTwo } from '../Service';
 
 /**
  * Register Main Component
@@ -41,70 +42,55 @@ import { useNavigate } from 'react-router-dom';
  * @returns {Component} the Component of RegisterStepOne &amp; RegisterStepTwo for handling the whole registeration
  */
 export default function RegisterCard() {
-    const navigate = useNavigate();
-    const { setUser } = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [blogName, setBlogName] = useState('');
     const [age, setAge] = useState(null);
     const [openError, setOpenError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState([]);
     const [registerStep, setRegisterStep] = useState(1);
+    const navigate = useNavigate();
+    const { setUser } = useContext(UserContext);
+    const [isPending, setIsPending] = useState(false);
 
-    const handleStepOne = () => {
-        setRegisterStep(2);
-        // Axios({
-        //     method: "POST",
-        //     url: `${apiBaseUrl}/register/validate`,
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     },
-        //     data: {
-        //       email: email,
-        //       password: password,
-        //       blogName: blogName,
-        //     },
-        //   })
-        //     .then((res) => {
-        //       //all data is validated go to age page
-        //       setOpenError(false);
-        //       setRegisterStep(2);
-        //     })
-        //     .catch((err) => {
-        //       setErrorMessage(""); //TODO: set the msg which comes from backend
-        //       setOpenError(true);
-        //     });
+    const handleOne = () => {
+        const dataBody = {
+            email: email,
+            password: password,
+            // eslint-disable-next-line camelcase
+            blog_name: blogName
+        };
+        handleStepOne(
+            dataBody,
+            setOpenError,
+            setRegisterStep,
+            setErrorMessage,
+            setIsPending
+        );
     };
 
-    const handleStepTwo = () => {
-        Axios({
-            method: 'POST',
-            url: `${apiBaseUrl}/register`,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: {
-                email: email,
-                password: password,
-                blogName: blogName,
-                age: parseInt(age)
-            }
-        })
-            .then(res => {
-                setUser(res);
-                navigate('/dashboard');
-                setOpenError(false);
-            })
-            .catch(err => {
-                setErrorMessage(err); //TODO: set the msg which comes from backend
-                setOpenError(true);
-            });
+    const handleTwo = () => {
+        const bodyData = {
+            email: email,
+            password: password,
+            // eslint-disable-next-line camelcase
+            blog_name: blogName,
+            age: parseInt(age)
+        };
+        handleStepTwo(
+            bodyData,
+            setOpenError,
+            setErrorMessage,
+            setUser,
+            navigate,
+            setIsPending
+        );
     };
     return (
         &lt;>
             {registerStep === 1 &amp;&amp; (
                 &lt;RegisterStepOne
-                    handleStepOne={handleStepOne}
+                    handleStepOne={handleOne}
                     email={email}
                     setEmail={setEmail}
                     password={password}
@@ -113,15 +99,17 @@ export default function RegisterCard() {
                     setBlogName={setBlogName}
                     openError={openError}
                     errorMessage={errorMessage}
+                    isPending={isPending}
                 />
             )}
             {registerStep === 2 &amp;&amp; (
                 &lt;RegisterStepTwo
-                    handleStepTwo={handleStepTwo}
+                    handleStepTwo={handleTwo}
                     age={age}
                     setAge={setAge}
                     openError={openError}
                     errorMessage={errorMessage}
+                    isPending={isPending}
                 />
             )}
         &lt;/>
@@ -137,13 +125,21 @@ export default function RegisterCard() {
 </div>
 
 <nav>
+<<<<<<< HEAD
     <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#ThemeToggle">ThemeToggle</a></li></ul>
+=======
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+>>>>>>> dev
 </nav>
 
 <br class="clear">
 
 <footer>
+<<<<<<< HEAD
     Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 09 2021 15:17:05 GMT+0200 (Eastern European Standard Time)
+=======
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 10 2021 22:55:07 GMT+0200 (Eastern European Standard Time)
+>>>>>>> dev
 </footer>
 
 <script> prettyPrint(); </script>

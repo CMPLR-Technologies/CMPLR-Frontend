@@ -1,0 +1,78 @@
+.main-richeditor {
+    width: 100%;
+    outline: none;
+    :focus {
+        outline: none;
+    }
+}
+
+.text-editor-header {
+    width: 100%;
+    background-color: whitesmoke;
+    padding: 5px;
+    outline: none;
+    margin: auto;
+    :focus {
+        outline: none;
+    }
+}
+.text-editor-header .btn {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin: 0 7px;
+    border-radius: 10%;
+    :focus {
+        outline: none;
+    }
+}
+.colorStyle {
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.foreColor_btn {
+    color: darkblue;
+}
+
+.printable_btn {
+    color: orangered;
+}
+
+.colorStyle::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+.colorStyle::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+}
+
+.content {
+    min-height: 200px;
+    border: none;
+    background-color: white;
+    border-top: 0px;
+    padding: 20px;
+    outline: none;
+    &:empty::before {
+        content: attr(data-placeholder);
+        color: #8e8e8e;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        outline: none;
+        max-width: none;
+        max-height: 400px;
+    }
+    input {
+        &:focus {
+            outline: none !important;
+        }
+    }
+}

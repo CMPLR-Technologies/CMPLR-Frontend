@@ -25,6 +25,10 @@
         background-color: black;
         color: white;
         position: relative;
+        a{
+            color: white;
+            text-decoration: none;
+        }
         &-option {
             display: flex;
             flex-direction: column;
@@ -123,6 +127,7 @@
             }
         }
         &-messages {
+            padding-bottom: 10px;
             .message {
                 padding: 15px 10px 0;
                 display: flex;
@@ -145,17 +150,17 @@
         }
     }
     &-footer {
+        height: 86.4px;
         .input {
             max-height: 150px;
             padding: 15px 15px 0;
             width: 100%;
             border-top: 1px solid rgba(0, 184, 255, 0.1);
             textarea {
-                color: black;
+               // color: black;
                 border: none;
                 overflow: auto;
                 outline: none;
-
                 -webkit-box-shadow: none;
                 -moz-box-shadow: none;
                 box-shadow: none;
@@ -163,6 +168,9 @@
                 resize: none;
                 max-height: 150px;
                 width: 100%;
+                &::placeholder{
+                    font-weight: bold;
+                }
             }
         }
         .send {
@@ -242,10 +250,10 @@
             height: 44px;
             display: flex;
             textarea {
-                background-color: (#fff);
+                //background-color: (#fff);
                 border: none;
                 box-sizing: border-box;
-                color: (#000);
+               // color: (#000);
                 font-size: inherit;
                 height: auto;
                 outline: 0;
@@ -263,7 +271,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background: (#fff);
+              //  background: (#fff);
                 margin: 0;
                 padding-right: 15px;
             }
@@ -274,8 +282,16 @@
 // mobile screen
 @media screen and (max-width: 960px) {
     .chat-popup-container {
+        display: none;
         .chat-popup {
             display: none;
+        }
+    }
+    .chat-side-icons{
+        display: none;
+        .chat-side-icon-item{
+            display: none;
+
         }
     }
 }

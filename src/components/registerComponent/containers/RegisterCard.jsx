@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import RegisterStepOne from './RegisterStepOne';
 import RegisterStepTwo from './RegisterStepTwo';
-import { apiBaseUrl } from '../../../config.json';
-import Axios from 'axios';
 import { UserContext } from '../../../contexts/userContext/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+
+import { handleStepOne, handleStepTwo } from '../Service';
 
 /**
  * Register Main Component
@@ -13,70 +14,55 @@ import { useNavigate } from 'react-router-dom';
  * @returns {Component} the Component of RegisterStepOne & RegisterStepTwo for handling the whole registeration
  */
 export default function RegisterCard() {
-    const navigate = useNavigate();
-    const { setUser } = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [blogName, setBlogName] = useState('');
     const [age, setAge] = useState(null);
     const [openError, setOpenError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState([]);
     const [registerStep, setRegisterStep] = useState(1);
+    const navigate = useNavigate();
+    const { setUser } = useContext(UserContext);
+    const [isPending, setIsPending] = useState(false);
 
-    const handleStepOne = () => {
-        setRegisterStep(2);
-        // Axios({
-        //     method: "POST",
-        //     url: `${apiBaseUrl}/register/validate`,
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     },
-        //     data: {
-        //       email: email,
-        //       password: password,
-        //       blogName: blogName,
-        //     },
-        //   })
-        //     .then((res) => {
-        //       //all data is validated go to age page
-        //       setOpenError(false);
-        //       setRegisterStep(2);
-        //     })
-        //     .catch((err) => {
-        //       setErrorMessage(""); //TODO: set the msg which comes from backend
-        //       setOpenError(true);
-        //     });
+    const handleOne = () => {
+        const dataBody = {
+            email: email,
+            password: password,
+            // eslint-disable-next-line camelcase
+            blog_name: blogName
+        };
+        handleStepOne(
+            dataBody,
+            setOpenError,
+            setRegisterStep,
+            setErrorMessage,
+            setIsPending
+        );
     };
 
-    const handleStepTwo = () => {
-        Axios({
-            method: 'POST',
-            url: `${apiBaseUrl}/register`,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: {
-                email: email,
-                password: password,
-                blogName: blogName,
-                age: parseInt(age)
-            }
-        })
-            .then(res => {
-                setUser(res);
-                navigate('/dashboard');
-                setOpenError(false);
-            })
-            .catch(err => {
-                setErrorMessage(err); //TODO: set the msg which comes from backend
-                setOpenError(true);
-            });
+    const handleTwo = () => {
+        const bodyData = {
+            email: email,
+            password: password,
+            // eslint-disable-next-line camelcase
+            blog_name: blogName,
+            age: parseInt(age)
+        };
+        handleStepTwo(
+            bodyData,
+            setOpenError,
+            setErrorMessage,
+            setUser,
+            navigate,
+            setIsPending
+        );
     };
     return (
         <>
             {registerStep === 1 && (
                 <RegisterStepOne
-                    handleStepOne={handleStepOne}
+                    handleStepOne={handleOne}
                     email={email}
                     setEmail={setEmail}
                     password={password}
@@ -85,15 +71,17 @@ export default function RegisterCard() {
                     setBlogName={setBlogName}
                     openError={openError}
                     errorMessage={errorMessage}
+                    isPending={isPending}
                 />
             )}
             {registerStep === 2 && (
                 <RegisterStepTwo
-                    handleStepTwo={handleStepTwo}
+                    handleStepTwo={handleTwo}
                     age={age}
                     setAge={setAge}
                     openError={openError}
                     errorMessage={errorMessage}
+                    isPending={isPending}
                 />
             )}
         </>
