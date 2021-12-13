@@ -19,11 +19,13 @@ export default function TextPost(props) {
 
     return (
         <div data-testid={`post-body-ts`} className="post-body">
-            <div
-                data-testid={`post-text-title-ts-${title}`}
-                className="text-title"
-            >
-                <span className="text-title-content">{title}</span>
+            <div className="text-title">
+                <span
+                    data-testid={`post-text-title-ts-${title}`}
+                    className="text-title-content"
+                >
+                    {title}
+                </span>
             </div>
             <div
                 data-testid={`post-body-content-ts-${title}`}

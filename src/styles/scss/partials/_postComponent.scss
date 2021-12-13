@@ -260,6 +260,9 @@
         word-break: break-word;
         white-space: pre-line;
         margin-bottom: 0.75rem;
+        img {
+            max-width: 100%;
+        }
     }
 
     .text-title {
@@ -518,6 +521,221 @@
             background-color: transparent;
             margin-left: 15px;
             cursor: pointer;
+        }
+    }
+
+    .notes-view-container {
+        position: absolute;
+        width: 300px;
+        height: 410px;
+        top: 0;
+        left: 0;
+        transform: translate3d(109px, -233px, 0px);
+        overflow-y: visible;
+        border-radius: 3px;
+        z-index: 200;
+
+        //set max-height using calc
+        max-height: calc(100vh - 233px);
+        &:hover {
+            cursor: auto;
+        }
+
+        .notes-view-flex {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.875rem;
+            font-weight: 400;
+            height: 100%;
+            line-height: 1.5;
+            .notes-view-content {
+                box-sizing: border-box;
+                flex: 1;
+                overflow-x: hidden;
+                overflow-y: auto;
+                padding: 5px 0;
+
+                .post-author {
+                    display: flex;
+                    padding: 5px 18px 5px 10px;
+                    .avatar .summary-avatar {
+                        width: 24px;
+                        height: 24px;
+                        border-radius: 3px;
+                        margin-right: 5px;
+                    }
+                }
+                .notes-list {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 5px 5px 5px 10px;
+
+                    .relative {
+                        position: relative;
+                        min-width: 230px;
+                        max-width: 230px;
+
+                        .noter-avatar {
+                            position: absolute;
+                            left: -27px;
+                            top: 1px;
+                            .noter-avatar-img {
+                                width: 24px;
+                                height: 24px;
+                            }
+                        }
+                        .avatar-react {
+                            position: absolute;
+                            top: 15px;
+                            left: -15px;
+                        }
+                    }
+
+                    .note-content {
+                        border-radius: 6px;
+                        display: flex;
+                        flex-direction: column;
+                        font-size: 100%;
+                        justify-content: center;
+                        overflow: hidden;
+                        padding: 10px;
+                        word-break: break-word;
+                        margin-bottom: 10px;
+
+                        .note-author,
+                        .reblogger-name {
+                            text-decoration: none;
+                        }
+
+                        .note-heading-flex {
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .note-option-btn {
+                            flex: 0 1 0%;
+                            margin-left: auto;
+                            position: relative;
+                        }
+                        .option-list {
+                            position: absolute;
+                            height: auto;
+                            background-color: white;
+                            top: 40px;
+                            width: 60%;
+                            left: 50px;
+                            .opt-btn {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                padding: 10px;
+                                font-weight: 400;
+                                line-height: 1.5;
+                                font-size: 1rem;
+
+                                &:hover {
+                                    cursor: pointer;
+                                    background-color: gray;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .input-area {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 40px;
+                max-height: 140px;
+                overflow-x: auto;
+
+                .note-reply {
+                    background-color: transparent;
+                    border: none;
+                    height: 100%;
+                    flex-grow: 1;
+                    font-size: 1rem;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    padding: 10px;
+                    overflow-wrap: break-word;
+                    overflow: hidden;
+                    &:focus {
+                        border: none;
+                        outline: none;
+                    }
+                }
+                .reply-btn {
+                    font-weight: 700;
+                    width: 80px;
+                    height: 100%;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    text-align: center;
+                }
+            }
+            .notes-view-header-icons {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                padding: 14px 10px;
+
+                .notes-view-count {
+                    flex-grow: 1;
+                    font-weight: 700;
+                    font-size: 1rem;
+                }
+
+                .notes-view-header-right-icons {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .subscribe-to-conversation {
+                        margin-right: 7px;
+                    }
+                }
+            }
+            .notes-summary {
+                padding: 8px 10px;
+                width: 100%;
+                .notes-summary-flex {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    overflow: hidden;
+
+                    .notes-summary-avatars {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        .notes-summary-avatars-react {
+                            margin-right: 2px;
+                            position: relative;
+                        }
+                        .summary-avatar {
+                            border-radius: 50%;
+                            width: 24px;
+                            height: 24px;
+                        }
+                        .avatar-react {
+                            bottom: -1px;
+                            display: flex;
+                            height: 14px;
+                            position: absolute;
+                            right: -3px;
+                            width: 14px;
+                        }
+                    }
+                    .notes-summary-count {
+                        font-weight: 700;
+                        font-size: 0.875rem;
+                    }
+                }
+            }
         }
     }
 }
