@@ -13,7 +13,7 @@
         {
           "type": "text",
           "title": "Test Post<br>",
-          "content": "Test Content<br>",
+          "content": "Test Content<br> ",
           "user": {
             "name": "Yahia",
             "blogName": "Yahia"
@@ -50,7 +50,7 @@
   },
   "unlike": {
     "id": 13212383,
-    "reblogKey": 1253
+    "reblogKey": "1253"
   },
   "follow": {
     "url": "dddddas",
@@ -157,7 +157,7 @@
             {
               "type": "text",
               "title": "Test Post<br>",
-              "content": "Test Content<br>",
+              "content": "Test Content<br> <img src='https://64.media.tumblr.com/6675333e10261db3665e30cb73c259a9/bd7d7afe4b77280c-9f/s540x810/5683d5db5d6539334416e038a41dc5706f71da9a.jpg'/>",
               "user": {
                 "name": "Yahia",
                 "blogName": "Yahia"
