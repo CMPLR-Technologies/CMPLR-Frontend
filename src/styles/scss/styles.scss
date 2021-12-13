@@ -16,12 +16,17 @@
 
 @import './shortcutsStyles/shortcuts.scss';
 @import './createPostStyles/createPostStyles.scss';
-@import './dashboardStyles/dashboardStyles';
 @import './createPostStyles/createPostPopup.scss';
 @import './richTextEditorStyles/rich.scss';
+@import './dashboardStyles/dashboardStyles';
 
+@import './navbarComponent/_navbar.scss';
+@import './accountpopupComponent/_accountpopup.scss';
+
+@import './loginStyles/LoginCard.scss';
+@import './loginStyles/LoginView.scss';
+@import './forgetPasswordStyles/_forgetPasswordStyles.scss';
 @import './verifyEmailStyles/verifyEmail.scss';
-
 * {
     margin: 0;
     padding: 0;

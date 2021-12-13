@@ -1,4 +1,6 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
+import { apiBaseUrl } from '../../config.json';
+import { UserContext } from '../userContext/UserContext';
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -53,18 +55,42 @@ export const themes = {
 export const ThemeContext = createContext();
 
 export function ThemeContextProvider(props) {
-    const { children } = props;
     const [theme, setTheme] = useState('trueBlue');
+    const { user, setUser } = useContext(UserContext);
+    const { children } = props;
 
     useEffect(() => {
-        axios.get('http://localhost:3333/users').then(response => {
-            setTheme(response.data.theme);
-        });
-    }, []);
+        if (user) {
+            if (user?.userData?.theme) {
+                setTheme(user?.userData?.theme);
+            } else {
+                setTheme('trueBlue');
+            }
+        }
+    }, [user]);
+
+    const changeTheme = currentTheme => {
+        const config = {
+            headers: { Authorization: `Bearer ${user.token}` }
+        };
+        const keys = Object.keys(themes);
+        const nextIndex = (keys.indexOf(currentTheme) + 1) % keys.length;
+        axios
+            .put(`${apiBaseUrl}/user_theme`, { theme: keys[nextIndex] }, config)
+            .then(() => {
+                let adjustUser = user;
+                adjustUser.userData.theme = keys[nextIndex];
+                setUser(adjustUser);
+                localStorage.setItem('user', JSON.stringify(adjustUser));
+                setTheme(keys[nextIndex]);
+            })
+            .catch(() => {});
+    };
 
     return (
-        <ThemeContext.Provider value={[theme, setTheme]}>
-            {children}
+        <ThemeContext.Provider value={[theme, changeTheme]}>
+            {' '}
+            {children}{' '}
         </ThemeContext.Provider>
     );
 }

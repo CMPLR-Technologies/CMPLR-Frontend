@@ -13,6 +13,7 @@ export default function TitleField(props) {
                         <div
                             className="editor-plain-text"
                             contentEditable="true"
+                            data-testid="title-postInput"
                             id="content-title-cpost"
                             onInput={handleChangeTitle}
                             data-placeholder="Title"

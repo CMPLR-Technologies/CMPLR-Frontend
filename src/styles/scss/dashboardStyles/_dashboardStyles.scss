@@ -22,6 +22,12 @@
     justify-self: flex-end;
 }
 
+.no-data-error {
+    padding-left: 10px;
+    padding-top: 10px;
+    color: brown;
+}
+
 // main styles
 .dashboard {
     display: flex;
@@ -96,5 +102,23 @@
     background-color: rgba(255, 255, 255, 0.13);
     .remove-btn svg {
         display: block;
+    }
+}
+
+.radar-post {
+    left: 0px;
+    margin-top: 10px;
+    width: 95%;
+}
+
+.radar-warper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+@media screen and (max-width: 950px) {
+    .dashboard-sidebar {
+        display: none;
     }
 }

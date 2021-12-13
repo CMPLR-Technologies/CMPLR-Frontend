@@ -5,6 +5,7 @@ import OrBar from '../../partials/OrBar';
 import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
 import AuthAlert from '../../partials/AuthAlert';
 import PropTypes from 'prop-types';
+import { CircularProgress } from '@mui/material';
 /**
  * Register Step1: includes the email/password/blog_name inputs for registeration process
  * @function RegisterStepOne
@@ -30,7 +31,8 @@ export default function RegisterStepOne(props) {
         setBlogName,
         handleStepOne,
         openError,
-        errorMessage
+        errorMessage,
+        isPending
     } = props;
     const logoUrl =
         'https://upload.wikimedia.org/wikipedia/commons/archive/5/53/20210618182605%21Google_%22G%22_Logo.svg';
@@ -60,6 +62,7 @@ export default function RegisterStepOne(props) {
                     name="register_email"
                     type="text"
                     placeholder="Email"
+                    dataTestid="register_email"
                 />
                 <AuthInput
                     value={password}
@@ -67,6 +70,7 @@ export default function RegisterStepOne(props) {
                     name="register_password"
                     type="password"
                     placeholder="Password"
+                    dataTestid="register_password"
                 />
                 <AuthInput
                     value={blogName}
@@ -74,6 +78,7 @@ export default function RegisterStepOne(props) {
                     name="register_blogname"
                     type="text"
                     placeholder="Blog Name"
+                    dataTestid="register_blogName"
                 />
                 <p>
                     {
@@ -82,15 +87,29 @@ export default function RegisterStepOne(props) {
                 </p>
                 <AuthBtn
                     handleClick={handleStepOne}
+                    dataTestid="register_step1"
                     text="Sign up"
                     color="#00b8ff"
                 />
             </div>
+            {isPending && (
+                <div className="load-circle">
+                    <CircularProgress />
+                </div>
+            )}
 
             <OrBar></OrBar>
-            <AuthBtn text="Continue with Google" color="white" logo={logoUrl} />
-            <p className="LoginCard__a">
-                <a href="/explore" className="register_explore_anchor">
+            <AuthBtn
+                text="Continue with Google"
+                color="white"
+                logo={logoUrl}
+                handleClick={() => {}} // @ToDo
+            />
+            <p className="LoginCard__a ">
+                <a
+                    href="/explore"
+                    className="register_explore_anchor trending-link"
+                >
                     <svg
                         viewBox="0 0 21.8 21.8"
                         width="22"
@@ -117,5 +136,6 @@ RegisterStepOne.propTypes = {
     setBlogName: PropTypes.func.isRequired,
     handleStepOne: PropTypes.func.isRequired,
     openError: PropTypes.bool.isRequired,
-    errorMessage: PropTypes.string.isRequired
+    errorMessage: PropTypes.array.isRequired,
+    isPending: PropTypes.bool.isRequired
 };

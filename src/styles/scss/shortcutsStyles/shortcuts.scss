@@ -6,9 +6,10 @@
 .overlay-container {
     font: 'Favorit', 'Helvetica Neue', 'HelveticaNeue', Helvetica, Arial,
         sans-serif;
-    height: 100%;
+    height: 100vh;
+    width: 100vw;
     z-index: 1000;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
@@ -16,22 +17,13 @@
     display: flex;
     flex-direction: row;
 
-    span,
-    h1,
-    h2,
-    div {
-        color: black;
-    }
-
     .overlay-div {
         opacity: 0.95;
-        background-color: rgb(0, 25, 53);
         flex-grow: 1;
     }
     .shortcut-container {
         width: 400px;
         padding: 20px;
-        background-color: white;
         height: 100vh;
         overflow-y: auto;
         display: flex;
@@ -44,7 +36,6 @@
             letter-spacing: 0.02rem;
         }
         h2 {
-            border-bottom: 2px solid rgba(0, 0, 0, 0.13);
             line-height: 1.5238;
             font-size: 1.3125rem;
             font-weight: 700;
@@ -64,9 +55,6 @@
             padding: 10px;
             border-radius: 3px;
 
-            &:hover {
-                background-color: rgba(0, 0, 0, 0.07);
-            }
             .shortcut-name {
                 flex-grow: 1;
                 max-width: 100%;
@@ -77,7 +65,6 @@
 
                 .shortcut-key {
                     display: inline-block;
-                    background: rgba(85, 82, 82, 0.13);
                     border-radius: 3px;
                     font-family: inherit;
                     font-size: 1rem;
