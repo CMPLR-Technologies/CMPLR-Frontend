@@ -1,27 +1,39 @@
 import React, { useContext } from 'react';
-import OptionsCreatePost from './containers/OptionsCard';
+import OptionsCreatePost from './containers/DashboardContainer/OptionsCard';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
-import ProfilePicContainer from './containers/ProfilePicContainer';
+import ProfilePicContainer from './containers/DashboardContainer/ProfilePicContainer';
+import useAuth from '../../hooks/useAuth';
 
 export default function CreatePost() {
+    useAuth();
     const theme = useContext(ThemeContext)[0];
     const css = `
         .create_container {
-            background: rgb(${themes[theme].white});
+            background: rgb(${themes[theme]?.white});
         }
         .profilepic_create{
-            color: rgb(${themes[theme].white});
+            color: rgb(${themes[theme]?.white});
         }
         .btncreateoption{
-            color: rgba(${themes[theme].black});
+            color: rgba(${themes[theme]?.black});
+        }
+        .post-forms-modal{
+            color:rgba(${themes[theme]?.black});
+        }
+        .v-center-outer{
+            color:rgba(${themes[theme]?.black});
+        }
+        .v-center-inner{
+            color:rgba(${themes[theme]?.black});
         }
     `;
+
     return (
         <>
             <style>{css}</style>
+
             <div className="create1div">
                 <main className="create_main">
-                    {/* */}
                     <div className="create_container">
                         <ProfilePicContainer />
                         <OptionsCreatePost />

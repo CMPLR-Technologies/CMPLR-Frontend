@@ -1,4 +1,6 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
+import { apiBaseUrl } from '../../config.json';
+import { UserContext } from '../userContext/UserContext';
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -11,7 +13,9 @@ export const themes = {
         navy: `0, 25, 53`,
         accent: `0, 184, 255`,
         secondaryAccent: `229, 231, 234`,
-        follow: `243, 248, 251`
+        follow: `243, 248, 251`,
+        purple: `124, 92, 255`,
+        red: `255, 73, 47`
     },
     darkMode: {
         black: `255, 255, 255`,
@@ -20,7 +24,9 @@ export const themes = {
         navy: `0, 0, 0`,
         accent: `0, 184, 255`,
         secondaryAccent: `57, 57, 57`,
-        follow: `36, 54, 62`
+        follow: `36, 54, 62`,
+        purple: `124, 92, 255`,
+        red: `255, 73, 47`
     },
     lowContrast: {
         black: `191, 191, 191`,
@@ -29,7 +35,9 @@ export const themes = {
         navy: `26, 39, 53`,
         accent: `32, 185, 252`,
         secondaryAccent: `71,87,109`,
-        follow: `43,76,104`
+        follow: `43,76,104`,
+        purple: `124, 92, 255`,
+        red: `255, 73, 47`
     },
     cement: {
         black: `0, 0, 0`,
@@ -38,25 +46,55 @@ export const themes = {
         navy: `247, 247, 247`,
         accent: `0,0,0`,
         secondaryAccent: `221, 221, 221`,
-        follow: `209, 227, 235`
+        follow: `209, 227, 235`,
+        purple: `124, 92, 255`,
+        red: `255, 73, 47`
     }
 };
 
 export const ThemeContext = createContext();
 
 export function ThemeContextProvider(props) {
+<<<<<<< HEAD
     const { children } = props;
+=======
+>>>>>>> 2aec40a8594635d226713803c6a04cc26add0d5c
     const [theme, setTheme] = useState('trueBlue');
+    const { user, setUser } = useContext(UserContext);
+    const { children } = props;
 
     useEffect(() => {
-        axios.get('http://localhost:3333/users').then(response => {
-            setTheme(response.data.theme);
-        });
-    }, []);
+        if (user) {
+            if (user?.userData?.theme) {
+                setTheme(user?.userData?.theme);
+            } else {
+                setTheme('trueBlue');
+            }
+        }
+    }, [user]);
+
+    const changeTheme = currentTheme => {
+        const config = {
+            headers: { Authorization: `Bearer ${user.token}` }
+        };
+        const keys = Object.keys(themes);
+        const nextIndex = (keys.indexOf(currentTheme) + 1) % keys.length;
+        axios
+            .put(`${apiBaseUrl}/user_theme`, { theme: keys[nextIndex] }, config)
+            .then(() => {
+                let adjustUser = user;
+                adjustUser.userData.theme = keys[nextIndex];
+                setUser(adjustUser);
+                localStorage.setItem('user', JSON.stringify(adjustUser));
+                setTheme(keys[nextIndex]);
+            })
+            .catch(() => {});
+    };
 
     return (
-        <ThemeContext.Provider value={[theme, setTheme]}>
-            {children}
+        <ThemeContext.Provider value={[theme, changeTheme]}>
+            {' '}
+            {children}{' '}
         </ThemeContext.Provider>
     );
 }

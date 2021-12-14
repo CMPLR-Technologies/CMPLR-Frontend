@@ -9,9 +9,15 @@
 @import './partials/AuthInput.scss';
 @import './partials/OrBar.scss';
 @import './partials/AuthFooter.scss';
+<<<<<<< HEAD
 @import './partials/_onOffSwitch.scss';
+=======
+@import './partials/_postComponent';
+
+>>>>>>> 2aec40a8594635d226713803c6a04cc26add0d5c
 @import url(//db.onlinewebfonts.com/c/d73d37902ec72250867b578d3763ee38?family=Favorit);
 @import './homeStyles/_homeStyles.scss';
+<<<<<<< HEAD
 <<<<<<< HEAD
 @import './navbarComponent/_Navbar.scss';
 @import './loginStyles/LoginCard.scss';
@@ -21,21 +27,36 @@
 @import './shortcutsStyles/shortcuts.scss';
 =======
 @import './navbarComponent/_navbar.scss';
+=======
+@import './navbarComponent/_Navbar.scss';
+>>>>>>> 2aec40a8594635d226713803c6a04cc26add0d5c
 @import './loginStyles/LoginCard.scss';
 @import './loginStyles/LoginView.scss';
 @import './forgetPasswordStyles/_forgetPasswordStyles.scss';
 
 @import './shortcutsStyles/shortcuts.scss';
 @import './createPostStyles/createPostStyles.scss';
+@import './createPostStyles/createPostPopup.scss';
+@import './richTextEditorStyles/rich.scss';
+@import './dashboardStyles/dashboardStyles';
 
+<<<<<<< HEAD
 >>>>>>> remotes/origin/dev
+=======
+@import './navbarComponent/_navbar.scss';
+@import './accountpopupComponent/_accountpopup.scss';
+
+@import './loginStyles/LoginCard.scss';
+@import './loginStyles/LoginView.scss';
+@import './forgetPasswordStyles/_forgetPasswordStyles.scss';
+@import './verifyEmailStyles/verifyEmail.scss';
+>>>>>>> 2aec40a8594635d226713803c6a04cc26add0d5c
 * {
     margin: 0;
     padding: 0;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
     scrollbar-color: #555555 #060022;
     scrollbar-width: thin;
     scroll-behavior: smooth;
@@ -44,7 +65,6 @@
 body {
     margin: 0;
     background-color: #001935;
-    color: white;
     margin: 0;
     padding: 0;
     background-repeat: no-repeat;

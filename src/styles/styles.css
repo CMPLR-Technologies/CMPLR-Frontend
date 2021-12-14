@@ -1799,7 +1799,6 @@ body #reset-pass-logo {
   margin-top: 14px;
 }
 
-<<<<<<< HEAD
 body .settings {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -1826,7 +1825,8 @@ body .settings .container1 .subcontainer {
 body .settings .container1 .subcontainer .title {
   border-bottom: 2px solid black;
   color: black;
-  font-family: 'Favorit', 'Helvetica Neue', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-family: 'Favorit', 'Helvetica Neue', 'HelveticaNeue',
+ Helvetica, Arial, sans-serif;
   font-size: 24px;
   font-weight: 400;
   line-height: 1.3;
@@ -2144,7 +2144,7 @@ body .settings .container1 .subcontainer #section .filtering-list-two .filtering
   height: 33px;
 }
 
-body .container2 {
+body .settings .container1 .container2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2156,12 +2156,12 @@ body .container2 {
   width: 320px;
 }
 
-body .container2 .wrapper {
+body .settings .container1 .container2 .wrapper {
   margin-bottom: 38px;
   width: 100%;
 }
 
-body .container2 .wrapper .list {
+body .settings .container1 .container2 .wrapper .list {
   color: white;
   font-size: 1.125rem;
   font-weight: 400;
@@ -2173,12 +2173,12 @@ body .container2 .wrapper .list {
   margin-bottom: 38px;
 }
 
-body .container2 .wrapper .list .list-item {
+body .settings .container1 .container2 .wrapper .list .list-item {
   border-top: 1px solid rgba(255, 255, 255, 0.07);
   padding: 8px 12px;
 }
 
-body .container2 .wrapper .list .list-item .list-item-anchor {
+body .settings .container1 .container2 .wrapper .list .list-item a {
   color: #001935;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2193,27 +2193,27 @@ body .container2 .wrapper .list .list-item .list-item-anchor {
   text-decoration: none;
 }
 
-body .container2 .wrapper .list .list-item .list-item-anchor-small {
+body .settings .container1 .container2 .wrapper .list .list-item small {
   color: rgba(255, 255, 255, 0.65);
   font-size: 13px;
   font-weight: 400;
 }
 
-body .container2 .blog {
+body .settings .container1 .container2 .blog {
   margin-bottom: 0;
 }
 
-body .container2 .blog .blog-h1 {
+body .settings .container1 .container2 .blog h1 {
   color: white;
   padding-bottom: 5px;
   border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
 }
 
-body .container2 .blog .list-item {
+body .settings .container1 .container2 .blog .blog-item {
   padding: 0;
 }
 
-body .container2 .blog .list-item .temp {
+body .settings .container1 .container2 .blog .blog-item .temp {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2224,10 +2224,7 @@ body .container2 .blog .list-item .temp {
   width: 100%;
 }
 
-body .container2 .blog .list-item .temp .blog-item-anchor {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+body .settings .container1 .container2 .blog .blog-item .temp a {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -2237,7 +2234,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor {
           justify-content: space-between;
 }
 
-body .container2 .blog .list-item .temp .blog-item-anchor .icon-text {
+body .settings .container1 .container2 .blog .blog-item .temp .icon-text {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -2249,18 +2246,18 @@ body .container2 .blog .list-item .temp .blog-item-anchor .icon-text {
           justify-content: space-between;
 }
 
-body .container2 .blog .list-item .temp .blog-item-anchor .icon-text .icon {
+body .settings .container1 .container2 .blog .blog-item .temp .icon-text .icon {
   margin-right: 11px;
   position: relative;
 }
 
-body .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text {
+body .settings .container1 .container2 .blog .blog-item .temp .icon-text .text {
   position: relative;
   text-align: left;
   word-break: break-word;
 }
 
-body .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text-up {
+body .settings .container1 .container2 .blog .blog-item .temp .icon-text .text .text-up {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -2272,7 +2269,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text
   line-height: 1.5;
 }
 
-body .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text-up .text-up-span {
+body .settings .container1 .container2 .blog .blog-item .temp .icon-text .text .text-up span {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   display: -webkit-box;
@@ -2280,7 +2277,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text
   text-overflow: ellipsis;
 }
 
-body .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text-down {
+body .settings .container1 .container2 .blog .blog-item .temp .icon-text .text .text-down {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   display: -webkit-box;
@@ -2292,7 +2289,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text
   text-overflow: ellipsis;
 }
 
-body .container2 .blog .list-item .temp .blog-item-anchor .star {
+body .settings .container1 .container2 .blog .blog-item .star {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -2305,25 +2302,19 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star {
   margin-left: 40px;
 }
 
-body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
+body .settings .container1 .container2 .blog .blog-item .star svg {
   text-align: right;
 }
 
-=======
->>>>>>> remotes/origin/dev
 @media (max-width: 988px) {
   .overlay-container {
     display: none !important;
   }
 }
-<<<<<<< HEAD
 
 .overlay-container {
-  font: 'Favorit', 'Helvetica Neue', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-=======
-.overlay-container {
-  font: "Favorit", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
->>>>>>> remotes/origin/dev
+  font: 'Favorit', 'Helvetica Neue', 'HelveticaNeue', Helvetica, Arial,
+ sans-serif;
   height: 100%;
   z-index: 1000;
   position: absolute;
@@ -2331,7 +2322,6 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   left: 0;
   bottom: 0;
   right: 0;
-<<<<<<< HEAD
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2341,18 +2331,12 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
           flex-direction: row;
 }
 
-=======
-  display: flex;
-  flex-direction: row;
-}
->>>>>>> remotes/origin/dev
 .overlay-container span,
 .overlay-container h1,
 .overlay-container h2,
 .overlay-container div {
   color: black;
 }
-<<<<<<< HEAD
 
 .overlay-container .overlay-div {
   opacity: 0.95;
@@ -2362,20 +2346,12 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
           flex-grow: 1;
 }
 
-=======
-.overlay-container .overlay-div {
-  opacity: 0.95;
-  background-color: #001935;
-  flex-grow: 1;
-}
->>>>>>> remotes/origin/dev
 .overlay-container .shortcut-container {
   width: 400px;
   padding: 20px;
   background-color: white;
   height: 100vh;
   overflow-y: auto;
-<<<<<<< HEAD
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2385,21 +2361,13 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
           flex-direction: column;
 }
 
-=======
-  display: flex;
-  flex-direction: column;
-}
->>>>>>> remotes/origin/dev
 .overlay-container .shortcut-container h1 {
   font-size: 2rem;
   font-weight: 400;
   line-height: 1.25;
   letter-spacing: 0.02rem;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> remotes/origin/dev
 .overlay-container .shortcut-container h2 {
   border-bottom: 2px solid rgba(0, 0, 0, 0.13);
   line-height: 1.5238;
@@ -2408,7 +2376,6 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   margin: 20px 0;
   padding-bottom: 5px;
 }
-<<<<<<< HEAD
 
 .overlay-container .shortcut-container .shortcut {
   display: -webkit-box;
@@ -2424,13 +2391,6 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-=======
-.overlay-container .shortcut-container .shortcut {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
->>>>>>> remotes/origin/dev
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -2438,7 +2398,6 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   padding: 10px;
   border-radius: 3px;
 }
-<<<<<<< HEAD
 
 .overlay-container .shortcut-container .shortcut:hover {
   background-color: rgba(0, 0, 0, 0.07);
@@ -2456,19 +2415,6 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   white-space: nowrap;
 }
 
-=======
-.overlay-container .shortcut-container .shortcut:hover {
-  background-color: rgba(0, 0, 0, 0.07);
-}
-.overlay-container .shortcut-container .shortcut .shortcut-name {
-  flex-grow: 1;
-  max-width: 100%;
-  word-wrap: break-word;
-}
-.overlay-container .shortcut-container .shortcut .shortcut-key-container {
-  white-space: nowrap;
-}
->>>>>>> remotes/origin/dev
 .overlay-container .shortcut-container .shortcut .shortcut-key-container .shortcut-key {
   display: inline-block;
   background: rgba(85, 82, 82, 0.13);
@@ -2482,119 +2428,6 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   text-align: center;
 }
 
-<<<<<<< HEAD
-=======
-.create1div {
-  margin-top: 200px;
-  align-items: flex-end;
-  display: flex;
-  flex-direction: column;
-  max-width: 625px;
-  width: 100%;
-}
-.create1div .create_main {
-  height: 100%;
-  max-width: 540px;
-  width: 100%;
-}
-.create1div .create_main .create_container {
-  align-items: center;
-  border-radius: 3px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  min-height: 100px;
-  padding: 15px 5px;
-  position: relative;
-}
-.create1div .create_main .create_container .profilepic_create {
-  left: -85px;
-  position: absolute;
-  top: 0;
-}
-.create1div .create_main .create_container .profilepic_create .profilepicinner_create {
-  position: relative;
-}
-.create1div .create_main .create_container .profilepic_create .profilepicinner_create .innerspan {
-  vertical-align: top;
-  width: inherit;
-  display: inline-block;
-}
-.create1div .create_main .create_container .profilepic_create .profilepicinner_create .innerspan .inneranchor {
-  cursor: pointer;
-  text-decoration: none;
-}
-.create1div .create_main .create_container .profilepic_create .profilepicinner_create .innerspan .inneranchor .picontainer {
-  width: 64px;
-  height: 64px;
-  position: relative;
-}
-.create1div .create_main .create_container .profilepic_create .profilepicinner_create .innerspan .inneranchor .picontainer .picStyles {
-  border-radius: 3px;
-  height: 100%;
-  overflow: hidden;
-  width: 100%;
-}
-.create1div .create_main .create_container .profilepic_create .profilepicinner_create .innerspan .inneranchor .picontainer .picStyles .picDiv {
-  line-height: 0;
-  position: relative;
-  width: 100%;
-  padding-bottom: 100%;
-}
-.create1div .create_main .create_container .profilepic_create .profilepicinner_create .innerspan .inneranchor .picontainer .picStyles .picDiv img {
-  width: 64px;
-  height: 64px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  display: block;
-}
-.create1div .create_main .create_container ul {
-  display: flex;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  list-style: none;
-}
-.create1div .create_main .create_container ul li {
-  list-style-type: none;
-  width: 100%;
-}
-.create1div .create_main .create_container ul li .btncreateoption {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-  font-family: var(--font-family);
-  font-size: 1rem;
-  font-size: 16px;
-  font-weight: 400;
-  height: 100%;
-  justify-content: space-between;
-  line-height: 1.5;
-  padding: 5px 0;
-  text-align: center;
-  text-decoration: none;
-  width: 100%;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  margin: 0;
-  user-select: none;
-}
-.create1div .create_main .create_container ul li .btncreateoption .spanStyle {
-  transition: transform 80ms linear;
-  display: flex;
-  flex-direction: column;
-}
-.create1div .create_main .create_container ul li .btncreateoption .spanStyle svg {
-  margin-bottom: 5px;
-  overflow: hidden;
-}
-
->>>>>>> remotes/origin/dev
 * {
   margin: 0;
   padding: 0;
@@ -2616,7 +2449,6 @@ body {
   background-repeat: no-repeat;
   background-size: auto;
 }
-<<<<<<< HEAD
 
 body * {
   margin: 0;
@@ -2626,29 +2458,15 @@ body * {
 }
 
 body body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+ 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+ 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+ monospace;
 }
 /*# sourceMappingURL=styles.css.map */
-=======
-body * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-body code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
-/*# sourceMappingURL=styles.css.map */
->>>>>>> remotes/origin/dev

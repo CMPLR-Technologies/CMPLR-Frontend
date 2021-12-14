@@ -324,8 +324,6 @@ $border-radius-primary: 3px;
         }
     }
 }
-
-// popup messages inbox and message page when moblie view
 .popup {
     position: absolute;
     //background-color: $primiry-color;
@@ -333,7 +331,7 @@ $border-radius-primary: 3px;
     height: auto;
     max-height: 490px;
     //color: black;
-    left: -124px;
+    left: -107px;
     top: 40px;
     font-size: 0.875rem;
     overflow-y: scroll;

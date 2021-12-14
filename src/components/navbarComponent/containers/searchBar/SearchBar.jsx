@@ -51,7 +51,7 @@ export default function SearchBar() {
                     onFocus={changeHover}
                     onBlur={changeHover}
                     onChange={onChange}
-                    focus
+                    focus=""
                     className="search-input"
                     placeholder="Search Tumblr"
                 ></input>

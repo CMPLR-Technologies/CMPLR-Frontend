@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: partials/postComponent/View.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: partials/postComponent/View.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useContext } from 'react';
+import PostComponent from './containers/PostComponent';
+import {
+    ThemeContext,
+    themes
+} from '../../../contexts/themeContext/ThemeContext';
+import PropTypes from 'prop-types';
+
+/**
+ * @function PostsComponentView
+ * @description View Posts Component
+ * @param {array} posts - object containg post data response received from server
+ * @param {boolean} isFollowed - boolean used to determine if user is following the post author
+ * @param {string} userBlogName - blog name of the user who is logged in
+ * @param {boolean} radar - boolean used to determine if the post viewed in radar section or not
+ * @returns {Component} PostsComponentView
+ */
+
+View.propTypes = {
+    posts: PropTypes.array.isRequired,
+    isFollowed: PropTypes.bool.isRequired,
+    userBlogName: PropTypes.string.isRequired,
+    radar: PropTypes.bool
+};
+
+export default function View(props) {
+    const { userBlogName, posts, isFollowed, radar } = props;
+    const theme = useContext(ThemeContext)[0];
+    const css = `
+    .post-container, .list{
+        background-color:rgb(${themes[theme].white});
+        color:rgb(${themes[theme].black})
+    }
+
+    .post-header{
+        background-color:rgb(${themes[theme].white});
+        color:rgb(${themes[theme].black})
+    }
+    .divider, .post-time {
+        border-bottom: 1px solid rgba(${themes[theme].black}, 0.13);
+    }
+    .options-list-btn-svg{
+        fill:rgb(${themes[theme].black});
+    }
+
+    .options-btn .options .list{
+        box-shadow: 0 0 15px 0 rgba(0,0,0, 0.5);
+    }
+    .post-time-text,
+    .opt-btn,
+    .opt-btn .follow-btn,
+    .post-heading,
+    .body-content,
+    .text-title-content,
+    .message span,
+    .message span strong{
+        color:rgb(${themes[theme].black})
+    }
+
+    .follow-btn:hover{
+        text-decoration:none;
+    }
+
+    .post-time:hover,.options-btn .options .list .opt-btn:hover{
+        background-color:rgb(${themes[theme].secondaryAccent});
+    }
+
+    .report-btn,
+    .block-btn {
+        color:rgb(${themes[theme].red})
+    }
+
+    .follow-btn{
+        color:rgb(${themes[theme].accent});
+    }
+
+    .show-image-modal{
+        background-color:rgba(0,0,0,.8);
+    }
+    
+    .audio-post{
+        background-color:rgb(${themes[theme].purple});
+    }
+
+    .seek-bar{
+        background-color:rgba(${themes[theme].black},.25);
+    }
+
+    .video-post-content{
+        background-color:rgb(0,0,0);
+    }
+
+    .progreesbar .bar{
+        background-color:rgba(${themes[theme].white},.2);
+        filter: drop-shadow(0 0 3px rgb(${themes[theme].black}));
+    }
+    .progreesbar .bar .slider{
+        background-color:rgb(${themes[theme].white});
+        filter: drop-shadow(0 0 3px rgb(${themes[theme].black}));
+    }
+    .play-pause-button, .elapsed-time{
+        filter: drop-shadow(0 0 3px rgb(${themes[theme].black}));
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+    }
+    .circle{
+        background-color:rgb(${themes[theme].white});
+    }
+    .tag, .notes-count{
+        color:rgba(${themes[theme].black},.65);
+    }
+    .share-options .options .list:hover{
+        background-color:rgba(${themes[theme].black},.07);
+    }
+    .circled-border{
+        background-color:rgb(255,255,255)
+    }
+    .modal{
+        background-color:rgba(0,0,0,.95);
+    }
+
+    .msg-heading, .msg-description{
+        color:rgb(${themes[theme].whiteOnDark});
+    }
+    .notes-view-container {
+        background-color:rgb(${themes[theme].white});
+        color:rgb(${themes[theme].black})
+    }
+    .notes-view-header-icons,.notes-summary{
+        border-bottom: 1px solid rgba(${themes[theme].black}, 0.13);
+    }
+    .notes-view-content {
+        background-color:rgba(${themes[theme].black},.07);
+        scrollbar-color: rgba(${themes[theme].black},.4) rgba(${themes[theme].white},.1);
+        scrollbar-width: thin;
+    }
+
+    .notes-summary-count{
+        color:rgb(${themes[theme].black})
+
+    }
+    .notes-view-header-icons .btn svg{
+        fill:rgb(${themes[theme].black})
+    }
+    .notes-list .note-content{
+        background-color:rgb(${themes[theme].white});
+    }
+    .note-author{
+        color:rgb(${themes[theme].black})
+    }
+    .reblog-sign-span{
+        fill:rgba(${themes[theme].black},.65);
+    }
+
+    .reblogger-name{
+        color:rgba(${themes[theme].black},.65);
+    }
+    
+    .input-area{
+        background-color:rgb(${themes[theme].white});
+        border-top:1px solid rgba(${themes[theme].black}, 0.13);
+    }
+
+    .reply-btn{
+        color:rgb(${themes[theme].accent})
+    }
+
+    .reply-btn:disabled{
+        color:rgba(${themes[theme].black},.4)
+    }
+
+    .note-option-btn svg{
+        fill:rgba(${themes[theme].black}, 0.65)
+    }
+    `;
+    return (
+        &lt;>
+            {posts &amp;&amp;
+                posts.map((item, index) => (
+                    &lt;PostComponent
+                        key={index}
+                        userBlogName={userBlogName}
+                        post={item}
+                        isFollowed={isFollowed}
+                        radar={radar}
+                    />
+                ))}
+            &lt;style>{css}&lt;/style>
+        &lt;/>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 10 2021 22:55:07 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

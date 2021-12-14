@@ -32,6 +32,7 @@ import AuthBtn from '../../partials/AuthBtn';
 import AuthAlert from '../../partials/AuthAlert';
 import PropTypes from 'prop-types';
 import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
+import { CircularProgress } from '@mui/material';
 
 /**
  * @function RegisterStepTwo
@@ -44,21 +45,34 @@ import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
  * @returns {Component} the age input &amp; a next button to finish registeration
  */
 export default function RegisterStepTwo(props) {
-    const { age, setAge, handleStepTwo, openError, errorMessage } = props;
+    const { age, setAge, handleStepTwo, openError, errorMessage, isPending } =
+        props;
     return (
-        &lt;div style={{ paddingTop: '15%' }} className="LoginCard">
+        &lt;div className="LoginCard">
             &lt;div className="LoginCard__logo-container">
                 &lt;p className="LoginCard__logo">cmplr&lt;/p>
             &lt;/div>
 
             &lt;div className="login-form">
-                &lt;AuthAlert openError={openError} errorMessage={errorMessage} />
+                {openError &amp;&amp;
+                    errorMessage &amp;&amp;
+                    errorMessage?.length !== 0 &amp;&amp;
+                    errorMessage?.map((errorMsg, index) => {
+                        return (
+                            &lt;AuthAlert
+                                key={index}
+                                openError={openError}
+                                errorMessage={errorMsg}
+                            />
+                        );
+                    })}
                 &lt;AuthInput
-                    value={age}
+                    value={age || ''}
                     setValue={setAge}
                     name="register_age"
                     type="number"
                     placeholder="How old are you?"
+                    dataTestid="register_age"
                 />
                 &lt;p>
                     This site is protected by reCAPTCHA and the Google Terms of
@@ -68,7 +82,13 @@ export default function RegisterStepTwo(props) {
                     handleClick={handleStepTwo}
                     text="Next"
                     color="#00b8ff"
+                    dataTestid="register_step2"
                 />
+                {isPending &amp;&amp; (
+                    &lt;div className="load-circle">
+                        &lt;CircularProgress />
+                    &lt;/div>
+                )}
             &lt;/div>
             &lt;p className="LoginCard__a">
                 &lt;a className="register_explore_anchor">
@@ -90,11 +110,12 @@ export default function RegisterStepTwo(props) {
 }
 
 RegisterStepTwo.propTypes = {
-    age: PropTypes.number.isRequired,
+    age: PropTypes.string,
     setAge: PropTypes.func.isRequired,
     handleStepTwo: PropTypes.func.isRequired,
     openError: PropTypes.bool.isRequired,
-    errorMessage: PropTypes.string.isRequired
+    errorMessage: PropTypes.array.isRequired,
+    isPending: PropTypes.bool
 };
 </code></pre>
         </article>
@@ -106,13 +127,13 @@ RegisterStepTwo.propTypes = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#ThemeToggle">ThemeToggle</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 03 2021 14:30:45 GMT+0200 (Eastern European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 10 2021 22:55:07 GMT+0200 (Eastern European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

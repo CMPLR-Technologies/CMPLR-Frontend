@@ -7,6 +7,9 @@ import OrBar from '../../partials/OrBar';
 import AuthAlert from '../../partials/AuthAlert';
 import { handleLogin } from '../Controller';
 import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
+import { useContext } from 'react';
+import { UserContext } from '../../../contexts/userContext/UserContext';
+import { CircularProgress } from '@mui/material';
 
 /**
  * LoginCard Component
@@ -18,15 +21,27 @@ import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
  */
 
 export default function LoginCard() {
+    const { setUser } = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [isPending, setIsPending] = useState(false);
     return (
         <div className="LoginCard">
             <div className="LoginCard__logo-container">
                 <p className="LoginCard__logo">cmplr</p>
             </div>
-            <AuthAlert errorMessage={error} openError={error.length !== 0} />
+            {error &&
+                error?.length !== 0 &&
+                error?.map((errorMsg, index) => {
+                    return (
+                        <AuthAlert
+                            key={index}
+                            openError={error.length !== 0}
+                            errorMessage={errorMsg}
+                        />
+                    );
+                })}
 
             <div className="login-form">
                 <AuthInput
@@ -35,6 +50,7 @@ export default function LoginCard() {
                     placeholder="Email"
                     value={email}
                     setValue={setEmail}
+                    dataTestid="email"
                 ></AuthInput>
 
                 <AuthInput
@@ -43,6 +59,7 @@ export default function LoginCard() {
                     placeholder="Password"
                     value={password}
                     setValue={setPassword}
+                    dataTestid="password"
                 ></AuthInput>
 
                 <p>
@@ -54,8 +71,22 @@ export default function LoginCard() {
                 <AuthBtn
                     text="Log in"
                     color="#00b8ff"
-                    handleClick={() => handleLogin(email, password, setError)}
+                    dataTestid="login"
+                    handleClick={() =>
+                        handleLogin(
+                            email,
+                            password,
+                            setError,
+                            setUser,
+                            setIsPending
+                        )
+                    }
                 ></AuthBtn>
+                {isPending && (
+                    <div className="load-circle">
+                        <CircularProgress />
+                    </div>
+                )}
             </div>
 
             <a className="LoginCard__a" href="/forget_password">
@@ -68,6 +99,7 @@ export default function LoginCard() {
                 text="Continue with Google"
                 color="white"
                 logo="https://upload.wikimedia.org/wikipedia/commons/archive/5/53/20210618182605%21Google_%22G%22_Logo.svg"
+                handleClick={() => '@todo'}
             ></AuthBtn>
 
             <p className="LoginCard__a">
