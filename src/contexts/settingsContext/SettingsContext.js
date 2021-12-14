@@ -17,7 +17,7 @@ class SettingsContextProvider extends Component {
             googleLogin: settings.googleLogin,
             accountActivity: settings.accountActivity,
             twoFactorAuthentication: settings.twoFactorAuthentication,
-            filteringTags: settings.filteringTags
+            filteringTags: settings.filteringTags.split(',')
         });
     };
     updateEmail = email => {
@@ -45,15 +45,17 @@ class SettingsContextProvider extends Component {
     //     this.setState({ filtering_tags: filtering_tags, ...this.state });
     // };
     addFilteringTag = newTag => {
+        console.log('HHHHHHHHHHHHHI');
         this.setState({
-            filtering_tags: [...this.state.filtering_tags, newTag],
+            filteringTags: [...this.state.filteringTags, newTag],
             ...this.state
         });
+        console.log(this.state);
     };
     deleteFilteringTag = tag => {
         this.setState({
-            filtering_tags: this.state.filtering_tags.filter(
-                filtering_tag => filtering_tag !== tag
+            filteringTags: this.state.filteringTags.filter(
+                filteringTag => filteringTag !== tag
             ),
             ...this.state
         });
@@ -73,7 +75,8 @@ class SettingsContextProvider extends Component {
                     updateAccountActivity: this.updateAccountActivity,
                     updateTwoFactorAuthentication:
                         this.updateTwoFactorAuthentication,
-                    updateFilteringTags: this.updateFilteringTags
+                    addFilteringTag: this.addFilteringTag,
+                    deleteFilteringTag: this.deleteFilteringTag
                 }}
             >
                 {/* //we pass the children of the provider to the provider component. */}

@@ -1,6 +1,7 @@
 import { updateEmailDb } from './Service';
 import { updatePasswordDb } from './Service';
-
+import { addTagFiltering } from './Service';
+import { deleteTagFiltering } from './Service';
 function validateEmail(email) {
     const re =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -62,4 +63,29 @@ export function handleUpdatePassword(
             }
         });
     }
+}
+
+export function handleAddFilteringTag(
+    tag,
+    addFilteringTag,
+    setErrorMsg,
+    filteringTags
+) {
+    if (tag.length === 0) {
+        setErrorMsg('Please enter a tag');
+    } else {
+        console.log("hi");
+        setErrorMsg('');
+        addFilteringTag(tag);
+        // addTagFiltering(filteringTags);
+    }
+}
+
+export function handleDeleteFilteringTag(
+    tag,
+    deleteFilteringTag,
+    filteringTags
+) {
+    deleteFilteringTag(tag);
+    deleteTagFiltering(filteringTags);
 }

@@ -59,7 +59,7 @@
     },
     "account": {
         "meta": {
-            "status": 200,
+            "status_code": 200,
             "msg": "OK"
         },
         "response": {
@@ -68,7 +68,7 @@
             "googleLogin": false,
             "accountActivity": false,
             "twoFactorAuthentication": true,
-            "filteringTags": "summer,winter,sunny"
+            "filteringTags": "summer,spring,winter,fall"
         }
     },
     "change_email": {
