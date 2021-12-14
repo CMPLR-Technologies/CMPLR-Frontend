@@ -1,54 +1,61 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import CreatePost from '../createPost/View';
 import Sidebar from './containers/Sidebar';
-import useFetch from '../../hooks/useFetch';
+import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
 import useAuth from '../../hooks/useAuth';
 import { LinearProgress } from '@mui/material';
 import { apiBaseUrl } from '../../config.json';
-import PostComponent from '../partials/postComponent/View';
+import PostComponent from '../partials/postComponent/containers/PostComponent';
 import VerifyEmail from '../VerifyEmail/View';
-import { UserContext } from '../../contexts/userContext/UserContext';
-import Axios from 'axios';
 
 export default function Dashboard() {
-    const [response, setResponse] = useState([]);
-    const { user } = useContext(UserContext);
-    const blogIdentifier = 'yahia.tumbler.com';
+    const [pageNumber, setPageNumber] = useState(1);
     const {
         error,
-        data: radarPost,
-        isPending
-    } = useFetch(`${apiBaseUrl}/radar-post`);
+        data: posts,
+        isPending,
+        hasMore
+    } = useInfiniteScrolling(
+        `${apiBaseUrl}/posts?_page=${pageNumber}&_limit=5`
+    );
+
     useAuth();
-    useEffect(() => {
-        Axios({
-            method: 'GET',
-            url: `${apiBaseUrl}/posts`,
-            params: {
-                'blog-identifier': blogIdentifier
-            }
-        })
-            .then(res => {
-                if (res.data.Meta.Status === 200) {
-                    setResponse(res.data.response.posts);
+    const observer = useRef();
+    const lastPostElementRef = useCallback(
+        node => {
+            if (isPending) return;
+            if (observer.current) observer.current.disconnect();
+            observer.current = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting && hasMore) {
+                    setPageNumber(prevPageNumber => prevPageNumber + 1);
                 }
-            })
-            .catch(() => {});
-    }, []);
+            });
+            if (node) observer.current.observe(node);
+        },
+        [isPending, hasMore]
+    );
     return (
         <div className="dashboard">
             <div className="posts-region">
                 <CreatePost />
                 <VerifyEmail />
+                {posts &&
+                    posts.map((post, index) => {
+                        if (posts.length === index + 1) {
+                            return (
+                                <div ref={lastPostElementRef}>
+                                    <PostComponent key={index} post={post} />
+                                </div>
+                            );
+                        } else {
+                            return <PostComponent key={index} post={post} />;
+                        }
+                    })}
+
                 {error && (
                     <div className="no-data-error">{"Couldn't load"}</div>
                 )}
                 {isPending && <LinearProgress />}
-                {radarPost && (
-                    <div className="radar-warper">
-                        <PostComponent post={radarPost} />
-                    </div>
-                )}
             </div>
             <Sidebar />
         </div>

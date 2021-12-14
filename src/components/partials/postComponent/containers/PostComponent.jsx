@@ -39,8 +39,16 @@ PostComponent.propTypes = {
 };
 
 export default function PostComponent(props) {
-    const { post, isFollowed, userBlogName, radar, left, reblog, padding } =
-        props;
+    const {
+        post,
+        isFollowed,
+        userBlogName,
+        radar,
+        left,
+        reblog,
+        padding,
+        blogPage
+    } = props;
     const theme = useContext(ThemeContext)[0];
 
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);
@@ -219,7 +227,7 @@ export default function PostComponent(props) {
         <div
             data-testid="post-wrapper-ts"
             style={{ left: left }}
-            className="post-wrapper"
+            className={`post-wrapper ${radar ? 'radar-post-wrapper' : ''}`}
         >
             {isMsgModalOpen && (
                 <Modal messageHeading={`${blogName} has been blocked`}>
@@ -269,7 +277,7 @@ export default function PostComponent(props) {
             )}
 
             <article data-testid="post-container-ts" className="post-container">
-                {!radar && !mobileView && (
+                {!radar && !mobileView && !blogPage && (
                     <div className="author-avatar">
                         <div className="sticky-avatar">
                             <img
@@ -280,74 +288,87 @@ export default function PostComponent(props) {
                         </div>
                     </div>
                 )}
-                <header
-                    data-testid="post-header-ts"
-                    style={{ padding: padding }}
-                    className="post-header"
-                >
-                    {(mobileView || radar) && (
-                        <div className="author-avatar mob">
-                            <div className="sticky-avatar mob">
-                                <img
-                                    data-testid="avatar-img-mob-ts"
-                                    src={avatar}
-                                    className="avatar-img mob"
-                                />
+                {!blogPage && (
+                    <header
+                        data-testid="post-header-ts"
+                        style={{ padding: padding }}
+                        className="post-header"
+                    >
+                        {(mobileView || radar) && (
+                            <div className="author-avatar mob">
+                                <div className="sticky-avatar mob">
+                                    <img
+                                        data-testid="avatar-img-mob-ts"
+                                        src={avatar}
+                                        className="avatar-img mob"
+                                    />
+                                </div>
+                            </div>
+                        )}
+                        <div
+                            data-testid="header-flex-ts"
+                            className="header-flex"
+                        >
+                            <div
+                                data-testid="header-title-ts"
+                                className="header-title"
+                            >
+                                <span
+                                    data-testid="post-heading-ts"
+                                    className="post-heading"
+                                >
+                                    {blogName}
+                                </span>
+                                {!following && !reblog && (
+                                    <button
+                                        onClick={() =>
+                                            follow(
+                                                blogUrl,
+                                                blogEmail,
+                                                setFollowing
+                                            )
+                                        }
+                                        className="follow-btn"
+                                        data-testid="follow-btn-header-ts"
+                                    >
+                                        Follow
+                                    </button>
+                                )}
+                            </div>
+                            <div className="options-btn">
+                                {!reblog && (
+                                    <button
+                                        onClick={() => {
+                                            setIsOptionListOpen(
+                                                !isOptionListOpen
+                                            );
+                                        }}
+                                        className="btn"
+                                        data-testid="opt-btn-header-ts"
+                                    >
+                                        <OptionsButton />
+                                    </button>
+                                )}
+                                {isOptionListOpen && !blogPage && (
+                                    <OptionsList
+                                        postTime={postTime}
+                                        userBlogName={userBlogName}
+                                        blogName={blogName}
+                                        postLink={postLink}
+                                        postId={postId}
+                                        following={following}
+                                        blogUrl={blogUrl}
+                                        setFollowing={setFollowing}
+                                        setIsModalOpen={setIsModalOpen}
+                                        setIsOptionListOpen={
+                                            setIsOptionListOpen
+                                        }
+                                    />
+                                )}
                             </div>
                         </div>
-                    )}
-                    <div data-testid="header-flex-ts" className="header-flex">
-                        <div
-                            data-testid="header-title-ts"
-                            className="header-title"
-                        >
-                            <span
-                                data-testid="post-heading-ts"
-                                className="post-heading"
-                            >
-                                {blogName}
-                            </span>
-                            {!following && !reblog && (
-                                <button
-                                    onClick={() =>
-                                        follow(blogUrl, blogEmail, setFollowing)
-                                    }
-                                    className="follow-btn"
-                                    data-testid="follow-btn-header-ts"
-                                >
-                                    Follow
-                                </button>
-                            )}
-                        </div>
-                        <div className="options-btn">
-                            {!reblog && (
-                                <button
-                                    onClick={() => {
-                                        setIsOptionListOpen(!isOptionListOpen);
-                                    }}
-                                    className="btn"
-                                    data-testid="opt-btn-header-ts"
-                                >
-                                    <OptionsButton />
-                                </button>
-                            )}
-                            {isOptionListOpen && (
-                                <OptionsList
-                                    postTime={postTime}
-                                    userBlogName={userBlogName}
-                                    blogName={blogName}
-                                    postLink={postLink}
-                                    postId={postId}
-                                    following={following}
-                                    blogUrl={blogUrl}
-                                    setFollowing={setFollowing}
-                                    setIsModalOpen={setIsModalOpen}
-                                    setIsOptionListOpen={setIsOptionListOpen}
-                                />
-                            )}
-                        </div>
-                    </div>
-                </header>
+                    </header>
+                )}
                 {returned.textPost !== undefined && (
                     <>
                         <TextPost
@@ -403,6 +424,8 @@ export default function PostComponent(props) {
                             postAuthor={userBlogName}
                             authorAvatar={avatar}
                             setIsModalOpenN={setIsModalOpen}
+                            blogPage={blogPage}
+                            radar={radar}
                         />
                     </div>
                 )}{' '}

@@ -29,6 +29,7 @@ export default function Radar() {
                         post={radarPost}
                         radar={true}
                         otherClass="radar-post"
+                        isFollowed={false}
                     />
                 </div>
             )}

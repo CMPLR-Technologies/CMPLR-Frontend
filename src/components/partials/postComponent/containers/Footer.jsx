@@ -51,7 +51,9 @@ export default function Footer(props) {
         blogName,
         postAuthor,
         authorAvatar,
-        setIsModalOpenN
+        setIsModalOpenN,
+        blogPage,
+        radar
     } = props;
     const [isShareListOpen, setIsShareListOpen] = useState(false);
     const [loveFillColor, setLoveFillColor] = useState('gray');
@@ -176,25 +178,32 @@ export default function Footer(props) {
                     </div>
                 )}
                 <div data-testid={`footer-icons-ts`} className="footer-icons">
-                    <button
-                        onClick={() =>
-                            toggleShareList(isShareListOpen, setIsShareListOpen)
-                        }
-                        className="icon"
-                        data-testid={`share-icon-footer-ts`}
-                    >
-                        <ShareBtn />
-                    </button>
-                    <button
-                        onClick={() => {
-                            setNotesView(true);
-                            setNoteType('comment');
-                        }}
-                        className="icon"
-                        data-testid={`note-icon-footer-ts${postId}`}
-                    >
-                        <Note />
-                    </button>
+                    {!blogPage && (
+                        <button
+                            onClick={() =>
+                                toggleShareList(
+                                    isShareListOpen,
+                                    setIsShareListOpen
+                                )
+                            }
+                            className="icon"
+                            data-testid={`share-icon-footer-ts`}
+                        >
+                            <ShareBtn />
+                        </button>
+                    )}
+                    {!blogPage && !radar && (
+                        <button
+                            onClick={() => {
+                                setNotesView(true);
+                                setNoteType('comment');
+                            }}
+                            className="icon"
+                            data-testid={`note-icon-footer-ts${postId}`}
+                        >
+                            <Note />
+                        </button>
+                    )}
                     <button
                         onClick={() => {
                             setNoteType('reblog');

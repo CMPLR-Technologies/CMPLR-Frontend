@@ -121,8 +121,6 @@
 
 .post-container {
   display: block;
-  background-color: white;
-  color: black;
   line-height: 0;
   position: relative;
   width: 100%;
@@ -149,6 +147,11 @@
   border-radius: 3px;
 }
 
+.radar-post-wrapper {
+  left: 0;
+  top: 10px;
+}
+
 .author-avatar.mob {
   position: unset;
   left: 0;
@@ -161,9 +164,10 @@
 }
 
 .avatar-img.mob {
-  width: 38px;
-  height: 38px;
-  margin-top: 5px;
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  margin-bottom: 0;
 }
 
 .post-header {
@@ -197,14 +201,12 @@
 }
 .options-btn .options {
   position: absolute;
-  left: 0;
-  top: 0;
-  transform: translate3d(386px, 40px, 0px);
+  left: 80%;
+  top: 100%;
   overflow-y: visible;
   z-index: 2;
 }
 .options-btn .options .list {
-  background-color: white;
   position: absolute;
   top: 0;
   left: 0;
@@ -213,7 +215,6 @@
   height: auto;
   border-radius: 3px;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
-  color: black;
 }
 .options-btn .options .list .post-time {
   align-items: center;
@@ -226,17 +227,14 @@
   padding: 10px 0;
 }
 .options-btn .options .list .post-time .post-time-text {
-  color: black;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.5;
 }
 .options-btn .options .list .post-time:hover {
   cursor: pointer;
-  background-color: rgba(100, 100, 100, 0.1);
 }
 .options-btn .options .list .opt-btn {
-  color: black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -247,19 +245,16 @@
 }
 .options-btn .options .list .opt-btn:hover {
   cursor: pointer;
-  background-color: rgba(100, 100, 100, 0.1);
 }
 .options-btn .options .list .copy-btn {
   font-weight: 700;
 }
 .options-btn .options .list .report-btn,
 .options-btn .options .list .block-btn {
-  color: #ff492f;
   font-weight: 700;
 }
 
 .post-heading {
-  color: black;
   word-break: break-all;
   vertical-align: top;
   margin-right: 10px;
@@ -269,7 +264,6 @@
 .follow-btn {
   background-color: transparent;
   text-align: left;
-  color: #00b8ff;
   border: none;
   outline: none;
   font-weight: 700;
@@ -309,7 +303,6 @@
   position: fixed;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.8);
   transition: background-color 0.15s linear;
   width: 100%;
   z-index: 100;
@@ -348,7 +341,6 @@
   font-size: 1rem;
 }
 .post-body .body-content {
-  color: black;
   font-weight: 300;
   line-height: 1.5;
   word-break: break-word;
@@ -369,7 +361,6 @@
   font-weight: 400;
   font-size: 1.75rem;
   line-height: 1.3;
-  color: black;
 }
 
 .chat-body {
@@ -382,14 +373,12 @@
   font-size: 1rem;
 }
 .chat-body .message span {
-  color: black;
   line-height: 1.5;
   word-break: break-word;
   white-space: pre-line;
   margin-bottom: 0.75rem;
 }
 .chat-body .message span strong {
-  color: black;
   line-height: 1.5;
   word-break: break-word;
   white-space: pre-line;
@@ -399,7 +388,6 @@
 .audio-post {
   box-sizing: border-box;
   width: 100%;
-  background-color: #7c5cff;
   min-height: 85px;
   position: relative;
   cursor: pointer;
@@ -455,7 +443,6 @@
   font-size: 1rem;
 }
 .audio-desc .body-content {
-  color: black;
   font-weight: 300;
   line-height: 1.5;
   word-break: break-word;
@@ -478,7 +465,6 @@
   min-height: 250px;
   max-height: 80vh;
   width: 100%;
-  background-color: black;
 }
 
 .btn {
@@ -524,7 +510,6 @@
   margin: 0 10px;
 }
 .controllers .progreesbar .bar {
-  background-color: rgba(255, 255, 255, 0.2);
   position: relative;
   top: 10px;
   height: 2px;
@@ -535,7 +520,6 @@
 }
 .controllers .progreesbar .bar .slider {
   width: 0%;
-  background-color: white;
   position: absolute;
   height: 2px;
   filter: drop-shadow(0 0 3px #000000);
@@ -544,7 +528,6 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: white;
   position: absolute;
   left: 0%;
   top: -3px;
@@ -567,7 +550,6 @@
 
 .tag {
   display: inline-block;
-  color: #5a5959;
   margin-right: 11px;
   vertical-align: bottom;
   text-decoration: none;
@@ -585,7 +567,6 @@
   margin-bottom: 10px;
 }
 .post-footer-icons .notes-count {
-  color: gray;
   font-weight: 700;
 }
 .post-footer-icons .footer-icons {
@@ -693,7 +674,6 @@
 .post-footer-icons .notes-view-container .notes-view-flex .notes-view-content .notes-list .note-content .option-list {
   position: absolute;
   height: auto;
-  background-color: white;
   top: 40px;
   width: 60%;
   left: 50px;
@@ -709,7 +689,6 @@
 }
 .post-footer-icons .notes-view-container .notes-view-flex .notes-view-content .notes-list .note-content .option-list .opt-btn:hover {
   cursor: pointer;
-  background-color: gray;
 }
 .post-footer-icons .notes-view-container .notes-view-flex .input-area {
   display: flex;
@@ -811,7 +790,6 @@
   position: fixed;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.8);
   transition: background-color 0.15s linear;
   width: 100%;
   z-index: 100;
@@ -868,7 +846,6 @@
   align-items: center;
   justify-content: center;
   height: auto;
-  background-color: rgba(0, 0, 0, 0.07);
   position: absolute;
   top: -5px;
   left: 0;
@@ -879,7 +856,6 @@
 }
 .share-options .options .list:hover {
   cursor: pointer;
-  background-color: rgba(100, 100, 100, 0.1);
 }
 .share-options .options .list .circled-border {
   width: 40px;
@@ -888,10 +864,8 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background-color: white;
 }
 .share-options .options .list .opt-btn {
-  color: black;
   display: flex;
   align-items: center;
   justify-content: center;
