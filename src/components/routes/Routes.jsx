@@ -10,6 +10,7 @@ import ForgetPassword from '../forgetPasswordComponent/View';
 import ResetPassword from '../resetPasswordComponent/View';
 import Settings from '../settingsComponent/View';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
+import CreatePost from '../createPost/View';
 
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
@@ -30,6 +31,7 @@ export default function MainRoutes() {
                     <Route path="/messaging" element={<MessagesPageMobile />} />
                     <Route path="/new" element={<NewPostPopup />} />
                     <Route path="/explore" element={<h1>Explore</h1>} />
+                    <Route path="/dashboard" element={<CreatePost />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<LoginView />} />
                     <Route path="/" element={<HomePage />} />
