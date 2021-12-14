@@ -41,13 +41,11 @@ export default function MainRoutes() {
                         path="/forget_password"
                         element={<ForgetPassword />}
                     />
-<<<<<<< HEAD
                     <Route path="/reset_password" element={<ResetPassword />} />
                     <Route path="/a" element={<Settings page={'account'} />} />
                     <Route path="/settings/dashboard" element={<Settings />} />
                     <Route path="/settings/apps" element={<Settings />} />
                     <Route path="/settings/privacy" element={<Settings />} />
-=======
                     <Route
                         path="/reset_password/:token"
                         element={<ResetPassword />}
@@ -67,7 +65,6 @@ export default function MainRoutes() {
                         path="/reblog/:blogName/:postId/:reblogKey"
                         element={<CreateModal reblog={true} />}
                     />
->>>>>>> 2aec40a8594635d226713803c6a04cc26add0d5c
                 </Routes>
                 <style>{css}</style>
             </Router>
