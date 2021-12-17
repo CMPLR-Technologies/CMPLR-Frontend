@@ -6,7 +6,7 @@ import useAuth from '../../hooks/useAuth';
 import { LinearProgress } from '@mui/material';
 import { apiBaseUrl } from '../../config.json';
 import PostComponent from '../partials/postComponent/containers/PostComponent';
-import VerifyEmail from '../VerifyEmail/View';
+import VerifyEmail from '../verifyEmail/View';
 
 export default function Dashboard() {
     const [pageNumber, setPageNumber] = useState(1);

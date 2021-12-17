@@ -1,12 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { UserContext } from '../../contexts/userContext/UserContext';
-import { getFollowingList } from './Service';
-import { CircularProgress, LinearProgress } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useRef, useCallback } from 'react';
+
+import { LinearProgress } from '@mui/material';
+
 import Sidebar from '../dashboardComponent/containers/Sidebar';
-import PostComponent from '../partials/postComponent/View';
 import { apiBaseUrl } from '../../config.json';
-import useFetch from '../../hooks/useFetch';
+import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
+import SearchForm from './containers/SearchForm';
+import ItemList from './containers/ItemList';
+import PopupBlock from './containers/PopupBlock';
 /**
  * Following Page Component
  * @function FollowingPage
@@ -15,56 +16,85 @@ import useFetch from '../../hooks/useFetch';
  */
 
 export default function FollowingPage() {
-    const [followingList, setFollowingList] = useState([]);
-    const { user } = useContext(UserContext);
-    const [isPending, setIsPending] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
-    const [openError, setOpenError] = useState(false);
-    const navigate = useNavigate();
+    const [openPopup, setOpenPopup] = useState(false);
+    const [pageNumber, setPageNumber] = useState(1);
+    const handleSearchFollow = () => {};
+    const handleUnfollow = () => {};
+    const [search, setSearch] = useState('');
+    const handleBlock = () => {};
 
     const {
         error,
-        data: radarPost,
-        isPending0
-    } = useFetch(`${apiBaseUrl}/radar-post`);
+        data: followingList,
+        isPending,
+        hasMore
+    } = useInfiniteScrolling(
+        `${apiBaseUrl}/following?_page=${pageNumber}&_limit=15`
+    );
 
-    useEffect(() => {
-        if (!user) {
-            navigate('/login');
-        } else if (user && user?.token) {
-            getFollowingList(
-                setFollowingList,
-                user?.token,
-                setIsPending,
-                setErrorMessage,
-                setOpenError
-            );
-        }
-    }, []);
+    const observer = useRef();
+    const lastPostElementRef = useCallback(
+        node => {
+            if (isPending) return;
+            if (observer.current) observer.current.disconnect();
+            observer.current = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting && hasMore) {
+                    setPageNumber(prevPageNumber => prevPageNumber + 1);
+                }
+            });
+            if (node) observer.current.observe(node);
+        },
+        [isPending, hasMore]
+    );
 
     return (
         <>
-            {isPending && (
-                <div className="load-circle">
-                    <CircularProgress />
-                </div>
-            )}
-            {openError && <div style={{ color: 'red' }}>{errorMessage}</div>}
-
             <div className="dashboard">
-                <div className="posts-region">
+                <div className="lSyOz">
+                    <div className="rmkqO">
+                        <h1 className="IiZ2z">31 Following</h1>
+                        <SearchForm
+                            search={search}
+                            setSearch={setSearch}
+                            handleSearchFollow={handleSearchFollow}
+                        />
+                        <section className="NedHV">
+                            <ItemList
+                                setOpenBlock={setOpenPopup}
+                                lastUpdated={'Updated 2 minutes ago'}
+                                profileName={'profile-name'}
+                                handleUnfollow={handleUnfollow}
+                            />
+                        </section>
+                    </div>
+                    {followingList &&
+                        followingList.map((post, index) => {
+                            if (followingList.length === index + 1) {
+                                return <div ref={lastPostElementRef}></div>;
+                            } else {
+                                return <></>;
+                            }
+                        })}
+
                     {error && (
-                        <div className="no-data-error">{"Couldn't load"}</div>
-                    )}
-                    {isPending0 && <LinearProgress />}
-                    {radarPost && (
-                        <div className="radar-warper">
-                            <PostComponent post={radarPost} />
+                        <div
+                            className="no-data-error"
+                            style={{ margin: 'auto' }}
+                        >
+                            {"Couldn't load"}
                         </div>
                     )}
+                    {isPending && <LinearProgress />}
                 </div>
                 <Sidebar />
             </div>
+            <PopupBlock
+                open={openPopup}
+                setOpen={setOpenPopup}
+                handleBlock={handleBlock}
+                myBlogName={'my-profile'}
+                profileName={'your-profile'}
+            />
         </>
     );
 }
