@@ -1,7 +1,7 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect,useContext } from 'react';
 import PropTypes from 'prop-types';
 export const UserContext = createContext();
-
+import { Navigate } from 'react-router-dom';
 export default function UserContextProvider(props) {
     const [user, setUser] = useState();
     useEffect(() => {
@@ -16,6 +16,29 @@ export default function UserContextProvider(props) {
     );
 }
 
+export function RequireAuth({ children }) {
+    const { user } = useContext(UserContext);
+  
+    return user
+      ? children
+      : <Navigate to="/login" replace/>;
+}
+
+export function RequireUnAuth({ children }) {
+    const { user } = useContext(UserContext);
+  
+    return !user
+      ? children
+      : <Navigate to="/dashboard" replace/>;
+}
 UserContextProvider.propTypes = {
+    children: PropTypes.any.isRequired
+};
+
+RequireAuth.propTypes = {
+    children: PropTypes.any.isRequired
+};
+
+RequireUnAuth.propTypes = {
     children: PropTypes.any.isRequired
 };

@@ -13,6 +13,11 @@ import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
 
 import PostComponent from '../partials/postComponent/View';
+import FollowingPage from '../following/View';
+import {
+    RequireAuth,
+    RequireUnAuth
+} from '../../contexts/userContext/UserContext';
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
     const css = `
@@ -28,17 +33,63 @@ export default function MainRoutes() {
             <Router>
                 <Navbar />
                 <Routes>
-                    <Route path="/register" element={<Register />} />
+                    <Route
+                        path="/register"
+                        element={
+                            <RequireUnAuth>
+                                <Register />
+                            </RequireUnAuth>
+                        }
+                    />
                     <Route path="/messaging" element={<MessagesPageMobile />} />
-                    <Route path="/new/post" element={<CreateModal />} />
+                    <Route
+                        path="/new/post"
+                        element={
+                            <RequireAuth>
+                                <CreateModal />
+                            </RequireAuth>
+                        }
+                    />
                     <Route path="/rich" element={<HandMadeTextEditor />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/login" element={<LoginView />} />
-                    <Route path="/" element={<HomePage />} />
+                    <Route
+                        path="/dashboard"
+                        element={
+                            <RequireAuth>
+                                <Dashboard />
+                            </RequireAuth>
+                        }
+                    />
+                    <Route
+                        path="/register"
+                        element={
+                            <RequireUnAuth>
+                                <Register />
+                            </RequireUnAuth>
+                        }
+                    />
+                    <Route
+                        path="/login"
+                        element={
+                            <RequireUnAuth>
+                                <LoginView />
+                            </RequireUnAuth>
+                        }
+                    />
+                    <Route
+                        path="/following"
+                        element={
+                            <RequireAuth>
+                                <FollowingPage />
+                            </RequireAuth>
+                        }
+                    />
                     <Route
                         path="/forget_password"
-                        element={<ForgetPassword />}
+                        element={
+                            <RequireUnAuth>
+                                <ForgetPassword />
+                            </RequireUnAuth>
+                        }
                     />
                     <Route
                         path="/reset_password/:token"
@@ -47,17 +98,29 @@ export default function MainRoutes() {
                     <Route
                         path="/post"
                         element={
-                            <>
+                            <RequireAuth>
                                 <PostComponent
                                     userBlogName="kholdbold"
                                     isFollowed={false}
                                 />
-                            </>
+                            </RequireAuth>
                         }
                     />
                     <Route
                         path="/reblog/:blogName/:postId/:reblogKey"
-                        element={<CreateModal reblog={true} />}
+                        element={
+                            <RequireAuth>
+                                <CreateModal reblog={true} />
+                            </RequireAuth>
+                        }
+                    />
+                    <Route
+                        path="/"
+                        element={
+                            <RequireUnAuth>
+                                <HomePage />
+                            </RequireUnAuth>
+                        }
                     />
                 </Routes>
                 <style>{css}</style>
