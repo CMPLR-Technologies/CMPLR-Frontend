@@ -292,6 +292,7 @@ $border-radius-primary: 3px;
         .link-icon.message,
         .link-popup {
             position: relative;
+            z-index: 100;
             // popup of messages
         }
 
@@ -581,7 +582,7 @@ $border-radius-primary: 3px;
                 border-radius: 50%;
                 i {
                     //color: $primiry-bg;
-                    font-size: 30px;
+                    font-size: 35px;
                 }
             }
             $bg-list: #ffffff, #ff492f, #ff8a00, #00cf35, #00b8ff, #7c5cff,
@@ -657,6 +658,8 @@ $border-radius-primary: 3px;
     .nav {
         height: 44px;
         background: $primiry-bg;
+        position:fixed;
+        top:0;
         &-container {
             max-width: 970px;
             flex-direction: column;
@@ -705,7 +708,10 @@ $border-radius-primary: 3px;
                     flex-direction: column;
                     z-index: 1000;
                     width: 90vw;
-
+                    overflow-y: scroll;
+                    &::-webkit-scrollbar {
+                        display: none;
+                      }
                     .create-new-post {
                         background: none;
                         color: inherit;
@@ -875,6 +881,7 @@ $border-radius-primary: 3px;
             }
         }
     }
+    
 }
 
 /*  @media (min-width: 768px) {

@@ -105,7 +105,9 @@ export default function AuthLinks() {
                     >
                         <i className="fas fa-comment-dots"></i>
                     </li>
-                    {openMessagePopup && <MessagesPopUp clickMessagePopup={clickMessagePopup} />}
+                    {openMessagePopup && (
+                        <MessagesPopUp clickMessagePopup={clickMessagePopup} />
+                    )}
                 </div>
             </ClickAwayListener>
 
@@ -130,11 +132,11 @@ export default function AuthLinks() {
                     {openAccountPopup && <AccountPopup />}
                 </div>
             </ClickAwayListener>
-            <li className="link-icon pen">
-                <Link to="/new">
+            <Link to="/new">
+                <li className="link-icon pen">
                     <i className="fas fa-pen"></i>
-                </Link>
-            </li>
+                </li>
+            </Link>
             {/* <Route
         path="/new"
         children={({ match }) => (

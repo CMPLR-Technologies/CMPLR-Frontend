@@ -21,6 +21,16 @@ export default function View() {
         background-color: rgba(${themes[theme].white});
         color:rgba(${themes[theme].black});
     }
+    .option-model{
+        background: rgb(${themes[theme].navy});
+    }
+    .option-model-text{
+        color: rgb(${themes[theme].whiteOnDark});
+    }
+    .option-model-btns a{
+        color: rgb(${themes[theme].navy});
+
+    }
     @media screen and (max-width: 960px) {
         .chat-popup-footer,.send{
             background-color: rgba(${themes[theme].white});

@@ -918,6 +918,40 @@
   color: white;
   text-decoration: none;
 }
+.chat-popup-header .option-model {
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.95;
+}
+.chat-popup-header .option-model-text {
+  font-size: 1.625rem;
+  font-weight: bolder;
+  line-height: 1.3077;
+  margin-bottom: 30px;
+  padding: 15px;
+  text-align: center;
+}
+.chat-popup-header .option-model-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.chat-popup-header .option-model-btns a {
+  margin: 15px 8px 0;
+  padding: 6px 15px;
+  width: auto;
+  font-weight: bold;
+}
 .chat-popup-header-option {
   display: flex;
   flex-direction: column;
@@ -1916,6 +1950,7 @@
 .nav .section2 .link-icon.message,
 .nav .section2 .link-popup {
   position: relative;
+  z-index: 100;
 }
 .nav .section2 .log,
 .nav .section2 .sign {
@@ -2119,7 +2154,7 @@
   border-radius: 50%;
 }
 .new-post-popup-items .new-post-popup-box-icon i {
-  font-size: 30px;
+  font-size: 35px;
 }
 .new-post-popup-items .new-post-popup-box .new-post-popup-box-icon1 {
   background-color: #ffffff;
@@ -2196,6 +2231,8 @@
   .nav {
     height: 44px;
     background: #001935;
+    position: fixed;
+    top: 0;
   }
   .nav-container {
     max-width: 970px;
@@ -2244,6 +2281,10 @@
     flex-direction: column;
     z-index: 1000;
     width: 90vw;
+    overflow-y: scroll;
+  }
+  .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu::-webkit-scrollbar {
+    display: none;
   }
   .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu .create-new-post {
     background: none;
@@ -3041,6 +3082,7 @@ body #reset-pass-logo {
 .nav .section2 .link-icon.message,
 .nav .section2 .link-popup {
   position: relative;
+  z-index: 100;
 }
 .nav .section2 .log,
 .nav .section2 .sign {
@@ -3244,7 +3286,7 @@ body #reset-pass-logo {
   border-radius: 50%;
 }
 .new-post-popup-items .new-post-popup-box-icon i {
-  font-size: 30px;
+  font-size: 35px;
 }
 .new-post-popup-items .new-post-popup-box .new-post-popup-box-icon1 {
   background-color: #ffffff;
@@ -3321,6 +3363,8 @@ body #reset-pass-logo {
   .nav {
     height: 44px;
     background: #001935;
+    position: fixed;
+    top: 0;
   }
   .nav-container {
     max-width: 970px;
@@ -3369,6 +3413,10 @@ body #reset-pass-logo {
     flex-direction: column;
     z-index: 1000;
     width: 90vw;
+    overflow-y: scroll;
+  }
+  .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu::-webkit-scrollbar {
+    display: none;
   }
   .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu .create-new-post {
     background: none;
