@@ -26,7 +26,7 @@ export default function OptionsList(props) {
                     className="post-time"
                 >
                     <span
-                        data-testid="post-time-text-ts"
+                        data-testid={`post-time-text-ts${postId}`}
                         className="post-time-text"
                     >
                         Posted - {postTime}
