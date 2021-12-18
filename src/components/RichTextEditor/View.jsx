@@ -26,11 +26,11 @@ const Input = styled('input')({
     display: 'none'
 });
 export default function HandMadeTextEditor(props) {
-    const { setContent, reblog, post } = props;
+    const { setContent, reblog, post, editContent } = props;
 
     return (
         <>
-            {reblog && (
+            {reblog && post?.post && (
                 <PostComponent
                     radar={true}
                     reblog={true}
@@ -47,6 +47,7 @@ export default function HandMadeTextEditor(props) {
                     data-testid="content-postInput"
                     onInput={() => handleChanges(setContent)}
                     data-placeholder="Your text here"
+                    dangerouslySetInnerHTML={{ __html: editContent }}
                 ></div>
                 <div className="text-editor-header">
                     <select
@@ -210,5 +211,6 @@ export default function HandMadeTextEditor(props) {
 HandMadeTextEditor.propTypes = {
     setContent: PropTypes.func.isRequired,
     reblog: PropTypes.bool,
-    post: PropTypes.object
+    post: PropTypes.object,
+    editContent: PropTypes.string
 };

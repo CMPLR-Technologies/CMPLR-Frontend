@@ -134,22 +134,6 @@ export function closeImagePreview(imgSrcUrl, postId) {
 }
 
 //=================================================ImageList Controller============================================
-export function extractPostContent(content) {
-    let textPost, imagePost, linkPost, audioPost, videoPost;
-    content &&
-        content.map(item => {
-            if (
-                item.type === 'text' ||
-                item.type === 'chat' ||
-                item.type === 'link'
-            )
-                textPost = item;
-            else if (item.type === 'image') imagePost = item;
-            else if (item.type === 'audio') audioPost = item;
-            else if (item.type === 'video') videoPost = item;
-        });
-    return { textPost, imagePost, linkPost, audioPost, videoPost };
-}
 
 export function chaneMobileView(setMobileView) {
     if (window.innerWidth > 960) {

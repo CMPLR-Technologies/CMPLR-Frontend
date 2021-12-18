@@ -1,8 +1,11 @@
 import React from 'react';
 import { IoIosSettings } from 'react-icons/io';
 import { RiArrowDropDownLine } from 'react-icons/ri';
+import ReblogSIgn from '../../../partials/postComponent/containers/Notes/ReblogSign.svg';
+import PropTypes from 'prop-types';
 
-export default function HeaderCreatePost() {
+export default function HeaderCreatePost(props) {
+    const { reblog, parentBlogAuthor } = props;
     return (
         <>
             <div className="post-form--header">
@@ -19,6 +22,12 @@ export default function HeaderCreatePost() {
                                     />
                                 </span>
                             </button>
+                            {reblog && (
+                                <span className="caption">
+                                    <ReblogSIgn />
+                                    <span>{parentBlogAuthor}</span>
+                                </span>
+                            )}
                         </div>
                     </div>
                     <div className="control-right">
@@ -40,3 +49,8 @@ export default function HeaderCreatePost() {
         </>
     );
 }
+
+HeaderCreatePost.propTypes = {
+    reblog: PropTypes.bool,
+    parentBlogAuthor: PropTypes.string
+};

@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { LinearProgress } from '@mui/material';
 import PostComponent from './postComponent/containers/PostComponent';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
+import { apiBaseUrl } from './../../config.json';
+import useFetch from '../../hooks/useFetch';
 
-// eslint-disable-next-line react/prop-types
-export default function Radar({ error, radarPost, isPending }) {
+export default function Radar() {
+    const { error, data, isPending } = useFetch(`${apiBaseUrl}/posts/radar/`);
     const theme = useContext(ThemeContext)[0];
 
     return (
@@ -18,10 +20,10 @@ export default function Radar({ error, radarPost, isPending }) {
             </h3>
             {error && <div className="no-data-error">{"Couldn't load"}</div>}
             {isPending && <LinearProgress />}
-            {radarPost && (
+            {data && (
                 <div className="radar-warper">
                     <PostComponent
-                        post={radarPost}
+                        post={{ blog: data.blog, post: data.post }}
                         radar={true}
                         otherClass="radar-post"
                         isFollowed={false}

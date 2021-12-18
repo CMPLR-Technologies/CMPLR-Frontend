@@ -59,6 +59,11 @@ export default function MainRoutes() {
                         path="/reblog/:blogName/:postId/:reblogKey"
                         element={<CreateModal reblog={true} />}
                     />
+
+                    <Route
+                        path="/edit/:blogName/:postId"
+                        element={<CreateModal reblog={false} edit={true} />}
+                    />
                 </Routes>
                 <style>{css}</style>
             </Router>

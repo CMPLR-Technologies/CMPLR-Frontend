@@ -25,7 +25,7 @@ const useFetch = url => {
         Axios.get(url, config)
             .then(res => {
                 if (!res.error) {
-                    setData(res.data);
+                    setData(res.data.response);
                     setIsPending(false);
                     setError(null);
                 } else {

@@ -2,7 +2,6 @@ import React, { useState, useRef, useCallback } from 'react';
 import CreatePost from '../createPost/View';
 import Sidebar from './containers/Sidebar';
 import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
-import useAuth from '../../hooks/useAuth';
 import { LinearProgress } from '@mui/material';
 import { apiBaseUrl } from '../../config.json';
 import PostComponent from '../partials/postComponent/containers/PostComponent';
@@ -15,10 +14,8 @@ export default function Dashboard() {
         data: posts,
         isPending,
         hasMore
-    } = useInfiniteScrolling(`${apiBaseUrl}/posts?_page=${pageNumber}`);
-    // `${apiBaseUrl}/user/dashboard?page=${pageNumber}`
+    } = useInfiniteScrolling(`${apiBaseUrl}/user/dashboard?page=${pageNumber}`);
 
-    useAuth();
     const observer = useRef();
     const lastPostElementRef = useCallback(
         node => {
@@ -47,7 +44,13 @@ export default function Dashboard() {
                                 </div>
                             );
                         } else {
-                            return <PostComponent key={index} post={post} />;
+                            return (
+                                <PostComponent
+                                    key={index}
+                                    post={post}
+                                    userBlogName="ahmed_3"
+                                />
+                            );
                         }
                     })}
 

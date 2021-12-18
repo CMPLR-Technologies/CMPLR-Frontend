@@ -38,7 +38,9 @@ Footer.propTypes = {
     postAuthor: PropTypes.string.isRequired,
     authorAvatar: PropTypes.string.isRequired,
     blogName: PropTypes.string.isRequired,
-    setIsModalOpenN: PropTypes.func
+    setIsModalOpenN: PropTypes.func,
+    blogPage: PropTypes.bool,
+    radar: PropTypes.bool
 };
 
 export default function Footer(props) {
@@ -51,7 +53,9 @@ export default function Footer(props) {
         blogName,
         postAuthor,
         authorAvatar,
-        setIsModalOpenN
+        setIsModalOpenN,
+        blogPage,
+        radar
     } = props;
     const [isShareListOpen, setIsShareListOpen] = useState(false);
     const [loveFillColor, setLoveFillColor] = useState('gray');
@@ -176,25 +180,32 @@ export default function Footer(props) {
                     </div>
                 )}
                 <div data-testid={`footer-icons-ts`} className="footer-icons">
-                    <button
-                        onClick={() =>
-                            toggleShareList(isShareListOpen, setIsShareListOpen)
-                        }
-                        className="icon"
-                        data-testid={`share-icon-footer-ts`}
-                    >
-                        <ShareBtn />
-                    </button>
-                    <button
-                        onClick={() => {
-                            setNotesView(true);
-                            setNoteType('comment');
-                        }}
-                        className="icon"
-                        data-testid={`note-icon-footer-ts${postId}`}
-                    >
-                        <Note />
-                    </button>
+                    {!blogPage && (
+                        <button
+                            onClick={() =>
+                                toggleShareList(
+                                    isShareListOpen,
+                                    setIsShareListOpen
+                                )
+                            }
+                            className="icon"
+                            data-testid={`share-icon-footer-ts`}
+                        >
+                            <ShareBtn />
+                        </button>
+                    )}
+                    {!blogPage && !radar && (
+                        <button
+                            onClick={() => {
+                                setNotesView(true);
+                                setNoteType('comment');
+                            }}
+                            className="icon"
+                            data-testid={`note-icon-footer-ts${postId}`}
+                        >
+                            <Note />
+                        </button>
+                    )}
                     <button
                         onClick={() => {
                             setNoteType('reblog');
@@ -241,6 +252,9 @@ export default function Footer(props) {
                             <button
                                 data-testid={`edit-footer-icon-ts${postId}`}
                                 className="icon"
+                                onClick={() =>
+                                    navigate(`/edit/${blogName}/${postId}`)
+                                }
                             >
                                 <EditBtn />
                             </button>

@@ -1,124 +1,133 @@
 {
-    "13212383": {
-        "Meta": {
-            "Status": 200
-        },
-        "response": {
-            "post_state": "published",
-            "post_id": 13212383,
-            "blog_id": 123123,
-            "blog_name": "1dsa",
-            "post_type": "text",
-            "content": [
-                {
-                    "type": "text",
-                    "title": "Test Post<br>",
-                    "content": "Test Content<br>",
-                    "user": {
-                        "name": "Yahia",
-                        "blogName": "Yahia"
-                    }
-                }
-            ],
-            "reblog_key": 1253,
-            "limit": 5,
-            "parent_blog_id": 12523,
-            "parent_post_id": 1223,
-            "post_timestamp": "December 5th, 7:14 PM",
-            "post_date": "01:01:11",
-            "format": "Rich text",
-            "blog_avatar": "https://64.media.tumblr.com/34dbb7172ea55d286d686911dff23901/66ab0c35f3053a4a-86/s64x64u_c1/91d3bc478c814e17c299e0893f74959aae7c189e.pnj",
-            "blog_url": "dddddas",
-            "blog_email": "dsadwqda",
-            "post_link": "https://theinsaneapp.tumblr.com/post/669080647503101952",
-            "number_notes": 5,
-            "layout": [
-                {
-                    "type": "rows",
-                    "display": "[{blocks:[0,1]} , {blocks:[2]}]"
-                }
-            ],
-            "tags": ["pain", "pain-000"]
-        }
+  "1": {
+    "Meta": {
+      "Status": 200
     },
-    "like": {
-        "id": 13212383,
-        "reblogKey": "1253"
+    "response": {
+      "post": {
+        "post_id": 1,
+        "type": "photos",
+        "state": "publish",
+        "title": "test title",
+        "content": "<h1>hello i am ahmed4 </h1>",
+        "date": "Friday, 17-Dec-21 23:27:28 UTC",
+        "source_content": "google.com",
+        "tags": [
+          "summer",
+          "winter"
+        ]
+      },
+      "blog": {
+        "blog_id": 11,
+        "blog_name": "ahmed_3",
+        "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+        "avatar_shape": "circle",
+        "replies": "everyone"
+      }
+    }
+  },
+  "like": {
+    "id": 1,
+    "reblogKey": "fsdfas"
+  },
+  "unlike": {
+    "id": 1,
+    "reblogKey": "fsdfas"
+  },
+  "follow": {
+    "url": "dddddas",
+    "email": "dsadwqda"
+  },
+  "delete": {
+    "Meta": {
+      "Status": 200,
+      "msg": "OK"
+    }
+  },
+  "unfollow": {
+    "url": "dddddas"
+  },
+  "blocks": {
+    "blogId": "undefined"
+  },
+  "profile": {
+    "name": "typicode"
+  },
+  "users": {
+    "theme": "trueBlue"
+  },
+  "register": [
+    {
+      "email": "hazem@gmail.com",
+      "age": 20,
+      "password": "hazem",
+      "blogname": "hazemkak",
+      "id": 1
     },
-    "unlike": {
-        "id": 13212383,
-        "reblogKey": 1253
+    {
+      "email": "hazemkak@gmail.com",
+      "password": "kakkak",
+      "blogName": "kak",
+      "age": 90,
+      "id": 2
     },
-    "follow": {
-        "url": "dddddas",
-        "email": "dsadwqda"
+    {
+      "email": "haz@gmail.com",
+      "password": "kak",
+      "blogName": "kak",
+      "age": 14,
+      "id": 3
     },
-    "delete": {
-        "Meta": {
-            "Status": 200,
-            "msg": "OK"
-        }
+    {
+      "email": "usf@gmail.com",
+      "password": "usfusf",
+      "blogName": "usf",
+      "age": 23,
+      "id": 4
     },
-    "unfollow": {
-        "url": "dddddas"
+    {
+      "email": "hazem@gmail.com",
+      "password": "jnndkj",
+      "blogName": "jnjknkd",
+      "age": 33,
+      "id": 5
     },
-    "blocks": {
-        "blogId": "undefined"
+    {
+      "email": "hazem@gmail.com",
+      "password": "anjskjnjjkn",
+      "blog_name": "sjnkjnsjk",
+      "age": 19,
+      "id": 6
+    }
+  ],
+  "forget-password": {
+    "email": "haz4450770@gmail.com"
+  },
+  "recommended-blogs": [
+    {
+      "blogName": "hello-world",
+      "blogDesc": "cpp"
     },
-    "profile": {
-        "name": "typicode"
+    {
+      "blogName": "print",
+      "blogDesc": "python"
     },
-    "users": {
-        "theme": "trueBlue"
+    {
+      "blogName": "every-thing-fox",
+      "blogDesc": "and other animals"
     },
-    "register": [
-        {
-            "email": "hazem@gmail.com",
-            "age": 20,
-            "password": "hazem",
-            "blogname": "hazemkak",
-            "id": 1
-        },
-        {
-            "email": "hazemkak@gmail.com",
-            "password": "kakkak",
-            "blogName": "kak",
-            "age": 90,
-            "id": 2
-        },
-        {
-            "email": "haz@gmail.com",
-            "password": "kak",
-            "blogName": "kak",
-            "age": 14,
-            "id": 3
-        },
-        {
-            "email": "usf@gmail.com",
-            "password": "usfusf",
-            "blogName": "usf",
-            "age": 23,
-            "id": 4
-        },
-        {
-            "email": "hazem@gmail.com",
-            "password": "jnndkj",
-            "blogName": "jnjknkd",
-            "age": 33,
-            "id": 5
-        },
-        {
-            "email": "hazem@gmail.com",
-            "password": "anjskjnjjkn",
-            "blog_name": "sjnkjnsjk",
-            "age": 19,
-            "id": 6
-        }
-    ],
-    "forget-password": {
-        "email": "haz4450770@gmail.com"
+    {
+      "blogName": "hello world",
+      "blogDesc": "cpp"
+    }
+  ],
+  "posts": {
+    "meta": {
+      "status_code": 200,
+      "msg": "Success"
     },
-    "recommended-blogs": [
+    "response": {
+      "posts": [
         {
             "blogName": "hello-world",
             "blogDesc": "cpp",
@@ -609,91 +618,111 @@
                     "content": ""
                 }
             ]
+          },
+          "blog": {
+            "blog_id": 11,
+            "blog_name": "ahmed_3",
+            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+            "avatar_shape": "circle",
+            "replies": "everyone"
+          }
         }
-    },
-    "reblog": {
-        "Meta": {
-            "Status": 200,
-            "msg": "OK"
-        },
-        "response": {
-            "total_no_posts": 2,
-            "posts": [
-                {
-                    "post_state": "published",
-                    "post_id": 13212383,
-                    "blog_id": 123123,
-                    "blog_name": "1dsa",
-                    "post_type": "text",
-                    "content": [
-                        {
-                            "type": "text",
-                            "content": "",
-                            "user": {
-                                "name": "Yahia",
-                                "blogName": "Yahia"
-                            }
-                        }
-                    ],
-                    "reblog_key": 1253,
-                    "limit": 5,
-                    "parent_blog_id": 12523,
-                    "parent_post_id": 1223,
-                    "post_timestamp": "December 5th, 7:14 PM",
-                    "post_date": "01:01:11",
-                    "format": "Rich text",
-                    "blog_avatar": "https://64.media.tumblr.com/34dbb7172ea55d286d686911dff23901/66ab0c35f3053a4a-86/s64x64u_c1/91d3bc478c814e17c299e0893f74959aae7c189e.pnj",
-                    "blog_url": "dddddas",
-                    "blog_email": "dsadwqda",
-                    "post_link": "https://theinsaneapp.tumblr.com/post/669080647503101952",
-                    "number_notes": 5,
-                    "layout": [
-                        {
-                            "type": "rows",
-                            "display": "[{blocks:[0,1]} , {blocks:[2]}]"
-                        }
-                    ],
-                    "tags": ["pain", "pain-000"]
-                }
-            ]
-        }
-    },
-
-    "radar-post": {
-        "post_state": "published",
-        "post_id": 13212383,
-        "blog_id": 123123,
-        "blog_name": "Yaia",
-        "post_type": "text",
-        "content": [
-            {
-                "type": "text",
-                "title": "Test Post<br>",
-                "content": "Test Content<br>",
-                "user": {
-                    "name": "Yahia",
-                    "blogName": "Yahia"
-                }
-            }
-        ],
-        "reblog_key": "1253",
-        "limit": 5,
-        "parent_blog_id": 12523,
-        "parent_post_id": 1223,
-        "post_timestamp": "December 5th, 7:14 PM",
-        "post_date": "01:01:11",
-        "format": "Rich text",
-        "blog_avatar": "https://64.media.tumblr.com/34dbb7172ea55d286d686911dff23901/66ab0c35f3053a4a-86/s64x64u_c1/91d3bc478c814e17c299e0893f74959aae7c189e.pnj",
-        "blog_url": "dddddas",
-        "blog_email": "dsadwqda",
-        "post_link": "https://theinsaneapp.tumblr.com/post/669080647503101952",
-        "number_notes": 5,
-        "layout": [
-            {
-                "type": "rows",
-                "display": "[{blocks:[0,1]} , {blocks:[2]}]"
-            }
-        ],
-        "tags": ["pain", "pain-000"]
+      ],
+      "next_url": "http://127.0.0.1:8000/api/posts/view/ahmed_3?page=2",
+      "total": 5,
+      "current_page": 1,
+      "posts_per_page": 2
     }
+  },
+  "notes": {
+    "Meta": {
+      "Status": 200,
+      "msg": "OK"
+    },
+    "response": {
+      "counts": {
+        "totalLikes": 3,
+        "totalReblogs": 1
+      },
+      "notes": [
+        {
+          "type": "comment",
+          "blog_name": "hazom",
+          "blog_url": "https://hazom.com",
+          "followed": true,
+          "post_id": 2541652,
+          "reblog_parent_blog_name": "kholdbold",
+          "reblog_parent_blog_url": "https://kholdbold.com",
+          "avatar": "https://64.media.tumblr.com/5d65e6564325029026372d750047aca2/da25d5299e6bc43a-9a/s64x64u_c1/d33411435f6a25c6182f6d780030d659f917766b.jpg",
+          "content": "jaj"
+        }
+      ]
+    }
+  },
+  "reblog": {
+    "comment": "daasda"
+  },
+  "radar-post": {
+    "post": {
+      "post_id": 5,
+      "type": "photos",
+      "state": "publish",
+      "title": "test title",
+      "content": "<h1>hello i am ahmed from radar </h1>",
+      "date": "Friday, 17-Dec-21 23:27:28 UTC",
+      "source_content": "google.com",
+      "number_notes": 1,
+      "tags": [
+        "summer",
+        "winter"
+      ]
+    },
+    "blog": {
+      "blog_id": 11,
+      "blog_name": "ahmed_3",
+      "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+      "avatar_shape": "circle",
+      "replies": "everyone"
+    }
+  },
+  "user_theme": {
+    "theme": "trueBlue"
+  },
+  "edit": {
+    "id": "1",
+    "data": {
+      "title": "Test Post EDit<br>",
+      "content": "Test Content ds<br> edit<br>",
+      "user": {
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5IiwianRpIjoiMzFmNmRmYmM2ZjU5Yzc5MmYxOWM1ZmRkZjM4YmRmNTYxNzBlMjk4ZWU5ZTU2YTY1YTU5OTEyNDkwMjNkZDYxNDM3ZGYxZjZkYTlhZTI3ZTMiLCJpYXQiOjE2Mzk0Mjg1NjMuNzIzODI4LCJuYmYiOjE2Mzk0Mjg1NjMuNzIzODMyLCJleHAiOjE2NzA5NjQ1NjMuNzE5Mzk0LCJzdWIiOiIzOSIsInNjb3BlcyI6W119.Cw5YMJXDG10q4zn_kyl8-1y_TrenIRAbu4rcm_zWHAzMdMTa8ef3IB8FsgHe2gV8vFxJU01Uwe4bI0KlneAI1jQKsWaIMuznm8E3J80gc60P-r-Sc29OfPwKLB4xTW19m3Z8XjtuT2dnm33eh21vzJqXNUGRyceXOrLGSVo3AJGyXDTqCbrKGP1rP2ty7fO0X5ASLxW_H44Dtj-FpmbGNSjnQB9ahzPeWs-N_HlKmnDC2LC96xIh9BdRlhyAINppuRo_FXPngVL9ghzsOCuziEQcxjCy7L9VpdE5Tf2rwmLKt-zsMS3WsRDRYKfksge4tdCeEQA-WO1pRMiNuVhEt6aTL_mq1efbaaqAm6o-6EWr40ll9sPj6ww4bsKtUBkwsRErHRX1SqUJ-zJu1PnLsX9l3TrWo_czYDul3FpxLQAFyh22LmbBGesobux__hig_pS2v18MV6ZhKCkxADnSI7_ALQ8M0dCFUYRJPQyX_pciyq6895S3XteAReu4yvlDgZBnPH_tXFmQ6BMPJjz8vfICCg991PkF6SS6ZO07TOd5PaZ-bugde8ZVwIX_YYtSCPovathdML2xeppHncAH0q1j34A5R3LZr7s2QUsy6NsGg8Af2wMzDJuXeOOpNgBz_jPCLOQgeqb7-upPucfdcsS5ypkFJpTZ4YH-vqYGg0s",
+        "userData": {
+          "id": 39,
+          "email": "kahmd1444@gmail.com",
+          "email_verified_at": null,
+          "age": 21,
+          "following_count": 0,
+          "likes_count": 0,
+          "default_post_format": null,
+          "login_options": null,
+          "email_activity_check": false,
+          "TFA": false,
+          "filtered_tags": null,
+          "endless_scrolling": true,
+          "show_badge": true,
+          "text_editor": "rich",
+          "msg_sound": true,
+          "best_stuff_first": true,
+          "include_followed_tags": true,
+          "conversational_notification": true,
+          "filtered_content": null,
+          "google_id": null,
+          "theme": "trueBlue",
+          "primary_blog_id": 39,
+          "created_at": "2021-12-13T20:49:23.000000Z",
+          "updated_at": "2021-12-13T20:49:23.000000Z"
+        },
+        "blogName": "khold"
+      }
+    }
+  }
 }

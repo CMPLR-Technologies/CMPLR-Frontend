@@ -16,7 +16,6 @@ TextPost.propTypes = {
 
 export default function TextPost(props) {
     const { title, content } = props;
-
     return (
         <div data-testid={`post-body-ts`} className="post-body">
             <div className="text-title">
