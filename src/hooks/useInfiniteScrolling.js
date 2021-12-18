@@ -12,29 +12,28 @@ const useInfiniteScrolling = url => {
     useEffect(() => {
         setIsPending(true);
         setError(null);
-        setTimeout(() => {
-            Axios.get(url, {
-                signal: abortCont.signal
+
+        Axios.get(url, {
+            signal: abortCont.signal
+        })
+            .then(res => {
+                if (!res.error) {
+                    setData(prevData => {
+                        return [...prevData, ...res.data];
+                    });
+                    setIsPending(false);
+                    setHasMore(res?.data?.length > 0);
+                    setError(null);
+                } else {
+                    throw Error(res.error);
+                }
             })
-                .then(res => {
-                    if (!res.error) {
-                        setData(prevData => {
-                            return [...prevData, ...res.data];
-                        });
-                        setIsPending(false);
-                        setHasMore(res?.data?.length > 0);
-                        setError(null);
-                    } else {
-                        throw Error(res.error);
-                    }
-                })
-                .catch(err => {
-                    if (err.name !== 'AbortError') {
-                        setIsPending(false);
-                        setError(err.message);
-                    }
-                });
-        }, 3000);
+            .catch(err => {
+                if (err.name !== 'AbortError') {
+                    setIsPending(false);
+                    setError(err.message);
+                }
+            });
 
         return () => {
             return abortCont.abort();
