@@ -1,17 +1,12 @@
 import React, { useContext } from 'react';
-import useFetch from '../../hooks/useFetch';
-import { apiBaseUrl } from '../../config.json';
 import { LinearProgress } from '@mui/material';
 import PostComponent from './postComponent/containers/PostComponent';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 
-export default function Radar() {
+// eslint-disable-next-line react/prop-types
+export default function Radar({ error, radarPost, isPending }) {
     const theme = useContext(ThemeContext)[0];
-    const {
-        error,
-        data: radarPost,
-        isPending
-    } = useFetch(`${apiBaseUrl}/radar-post`);
+
     return (
         <div className="Radar">
             <h3

@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { UserContext } from '../contexts/userContext/UserContext';
 import Axios from 'axios';
 
 const useInfiniteScrolling = url => {
+    const { user } = useContext(UserContext);
     const [data, setData] = useState([]);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
@@ -13,9 +15,14 @@ const useInfiniteScrolling = url => {
         setIsPending(true);
         setError(null);
 
-        Axios.get(url, {
-            signal: abortCont.signal
-        })
+        const config = { signal: abortCont.signal };
+        if (user) {
+            config['headers'] = {
+                Authorization: `Bearer ${user.token}`,
+                Accept: 'application/json'
+            };
+        }
+        Axios.get(url, config)
             .then(res => {
                 if (!res.error) {
                     setData(prevData => {

@@ -121,19 +121,23 @@
     "recommended-blogs": [
         {
             "blogName": "hello-world",
-            "blogDesc": "cpp"
+            "blogDesc": "cpp",
+            "blogIcon": "https://assets.tumblr.com/images/default_avatar/octahedron_closed_128.png"
         },
         {
             "blogName": "print",
-            "blogDesc": "python"
+            "blogDesc": "python",
+            "blogIcon": "https://assets.tumblr.com/images/default_avatar/cone_open_128.png"
         },
         {
             "blogName": "every-thing-fox",
-            "blogDesc": "and other animals"
+            "blogDesc": "and other animals",
+            "blogIcon": "https://assets.tumblr.com/images/default_avatar/octahedron_closed_128.png"
         },
         {
             "blogName": "hello world",
-            "blogDesc": "cpp"
+            "blogDesc": "cpp",
+            "blogIcon": "https://assets.tumblr.com/images/default_avatar/cone_open_128.png"
         }
     ],
     "posts": [
@@ -147,15 +151,11 @@
                 {
                     "type": "text",
                     "title": "Test Post<br>",
-                    "content": "Test Content<br>",
+                    "content": "<img src='https://64.media.tumblr.com/db4bc5e69bbb95a59fb2d92db0f37bb0/f91d001a22ee89cb-c8/s2048x3072/21f776d31281cb022898512253aa9b1a38e89488.png' />Test Content<br>  ",
                     "user": {
                         "name": "Yahia",
                         "blogName": "Yahia"
                     }
-                },
-                {
-                    "type": "text",
-                    "content": "<img src='https://64.media.tumblr.com/ea4e14d28697d13ad8a2f49996c4be13/9b2285fd182031b7-79/s1280x1920/a60e3c43069ee4fedac986605bf131a479da48f0.jpg' />"
                 }
             ],
             "reblog_key": "1253",
