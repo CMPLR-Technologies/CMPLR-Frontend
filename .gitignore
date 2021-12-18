@@ -23,3 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 /src/styles/styles.css.map
+nginx/nginx-certificate.crt
+nginx/nginx.key
