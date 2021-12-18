@@ -4,6 +4,7 @@ import '../../../../../styles/styles.css';
 import MessagesPopUp from '../MessagesPopup/MessagesPopUp';
 import AccountPopup from '../AccountPopup/AccountPopup';
 import { Link, NavLink } from 'react-router-dom';
+import Notifications from '../../Notifications/Notifications';
 /**
  * Navbar AuthLinks: includes all links dashboard and inbox and expolre ...
  * @function NavbarAuthLinks
@@ -107,15 +108,17 @@ export default function AuthLinks() {
                     {openMessagePopup && <MessagesPopUp />}
                 </div>
             </ClickAwayListener>
-
-            <li
-                onClick={clickNotificationsPopup}
-                className={`link-icon  ${
-                    openNotificationsPopup ? 'active' : ''
-                }`}
-            >
-                <i className="fas fa-bolt"></i>
-            </li>
+            <div className="notifications-btn">
+                <li
+                    onClick={clickNotificationsPopup}
+                    className={`link-icon  ${
+                        openNotificationsPopup ? 'active' : ''
+                    }`}
+                >
+                    <i className="fas fa-bolt"></i>
+                </li>
+                <Notifications />
+            </div>
             <ClickAwayListener onClickAway={closeAccountPopup}>
                 <div className="link-popup">
                     <li
