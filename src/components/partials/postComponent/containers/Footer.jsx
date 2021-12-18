@@ -250,6 +250,7 @@ export default function Footer(props) {
                             <button
                                 data-testid={`edit-footer-icon-ts${postId}`}
                                 className="icon"
+                                onClick={()=>navigate(`/edit/${blogName}/${postId}`)}
                             >
                                 <EditBtn />
                             </button>

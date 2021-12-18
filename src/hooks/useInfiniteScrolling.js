@@ -19,7 +19,7 @@ const useInfiniteScrolling = url => {
                 .then(res => {
                     if (!res.error) {
                         setData(prevData => {
-                            return [...prevData, ...res.data];
+                            return [...prevData, ...res.data.response.posts];
                         });
                         setIsPending(false);
                         setHasMore(res?.data?.length > 0);

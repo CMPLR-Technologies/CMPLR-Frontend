@@ -68,59 +68,24 @@ export const handlePosting = (bodyData, navigate) => {
     }
 };
 
-export function fetchPost(postId, setPost) {
+export function fetchPost(postId, setPost, edit, setTitlePost, setContent) {
     Axios({
         method: 'GET',
         url: `${apiBaseUrl}/post/${postId}`
     })
         .then(res => {
-            if (res.data.Meta.Status === 200) setPost(res.data.response);
+            if (res.data.Meta.Status === 200) {
+                setPost(res.data.response);
+                if (edit === true) {
+                    setTitlePost(res.data.response.post.title);
+                    setContent(res.data.response.post.content);
+                }
+            }
         })
         .catch(() => {});
 }
 
-export function reblogPost(bodyData, navigate) {
-    const response = {
-        Meta: {
-            Status: 200,
-            msg: 'OK'
-        },
-        response: {
-            total_no_posts: 2,
-            posts: [
-                {
-                    post_state: 'published',
-                    post_id: 13212383,
-                    blog_id: 123123,
-                    blog_name: '1dsa',
-                    post_type: 'text',
-                    content: [{ type: 'text', ...bodyData }],
-                    reblog_key: 1253,
-                    limit: 5,
-                    parent_blog_id: 12523,
-                    parent_post_id: 1223,
-                    post_timestamp: 'December 5th, 7:14 PM',
-                    post_date: '01:01:11',
-                    format: 'Rich text',
-                    blog_avatar:
-                        'https://64.media.tumblr.com/34dbb7172ea55d286d686911dff23901/66ab0c35f3053a4a-86/s64x64u_c1/91d3bc478c814e17c299e0893f74959aae7c189e.pnj',
-                    blog_url: 'dddddas',
-                    blog_email: 'dsadwqda',
-                    post_link:
-                        'https://theinsaneapp.tumblr.com/post/669080647503101952',
-                    number_notes: 5,
-                    layout: [
-                        {
-                            type: 'rows',
-                            display: '[{blocks:[0,1]} , {blocks:[2]}]'
-                        }
-                    ],
-                    tags: ['pain', 'pain-000']
-                }
-            ]
-        }
-    };
-
+export function reblogPost(post, comment, navigate) {
     Axios({
         method: 'POST',
         url: `${apiBaseUrl}/posts/reblog`,
@@ -128,7 +93,31 @@ export function reblogPost(bodyData, navigate) {
             'Content-Type': 'application/json',
             Accept: 'application/json'
         },
-        data: response
+        data: {
+            id: post['post_id'],
+            reblog_key: post['reblog_key'],
+            comment: comment
+        }
+    })
+        .then(res => {
+            navigate('/dashboard');
+            return res;
+        })
+        .catch(() => {});
+}
+
+export function editPost(postId, dataBody, navigate) {
+    Axios({
+        method: 'POST',
+        url: `${apiBaseUrl}/posts/edit`,
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+        },
+        data: {
+            id: postId,
+            data: dataBody
+        }
     })
         .then(res => {
             navigate('/dashboard');

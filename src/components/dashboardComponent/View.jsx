@@ -48,7 +48,13 @@ export default function Dashboard() {
                                 </div>
                             );
                         } else {
-                            return <PostComponent key={index} post={post} />;
+                            return (
+                                <PostComponent
+                                    key={index}
+                                    post={post}
+                                    userBlogName="ahmed_3"
+                                />
+                            );
                         }
                     })}
 
