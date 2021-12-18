@@ -1,4 +1,5 @@
 import firebase from '../../firebase/index';
+import { uploadSelectedImage } from './Service';
 
 export const handleActionWithoutArg = (elementId, setContent) => {
     const element = document.getElementById(elementId);
@@ -14,36 +15,46 @@ export const handleActionWithoutArg = (elementId, setContent) => {
     setContent(document.getElementById('editable-content').innerHTML);
 };
 
-export const handleUploadImage = (file, setContent) => {
-    const uploadTask = firebase.storage().ref(`images/${file.name}`).put(file);
+export const handleUploadImage = async (file, setContent, setSpinner) => {
+    setSpinner(true);
+    //const uploadTask = firebase.storage().ref(`images/${file.name}`).put(file);
 
-    uploadTask.on(
-        'state_changed',
-        () => {},
-        error => {
-            console.log(error);
-        },
-        () => {
-            firebase
-                .storage()
-                .ref('images')
-                .child(file.name)
-                .getDownloadURL()
-                .then(url => {
-                    let newImage = document.createElement('img'); // Create a <li> node
-                    newImage.src = url;
-                    document
-                        .getElementById('editable-content')
-                        .appendChild(newImage);
-                });
-        }
-    );
+    let imageUrl = await uploadSelectedImage(file, setSpinner);
+    console.log('retrieved image url ', imageUrl);
+    let newImage = document.createElement('img'); // Create a <li> node
+    newImage.src = imageUrl;
+    document.getElementById('editable-content').appendChild(newImage);
+
+    // uploadTask.on(
+    //     'state_changed',
+    //     () => {},
+    //     error => {
+    //         console.log(error);
+    //     },
+    //     () => {
+    //         firebase
+    //             .storage()
+    //             .ref('images')
+    //             .child(file.name)
+    //             .getDownloadURL()
+    //             .then(url => {
+    //                 let newImage = document.createElement('img'); // Create a <li> node
+    //                 newImage.src = url;
+    //                 document
+    //                     .getElementById('editable-content')
+    //                     .appendChild(newImage);
+    //             });
+    //     }
+    // );
 
     setContent(document.getElementById('editable-content').innerHTML);
 };
 
-export const handleUploadVideo = (file, setContent) => {
-    //const uploadTask = firebase.storage().ref(`images/${file.name}`).put(file);
+export const handleUploadVideo = async (file, setContent, setSpinner) => {
+    setSpinner(true);
+    let videoUrl = await uploadSelectedImage(file, setSpinner);
+    console.log('retrieved image url ', videoUrl);
+
     let url = 'https://www.youtube.com/watch?v=H9154xIoYTA';
     let newSrc = document.createElement('source');
     newSrc.src = url;
@@ -53,36 +64,9 @@ export const handleUploadVideo = (file, setContent) => {
 
     newVideo.appendChild(newSrc);
     document.getElementById('editable-content').appendChild(newVideo);
-    return;
-    uploadTask.on(
-        'state_changed',
-        () => {},
-        error => {
-            console.log(error);
-        },
-        () => {
-            firebase
-                .storage()
-                .ref('images')
-                .child(file.name)
-                .getDownloadURL()
-                .then(url => {
-                    let newSrc = document.createElement('source');
-                    newSrc.src = url;
-                    newSrc.type = 'video/mp4';
-                    let newVideo = document.createElement('video');
-                    newVideo.id = url + 'ID';
-                    newVideo.controls = true;
-
-                    document.getElementById(url + 'ID').appendChild(newSrc);
-                    document
-                        .getElementById('editable-content')
-                        .appendChild(newVideo);
-                });
-        }
-    );
 
     setContent(document.getElementById('editable-content').innerHTML);
+    setSpinner(false);
 };
 
 export const handleHeading = (cmd, setContent) => {

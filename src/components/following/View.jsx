@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useContext } from 'react';
 
 import { LinearProgress } from '@mui/material';
 
@@ -8,6 +8,8 @@ import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
 import SearchForm from './containers/SearchForm';
 import ItemList from './containers/ItemList';
 import PopupBlock from './containers/PopupBlock';
+import { UserContext } from '../../contexts/userContext/UserContext';
+import { followAccount } from './Service';
 /**
  * Following Page Component
  * @function FollowingPage
@@ -16,11 +18,17 @@ import PopupBlock from './containers/PopupBlock';
  */
 
 export default function FollowingPage() {
+    const { user } = useContext(UserContext);
     const [openPopup, setOpenPopup] = useState(false);
     const [pageNumber, setPageNumber] = useState(1);
-    const handleSearchFollow = () => {};
-    const handleUnfollow = () => {};
     const [search, setSearch] = useState('');
+
+    const handleSearchFollow = () => {
+        followAccount(user?.token, search);
+    };
+    const handleUnfollow = () => {
+        //unfollowAccount(user?.token, unfollowAcc);
+    };
     const handleBlock = () => {};
 
     const {

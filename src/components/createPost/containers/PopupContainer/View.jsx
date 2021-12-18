@@ -8,14 +8,13 @@ import BottomMainControllers from './Bottom/BottomContainer';
 import { UserContext } from '../../../../contexts/userContext/UserContext';
 import { useContext } from 'react';
 import HandMadeTextEditor from '../../../RichTextEditor/View';
-import useAuth from '../../../../hooks/useAuth';
 import { handlePosting, reblogPost } from '../../Service';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchPost } from '../../Service';
 import PropTypes from 'prop-types';
 
 export default function CreateModal(props) {
-    useAuth();
+    const [spinner, setSpinner] = useState(false);
     const [titlePost, setTitlePost] = useState('');
     const [content, setContent] = useState('');
     const [post, setPost] = useState({});
@@ -30,13 +29,20 @@ export default function CreateModal(props) {
     };
 
     const handlePost = () => {
+        //draft private publish
         const dataBody = {
             title: titlePost,
             content: content,
-            user: user
+            state: 'publish',
+            type: 'text',
+            // eslint-disable-next-line camelcase
+            blog_name: user.blogName,
+            tags: []
         };
 
-        handlePosting(dataBody, navigate);
+        console.log('body to be sent', dataBody);
+
+        handlePosting(dataBody, navigate, user?.token);
     };
 
     const handleReblog = () => {
@@ -75,7 +81,9 @@ export default function CreateModal(props) {
                                     <div className="post-container">
                                         <div className="post-container-inner">
                                             {/**---------------------First hazemkak */}
-                                            <HeaderCreatePost />
+                                            <HeaderCreatePost
+                                                spinner={spinner}
+                                            />
                                             <div className="post-form--form">
                                                 {!reblog && (
                                                     <div>
@@ -94,6 +102,9 @@ export default function CreateModal(props) {
                                                     <div className="editor-wrapper">
                                                         <div className="editor-slot">
                                                             <HandMadeTextEditor
+                                                                setSpinner={
+                                                                    setSpinner
+                                                                }
                                                                 content={
                                                                     content
                                                                 }

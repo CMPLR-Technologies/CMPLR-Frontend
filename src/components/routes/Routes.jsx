@@ -14,6 +14,8 @@ import Dashboard from '../dashboardComponent/View';
 
 import PostComponent from '../partials/postComponent/View';
 import FollowingPage from '../following/View';
+import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
+import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
     const css = `
@@ -29,37 +31,46 @@ export default function MainRoutes() {
             <Router>
                 <Navbar />
                 <Routes>
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/messaging" element={<MessagesPageMobile />} />
-                    <Route path="/new/post" element={<CreateModal />} />
-                    <Route path="/rich" element={<HandMadeTextEditor />} />
-                    <Route path="/following" element={<FollowingPage />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/login" element={<LoginView />} />
+                    <Route element={<RequireUnAuth />}>
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/login" element={<LoginView />} />
 
-                    <Route
-                        path="/forget_password"
-                        element={<ForgetPassword />}
-                    />
-                    <Route
-                        path="/reset_password/:token"
-                        element={<ResetPassword />}
-                    />
-                    <Route
-                        path="/post"
-                        element={
-                            <PostComponent
-                                userBlogName="kholdbold"
-                                isFollowed={false}
-                            />
-                        }
-                    />
-                    <Route
-                        path="/reblog/:blogName/:postId/:reblogKey"
-                        element={<CreateModal reblog={true} />}
-                    />
-                    <Route path="/" element={<HomePage />} />
+                        <Route
+                            path="/forget_password"
+                            element={<ForgetPassword />}
+                        />
+                        <Route
+                            path="/reset_password/:token"
+                            element={<ResetPassword />}
+                        />
+
+                        <Route path="/" element={<HomePage />} />
+                    </Route>
+
+                    <Route element={<RequireAuth />}>
+                        <Route path="/rich" element={<HandMadeTextEditor />} />
+                        <Route path="/following" element={<FollowingPage />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route
+                            path="/post"
+                            element={
+                                <PostComponent
+                                    userBlogName="kholdbold"
+                                    isFollowed={false}
+                                />
+                            }
+                        />
+                        <Route
+                            path="/reblog/:blogName/:postId/:reblogKey"
+                            element={<CreateModal reblog={true} />}
+                        />
+                        <Route
+                            path="/messaging"
+                            element={<MessagesPageMobile />}
+                        />
+                        <Route path="/new/post" element={<CreateModal />} />
+                    </Route>
                 </Routes>
                 <style>{css}</style>
             </Router>

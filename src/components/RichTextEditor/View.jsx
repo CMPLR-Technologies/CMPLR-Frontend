@@ -28,7 +28,7 @@ const Input = styled('input')({
     display: 'none'
 });
 export default function HandMadeTextEditor(props) {
-    const { setContent, reblog, post } = props;
+    const { setContent, reblog, post, setSpinner } = props;
 
     return (
         <>
@@ -110,7 +110,11 @@ export default function HandMadeTextEditor(props) {
                     <label htmlFor="to-image-words">
                         <Input
                             onChange={e =>
-                                handleUploadImage(e.target.files[0], setContent)
+                                handleUploadImage(
+                                    e.target.files[0],
+                                    setContent,
+                                    setSpinner
+                                )
                             }
                             accept="image/*"
                             data-element="insertImage"
@@ -124,7 +128,11 @@ export default function HandMadeTextEditor(props) {
                     <label htmlFor="to-video-words">
                         <Input
                             onChange={e =>
-                                handleUploadVideo(e.target.files[0], setContent)
+                                handleUploadVideo(
+                                    e.target.files[0],
+                                    setContent,
+                                    setSpinner
+                                )
                             }
                             id="to-video-words"
                             type="file"
@@ -225,6 +233,7 @@ export default function HandMadeTextEditor(props) {
 
 HandMadeTextEditor.propTypes = {
     setContent: PropTypes.func.isRequired,
+    setSpinner: PropTypes.func.isRequired,
     reblog: PropTypes.bool,
     post: PropTypes.object
 };

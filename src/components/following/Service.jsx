@@ -10,7 +10,7 @@ export const getFollowingList = (
 ) => {
     Axios({
         method: 'POST',
-        url: `${apiBaseUrl}/register/insert`,
+        url: `${apiBaseUrl}/`,
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json'
@@ -31,4 +31,38 @@ export const getFollowingList = (
             setIsPending(false);
             return null;
         });
+};
+
+export const followAccount = (userToken, searchedName) => {
+    Axios({
+        method: 'POST',
+        url: `${apiBaseUrl}/`,
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+        },
+        data: {
+            token: userToken,
+            searchedName: searchedName
+        }
+    })
+        .then(() => {})
+        .catch(() => {});
+};
+
+export const unfollowAccount = (userToken, unfollowAcc) => {
+    Axios({
+        method: 'POST',
+        url: `${apiBaseUrl}/`,
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+        },
+        data: {
+            token: userToken,
+            unfollowAcc: unfollowAcc
+        }
+    })
+        .then(() => {})
+        .catch(() => {});
 };

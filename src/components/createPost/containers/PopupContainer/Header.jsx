@@ -1,8 +1,11 @@
 import React from 'react';
 import { IoIosSettings } from 'react-icons/io';
 import { RiArrowDropDownLine } from 'react-icons/ri';
+import CircularProgress from '@mui/material/CircularProgress';
+import PropTypes from 'prop-types';
 
-export default function HeaderCreatePost() {
+export default function HeaderCreatePost(props) {
+    const { spinner } = props;
     return (
         <>
             <div className="post-form--header">
@@ -22,7 +25,11 @@ export default function HeaderCreatePost() {
                         </div>
                     </div>
                     <div className="control-right">
-                        {/**------TODO: Add a Div which contains a spinner for uploading */}
+                        {spinner && (
+                            <CircularProgress
+                                style={{ width: '20px', height: '20px' }}
+                            />
+                        )}
                         <div className="post-form--post-settings-button">
                             <div className="post-settings">
                                 <span className="settings-icon">
@@ -40,3 +47,7 @@ export default function HeaderCreatePost() {
         </>
     );
 }
+
+HeaderCreatePost.propTypes = {
+    spinner: PropTypes.bool
+};

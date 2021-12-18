@@ -2413,9 +2413,14 @@ body #reset-pass-logo {
   user-select: none;
 }
 .create1div .create_main .create_container ul li .btncreateoption .spanStyle {
-  transition: transform 80ms linear;
+  transition: top ease 80ms;
+  position: relative;
+  top: 0;
   display: flex;
   flex-direction: column;
+}
+.create1div .create_main .create_container ul li .btncreateoption .spanStyle:hover {
+  top: -4px;
 }
 .create1div .create_main .create_container ul li .btncreateoption .spanStyle svg {
   margin-bottom: 5px;

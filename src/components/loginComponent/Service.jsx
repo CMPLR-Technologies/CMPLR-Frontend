@@ -8,7 +8,11 @@ const logUser = (email, password, setUser, setError, setIsPending) => {
         password
     })
         .then(res => {
-            const user = { token: res.data.token, userData: res.data.user };
+            const user = {
+                token: res.data.token,
+                userData: res.data.user,
+                blogName: res.data.response.blog_name
+            };
             setUser(user);
             localStorage.setItem('user', JSON.stringify(user));
             setIsPending(false);
