@@ -26,7 +26,7 @@ const Input = styled('input')({
     display: 'none'
 });
 export default function HandMadeTextEditor(props) {
-    const { setContent, reblog, post, content, editContent } = props;
+    const { setContent, reblog, post, editContent } = props;
 
     return (
         <>
@@ -211,5 +211,6 @@ export default function HandMadeTextEditor(props) {
 HandMadeTextEditor.propTypes = {
     setContent: PropTypes.func.isRequired,
     reblog: PropTypes.bool,
-    post: PropTypes.object
+    post: PropTypes.object,
+    editContent: PropTypes.string
 };

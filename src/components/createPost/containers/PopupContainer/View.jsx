@@ -159,5 +159,6 @@ export default function CreateModal(props) {
 }
 
 CreateModal.propTypes = {
-    reblog: PropTypes.bool
+    reblog: PropTypes.bool,
+    edit: PropTypes.bool
 };

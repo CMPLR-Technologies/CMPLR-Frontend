@@ -38,7 +38,9 @@ Footer.propTypes = {
     postAuthor: PropTypes.string.isRequired,
     authorAvatar: PropTypes.string.isRequired,
     blogName: PropTypes.string.isRequired,
-    setIsModalOpenN: PropTypes.func
+    setIsModalOpenN: PropTypes.func,
+    blogPage: PropTypes.bool,
+    radar: PropTypes.bool
 };
 
 export default function Footer(props) {
@@ -250,7 +252,9 @@ export default function Footer(props) {
                             <button
                                 data-testid={`edit-footer-icon-ts${postId}`}
                                 className="icon"
-                                onClick={()=>navigate(`/edit/${blogName}/${postId}`)}
+                                onClick={() =>
+                                    navigate(`/edit/${blogName}/${postId}`)
+                                }
                             >
                                 <EditBtn />
                             </button>

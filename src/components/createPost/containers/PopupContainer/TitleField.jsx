@@ -29,5 +29,6 @@ export default function TitleField(props) {
 
 TitleField.propTypes = {
     // titlePost: PropTypes.string.isRequired,
-    setTitlePost: PropTypes.func.isRequired
+    setTitlePost: PropTypes.func.isRequired,
+    editTitlePost: PropTypes.string
 };

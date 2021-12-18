@@ -1,15 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
-import AudioPost from './postTypesComponents/AudioPost';
-import ImageList from './postTypesComponents/ImageList';
 import OptionsButton from './SVG/OptionsButton.svg';
 import TextPost from './postTypesComponents/TextPost';
 import Tags from './Tags';
-import VideoPost from './postTypesComponents/VideoPost';
 import Footer from './Footer';
 import Divider from './Divider';
 import Modal from '../../Modal';
 import AuthBtn from '../../AuthBtn';
-import { extractPostContent, chaneMobileView } from '../Controller';
+import { chaneMobileView } from '../Controller';
 import { follow, block } from '../Services';
 import PropTypes from 'prop-types';
 import OptionsList from './OptionsList';
@@ -35,7 +32,9 @@ PostComponent.propTypes = {
     radar: PropTypes.bool,
     left: PropTypes.string,
     reblog: PropTypes.bool,
-    padding: PropTypes.string
+    padding: PropTypes.string,
+    blogPage: PropTypes.bool,
+    themeDeactivate: PropTypes.bool
 };
 
 export default function PostComponent(props) {
@@ -57,7 +56,7 @@ export default function PostComponent(props) {
     const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
     const [mobileView, setMobileView] = useState(false);
     const { blog: blog, post: postData } = post;
-    
+
     const {
         date: postTime,
         tags: tags,
@@ -80,7 +79,6 @@ export default function PostComponent(props) {
     useEffect(() => {
         chaneMobileView(setMobileView);
     }, []);
-    // let returned = extractPostContent(content);
 
     window.addEventListener('resize', () => chaneMobileView(setMobileView));
     const css = `
