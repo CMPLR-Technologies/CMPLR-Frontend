@@ -50,6 +50,13 @@
                 margin-bottom: 30px;
                 padding: 15px;
                 text-align: center;
+                div:last-of-type{
+                    width: 50%;
+                    margin: auto;
+                    font-weight:400 ;
+                    margin-top: 20px;
+                    font-size: 20px;
+                }
             }
             &-btns {
                 display: flex;
@@ -179,6 +186,16 @@
                     margin-left: 10px;
                     margin-top: 12px;
                     font-size: 14px;
+                    .date{
+                        font-size: 0.7rem;
+                        font-weight: 400;
+                        grid-column: 1/span 2;
+                        line-height: 1.5;
+                        margin-bottom: 15px;
+                        opacity: .7;
+                        text-align: right;
+                        margin-top: -5px;
+                    }
                 }
             }
         }
@@ -203,7 +220,8 @@
                 max-height: 150px;
                 width: 100%;
                 &::placeholder {
-                    font-weight: bold;
+                    font-weight:400;
+
                 }
             }
         }
@@ -325,6 +343,13 @@
         display: none;
         .chat-side-icon-item {
             display: none;
+        }
+    }
+    .option-model{
+        .option-model-text{
+            div:last-of-type{
+                width: 100%;
+            }
         }
     }
 }

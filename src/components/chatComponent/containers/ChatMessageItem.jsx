@@ -23,6 +23,7 @@ export default function ChatMessageItem(props) {
             <div className="text">
                 <div className="main">{name}</div>
                 <div className="msg">{message}</div>
+                <div className='date'>2 minutes ago</div>
             </div>
         </div>
     );
