@@ -131,6 +131,16 @@ export function getPostNotes(blogIdentifier, setNotes, setCounts) {
                 totalReplys: res.data['total_replys']
             };
             setCounts(count);
+            /**
+             * 
+            setNotes(res.data[0][0].notes);
+            let count = {
+                totalLikes: res.data[0][0]['total_likes'],
+                totalReblogs: res.data[0][0]['total_reblogs'],
+                totalReplys: res.data[0][0]['total_replys']
+            };
+            setCounts(count);
+             */
         })
         .catch(() => {});
 }

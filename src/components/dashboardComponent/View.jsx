@@ -15,9 +15,7 @@ export default function Dashboard() {
         data: posts,
         isPending,
         hasMore
-    } = useInfiniteScrolling(
-        `${apiBaseUrl}/posts?_page=${pageNumber}&_limit=5`
-    );
+    } = useInfiniteScrolling(`${apiBaseUrl}/user/dashboard?page=${pageNumber}`);
 
     useAuth();
     const observer = useRef();
