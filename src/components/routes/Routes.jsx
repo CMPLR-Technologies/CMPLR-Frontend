@@ -31,7 +31,10 @@ export default function MainRoutes() {
                 <Routes>
                     <Route path="/register" element={<Register />} />
                     <Route path="/messaging" element={<MessagesPageMobile />} />
-                    <Route path="/messaging/conversation/:sender/:receiver" element={<ChatMessageMobileView />} />
+                    <Route
+                        path="/messaging/conversation/:sender/:receiver"
+                        element={<ChatMessageMobileView />}
+                    />
                     <Route path="/new" element={<NewPostPopup />} />
                     <Route path="/new/post" element={<CreateModal />} />
                     <Route path="/rich" element={<HandMadeTextEditor />} />
@@ -43,7 +46,7 @@ export default function MainRoutes() {
                         path="/forget_password"
                         element={<ForgetPassword />}
                     />
-{/*<<<<<<< HEAD
+                    {/*<<<<<<< HEAD
                     <Route
                         path="/reset_password/:token"
                         element={<ResetPassword />}

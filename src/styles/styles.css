@@ -1792,7 +1792,8 @@
   font-size: 45px;
 }
 
-.popup-newmessage input, .popup-header button, .nav .section2 .log,
+.navbar2MainView .section2 .log,
+.navbar2MainView .section2 .sign, .popup-newmessage input, .popup-header button, .nav .section2 .log,
 .nav .section2 .sign, .nav .section1 .search .search-result ul .search-result-blog-button button {
   background: none;
   color: inherit;
@@ -2924,7 +2925,8 @@ body #reset-pass-logo {
   font-size: 45px;
 }
 
-.nav .section1 .search .search-result ul .search-result-blog-button button, .nav .section2 .log,
+.navbar2MainView .section2 .log,
+.navbar2MainView .section2 .sign, .nav .section1 .search .search-result ul .search-result-blog-button button, .nav .section2 .log,
 .nav .section2 .sign, .popup-header button, .popup-newmessage input {
   background: none;
   color: inherit;
@@ -3611,6 +3613,326 @@ body #reset-pass-logo {
       width: 1170px;
     }
   }*/
+.fa-downcase-t {
+  margin-top: -2px;
+}
+
+.fa-downcase-t:before {
+  font-family: Arial, sans-serif;
+  /* your font family here! */
+  font-weight: 800;
+  content: "t";
+  font-size: 45px;
+  color: white;
+}
+
+.navbar2MainView .section2 .log,
+.navbar2MainView .section2 .sign, .nav .section1 .search .search-result ul .search-result-blog-button button, .nav .section2 .log,
+.nav .section2 .sign, .popup-header button, .popup-newmessage input {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  outline: inherit;
+}
+
+.navbar2MainView {
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  height: 54px;
+}
+.navbar2MainView .container {
+  height: 54px;
+  width: 100%;
+  max-width: 1716px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 32px 5px 22px;
+}
+.navbar2MainView .section1 {
+  display: flex;
+  align-items: center;
+}
+.navbar2MainView .section1 .menu-mobile-icon,
+.navbar2MainView .section1 .search-mobile-icon {
+  display: none;
+}
+.navbar2MainView .section1 .navbar-menu-mobile {
+  display: none;
+}
+.navbar2MainView .section1 .logo {
+  padding-right: 18px;
+  font-size: 0.9rem;
+}
+.navbar2MainView .section1 .search {
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+  height: 36px;
+  position: relative;
+}
+.navbar2MainView .section1 .search-icon {
+  background-color: inherit;
+  padding-left: 10px;
+  padding-right: 5px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 19px;
+  border-radius: 3px 0 0 3px;
+}
+.navbar2MainView .section1 .search-input {
+  width: 450px;
+  color: white;
+  background-color: inherit;
+  border-radius: 0 3px 3px 0;
+  padding: 10px 0;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  border: none;
+  font-weight: 550;
+}
+.navbar2MainView .section1 .search-input::placeholder {
+  color: white;
+  font-size: 15px;
+  transform: translate3d(0, 1.5px, 0);
+  font-weight: 400;
+}
+.navbar2MainView .section2 {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+}
+.navbar2MainView .section2 .link-icon {
+  color: white;
+  cursor: pointer;
+  margin-left: 33px;
+}
+.navbar2MainView .section2 .link-icon a {
+  color: inherit;
+}
+.navbar2MainView .section2 .link-icon a i {
+  font-size: 22px;
+  color: white;
+}
+.navbar2MainView .section2 .link-icon i {
+  font-size: 22px;
+  color: white;
+}
+.navbar2MainView .section2 .link-icon span {
+  font-weight: bold;
+}
+.navbar2MainView .section2 .link-icon.more {
+  margin-left: 25px;
+}
+.navbar2MainView .section2 .link-icon.get {
+  border-color: rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  margin-right: 0;
+  margin-left: 15px;
+  padding: 6px 12px;
+  border-width: 2px;
+  border-color: #fff;
+  font-size: 14px;
+  line-height: 18px;
+  color: black;
+  font-weight: bold;
+}
+.navbar2MainView .section2 .log,
+.navbar2MainView .section2 .sign {
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  padding: 6px 15px;
+  color: #000;
+  border-radius: 3px;
+}
+.navbar2MainView .section2 .log a,
+.navbar2MainView .section2 .sign a {
+  text-decoration: none;
+  color: inherit;
+}
+.navbar2MainView .section2 .log a:hover,
+.navbar2MainView .section2 .sign a:hover {
+  text-decoration: none;
+}
+.navbar2MainView .section2 .log {
+  margin-right: 10px;
+  color: white;
+}
+.navbar2MainView .section2 .sign {
+  background-color: white;
+  color: black;
+}
+
+.Navbar2SideView {
+  max-width: 500px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  height: 50px;
+  position: relative;
+}
+.Navbar2SideView .container {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  height: 50px;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.Navbar2SideView .container .closeIcon {
+  display: flex;
+  align-items: center;
+}
+.Navbar2SideView .container .search {
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+.Navbar2SideView .container .search-icon {
+  background-color: inherit;
+  padding-left: 10px;
+  padding-right: 5px;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 19px;
+}
+.Navbar2SideView .container .search-input {
+  background: transparent;
+  border: none;
+  font-family: var(--font-family);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  opacity: 1;
+  outline: none;
+  padding: 5px;
+  transition: transform 0.3s;
+  width: 100%;
+  color: white;
+}
+.Navbar2SideView .container .search-input::placeholder {
+  color: white;
+  font-size: 15px;
+  transform: translate3d(0, 1.5px, 0);
+  font-weight: 400;
+}
+.Navbar2SideView .container .searchCon {
+  max-width: 500px;
+  position: relative;
+  transition: max-width 0.3s;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.Navbar2SideView .container .searchCon .searchConText {
+  margin-left: 14px;
+  color: white;
+  max-width: 500px;
+  overflow: hidden;
+  position: relative;
+  transition: max-width 0.3s;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.Navbar2SideView .container .icons {
+  display: flex;
+  align-items: center;
+}
+.Navbar2SideView .container .icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+  cursor: pointer;
+}
+.Navbar2SideView .container .icon i {
+  font-size: 23px;
+  color: white;
+}
+.Navbar2SideView .container .sideViewProfileOption .chat-popup-header-option {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: white;
+  position: absolute;
+  width: 200px;
+  height: auto;
+  top: 0px;
+  left: -123px;
+  z-index: 100;
+  transform: translate3d(22px, 38px, 0px);
+  border-radius: 3px;
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
+  max-height: calc(100vh - 88px);
+  overflow-y: auto;
+}
+.Navbar2SideView .container .sideViewProfileOption .chat-popup-header-option a {
+  text-decoration: none;
+  text-align: center;
+  color: black;
+}
+.Navbar2SideView .container .sideViewProfileOption .chat-popup-header-option li {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: black;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px;
+  width: 100%;
+  font-weight: bold;
+}
+.Navbar2SideView .container .sideViewProfileOption .chat-popup-header-option li:hover {
+  background: #e5e7ea;
+}
+.Navbar2SideView .container .sideViewProfileOption .chat-popup-header-option .red {
+  color: #ff4930;
+}
+.Navbar2SideView .container .drop {
+  position: relative;
+}
+.Navbar2SideView .container .follow {
+  margin-left: 14px;
+  color: black;
+  background-color: white;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 960px) {
+  .navbar2MainView .container {
+    padding: 5px 20px 5px 20px;
+  }
+}
 .account-popup {
   position: absolute;
   width: 240px;
