@@ -24,7 +24,6 @@ export default function NotePost(props) {
         // followed: followed,
         // post_id: postId,
     } = props.note;
-
     const { setIsModalOpen, setNotesView } = props;
 
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);

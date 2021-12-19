@@ -126,7 +126,12 @@ export function getPostNotes(blogIdentifier, setNotes, setCounts) {
         .then(res => {
             if (res.data.Meta.Status === 200) {
                 setNotes(res.data.response.notes);
-                setCounts(res.data.response.counts);
+                const counts = {
+                    totalLikes:res.data.response["total_likes"],
+                    totalReblogs:res.data.response["total_reblogs"],
+                    totalReplys:res.data.response["total_replys"]
+                }
+                setCounts(counts);
             }
         })
         .catch(() => {});

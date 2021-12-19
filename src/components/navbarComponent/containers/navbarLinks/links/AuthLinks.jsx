@@ -117,7 +117,7 @@ export default function AuthLinks() {
                 >
                     <i className="fas fa-bolt"></i>
                 </li>
-                <Notifications />
+                {openNotificationsPopup && <Notifications />}
             </div>
             <ClickAwayListener onClickAway={closeAccountPopup}>
                 <div className="link-popup">

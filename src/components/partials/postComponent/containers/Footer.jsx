@@ -62,8 +62,8 @@ export default function Footer(props) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [notesView, setNotesView] = useState(false);
     const [noteType, setNoteType] = useState('');
-    const [notes, setNotes] = useState([]);
-    const [counts, setCounts] = useState({});
+    const [notes, setNotes] = useState(null);
+    const [counts, setCounts] = useState(null);
     const blogIdentifier = 'yahia.tumblr.com';
 
     const navigate = useNavigate();
@@ -71,7 +71,6 @@ export default function Footer(props) {
     useEffect(() => {
         getPostNotes(blogIdentifier, setNotes, setCounts);
     }, []);
-
     return (
         <>
             <footer
@@ -132,12 +131,12 @@ export default function Footer(props) {
                                     totalLikes={counts.totalLikes}
                                     totalReblogs={counts.totalReblogs}
                                     setNotesView={setNotesView}
-                                    notes={notes}
+                                    notes={notes && notes}
                                 />
                                 <NotesContent
                                     postAuthor={postAuthor}
                                     authorAvatar={authorAvatar}
-                                    notes={notes}
+                                    notes={notes && notes}
                                     setNotes={setNotes}
                                     setCounts={setCounts}
                                     type={noteType}
