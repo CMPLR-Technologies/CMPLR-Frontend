@@ -2063,8 +2063,8 @@
   scrollbar-width: thin;
   background-color: white;
   width: 380px;
-  height: 300px;
-  max-height: 90vh;
+  height: auto;
+  max-height: 580px;
   position: absolute;
   transform: translate3d(-232px, 18px, 0px);
   display: flex;

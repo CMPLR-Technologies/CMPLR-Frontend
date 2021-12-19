@@ -60,7 +60,65 @@ export default function AuthLinks() {
         }
         setOpenAccountPopup(!openAccountPopup);
     };
-
+    const notfArray = [
+        {
+            notfDate: 'Friday, 17-Dec-21',
+            notfAvatar:
+                'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
+            notfType: 'reblog',
+            notfUser: 'kholdbold',
+            postSnap: 'kak'
+        },
+        {
+            notfDate: 'Friday, 17-Dec-21',
+            notfAvatar:
+                'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
+            notfType: 'reblog',
+            notfUser: 'kholdbold',
+            postSnap: 'kak'
+        },
+        {
+            notfDate: 'Friday, 17-Dec-21',
+            notfAvatar:
+                'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
+            notfType: 'comment',
+            notfUser: 'kholdbold',
+            postSnap: 'kak'
+        },
+        {
+            notfDate: 'Friday, 17-Dec-21',
+            notfAvatar:
+                'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
+            notfType: 'reblog',
+            notfUser: 'kholdbold',
+            postSnap: 'kak'
+        },
+        {
+            notfDate: 'Friday, 17-Dec-21',
+            notfAvatar:
+                'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
+            notfType: 'like',
+            notfUser: 'kholdbold',
+            postSnap: 'kak'
+        },
+        {
+            notfDate: 'Friday, 17-Dec-21',
+            notfAvatar:
+                'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
+            notfType: 'like',
+            notfUser: 'kholdbold',
+            postSnap:
+                'kaaaa aaa aaaaaaaaaaaaaaaa a aaaaaaaaaaaaaaaa aaa aa a aa aaaaaaaaaa aaaaaaaaaaaaaak'
+        },
+        {
+            notfDate: 'Friday, 17-Dec-21',
+            notfAvatar:
+                'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
+            notfType: 'reblog',
+            notfUser: 'kholdbold',
+            postSnap: 'kak'
+        }
+    ];
     /*  const clickOpenPopup = () => {
     console.log("closeg");
     setOpenPopup(!openPopup);
@@ -117,7 +175,13 @@ export default function AuthLinks() {
                 >
                     <i className="fas fa-bolt"></i>
                 </li>
-                {openNotificationsPopup && <Notifications />}
+                {openNotificationsPopup && (
+                    <Notifications
+                        userBlogName="ahmed_3"
+                        userAvatar="https://assets.tumblr.com/images/default_avatar/cone_closed_128.png"
+                        notfArray={notfArray}
+                    />
+                )}
             </div>
             <ClickAwayListener onClickAway={closeAccountPopup}>
                 <div className="link-popup">
