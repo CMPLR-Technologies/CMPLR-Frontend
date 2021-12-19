@@ -44,7 +44,11 @@ export default function Dashboard() {
                         if (posts.length === index + 1) {
                             return (
                                 <div ref={lastPostElementRef}>
-                                    <PostComponent key={index} post={post} />
+                                    <PostComponent
+                                        key={index}
+                                        post={post}
+                                        userBlogName={post?.blog['blog_name']}
+                                    />
                                 </div>
                             );
                         } else {
@@ -52,7 +56,7 @@ export default function Dashboard() {
                                 <PostComponent
                                     key={index}
                                     post={post}
-                                    userBlogName="ahmed_3"
+                                    userBlogName={post?.blog['blog_name']}
                                 />
                             );
                         }

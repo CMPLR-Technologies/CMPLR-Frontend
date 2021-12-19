@@ -45,7 +45,7 @@ Footer.propTypes = {
 
 export default function Footer(props) {
     const {
-        numberNotes,
+        // numberNotes,
         isAuthor,
         postLink,
         reblogKey,
@@ -64,6 +64,7 @@ export default function Footer(props) {
     const [noteType, setNoteType] = useState('');
     const [notes, setNotes] = useState([]);
     const [counts, setCounts] = useState({});
+    const [numberNotes, setNumberNotes] = useState(0);
     const blogIdentifier = 'yahia.tumblr.com';
 
     const navigate = useNavigate();
@@ -71,6 +72,12 @@ export default function Footer(props) {
     useEffect(() => {
         getPostNotes(blogIdentifier, setNotes, setCounts);
     }, []);
+
+    useEffect(() => {
+        setNumberNotes(
+            counts?.totalLikes + counts?.totalReblogs + counts?.totalReplys
+        );
+    }, [counts]);
 
     return (
         <>

@@ -124,10 +124,13 @@ export function getPostNotes(blogIdentifier, setNotes, setCounts) {
         }
     })
         .then(res => {
-            if (res.data.Meta.Status === 200) {
-                setNotes(res.data.response.notes);
-                setCounts(res.data.response.counts);
-            }
+            setNotes(res.data.notes);
+            let count = {
+                totalLikes: res.data['total_likes'],
+                totalReblogs: res.data['total_reblogs'],
+                totalReplys: res.data['total_replys']
+            };
+            setCounts(count);
         })
         .catch(() => {});
 }
