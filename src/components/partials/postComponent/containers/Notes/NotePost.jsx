@@ -53,7 +53,7 @@ export default function NotePost(props) {
                     >
                         {type === 'reblog' ? (
                             <ReblogReact />
-                        ) : type === 'love' ? (
+                        ) : type === 'like' ? (
                             <LoveReact />
                         ) : (
                             <CommentReact />

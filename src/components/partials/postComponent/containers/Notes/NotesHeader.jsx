@@ -20,7 +20,7 @@ export default function NotesHeader(props) {
     const { numberNotes, totalLikes, totalReblogs, setNotesView, notes } =
         props;
     return (
-        <header  className="notes-view-header">
+        <header className="notes-view-header">
             <div className="notes-view-header-icons">
                 <button
                     onClick={() => setNotesView(false)}
@@ -69,7 +69,7 @@ export default function NotesHeader(props) {
                                     <div className="avatar-react">
                                         {note.type === 'reblog' ? (
                                             <ReblogReact />
-                                        ) : note.type === 'love' ? (
+                                        ) : note.type === 'like' ? (
                                             <LoveReact />
                                         ) : (
                                             <CommentReact />

@@ -44,17 +44,7 @@ export default function MainRoutes() {
                         path="/reset_password/:token"
                         element={<ResetPassword />}
                     />
-                    <Route
-                        path="/post"
-                        element={
-                            <>
-                                <PostComponent
-                                    userBlogName="kholdbold"
-                                    isFollowed={false}
-                                />
-                            </>
-                        }
-                    />
+
                     <Route
                         path="/reblog/:blogName/:postId/:reblogKey"
                         element={<CreateModal reblog={true} />}

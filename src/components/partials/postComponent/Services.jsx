@@ -3,32 +3,41 @@ import Axios from 'axios';
 import { apiBaseUrl } from '../../../config.json';
 
 //=================================================Footer Services============================================
-export function handleLikePost(
-    loveFillColor,
-    setLoveFillColor,
-    postId,
-    reblogKey
-) {
-    const url =
-        loveFillColor === 'gray'
-            ? `${apiBaseUrl}/user/like`
-            : `${apiBaseUrl}/user/unlike`;
+export function handleLikePost(setLoveFillColor, postId, token) {
     Axios({
         method: 'POST',
-        url: url,
+        url: `${apiBaseUrl}/user/like`,
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            Authorization: `Bearer ${token}`
         },
         data: {
-            id: postId,
-            reblogKey: reblogKey
+            id: 3
         }
     })
         .then(res => {
-            if (res.status === 201) {
-                setLoveFillColor(
-                    loveFillColor === 'gray' ? 'rgb(255,73,47)' : 'gray'
-                );
+            if (res.status === 200) {
+                setLoveFillColor('rgb(255,73,47)');
+            }
+        })
+        .catch(() => {});
+}
+
+export function handleUnlikePost(setLoveFillColor, postId, token) {
+    Axios({
+        method: 'DELETE',
+        url: `${apiBaseUrl}/user/unlike`,
+        headers: {
+            'content-type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        data: {
+            id: 3
+        }
+    })
+        .then(res => {
+            if (res.status === 200) {
+                setLoveFillColor('gray');
             }
         })
         .catch(() => {});
@@ -115,24 +124,24 @@ export function block(
 }
 
 //=================================================Notes Services============================================
-export function getPostNotes(blogIdentifier, setNotes, setCounts) {
+export function getPostNotes(blogIdentifier, setNotes, setCounts, postId) {
     Axios({
         url: `${apiBaseUrl}/post/notes`,
         method: 'GET',
         params: {
-            'blog-identifier': blogIdentifier
+            'blog-identifier': blogIdentifier,
+            post_id: postId
         }
     })
         .then(res => {
-            setNotes(res.data.notes);
-            let count = {
-                totalLikes: res.data['total_likes'],
-                totalReblogs: res.data['total_reblogs'],
-                totalReplys: res.data['total_replys']
-            };
-            setCounts(count);
-            /**
-             * 
+            // setNotes(res.data.notes);
+            // let count = {
+            //     totalLikes: res.data['total_likes'],
+            //     totalReblogs: res.data['total_reblogs'],
+            //     totalReplys: res.data['total_replys']
+            // };
+            // setCounts(count);
+
             setNotes(res.data[0][0].notes);
             let count = {
                 totalLikes: res.data[0][0]['total_likes'],
@@ -140,7 +149,6 @@ export function getPostNotes(blogIdentifier, setNotes, setCounts) {
                 totalReplys: res.data[0][0]['total_replys']
             };
             setCounts(count);
-             */
         })
         .catch(() => {});
 }

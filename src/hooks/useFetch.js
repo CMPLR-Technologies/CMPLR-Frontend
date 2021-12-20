@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { UserContext } from '../contexts/userContext/UserContext';
 import Axios from 'axios';
 
 const useFetch = url => {
+    const { user } = useContext(UserContext);
     const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
@@ -9,12 +11,21 @@ const useFetch = url => {
     const abortCont = new AbortController();
 
     useEffect(() => {
-        Axios.get(url, {
-            signal: abortCont.signal
-        })
+        const config = {
+            signal: abortCont.signals
+        };
+
+        if (user) {
+            config['headers'] = {
+                Authorization: `Bearer ${user.token}`,
+                Accept: 'application/json'
+            };
+        }
+
+        Axios.get(url, config)
             .then(res => {
                 if (!res.error) {
-                    setData(res.data);
+                    setData(res.data.response);
                     setIsPending(false);
                     setError(null);
                 } else {

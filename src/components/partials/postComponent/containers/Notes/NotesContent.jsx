@@ -9,7 +9,7 @@ NotesContent.propTypes = {
     notes: PropTypes.array,
     setNotes: PropTypes.func,
     setCounts: PropTypes.func,
-    type: PropTypes.bool.isRequired,
+    type: PropTypes.string.isRequired,
     setIsModalOpen: PropTypes.func,
     setNotesView: PropTypes.func
 };

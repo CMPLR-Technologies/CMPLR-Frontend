@@ -99,9 +99,10 @@ export function toggleShareList(isShareListOpen, setIsShareListOpen) {
 
 export function copyLink(postLink, postId) {
     navigator.clipboard.writeText(postLink);
-    document.getElementById(`copy-btn${postId}`).textContent = 'Link Copied!';
+    const btn = document.getElementById(`copy-btn${postId}`);
+    btn.textContent = 'Link Copied!';
     setTimeout(() => {
-        document.getElementById(`copy-btn${postId}`).textContent = 'Copy link';
+        btn.textContent = 'Copy link';
     }, 2000);
 }
 

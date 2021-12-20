@@ -26,6 +26,7 @@ export default function RecommendBlogs() {
                         <BlogInfo
                             blogName={blog.blogName}
                             blogDesc={blog.blogDesc}
+                            blogIcon={blog.blogIcon}
                         />
                     </div>
                 ))}
