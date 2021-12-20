@@ -1855,6 +1855,18 @@
   font-size: 19px;
   border-radius: 3px 0 0 3px;
 }
+.nav .section1 .search .loading {
+  position: absolute;
+  left: 93%;
+  width: 25px;
+  height: 25px;
+}
+.nav .section1 .search .loading .MuiCircularProgress-root {
+  background: inherit;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+}
 .nav .section1 .search-input {
   background-color: inherit;
   border-radius: 0 3px 3px 0;
@@ -1879,6 +1891,10 @@
 }
 .nav .section1 .search .search-result::-webkit-scrollbar {
   display: none;
+}
+.nav .section1 .search .search-result a {
+  color: inherit;
+  text-decoration: none;
 }
 .nav .section1 .search .search-result ul {
   padding: 0;
@@ -1923,9 +1939,13 @@
   width: 37px;
   height: 37px;
   margin-right: 5px;
+  border-radius: 3px;
 }
 .nav .section1 .search .search-result ul .search-result-blog-section1-img img {
   width: 100%;
+}
+.nav .section1 .search .search-result ul .search-result-blog-section1-img.Circle {
+  border-radius: 50%;
 }
 .nav .section1 .search .search-result ul .search-result-blog-section1-text h3,
 .nav .section1 .search .search-result ul .search-result-blog-section1-text h4 {
@@ -2269,6 +2289,9 @@
     display: inline-flex;
     color: #a5aeb8;
     font-size: 20px;
+  }
+  .nav .section1 .search .loading {
+    left: 89%;
   }
   .nav .section1 .navbar-menu-mobile {
     display: flex;
@@ -2988,6 +3011,18 @@ body #reset-pass-logo {
   font-size: 19px;
   border-radius: 3px 0 0 3px;
 }
+.nav .section1 .search .loading {
+  position: absolute;
+  left: 93%;
+  width: 25px;
+  height: 25px;
+}
+.nav .section1 .search .loading .MuiCircularProgress-root {
+  background: inherit;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+}
 .nav .section1 .search-input {
   background-color: inherit;
   border-radius: 0 3px 3px 0;
@@ -3012,6 +3047,10 @@ body #reset-pass-logo {
 }
 .nav .section1 .search .search-result::-webkit-scrollbar {
   display: none;
+}
+.nav .section1 .search .search-result a {
+  color: inherit;
+  text-decoration: none;
 }
 .nav .section1 .search .search-result ul {
   padding: 0;
@@ -3056,9 +3095,13 @@ body #reset-pass-logo {
   width: 37px;
   height: 37px;
   margin-right: 5px;
+  border-radius: 3px;
 }
 .nav .section1 .search .search-result ul .search-result-blog-section1-img img {
   width: 100%;
+}
+.nav .section1 .search .search-result ul .search-result-blog-section1-img.Circle {
+  border-radius: 50%;
 }
 .nav .section1 .search .search-result ul .search-result-blog-section1-text h3,
 .nav .section1 .search .search-result ul .search-result-blog-section1-text h4 {
@@ -3402,6 +3445,9 @@ body #reset-pass-logo {
     display: inline-flex;
     color: #a5aeb8;
     font-size: 20px;
+  }
+  .nav .section1 .search .loading {
+    left: 89%;
   }
   .nav .section1 .navbar-menu-mobile {
     display: flex;
