@@ -7,6 +7,7 @@ export default function Settings(page) {
         <SettingsContextProvider>
         <div className="settings">
             {currentPage === 'account' && <SettingsAccount />}
+            
         </div>
         </SettingsContextProvider>
     );

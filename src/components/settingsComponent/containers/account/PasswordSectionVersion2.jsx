@@ -18,7 +18,9 @@ export default function PasswordSectionVersion2({ setVersionOne }) {
                 <AuthInput
                     name="password"
                     type="password"
-                    placeholder={currPassword}
+                    placeholder={
+                        currPassword !== '' ? currPassword : 'Current password'
+                    }
                     className="text-field"
                     value={currPassword}
                     setValue={setCurrPassword}
@@ -27,7 +29,9 @@ export default function PasswordSectionVersion2({ setVersionOne }) {
                 <AuthInput
                     name="password"
                     type="password"
-                    placeholder={newPassword}
+                    placeholder={
+                        newPassword !== '' ? newPassword : 'New password'
+                    }
                     className="text-field"
                     value={newPassword}
                     setValue={setNewPassword}
@@ -36,7 +40,11 @@ export default function PasswordSectionVersion2({ setVersionOne }) {
                 <AuthInput
                     name="password"
                     type="password"
-                    placeholder={newPassword2}
+                    placeholder={
+                        newPassword2 !== ''
+                            ? newPassword2
+                            : 'Confirm new password'
+                    }
                     className="text-field"
                     value={newPassword2}
                     setValue={setNewPassword2}
@@ -51,7 +59,7 @@ export default function PasswordSectionVersion2({ setVersionOne }) {
                     <AuthBtn
                         text="Cancle"
                         color="#999999"
-                        id="update-email-btn-cancle"
+                        id="update-password-btn-cancel"
                         handleClick={() => setVersionOne(true)}
                     ></AuthBtn>
                     <AuthBtn
@@ -67,8 +75,7 @@ export default function PasswordSectionVersion2({ setVersionOne }) {
                                 setErrorMsg
                             );
                         }}
-                        id="update-email-btn-save update-password-btn-change"
-                        style={{ width: '160px' }}
+                        id="update-password-btn-save"
                     ></AuthBtn>
                 </div>
             </div>

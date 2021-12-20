@@ -32,6 +32,10 @@ body {
                         background: white;
                         border: 1px solid rgba(0, 0, 0, 0.4);
                         border-radius: 2px;
+                        clear: both;
+                        display: inline-block;
+                        overflow: hidden;
+                        white-space: nowrap;
                         color: rgba(0, 0, 0, 0.4);
                         font-size: 13px;
                         font-weight: 700;
@@ -84,32 +88,41 @@ body {
                         .update-email-btns {
                             display: flex;
                             justify-content: flex-start;
-                        }
-                        #update-email-btn-cancle {
-                            align-items: center;
-                            box-sizing: border-box;
-                            display: flex;
-                            justify-content: center;
-                            text-decoration: none;
-                            max-width: 81px;
-                            height: 36px;
-                            margin-right: 10px;
-                        }
-                        #update-email-btn-save {
-                            align-items: center;
-                            box-sizing: border-box;
-                            display: flex;
-                            justify-content: center;
-                            text-decoration: none;
-                            max-width: 66px;
-                            height: 36px;
+                            #update-email-btn-cancel {
+                                box-sizing: border-box;
+                                text-decoration: none;
+                                width: 81px;
+                                height: 36px;
+                                margin-right: 10px;
+                            }
+                            #update-email-btn-save {
+                                box-sizing: border-box;
+                                width: 66px;
+                                height: 36px;
+                            }
+                            #update-password-btn-cancel {
+                                box-sizing: border-box;
+                                text-decoration: none;
+                                width: 81px;
+                                height: 36px;
+                                margin-right: 10px;
+                            }
+                            #update-password-btn-save {
+                                box-sizing: border-box;
+                                white-space: nowrap;
+                                text-decoration: none;
+                                width: 160px;
+                                height: 36px;
+                            }
                         }
                         #update-email-error {
+                            margin-top: 10px;
                             text-align: 'center';
                             font-size: '14px';
                             padding: '0';
                             background-color: red;
                             margin-right: 20px;
+                            width: 500px;
                         }
 
                         .email {
@@ -190,22 +203,19 @@ body {
                                 background-color: transparent;
                                 border: none;
                                 max-width: 70px !important;
-                                color: #05b9ff;
+                                height: 33px;
                                 cursor: pointer;
                                 margin: 0;
                                 padding: 0;
                                 -webkit-user-select: none;
                                 -moz-user-select: none;
                                 user-select: none;
-                                max-width: 71px;
-                                height: 33px;
                                 margin-bottom: 10px;
                             }
                             #back-tag {
                                 background-color: transparent;
                                 border: none;
-                                background-color: #999999;
-                                max-width: 71px !important;
+                                max-width: 70px !important;
                                 height: 33px;
                                 cursor: pointer;
                                 margin: 0;
@@ -213,7 +223,6 @@ body {
                                 -webkit-user-select: none;
                                 -moz-user-select: none;
                                 user-select: none;
-                                max-width: 71px;
                             }
                         }
                     }
@@ -272,6 +281,9 @@ body {
                         flex-direction: column;
                         justify-content: space-between;
                         text-decoration: none;
+                        .list-item-span {
+                            color: white;
+                        }
                     }
 
                     .list-item-anchor-small {

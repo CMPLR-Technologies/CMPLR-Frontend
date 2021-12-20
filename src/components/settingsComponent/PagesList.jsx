@@ -9,7 +9,7 @@ export default function PagesList() {
                             className="list-item-anchor"
                             href="/settings/account"
                         >
-                            <span>Account</span>
+                            <span className="list-item-span">Account</span>
                             <small className="list-item-anchor-small">
                                 The essentials
                             </small>
@@ -20,7 +20,7 @@ export default function PagesList() {
                             className="list-item-anchor"
                             href="/settings/account"
                         >
-                            <span>Dashboard</span>
+                            <span className="list-item-span">Dashboard</span>
                             <small className="list-item-anchor-small">
                                 Appearance options, text editor
                             </small>
@@ -31,7 +31,7 @@ export default function PagesList() {
                             className="list-item-anchor"
                             href="/settings/account"
                         >
-                            <span>Apps</span>
+                            <span className="list-item-span">Apps</span>
                             <small className="list-item-anchor-small">
                                 Things you've connected
                             </small>
@@ -42,7 +42,7 @@ export default function PagesList() {
                             className="list-item-anchor"
                             href="/settings/account"
                         >
-                            <span>Privacy</span>
+                            <span className="list-item-span">Privacy</span>
                             <small className="list-item-anchor-small">
                                 Personalization and data management
                             </small>

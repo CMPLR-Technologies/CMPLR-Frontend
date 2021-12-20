@@ -3,11 +3,8 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-<<<<<<< HEAD
-=======
         "@ckeditor/ckeditor5-build-classic": "^31.1.0",
         "@ckeditor/ckeditor5-react": "^3.0.3",
->>>>>>> 2aec40a8594635d226713803c6a04cc26add0d5c
         "@emotion/react": "^11.6.0",
         "@emotion/styled": "^11.6.0",
         "@mui/icons-material": "^5.0.5",
@@ -16,11 +13,9 @@
         "@testing-library/react": "^11.1.0",
         "@testing-library/user-event": "^12.1.10",
         "axios": "^0.24.0",
-<<<<<<< HEAD
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-google-recaptcha": "^2.1.0",
-=======
         "draft-js": "^0.11.7",
         "draftjs-to-html": "^0.9.1",
         "firebase": "^9.6.0",
@@ -31,20 +26,14 @@
         "react-editor-js": "^2.0.3",
         "react-google-recaptcha": "^2.1.0",
         "react-icons": "^4.3.1",
->>>>>>> 2aec40a8594635d226713803c6a04cc26add0d5c
         "react-router-dom": "^6.0.2",
         "react-scripts": "^3.4.4",
         "web-vitals": "^1.0.1"
     },
     "scripts": {
         "start": "react-scripts start",
-<<<<<<< HEAD
         "db": "json-server --watch ./src/__mock_database/db.json -p 3333 --routes ./src/__mock_database/routes.json",
-        "styles": "sass --watch ./src/styles/scss/styles.scss ./src/styles/styles.css",
-=======
-        "db": "json-server --watch ./src/__mock_database/db.json -p 3333",
         "styles": "sass --no-source-map --watch ./src/styles/scss/styles.scss ./src/styles/styles.css        ",
->>>>>>> 2aec40a8594635d226713803c6a04cc26add0d5c
         "build": "react-scripts build",
         "test": "react-scripts test",
         "lint": "eslint ./src --ext .jsx",
@@ -71,12 +60,9 @@
         ]
     },
     "devDependencies": {
-<<<<<<< HEAD
-=======
         "@types/draftjs-to-html": "^0.8.1",
         "@types/html-to-draftjs": "^1.4.0",
         "@types/react-draft-wysiwyg": "^1.13.3",
->>>>>>> 2aec40a8594635d226713803c6a04cc26add0d5c
         "@typescript-eslint/eslint-plugin": "^5.4.0",
         "@typescript-eslint/parser": "^5.4.0",
         "eslint": "^8.2.0",

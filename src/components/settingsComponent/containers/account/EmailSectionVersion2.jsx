@@ -17,7 +17,9 @@ export default function EmailSectionVersion2({ setVersionOne }) {
                 <AuthInput
                     name="email"
                     type="email"
-                    placeholder={newEmail}
+                    placeholder={
+                        newEmail !== '' ? newEmail : 'Your email address'
+                    }
                     className="text-field"
                     value={newEmail}
                     setValue={setNewEmail}
@@ -26,12 +28,15 @@ export default function EmailSectionVersion2({ setVersionOne }) {
                 <AuthInput
                     name="password"
                     type="password"
-                    placeholder={password}
+                    placeholder={
+                        password !== '' ? password : 'Confirm password'
+                    }
                     className="text-field"
                     value={password}
                     setValue={setPassword}
                     id="update-email-password"
                 ></AuthInput>
+
                 {errorMsg.length != 0 && (
                     <div id="update-email-error">
                         <p>{errorMsg}</p>
@@ -41,7 +46,7 @@ export default function EmailSectionVersion2({ setVersionOne }) {
                     <AuthBtn
                         text="Cancle"
                         color="#999999"
-                        id="update-email-btn-cancle"
+                        id="update-email-btn-cancel"
                         handleClick={() => setVersionOne(true)}
                     ></AuthBtn>
                     <AuthBtn

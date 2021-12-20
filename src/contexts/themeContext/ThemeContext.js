@@ -55,10 +55,6 @@ export const themes = {
 export const ThemeContext = createContext();
 
 export function ThemeContextProvider(props) {
-<<<<<<< HEAD
-    const { children } = props;
-=======
->>>>>>> 2aec40a8594635d226713803c6a04cc26add0d5c
     const [theme, setTheme] = useState('trueBlue');
     const { user, setUser } = useContext(UserContext);
     const { children } = props;
