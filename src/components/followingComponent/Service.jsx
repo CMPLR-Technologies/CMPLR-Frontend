@@ -33,36 +33,46 @@ export const getFollowingList = (
         });
 };
 
-export const followAccount = (userToken, searchedName) => {
+export const followAccount = (userToken, searchedName, setResponseMsg) => {
     Axios({
         method: 'POST',
-        url: `${apiBaseUrl}/`,
+        url: `${apiBaseUrl}/user/follow`,
         headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json'
+            Accept: 'application/json',
+            Authorization: `Bearer ${userToken}`
         },
         data: {
-            token: userToken,
-            searchedName: searchedName
+            blogName: searchedName
         }
     })
-        .then(() => {})
-        .catch(() => {});
+        .then(() => {
+            setResponseMsg(`you're now following ${searchedName} successfully`);
+        })
+        .catch(err => {
+            let errMsg = err?.response?.data?.error;
+            setResponseMsg(errMsg);
+        });
 };
 
-export const unfollowAccount = (userToken, unfollowAcc) => {
+export const unfollowAccount = (userToken, unfollowAcc, setResponseMsg) => {
     Axios({
-        method: 'POST',
-        url: `${apiBaseUrl}/`,
+        method: 'DELETE',
+        url: `${apiBaseUrl}/user/follow`,
         headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json'
+            Accept: 'application/json',
+            Authorization: `Bearer ${userToken}`
         },
         data: {
-            token: userToken,
-            unfollowAcc: unfollowAcc
+            blogName: unfollowAcc
         }
     })
-        .then(() => {})
-        .catch(() => {});
+        .then(() => {
+            setResponseMsg(`you're not following ${unfollowAcc} anymore`);
+        })
+        .catch(err => {
+            let errMsg = err.response.data.error;
+            setResponseMsg(errMsg);
+        });
 };

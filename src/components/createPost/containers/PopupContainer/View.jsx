@@ -12,12 +12,14 @@ import { handlePosting, reblogPost } from '../../Service';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchPost } from '../../Service';
 import PropTypes from 'prop-types';
+import TagsInput from './Bottom/TagsInput';
 
 export default function CreateModal(props) {
     const [spinner, setSpinner] = useState(false);
     const [titlePost, setTitlePost] = useState('');
     const [content, setContent] = useState('');
     const [post, setPost] = useState({});
+    const [tags, setTags] = useState([]);
     const [postType, setPostType] = useState('Post now');
     const navigate = useNavigate();
     const { user } = useContext(UserContext);
@@ -33,16 +35,21 @@ export default function CreateModal(props) {
         const dataBody = {
             title: titlePost,
             content: content,
-            state: 'publish',
+            state:
+                postType === 'Post privately'
+                    ? 'private'
+                    : postType === 'Save as draft'
+                    ? 'draft'
+                    : 'publish',
             type: 'text',
             // eslint-disable-next-line camelcase
-            blog_name: user.blogName,
-            tags: []
+            blog_name: user?.blogName,
+            tags: tags
         };
 
         console.log('body to be sent', dataBody);
 
-        handlePosting(dataBody, navigate, user?.token);
+        handlePosting(dataBody, handleClose, user?.token);
     };
 
     const handleReblog = () => {
@@ -118,6 +125,11 @@ export default function CreateModal(props) {
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {/*----------------TAGS---------------*/}
+                                                <TagsInput
+                                                    tags={tags}
+                                                    setTags={setTags}
+                                                />
                                             </div>
                                             <BottomMainControllers
                                                 handleCloseModal={handleClose}

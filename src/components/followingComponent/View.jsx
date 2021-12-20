@@ -9,7 +9,7 @@ import SearchForm from './containers/SearchForm';
 import ItemList from './containers/ItemList';
 import PopupBlock from './containers/PopupBlock';
 import { UserContext } from '../../contexts/userContext/UserContext';
-import { followAccount } from './Service';
+import { followAccount, unfollowAccount } from './Service';
 /**
  * Following Page Component
  * @function FollowingPage
@@ -18,16 +18,17 @@ import { followAccount } from './Service';
  */
 
 export default function FollowingPage() {
+    const [responseMsg, setResponseMsg] = useState('');
     const { user } = useContext(UserContext);
     const [openPopup, setOpenPopup] = useState(false);
     const [pageNumber, setPageNumber] = useState(1);
     const [search, setSearch] = useState('');
 
     const handleSearchFollow = () => {
-        followAccount(user?.token, search);
+        followAccount(user?.token, search, setResponseMsg);
     };
-    const handleUnfollow = () => {
-        //unfollowAccount(user?.token, unfollowAcc);
+    const handleUnfollow = unfollowAcc => {
+        unfollowAccount(user?.token, unfollowAcc, setResponseMsg);
     };
     const handleBlock = () => {};
 
@@ -66,6 +67,11 @@ export default function FollowingPage() {
                             setSearch={setSearch}
                             handleSearchFollow={handleSearchFollow}
                         />
+                        {responseMsg !== '' && (
+                            <span className="span_error_styles_following">
+                                {responseMsg}
+                            </span>
+                        )}
                         <section className="NedHV">
                             <ItemList
                                 setOpenBlock={setOpenPopup}

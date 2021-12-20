@@ -3,7 +3,7 @@ import { validatePosting } from './Controller';
 import Axios from 'axios';
 import { apiBaseUrl } from '../../config.json';
 
-export const handlePosting = (bodyData, navigate, token) => {
+export const handlePosting = (bodyData, handleClose, token) => {
     let errors = validatePosting(bodyData?.title, bodyData?.content);
 
     if (errors?.length > 0) {
@@ -20,7 +20,7 @@ export const handlePosting = (bodyData, navigate, token) => {
             data: bodyData
         })
             .then(res => {
-                navigate('/dashboard');
+                handleClose(); //redirect to dahsboard
                 return res;
             })
             .catch(err => {

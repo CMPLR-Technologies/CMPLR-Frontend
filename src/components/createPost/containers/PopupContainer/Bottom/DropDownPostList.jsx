@@ -37,20 +37,6 @@ export default function DropDownPostList(props) {
                         <ListItem disablePadding>
                             <ListItemButton
                                 onClick={() => {
-                                    setPostType('Add to queue');
-                                }}
-                            >
-                                <ListItemIcon style={{ minWidth: '30px' }}>
-                                    {postType === 'Add to queue' && (
-                                        <GrFormCheckmark />
-                                    )}
-                                </ListItemIcon>
-                                <ListItemText primary="Add to queue" />
-                            </ListItemButton>
-                        </ListItem>
-                        <ListItem disablePadding>
-                            <ListItemButton
-                                onClick={() => {
                                     setPostType('Save as draft');
                                 }}
                             >
@@ -74,20 +60,6 @@ export default function DropDownPostList(props) {
                                     )}
                                 </ListItemIcon>
                                 <ListItemText primary="Post privately" />
-                            </ListItemButton>
-                        </ListItem>
-                        <ListItem disablePadding>
-                            <ListItemButton
-                                onClick={() => {
-                                    setPostType('Schedule');
-                                }}
-                            >
-                                <ListItemIcon style={{ minWidth: '30px' }}>
-                                    {postType === 'Schedule' && (
-                                        <GrFormCheckmark />
-                                    )}
-                                </ListItemIcon>
-                                <ListItemText primary="Schedule" />
                             </ListItemButton>
                         </ListItem>
                     </List>

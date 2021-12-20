@@ -2689,6 +2689,57 @@ body #reset-pass-logo {
 .post-form .post-container .post-container-inner .post-form--form .editor-wrapper .editor-slot {
   position: relative;
 }
+.post-form .post-container .post-container-inner .post-form--footer {
+  box-sizing: border-box;
+}
+.post-form .post-container .post-container-inner .post-form--footer .post-form--tag-editor {
+  box-sizing: border-box;
+  margin-top: 5px;
+  padding: 5px 20px 10px 15px;
+  overflow: hidden;
+  word-break: break-all;
+  cursor: text;
+}
+.post-form .post-container .post-container-inner .post-form--footer .post-form--tag-editor .tag-input-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  font-size: 13px;
+  margin-bottom: 1px;
+  line-height: 15px;
+  padding: 5px;
+}
+.post-form .post-container .post-container-inner .post-form--footer .post-form--tag-editor .tag-input-wrapper .elementInside {
+  position: relative;
+}
+.post-form .post-container .post-container-inner .post-form--footer .post-form--tag-editor .tag-input-wrapper .elementInside .editor-slot {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  display: inline-block;
+}
+.post-form .post-container .post-container-inner .post-form--footer .post-form--tag-editor .tag-input-wrapper .elementInside .editor-slot .editorDiv {
+  min-height: 15px;
+  font-weight: 400;
+  border: none;
+  font-size: 13px;
+  line-height: 15px;
+  min-width: 50px;
+  margin-bottom: 7px;
+  color: #000;
+  background: rgba(255, 255, 255, 0.01);
+  width: 100%;
+  padding: 0;
+  z-index: 2;
+  position: static;
+  word-break: break-all;
+  text-align: left;
+  outline: none;
+}
+.post-form .post-container .post-container-inner .post-form--footer .post-form--tag-editor .tag-input-wrapper .elementInside .editor-slot .editorDiv:empty::before {
+  content: attr(data-placeholder);
+  color: #8e8e8e;
+}
 .post-form .post-container .post-container-inner .post-form-bottom .post-form--controls {
   border-top: 1px solid rgba(68, 68, 68, 0.07);
 }
@@ -2749,7 +2800,7 @@ body #reset-pass-logo {
   align-items: center;
 }
 .post-form .post-container .post-container-inner .post-form-bottom .post-form--controls .controls-container .control-right .post-form-save-button .split-button .to-post-button {
-  border-color: #00b8ff;
+  border: none;
   background-color: #00b8ff;
   color: white;
   cursor: default;
@@ -2805,6 +2856,21 @@ body #reset-pass-logo {
 
 .dropdown_postbox {
   width: 192px;
+}
+
+.containerofchip {
+  width: 100%;
+  display: relative;
+  overflow: auto;
+}
+.containerofchip .chipStyled {
+  background-color: white;
+  outline: none;
+  border: none !important;
+}
+.containerofchip .chipStyled:hover {
+  color: #14bdfe;
+  background-color: #e0eef6;
 }
 
 .main-richeditor {
@@ -4415,6 +4481,14 @@ body #reset-pass-logo {
   justify-content: center;
   text-decoration: none;
   cursor: pointer;
+}
+
+.span_error_styles_following {
+  color: white;
+  font-weight: 400;
+  margin-left: 10px;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 * {

@@ -13,7 +13,7 @@ import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
 
 import PostComponent from '../partials/postComponent/View';
-import FollowingPage from '../following/View';
+import FollowingPage from '../followingComponent/View';
 import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
 import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
 export default function MainRoutes() {
