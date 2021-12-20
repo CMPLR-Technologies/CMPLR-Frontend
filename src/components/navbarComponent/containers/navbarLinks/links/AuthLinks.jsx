@@ -5,6 +5,7 @@ import MessagesPopUp from '../MessagesPopup/MessagesPopUp';
 import AccountPopup from '../AccountPopup/AccountPopup';
 import { Link, NavLink } from 'react-router-dom';
 import Notifications from '../../Notifications/Notifications';
+import Badge from './Badge';
 /**
  * Navbar AuthLinks: includes all links dashboard and inbox and expolre ...
  * @function NavbarAuthLinks
@@ -175,6 +176,7 @@ export default function AuthLinks() {
                 >
                     <i className="fas fa-bolt"></i>
                 </li>
+                <Badge num={notfArray.length} />
                 {openNotificationsPopup && (
                     <Notifications
                         userBlogName="ahmed_3"

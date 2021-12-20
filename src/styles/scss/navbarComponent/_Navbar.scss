@@ -777,9 +777,28 @@ $border-radius-primary: 3px;
         }
     }
 }
-
+.badge {
+    position: absolute;
+    background-color: rgb(0, 177, 255);
+    transform: scale(1);
+    border: 2px solid rgb(0, 25, 53);
+    align-items: center;
+    border-radius: 4px;
+    display: flex;
+    font-size: 0.78125rem;
+    font-weight: 700;
+    height: 17px;
+    justify-content: center;
+    left: 100%;
+    line-height: 1.44;
+    min-width: 11px;
+    padding: 0 3px;
+    text-decoration: none;
+    top: -40%;
+}
 .notifications-btn {
     position: relative;
+
     .notf-body {
         max-height: 500px;
 
