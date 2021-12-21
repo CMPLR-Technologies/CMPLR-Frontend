@@ -6,10 +6,10 @@ import { submitNote } from '../../Services';
 NotesContent.propTypes = {
     postAuthor: PropTypes.string.isRequired,
     authorAvatar: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
     notes: PropTypes.array,
     setNotes: PropTypes.func,
     setCounts: PropTypes.func,
-    type: PropTypes.string.isRequired,
     setIsModalOpen: PropTypes.func,
     setNotesView: PropTypes.func
 };

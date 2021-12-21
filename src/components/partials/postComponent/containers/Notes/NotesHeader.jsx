@@ -9,10 +9,10 @@ import LoveReact from './LoveReact.svg';
 import CommentReact from './CommentReact.svg';
 
 NotesHeader.propTypes = {
-    numberNotes: PropsTypes.number.isRequired,
-    totalLikes: PropsTypes.number.isRequired,
-    totalReblogs: PropsTypes.number.isRequired,
-    setNotesView: PropsTypes.func.isRequired,
+    numberNotes: PropsTypes.number,
+    totalLikes: PropsTypes.number,
+    totalReblogs: PropsTypes.number,
+    setNotesView: PropsTypes.func,
     notes: PropsTypes.array
 };
 

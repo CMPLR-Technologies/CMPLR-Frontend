@@ -27,12 +27,12 @@ import { apiBaseUrl } from '../../../../config.json';
 
 PostComponent.propTypes = {
     post: PropTypes.object.isRequired,
-    isFollowed: PropTypes.bool.isRequired,
     userBlogName: PropTypes.string.isRequired,
+    isFollowed: PropTypes.bool,
     radar: PropTypes.bool,
     left: PropTypes.string,
-    reblog: PropTypes.bool,
     padding: PropTypes.string,
+    reblog: PropTypes.bool,
     blogPage: PropTypes.bool,
     themeDeactivate: PropTypes.bool
 };

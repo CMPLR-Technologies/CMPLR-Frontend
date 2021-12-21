@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
  */
 
 TextPost.propTypes = {
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     content: PropTypes.string
 };
 
