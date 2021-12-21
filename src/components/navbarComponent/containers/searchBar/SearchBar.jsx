@@ -13,7 +13,8 @@ import ClickAwayListener from '@mui/base/ClickAwayListener';
  * @property {function} setOpenSearch - Open search Setter state
  * @returns {Component} input field
  */
-export default function SearchBar() {
+export default function SearchBar(props) {
+    const { placeHolder } = props;
     const [isHover, setIsHover] = useState(false);
     const [searchWord, setSearchWord] = useState('');
     const [openSearch, setOpenSearch] = useState(false);
@@ -53,7 +54,7 @@ export default function SearchBar() {
                     onChange={onChange}
                     focus=""
                     className="search-input"
-                    placeholder="Search Tumblr"
+                    placeholder={placeHolder ? placeHolder : 'Search Tumblr'}
                 ></input>
                 {openSearch && (
                     <SearchResult

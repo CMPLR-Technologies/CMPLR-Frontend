@@ -11,8 +11,7 @@ import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 import HandMadeTextEditor from '../RichTextEditor/View';
 import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
-
-import PostComponent from '../partials/postComponent/View';
+import MyProfile from '../MyProfileComponent/View';
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
     const css = `
@@ -45,17 +44,6 @@ export default function MainRoutes() {
                         element={<ResetPassword />}
                     />
                     <Route
-                        path="/post"
-                        element={
-                            <>
-                                <PostComponent
-                                    userBlogName="kholdbold"
-                                    isFollowed={false}
-                                />
-                            </>
-                        }
-                    />
-                    <Route
                         path="/reblog/:blogName/:postId/:reblogKey"
                         element={<CreateModal reblog={true} />}
                     />
@@ -64,6 +52,7 @@ export default function MainRoutes() {
                         path="/edit/:blogName/:postId"
                         element={<CreateModal reblog={false} edit={true} />}
                     />
+                    <Route path="/blog/:blogName/*" element={<MyProfile />} />
                 </Routes>
                 <style>{css}</style>
             </Router>

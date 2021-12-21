@@ -5,7 +5,7 @@ import ProfilePicContainer from './containers/DashboardContainer/ProfilePicConta
 import useAuth from '../../hooks/useAuth';
 
 export default function CreatePost() {
-    useAuth();
+    // useAuth();
     const theme = useContext(ThemeContext)[0];
     const css = `
         .create_container {

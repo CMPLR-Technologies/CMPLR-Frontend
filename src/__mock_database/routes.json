@@ -1,6 +1,8 @@
 {
     "/user/*": "/$1",
     "/post/*": "/$1",
+    "/posts/view/*": "/$1",
     "/posts/*": "/$1",
-    "/post/:blog_identifier/*": "/$1"
+    "/post/:blog_identifier/*": "/$1",
+    "blog/:blog_identifier/": "/$1"
 }

@@ -82,7 +82,7 @@ export default function PostComponent(props) {
 
     window.addEventListener('resize', () => chaneMobileView(setMobileView));
     const css = `
-    .post-container, .list{
+    .post-container, .post-container.list{
         background-color:rgb(${themes[theme].white});
         color:rgb(${themes[theme].black})
     }
