@@ -1,15 +1,13 @@
-import React, { useState, useRef, useCallback, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import { LinearProgress } from '@mui/material';
 
 import Sidebar from '../dashboardComponent/containers/Sidebar';
-import { apiBaseUrl } from '../../config.json';
-import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
 import SearchForm from './containers/SearchForm';
 import ItemList from './containers/ItemList';
 import PopupBlock from './containers/PopupBlock';
 import { UserContext } from '../../contexts/userContext/UserContext';
-import { followAccount, unfollowAccount } from './Service';
+import { followAccount, unfollowAccount, getFollowingList } from './Service';
 /**
  * Following Page Component
  * @function FollowingPage
@@ -21,8 +19,11 @@ export default function FollowingPage() {
     const [responseMsg, setResponseMsg] = useState('');
     const { user } = useContext(UserContext);
     const [openPopup, setOpenPopup] = useState(false);
-    const [pageNumber, setPageNumber] = useState(1);
     const [search, setSearch] = useState('');
+    const [isPending, setIsPending] = useState(false);
+    const [error, setError] = useState(false);
+    const [followingList, setFollowingList] = useState([]);
+    const [totalFollowing, setTotalFollowing] = useState(0);
 
     const handleSearchFollow = () => {
         followAccount(user?.token, search, setResponseMsg);
@@ -32,36 +33,40 @@ export default function FollowingPage() {
     };
     const handleBlock = () => {};
 
-    const {
-        error,
-        data: followingList,
-        isPending,
-        hasMore
-    } = useInfiniteScrolling(
-        `${apiBaseUrl}/following?_page=${pageNumber}&_limit=15`
-    );
+    const handleScroll = e => {
+        const scrollTop = e.target.documentElement.scrollTop;
+        const scrollHeight = e.target.documentElement.scrollHeight;
+        const windowHeight = window.innerHeight;
+        if (windowHeight + scrollTop + 10 >= scrollHeight) {
+            getFollowingList(
+                setFollowingList,
+                followingList,
+                user?.token,
+                setIsPending,
+                setResponseMsg,
+                setTotalFollowing
+            );
+        }
+    };
 
-    const observer = useRef();
-    const lastPostElementRef = useCallback(
-        node => {
-            if (isPending) return;
-            if (observer.current) observer.current.disconnect();
-            observer.current = new IntersectionObserver(entries => {
-                if (entries[0].isIntersecting && hasMore) {
-                    setPageNumber(prevPageNumber => prevPageNumber + 1);
-                }
-            });
-            if (node) observer.current.observe(node);
-        },
-        [isPending, hasMore]
-    );
+    useEffect(() => {
+        getFollowingList(
+            setFollowingList,
+            followingList,
+            user?.token,
+            setIsPending,
+            setError,
+            setTotalFollowing
+        );
+        window.addEventListener('scroll', handleScroll);
+    }, []);
 
     return (
         <>
             <div className="dashboard">
                 <div className="lSyOz">
                     <div className="rmkqO">
-                        <h1 className="IiZ2z">31 Following</h1>
+                        <h1 className="IiZ2z">{totalFollowing} Following</h1>
                         <SearchForm
                             search={search}
                             setSearch={setSearch}
@@ -82,12 +87,17 @@ export default function FollowingPage() {
                         </section>
                     </div>
                     {followingList &&
-                        followingList.map((post, index) => {
-                            if (followingList.length === index + 1) {
-                                return <div ref={lastPostElementRef}></div>;
-                            } else {
-                                return <></>;
-                            }
+                        followingList.map((f, i) => {
+                            return (
+                                <ItemList
+                                    key={i}
+                                    setOpenBlock={setOpenPopup}
+                                    lastUpdated={'Updated 2 minutes ago'}
+                                    profileName={'profile-name'}
+                                    handleUnfollow={handleUnfollow}
+                                    followingInfo={f}
+                                />
+                            );
                         })}
 
                     {error && (

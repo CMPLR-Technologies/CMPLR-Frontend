@@ -3,33 +3,33 @@ import { apiBaseUrl } from '../../config.json';
 
 export const getFollowingList = (
     setFollowingList,
+    followingList,
     userToken,
     setIsPending,
-    setErrorMessage,
-    setOpenError
+    setError,
+    setTotalFollowing
 ) => {
     Axios({
-        method: 'POST',
-        url: `${apiBaseUrl}/`,
+        method: 'GET',
+        url: `${apiBaseUrl}/following?limit=20&offset=${followingList?.length}`,
         headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json'
-        },
-        data: {
-            token: userToken
+            Accept: 'application/json',
+            Authorization: `Bearer ${userToken}`
         }
     })
         .then(res => {
             setIsPending(false);
-            setFollowingList(res.data.response.following);
-            return null;
+            let newArr = [];
+            if (res?.data?.response?.following?.length) {
+                newArr = res?.data?.response?.following;
+            }
+            setFollowingList([...followingList, ...newArr]);
+            setTotalFollowing(res?.data?.response?.following?.total);
         })
-        .catch(err => {
-            if (err.response) setErrorMessage(err.response.data.error);
-            else setErrorMessage("Couldn't find following users");
-            setOpenError(true);
+        .catch(() => {
+            setError(true);
             setIsPending(false);
-            return null;
         });
 };
 
