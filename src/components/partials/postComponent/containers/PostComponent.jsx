@@ -14,7 +14,7 @@ import {
     ThemeContext,
     themes
 } from '../../../../contexts/themeContext/ThemeContext';
-
+import { apiBaseUrl } from '../../../../config.json';
 /**
  * @function PostComponent
  * @description Base Unit Component for all post compoennt types
@@ -27,12 +27,12 @@ import {
 
 PostComponent.propTypes = {
     post: PropTypes.object.isRequired,
-    isFollowed: PropTypes.bool.isRequired,
     userBlogName: PropTypes.string.isRequired,
+    isFollowed: PropTypes.bool,
     radar: PropTypes.bool,
     left: PropTypes.string,
-    reblog: PropTypes.bool,
     padding: PropTypes.string,
+    reblog: PropTypes.bool,
     blogPage: PropTypes.bool,
     themeDeactivate: PropTypes.bool
 };
@@ -63,11 +63,11 @@ export default function PostComponent(props) {
         title: title,
         content: content,
         state: state,
-        type: type,
+        // type: type,
         post_id: postId,
         reblog_key: reblogKey,
         number_notes: numberNotes,
-        post_link: postLink //need for copy operation
+        is_liked: isLiked
     } = postData && postData;
     const {
         blog_name: blogName,
@@ -359,7 +359,7 @@ export default function PostComponent(props) {
                                         postTime={postTime}
                                         userBlogName={userBlogName}
                                         blogName={blogName}
-                                        postLink={postLink}
+                                        postLink={`${apiBaseUrl}/post/${postId}`} //change if needed
                                         postId={postId}
                                         following={following}
                                         blogUrl={blogUrl}
@@ -391,7 +391,7 @@ export default function PostComponent(props) {
                         <Tags tagsArray={tags} />
                         <Footer
                             isAuthor={userBlogName === blogName}
-                            postLink={postLink}
+                            postLink={`${apiBaseUrl}/post/${postId}`}
                             numberNotes={numberNotes}
                             reblogKey={reblogKey}
                             postId={postId}
@@ -401,6 +401,7 @@ export default function PostComponent(props) {
                             setIsModalOpenN={setIsModalOpen}
                             blogPage={blogPage}
                             radar={radar}
+                            isLiked={isLiked}
                         />
                     </div>
                 )}{' '}
