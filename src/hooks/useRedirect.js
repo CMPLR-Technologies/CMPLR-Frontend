@@ -7,7 +7,7 @@ const useRedirect = () => {
     const { user } = useContext(UserContext);
 
     useEffect(() => {
-        if (user) {
+        if (localStorage.getItem('user')) {
             navigate('/dashboard');
         }
     }, [user]);

@@ -44,18 +44,12 @@ export default function RegisterStepOne(props) {
             </div>
 
             <div className="login-form">
-                {openError &&
-                    errorMessage &&
-                    errorMessage?.length !== 0 &&
-                    errorMessage?.map((errorMsg, index) => {
-                        return (
-                            <AuthAlert
-                                key={index}
-                                openError={openError}
-                                errorMessage={errorMsg}
-                            />
-                        );
-                    })}
+                {openError && errorMessage && errorMessage?.length !== 0 && (
+                    <AuthAlert
+                        openError={openError}
+                        errorMessage={errorMessage[0]}
+                    />
+                )}
                 <AuthInput
                     value={email}
                     setValue={setEmail}

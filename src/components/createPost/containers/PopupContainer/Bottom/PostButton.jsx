@@ -30,7 +30,13 @@ export default function PostButton(props) {
                             !(titlePost === null)
                         }
                     >
-                        {titlePost===null?"Reblog":"Post"}
+                        {titlePost === null
+                            ? 'Reblog'
+                            : postType === 'Post now'
+                            ? 'Post'
+                            : postType === 'Save as draft'
+                            ? 'Save draft'
+                            : 'Post privately'}
                     </button>
                     <div
                         aria-describedby="popover_post"

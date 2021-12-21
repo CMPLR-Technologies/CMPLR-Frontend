@@ -1,7 +1,6 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 export const UserContext = createContext();
-
 export default function UserContextProvider(props) {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
     return (
@@ -14,3 +13,4 @@ export default function UserContextProvider(props) {
 UserContextProvider.propTypes = {
     children: PropTypes.any.isRequired
 };
+
