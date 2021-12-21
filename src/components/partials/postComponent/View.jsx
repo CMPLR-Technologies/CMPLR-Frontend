@@ -14,8 +14,8 @@ import PropTypes from 'prop-types';
 
 View.propTypes = {
     posts: PropTypes.array.isRequired,
-    isFollowed: PropTypes.bool.isRequired,
     userBlogName: PropTypes.string.isRequired,
+    isFollowed: PropTypes.bool,
     radar: PropTypes.bool
 };
 

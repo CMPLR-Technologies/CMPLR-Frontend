@@ -52,7 +52,7 @@ export default function NotePost(props) {
                     >
                         {type === 'reblog' ? (
                             <ReblogReact />
-                        ) : type === 'love' ? (
+                        ) : type === 'like' ? (
                             <LoveReact />
                         ) : (
                             <CommentReact />
@@ -77,7 +77,7 @@ export default function NotePost(props) {
                                         <ReblogSign />
                                     </span>
                                     <Link
-                                        to={reblogParentBlogUrl}
+                                        to={'/reblogParentBlogUrl'}
                                         target="_blank"
                                         role="link"
                                         className="reblogger-name"

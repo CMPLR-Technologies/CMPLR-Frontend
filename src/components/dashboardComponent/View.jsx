@@ -2,7 +2,6 @@ import React, { useState, useRef, useCallback } from 'react';
 import CreatePost from '../createPost/View';
 import Sidebar from './containers/Sidebar';
 import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
-import useAuth from '../../hooks/useAuth';
 import { LinearProgress } from '@mui/material';
 import { apiBaseUrl } from '../../config.json';
 import PostComponent from '../partials/postComponent/containers/PostComponent';
@@ -15,11 +14,7 @@ export default function Dashboard() {
         data: posts,
         isPending,
         hasMore
-    } = useInfiniteScrolling(
-        `${apiBaseUrl}/posts?_page=${pageNumber}&_limit=5`
-    );
-
-    useAuth();
+    } = useInfiniteScrolling(`${apiBaseUrl}/user/dashboard?page=${pageNumber}`);
     const observer = useRef();
     const lastPostElementRef = useCallback(
         node => {
@@ -43,8 +38,12 @@ export default function Dashboard() {
                     posts.map((post, index) => {
                         if (posts.length === index + 1) {
                             return (
-                                <div ref={lastPostElementRef}>
-                                    <PostComponent key={index} post={post} />
+                                <div key={index} ref={lastPostElementRef}>
+                                    <PostComponent
+                                        post={post}
+                                        userBlogName={post?.blog['blog_name']} //change
+                                        isFollowed={true}
+                                    />
                                 </div>
                             );
                         } else {
@@ -52,7 +51,8 @@ export default function Dashboard() {
                                 <PostComponent
                                     key={index}
                                     post={post}
-                                    userBlogName="ahmed_3"
+                                    userBlogName={post?.blog['blog_name']}//change
+                                    isFollowed={true}
                                 />
                             );
                         }
