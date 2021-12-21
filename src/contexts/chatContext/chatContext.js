@@ -1,8 +1,18 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 export const ChatContext = createContext();
+import { apiBaseUrl } from '../../config.json';
+import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
 
 export default function ChatContextProvider(props) {
+    const [pageNumber, setPageNumber] = useState(1);
+    const {
+        error,
+        data: msgs,
+        isPending,
+        hasMore
+    } = useInfiniteScrolling(`${apiBaseUrl}/user/dashboard?page=${pageNumber}`);
+
     //dumey data
     let chatMessagesArr = [
         {
@@ -172,7 +182,14 @@ export default function ChatContextProvider(props) {
                 closeChatPopup,
                 loadChats,
                 paritialCloseChatPopup,
-                sendMessage
+                sendMessage,
+
+                pageNumber,
+                setPageNumber,
+                error,
+                msgs,
+                isPending,
+                hasMore
             }}
         >
             {props.children}

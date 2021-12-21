@@ -25,7 +25,8 @@ export default function ChatPopUp() {
         closeChatPopup,
         paritialCloseChatPopup,
         sideIconOpenChat,
-        sendMessage
+        sendMessage,
+        hasMore
     } = useContext(ChatContext);
     let {
         sender = 'gaser',
@@ -74,28 +75,31 @@ export default function ChatPopUp() {
             }`}
         >
             <div className="chat-popup">
-                <div className="chat-popup-header">
-                    {showOption && (
-                        <ChatOption close={toggleOption} name={receiver} />
-                    )}
+                {/*TO DO hide the header untill no more!!!!!!!!!! */}
+                {!hasMore && (
+                    <div className="chat-popup-header">
+                        {showOption && (
+                            <ChatOption close={toggleOption} name={receiver} />
+                        )}
 
-                    <div className="names">
-                        <a href={senderLink}>{sender}</a>
-                        {' + '}
-                        <a href={receiverLink}>{receiver}</a>
+                        <div className="names">
+                            <a href={senderLink}>{sender}</a>
+                            {' + '}
+                            <a href={receiverLink}>{receiver}</a>
+                        </div>
+                        <div className="btns">
+                            <button onClick={toggleOption}>
+                                <i className="fas fa-ellipsis-h"></i>
+                            </button>
+                            <button onClick={partialClose}>
+                                <i className="fas fa-compress-alt"></i>
+                            </button>
+                            <button onClick={close}>
+                                <i className="fas fa-times"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div className="btns">
-                        <button onClick={toggleOption}>
-                            <i className="fas fa-ellipsis-h"></i>
-                        </button>
-                        <button onClick={partialClose}>
-                            <i className="fas fa-compress-alt"></i>
-                        </button>
-                        <button onClick={close}>
-                            <i className="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
+                )}
 
                 <ChatMessages messagesEndRef={messagesEndRef} />
                 <div className="chat-popup-footer">

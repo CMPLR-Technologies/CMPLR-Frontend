@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback, useRef } from 'react';
 import ChatMessageItem from './ChatMessageItem';
 import { ChatContext } from '../../../contexts/chatContext/ChatContext';
+import { LinearProgress } from '@mui/material';
 import PropTypes from 'prop-types';
 /**
  * ChatMessages Component
@@ -16,7 +17,25 @@ import PropTypes from 'prop-types';
  * @returns {Component} array of ChatMessageItem
  */
 export default function ChatMessages(props) {
-    let { currPopUpOpenChat } = useContext(ChatContext);
+    let { currPopUpOpenChat, msgs, error, isPending, hasMore, setPageNumber } =
+        useContext(ChatContext);
+
+    // paganation part
+    const observer = useRef();
+    const lastPostElementRef = useCallback(
+        node => {
+            if (isPending) return;
+            if (observer.current) observer.current.disconnect();
+            observer.current = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting && hasMore) {
+                    setPageNumber(prevPageNumber => prevPageNumber + 1);
+                }
+            });
+            if (node) observer.current.observe(node);
+        },
+        [isPending, hasMore]
+    );
+
     let { messagesEndRef } = props;
     let {
         sender = 'gaser',
@@ -41,22 +60,57 @@ export default function ChatMessages(props) {
                 </div>
             </div>
             <div className="chat-popup-chat-messages">
+                {error && (
+                    <div className="no-data-error">{"Couldn't load"}</div>
+                )}
+                {isPending && <LinearProgress />}
                 {currPopUpOpenChat &&
-                    chatMessage.map(message => (
-                        <ChatMessageItem
-                            key={message.id}
-                            name={message.type === 's' ? sender : receiver}
-                            link={
-                                message.type === 's' ? senderLink : receiverLink
-                            }
-                            photo={
-                                message.type === 's'
-                                    ? senderPhoto
-                                    : receiverPhoto
-                            }
-                            message={message.message}
-                        />
-                    ))}
+                    chatMessage.map((message, index) => {
+                        if (index === 0) {
+                            return (
+                                <div ref={lastPostElementRef} key={index}>
+                                    <ChatMessageItem
+                                        name={
+                                            message.type === 's'
+                                                ? sender
+                                                : receiver
+                                        }
+                                        link={
+                                            message.type === 's'
+                                                ? senderLink
+                                                : receiverLink
+                                        }
+                                        photo={
+                                            message.type === 's'
+                                                ? senderPhoto
+                                                : receiverPhoto
+                                        }
+                                        message={message.message}
+                                    />
+                                </div>
+                            );
+                        } else {
+                            return (
+                                <ChatMessageItem
+                                    key={index}
+                                    name={
+                                        message.type === 's' ? sender : receiver
+                                    }
+                                    link={
+                                        message.type === 's'
+                                            ? senderLink
+                                            : receiverLink
+                                    }
+                                    photo={
+                                        message.type === 's'
+                                            ? senderPhoto
+                                            : receiverPhoto
+                                    }
+                                    message={message.message}
+                                />
+                            );
+                        }
+                    })}
             </div>
             <div ref={messagesEndRef}></div>
         </div>
