@@ -62,7 +62,9 @@ export default function Footer(props) {
         authorAvatar,
         setIsModalOpenN,
         blogPage,
-        radar
+        radar,
+        draft,
+        postSubmit
     } = props;
     const [liked, setLiked] = useState(isLiked);
     const [isShareListOpen, setIsShareListOpen] = useState(false);
@@ -199,7 +201,7 @@ export default function Footer(props) {
                     </div>
                 )}
                 <div data-testid={`footer-icons-ts`} className="footer-icons">
-                    {!blogPage && (
+                    {!blogPage && !draft && (
                         <button
                             onClick={() =>
                                 toggleShareList(
@@ -213,7 +215,7 @@ export default function Footer(props) {
                             <ShareBtn />
                         </button>
                     )}
-                    {!blogPage && !radar && (
+                    {!blogPage && !radar && !draft && (
                         <button
                             onClick={() => {
                                 setNotesView(true);
@@ -231,48 +233,53 @@ export default function Footer(props) {
                             <Note />
                         </button>
                     )}
-                    <button
-                        onClick={() => {
-                            setNoteType('reblog');
-                            navigate(
-                                `/reblog/${blogName}/${postId}/${reblogKey}`
-                            );
-                        }}
-                        className="icon"
-                        data-testid={`reblog-icon-footer${postId}`}
-                    >
-                        <ReblogBtn />
-                    </button>
-                    <button
-                        onClick={e => {
-                            submitNote(
-                                e,
-                                'love',
-                                '',
-                                blogIdentifier,
-                                setNotes,
-                                setCounts
-                            );
-                            !liked
-                                ? handleLikePost(
-                                      setLoveFillColor,
-                                      setLiked,
-                                      postId,
-                                      user?.token
-                                  )
-                                : handleUnlikePost(
-                                      setLoveFillColor,
-                                      setLiked,
+                    {!draft && (
+                        <>
+                            <button
+                                onClick={() => {
+                                    setNoteType('reblog');
+                                    navigate(
+                                        `/reblog/${blogName}/${postId}/${reblogKey}`
+                                    );
+                                }}
+                                className="icon"
+                                data-testid={`reblog-icon-footer${postId}`}
+                            >
+                                <ReblogBtn />
+                            </button>
 
-                                      postId,
-                                      user?.token
-                                  );
-                        }}
-                        className="icon "
-                        data-testid={`love-icon-footer${postId}`}
-                    >
-                        <LoveBtn fillColor={loveFillColor} />
-                    </button>
+                            <button
+                                onClick={e => {
+                                    submitNote(
+                                        e,
+                                        'love',
+                                        '',
+                                        blogIdentifier,
+                                        setNotes,
+                                        setCounts
+                                    );
+                                    !liked
+                                        ? handleLikePost(
+                                              setLoveFillColor,
+                                              setLiked,
+                                              postId,
+                                              user?.token
+                                          )
+                                        : handleUnlikePost(
+                                              setLoveFillColor,
+                                              setLiked,
+
+                                              postId,
+                                              user?.token
+                                          );
+                                }}
+                                className="icon "
+                                data-testid={`love-icon-footer${postId}`}
+                            >
+                                <LoveBtn fillColor={loveFillColor} />
+                            </button>
+                        </>
+                    )}
                     {isAuthor && (
                         <>
                             <button
@@ -291,6 +298,15 @@ export default function Footer(props) {
                             >
                                 <EditBtn />
                             </button>
+                            {draft && (
+                                <button
+                                    data-testid={`edit-footer-icon-ts${postId}`}
+                                    className="icon post-icon"
+                                    onClick={postSubmit}
+                                >
+                                    Post
+                                </button>
+                            )}
                         </>
                     )}
                 </div>

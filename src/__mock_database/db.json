@@ -586,5 +586,39 @@
       "current_page": 1,
       "posts_per_page": 2
     }
+  },
+  "posts": {
+    "Meta": {
+      "Status": 200,
+      "msg": "Success"
+    },
+    "response": {
+      "posts": [
+        {
+          "post": {
+            "post_id": 1,
+            "type": "photos",
+            "state": "publish",
+            "title": "dasda",
+            "content": "dasdasda",
+            "date": "Friday, 17-Dec-21 23:27:28 UTC",
+            "reblog_key": "fsdfas",
+            "number_notes": 1,
+            "source_content": "google.com",
+            "tags": [
+              "summer",
+              "winter"
+            ]
+          },
+          "blog": {
+            "blog_id": 11,
+            "blog_name": "ahmed_3",
+            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+            "avatar_shape": "circle",
+            "replies": "everyone"
+          }
+        }
+      ]
+    }
   }
 }

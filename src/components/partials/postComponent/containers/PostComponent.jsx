@@ -15,6 +15,8 @@ import {
     themes
 } from '../../../../contexts/themeContext/ThemeContext';
 import { apiBaseUrl } from '../../../../config.json';
+import { handlePosting } from '../../../createPost/Service';
+import { useNavigate } from 'react-router-dom';
 /**
  * @function PostComponent
  * @description Base Unit Component for all post compoennt types
@@ -47,7 +49,8 @@ export default function PostComponent(props) {
         reblog,
         padding,
         blogPage,
-        themeDeactivate
+        themeDeactivate,
+        draft
     } = props;
     const theme = useContext(ThemeContext)[0];
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);
@@ -76,6 +79,17 @@ export default function PostComponent(props) {
         blog_url: blogUrl,
         blog_email: blogEmail
     } = blog && blog;
+
+    const navigate = useNavigate();
+
+    const postSubmit = () => {
+        const bodyData = {
+            title: title,
+            content: content
+        };
+        handlePosting(bodyData, navigate);
+    };
+
     useEffect(() => {
         chaneMobileView(setMobileView);
     }, []);
@@ -404,6 +418,8 @@ export default function PostComponent(props) {
                             blogPage={blogPage}
                             radar={radar}
                             isLiked={isLiked}
+                            draft={draft}
+                            postSubmit={postSubmit}
                         />
                     </div>
                 )}{' '}

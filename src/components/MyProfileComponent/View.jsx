@@ -13,6 +13,8 @@ export default function MyProfile() {
     useEffect(() => {
         if (location.pathname.includes('/followers')) {
             setActiveSide(3);
+        } else if (location.pathname.includes('/drafts')) {
+            setActiveSide(4);
         } else {
             setActiveSide(2);
         }
@@ -26,24 +28,43 @@ export default function MyProfile() {
 
     const blogIdentifier = 'kholdbold';
     const {
-        errorFollowers,
+        error: errorFollowers,
         data: followers,
-        isPendingFollowers
+        isPending: isPendingFollowers
     } = useFetch(`${apiBaseUrl}/blog/${blogIdentifier}/followers`);
+    const {
+        error: errorDrafts,
+        data: drafts,
+        isPending: isPendingDrafts
+    } = useInfiniteScrolling(`${apiBaseUrl}/posts/view/kholdbold`); //change to blogName
     return (
         <div className="dashboard">
             <div className="posts-region">
                 {location.pathname.includes('/followers') ? (
-                    <FollowersPage response={{ followers, error, isPending }} />
-                ) : (
-                    <PostsPage
-                        response={{ posts, errorFollowers, isPendingFollowers }}
+                    <FollowersPage
+                        response={{
+                            followers,
+                            errorFollowers,
+                            isPendingFollowers
+                        }}
                     />
+                ) : location.pathname.includes('/drafts') ? (
+                    <PostsPage
+                        response={{
+                            posts: drafts,
+                            errorDrafts,
+                            isPendingDrafts
+                        }}
+                        draft={true}
+                    />
+                ) : (
+                    <PostsPage response={{ posts, error, isPending }} />
                 )}
             </div>
             <Sidebar
                 postLength={posts?.length}
                 followersLength={followers?.length}
+                draftsLength={drafts?.length}
                 activeSide={activeSide && activeSide}
             />
         </div>

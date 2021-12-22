@@ -15,7 +15,7 @@ export default function OptionsList(props) {
         setFollowing,
         setIsModalOpen,
         setIsOptionListOpen,
-        followersPage
+        followersPage,
     } = props;
     return (
         <div data-testid="options-list-header-ts" className="options">

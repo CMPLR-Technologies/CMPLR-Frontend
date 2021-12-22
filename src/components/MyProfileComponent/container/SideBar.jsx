@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import Radar from '../../partials/Radar';
 import ListItem from './ListItem';
 export default function Sidebar(props) {
-    const { activeSide, postLength, followersLength } = props;
+    const { activeSide, postLength, followersLength, draftsLength } = props;
     const { blogUrlIdf } = useParams();
     const [clicked, setClicked] = useState(activeSide);
     useEffect(() => {
@@ -20,27 +20,21 @@ export default function Sidebar(props) {
         },
         {
             primary: 'Posts',
-            secondary: postLength ? postLength : '--',
+            secondary: postLength ? postLength : '0',
             prof: true,
             link: '/blog/kholdbold'
         },
         {
             primary: 'Followers',
-            secondary: followersLength ? followersLength : '--',
+            secondary: followersLength ? followersLength : '0',
             prof: true,
             link: '/blog/kholdbold/followers'
         },
         {
             primary: 'Drafts',
-            secondary: '8',
+            secondary: draftsLength ? draftsLength : '0',
             prof: true,
-            link: '/blog/kholdbold'
-        },
-        {
-            primary: 'Queue',
-            secondary: '8',
-            prof: true,
-            link: '/blog/kholdbold'
+            link: '/blog/kholdbold/drafts'
         }
     ];
     return (
