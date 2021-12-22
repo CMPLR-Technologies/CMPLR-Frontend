@@ -25,14 +25,15 @@ const useInfiniteScrolling = (url,type) => {
         Axios.get(url, config)
             .then(res => {
                 if (!res.error) {
+                    console.log(res.data[0].data);
                     setData(prevData => {
                         if(type==='post')
                             return [...prevData, ...res.data.response.post];
                         else
-                            return [ ...res.data.response.message,...prevData];
+                            return [ ...res.data[0].data,...prevData];
                     });
                     setIsPending(false);
-                    setHasMore(res.data.response.next_url);
+                    setHasMore(res.data[0].next_url);
                     setError(null);
                 } else {
                     throw Error(res.error);

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { Link } from 'react-router-dom';
 import AuthBtn from '../../partials/AuthBtn';
+import { ChatContext } from '../../../contexts/chatContext/ChatContext';
+
 import {
     ThemeContext,
     themes
@@ -16,6 +18,9 @@ import {
  * @returns {Component} list of option
  */
 export default function ChatOption(props) {
+    let {
+        deleteChat
+    } = useContext(ChatContext);
     const theme = useContext(ThemeContext)[0];
     let name = props.name; //name of the chat reciver
     let close = props.close; //function to close the option
@@ -43,7 +48,9 @@ export default function ChatOption(props) {
         if (!isOpenDeleteModel) close();
     };
     const blockUser = () => {};
-    const deleteConversation = () => {};
+    const deleteConversation = () => {
+        deleteChat();
+    };
     return (
         <>
             {' '}

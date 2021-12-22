@@ -2,83 +2,38 @@ import React, { useContext } from 'react';
 import MessageItem from './MessageItem';
 import { ChatContext } from '../../../../../contexts/chatContext/ChatContext';
 import PropTypes from 'prop-types';
+import { LinearProgress } from '@mui/material';
 
 export default function Messages(props) {
-    let { chats } = useContext(ChatContext);
+    let { chats, loadingChats,errLoadingChat } = useContext(ChatContext);
+    let BlogName = 'gaser';
+    let BlogId = 10;
+  //  let BlogAvatar =
+    //    'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png';
     // eslint-disable-next-line react/prop-types
     let { clickMessagePopup, mobile } = props;
-    /* const messages = [
-        {
-            id: 1,
-            sender: 'gaser',
-            receiver: 'twix123',
-            message: 'hi',
-            chat: true
-        },
-        {
-            id: 2,
-            sender: 'gaser1',
-            receiver: 'twix123',
-            message: 'hi',
-            chat: true
-        },
-        {
-            id: 3,
-            sender: 'gaser2',
-            receiver: 'twix123',
-            message: 'hi',
-            chat: true
-        },
-        {
-            id: 4,
-            sender: 'gaser3',
-            receiver: 'twix123',
-            message: 'hi',
-            chat: true
-        },
-        {
-            id: 5,
-            sender: 'gaser3',
-            receiver: 'twix123',
-            message: 'hi',
-            chat: true
-        },
-        {
-            id: 6,
-            sender: 'gaser3',
-            receiver: 'twix123',
-            message: 'hi',
-            chat: true
-        },
-        {
-            id: 7,
-            sender: 'gaser3',
-            receiver: 'twix123',
-            message: 'hi',
-            chat: true
-        },
-        {
-            id: 8,
-            sender: 'gaser3',
-            receiver: 'twix123',
-            message: 'hi',
-            chat: true
-        }
-    ];*/
     return (
         <div className="popup-messages">
-            {chats && chats.length ? (
-                chats.map(message => (
+            {errLoadingChat}
+            {loadingChats ? (
+                <LinearProgress />
+            ) : chats && chats.length ? (
+                chats.map((message, index) => (
                     <MessageItem
-                        key={message.chatId}
-                        sender={message.sender}
-                        receiver={message.receiver}
-                        message={message.lastMsg}
+                        key={index}
+                        lastOneSend={message.from_blog_id===BlogId?BlogName:message.blog_data.blog_name}
+                        sender={BlogName}
+                        senderId={BlogId}
+                        receiver={message.blog_data.blog_name}
+                        receiverId={message.blog_data.blog_id}
+                        message={message.content}
                         chat={true}
-                        photo={message.receiverPhoto}
-                        chatId={message.chatId}
+                        photo={message.blog_data.avatar}
+                        shape={message.blog_data.avatar_shape}
+                        chatId={index}
                         clickMessagePopup={clickMessagePopup}
                         mobile={mobile}
+                        isRead={message.is_read}
                     />
                 ))
             ) : (
@@ -94,5 +49,5 @@ export default function Messages(props) {
 }
 PropTypes.propTypes = {
     clickMessagePopup: PropTypes.func.isRequired,
-    mobile:PropTypes.bool
+    mobile: PropTypes.bool
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TimeAgo from 'timeago-react';
 /**
  * ChatMessageItem Component
  * @function ChatMessageItem
@@ -11,19 +12,19 @@ import PropTypes from 'prop-types';
  * @returns {Component} message item
  */
 export default function ChatMessageItem(props) {
-    let name = props.name;
-    let photo = props.photo;
-    let message = props.message;
-    let link = props.link;
+    let { name, photo, message, link, shape, time } = props;
+    //console.log(time);
     return (
         <div className="message">
-            <a className="img" src={link}>
+            <a className={`img ${shape}`} src={link}>
                 <img src={photo} title={name} alt={name} />
             </a>
             <div className="text">
                 <div className="main">{name}</div>
                 <div className="msg">{message}</div>
-                <div className='date'>2 minutes ago</div>
+                <div className="date">
+                    <TimeAgo datetime={new Date(time)} />
+                </div>
             </div>
         </div>
     );
@@ -32,5 +33,7 @@ ChatMessageItem.propTypes = {
     name: PropTypes.string.isRequired,
     photo: PropTypes.string.isRequired,
     message: PropTypes.string.isRequired,
-    link: PropTypes.string.isRequired
+    link: PropTypes.string.isRequired,
+    shape: PropTypes.string.isRequired,
+    time: PropTypes.string.isRequired
 };

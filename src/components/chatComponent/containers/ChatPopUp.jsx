@@ -2,6 +2,9 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import { ChatContext } from '../../../contexts/chatContext/ChatContext';
 import ChatMessages from './ChatMessages';
 import ChatOption from './ChatOption';
+import useInfiniteScrolling from '../../../hooks/useInfiniteScrolling';
+import { apiBaseUrl } from '../../../config.json';
+
 /**
  * ChatPopUp Component
  * @function ChatPopUp
@@ -14,38 +17,54 @@ import ChatOption from './ChatOption';
  * @returns {Component} ChatPopUp header & ChatPopUp messages & ChatPopUp footer
  */
 export default function ChatPopUp() {
-    const messagesEndRef = useRef(null);
-    const scrollToBottom = () => {
-        console.log('scroll');
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    };
-
     let {
         currPopUpOpenChat,
         closeChatPopup,
         paritialCloseChatPopup,
         sideIconOpenChat,
         sendMessage,
-        hasMore
+        pageNumber,
+        setConversationMsg,
+        conversationMsg
     } = useContext(ChatContext);
-    let {
-        sender = 'gaser',
-        senderLink = '#',
-        receiver = 'omda',
-        receiverLink = '#',
-        chatId = 0
-    } = currPopUpOpenChat || {};
+
+    let { senderId, receiverId, senderName, receiverName } =
+        currPopUpOpenChat || {};
+    //let { fromId, toId } = props;
+    const {
+        error,
+        data: msgs,
+        isPending,
+        hasMore
+    } = useInfiniteScrolling(
+        `${apiBaseUrl}/messaging/conversation/${senderId}/${receiverId}?page=${pageNumber}`
+    );
+    useEffect(() => {
+        setConversationMsg(msgs);
+    }, [msgs]);
+
+    // the part for scorll down when you send/receive message
+    const messagesEndRef = useRef(null);
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    //message you type it
     const [messageToSend, setMessageToSend] = useState('');
     useEffect(() => {
         setMessageToSend('');
-    }, [chatId]);
+    }, []);
+
     useEffect(() => {
         scrollToBottom();
-    }, [currPopUpOpenChat]);
+    }, [conversationMsg]);
     const onChange = e => {
         setMessageToSend(e.target.value);
     };
+
+    // send message when click >
     const sendMessageTo = () => {
+        if(isPending)return;
         if (messageToSend.length !== 0 && messageToSend.trim() !== '') {
             sendMessage(messageToSend);
             setMessageToSend('');
@@ -79,13 +98,16 @@ export default function ChatPopUp() {
                 {!hasMore && (
                     <div className="chat-popup-header">
                         {showOption && (
-                            <ChatOption close={toggleOption} name={receiver} />
+                            <ChatOption
+                                close={toggleOption}
+                                name={receiverName}
+                            />
                         )}
 
                         <div className="names">
-                            <a href={senderLink}>{sender}</a>
+                            <a href={senderName}>{senderName}</a>
                             {' + '}
-                            <a href={receiverLink}>{receiver}</a>
+                            <a href={receiverName}>{receiverName}</a>
                         </div>
                         <div className="btns">
                             <button onClick={toggleOption}>
@@ -101,7 +123,13 @@ export default function ChatPopUp() {
                     </div>
                 )}
 
-                <ChatMessages messagesEndRef={messagesEndRef} />
+                <ChatMessages
+                    messagesEndRef={messagesEndRef}
+                    msgs={conversationMsg}
+                    isPending={isPending}
+                    error={error}
+                    hasMore={hasMore}
+                />
                 <div className="chat-popup-footer">
                     <div className="input">
                         <textarea

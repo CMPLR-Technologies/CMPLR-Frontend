@@ -12,21 +12,42 @@ import { ChatContext } from '../../../contexts/chatContext/ChatContext';
  */
 export default function ChatSideIconItem(props) {
     let { openChatPopup } = useContext(ChatContext);
-    let name = props.name;
-    let chatId = props.chatId;
-    let photo = props.photo;
+    let {
+        senderId,
+        receiverId,
+        senderPhoto,
+        senderShape,
+        receiverPhoto,
+        receiverShape,
+        senderName,
+        receiverName
+    } = props;
     const onClick = () => {
         // to do open the chat with this id
-        openChatPopup(chatId);
+        openChatPopup(
+            senderId,
+            receiverId,
+            senderPhoto,
+            senderShape,
+            receiverPhoto,
+            receiverShape,
+            senderName,
+            receiverName
+        );
     };
     return (
         <div className="chat-side-icon-item" onClick={onClick}>
-            <img src={photo} title={name} alt={name} />
+            <img src={receiverPhoto} title={receiverName} alt={receiverName} />
         </div>
     );
 }
 ChatSideIconItem.propTypes = {
-    name: PropTypes.string.isRequired,
-    chatId: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired
+    senderId: PropTypes.string.isRequired,
+    receiverId: PropTypes.string.isRequired,
+    senderPhoto: PropTypes.string.isRequired,
+    senderShape: PropTypes.string.isRequired,
+    receiverPhoto: PropTypes.string.isRequired,
+    receiverShape: PropTypes.string.isRequired,
+    senderName: PropTypes.string.isRequired,
+    receiverName: PropTypes.string.isRequired
 };

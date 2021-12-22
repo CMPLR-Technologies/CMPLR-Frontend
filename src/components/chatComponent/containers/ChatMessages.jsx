@@ -17,9 +17,8 @@ import PropTypes from 'prop-types';
  * @returns {Component} array of ChatMessageItem
  */
 export default function ChatMessages(props) {
-    let { currPopUpOpenChat, msgs, error, isPending, hasMore, setPageNumber } =
-        useContext(ChatContext);
-
+    let { currPopUpOpenChat, setPageNumber } = useContext(ChatContext);
+    let { msgs, isPending, error, hasMore, messagesEndRef } = props;
     // paganation part
     const observer = useRef();
     const lastPostElementRef = useCallback(
@@ -35,18 +34,16 @@ export default function ChatMessages(props) {
         },
         [isPending, hasMore]
     );
-
-    let { messagesEndRef } = props;
     let {
-        sender = 'gaser',
-        senderPhoto = 'gaser',
-        senderLink = '#',
-        receiver = 'omda',
-        receiverPhoto = 'gaser',
-        receiverLink = '#',
-        chatMessage = []
+        senderId,
+        receiverId,
+        senderPhoto,
+        senderShape,
+        receiverPhoto,
+        receiverShape,
+        senderName,
+        receiverName
     } = currPopUpOpenChat || {};
-
     return (
         <div className="chat-popup-chat">
             <div className="chat-popup-chat-header">
@@ -54,8 +51,8 @@ export default function ChatMessages(props) {
                     <img src={receiverPhoto} />
                 </div>
                 <div className="receiver-link">
-                    <a href={receiverLink} className="main">
-                        {receiver}
+                    <a href={receiverId} className="main">
+                        {receiverName}
                     </a>
                 </div>
             </div>
@@ -64,49 +61,62 @@ export default function ChatMessages(props) {
                     <div className="no-data-error">{"Couldn't load"}</div>
                 )}
                 {isPending && <LinearProgress />}
-                {currPopUpOpenChat &&
-                    chatMessage.map((message, index) => {
+                {msgs &&
+                    msgs.map((message, index) => {
                         if (index === 0) {
                             return (
                                 <div ref={lastPostElementRef} key={index}>
                                     <ChatMessageItem
                                         name={
-                                            message.type === 's'
-                                                ? sender
-                                                : receiver
+                                            message.from_blog_id === senderId
+                                                ? senderName
+                                                : receiverName
                                         }
                                         link={
-                                            message.type === 's'
-                                                ? senderLink
-                                                : receiverLink
+                                            message.from_blog_id === senderId
+                                                ? senderName
+                                                : receiverName
                                         }
                                         photo={
-                                            message.type === 's'
+                                            message.from_blog_id === senderId
                                                 ? senderPhoto
                                                 : receiverPhoto
                                         }
-                                        message={message.message}
+                                        shape={
+                                            message.from_blog_id === senderId
+                                                ? senderShape
+                                                : receiverShape
+                                        }
+                                        time={message.created_at}
+                                        message={message.content}
                                     />
                                 </div>
                             );
                         } else {
                             return (
                                 <ChatMessageItem
-                                    key={index}
                                     name={
-                                        message.type === 's' ? sender : receiver
+                                        message.from_blog_id === senderId
+                                            ? senderName
+                                            : receiverName
                                     }
                                     link={
-                                        message.type === 's'
-                                            ? senderLink
-                                            : receiverLink
+                                        message.from_blog_id === senderId
+                                            ? senderName
+                                            : receiverName
                                     }
                                     photo={
-                                        message.type === 's'
+                                        message.from_blog_id === senderId
                                             ? senderPhoto
                                             : receiverPhoto
                                     }
-                                    message={message.message}
+                                    shape={
+                                        message.from_blog_id === senderId
+                                            ? senderShape
+                                            : receiverShape
+                                    }
+                                    time={message.created_at}
+                                    message={message.content}
                                 />
                             );
                         }
@@ -117,5 +127,9 @@ export default function ChatMessages(props) {
     );
 }
 ChatMessages.propTypes = {
-    messagesEndRef: PropTypes.object.isRequired
+    messagesEndRef: PropTypes.object.isRequired,
+    hasMore: PropTypes.object.isRequired,
+    msgs: PropTypes.array.isRequired,
+    error: PropTypes.string.isRequired,
+    isPending: PropTypes.bool.isRequired
 };

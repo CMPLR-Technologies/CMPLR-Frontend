@@ -14,12 +14,17 @@ export default function chatSideIcons() {
     return (
         <div className="chat-side-icons">
             {sideIconOpenChat &&
-                sideIconOpenChat.map(chatIcon => (
+                sideIconOpenChat.map((chatIcon, index) => (
                     <ChatSideIconItem
-                        key={chatIcon.chatId}
-                        name={chatIcon.receiver}
-                        chatId={chatIcon.chatId}
-                        photo={chatIcon.receiverPhoto}
+                        key={index}
+                        senderId={chatIcon.senderId}
+                        receiverId={chatIcon.receiverId}
+                        senderPhoto={chatIcon.senderPhoto}
+                        senderShape={chatIcon.senderShape}
+                        receiverPhoto={chatIcon.receiverPhoto}
+                        receiverShape={chatIcon.receiverShape}
+                        senderName={chatIcon.senderName}
+                        receiverName={chatIcon.receiverName}
                     />
                 ))}
         </div>

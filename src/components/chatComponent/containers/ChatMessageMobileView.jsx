@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { ChatContext } from '../../../contexts/chatContext/ChatContext';
 import ChatMessages from './ChatMessages';
 import ChatOption from './ChatOption';
+import useInfiniteScrolling from '../../../hooks/useInfiniteScrolling';
+import { apiBaseUrl } from '../../../config.json';
 /**
  * ChatMessageMobileView Component
  * @function ChatMessageMobileView
@@ -17,26 +19,36 @@ import ChatOption from './ChatOption';
 export default function ChatMessageMobileView() {
     // eslint-disable-next-line react/prop-types
     //let { sender, receiver } = props.match.params;
-    useEffect(() => {
-        // to do get chat data
-    }, []);
+    let { sender, receiver } = useParams();
     const messagesEndRef = useRef(null);
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
-
-    let { currPopUpOpenChat, sendMessage } = useContext(ChatContext);
     let {
-        sender = 'gaser',
-        senderLink = '#',
-        receiver = 'omda',
-        receiverLink = '#',
-        chatId = 0
-    } = currPopUpOpenChat || {};
+        currPopUpOpenChat,
+        sendMessage,
+        pageNumber,
+        setConversationMsg,
+        conversationMsg
+    } = useContext(ChatContext);
+    let { senderName, receiverName } = currPopUpOpenChat || {};
+    const {
+        error,
+        data: msgs,
+        isPending,
+        hasMore
+    } = useInfiniteScrolling(
+        `${apiBaseUrl}/messaging/conversation/${sender}/${receiver}?page=${pageNumber}`
+    );
+    useEffect(() => {}, []);
+    useEffect(() => {
+        setConversationMsg(msgs);
+    }, [msgs]);
+
     const [messageToSend, setMessageToSend] = useState('');
     useEffect(() => {
         setMessageToSend('');
-    }, [chatId]);
+    }, []);
     useEffect(() => {
         scrollToBottom();
     }, [currPopUpOpenChat]);
@@ -73,15 +85,15 @@ export default function ChatMessageMobileView() {
             <div className="chat-popup">
                 <div className="chat-popup-header">
                     {showOption && (
-                        <ChatOption close={closeOption} name={receiver} />
+                        <ChatOption close={closeOption} name={receiverName} />
                     )}
                     <NavLink to="/messaging">
                         <i className="fas fa-angle-left"></i>
                     </NavLink>
                     <div className="names">
-                        <a href={senderLink}>{sender}</a>
+                        <a href={senderName}>{senderName}</a>
                         {' + '}
-                        <a href={receiverLink}>{receiver}</a>
+                        <a href={receiverName}>{receiverName}</a>
                     </div>
                     <div className="btns">
                         <button onClick={toggleOption}>
@@ -90,7 +102,13 @@ export default function ChatMessageMobileView() {
                     </div>
                 </div>
 
-                <ChatMessages messagesEndRef={messagesEndRef} />
+                <ChatMessages
+                    messagesEndRef={messagesEndRef}
+                    msgs={conversationMsg}
+                    isPending={isPending}
+                    error={error}
+                    hasMore={hasMore}
+                />
                 <div className="chat-popup-footer">
                     <textarea
                         autoFocus

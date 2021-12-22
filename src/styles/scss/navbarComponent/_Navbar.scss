@@ -395,6 +395,7 @@ $border-radius-primary: 3px;
             display: flex;
             align-items: center;
             overflow: hidden;
+            position: relative;
             //border-bottom: 1px solid #dedede;
             padding: 15px;
             // &:hover {
@@ -402,11 +403,15 @@ $border-radius-primary: 3px;
             // }
             &-img {
                 margin-right: 10px;
+               
                 img {
                     width: 34px;
                     height: 34px;
-                    border-radius: 50%;
+                    border-radius: 3px;
                 }
+            }
+            &-img.circle img{
+                border-radius: 50%;
             }
             &-text {
                 width: 100%;
@@ -425,6 +430,23 @@ $border-radius-primary: 3px;
                     display: inline-block;
                     text-overflow: ellipsis;
                     white-space: nowrap;
+                }
+            }
+        }
+        &-message.notSeen{
+            .receiver{
+                color: #04B9FF;
+            }
+            .notSeenDot{
+                position: absolute;
+                top: 18px;
+                right: 16px;
+                color: #04B9FF;
+               
+                display: flex;
+                align-items: center;
+                i{
+                    font-size: 5px;
                 }
             }
         }

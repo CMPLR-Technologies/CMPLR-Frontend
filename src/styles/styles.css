@@ -2060,6 +2060,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  position: relative;
   padding: 15px;
 }
 .popup-messages-message-img {
@@ -2068,6 +2069,9 @@
 .popup-messages-message-img img {
   width: 34px;
   height: 34px;
+  border-radius: 3px;
+}
+.popup-messages-message-img.circle img {
   border-radius: 50%;
 }
 .popup-messages-message-text {
@@ -2087,6 +2091,20 @@
   display: inline-block;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.popup-messages-message.notSeen .receiver {
+  color: #04B9FF;
+}
+.popup-messages-message.notSeen .notSeenDot {
+  position: absolute;
+  top: 18px;
+  right: 16px;
+  color: #04B9FF;
+  display: flex;
+  align-items: center;
+}
+.popup-messages-message.notSeen .notSeenDot i {
+  font-size: 5px;
 }
 .popup-newmessage {
   font-size: 1rem;
@@ -3216,6 +3234,7 @@ body #reset-pass-logo {
   display: flex;
   align-items: center;
   overflow: hidden;
+  position: relative;
   padding: 15px;
 }
 .popup-messages-message-img {
@@ -3224,6 +3243,9 @@ body #reset-pass-logo {
 .popup-messages-message-img img {
   width: 34px;
   height: 34px;
+  border-radius: 3px;
+}
+.popup-messages-message-img.circle img {
   border-radius: 50%;
 }
 .popup-messages-message-text {
@@ -3243,6 +3265,20 @@ body #reset-pass-logo {
   display: inline-block;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.popup-messages-message.notSeen .receiver {
+  color: #04B9FF;
+}
+.popup-messages-message.notSeen .notSeenDot {
+  position: absolute;
+  top: 18px;
+  right: 16px;
+  color: #04B9FF;
+  display: flex;
+  align-items: center;
+}
+.popup-messages-message.notSeen .notSeenDot i {
+  font-size: 5px;
 }
 .popup-newmessage {
   font-size: 1rem;

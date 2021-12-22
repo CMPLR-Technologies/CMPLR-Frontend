@@ -10,44 +10,68 @@ export default function MessageItem(props) {
 
     let {
         sender,
+        senderId,
         receiver,
+        receiverId,
         message,
-        chat,
-        shortParagrah,
         photo,
-        chatId,
         clickMessagePopup,
-        mobile
+        mobile,
+        shape,
+        isRead,
+        lastOneSend
     } = props;
     let { openChatPopup } = useContext(ChatContext);
     const navigate = useNavigate();
 
     const openChat = () => {
         if (mobile) {
-            let route = `/messaging/conversation/${sender}/${receiver}`;
+            console.log(senderId);
+            let route = `/messaging/conversation/${senderId}/${receiverId}`;
+            openChatPopup(senderId, receiverId);
             navigate(route);
-            openChatPopup(chatId);
             return;
         }
-        openChatPopup(chatId);
+        let receiverPhoto = photo;
+        let receiverShape = shape;
+        let senderPhoto = photo;
+        let senderShape = shape;
+        let senderName = sender;
+        let receiverName = receiver;
+
+        //console.log('helo:,', senderId, receiverId);
+
+        openChatPopup(
+            senderId,
+            receiverId,
+            senderPhoto,
+            senderShape,
+            receiverPhoto,
+            receiverShape,
+            senderName,
+            receiverName
+        );
         // close the dropdown list
         clickMessagePopup();
     };
     return (
-        <div onClick={openChat} className="popup-messages-message">
-            <div className="popup-messages-message-img">
+        <div
+            onClick={openChat}
+            className={`popup-messages-message ${!isRead&&lastOneSend===receiver ? 'notSeen' : ''}`}
+        >
+            <div className={`popup-messages-message-img ${shape}`}>
                 <img src={photo}></img>
             </div>
             <div className="popup-messages-message-text">
                 <h3 className="receiver">{receiver}</h3>
-                {/*if chat==true then i call compenent from messages popup else i call it from new message search*/}
-                {chat ? (
-                    <div className="sender-up">
-                        <h3 className="sender">{sender + ': '}</h3>
-                        <p className="message">{message}</p>
+                <div className="sender-up">
+                    <h3 className="sender">{lastOneSend + ': '}</h3>
+                    <p className="message">{message}</p>
+                </div>
+                {!isRead&&lastOneSend===receiver&& (
+                    <div className="notSeenDot">
+                        <i className="fas fa-circle"></i>
                     </div>
-                ) : (
-                    <span className="message">{shortParagrah}</span>
                 )}
             </div>
         </div>
@@ -61,7 +85,12 @@ MessageItem.propTypes = {
     chat: PropTypes.bool,
     shortParagrah: PropTypes.string,
     photo: PropTypes.string,
+    shape: PropTypes.string,
     chatId: PropTypes.string,
     clickMessagePopup: PropTypes.func,
-    mobile: PropTypes.bool
+    mobile: PropTypes.bool,
+    lastOneSend: PropTypes.string,
+    isRead: PropTypes.bool,
+    receiverId: PropTypes.string,
+    senderId: PropTypes.string
 };
