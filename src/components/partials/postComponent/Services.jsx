@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { apiBaseUrl } from '../../../config.json';
 
 //=================================================Footer Services============================================
-export function handleLikePost(setLoveFillColor, postId, token) {
+export function handleLikePost(setLoveFillColor, setLiked, postId, token) {
     Axios({
         method: 'POST',
         url: `${apiBaseUrl}/user/like`,
@@ -18,12 +18,13 @@ export function handleLikePost(setLoveFillColor, postId, token) {
         .then(res => {
             if (res.status === 200) {
                 setLoveFillColor('rgb(255,73,47)');
+                setLiked(true);
             }
         })
         .catch(() => {});
 }
 
-export function handleUnlikePost(setLoveFillColor, postId, token) {
+export function handleUnlikePost(setLoveFillColor, setLiked, postId, token) {
     Axios({
         method: 'DELETE',
         url: `${apiBaseUrl}/user/unlike`,
@@ -38,6 +39,7 @@ export function handleUnlikePost(setLoveFillColor, postId, token) {
         .then(res => {
             if (res.status === 200) {
                 setLoveFillColor('gray');
+                setLiked(false);
             }
         })
         .catch(() => {});

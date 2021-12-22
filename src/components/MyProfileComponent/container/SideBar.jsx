@@ -1,29 +1,32 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Radar from '../../partials/Radar';
 import ListItem from './ListItem';
 export default function Sidebar(props) {
-    const { activeSide } = props;
+    const { activeSide, postLength, followersLength } = props;
+    const { blogUrlIdf } = useParams();
     const [clicked, setClicked] = useState(activeSide);
     useEffect(() => {
         setClicked(activeSide);
     }, [activeSide]);
+    //TODO change hardCoded here
     const listItems = [
         {
-            primary: 'kholdbold',
+            primary: blogUrlIdf,
             secondary: 'khaldon',
             prof: false,
             link: '/blog/kholdbold'
         },
         {
             primary: 'Posts',
-            secondary: '8',
+            secondary: postLength ? postLength : '--',
             prof: true,
             link: '/blog/kholdbold'
         },
         {
             primary: 'Followers',
-            secondary: '8',
+            secondary: followersLength ? followersLength : '--',
             prof: true,
             link: '/blog/kholdbold/followers'
         },

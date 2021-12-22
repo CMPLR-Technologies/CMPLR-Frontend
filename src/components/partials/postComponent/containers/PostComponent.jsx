@@ -100,6 +100,8 @@ export default function PostComponent(props) {
 
     .options-btn .options .list{
         box-shadow: 0 0 15px 0 rgba(0,0,0, 0.5);
+        background-color:rgb(${themes[theme].white});
+        
     }
     .post-time-text,
     .opt-btn,

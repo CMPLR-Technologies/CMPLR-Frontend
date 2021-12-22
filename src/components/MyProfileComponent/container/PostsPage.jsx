@@ -1,20 +1,11 @@
 import React from 'react';
 import Sidebar from '../container/SideBar';
 import CreatePost from '../../createPost/View';
-import useInfiniteScrolling from '../../../hooks/useInfiniteScrolling';
-import { apiBaseUrl } from '../../../config.json';
 import PostComponent from '../../partials/postComponent/containers/PostComponent';
 import { LinearProgress } from '@mui/material';
-import { useParams } from 'react-router-dom';
 
-export default function PostsPage() {
-    const { blogName } = useParams();
-    const {
-        error,
-        data: posts,
-        isPending
-    } = useInfiniteScrolling(`${apiBaseUrl}/posts/view/${blogName}`);
-
+export default function PostsPage(props) {
+    const { posts, isPending, error } = props.response;
     return (
         <>
             <CreatePost />

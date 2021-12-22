@@ -109,7 +109,7 @@ export function editPost(postId, dataBody, navigate) {
             id: postId,
             data: dataBody
         }
-    })
+    })  
         .then(res => {
             navigate('/dashboard');
             return res;

@@ -64,9 +64,10 @@ export default function Footer(props) {
         blogPage,
         radar
     } = props;
+    const [liked, setLiked] = useState(isLiked);
     const [isShareListOpen, setIsShareListOpen] = useState(false);
     const [loveFillColor, setLoveFillColor] = useState(
-        `${isLiked ? 'rgb(255,73,47)' : 'gray'}`
+        `${liked ? 'rgb(255,73,47)' : 'gray'}`
     );
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [notesView, setNotesView] = useState(false);
@@ -252,14 +253,17 @@ export default function Footer(props) {
                                 setNotes,
                                 setCounts
                             );
-                            !isLiked
+                            !liked
                                 ? handleLikePost(
                                       setLoveFillColor,
+                                      setLiked,
                                       postId,
                                       user?.token
                                   )
                                 : handleUnlikePost(
                                       setLoveFillColor,
+                                      setLiked,
+
                                       postId,
                                       user?.token
                                   );

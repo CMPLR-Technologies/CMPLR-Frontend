@@ -43,10 +43,6 @@ export default function MainRoutes() {
                         path="/reset_password/:token"
                         element={<ResetPassword />}
                     />
-<<<<<<< HEAD
-=======
-
->>>>>>> Task17
                     <Route
                         path="/reblog/:blogName/:postId/:reblogKey"
                         element={<CreateModal reblog={true} />}
@@ -56,7 +52,7 @@ export default function MainRoutes() {
                         path="/edit/:blogName/:postId"
                         element={<CreateModal reblog={false} edit={true} />}
                     />
-                    <Route path="/blog/:blogName/*" element={<MyProfile />} />
+                    <Route path="/blog/:blogUrlIdf/*" element={<MyProfile />} />
                 </Routes>
                 <style>{css}</style>
             </Router>

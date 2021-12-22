@@ -27,7 +27,7 @@
     }
   },
   "like": {
-    "id": 4
+    "id": 1
   },
   "unlike": {
     "id": 1,
@@ -499,30 +499,92 @@
       }
     }
   },
-  "followers": [
-    {
-      "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-      "blogName": "twix123",
-      "followerName": "Untitled",
-      "isFollowed": true
+  "followers": {
+    "response": [
+      {
+        "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+        "blogName": "twix123",
+        "followerName": "Untitled",
+        "isFollowed": true
+      },
+      {
+        "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+        "blogName": "chezmod",
+        "followerName": "Untitled",
+        "isFollowed": false
+      },
+      {
+        "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+        "blogName": "khold",
+        "followerName": "khaldon",
+        "isFollowed": false
+      },
+      {
+        "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+        "blogName": "Yahia",
+        "followerName": "Yaia",
+        "isFollowed": false
+      }
+    ]
+  },
+  "kholdbold": {
+    "meta": {
+      "status_code": 200,
+      "msg": "Success"
     },
-    {
-      "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-      "blogName": "chezmod",
-      "followerName": "Untitled",
-      "isFollowed": false
-    },
-    {
-      "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-      "blogName": "khold",
-      "followerName": "khaldon",
-      "isFollowed": false
-    },
-    {
-      "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-      "blogName": "Yahia",
-      "followerName": "Yaia",
-      "isFollowed": false
+    "response": {
+      "post": [
+        {
+          "post": {
+            "post_id": 1,
+            "type": "photos",
+            "state": "publish",
+            "title": "test title",
+            "content": "<h1>hello i am ahmed4 </h1> <br/> <div><img src='https://image.shutterstock.com/image-photo/extra-wide-panorama-high-tatra-260nw-686813899.jpg'/></div>",
+            "date": "Friday, 17-Dec-21 23:27:28 UTC",
+            "reblog_key": "fsdfas",
+            "number_notes": 1,
+            "source_content": "google.com",
+            "tags": [
+              "summer",
+              "winter"
+            ]
+          },
+          "blog": {
+            "blog_id": 11,
+            "blog_name": "ahmed_4",
+            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+            "avatar_shape": "circle",
+            "replies": "everyone"
+          }
+        },
+        {
+          "post": {
+            "post_id": 4,
+            "type": "photos",
+            "state": "publish",
+            "title": "test title",
+            "content": "<h1>hello i am ahmed5 </h1>",
+            "date": "Friday, 17-Dec-21 23:27:26 UTC",
+            "source_content": "google.com",
+            "tags": [
+              "summer",
+              "winter"
+            ]
+          },
+          "blog": {
+            "blog_id": 11,
+            "blog_name": "ahmed_3",
+            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+            "avatar_shape": "circle",
+            "replies": "everyone"
+          }
+        }
+      ],
+      "next_url": "http://127.0.0.1:8000/api/posts/view/ahmed_3?page=2",
+      "total": 5,
+      "current_page": 1,
+      "posts_per_page": 2
     }
-  ]
+  }
 }

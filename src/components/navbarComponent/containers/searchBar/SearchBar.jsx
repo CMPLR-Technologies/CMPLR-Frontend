@@ -14,7 +14,7 @@ import ClickAwayListener from '@mui/base/ClickAwayListener';
  * @returns {Component} input field
  */
 export default function SearchBar(props) {
-    const { placeHolder } = props;
+    const { placeHolder, searchFollower } = props;
     const [isHover, setIsHover] = useState(false);
     const [searchWord, setSearchWord] = useState('');
     const [openSearch, setOpenSearch] = useState(false);
@@ -53,6 +53,11 @@ export default function SearchBar(props) {
                     onBlur={changeHover}
                     onChange={onChange}
                     focus=""
+                    onKeyUp={e => {
+                        if (e.key === 'Enter' && placeHolder !== '') {
+                            searchFollower(e.target.value);
+                        }
+                    }}
                     className="search-input"
                     placeholder={placeHolder ? placeHolder : 'Search Tumblr'}
                 ></input>
