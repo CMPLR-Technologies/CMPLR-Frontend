@@ -76,6 +76,26 @@ export function fetchPost(postId, setPost, edit, setTitlePost, setContent) {
         .catch(() => {});
 }
 
+export function editPost(postId, dataBody, navigate) {
+    Axios({
+        method: 'POST',
+        url: `${apiBaseUrl}/posts/edit`,
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+        },
+        data: {
+            id: postId,
+            data: dataBody
+        }
+    })
+        .then(res => {
+            navigate('/dashboard');
+            return res;
+        })
+        .catch(() => {});
+}
+
 export function reblogPost(post, comment, navigate) {
     Axios({
         method: 'POST',
@@ -88,26 +108,6 @@ export function reblogPost(post, comment, navigate) {
             id: post['post_id'],
             reblog_key: post['reblog_key'],
             comment: comment
-        }
-    })
-        .then(res => {
-            navigate('/dashboard');
-            return res;
-        })
-        .catch(() => {});
-}
-
-export function editPost(postId, dataBody, navigate) {
-    Axios({
-        method: 'POST',
-        url: `${apiBaseUrl}/posts/edit`,
-        headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json'
-        },
-        data: {
-            id: postId,
-            data: dataBody
         }
     })
         .then(res => {
