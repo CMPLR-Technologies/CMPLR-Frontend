@@ -3536,6 +3536,7 @@ body #reset-pass-logo {
 .lSyOz .rmkqO .Il4T7 .TRX6J {
   color: inherit;
   font: inherit;
+  cursor: pointer;
   background-color: transparent;
   border: 1px solid #405368;
   margin: 0;
@@ -3544,7 +3545,7 @@ body #reset-pass-logo {
   margin-left: 10px;
 }
 .lSyOz .rmkqO .Il4T7 .TRX6J:disabled {
-  cursor: inherit;
+  cursor: unset;
   border: 1px solid #405368;
 }
 .lSyOz .rmkqO .Il4T7 .TRX6J .Tb7Ey {

@@ -13,9 +13,6 @@ export default function DropDownPostListFollow(props) {
                 }}
             >
                 <div className="iaJAj">
-                    <button className="XLZRW" style={{ color: 'red' }}>
-                        Report
-                    </button>
                     <button
                         onClick={() => {
                             setOpen();

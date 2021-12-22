@@ -23,7 +23,7 @@ export default function SearchForm(props) {
             <button
                 className="TRX6J"
                 onClick={handleSearchFollow}
-                disabled={search && search?.length < 2}
+                disabled={search?.length < 2}
                 style={{
                     backgroundColor:
                         search?.length < 2 ? 'transparent' : '#00B8FF',

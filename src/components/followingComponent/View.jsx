@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
 import { LinearProgress } from '@mui/material';
-
+import InfiniteScroll from 'react-infinite-scroll-component';
 import Sidebar from '../dashboardComponent/containers/Sidebar';
 import SearchForm from './containers/SearchForm';
 import ItemList from './containers/ItemList';
@@ -15,6 +14,7 @@ import { followAccount, unfollowAccount, getFollowingList } from './Service';
  */
 
 export default function FollowingPage() {
+    const [hasMore, setHasMore] = useState(true);
     const [responseMsg, setResponseMsg] = useState('');
     const user = JSON.parse(localStorage.getItem('user'));
     const [openPopup, setOpenPopup] = useState(false);
@@ -23,53 +23,36 @@ export default function FollowingPage() {
     const [error, setError] = useState(false);
     const [followingList, setFollowingList] = useState([]);
     const [totalFollowing, setTotalFollowing] = useState(0);
-    const [page, setPage] = useState(null);
+    const [page, setPage] = useState(1);
 
     const handleSearchFollow = () => {
         followAccount(user?.token, search, setResponseMsg);
     };
+
     const handleUnfollow = unfollowAcc => {
         unfollowAccount(user?.token, unfollowAcc, setResponseMsg);
     };
+
     const handleBlock = () => {};
 
-    const handleScroll = e => {
-        console.log('scrolling');
-        const scrollTop = e.target.documentElement.scrollTop;
-        const scrollHeight = e.target.documentElement.scrollHeight;
-        const windowHeight = window.innerHeight;
-        console.log(
-            'total ',
-            windowHeight + scrollTop + 10,
-            '  to ',
-            scrollHeight
-        );
-        if (windowHeight + scrollTop + 10 >= scrollHeight) {
+    const handleScroll = () => {
+        if (hasMore) {
             getFollowingList(
                 setFollowingList,
                 followingList,
                 user?.token,
                 setIsPending,
-                setResponseMsg,
+                setError,
                 setTotalFollowing,
                 page,
-                setPage
+                setPage,
+                setHasMore
             );
         }
     };
 
     useEffect(() => {
-        getFollowingList(
-            setFollowingList,
-            followingList,
-            user?.token,
-            setIsPending,
-            setError,
-            setTotalFollowing,
-            page,
-            setPage
-        );
-        window.addEventListener('scroll', handleScroll);
+        handleScroll();
     }, []);
 
     return (
@@ -88,27 +71,38 @@ export default function FollowingPage() {
                                 {responseMsg}
                             </span>
                         )}
-                        <section className="NedHV">
-                            {followingList &&
-                                followingList.map((f, i) => {
-                                    return (
-                                        <ItemList
-                                            key={f?.blog_id ? f?.blog_id : i}
-                                            setOpenBlock={setOpenPopup}
-                                            lastUpdated={
-                                                'Updated 2 minutes ago'
-                                            }
-                                            profileName={
-                                                f?.blog_name
-                                                    ? f?.blog_name
-                                                    : 'unknown'
-                                            }
-                                            handleUnfollow={handleUnfollow}
-                                            avatar={f?.avatar}
-                                        />
-                                    );
-                                })}
-                        </section>
+                        <InfiniteScroll
+                            dataLength={followingList?.length} //This is important field to render the next data
+                            next={handleScroll}
+                            hasMore={hasMore}
+                            loader={<LinearProgress />}
+                            endMessage={<></>}
+                        >
+                            <section className="NedHV">
+                                {followingList &&
+                                    followingList.map((f, i) => {
+                                        return (
+                                            <ItemList
+                                                key={
+                                                    f?.blog_id ? f?.blog_id : i
+                                                }
+                                                setOpenBlock={setOpenPopup}
+                                                lastUpdated={
+                                                    'Updated 2 minutes ago'
+                                                }
+                                                profileName={
+                                                    f?.blog_name
+                                                        ? f?.blog_name
+                                                        : 'unknown'
+                                                }
+                                                handleUnfollow={handleUnfollow}
+                                                avatar={f?.avatar}
+                                            />
+                                        );
+                                    })}
+                                {isPending && <LinearProgress />}
+                            </section>
+                        </InfiniteScroll>
                     </div>
 
                     {error && (
@@ -119,7 +113,6 @@ export default function FollowingPage() {
                             {"Couldn't load"}
                         </div>
                     )}
-                    {isPending && <LinearProgress />}
                 </div>
                 <Sidebar />
             </div>

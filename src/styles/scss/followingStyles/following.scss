@@ -51,6 +51,7 @@
             .TRX6J {
                 color: inherit;
                 font: inherit;
+                cursor: pointer;
                 background-color: transparent;
                 border: 1px solid #405368;
                 margin: 0;
@@ -58,7 +59,7 @@
                 user-select: none;
                 margin-left: 10px;
                 &:disabled {
-                    cursor: inherit;
+                    cursor: unset;
                     border: 1px solid #405368;
                 }
                 .Tb7Ey {
