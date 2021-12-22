@@ -7,11 +7,13 @@ export const getFollowingList = (
     userToken,
     setIsPending,
     setError,
-    setTotalFollowing
+    setTotalFollowing,
+    page,
+    setPage
 ) => {
     Axios({
         method: 'GET',
-        url: `${apiBaseUrl}/following?limit=20&offset=${followingList?.length}`,
+        url: `${apiBaseUrl}/user/followings?page=${page ? page : 1}`,
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
@@ -21,11 +23,18 @@ export const getFollowingList = (
         .then(res => {
             setIsPending(false);
             let newArr = [];
-            if (res?.data?.response?.following?.length) {
-                newArr = res?.data?.response?.following;
+            console.log('response:', res?.data?.response);
+            if (res?.data?.response?.blogs?.length !== 0) {
+                newArr = res?.data?.response?.blogs;
             }
             setFollowingList([...followingList, ...newArr]);
-            setTotalFollowing(res?.data?.response?.following?.total);
+            setTotalFollowing(
+                res?.data?.response?.total_following
+                    ? res?.data?.response?.total_following
+                    : 0
+            );
+            setPage(res?.data?.response?.next_page);
+            console.log(res?.data?.response?.next_page, 'current Page res');
         })
         .catch(() => {
             setError(true);

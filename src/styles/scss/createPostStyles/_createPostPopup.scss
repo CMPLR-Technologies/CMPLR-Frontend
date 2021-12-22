@@ -443,7 +443,11 @@
 .containerofchip {
     width: 100%;
     display: relative;
-    overflow: auto;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
     .chipStyled {
         background-color: white;
         outline: none;

@@ -28,7 +28,9 @@ const Input = styled('input')({
     display: 'none'
 });
 export default function HandMadeTextEditor(props) {
-    const { setContent, reblog, post, editContent, setSpinner } = props;
+    const { setContent, reblog, post, setSpinner } = props;
+    const user = JSON.parse(localStorage.getItem('user'));
+
     return (
         <>
             {reblog && post?.post && (
@@ -113,7 +115,8 @@ export default function HandMadeTextEditor(props) {
                                 handleUploadImage(
                                     e.target.files[0],
                                     setContent,
-                                    setSpinner
+                                    setSpinner,
+                                    user?.token
                                 )
                             }
                             accept="image/*"
@@ -130,8 +133,8 @@ export default function HandMadeTextEditor(props) {
                             onChange={e =>
                                 handleUploadVideo(
                                     e.target.files[0],
-                                    setContent,
-                                    setSpinner
+                                    setSpinner,
+                                    user?.token
                                 )
                             }
                             id="to-video-words"

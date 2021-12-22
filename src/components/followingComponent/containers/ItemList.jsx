@@ -1,11 +1,12 @@
 import React from 'react';
-import p0 from '../../../assets/images/profile_pic0.png';
+//import p0 from '../../../assets/images/profile_pic0.png';
 import PropTypes from 'prop-types';
 import DropDownPostListFollow from './DropDownListFollow';
 import { Popover } from '@mui/material';
 
 export default function ItemList(props) {
-    const { handleUnfollow, profileName, lastUpdated, setOpenBlock } = props;
+    const { handleUnfollow, profileName, avatar, lastUpdated, setOpenBlock } =
+        props;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -31,7 +32,7 @@ export default function ItemList(props) {
                                             <div className="ntiBu">
                                                 <div className="_0MuRn">
                                                     <img
-                                                        src={p0}
+                                                        src={avatar}
                                                         alt="profile_pic"
                                                         loading="eager"
                                                         className="ppimg"
@@ -116,5 +117,6 @@ ItemList.propTypes = {
     handleUnfollow: PropTypes.func.isRequired,
     profileName: PropTypes.string.isRequired,
     setOpen: PropTypes.string.isRequired,
-    setOpenBlock: PropTypes.string.isRequired
+    setOpenBlock: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired
 };
