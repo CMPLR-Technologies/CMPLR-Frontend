@@ -76,16 +76,45 @@ export default function MainRoutes() {
                     <Route path="/reset_password" element={<ResetPassword />} />
 
                     <Route
-                        path="/a"
+                        path="/settings/account"
                         element={
                             <WithNavbar
                                 component={<Settings page={'account'} />}
                             />
                         }
                     />
-                    {/* <Route path="/settings/dashboard" element={<Settings />} />
-                    <Route path="/settings/apps" element={<Settings />} />
-                    <Route path="/settings/privacy" element={<Settings />} /> */}
+                    <Route
+                        path="/settings"
+                        element={
+                            <WithNavbar
+                                component={<Settings page={'account'} />}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/settings/dashboard"
+                        element={
+                            <WithNavbar
+                                component={<Settings page={'dashboard'} />}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/settings/notifications"
+                        element={
+                            <WithNavbar
+                                component={<Settings page={'notifications'} />}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/settings/apps"
+                        element={
+                            <WithNavbar
+                                component={<Settings page={'apps'} />}
+                            />
+                        }
+                    />
                     <Route
                         path="/reset_password/:token"
                         element={<ResetPassword />}
@@ -98,10 +127,7 @@ export default function MainRoutes() {
                             />
                         }
                     />
-                    <Route
-                        path="/account/delete"
-                        element={<WithNavbar component={<DeleteAccount />} />}
-                    />
+                    <Route path="/account/delete" element={<DeleteAccount />} />
                 </Routes>
                 <style>{css}</style>
             </Router>

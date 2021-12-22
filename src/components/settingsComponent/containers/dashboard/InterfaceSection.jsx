@@ -1,14 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { SettingsContext } from '../../../../contexts/settingsContext/SettingsContext';
 import { toggleProperty } from '../../Service';
-export default function SecuritySection() {
-    const { emailActivityCheck, TFA, updateProperty } =
+export default function InterfaceSection() {
+    const { endlessScrolling, showBadge, updateProperty } =
         useContext(SettingsContext);
-
     return (
         <div className="security" id="section">
             <div className="sub-section-left">
-                <h3>Security</h3>
+                <h3>Interface</h3>
             </div>
             <div className="sub-section-right">
                 <div className="sub-section-right-up">
@@ -16,11 +15,11 @@ export default function SecuritySection() {
                         <label className="switch">
                             <input
                                 type="checkbox"
-                                checked={emailActivityCheck}
+                                checked={endlessScrolling}
                                 onChange={() => {
                                     toggleProperty(
-                                        'emailActivityCheck',
-                                        !emailActivityCheck,
+                                        'endlessScrolling',
+                                        !endlessScrolling,
                                         updateProperty
                                     );
                                 }}
@@ -29,12 +28,12 @@ export default function SecuritySection() {
                         </label>
                     </div>
                     <div className="text">
-                        <p className="bold-text">
-                            Email me about account activity.
-                        </p>
+                        <p className="bold-text">Enable endless scrolling</p>
                         <p className="un-bold-text">
-                            You will receive an email when someone logs into
-                            your account or a new app is authorized.
+                            Surf your dashboard page-by-page instead of as an
+                            infinitely-scrolling feed. To update the URL for
+                            each page in your browser, you'll also need to
+                            disable Best Stuff First.
                         </p>
                     </div>
                 </div>
@@ -43,20 +42,28 @@ export default function SecuritySection() {
                         <label className="switch">
                             <input
                                 type="checkbox"
-                                checked={TFA}
+                                checked={showBadge}
                                 onChange={() => {
-                                    toggleProperty('TFA', !TFA, updateProperty);
+                                    toggleProperty(
+                                        'showBadge',
+                                        !showBadge,
+                                        updateProperty
+                                    );
                                 }}
                             ></input>
                             <span className="slider round"></span>
                         </label>
                     </div>
                     <div className="text">
-                        <p className="bold-text">Two-factor authentication</p>
+                        {/* TODO:is this showBadge? */}
+                        <p className="bold-text">
+                            Show timestamps on posts, reblogs, and notes.
+                        </p>
                         <p className="un-bold-text">
-                            Enabling two factor authentication makes it extra
-                            difficult for anyone other than you to access your
-                            account. Learn more.
+                            Enabling this displays timestamps in the post,
+                            reblog trail, and notes views. By default,
+                            timestamps are only visible in the meatballs menu on
+                            posts.
                         </p>
                     </div>
                 </div>

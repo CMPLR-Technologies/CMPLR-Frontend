@@ -1,11 +1,11 @@
 import React, { useEffect, useContext } from 'react';
 import PagesList from '../../PagesList';
-import InterfaceSection from './InterfaceSection';
-import SoundsSection from './SoundsSection';
-import PreferencesSection from './PreferencesSection';
+import TumblrNewsSection from './TumblrNewsSection';
+import ConversationalNotificationsSection from './ConversationalNotificationsSection';
 import { getUserAccount } from '../../Service';
+
 import { SettingsContext } from '../../../../contexts/settingsContext/SettingsContext';
-export default function SettingsDashboard() {
+export default function SettingsAccount() {
     const { setSettings } = useContext(SettingsContext);
     useEffect(() => {
         getUserAccount(setSettings);
@@ -15,11 +15,10 @@ export default function SettingsDashboard() {
         <div className="settings">
             <div className="container1">
                 <div className="subcontainer">
-                    <h2 className="title">Dashboard</h2>
+                    <h2 className="title">Notifications</h2>
                     <div>
-                        <InterfaceSection />
-                        <SoundsSection />
-                        <PreferencesSection />
+                        <TumblrNewsSection />
+                        <ConversationalNotificationsSection />
                     </div>
                 </div>
             </div>

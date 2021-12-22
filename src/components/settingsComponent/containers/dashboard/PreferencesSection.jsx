@@ -1,14 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { SettingsContext } from '../../../../contexts/settingsContext/SettingsContext';
 import { toggleProperty } from '../../Service';
-export default function SecuritySection() {
-    const { emailActivityCheck, TFA, updateProperty } =
+export default function PreferencesSection() {
+    const { bestStuffFirst, includeFollowedTags, updateProperty } =
         useContext(SettingsContext);
-
     return (
         <div className="security" id="section">
             <div className="sub-section-left">
-                <h3>Security</h3>
+                <h3>Preferences</h3>
             </div>
             <div className="sub-section-right">
                 <div className="sub-section-right-up">
@@ -16,11 +15,11 @@ export default function SecuritySection() {
                         <label className="switch">
                             <input
                                 type="checkbox"
-                                checked={emailActivityCheck}
+                                checked={bestStuffFirst}
                                 onChange={() => {
                                     toggleProperty(
-                                        'emailActivityCheck',
-                                        !emailActivityCheck,
+                                        'bestStuffFirst',
+                                        !bestStuffFirst,
                                         updateProperty
                                     );
                                 }}
@@ -29,12 +28,10 @@ export default function SecuritySection() {
                         </label>
                     </div>
                     <div className="text">
-                        <p className="bold-text">
-                            Email me about account activity.
-                        </p>
+                        <p className="bold-text">Best Stuff First</p>
                         <p className="un-bold-text">
-                            You will receive an email when someone logs into
-                            your account or a new app is authorized.
+                            This switch puts stuff you'll like at the top of
+                            your dash.
                         </p>
                     </div>
                 </div>
@@ -43,20 +40,22 @@ export default function SecuritySection() {
                         <label className="switch">
                             <input
                                 type="checkbox"
-                                checked={TFA}
+                                checked={includeFollowedTags}
                                 onChange={() => {
-                                    toggleProperty('TFA', !TFA, updateProperty);
+                                    toggleProperty(
+                                        'includeFollowedTags',
+                                        !includeFollowedTags,
+                                        updateProperty
+                                    );
                                 }}
                             ></input>
                             <span className="slider round"></span>
                         </label>
                     </div>
                     <div className="text">
-                        <p className="bold-text">Two-factor authentication</p>
+                        <p className="bold-text">Include followed tag posts</p>
                         <p className="un-bold-text">
-                            Enabling two factor authentication makes it extra
-                            difficult for anyone other than you to access your
-                            account. Learn more.
+                            Posts from the tags you follow.
                         </p>
                     </div>
                 </div>

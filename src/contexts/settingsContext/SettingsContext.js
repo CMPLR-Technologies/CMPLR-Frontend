@@ -31,6 +31,7 @@ class SettingsContextProvider extends Component {
             tumblrNews: settings.notification.tumblr_news,
             conversationalNotification:
                 settings.notification.conversational_notification,
+                
             endlessScrolling: settings.dashboard.endless_scrolling,
             showBadge: settings.dashboard.show_badge,
             textEditor: settings.dashboard.text_editor,

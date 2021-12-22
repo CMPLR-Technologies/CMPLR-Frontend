@@ -7,7 +7,7 @@ export function deleteAccount(password, email, setErrorMsg, history) {
         axios({
             //TODO change to delete
             method: 'get',
-            url: `${apiBaseUrl}/settings/account/delete`,
+            url: `${apiBaseUrl}/settings/account/delete`
             // data: {
             //     email: email,
             //     password: password
@@ -15,7 +15,7 @@ export function deleteAccount(password, email, setErrorMsg, history) {
         })
             .then(res => {
                 if (res.data.meta.status_code === 200) {
-                    history.push('/');
+                    history('/');
                 } else {
                     setErrorMsg('Error deleting account');
                 }

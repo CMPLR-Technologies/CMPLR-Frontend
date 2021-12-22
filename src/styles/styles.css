@@ -2340,6 +2340,45 @@ body .settings .container1 .subcontainer #section .filtering-list-two .filtering
   width: 98px;
   height: 33px;
 }
+body .settings .container1 .subcontainer #section .one-section {
+  display: flex;
+  justify-content: space-between;
+}
+body .settings .container1 .subcontainer #section .one-section .text-and-btns {
+  display: flex;
+  flex-wrap: wrap;
+  width: 172px;
+  height: 168px;
+  margin-top: 30px;
+  padding: 15px 15px 15px 15px;
+}
+body .settings .container1 .subcontainer #section .one-section .text-and-btns .text {
+  font-size: 15px;
+  width: 100%;
+  height: 59px;
+  margin-bottom: 15px;
+}
+body .settings .container1 .subcontainer #section .one-section .text-and-btns .anchor1 {
+  margin-bottom: 15px;
+  width: 75%;
+  height: 30px;
+}
+body .settings .container1 .subcontainer #section .one-section .text-and-btns .anchor1 #app_iphone {
+  width: 100%;
+  height: 100%;
+  background-color: #00b8ff;
+  color: white;
+}
+body .settings .container1 .subcontainer #section .one-section .text-and-btns .anchor2 {
+  width: 75%;
+  height: 30px;
+}
+body .settings .container1 .subcontainer #section .one-section .text-and-btns .anchor2 #app_android {
+  width: 100%;
+  height: 100%;
+  background-color: #00cf35;
+  color: white;
+}
 body .container2 {
   display: flex;
   flex-direction: column;
@@ -4230,15 +4269,31 @@ body #reset-pass-logo {
   font: inherit;
 }
 
-.LoginCard .logo-delete-account {
-  font-size: 30px;
-  margin-top: 45px;
+#delete-account-card {
+  width: 385px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
-.LoginCard .form-msg .form-ms-delete-account {
+#delete-account-card .logo-delete-account {
+  font-size: 30px;
+  margin-top: 15px;
+  width: 100%;
+}
+#delete-account-card .form-msg-delete-account {
+  background-color: #001935;
+  width: 345px;
   text-align: center;
   font-size: 15px;
   padding: 0;
   color: white;
+  width: 100%;
+}
+#delete-account-card #delete-account-form {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 * {
