@@ -1,22 +1,20 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { SettingsContext } from '../../../../contexts/settingsContext/SettingsContext';
-export default function FilteringSectionVersion1({
-    setFilteringVersion1,
-    numOfFilteringTags
-}) {
-    const { filteringTags } = useContext(SettingsContext);
-
+import PropTypes from 'prop-types';
+export default function FilteringTagsSectionVersion1({ setFilteringVersion1 }) {
+    const { filteredTags } = useContext(SettingsContext);
+    let numOfFilteringTags = filteredTags === null ? 0 : filteredTags.length;
     return (
         <>
             {numOfFilteringTags === 0 && (
                 <p className="email">You are not filtering any tags</p>
             )}
             {numOfFilteringTags > 0 && (
-                <ul class="filtering-list-one">
-                    {filteringTags
+                <ul className="filtering-list-one">
+                    {filteredTags
                         .slice(
                             0,
-                            (numOfFilteringTags > 4) ? 4 : numOfFilteringTags
+                            numOfFilteringTags > 4 ? 4 : numOfFilteringTags
                         )
                         .map((tag, index) => (
                             <li className="filtering-item-one" key={index}>
@@ -24,7 +22,7 @@ export default function FilteringSectionVersion1({
                                     type="button"
                                     onClick={() => setFilteringVersion1(false)}
                                 >
-                                    {tag}
+                                    {tag.slice(0, 7)}
                                 </button>
                             </li>
                         ))}
@@ -47,3 +45,7 @@ export default function FilteringSectionVersion1({
         </>
     );
 }
+FilteringTagsSectionVersion1.propTypes = {
+    setFilteringVersion1: PropTypes.func.isRequired,
+    numOfFilteringTags: PropTypes.number.isRequired
+};

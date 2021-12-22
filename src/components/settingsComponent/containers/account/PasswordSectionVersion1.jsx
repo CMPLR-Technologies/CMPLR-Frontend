@@ -1,24 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { SettingsContext } from '../../../../contexts/settingsContext/SettingsContext';
+import React from 'react';
+import PropTypes from 'prop-types';
 export default function PasswordSectionVersion1({ setVersionOne }) {
-    const [shownPassword, setShownPassword] = useState('');
-    const { password } = useContext(SettingsContext);
-    useEffect(() => {
-        setShownPassword(password);
-    }, [password]);
     return (
         <div className="password" id="section">
             <div className="sub-section-left">
                 <h3>Password</h3>
             </div>
             <div className="sub-section-right">
-                <p className="password-dots">
-                    {shownPassword.split('').map(index => (
-                        <span key={index} style={{ color: 'black' }}>
-                            •
-                        </span>
-                    ))}
-                </p>
+                <p className="password-dots">••••••••••</p>
                 <button className="edit" onClick={() => setVersionOne(false)}>
                     <svg
                         viewBox="0 0 17.6 17.6"
@@ -33,3 +22,6 @@ export default function PasswordSectionVersion1({ setVersionOne }) {
         </div>
     );
 }
+PasswordSectionVersion1.propTypes = {
+    setVersionOne: PropTypes.func.isRequired
+};

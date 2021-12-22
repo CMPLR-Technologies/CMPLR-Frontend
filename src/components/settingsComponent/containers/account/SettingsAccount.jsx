@@ -3,7 +3,7 @@ import PagesList from '../../PagesList';
 import EmailSection from './EmailSection';
 import PasswordSection from './PasswordSection';
 import SecuritySection from './SecuritySection';
-import FilteringSection from './FilteringSection';
+import FilteringTagsSection from './FilteringTagsSection';
 import DeleteSection from './DeleteSection';
 import { getUserAccount } from '../../Service';
 
@@ -11,7 +11,6 @@ import { SettingsContext } from '../../../../contexts/settingsContext/SettingsCo
 export default function SettingsAccount() {
     const { setSettings } = useContext(SettingsContext);
     useEffect(() => {
-        console.log("hello");
         getUserAccount(setSettings);
     }, []);
 
@@ -24,7 +23,7 @@ export default function SettingsAccount() {
                         <EmailSection />
                         <PasswordSection />
                         <SecuritySection />
-                        <FilteringSection />
+                        <FilteringTagsSection />
                         <DeleteSection />
                     </div>
                 </div>

@@ -1,10 +1,10 @@
-import React, { useEffect,useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import AuthInput from '../../partials/AuthInput';
 import AuthBtn from '../../partials/AuthBtn';
 import { newPassword } from '../Service';
 import { getEmail } from '../Service';
 import { useParams } from 'react-router-dom';
-import {UserContext} from '../../../contexts/userContext/UserContext';
+import { UserContext } from '../../../contexts/userContext/UserContext';
 import useRedirect from '../../../hooks/useRedirect';
 /**
  * @function ResetPassword
@@ -14,7 +14,7 @@ import useRedirect from '../../../hooks/useRedirect';
  */
 
 export default function ResetPasswordCard() {
-    const {setUser} =useContext(UserContext);
+    const { setUser } = useContext(UserContext);
     useRedirect();
     const [firstPassword, setFirstPassword] = React.useState('');
     const [secondPassword, setSecondPassword] = React.useState('');
@@ -23,8 +23,8 @@ export default function ResetPasswordCard() {
     const { token } = useParams();
     const [email, setEmail] = React.useState();
     useEffect(() => {
-        getEmail(token,setEmail)
-    }, [])
+        getEmail(token, setEmail);
+    }, []);
 
     return (
         <div className="LoginCard">

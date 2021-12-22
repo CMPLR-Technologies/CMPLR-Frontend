@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { handleUpdateEmail } from '../../Controller';
-import AuthBtn from '../../../partials/AuthBtn';
+import {updateEmailInDb} from '../../Service';
 import AuthInput from '../../../partials/AuthInput';
+import AuthBtn from '../../../partials/AuthBtn';
 import { SettingsContext } from '../../../../contexts/settingsContext/SettingsContext';
+import PropTypes from 'prop-types';
 export default function EmailSectionVersion2({ setVersionOne }) {
-    const { email, updateEmail } = useContext(SettingsContext);
+    const { email, updateProperty } = useContext(SettingsContext);
     const [newEmail, setNewEmail] = useState(email);
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
@@ -37,7 +38,7 @@ export default function EmailSectionVersion2({ setVersionOne }) {
                     id="update-email-password"
                 ></AuthInput>
 
-                {errorMsg.length != 0 && (
+                {errorMsg.length !== 0 && (
                     <div id="update-email-error">
                         <p>{errorMsg}</p>
                     </div>
@@ -53,11 +54,11 @@ export default function EmailSectionVersion2({ setVersionOne }) {
                         text="Save"
                         color="#00b8ff"
                         handleClick={() => {
-                            handleUpdateEmail(
+                            updateEmailInDb(
                                 newEmail,
                                 password,
                                 setErrorMsg,
-                                updateEmail,
+                                updateProperty,
                                 setVersionOne
                             );
                         }}
@@ -68,3 +69,6 @@ export default function EmailSectionVersion2({ setVersionOne }) {
         </div>
     );
 }
+EmailSectionVersion2.propTypes = {
+    setVersionOne: PropTypes.func.isRequired
+};

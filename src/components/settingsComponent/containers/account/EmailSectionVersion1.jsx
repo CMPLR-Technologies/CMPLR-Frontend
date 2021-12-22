@@ -1,7 +1,8 @@
-import React,{useContext} from 'react';
-import { SettingsContext } from "../../../../contexts/settingsContext/SettingsContext";
+import React, { useContext } from 'react';
+import { SettingsContext } from '../../../../contexts/settingsContext/SettingsContext';
+import PropTypes from 'prop-types';
 export default function EmailSectionVersion1({ setVersionOne }) {
-    const{email}=useContext(SettingsContext);
+    const { email } = useContext(SettingsContext);
     return (
         <div className="email" id="section">
             <div className="sub-section-left">
@@ -23,3 +24,6 @@ export default function EmailSectionVersion1({ setVersionOne }) {
         </div>
     );
 }
+EmailSectionVersion1.propTypes = {
+    setVersionOne: PropTypes.func.isRequired
+};

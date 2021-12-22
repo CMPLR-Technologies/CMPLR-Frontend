@@ -1,64 +1,46 @@
 import React, { createContext, Component } from 'react';
 export const SettingsContext = createContext();
-
+import PropTypes from 'prop-types';
 class SettingsContextProvider extends Component {
     state = {
-        email: '',
-        password: '',
-        googleLogin: false,
-        accountActivity: false,
-        twoFactorAuthentication: false,
-        filteringTags: []
+        id: 15,
+        email: 'ahmedmohamedcr62@gmail.com',
+        loginOptions: null,
+        emailActivityCheck: false,
+        TFA: false,
+        filteredTags: null,
+        filteringContent: null,
+        tumblrNews: null,
+        conversationalNotification: true,
+        endlessScrolling: true,
+        showBadge: true,
+        textEditor: 'rich',
+        msgSound: true,
+        bestStuffFirst: true,
+        includeFollowedTags: true
     };
     setSettings = settings => {
         this.setState({
+            id: settings.id,
             email: settings.email,
-            password: settings.password,
-            googleLogin: settings.googleLogin,
-            accountActivity: settings.accountActivity,
-            twoFactorAuthentication: settings.twoFactorAuthentication,
-            filteringTags: settings.filteringTags.split(',')
+            loginOptions: settings.account.login_options,
+            emailActivityCheck: settings.account.email_activity_check,
+            TFA: settings.account.TFA,
+            filteredTags: settings.account.filtered_tags,
+            filteringContent: settings.account.filtering_content,
+            tumblrNews: settings.notification.tumblr_news,
+            conversationalNotification:
+                settings.notification.conversational_notification,
+            endlessScrolling: settings.dashboard.endless_scrolling,
+            showBadge: settings.dashboard.show_badge,
+            textEditor: settings.dashboard.text_editor,
+            msgSound: settings.dashboard.msg_sound,
+            bestStuffFirst: settings.dashboard.best_stuff_first,
+            includeFollowedTags: settings.dashboard.include_followed_tags
         });
     };
-    updateEmail = email => {
-        this.setState({ email: email, ...this.state });
-    };
-    updatePassword = password => {
-        this.setState({ password: password, ...this.state });
-    };
-    updateGoogleLogin = googleLogin => {
-        this.setState({ googleLogin: googleLogin, ...this.state });
-    };
-    updateAccountActivity = accountActivity => {
-        this.setState({
-            accountActivity: accountActivity,
-            ...this.state
-        });
-    };
-    updateTwoFactorAuthentication = twoFactorAuthentication => {
-        this.setState({
-            twoFactorAuthentication: twoFactorAuthentication,
-            ...this.state
-        });
-    };
-    // setFilteringTags = filtering_tags => {
-    //     this.setState({ filtering_tags: filtering_tags, ...this.state });
-    // };
-    addFilteringTag = newTag => {
-        console.log('HHHHHHHHHHHHHI');
-        this.setState({
-            filteringTags: [...this.state.filteringTags, newTag],
-            ...this.state
-        });
-        console.log(this.state);
-    };
-    deleteFilteringTag = tag => {
-        this.setState({
-            filteringTags: this.state.filteringTags.filter(
-                filteringTag => filteringTag !== tag
-            ),
-            ...this.state
-        });
+    updateProperty = (property, value) => {
+        this.setState({ ...this.state, [property]: value });
     };
     render() {
         return (
@@ -69,14 +51,7 @@ class SettingsContextProvider extends Component {
                 value={{
                     ...this.state,
                     setSettings: this.setSettings,
-                    updateEmail: this.updateEmail,
-                    updatePassword: this.updatePassword,
-                    updateGoogleLogin: this.updateGoogleLogin,
-                    updateAccountActivity: this.updateAccountActivity,
-                    updateTwoFactorAuthentication:
-                        this.updateTwoFactorAuthentication,
-                    addFilteringTag: this.addFilteringTag,
-                    deleteFilteringTag: this.deleteFilteringTag
+                    updateProperty: this.updateProperty
                 }}
             >
                 {/* //we pass the children of the provider to the provider component. */}
@@ -85,5 +60,7 @@ class SettingsContextProvider extends Component {
         );
     }
 }
-
+SettingsContextProvider.propTypes = {
+    children: PropTypes.node
+};
 export default SettingsContextProvider;

@@ -1,13 +1,23 @@
+/* eslint-disable camelcase */
 import axios from 'axios';
 import { apiBaseUrl } from '../../config.json';
+import { checkUpdateEmail } from './Controller';
+import { checkUpdatePassword } from './Controller';
+import { checkAddTag } from './Controller';
+
+const camelToSnakeCase = str => {
+    if (str[0] === str[0].toUpperCase()) {
+        return str;
+    }
+    return str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
+};
 export function getUserAccount(setSettings) {
     axios({
         method: 'get',
-        url: `${apiBaseUrl}/settings/account`
+        url: `${apiBaseUrl}/settings`
     })
         .then(res => {
             if (res.data.meta.status_code === 200) {
-                console.log(res.data.response);
                 setSettings(res.data.response);
                 return true;
             } else {
@@ -19,168 +29,132 @@ export function getUserAccount(setSettings) {
         });
 }
 
-export function updateEmailDb(enteredPassword, newEmail) {
+export function updateEmailInDb(
+    newEmail,
+    password,
+    setErrorMsg,
+    updateProperty,
+    setVersionOne
+) {
+    if (checkUpdateEmail(newEmail, password, setErrorMsg)) {
+        axios({
+            //TODO change to post
+            method: 'get',
+            url: `${apiBaseUrl}/settings/change-email`
+            // data: {
+            //     email: newEmail,
+            //     password: password
+            // }
+        })
+            .then(res => {
+                if (res.data.meta.status_code === 200) {
+                    updateProperty('email', res.data.response);
+                    setVersionOne(true);
+                } else {
+                    setErrorMsg('Invalid email entered');
+                }
+            })
+            .catch(() => {
+                setErrorMsg('Error updating email');
+            });
+    }
+}
+
+export function updatePasswordInDb(
+    currPassword,
+    newPassword,
+    confirmNewPassword,
+    setVersionOne,
+    setErrorMsg
+) {
+    if (
+        checkUpdatePassword(
+            currPassword,
+            newPassword,
+            confirmNewPassword,
+            setErrorMsg
+        )
+    ) {
+        axios({
+            //TODO change to post
+            method: 'get',
+            url: `${apiBaseUrl}/settings/change-password`
+            // data: {
+            //     password: currPassword,
+            //     new_password: newPassword,
+            //     confirm_new_password: confirmNewPassword
+            // }
+        })
+            .then(res => {
+                if (res.data.meta.status_code === 200) {
+                    setVersionOne(true);
+                } else {
+                    setErrorMsg('Invalid password entered');
+                }
+            })
+            .catch(() => {
+                setErrorMsg('Error updating password');
+            });
+    }
+}
+
+export function toggleProperty(property, value, updateProperty) {
     axios({
+        //TODO change to put and update endpoint
         method: 'get',
-        url: `${apiBaseUrl}/settings/change_email`
+        //TODO change it to settings
+        url: `${apiBaseUrl}/user/settings2`
         // data: {
-        //     email: newEmail,
-        //     password: enteredPassword
+        //     [camelToSnakeCase(property)]: value
         // }
     })
         .then(res => {
             if (res.data.meta.status_code === 200) {
-                return res.data.response.email;
-            } else {
-                return false;
+                updateProperty(property, value);
             }
         })
-        .catch(() => {
-            return false;
-        });
+        .catch(() => {});
 }
 
-export function updatePasswordDb(oldPassword, newPassword) {
-    axios({
-        method: 'put',
-        url: `${apiBaseUrl}/settings/change_password`,
-        data: {
-            oldPassword: oldPassword,
-            newPassword: newPassword
-        }
-    })
-        .then(res => {
-            if (res.data.meta.status_code === 200) {
-                return true;
-            } else {
-                return false;
-            }
+export function addFilteredTag(filteredTags, updateProperty, tag, setErrMsg) {
+    if (checkAddTag(filteredTags, tag, setErrMsg)) {
+        axios({
+            //TODO change to post
+            method: 'get',
+            url: `${apiBaseUrl}/user/filtered_tags`
+            // data: {
+            //     filtered_tags: tags
+            // }
         })
-        .catch(() => {
-            return false;
-        });
+            .then(res => {
+                if (res.data.meta.status_code === 200) {
+                    updateProperty('filteredTags', filteredTags);
+                } else {
+                    setErrMsg('Error adding tag');
+                }
+            })
+            .catch(() => {
+                setErrMsg('Error adding tag');
+            });
+    }
 }
 
-export function getTagFiltering() {
+export function deleteFilteredTag(tags, updateProperty, tag, setErrMsg) {
+    console.log(tags);
     axios({
+        //TODO change to Delete
         method: 'get',
+        //TODO change it to /user/filtered_tags/${tag}
         url: `${apiBaseUrl}/user/filtered_tags`
     })
         .then(res => {
             if (res.data.meta.status_code === 200) {
-                return res.data.filtered_tags;
+                updateProperty('filteredTags', tags);
             } else {
-                return false;
+                setErrMsg('Error deleting tag');
             }
         })
         .catch(() => {
-            return false;
-        });
-}
-export function addTagFiltering(tags) {
-    axios({
-        method: 'post',
-        url: `${apiBaseUrl}/user/filtered_tags`,
-        data: {
-            filtered_tags: tags
-        }
-    })
-        .then(res => {
-            if (res.data.meta.status_code === 200) {
-                return true;
-            } else {
-                return false;
-            }
-        })
-        .catch(() => {
-            return false;
-        });
-}
-
-export function deleteTagFiltering(tag) {
-    axios({
-        method: 'Delete',
-        url: `${apiBaseUrl}/user/filtered_tags/${tag}`
-    })
-        .then(res => {
-            if (res.data.meta.status_code === 200) {
-                return true;
-            } else {
-                return false;
-            }
-        })
-        .catch(() => {
-            return false;
-        });
-}
-
-export function toogleEmailMe (flag)  {
-    axios({
-        method: 'put',
-        url: `${apiBaseUrl}/settings/email-me`
-    })
-        .then(res => {
-            if (res.data.meta.status_code === 200) {
-                return true;
-            } else {
-                return false;
-            }
-        })
-        .catch(() => {
-            return false;
-        });
-};
-
-export function getContentFiltering() {
-    axios({
-        method: 'get',
-        url: `${apiBaseUrl}/user/filtered_content`
-    })
-        .then(res => {
-            if (res.data.meta.status_code === 200) {
-                return res.data.filtered_content;
-            } else {
-                return false;
-            }
-        })
-        .catch(() => {
-            return false;
-        });
-}
-
-export function addContentFiltering(contents) {
-    axios({
-        method: 'post',
-        url: `${apiBaseUrl}/user/filtered_content`,
-        data: {
-            filtered_tags: contents
-        }
-    })
-        .then(res => {
-            if (res.status_code === 200) {
-                return true;
-            } else {
-                return false;
-            }
-        })
-        .catch(() => {
-            return false;
-        });
-}
-
-export function deleteContentFiltering(content) {
-    axios({
-        method: 'Delete',
-        url: `${apiBaseUrl}/user/filtered_content/${content}`
-    })
-        .then(res => {
-            if (res.status_code === 200) {
-                return true;
-            } else {
-                return false;
-            }
-        })
-        .catch(() => {
-            return false;
+            setErrMsg('Error deleting tag');
         });
 }
