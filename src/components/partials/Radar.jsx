@@ -27,7 +27,7 @@ export default function Radar() {
                         radar={true}
                         otherClass="radar-post"
                         isFollowed={false}
-                        userBlogName={data?.blog['blog_name']}
+                        userBlogName="kholdbold"
                     />
                 </div>
             )}

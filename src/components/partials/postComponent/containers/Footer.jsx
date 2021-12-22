@@ -80,7 +80,7 @@ export default function Footer(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        getPostNotes(blogIdentifier, setNotes, setCounts, 3);
+        getPostNotes(blogIdentifier, setNotes, setCounts, postId);
     }, [loveFillColor]);
 
     useEffect(() => {
@@ -112,7 +112,7 @@ export default function Footer(props) {
                             text="Ok"
                             color="rgb(0, 184, 255)"
                             handleClick={() => {
-                                deletePost(postId, setIsModalOpen);
+                                deletePost(postId, setIsModalOpen,user?.token,navigate);
                             }}
                         />
                     </Modal>

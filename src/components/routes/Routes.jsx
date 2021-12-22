@@ -32,34 +32,6 @@ export default function MainRoutes() {
             <Router>
                 <Navbar />
                 <Routes>
-<<<<<<< HEAD
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/messaging" element={<MessagesPageMobile />} />
-                    <Route path="/new/post" element={<CreateModal />} />
-                    <Route path="/rich" element={<HandMadeTextEditor />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/login" element={<LoginView />} />
-                    <Route path="/" element={<HomePage />} />
-                    <Route
-                        path="/forget_password"
-                        element={<ForgetPassword />}
-                    />
-                    <Route
-                        path="/reset_password/:token"
-                        element={<ResetPassword />}
-                    />
-
-                    <Route
-                        path="/reblog/:blogName/:postId/:reblogKey"
-                        element={<CreateModal reblog={true} />}
-                    />
-
-                    <Route
-                        path="/edit/:blogName/:postId"
-                        element={<CreateModal reblog={false} edit={true} />}
-                    />
-=======
                     <Route path="/tagged/:tag" element={<Hashtag />} />
 
                     <Route element={<RequireUnAuth />}>
@@ -71,6 +43,7 @@ export default function MainRoutes() {
                             path="/forget_password"
                             element={<ForgetPassword />}
                         />
+
                         <Route
                             path="/reset_password/:token"
                             element={<ResetPassword />}
@@ -82,6 +55,10 @@ export default function MainRoutes() {
                     <Route element={<RequireAuth />}>
                         <Route path="/rich" element={<HandMadeTextEditor />} />
                         <Route path="/following" element={<FollowingPage />} />
+                        <Route
+                            path="/edit/:blogName/:postId"
+                            element={<CreateModal reblog={false} edit={true} />}
+                        />
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route
                             path="/post"
@@ -102,7 +79,6 @@ export default function MainRoutes() {
                         />
                         <Route path="/new/post" element={<CreateModal />} />
                     </Route>
->>>>>>> f322d45d84c97ecd408a6e240e4e6b07454fe567
                 </Routes>
                 <style>{css}</style>
             </Router>

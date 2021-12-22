@@ -28,20 +28,19 @@ const Input = styled('input')({
     display: 'none'
 });
 export default function HandMadeTextEditor(props) {
-    const { setContent, reblog, post, setSpinner } = props;
+    const { setContent, reblog, post, setSpinner, editContent } = props;
     const user = JSON.parse(localStorage.getItem('user'));
-
     return (
         <>
             {reblog && post?.post && (
-                <PostComponent
+                <PostComponent                                                                                                                                      
                     radar={true}
                     reblog={true}
                     padding="20px"
                     left="-20px"
-                    post={post}
+                    post={post}                                                                                                                                                                             
                 />
-            )}
+            )}                                                                                                                                                                          
             <div className="main-richeditor">
                 <div
                     className="content"

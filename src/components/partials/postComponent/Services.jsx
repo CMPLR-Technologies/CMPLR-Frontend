@@ -43,19 +43,21 @@ export function handleUnlikePost(setLoveFillColor, postId, token) {
         .catch(() => {});
 }
 
-export function deletePost(postId, setIsModalOpen) {
+export function deletePost(postId, setIsModalOpen, token, navigate) {
     Axios({
         method: 'DELETE',
-        url: `${apiBaseUrl}/post/delete`,
+        url: `${apiBaseUrl}/post/delete/${postId}`,
         headers: {
-            'content-type': 'application/json'
-        },
-        data: {
-            id: postId
+            'content-type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
         }
     })
         .then(res => {
-            if (res.data.Meta.Status === 200) {
+            if (res.data.meta.status_code === 200) {
+                navigate('/empty');
+                navigate('/dashboard');
+
                 setIsModalOpen(false);
             }
         })

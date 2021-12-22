@@ -28,13 +28,25 @@ export const handlePosting = (bodyData, handleClose, token) => {
     }
 };
 
-export function fetchPost(postId, setPost, edit, setTitlePost, setContent) {
+export function fetchPost(
+    postId,
+    setPost,
+    edit,
+    setTitlePost,
+    setContent,
+    token
+) {
     Axios({
         method: 'GET',
-        url: `${apiBaseUrl}/post/${postId}`
+        url: `${apiBaseUrl}/edit/kholdbold/${postId}`,
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        }
     })
         .then(res => {
-            if (res.data.Meta.Status === 200) {
+            if (res.data.meta.status_code === 200) {
                 setPost(res.data.response);
                 if (edit === true) {
                     setTitlePost(res.data.response.post.title);
@@ -45,18 +57,16 @@ export function fetchPost(postId, setPost, edit, setTitlePost, setContent) {
         .catch(() => {});
 }
 
-export function editPost(postId, dataBody, navigate) {
+export function editPost(postId, dataBody, navigate, token) {
     Axios({
-        method: 'POST',
-        url: `${apiBaseUrl}/posts/edit`,
+        method: 'PUT',
+        url: `${apiBaseUrl}/update/ahmed_1/${postId}`,
         headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json'
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
         },
-        data: {
-            id: postId,
-            data: dataBody
-        }
+        data: dataBody
     })
         .then(res => {
             navigate('/dashboard');
@@ -65,13 +75,14 @@ export function editPost(postId, dataBody, navigate) {
         .catch(() => {});
 }
 
-export function reblogPost(post, comment, navigate) {
+export function reblogPost(post, comment, navigate, token) {
     Axios({
         method: 'POST',
         url: `${apiBaseUrl}/posts/reblog`,
         headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json'
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
         },
         data: {
             id: post['post_id'],
