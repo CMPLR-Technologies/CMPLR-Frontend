@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { LinearProgress } from '@mui/material';
 
@@ -6,7 +6,6 @@ import Sidebar from '../dashboardComponent/containers/Sidebar';
 import SearchForm from './containers/SearchForm';
 import ItemList from './containers/ItemList';
 import PopupBlock from './containers/PopupBlock';
-import { UserContext } from '../../contexts/userContext/UserContext';
 import { followAccount, unfollowAccount, getFollowingList } from './Service';
 /**
  * Following Page Component
@@ -17,13 +16,14 @@ import { followAccount, unfollowAccount, getFollowingList } from './Service';
 
 export default function FollowingPage() {
     const [responseMsg, setResponseMsg] = useState('');
-    const { user } = useContext(UserContext);
+    const user = JSON.parse(localStorage.getItem('user'));
     const [openPopup, setOpenPopup] = useState(false);
     const [search, setSearch] = useState('');
-    const [isPending, setIsPending] = useState(false);
+    const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(false);
     const [followingList, setFollowingList] = useState([]);
     const [totalFollowing, setTotalFollowing] = useState(0);
+    const [page, setPage] = useState(null);
 
     const handleSearchFollow = () => {
         followAccount(user?.token, search, setResponseMsg);
@@ -34,9 +34,16 @@ export default function FollowingPage() {
     const handleBlock = () => {};
 
     const handleScroll = e => {
+        console.log('scrolling');
         const scrollTop = e.target.documentElement.scrollTop;
         const scrollHeight = e.target.documentElement.scrollHeight;
         const windowHeight = window.innerHeight;
+        console.log(
+            'total ',
+            windowHeight + scrollTop + 10,
+            '  to ',
+            scrollHeight
+        );
         if (windowHeight + scrollTop + 10 >= scrollHeight) {
             getFollowingList(
                 setFollowingList,
@@ -44,7 +51,9 @@ export default function FollowingPage() {
                 user?.token,
                 setIsPending,
                 setResponseMsg,
-                setTotalFollowing
+                setTotalFollowing,
+                page,
+                setPage
             );
         }
     };
@@ -56,7 +65,9 @@ export default function FollowingPage() {
             user?.token,
             setIsPending,
             setError,
-            setTotalFollowing
+            setTotalFollowing,
+            page,
+            setPage
         );
         window.addEventListener('scroll', handleScroll);
     }, []);
@@ -78,27 +89,27 @@ export default function FollowingPage() {
                             </span>
                         )}
                         <section className="NedHV">
-                            <ItemList
-                                setOpenBlock={setOpenPopup}
-                                lastUpdated={'Updated 2 minutes ago'}
-                                profileName={'profile-name'}
-                                handleUnfollow={handleUnfollow}
-                            />
+                            {followingList &&
+                                followingList.map((f, i) => {
+                                    return (
+                                        <ItemList
+                                            key={f?.blog_id ? f?.blog_id : i}
+                                            setOpenBlock={setOpenPopup}
+                                            lastUpdated={
+                                                'Updated 2 minutes ago'
+                                            }
+                                            profileName={
+                                                f?.blog_name
+                                                    ? f?.blog_name
+                                                    : 'unknown'
+                                            }
+                                            handleUnfollow={handleUnfollow}
+                                            avatar={f?.avatar}
+                                        />
+                                    );
+                                })}
                         </section>
                     </div>
-                    {followingList &&
-                        followingList.map((f, i) => {
-                            return (
-                                <ItemList
-                                    key={i}
-                                    setOpenBlock={setOpenPopup}
-                                    lastUpdated={'Updated 2 minutes ago'}
-                                    profileName={'profile-name'}
-                                    handleUnfollow={handleUnfollow}
-                                    followingInfo={f}
-                                />
-                            );
-                        })}
 
                     {error && (
                         <div

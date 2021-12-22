@@ -16,6 +16,7 @@ import PostComponent from '../partials/postComponent/View';
 import FollowingPage from '../followingComponent/View';
 import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
 import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
+import Hashtag from '../hashtagsComponent/View';
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
     const css = `
@@ -31,6 +32,8 @@ export default function MainRoutes() {
             <Router>
                 <Navbar />
                 <Routes>
+                    <Route path="/tagged/:tag" element={<Hashtag />} />
+
                     <Route element={<RequireUnAuth />}>
                         <Route path="/register" element={<Register />} />
                         <Route path="/register" element={<Register />} />
