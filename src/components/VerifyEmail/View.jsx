@@ -1,11 +1,15 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { resendEmailVerification } from './Service';
-import { UserContext } from '../../contexts/userContext/UserContext';
+import { CircularProgress } from '@mui/material';
 
 export default function VerifyEmail() {
-    const { user } = useContext(UserContext);
-    const [display, setDisplay] = useState(true);
+    const user = JSON.parse(localStorage.getItem('user'));
+    const [display, setDisplay] = useState(
+        !user?.userData?.email_verified_at ? true : false
+    );
+    const [isPending, setIsPending] = useState(false);
+
     return display ? (
         <>
             <div className="main_verify" tabIndex="-1">
@@ -28,15 +32,29 @@ export default function VerifyEmail() {
                                     Update Email
                                 </Link>
                                 <button
-                                    onClick={() =>
+                                    onClick={() => {
+                                        setIsPending(true);
                                         resendEmailVerification(
                                             user?.token,
-                                            setDisplay
-                                        )
-                                    }
+                                            setDisplay,
+                                            setIsPending
+                                        );
+                                    }}
                                     className="TRX6J"
+                                    disabled={isPending}
                                 >
-                                    <span className="CFBrV">Resend</span>
+                                    <span className="CFBrV">
+                                        {!isPending ? (
+                                            <>Resend</>
+                                        ) : (
+                                            <CircularProgress
+                                                style={{
+                                                    width: '20px',
+                                                    height: '20px'
+                                                }}
+                                            />
+                                        )}
+                                    </span>
                                 </button>
                             </div>
                         </div>

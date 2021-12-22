@@ -1,11 +1,12 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState } from 'react';
 import CreatePost from '../createPost/View';
-import Sidebar from './containers/Sidebar';
-import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
-import { LinearProgress } from '@mui/material';
+import RecommendBlogs from './containers/RecommendBlogs';
+import Radar from '../partials/Radar';
+import VerifyEmail from '../verifyEmail/View';
+import VerticalPostsView from '../partials/VerticalPostsView';
 import { apiBaseUrl } from '../../config.json';
-import PostComponent from '../partials/postComponent/containers/PostComponent';
-import VerifyEmail from '../VerifyEmail/View';
+import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
+import useFetch from '../../hooks/useFetch';
 
 export default function Dashboard() {
     const [pageNumber, setPageNumber] = useState(1);
@@ -16,55 +17,33 @@ export default function Dashboard() {
         hasMore
     } = useInfiniteScrolling(`${apiBaseUrl}/user/dashboard?page=${pageNumber}`);
 
-    const observer = useRef();
-    const lastPostElementRef = useCallback(
-        node => {
-            if (isPending) return;
-            if (observer.current) observer.current.disconnect();
-            observer.current = new IntersectionObserver(entries => {
-                if (entries[0].isIntersecting && hasMore) {
-                    setPageNumber(prevPageNumber => prevPageNumber + 1);
-                }
-            });
-            if (node) observer.current.observe(node);
-        },
-        [isPending, hasMore]
-    );
+    const {
+        error: blogsError,
+        data: blogs,
+        isPending: blogsIsPending
+    } = useFetch(`${apiBaseUrl}/recommended-blogs`);
+
     return (
         <div className="dashboard">
             <div className="posts-region">
                 <CreatePost />
                 <VerifyEmail />
-                {posts &&
-                    posts.map((post, index) => {
-                        if (posts.length === index + 1) {
-                            return (
-                                <div key={index} ref={lastPostElementRef}>
-                                    <PostComponent
-                                        post={post}
-                                        userBlogName={post?.blog['blog_name']}
-                                        isFollowed={true}
-                                    />
-                                </div>
-                            );
-                        } else {
-                            return (
-                                <PostComponent
-                                    key={index}
-                                    post={post}
-                                    userBlogName={post?.blog['blog_name']}
-                                    isFollowed={true}
-                                />
-                            );
-                        }
-                    })}
-
-                {error && (
-                    <div className="no-data-error">{"Couldn't load"}</div>
-                )}
-                {isPending && <LinearProgress />}
+                <VerticalPostsView
+                    posts={posts}
+                    error={error}
+                    isPending={isPending}
+                    hasMore={hasMore}
+                    setPageNumber={setPageNumber}
+                />
             </div>
-            <Sidebar />
+            <div className="dashboard-sidebar">
+                <RecommendBlogs
+                    blogsError={blogsError}
+                    blogs={blogs}
+                    blogsIsPending={blogsIsPending}
+                />
+                <Radar />
+            </div>
         </div>
     );
 }

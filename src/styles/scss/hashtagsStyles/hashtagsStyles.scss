@@ -1,0 +1,217 @@
+.ZN143 {
+    display: none;
+    @media screen and (min-width: 990px) {
+        display: unset;
+        margin-bottom: 20px;
+        background-color: #122943;
+    }
+    .iGLU3 {
+        @media screen and (min-width: 990px) {
+            height: 0;
+            min-height: 186px;
+            padding: 0;
+        }
+        background: #e33408;
+        height: 232px;
+        min-height: 232px;
+        padding: 16px;
+        position: relative;
+        .BSUG4 {
+            cursor: pointer;
+            text-decoration: none;
+            .qJeyT {
+                position: relative;
+                background-position: 50%;
+                background-size: cover;
+                height: 100%;
+                left: 0;
+                top: 0;
+                width: 100%;
+                cursor: pointer;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        .ZV6oZ {
+            @media screen and (min-width: 990px) {
+                align-items: flex-end;
+                display: flex;
+                height: calc(100% - 16px);
+                justify-content: flex-end;
+                padding: 8px;
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: calc(100% - 16px);
+            }
+            .kckjF {
+                align-items: center;
+                color: #fff;
+                display: flex;
+                justify-content: flex-end;
+                text-decoration: none;
+                cursor: pointer;
+                .CrU4O {
+                    font-size: 0.875rem;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    color: white;
+                    margin-right: 10px;
+                    text-align: end;
+                }
+                .nZ9l5 {
+                    position: relative;
+                    .samllPic {
+                        width: 24px;
+                        height: 24px;
+                        position: relative;
+                        .ESMam {
+                            height: 100%;
+                            overflow: hidden;
+                            width: 100%;
+                            border-radius: 3px;
+                            ._0MuRn {
+                                line-height: 0;
+                                position: relative;
+                                width: 100%;
+                                padding-bottom: 100%;
+                                img {
+                                    width: 24px;
+                                    height: 24px;
+                                    left: 0;
+                                    position: absolute;
+                                    top: 0;
+                                    display: block;
+                                    object-fit: cover;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .YOf31 {
+        @media screen and (min-width: 990px) {
+            max-width: 940px;
+        }
+        color: white;
+        padding: 16px;
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        margin: auto;
+        position: relative;
+        .NmAj2 {
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1.5;
+            margin-bottom: 2px;
+            color: white;
+        }
+        .Wo4gS {
+            color: white;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            display: -webkit-box;
+            max-height: 2.5em;
+            text-decoration: none;
+            overflow: hidden;
+            pointer-events: all;
+            text-overflow: ellipsis;
+            word-break: break-word;
+            @media screen and (min-width: 990px) {
+                font-size: 1.625rem;
+                font-weight: 400;
+                line-height: 1.3077;
+            }
+        }
+        .S3HC8 {
+            align-items: flex-start;
+            display: flex;
+            margin-bottom: 20px;
+            margin-top: 4px;
+            &:first-child::after {
+                content: ' / ';
+            }
+        }
+        .emvA3 {
+            display: flex;
+            width: 100%;
+            .EVsUa {
+                @media screen and (min-width: 541px) {
+                    flex: 1;
+                }
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                color: inherit;
+                font: inherit;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                margin: 0;
+                padding: 0;
+                .WdYx4 {
+                    @media screen and (min-width: 541px) {
+                        width: 100%;
+                    }
+                    background-color: #00b8ff;
+                    color: #00161f;
+                    border-radius: 3px;
+                    font-size: 1rem;
+                    font-weight: 700;
+                    line-height: 1.5;
+                    display: block;
+                    cursor: pointer;
+                    padding: 8px 20.5px;
+                }
+            }
+        }
+        .XVkC9 {
+            @media screen and (min-width: 990px) {
+                flex-wrap: wrap;
+                margin: 20px 0 -10px;
+            }
+            align-items: flex-start;
+            display: flex;
+            color: white;
+            overflow-x: auto;
+            span {
+                background-color: transparent;
+                border: 2px solid rgb(74, 121, 150, 0.25);
+                color: white;
+                cursor: pointer !important;
+                font-weight: 400;
+                margin-bottom: 10px;
+                margin-right: 10px;
+                font-size: 1rem;
+                line-height: 1.5;
+                border-radius: 30px;
+                padding: 2px 13px;
+                &:hover {
+                    background-color: #0d4d72 !important;
+                    color: #00b8ff !important;
+                }
+                @media screen and (min-width: 990px) {
+                    cursor: pointer !important;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    word-break: break-all;
+                }
+                a {
+                    outline: none;
+                    text-decoration: none;
+                    color: inherit;
+                    cursor: pointer;
+                    @media screen and (min-width: 990px) {
+                        word-break: break-all;
+                    }
+                }
+            }
+        }
+    }
+}

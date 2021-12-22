@@ -2,10 +2,8 @@ import React, { useContext } from 'react';
 import OptionsCreatePost from './containers/DashboardContainer/OptionsCard';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 import ProfilePicContainer from './containers/DashboardContainer/ProfilePicContainer';
-import useAuth from '../../hooks/useAuth';
 
 export default function CreatePost() {
-    useAuth();
     const theme = useContext(ThemeContext)[0];
     const css = `
         .create_container {
