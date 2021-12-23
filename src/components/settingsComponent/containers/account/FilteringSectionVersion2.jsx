@@ -6,8 +6,26 @@ import PropTypes from 'prop-types';
 import { addFilteredTag } from '../../Service';
 import { deleteFilteredTag } from '../../Service';
 
-export default function FilteringTagsSectionVersion2({ setFilteringVersion1 }) {
-    const { filteredTags, updateProperty } = useContext(SettingsContext);
+export default function FilteringSectionVersion2({
+    setFilteringTagsVersion1,
+    setFilteringContentVersion1,
+    filteringType
+}) {
+    const { filteredTags } = useContext(SettingsContext);
+    const { filteredContent } = useContext(SettingsContext);
+    let functionTouse;
+    let property;
+    let url;
+    if (filteringType === 'filteredTags') {
+        property = filteredTags;
+        functionTouse = setFilteringTagsVersion1;
+        url = 'filtered_tags';
+    } else if (filteringType === 'filteredContent') {
+        property = filteredContent;
+        functionTouse = setFilteringContentVersion1;
+        url = 'filtered_content';
+    }
+    const { updateProperty } = useContext(SettingsContext);
     const [errMsg, setErrMsg] = useState('');
     const [tag, setTag] = useState('');
     return (
@@ -33,12 +51,12 @@ export default function FilteringTagsSectionVersion2({ setFilteringVersion1 }) {
                     handleClick={() => {
                         addFilteredTag(
                             //TODO check this attribute
-                            filteredTags === null
-                                ? [tag]
-                                : [...filteredTags, tag],
+                            property === null ? [tag] : [...property, tag],
                             updateProperty,
                             tag,
-                            setErrMsg
+                            setErrMsg,
+                            url,
+                            filteringType
                         );
                     }}
                     id="add-tag"
@@ -47,12 +65,12 @@ export default function FilteringTagsSectionVersion2({ setFilteringVersion1 }) {
                     text="Back"
                     color="#999999"
                     id="back-tag"
-                    handleClick={() => setFilteringVersion1(true)}
+                    handleClick={() => functionTouse(true)}
                 ></AuthBtn>
             </div>
             <ul className="filtering-list-two">
-                {filteredTags &&
-                    filteredTags.map((tag, index) => (
+                {property &&
+                    property.map((tag, index) => (
                         <li className="filtering-item-two" key={index}>
                             <span>{tag}</span>
                             <AuthBtn
@@ -63,12 +81,14 @@ export default function FilteringTagsSectionVersion2({ setFilteringVersion1 }) {
                                 handleClick={() => {
                                     console.log('delete tag');
                                     deleteFilteredTag(
-                                        filteredTags.filter(
+                                        property.filter(
                                             filteredTag => filteredTag !== tag
                                         ),
                                         updateProperty,
                                         tag,
-                                        setErrMsg
+                                        setErrMsg,
+                                        url,
+                                        filteringType
                                     );
                                 }}
                             ></AuthBtn>
@@ -78,7 +98,8 @@ export default function FilteringTagsSectionVersion2({ setFilteringVersion1 }) {
         </>
     );
 }
-FilteringTagsSectionVersion2.propTypes = {
-    setFilteringVersion1: PropTypes.func.isRequired,
-    numOfFilteringTags: PropTypes.number.isRequired
+FilteringSectionVersion2.propTypes = {
+    setFilteringTagsVersion1: PropTypes.func.isRequired,
+    setFilteringContentVersion1: PropTypes.func.isRequired,
+    filteringType: PropTypes.string.isRequired
 };

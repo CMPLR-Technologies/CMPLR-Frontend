@@ -9,7 +9,7 @@ class SettingsContextProvider extends Component {
         emailActivityCheck: false,
         TFA: false,
         filteredTags: null,
-        filteringContent: null,
+        filteredContent: null,
         tumblrNews: null,
         conversationalNotification: true,
         endlessScrolling: true,
@@ -27,7 +27,7 @@ class SettingsContextProvider extends Component {
             emailActivityCheck: settings.account.email_activity_check,
             TFA: settings.account.TFA,
             filteredTags: settings.account.filtered_tags,
-            filteringContent: settings.account.filtering_content,
+            filteredContent: settings.account.filtering_content,
             tumblrNews: settings.notification.tumblr_news,
             conversationalNotification:
                 settings.notification.conversational_notification,

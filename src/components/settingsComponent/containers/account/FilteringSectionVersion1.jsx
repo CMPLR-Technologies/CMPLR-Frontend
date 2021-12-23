@@ -1,17 +1,34 @@
 import React, { useContext } from 'react';
 import { SettingsContext } from '../../../../contexts/settingsContext/SettingsContext';
 import PropTypes from 'prop-types';
-export default function FilteringTagsSectionVersion1({ setFilteringVersion1 }) {
+
+export default function FilteringSectionVersion1({
+    setFilteringTagsVersion1,
+    setFilteringContentVersion1,
+    filteringType
+}) {
     const { filteredTags } = useContext(SettingsContext);
-    let numOfFilteringTags = filteredTags === null ? 0 : filteredTags.length;
+    const { filteredContent } = useContext(SettingsContext);
+    let functionTouse;
+    let property;
+    if (filteringType === 'filteredTags') {
+        property = filteredTags;
+        functionTouse = setFilteringTagsVersion1;
+    } else if (filteringType === 'filteredContent') {
+        property = filteredContent;
+        functionTouse = setFilteringContentVersion1;
+    }
+    let numOfFilteringTags = property === null ? 0 : property.length;
     return (
         <>
             {numOfFilteringTags === 0 && (
-                <p className="email">You are not filtering any tags</p>
+                <p className="email">
+                    You are not filtering any {`${filteringType}`}
+                </p>
             )}
             {numOfFilteringTags > 0 && (
                 <ul className="filtering-list-one">
-                    {filteredTags
+                    {property
                         .slice(
                             0,
                             numOfFilteringTags > 4 ? 4 : numOfFilteringTags
@@ -20,7 +37,7 @@ export default function FilteringTagsSectionVersion1({ setFilteringVersion1 }) {
                             <li className="filtering-item-one" key={index}>
                                 <button
                                     type="button"
-                                    onClick={() => setFilteringVersion1(false)}
+                                    onClick={() => functionTouse(false)}
                                 >
                                     {tag.slice(0, 7)}
                                 </button>
@@ -29,10 +46,7 @@ export default function FilteringTagsSectionVersion1({ setFilteringVersion1 }) {
                 </ul>
             )}
 
-            <button
-                className="edit"
-                onClick={() => setFilteringVersion1(false)}
-            >
+            <button className="edit" onClick={() => functionTouse(false)}>
                 <svg
                     viewBox="0 0 17.6 17.6"
                     width="16"
@@ -45,7 +59,7 @@ export default function FilteringTagsSectionVersion1({ setFilteringVersion1 }) {
         </>
     );
 }
-FilteringTagsSectionVersion1.propTypes = {
-    setFilteringVersion1: PropTypes.func.isRequired,
-    numOfFilteringTags: PropTypes.number.isRequired
+FilteringSectionVersion1.propTypes = {
+    setFilteringVersion: PropTypes.func.isRequired,
+    filteringType: PropTypes.string.isRequired
 };

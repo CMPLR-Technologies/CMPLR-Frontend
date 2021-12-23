@@ -2162,6 +2162,10 @@ body .settings .container1 .subcontainer #section .sub-section-left {
 }
 body .settings .container1 .subcontainer #section .sub-section-left h3 {
   color: black;
+  white-space: nowrap;
+}
+body .settings .container1 .subcontainer #section #sub-section-right-filtering {
+  margin-left: 15px;
 }
 body .settings .container1 .subcontainer #section .sub-section-right {
   flex-grow: 1;

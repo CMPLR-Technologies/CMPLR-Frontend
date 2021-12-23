@@ -49,17 +49,17 @@ export function checkUpdatePassword(
     }
     return true;
 }
-export function checkAddTag(filteredTags, tag, setErrorMsg) {
+export function checkAddTag(filteredTags, tag, setErrorMsg, filteringType) {
     let oldTags = filteredTags.slice();
 
     if (tag === '') {
-        setErrorMsg('Tag is empty.');
+        setErrorMsg(filteringType + ' is empty.');
         return false;
     } else if (
         oldTags.splice(-1).length > 0 &&
         oldTags.splice(-1).includes(tag)
     ) {
-        setErrorMsg('Tag already exists.');
+        setErrorMsg(filteringType + ' already exists.');
         return false;
     }
     return true;

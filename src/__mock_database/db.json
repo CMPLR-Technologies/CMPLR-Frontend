@@ -40,6 +40,9 @@
     "filtered_tags": {
         "meta": { "status_code": 200, "msg": "Success" }
     },
+    "filtered_content": {
+        "meta": { "status_code": 200, "msg": "Success" }
+    },
     "delete": {
         "meta": { "status_code": 200, "msg": "Success" }
     }

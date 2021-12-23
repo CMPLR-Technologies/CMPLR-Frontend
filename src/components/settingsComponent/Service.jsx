@@ -116,40 +116,55 @@ export function toggleProperty(property, value, updateProperty) {
         .catch(() => {});
 }
 
-export function addFilteredTag(filteredTags, updateProperty, tag, setErrMsg) {
-    if (checkAddTag(filteredTags, tag, setErrMsg)) {
+export function addFilteredTag(
+    filteredTags,
+    updateProperty,
+    tag,
+    setErrMsg,
+    url,
+    filteringType
+) {
+    if (checkAddTag(filteredTags, tag, setErrMsg, filteringType)) {
         axios({
             //TODO change to post
             method: 'get',
-            url: `${apiBaseUrl}/user/filtered_tags`
+            url: `${apiBaseUrl}/user/${url}`
             // data: {
-            //     filtered_tags: tags
+            //    filteringType: filteredTags
             // }
         })
             .then(res => {
                 if (res.data.meta.status_code === 200) {
-                    updateProperty('filteredTags', filteredTags);
+                    updateProperty(filteringType, filteredTags);
+                    setErrMsg('');
                 } else {
-                    setErrMsg('Error adding tag');
+                    setErrMsg('Error adding ' + filteringType);
                 }
             })
             .catch(() => {
-                setErrMsg('Error adding tag');
+                setErrMsg('Error adding ' + filteringType);
             });
     }
 }
 
-export function deleteFilteredTag(tags, updateProperty, tag, setErrMsg) {
+export function deleteFilteredTag(
+    tags,
+    updateProperty,
+    tag,
+    setErrMsg,
+    url,
+    filteringType
+) {
     console.log(tags);
     axios({
         //TODO change to Delete
         method: 'get',
         //TODO change it to /user/filtered_tags/${tag}
-        url: `${apiBaseUrl}/user/filtered_tags`
+        url: `${apiBaseUrl}/user/${url}`
     })
         .then(res => {
             if (res.data.meta.status_code === 200) {
-                updateProperty('filteredTags', tags);
+                updateProperty(filteringType, tags);
             } else {
                 setErrMsg('Error deleting tag');
             }

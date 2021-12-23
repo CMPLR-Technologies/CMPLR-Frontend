@@ -67,7 +67,11 @@ body {
                         padding: 0 10px;
                         h3 {
                             color: black;
+                            white-space: nowrap;
                         }
+                    }
+                    #sub-section-right-filtering {
+                        margin-left: 15px;
                     }
                     .sub-section-right {
                         flex-grow: 1;
@@ -77,6 +81,7 @@ body {
                         align-items: flex-start;
                         justify-content: space-between;
                         flex-wrap: wrap;
+
                         #update-email-email {
                             border: 1.25px solid #ececec !important;
                             width: 349px;

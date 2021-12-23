@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, {  useEffect, useContext } from 'react';
 import PagesList from '../../PagesList';
 import EmailSection from './EmailSection';
 import PasswordSection from './PasswordSection';
 import SecuritySection from './SecuritySection';
-import FilteringTagsSection from './FilteringTagsSection';
+import FilteringSection from './FilteringSection';
 import DeleteSection from './DeleteSection';
 import { getUserAccount } from '../../Service';
 
@@ -23,7 +23,7 @@ export default function SettingsAccount() {
                         <EmailSection />
                         <PasswordSection />
                         <SecuritySection />
-                        <FilteringTagsSection />
+                        <FilteringSection />
                         <DeleteSection />
                     </div>
                 </div>
