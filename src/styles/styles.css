@@ -3886,9 +3886,14 @@ body #reset-pass-logo {
   position: relative;
 }
 .explore-hashtags .arrow-icon {
-  position: relative;
+  position: absolute;
   top: 80px;
   color: white;
+}
+.explore-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .following-hashtag {
@@ -3923,9 +3928,6 @@ body #reset-pass-logo {
   padding: 14px 16px;
   font-size: 1.25rem;
   display: inline-block;
-}
-.explore-nav-links {
-  margin-right: 3rem;
 }
 .explore-nav-icons button {
   background: transparent;
