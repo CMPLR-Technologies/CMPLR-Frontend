@@ -16,6 +16,7 @@ import TagsInput from './Bottom/TagsInput';
 
 export default function CreateModal(props) {
     const [spinner, setSpinner] = useState(false);
+    const [spinnerPost, setSpinnerPost] = useState(false);
     const [titlePost, setTitlePost] = useState('');
     const [content, setContent] = useState('');
 
@@ -25,7 +26,7 @@ export default function CreateModal(props) {
     const [tags, setTags] = useState([]);
     const [postType, setPostType] = useState('Post now');
     const navigate = useNavigate();
-    const { user } = useContext(UserContext);
+    const user = JSON.parse(localStorage.getItem('user'));
     const { postId } = useParams();
     const { reblog, edit } = props;
 
@@ -34,6 +35,7 @@ export default function CreateModal(props) {
     };
 
     const handlePost = () => {
+        setSpinnerPost(true);
         //draft private publish
         const dataBody = {
             title: titlePost,
@@ -52,7 +54,7 @@ export default function CreateModal(props) {
 
         console.log('body to be sent', dataBody);
 
-        handlePosting(dataBody, handleClose, user?.token);
+        handlePosting(dataBody, handleClose, user?.token, setSpinnerPost);
     };
 
     const handleReblog = post => {
@@ -167,6 +169,7 @@ export default function CreateModal(props) {
                                                     reblog ? null : titlePost
                                                 }
                                                 setPostType={setPostType}
+                                                spinnerPost={spinnerPost}
                                             />
                                         </div>
                                     </div>

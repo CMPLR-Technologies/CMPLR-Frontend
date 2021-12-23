@@ -132,6 +132,7 @@ export default function HandMadeTextEditor(props) {
                             onChange={e =>
                                 handleUploadVideo(
                                     e.target.files[0],
+                                    setContent,
                                     setSpinner,
                                     user?.token
                                 )
