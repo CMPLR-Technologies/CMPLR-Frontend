@@ -29,7 +29,7 @@ export default function RegisterStepTwo(props) {
                 {openError && errorMessage && errorMessage?.length !== 0 && (
                     <AuthAlert
                         openError={openError}
-                        errorMessage={errorMessage[0]}
+                        errorMessage={errorMessage}
                     />
                 )}
                 <AuthInput

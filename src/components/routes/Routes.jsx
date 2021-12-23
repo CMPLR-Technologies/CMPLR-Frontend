@@ -17,6 +17,7 @@ import FollowingPage from '../followingComponent/View';
 import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
 import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
 import Hashtag from '../hashtagsComponent/View';
+import GoogleCard from '../registerComponent/GoogleCard';
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
     const css = `
@@ -49,6 +50,7 @@ export default function MainRoutes() {
                         />
 
                         <Route path="/" element={<HomePage />} />
+                        <Route path="/onboarding" element={<GoogleCard />} />
                     </Route>
 
                     <Route element={<RequireAuth />}>

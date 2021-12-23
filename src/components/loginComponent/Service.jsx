@@ -18,9 +18,41 @@ const logUser = (email, password, setUser, setError, setIsPending) => {
             setIsPending(false);
         })
         .catch(err => {
-            if (err.response) setError(getServiceErrors(err));
-            else setError(["Couldn't Log In"]);
+            const errorArr = getServiceErrors(err);
+
+            if (err.response)
+                setError(
+                    errorArr?.length !== 0 ? errorArr[0] : "Couldn't Log In"
+                );
+            else setError("Couldn't Log In");
             setIsPending(false);
         });
 };
-export { logUser };
+
+const responseGoogleSuccess = (respond, navigate, setIsPending, setUser) => {
+    const token = respond?.accessToken;
+    setIsPending(true);
+    Axios.post(`${apiBaseUrl}/google/login`, {
+        token
+    })
+        .then(res => {
+            const user = {
+                token: res.data.token,
+                userData: res.data.user,
+                blogName: res.data?.response?.blog_name
+            };
+            setUser(user);
+            localStorage.setItem('user', JSON.stringify(user));
+            navigate('/dashboard');
+            setIsPending(false);
+        })
+        .catch(() => {
+            setIsPending(false);
+            navigate('/onboarding', { state: { token: token } });
+        });
+};
+const responseGoogleFailure = (res, setError) => {
+    setError(res.error);
+};
+
+export { logUser, responseGoogleSuccess, responseGoogleFailure };

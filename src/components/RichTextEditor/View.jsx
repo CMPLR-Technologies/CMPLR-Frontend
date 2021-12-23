@@ -50,7 +50,6 @@ export default function HandMadeTextEditor(props) {
                     data-testid="content-postInput"
                     onInput={() => handleChanges(setContent)}
                     data-placeholder="Your text here"
-                    dangerouslySetInnerHTML={{ __html: editContent }}
                 ></div>
                 <div className="text-editor-header">
                     <select

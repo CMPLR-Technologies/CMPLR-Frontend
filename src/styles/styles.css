@@ -45,6 +45,26 @@
   border-radius: 3px;
 }
 
+.AuthBtnGoogle {
+  opacity: 1 !important;
+  width: 300px;
+  padding: 10px 15px;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1.5 !important;
+  color: black !important;
+  background-color: white !important;
+  font-family: "Favorit", Arial, Helvetica, sans-serif !important;
+  text-decoration: none;
+  cursor: pointer !important;
+  border: none !important;
+  border-radius: 3px !important;
+}
+
 .AuthInput {
   width: 300px;
   margin-top: 6px;
@@ -903,6 +923,10 @@
 
 .home-container * {
   color: white;
+}
+
+.goggleStyleBtn span {
+  color: black !important;
 }
 
 .home-container {

@@ -1,11 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from './Button';
 import ExploreBtn from './ExploreBtn.svg';
 import Footer from './Footer';
-import GoogleButton from './GoogleButton.svg';
+//import GoogleButton from './GoogleButton.svg';
 import PropTypes from 'prop-types';
 import PlaystoreApplestore from '../../../partials/PlaystoreApplestore';
+import GoogleLogin from 'react-google-login';
+import {
+    responseGoogleFailure,
+    responseGoogleSuccess
+} from '../../../loginComponent/Service';
+import { useContext } from 'react';
+import { UserContext } from '../../../../contexts/userContext/UserContext';
+import { useState } from 'react';
+import { CircularProgress } from '@mui/material';
+import AuthAlert from '../../../partials/AuthAlert';
 
 HomeSec1.propTypes = {
     heading: PropTypes.string.isRequired,
@@ -27,6 +37,11 @@ const imageNum = Math.floor(Math.random() * 5);
 
 export default function HomeSec1(props) {
     const { heading, paragraph, last } = props;
+    const navigate = useNavigate();
+    const { setUser } = useContext(UserContext);
+    const [error, setError] = useState();
+    const [isPending, setIsPending] = useState();
+
     return (
         <>
             <section
@@ -98,10 +113,40 @@ export default function HomeSec1(props) {
                         the <Link to="/privacy">Privacy Policy</Link>
                     </p>
 
-                    <Button href="/auth/google" className="google-btn" title="">
-                        <GoogleButton />
-                        <div className="btn-text">Continue with Google</div>
-                    </Button>
+                    {isPending && (
+                        <div className="load-circle">
+                            <CircularProgress />
+                        </div>
+                    )}
+
+                    {error && error !== '' && (
+                        <AuthAlert
+                            openError={error.length !== 0}
+                            errorMessage={error}
+                        />
+                    )}
+
+                    <div className="goggleStyleBtn">
+                        <GoogleLogin
+                            className="AuthBtnGoogle"
+                            clientId={
+                                '897018969322-knobrd9ontkafr46u2ukkv3rnjc5qej8.apps.googleusercontent.com'
+                            }
+                            buttonText="Continue with Google"
+                            onSuccess={res =>
+                                responseGoogleSuccess(
+                                    res,
+                                    navigate,
+                                    setIsPending,
+                                    setUser
+                                )
+                            }
+                            onFailure={res =>
+                                responseGoogleFailure(res, setError)
+                            }
+                            cookiePolicy={'single_host_origin'}
+                        />
+                    </div>
                     {last && <PlaystoreApplestore />}
                     {!last && (
                         <Button href="" className="explore-btn" title="">

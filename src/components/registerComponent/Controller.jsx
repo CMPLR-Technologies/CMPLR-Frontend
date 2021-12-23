@@ -23,3 +23,13 @@ export const validateStepTwo = age => {
 
     return errors;
 };
+
+export const validateGoogle = (blogName, age) => {
+    if (age < 16 || age > 120) {
+        return 'Age must be between 16-120';
+    }
+    if (blogName && blogName?.length < 2 && blogName?.length > 64) {
+        return 'Blog name must contain between 2-64 characters';
+    }
+    return '';
+};
