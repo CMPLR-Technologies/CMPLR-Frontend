@@ -3629,7 +3629,6 @@ body #reset-pass-logo {
   font: inherit;
 }
 
-<<<<<<< HEAD
 .myprofile-container {
   display: flex;
   box-sizing: border-box;
@@ -3808,7 +3807,89 @@ body #reset-pass-logo {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   display: -webkit-box;
-=======
+  font-family: var(--font-family);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.settings .container2 .blog .list-item .temp .blog-item-anchor .star {
+  align-items: center;
+  display: flex;
+  padding-right: 14px;
+  position: relative;
+  text-align: right;
+  margin-left: 40px;
+}
+.settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
+  text-align: right;
+}
+
+.followers-list {
+  background-color: white;
+  width: 540px;
+  display: flex;
+  height: auto;
+  margin-top: 3%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 85px;
+}
+.followers-list .follower {
+  height: 60px;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.followers-list .follower .left-control-group {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.followers-list .follower .left-control-group .options-btn {
+  margin-left: 10px;
+  margin-right: 0;
+}
+.followers-list .follower .name {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-left: 3%;
+  line-height: 1.33;
+}
+.followers-list .follower .name .primary {
+  font-weight: 700;
+  font-size: 1rem;
+}
+.followers-list .follower .name .secondary {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 0.875rem;
+}
+.followers-list .follower .avatar-img {
+  width: 37px;
+  height: 37px;
+}
+
+.not-available {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  color: rgba(255, 255, 255, 0.65);
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3125rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1.5238;
+  padding: 100px 20px;
+  text-align: center;
+  width: 540px;
+  margin-left: 85px;
+}
+
 .lSyOz {
   align-items: flex-end;
   display: flex;
@@ -4488,90 +4569,10 @@ body #reset-pass-logo {
   }
 }
 .viewMobController .iGLU3 .ZV6oZ .YOf31 .NmAj2 {
->>>>>>> Task11
   font-family: var(--font-family);
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
-<<<<<<< HEAD
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.settings .container2 .blog .list-item .temp .blog-item-anchor .star {
-  align-items: center;
-  display: flex;
-  padding-right: 14px;
-  position: relative;
-  text-align: right;
-  margin-left: 40px;
-}
-.settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
-  text-align: right;
-}
-
-.followers-list {
-  background-color: white;
-  width: 540px;
-  display: flex;
-  height: auto;
-  margin-top: 3%;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  margin-left: 85px;
-}
-.followers-list .follower {
-  height: 60px;
-  width: 100%;
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-}
-.followers-list .follower .left-control-group {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-.followers-list .follower .left-control-group .options-btn {
-  margin-left: 10px;
-  margin-right: 0;
-}
-.followers-list .follower .name {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  padding-left: 3%;
-  line-height: 1.33;
-}
-.followers-list .follower .name .primary {
-  font-weight: 700;
-  font-size: 1rem;
-}
-.followers-list .follower .name .secondary {
-  color: rgba(0, 0, 0, 0.65);
-  font-size: 0.875rem;
-}
-.followers-list .follower .avatar-img {
-  width: 37px;
-  height: 37px;
-}
-
-.not-available {
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.07);
-  border-radius: 3px;
-  color: rgba(255, 255, 255, 0.65);
-  display: flex;
-  flex-direction: column;
-  font-size: 1.3125rem;
-  font-weight: 700;
-  justify-content: center;
-  line-height: 1.5238;
-  padding: 100px 20px;
-  text-align: center;
-  width: 540px;
-  margin-left: 85px;
-=======
   margin-bottom: 2px;
   pointer-events: all;
 }
@@ -4777,7 +4778,6 @@ body #reset-pass-logo {
 .lSyOz .p4DiZ .uM3pd .wl0Ka .EvhBA {
   display: block;
   text-align: center;
->>>>>>> Task11
 }
 
 * {

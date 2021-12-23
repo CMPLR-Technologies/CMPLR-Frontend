@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CreatePost from '../createPost/View';
 import RecommendBlogs from './containers/RecommendBlogs';
 import Radar from '../partials/Radar';
-import VerifyEmail from '../verifyEmail/View';
+// import VerifyEmail from '../verifyEmail/View';
 import VerticalPostsView from '../partials/VerticalPostsView';
 import { apiBaseUrl } from '../../config.json';
 import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
@@ -27,7 +27,7 @@ export default function Dashboard() {
         <div className="dashboard">
             <div className="posts-region">
                 <CreatePost />
-                <VerifyEmail />
+                {/* <VerifyEmail /> */}
                 <VerticalPostsView
                     posts={posts}
                     error={error}
