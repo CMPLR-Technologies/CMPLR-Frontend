@@ -26,6 +26,7 @@ export default function NotesContent(props) {
         setNotesView
     } = props;
     const [reply, setReply] = useState('');
+    //TODO BlogIdentifier2
     const blogIdentifier = 'yahia.tumblr.com';
 
     return (

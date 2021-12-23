@@ -45,7 +45,12 @@ export const getFollowingList = (
         });
 };
 
-export const followAccount = (userToken, searchedName, setResponseMsg) => {
+export const followAccount = (
+    userToken,
+    searchedName,
+    setResponseMsg,
+    setFollowing
+) => {
     Axios({
         method: 'POST',
         url: `${apiBaseUrl}/user/follow`,
@@ -59,7 +64,11 @@ export const followAccount = (userToken, searchedName, setResponseMsg) => {
         }
     })
         .then(() => {
-            setResponseMsg(`you're now following ${searchedName} successfully`);
+            setResponseMsg ??
+                setResponseMsg(
+                    `you're now following ${searchedName} successfully`
+                );
+            setFollowing(true);
         })
         .catch(err => {
             let errMsg = err?.response?.data?.error;
@@ -67,7 +76,12 @@ export const followAccount = (userToken, searchedName, setResponseMsg) => {
         });
 };
 
-export const unfollowAccount = (userToken, unfollowAcc, setResponseMsg) => {
+export const unfollowAccount = (
+    userToken,
+    unfollowAcc,
+    setResponseMsg,
+    setFollowing
+) => {
     Axios({
         method: 'DELETE',
         url: `${apiBaseUrl}/user/follow`,
@@ -81,7 +95,9 @@ export const unfollowAccount = (userToken, unfollowAcc, setResponseMsg) => {
         }
     })
         .then(() => {
-            setResponseMsg(`you're not following ${unfollowAcc} anymore`);
+            setResponseMsg ??
+                setResponseMsg(`you're not following ${unfollowAcc} anymore`);
+            setFollowing(false);
         })
         .catch(err => {
             let errMsg = err.response.data.error;
