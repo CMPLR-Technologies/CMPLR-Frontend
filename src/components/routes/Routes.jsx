@@ -17,6 +17,8 @@ import FollowingPage from '../followingComponent/View';
 import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
 import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
 import Hashtag from '../hashtagsComponent/View';
+import Explore from '../explore/View';
+
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
     const css = `
@@ -78,6 +80,7 @@ export default function MainRoutes() {
                             element={<MessagesPageMobile />}
                         />
                         <Route path="/new/post" element={<CreateModal />} />
+                        <Route path="/explore" element={<Explore />} />
                     </Route>
                 </Routes>
                 <style>{css}</style>
