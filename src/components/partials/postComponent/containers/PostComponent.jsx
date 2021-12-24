@@ -42,7 +42,6 @@ PostComponent.propTypes = {
 export default function PostComponent(props) {
     const {
         post,
-        isFollowed,
         userBlogName,
         radar,
         left,
@@ -53,7 +52,6 @@ export default function PostComponent(props) {
     } = props;
     const theme = useContext(ThemeContext)[0];
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);
-    const [following, setFollowing] = useState(isFollowed);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
     const [mobileView, setMobileView] = useState(false);
@@ -75,9 +73,11 @@ export default function PostComponent(props) {
         blog_name: blogName,
         avatar: avatar,
         blog_identifier: blogIdentifier,
-        blog_url: blogUrl
+        blog_url: blogUrl,
+        follower: follower
     } = blog && blog;
     const [liked, setIsLiked] = useState(isLiked && isLiked);
+    const [following, setFollowing] = useState(follower && follower);
     useEffect(() => {
         chaneMobileView(setMobileView);
     }, []);
@@ -339,7 +339,6 @@ export default function PostComponent(props) {
                                             followAccount(
                                                 user?.token,
                                                 blogName,
-                                                null,
                                                 setFollowing
                                             )
                                         }

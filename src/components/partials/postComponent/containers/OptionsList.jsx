@@ -49,7 +49,6 @@ export default function OptionsList(props) {
                                     unfollowAccount(
                                         user?.token,
                                         blogName,
-                                        null,
                                         setFollowing
                                     )
                                 }
