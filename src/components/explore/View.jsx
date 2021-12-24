@@ -9,6 +9,7 @@ import Nav from './containers/Nav';
 
 export default function Explore() {
     const [pageNumber, setPageNumber] = useState(1);
+    const [grid, setGrid] = useState(false);
     const {
         error,
         data: posts,
@@ -18,8 +19,8 @@ export default function Explore() {
 
     return (
         <div className="explore">
-            <div className="explore-main">
-                <Nav />
+            <div className={`explore-main ${!grid ? 'mid-size' : ''} `}>
+                <Nav grid={grid} setGrid={setGrid} />
                 <HashtagsList />
                 <div className="explore-posts">
                     <VerticalPostsView
@@ -28,6 +29,7 @@ export default function Explore() {
                         isPending={isPending}
                         hasMore={hasMore}
                         setPageNumber={setPageNumber}
+                        isRadar={grid}
                     />
                 </div>
             </div>

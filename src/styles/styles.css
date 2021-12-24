@@ -4512,12 +4512,15 @@ body #reset-pass-logo {
   border-radius: 3px;
 }
 .explore-hashtag-images :first-child {
-  margin-right: 8px;
+  margin-right: 10px;
 }
 
 .explore-posts {
   width: 100%;
-  overflow-y: hidden;
+}
+
+.mid-size {
+  max-width: 625px !important;
 }
 
 @media screen and (min-width: 1500px) {
