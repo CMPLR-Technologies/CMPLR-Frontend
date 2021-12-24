@@ -16,20 +16,42 @@
 
     &-hashtags {
         display: flex;
-        position: relative;
+        overflow-x: scroll;
+        margin-bottom: 40px;
 
-        .arrow-icon {
-            position: absolute;
-            top: 80px;
-            color: white;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        &-main {
+            position: relative;
+            width: 100%;
+            .hide {
+                display: none;
+            }
+
+            .show {
+                display: block;
+            }
         }
     }
 
     &-main {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        overflow-x: hidden;
+        max-width: 625px;
     }
+}
+
+.arrow-icon {
+    position: absolute;
+    top: 80px;
+    //background-color: black;
+    color: white;
+    z-index: 100;
+    cursor: pointer;
 }
 
 .following-hashtag {
@@ -74,6 +96,15 @@
             border: none;
         }
     }
+
+    &-links {
+        display: flex;
+        align-items: center;
+    }
+
+    .emoji {
+        margin-bottom: -5px;
+    }
 }
 
 .explore-sidebar {
@@ -84,8 +115,8 @@
 }
 
 .explore-hashtag {
-    background-color: rgb(202, 140, 85);
-    border-color: rgb(227, 165, 110);
+    background-color: rgb(40, 57, 111);
+    border-color: rgb(65, 82, 136);
     border: 1px solid transparent;
     border-radius: 6px;
     padding: 8px;
@@ -94,7 +125,7 @@
 
     a {
         text-decoration: none;
-        color: black;
+        color: white;
     }
     span {
         display: block;
@@ -110,6 +141,7 @@
         padding: 8px 20.5px;
         width: 100%;
         font-size: 1rem;
+        color: rgb(40, 57, 111);
         cursor: pointer;
     }
 
@@ -120,6 +152,36 @@
             height: 93.3333333333px;
             width: 56px;
             object-fit: cover;
+            border-radius: 3px;
         }
+
+        :first-child {
+            margin-right: 8px;
+        }
+    }
+}
+
+.explore-posts {
+    width: 100%;
+    overflow-y: hidden;
+}
+
+@media screen and (min-width: 1500px) {
+    .explore-main {
+        max-width: 940px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .explore-sidebar {
+        display: none;
+    }
+
+    .explore-nav {
+        justify-content: center;
+    }
+
+    .explore-nav-icons {
+        display: none;
     }
 }

@@ -3,6 +3,9 @@ import {
     themes,
     ThemeContext
 } from '../../../contexts/themeContext/ThemeContext';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import WhatshotIcon from '@mui/icons-material/Whatshot';
+import StarsIcon from '@mui/icons-material/Stars';
 
 export default function Nav() {
     const theme = useContext(ThemeContext)[0];
@@ -17,16 +20,13 @@ export default function Nav() {
         <div className="explore-nav" style={navStyles}>
             <div className="explore-nav-links">
                 <a href="/" style={linkStyles}>
-                    For You 💖
+                    For You <FavoriteIcon className="emoji" />
                 </a>
                 <a href="/" style={linkStyles}>
-                    Trending 🚀
+                    Trending <WhatshotIcon className="emoji" />
                 </a>
                 <a href="/" style={linkStyles}>
-                    Staff Picks 🌟
-                </a>
-                <a href="/" style={linkStyles}>
-                    More
+                    Staff Picks <StarsIcon className="emoji" />
                 </a>
             </div>
 

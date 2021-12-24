@@ -3,7 +3,7 @@ import PostComponent from './postComponent/containers/PostComponent';
 import { LinearProgress } from '@mui/material';
 import PropTypes from 'prop-types';
 export default function VerticalPostsView(props) {
-    const { posts, error, isPending, hasMore, setPageNumber } = props;
+    const { posts, error, isPending, hasMore, setPageNumber, isRadar } = props;
 
     const observer = useRef();
     const lastPostElementRef = useCallback(
@@ -27,11 +27,17 @@ export default function VerticalPostsView(props) {
                     if (posts.length === index + 1) {
                         return (
                             <div ref={lastPostElementRef} key={index}>
-                                <PostComponent post={post} />
+                                <PostComponent post={post} radar={isRadar} />
                             </div>
                         );
                     } else {
-                        return <PostComponent key={index} post={post} />;
+                        return (
+                            <PostComponent
+                                key={index}
+                                post={post}
+                                radar={isRadar}
+                            />
+                        );
                     }
                 })}
 
@@ -46,5 +52,6 @@ VerticalPostsView.propTypes = {
     error: PropTypes.string,
     isPending: PropTypes.bool,
     hasMore: PropTypes.bool,
-    setPageNumber: PropTypes.func
+    setPageNumber: PropTypes.func,
+    isRadar: PropTypes.bool
 };
