@@ -426,14 +426,10 @@ export default function PostComponent(props) {
                             setIsModalOpenN={setIsModalOpen}
                             blogPage={blogPage}
                             radar={radar}
-<<<<<<< HEAD
                             isLiked={isLiked}
                             draft={draft}
                             postSubmit={postSubmit}
-=======
-                            isLiked={liked}
                             setIsLiked={setIsLiked}
->>>>>>> Task11
                         />
                     </div>
                 )}
