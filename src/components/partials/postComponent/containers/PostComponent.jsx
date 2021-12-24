@@ -7,7 +7,8 @@ import Divider from './Divider';
 import Modal from '../../Modal';
 import AuthBtn from '../../AuthBtn';
 import { chaneMobileView } from '../Controller';
-import { follow, block } from '../Services';
+import { block } from '../Services';
+import { followAccount } from '../../../followingComponent/Service';
 import PropTypes from 'prop-types';
 import OptionsList from './OptionsList';
 import {
@@ -17,6 +18,7 @@ import {
 import { apiBaseUrl } from '../../../../config.json';
 import { handlePosting } from '../../../createPost/Service';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 /**
  * @function PostComponent
  * @description Base Unit Component for all post compoennt types
@@ -42,7 +44,6 @@ PostComponent.propTypes = {
 export default function PostComponent(props) {
     const {
         post,
-        isFollowed,
         userBlogName,
         radar,
         left,
@@ -54,10 +55,10 @@ export default function PostComponent(props) {
     } = props;
     const theme = useContext(ThemeContext)[0];
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);
-    const [following, setFollowing] = useState(isFollowed);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
     const [mobileView, setMobileView] = useState(false);
+    const user = JSON.parse(localStorage.getItem('user'));
     const { blog: blog, post: postData } = post;
 
     const {
@@ -66,7 +67,6 @@ export default function PostComponent(props) {
         title: title,
         content: content,
         state: state,
-        // type: type,
         post_id: postId,
         reblog_key: reblogKey,
         number_notes: numberNotes,
@@ -77,7 +77,7 @@ export default function PostComponent(props) {
         avatar: avatar,
         blog_identifier: blogIdentifier,
         blog_url: blogUrl,
-        blog_email: blogEmail
+        follower: follower
     } = blog && blog;
 
     const navigate = useNavigate();
@@ -90,6 +90,8 @@ export default function PostComponent(props) {
         handlePosting(bodyData, navigate);
     };
 
+    const [liked, setIsLiked] = useState(isLiked && isLiked);
+    const [following, setFollowing] = useState(follower && follower);
     useEffect(() => {
         chaneMobileView(setMobileView);
     }, []);
@@ -290,7 +292,8 @@ export default function PostComponent(props) {
                                 blogIdentifier,
                                 setIsOptionListOpen,
                                 setIsModalOpen,
-                                setIsMsgModalOpen
+                                setIsMsgModalOpen,
+                                user?.token
                             );
                         }}
                     />
@@ -334,18 +337,24 @@ export default function PostComponent(props) {
                                 data-testid="header-title-ts"
                                 className="header-title"
                             >
-                                <span
-                                    data-testid="post-heading-ts"
-                                    className="post-heading"
+                                <Link
+                                    style={{ textDecoration: 'none' }}
+                                    to={`/blog/view/${blogName}`}
                                 >
-                                    {blogName}
-                                </span>
+                                    <span
+                                        data-testid="post-heading-ts"
+                                        className="post-heading"
+                                    >
+                                        {blogName}
+                                    </span>
+                                </Link>
+
                                 {!following && !reblog && (
                                     <button
                                         onClick={() =>
-                                            follow(
-                                                blogUrl,
-                                                blogEmail,
+                                            followAccount(
+                                                user?.token,
+                                                blogName,
                                                 setFollowing
                                             )
                                         }
@@ -417,12 +426,17 @@ export default function PostComponent(props) {
                             setIsModalOpenN={setIsModalOpen}
                             blogPage={blogPage}
                             radar={radar}
+<<<<<<< HEAD
                             isLiked={isLiked}
                             draft={draft}
                             postSubmit={postSubmit}
+=======
+                            isLiked={liked}
+                            setIsLiked={setIsLiked}
+>>>>>>> Task11
                         />
                     </div>
-                )}{' '}
+                )}
             </article>
             {!themeDeactivate && <style>{css}</style>}
         </div>

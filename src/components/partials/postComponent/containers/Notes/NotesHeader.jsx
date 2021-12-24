@@ -38,10 +38,13 @@ export default function NotesHeader(props) {
                 <span className="notes-view-count">
                     {numberNotes > 1
                         ? `${numberNotes} notes`
-                        : numberNotes === undefined || numberNotes === 0
+                        : numberNotes === undefined ||
+                          numberNotes === 0 ||
+                          isNaN(numberNotes)
                         ? ''
                         : `${numberNotes} note`}
                 </span>
+                {/* TODO check this with back end  */}
                 <div className="notes-view-header-right-icons">
                     <button className="subscribe-to-conversation  btn">
                         <ConversationSubscribe />

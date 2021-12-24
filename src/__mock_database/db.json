@@ -1,7 +1,7 @@
 {
   "1": {
-    "Meta": {
-      "Status": 200
+    "meta": {
+      "status_code": 200
     },
     "response": {
       "post": {
@@ -34,8 +34,7 @@
     "reblogKey": "fsdfas"
   },
   "follow": {
-    "url": "dddddas",
-    "email": "dsadwqda"
+    "blogName": "ahmed_3"
   },
   "delete": {
     "Meta": {
