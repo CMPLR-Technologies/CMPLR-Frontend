@@ -2,13 +2,14 @@ import { useEffect, useState, useContext } from 'react';
 import { UserContext } from '../contexts/userContext/UserContext';
 import Axios from 'axios';
 
-const useInfiniteScrolling = (url,type) => {
+const useInfiniteScrollingChat = url => {
     const { user } = useContext(UserContext);
     const [data, setData] = useState([]);
+    const [blogData, setBlogData] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
     const [hasMore, setHasMore] = useState(false);
-
+    const [loadingFirstPage, setLoadingFirstPage] = useState(false);
     const abortCont = new AbortController();
 
     useEffect(() => {
@@ -25,17 +26,21 @@ const useInfiniteScrolling = (url,type) => {
         Axios.get(url, config)
             .then(res => {
                 if (!res.error) {
-                    console.log(res.data[0].data);
+                    console.log(res.data);
+                    // load first page
+                    if (!loadingFirstPage) {
+                        setBlogData(res.data.blog_data);
+                        setLoadingFirstPage(true);
+                    }
+                    let rev=res.data.messages.reverse();
                     setData(prevData => {
-                        if(type==='post')
-                            return [...prevData, ...res.data.response.post];
-                        else
-                            return [ ...res.data[0].data,...prevData];
+                        return [...rev, ...prevData];
                     });
                     setIsPending(false);
-                    setHasMore(res.data[0].next_url);
+                    setHasMore(res.data.next_url);
                     setError(null);
                 } else {
+                    //console.log("gaaaaa");
                     throw Error(res.error);
                 }
             })
@@ -47,11 +52,12 @@ const useInfiniteScrolling = (url,type) => {
             });
 
         return () => {
+            console.log("gaaaaa");
             return abortCont.abort();
         };
     }, [url]);
 
-    return { error, data, isPending, hasMore };
+    return { error, data, isPending, hasMore, blogData, loadingFirstPage };
 };
 
-export default useInfiniteScrolling;
+export default useInfiniteScrollingChat;

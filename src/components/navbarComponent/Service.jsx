@@ -6,7 +6,7 @@ const getSearchRes = async (searchWord, setSearchResults, setLoading) => {
         setLoading(true);
         const res = await Axios.get(`${apiBaseUrl}/search/${searchWord}`);
         console.log(res.data);
-        setSearchResults(res.data);
+        setSearchResults(res.data.response);
         setLoading(false);
     } catch (error) {
         console.log(error);

@@ -1,23 +1,29 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 export const ChatContext = createContext();
 import { apiBaseUrl } from '../../config.json';
-import { UserContext } from '../userContext/UserContext';
 import Axios from 'axios';
 
 export default function ChatContextProvider(props) {
-    const { user } = useContext(UserContext);
-
+    //const { user } = useContext(UserContext);
+    const user = JSON.parse(localStorage.getItem('user'));
     const [pageNumber, setPageNumber] = useState(1);
 
-    const [currBlog, setCurrBlog] = useState(null);
+    let currBlogObject = null;
+    if (user && user.userData)
+        currBlogObject = {
+            senderName: user.userData.blog_name,
+            senderId: user.userData.primary_blog_id,
+            senderPhoto: user.userData.avatar,
+            senderShape: user.userData.avatar_shape
+        };
+    const [currBlog, setCurrBlog] = useState(currBlogObject);
     const [blogs, setBlogs] = useState(null);
 
     // for chats show in navbar
     const [loadingChats, setLoadingChats] = useState(false);
     const [errLoadingChat, setErrLoadingChat] = useState(null);
     const [chats, setChats] = useState(null); //chats in navbar messages dropDown
-
     //for the signle conversation
     /*const [msgs, setMsgs] = useState([]);
     const [loadingConversation, setLoadingConversation] = useState(false);
@@ -30,7 +36,7 @@ export default function ChatContextProvider(props) {
     const [sideIconOpenChat, setSideIconOpenChat] = useState([]); //array contains chats side icons opened
 
     //this function load chats in navbavr dropdown list
-    const loadChats = () => {
+    const loadChats = async () => {
         // to DO load real chat by axios request,, Doing it!
         const abortCont = new AbortController();
         const config = { signal: abortCont.signal };
@@ -40,14 +46,17 @@ export default function ChatContextProvider(props) {
                 Accept: 'application/json'
             };
         }
-        let blogId = 10;
+        let blogId = currBlog.senderId; //user.userData.id;
         setLoadingChats(true);
+        console.log(user);
+
         Axios.get(`${apiBaseUrl}/blog/messaging/${blogId}`, config)
             .then(res => {
                 if (!res.error) {
                     setChats(res.data);
                     setLoadingChats(false);
                     setErrLoadingChat(null);
+                    console.log('ss');
                 } else {
                     throw Error(res.error);
                 }
@@ -73,7 +82,7 @@ export default function ChatContextProvider(props) {
         senderName,
         receiverName
     ) => {
-        console.log(user);
+        // console.log(user);
         // if the current is the one i opened
         if (
             currPopUpOpenChat &&
@@ -83,7 +92,7 @@ export default function ChatContextProvider(props) {
             return;
         }
 
-         setSideIconOpenChat(
+        setSideIconOpenChat(
             sideIconOpenChat.filter(
                 chat =>
                     chat.senderId !== senderId || chat.receiverId !== receiverId
@@ -108,9 +117,9 @@ export default function ChatContextProvider(props) {
         });
     };
 
-
     // this function close the chat popup when use click it x button
     const closeChatPopup = () => {
+        setPageNumber(1);
         setCurrPopUpOpenChat(null);
     };
 
@@ -126,7 +135,7 @@ export default function ChatContextProvider(props) {
     };
 
     // send message
-    const sendMessage = message => {
+    const sendMessage = (message, senderId, receiverId) => {
         const abortCont = new AbortController();
         const config = { signal: abortCont.signal };
         if (user) {
@@ -135,8 +144,9 @@ export default function ChatContextProvider(props) {
                 Accept: 'application/json'
             };
         }
+        //  console.log(currPopUpOpenChat.senderId, currPopUpOpenChat.receiverId);
         Axios.post(
-            `${apiBaseUrl}/messaging/conversation/${currPopUpOpenChat.senderId}/${currPopUpOpenChat.receiverId}`,
+            `${apiBaseUrl}/messaging/conversation/${senderId}/${receiverId}`,
             {
                 Content: message
             },
@@ -147,9 +157,9 @@ export default function ChatContextProvider(props) {
                     console.log('send message succfully!');
                     let newMsg = {
                         // eslint-disable-next-line camelcase
-                        from_blog_id: currPopUpOpenChat.senderId,
+                        from_blog_id: senderId,
                         // eslint-disable-next-line camelcase
-                        to_blog_id: currPopUpOpenChat.receiverId,
+                        to_blog_id: receiverId,
                         content: message,
                         // eslint-disable-next-line camelcase
                         is_read: false,
@@ -169,8 +179,8 @@ export default function ChatContextProvider(props) {
                 }
             });
     };
-    const deleteChat = () => {
-        let { senderId, receiverId } = currPopUpOpenChat;
+    const deleteChat = (senderId, receiverId) => {
+        // let { senderId, receiverId } = currPopUpOpenChat;
         const abortCont = new AbortController();
         const config = { signal: abortCont.signal };
         if (user) {

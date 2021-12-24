@@ -316,11 +316,33 @@ $border-radius-primary: 3px;
             z-index: 100;
             // popup of messages
         }
-
+        .un-read-msgs {
+            position: absolute;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            height: 20px;
+            justify-content: center;
+            left: 65%;
+            line-height: 1.44;
+            min-width: 11px;
+            padding: 0px 5px;
+            text-decoration: none;
+            top: -40%;
+        }
         // button in un auth navbar
         .log,
         .sign {
-            @extend %defultbtn;
+            //@extend %defultbtn;
+
+            color: inherit;
+            border: none;
+
+            font: inherit;
+            outline: inherit;
             cursor: pointer;
             font-size: 1rem;
             font-weight: 600;
@@ -339,10 +361,10 @@ $border-radius-primary: 3px;
         }
         .log {
             margin-right: 10px;
-            background-color: $button-color-secondary; //?
+            background-color: #00cf35;
         }
         .sign {
-            background-color: $button-color; //?
+            background-color: #00b8ff;
         }
     }
 }
@@ -403,14 +425,14 @@ $border-radius-primary: 3px;
             // }
             &-img {
                 margin-right: 10px;
-               
+
                 img {
                     width: 34px;
                     height: 34px;
                     border-radius: 3px;
                 }
             }
-            &-img.circle img{
+            &-img.circle img {
                 border-radius: 50%;
             }
             &-text {
@@ -433,19 +455,19 @@ $border-radius-primary: 3px;
                 }
             }
         }
-        &-message.notSeen{
-            .receiver{
-                color: #04B9FF;
+        &-message.notSeen {
+            .receiver {
+                color: #04b9ff;
             }
-            .notSeenDot{
+            .notSeenDot {
                 position: absolute;
                 top: 18px;
                 right: 16px;
-                color: #04B9FF;
-               
+                color: #04b9ff;
+
                 display: flex;
                 align-items: center;
-                i{
+                i {
                     font-size: 5px;
                 }
             }

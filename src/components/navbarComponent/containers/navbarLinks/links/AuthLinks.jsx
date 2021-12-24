@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import '../../../../../styles/styles.css';
 import MessagesPopUp from '../MessagesPopup/MessagesPopUp';
 import AccountPopup from '../AccountPopup/AccountPopup';
 import { Link, NavLink } from 'react-router-dom';
-
+import { ChatContext } from '../../../../../contexts/chatContext/ChatContext';
+import UnReadMsg from './UnReadMsg';
 /**
  * Navbar AuthLinks: includes all links dashboard and inbox and expolre ...
  * @function NavbarAuthLinks
@@ -23,6 +24,21 @@ export default function AuthLinks() {
     const [openAccountPopup, setOpenAccountPopup] = useState(false);
 
     //const [openPopup, setOpenPopup] = useState(false);
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    // when the navbar run go loadChat and count the unreadMsgs
+    let { loadChats, chats } = useContext(ChatContext);
+    const [unReadMsgs, setUnReadMsgs] = useState(0);
+
+    useEffect(async () => {
+        if (!user) return;
+        await loadChats();
+        let count = 0;
+        chats&&chats.forEach(chat => {
+            if (!chat.is_read) count++;
+        });
+        setUnReadMsgs(count);
+    }, []);
 
     //close dropdown message list
     const closeMessagePopup = () => {
@@ -34,6 +50,7 @@ export default function AuthLinks() {
         //console.log("colse");
     };
     const clickMessagePopup = () => {
+        if (!user) return;
         // if i open it
         if (!openMessagePopup) {
             //close other popup
@@ -104,6 +121,7 @@ export default function AuthLinks() {
                         }`}
                     >
                         <i className="fas fa-comment-dots"></i>
+                        {unReadMsgs!==0 && <UnReadMsg unReadMsgs={unReadMsgs} />}
                     </li>
                     {openMessagePopup && (
                         <MessagesPopUp clickMessagePopup={clickMessagePopup} />

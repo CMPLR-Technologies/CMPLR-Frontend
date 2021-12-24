@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ChatContext } from '../../../../../contexts/chatContext/ChatContext';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
 export default function MessageItem(props) {
     {
@@ -16,30 +16,30 @@ export default function MessageItem(props) {
         message,
         photo,
         clickMessagePopup,
-        mobile,
+        //mobile,
         shape,
         isRead,
         lastOneSend
     } = props;
-    let { openChatPopup } = useContext(ChatContext);
-    const navigate = useNavigate();
+    let { openChatPopup, currBlog } = useContext(ChatContext);
+    // const navigate = useNavigate();
 
     const openChat = () => {
-        if (mobile) {
-            console.log(senderId);
+        /*if (mobile) {
+           // console.log(senderId);
             let route = `/messaging/conversation/${senderId}/${receiverId}`;
-            openChatPopup(senderId, receiverId);
+            //openChatPopup(senderId, receiverId);
             navigate(route);
             return;
-        }
+        }*/
         let receiverPhoto = photo;
         let receiverShape = shape;
-        let senderPhoto = photo;
-        let senderShape = shape;
+        let senderPhoto = currBlog.senderPhoto;
+        let senderShape = currBlog.senderShape;
         let senderName = sender;
         let receiverName = receiver;
 
-        //console.log('helo:,', senderId, receiverId);
+        // console.log('helo:,', senderId, receiverId);
 
         openChatPopup(
             senderId,
@@ -57,7 +57,9 @@ export default function MessageItem(props) {
     return (
         <div
             onClick={openChat}
-            className={`popup-messages-message ${!isRead&&lastOneSend===receiver ? 'notSeen' : ''}`}
+            className={`popup-messages-message ${
+                !isRead && lastOneSend === receiver ? 'notSeen' : ''
+            }`}
         >
             <div className={`popup-messages-message-img ${shape}`}>
                 <img src={photo}></img>
@@ -68,7 +70,7 @@ export default function MessageItem(props) {
                     <h3 className="sender">{lastOneSend + ': '}</h3>
                     <p className="message">{message}</p>
                 </div>
-                {!isRead&&lastOneSend===receiver&& (
+                {!isRead && lastOneSend === receiver && (
                     <div className="notSeenDot">
                         <i className="fas fa-circle"></i>
                     </div>

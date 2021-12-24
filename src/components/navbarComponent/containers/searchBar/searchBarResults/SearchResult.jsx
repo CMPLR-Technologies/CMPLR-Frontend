@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 export default function SearchResult(props) {
-    let { search, closeOpenSearch } = props;
+    let { search, closeOpenSearch, searchResults } = props;
     /*let searchContentArr = ['ahmed', 'ahmed 2', 'ahmedtmp', 'ahmed ahmed'];
     let searchBlogArr = [
         { blogName: 'ahmed123', name: 'ahmed' },
@@ -15,8 +15,8 @@ export default function SearchResult(props) {
         { blogName: 'ahmed123', name: 'ahmed' },
         { blogName: 'ahmed123', name: 'ahmed' }
     ];*/
-    //let {searchResults}=props;
-    let searchResults = {
+    // let {searchResults}=props;
+    /*let searchResults = {
         tags: [
             {
                 name: 'Addison Walker',
@@ -71,7 +71,7 @@ export default function SearchResult(props) {
                 }
             }
         ]
-    };
+    };*/
     console.log(searchResults);
     return (
         <div className="search-result">

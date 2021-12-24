@@ -18,9 +18,9 @@ export default function SearchResultItemBlog(props) {
                         <h4>{title}</h4>
                     </div>
                 </div>
-                <div className="search-result-blog-button">
+               {/* <div className="search-result-blog-button">
                     <button>Follow</button>
-                </div>
+    </div>*/}
             </li>
         </Link>
     );
