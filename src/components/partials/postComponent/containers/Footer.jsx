@@ -146,7 +146,9 @@ export default function Footer(props) {
                     >
                         {numberNotes > 1
                             ? `${numberNotes} notes`
-                            : numberNotes === undefined || numberNotes === 0
+                            : numberNotes === undefined ||
+                              numberNotes === 0 ||
+                              isNaN(numberNotes)
                             ? ''
                             : `${numberNotes} note`}
                     </span>
