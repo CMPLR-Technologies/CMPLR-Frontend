@@ -173,7 +173,7 @@
           }
         }
       ],
-      "next_url": "http://127.0.0.1:8000/api/posts/view/ahmed_3?page=2",
+      "next_url": null,
       "total": 5,
       "current_page": 1,
       "posts_per_page": 2

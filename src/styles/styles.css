@@ -114,7 +114,7 @@
   width: 100%;
   left: 40px;
 }
-@media (max-width: 800px) {
+@media (max-width: 960px) {
   .post-wrapper {
     width: 80%;
   }
@@ -4517,7 +4517,6 @@ body #reset-pass-logo {
 
 .explore-posts {
   width: 100%;
-  overflow-y: hidden;
 }
 
 @media screen and (min-width: 1500px) {
