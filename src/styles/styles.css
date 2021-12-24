@@ -4387,12 +4387,36 @@ body #reset-pass-logo {
 }
 .explore-hashtags {
   display: flex;
-  position: relative;
+  overflow-x: scroll;
+  margin-bottom: 40px;
 }
-.explore-hashtags .arrow-icon {
+.explore-hashtags::-webkit-scrollbar {
+  display: none;
+}
+.explore-hashtags-main {
   position: relative;
+  width: 100%;
+}
+.explore-hashtags-main .hide {
+  display: none;
+}
+.explore-hashtags-main .show {
+  display: block;
+}
+.explore-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  max-width: 625px;
+}
+
+.arrow-icon {
+  position: absolute;
   top: 80px;
   color: white;
+  z-index: 100;
+  cursor: pointer;
 }
 
 .following-hashtag {
@@ -4428,13 +4452,17 @@ body #reset-pass-logo {
   font-size: 1.25rem;
   display: inline-block;
 }
-.explore-nav-links {
-  margin-right: 3rem;
-}
 .explore-nav-icons button {
   background: transparent;
   text-decoration: none;
   border: none;
+}
+.explore-nav-links {
+  display: flex;
+  align-items: center;
+}
+.explore-nav .emoji {
+  margin-bottom: -5px;
 }
 
 .explore-sidebar {
@@ -4445,8 +4473,8 @@ body #reset-pass-logo {
 }
 
 .explore-hashtag {
-  background-color: #ca8c55;
-  border-color: #e3a56e;
+  background-color: #28396f;
+  border-color: #415288;
   border: 1px solid transparent;
   border-radius: 6px;
   padding: 8px;
@@ -4455,7 +4483,7 @@ body #reset-pass-logo {
 }
 .explore-hashtag a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 .explore-hashtag span {
   display: block;
@@ -4470,6 +4498,7 @@ body #reset-pass-logo {
   padding: 8px 20.5px;
   width: 100%;
   font-size: 1rem;
+  color: #28396f;
   cursor: pointer;
 }
 .explore-hashtag-images {
@@ -4480,8 +4509,35 @@ body #reset-pass-logo {
   height: 93.3333333333px;
   width: 56px;
   object-fit: cover;
+  border-radius: 3px;
+}
+.explore-hashtag-images :first-child {
+  margin-right: 8px;
 }
 
+.explore-posts {
+  width: 100%;
+  overflow-y: hidden;
+}
+
+@media screen and (min-width: 1500px) {
+  .explore-main {
+    max-width: 940px;
+  }
+}
+@media screen and (max-width: 950px) {
+  .explore-sidebar {
+    display: none;
+  }
+
+  .explore-nav {
+    justify-content: center;
+  }
+
+  .explore-nav-icons {
+    display: none;
+  }
+}
 * {
   margin: 0;
   padding: 0;
