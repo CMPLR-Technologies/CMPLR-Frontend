@@ -3,15 +3,26 @@
     margin: 79px auto 0;
     justify-content: center;
 
-    &-following-head {
-        display: flex;
-        flex-direction: row;
-        font-size: 1.125rem;
-        font-weight: 700;
-        line-height: 1.333;
-        margin-bottom: 8px;
-        padding: 15px;
-        justify-content: space-between;
+    &-following {
+        &-head {
+            display: flex;
+            flex-direction: row;
+            font-size: 1.125rem;
+            font-weight: 700;
+            line-height: 1.333;
+            margin-bottom: 8px;
+            padding: 15px;
+            justify-content: space-between;
+        }
+
+        &-main {
+            cursor: pointer;
+            min-height: 308px;
+
+            a {
+                text-decoration: none;
+            }
+        }
     }
 
     &-hashtags {
@@ -167,6 +178,19 @@
 
 .mid-size {
     max-width: 625px !important;
+}
+
+.moreTags {
+    width: 100%;
+    background: transparent;
+    border: none;
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-top: 8px;
+    padding: 16px;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 1500px) {

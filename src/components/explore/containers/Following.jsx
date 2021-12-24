@@ -1,59 +1,68 @@
 import React, { useContext } from 'react';
+import { useState } from 'react';
 import {
     themes,
     ThemeContext
 } from '../../../contexts/themeContext/ThemeContext';
-
+import { followingHashtags } from '../Data';
+import { showTags } from '../Controller';
 export default function Following() {
     const theme = useContext(ThemeContext)[0];
-    const followingStyles = {
-        background: `rgba(${themes[theme].whiteOnDark}, 0.07)`
-    };
+    const [start, setStart] = useState(0);
+    const [end, setEnd] = useState(4);
+
     const headStyles = {
         color: `rgb(${themes[theme].whiteOnDark})`,
         borderBottom: `solid 1px rgba(${themes[theme].whiteOnDark}, 0.13)`
     };
-    const typoStyles = {
-        color: `rgb(${themes[theme].whiteOnDark})`
+    const btnStyles = {
+        color: `rgb(${themes[theme].accent})`,
+        borderTop: `solid 1px rgba(${themes[theme].whiteOnDark}, 0.13)`
     };
+    const styles = `
+    .following-hashtag:hover{
+        background: rgba(${themes[theme].whiteOnDark}, 0.13);
+    }
+    `;
     return (
-        <div className="explore-following" style={followingStyles}>
+        <div
+            className="explore-following"
+            style={{ background: `rgba(${themes[theme].whiteOnDark}, 0.07)` }}
+        >
             <div className="explore-following-head" style={headStyles}>
                 <span>Following</span>
                 <span>Edit</span>
             </div>
             <div className="explore-following-main">
-                <div className="following-hashtag">
-                    <img src="https://64.media.tumblr.com/5321df071c0777b12faa659e7662e97a/adf9e8c81bd814f7-70/s640x960/0fb9219fd16d394613e0d8731b02ad44e9e22e4d.jpg" />
-                    <div className="following-hashtag-info" style={typoStyles}>
-                        <span>code#</span>
-                        <span>69 recent posts</span>
-                    </div>
-                </div>
-
-                <div className="following-hashtag">
-                    <img src="https://64.media.tumblr.com/5321df071c0777b12faa659e7662e97a/adf9e8c81bd814f7-70/s640x960/0fb9219fd16d394613e0d8731b02ad44e9e22e4d.jpg" />
-                    <div className="following-hashtag-info" style={typoStyles}>
-                        <span>code#</span>
-                        <span>69 recent posts</span>
-                    </div>
-                </div>
-
-                <div className="following-hashtag">
-                    <img src="https://64.media.tumblr.com/5321df071c0777b12faa659e7662e97a/adf9e8c81bd814f7-70/s640x960/0fb9219fd16d394613e0d8731b02ad44e9e22e4d.jpg" />
-                    <div className="following-hashtag-info" style={typoStyles}>
-                        <span>code#</span>
-                        <span>69 recent posts</span>
-                    </div>
-                </div>
-                <div className="following-hashtag">
-                    <img src="https://64.media.tumblr.com/5321df071c0777b12faa659e7662e97a/adf9e8c81bd814f7-70/s640x960/0fb9219fd16d394613e0d8731b02ad44e9e22e4d.jpg" />
-                    <div className="following-hashtag-info" style={typoStyles}>
-                        <span>code#</span>
-                        <span>69 recent posts</span>
-                    </div>
-                </div>
+                {followingHashtags.slice(start, end).map((hashtag, index) => {
+                    return (
+                        <a key={index} href={hashtag.link}>
+                            <div className="following-hashtag">
+                                <img src={hashtag.image} />
+                                <div
+                                    className="following-hashtag-info"
+                                    style={{
+                                        color: `rgb(${themes[theme].whiteOnDark})`
+                                    }}
+                                >
+                                    <span>{hashtag.name}</span>
+                                    <span>{hashtag.posts} recent posts</span>
+                                </div>
+                            </div>
+                        </a>
+                    );
+                })}
             </div>
+            <button
+                className="moreTags"
+                style={btnStyles}
+                onClick={() => {
+                    showTags(end, setStart, setEnd);
+                }}
+            >
+                Show more tags
+            </button>
+            <style>{styles}</style>
         </div>
     );
 }

@@ -24,7 +24,13 @@ export default function Nav(props) {
     return (
         <div className="explore-nav" style={navStyles}>
             <div className="explore-nav-links">
-                <a href="/" style={linkStyles}>
+                <a
+                    href="/"
+                    style={{
+                        color: `rgb(${themes[theme].accent})`,
+                        boxShadow: `inset 0 -0.5px 0 rgb(${themes[theme].accent})`
+                    }}
+                >
                     For You <FavoriteIcon className="emoji" />
                 </a>
                 <a href="/" style={linkStyles}>

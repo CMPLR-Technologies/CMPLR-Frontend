@@ -4385,6 +4385,13 @@ body #reset-pass-logo {
   padding: 15px;
   justify-content: space-between;
 }
+.explore-following-main {
+  cursor: pointer;
+  min-height: 308px;
+}
+.explore-following-main a {
+  text-decoration: none;
+}
 .explore-hashtags {
   display: flex;
   overflow-x: scroll;
@@ -4521,6 +4528,19 @@ body #reset-pass-logo {
 
 .mid-size {
   max-width: 625px !important;
+}
+
+.moreTags {
+  width: 100%;
+  background: transparent;
+  border: none;
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-top: 8px;
+  padding: 16px;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 1500px) {
