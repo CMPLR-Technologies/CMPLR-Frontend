@@ -202,12 +202,20 @@
   justify-content: flex-end;
   margin-right: 15px;
 }
+.options-btn .options-radar {
+  left: 22% !important;
+}
 .options-btn .options {
   position: absolute;
-  left: 80%;
+  left: 54%;
   top: 100%;
   overflow-y: visible;
   z-index: 2;
+}
+@media (max-width: 960px) {
+  .options-btn .options {
+    left: 50%;
+  }
 }
 .options-btn .options .list {
   position: absolute;
