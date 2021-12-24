@@ -8,6 +8,8 @@
 
 @import url(//db.onlinewebfonts.com/c/d73d37902ec72250867b578d3763ee38?family=Favorit);
 
+@import './chatStyles/chatStyles';
+
 @import './homeStyles/_homeStyles.scss';
 @import './navbarComponent/_Navbar.scss';
 @import './loginStyles/LoginCard.scss';
@@ -18,6 +20,10 @@
 @import './createPostStyles/createPostStyles.scss';
 @import './createPostStyles/createPostPopup.scss';
 @import './richTextEditorStyles/rich.scss';
+
+@import './navbarComponent/_navbar.scss';
+@import './navbarProfileViewsStyles/NavbarProfileView';
+@import './accountpopupComponent/_accountpopup.scss';
 @import './dashboardStyles/dashboardStyles';
 
 @import './accountpopupComponent/_accountpopup.scss';

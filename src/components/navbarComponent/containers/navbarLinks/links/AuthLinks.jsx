@@ -4,6 +4,7 @@ import '../../../../../styles/styles.css';
 import MessagesPopUp from '../MessagesPopup/MessagesPopUp';
 import AccountPopup from '../AccountPopup/AccountPopup';
 import { Link, NavLink } from 'react-router-dom';
+
 /**
  * Navbar AuthLinks: includes all links dashboard and inbox and expolre ...
  * @function NavbarAuthLinks
@@ -104,7 +105,9 @@ export default function AuthLinks() {
                     >
                         <i className="fas fa-comment-dots"></i>
                     </li>
-                    {openMessagePopup && <MessagesPopUp />}
+                    {openMessagePopup && (
+                        <MessagesPopUp clickMessagePopup={clickMessagePopup} />
+                    )}
                 </div>
             </ClickAwayListener>
 
@@ -129,11 +132,11 @@ export default function AuthLinks() {
                     {openAccountPopup && <AccountPopup />}
                 </div>
             </ClickAwayListener>
-            <li className="link-icon pen">
-                <Link to="/new">
+            <Link to="/new">
+                <li className="link-icon pen">
                     <i className="fas fa-pen"></i>
-                </Link>
-            </li>
+                </li>
+            </Link>
             {/* <Route
         path="/new"
         children={({ match }) => (

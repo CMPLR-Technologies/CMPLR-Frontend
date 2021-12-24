@@ -1,27 +1,77 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { ChatContext } from '../../../../../contexts/chatContext/ChatContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function MessageItem(props) {
     {
         /*to do load the real data(photo sender,rec,message*/
     }
 
-    let { sender, receiver, message, chat, shortParagrah } = props;
+    let {
+        sender,
+        senderId,
+        receiver,
+        receiverId,
+        message,
+        photo,
+        clickMessagePopup,
+        mobile,
+        shape,
+        isRead,
+        lastOneSend
+    } = props;
+    let { openChatPopup } = useContext(ChatContext);
+    const navigate = useNavigate();
+
+    const openChat = () => {
+        if (mobile) {
+            console.log(senderId);
+            let route = `/messaging/conversation/${senderId}/${receiverId}`;
+            openChatPopup(senderId, receiverId);
+            navigate(route);
+            return;
+        }
+        let receiverPhoto = photo;
+        let receiverShape = shape;
+        let senderPhoto = photo;
+        let senderShape = shape;
+        let senderName = sender;
+        let receiverName = receiver;
+
+        //console.log('helo:,', senderId, receiverId);
+
+        openChatPopup(
+            senderId,
+            receiverId,
+            senderPhoto,
+            senderShape,
+            receiverPhoto,
+            receiverShape,
+            senderName,
+            receiverName
+        );
+        // close the dropdown list
+        clickMessagePopup();
+    };
     return (
-        <div className="popup-messages-message">
-            <div className="popup-messages-message-img">
-                <img src="https://64.media.tumblr.com/9e07830d7ed05eb280b08079edd78e8c/ee7e6ae318b625e3-d6/s96x96u_c1/40cb8d3f150bfff507762783fb4c2ec36c6cd256.jpg"></img>
+        <div
+            onClick={openChat}
+            className={`popup-messages-message ${!isRead&&lastOneSend===receiver ? 'notSeen' : ''}`}
+        >
+            <div className={`popup-messages-message-img ${shape}`}>
+                <img src={photo}></img>
             </div>
             <div className="popup-messages-message-text">
                 <h3 className="receiver">{receiver}</h3>
-                {/*if chat==true then i call compenent from messages popup else i call it from new message search*/}
-                {chat ? (
-                    <h3 className="sender">
-                        {sender + ': '}
-                        <span className="message">{message}</span>
-                    </h3>
-                ) : (
-                    <span className="message">{shortParagrah}</span>
+                <div className="sender-up">
+                    <h3 className="sender">{lastOneSend + ': '}</h3>
+                    <p className="message">{message}</p>
+                </div>
+                {!isRead&&lastOneSend===receiver&& (
+                    <div className="notSeenDot">
+                        <i className="fas fa-circle"></i>
+                    </div>
                 )}
             </div>
         </div>
@@ -33,5 +83,14 @@ MessageItem.propTypes = {
     receiver: PropTypes.string,
     message: PropTypes.string,
     chat: PropTypes.bool,
-    shortParagrah: PropTypes.string
+    shortParagrah: PropTypes.string,
+    photo: PropTypes.string,
+    shape: PropTypes.string,
+    chatId: PropTypes.string,
+    clickMessagePopup: PropTypes.func,
+    mobile: PropTypes.bool,
+    lastOneSend: PropTypes.string,
+    isRead: PropTypes.bool,
+    receiverId: PropTypes.string,
+    senderId: PropTypes.string
 };
