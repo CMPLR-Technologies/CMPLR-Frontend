@@ -6,9 +6,13 @@ import Modal from '../../partials/Modal';
 import { block } from '../../partials/postComponent/Services';
 import AuthBtn from '../../partials/AuthBtn';
 import NoXAvailable from './NoXAvailable';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import Axios from 'axios';
+import { apiBaseUrl } from '../../../config.json';
 
 export default function FollowersPage(props) {
     const { error, followers, isPending } = props.response;
+    const { hasMore, handleScroll } = props;
     const [isOptionListOpen, setIsOptionListOpen] = useState(-1);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
@@ -18,6 +22,18 @@ export default function FollowersPage(props) {
 
     const searchFollower = input => {
         //send axios request
+        Axios({
+            method: 'get',
+            url: `${apiBaseUrl}/blog/${input}/followed_by`
+        }).then(res => {
+            if (res.data.meta.status_code === 200) {
+                if (res.data.response.followed_by) {
+                    setFollowResultMessage(`${input} followed you!`);
+                } else if (res.data.response.followed_by === false) {
+                    setFollowResultMessage(`${input} doesn't followe you!`);
+                }
+            }
+        });
     };
 
     return (
@@ -70,9 +86,14 @@ export default function FollowersPage(props) {
                     />
                 </Modal>
             )}
-            {isPending && <LinearProgress />}
             {followers?.length && (
-                <>
+                <InfiniteScroll
+                    dataLength={followers?.length} //This is important field to render the next data
+                    next={handleScroll}
+                    hasMore={hasMore}
+                    loader={<LinearProgress />}
+                    endMessage={<></>}
+                >
                     <div className="search-area">
                         <span className="followers-num">
                             {`${followers?.length ? followers?.length : '0'} `}
@@ -84,7 +105,7 @@ export default function FollowersPage(props) {
                         />
                     </div>
                     <div className="follow-search-result">
-                        <strong>dhko</strong> follows you!
+                        {followResultMessage}
                     </div>
                     <div className="followers-list">
                         {followers?.map((follower, index) => (
@@ -150,7 +171,7 @@ export default function FollowersPage(props) {
                             </div>
                         ))}
                     </div>
-                </>
+                </InfiniteScroll>
             )}
         </>
     );

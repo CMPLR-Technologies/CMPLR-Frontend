@@ -147,7 +147,8 @@
             "blog_name": "ahmed_4",
             "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
             "avatar_shape": "circle",
-            "replies": "everyone"
+            "replies": "everyone",
+            "follower": true
           }
         },
         {
@@ -498,33 +499,155 @@
       }
     }
   },
-  "followers": {
-    "response": [
-      {
-        "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-        "blogName": "twix123",
-        "followerName": "Untitled",
-        "isFollowed": true
-      },
-      {
-        "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-        "blogName": "chezmod",
-        "followerName": "Untitled",
-        "isFollowed": false
-      },
-      {
-        "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-        "blogName": "khold",
-        "followerName": "khaldon",
-        "isFollowed": false
-      },
-      {
-        "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-        "blogName": "Yahia",
-        "followerName": "Yaia",
-        "isFollowed": false
-      }
-    ]
+  "followings": {
+    "response": {
+      "blogs": [
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "twix123",
+          "followerName": "Untitled",
+          "isFollowed": true
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "chezmod",
+          "followerName": "Untitled",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "khold",
+          "followerName": "khaldon",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "Yahia",
+          "followerName": "Yaia",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "twix123",
+          "followerName": "Untitled",
+          "isFollowed": true
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "chezmod",
+          "followerName": "Untitled",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "khold",
+          "followerName": "khaldon",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "Yahia",
+          "followerName": "Yaia",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "twix123",
+          "followerName": "Untitled",
+          "isFollowed": true
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "chezmod",
+          "followerName": "Untitled",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "khold",
+          "followerName": "khaldon",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "Yahia",
+          "followerName": "Yaia",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "twix123",
+          "followerName": "Untitled",
+          "isFollowed": true
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "chezmod",
+          "followerName": "Untitled",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "khold",
+          "followerName": "khaldon",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "Yahia",
+          "followerName": "Yaia",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "twix123",
+          "followerName": "Untitled",
+          "isFollowed": true
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "chezmod",
+          "followerName": "Untitled",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "khold",
+          "followerName": "khaldon",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "Yahia",
+          "followerName": "Yaia",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "twix123",
+          "followerName": "Untitled",
+          "isFollowed": true
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "chezmod",
+          "followerName": "Untitled",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "khold",
+          "followerName": "khaldon",
+          "isFollowed": false
+        },
+        {
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "blogName": "Yahia",
+          "followerName": "Yaia",
+          "isFollowed": false
+        }
+      ]
+    }
   },
   "kholdbold": {
     "meta": {
@@ -618,6 +741,14 @@
           }
         }
       ]
+    }
+  },
+  "followed_by": {
+    "meta": {
+      "status_code": 200
+    },
+    "response": {
+      "followed_by": false
     }
   }
 }

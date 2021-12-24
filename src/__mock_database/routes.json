@@ -4,5 +4,6 @@
     "/posts/view/*": "/$1",
     "/posts/*": "/$1",
     "/post/:blog_identifier/*": "/$1",
-    "blog/:blog_identifier/": "/$1"
+    "blog/:blog_identifier/": "/$1",
+    "blog/*/*": "$1"
 }

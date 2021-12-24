@@ -6,6 +6,7 @@ import PostsPage from './container/PostsPage';
 import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
 import { apiBaseUrl } from '../../config.json';
 import useFetch from '../../hooks/useFetch';
+import { getFollowingList } from '../followingComponent/Service';
 
 export default function MyProfile() {
     const location = useLocation();
@@ -27,16 +28,49 @@ export default function MyProfile() {
     } = useInfiniteScrolling(`${apiBaseUrl}/posts/view/kholdbold`); //change to blogName
 
     const blogIdentifier = 'kholdbold';
-    const {
-        error: errorFollowers,
-        data: followers,
-        isPending: isPendingFollowers
-    } = useFetch(`${apiBaseUrl}/blog/${blogIdentifier}/followers`);
+    const [isPendingFollowers, setIsPendingFollowers] = useState(true);
+    const [errorFollowers, setErrorFollowers] = useState(false);
+    const [followers, setFollowers] = useState([]);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+    const [totalFollowing, setTotalFollowing] = useState(0);
+    useEffect(() => {
+        if (hasMore) {
+            getFollowingList(
+                setFollowers,
+                followers,
+                user?.token,
+                setIsPendingFollowers,
+                setErrorFollowers,
+                setTotalFollowing,
+                page,
+                setPage,
+                setHasMore
+            );
+        }
+    }, []);
+
     const {
         error: errorDrafts,
         data: drafts,
         isPending: isPendingDrafts
     } = useInfiniteScrolling(`${apiBaseUrl}/posts/view/kholdbold`); //change to blogName
+    const user = JSON.parse(localStorage.getItem('user'));
+    const handleScroll = () => {
+        if (hasMore) {
+            getFollowingList(
+                setFollowers,
+                followers,
+                user?.token,
+                setIsPendingFollowers,
+                setErrorFollowers,
+                setTotalFollowing,
+                page,
+                setPage,
+                setHasMore
+            );
+        }
+    };
     return (
         <div className="dashboard">
             <div className="posts-region">
@@ -47,6 +81,8 @@ export default function MyProfile() {
                             errorFollowers,
                             isPendingFollowers
                         }}
+                        hasMore={hasMore}
+                        handleScrole={handleScroll}
                     />
                 ) : location.pathname.includes('/drafts') ? (
                     <PostsPage
@@ -63,7 +99,7 @@ export default function MyProfile() {
             </div>
             <Sidebar
                 postLength={posts?.length}
-                followersLength={followers?.length}
+                followersLength={totalFollowing}
                 draftsLength={drafts?.length}
                 activeSide={activeSide && activeSide}
             />

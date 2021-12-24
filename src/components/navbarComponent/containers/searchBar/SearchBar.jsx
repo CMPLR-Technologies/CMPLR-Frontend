@@ -23,11 +23,11 @@ export default function SearchBar(props) {
     };
     useEffect(() => {
         //TO DO : send req to backend and get the users
-        if (searchWord.length > 0) setOpenSearch(true);
+        if (searchWord.length > 0 && !placeHolder) setOpenSearch(true);
         else setOpenSearch(false);
     }, [searchWord]);
     const changeHover = () => {
-        if (!isHover && searchWord !== '') setOpenSearch(true);
+        if (!isHover && searchWord !== '' && !placeHolder) setOpenSearch(true);
         setIsHover(!isHover);
     };
     const closeOpenSearch = () => {
@@ -55,7 +55,8 @@ export default function SearchBar(props) {
                     focus=""
                     onKeyUp={e => {
                         if (e.key === 'Enter' && placeHolder !== '') {
-                            searchFollower(e.target.value);
+                            console.log(searchWord);
+                            searchFollower(searchWord);
                         }
                     }}
                     className="search-input"
