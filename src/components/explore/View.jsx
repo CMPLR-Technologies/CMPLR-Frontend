@@ -25,7 +25,7 @@ export default function Explore() {
                 {grid ? (
                     <div className="explore-posts">
                         <VerticalPostsView
-                            posts={posts.slice(0, posts.length / 3)}
+                            posts={posts.slice(0, posts.length / 3 + 1)}
                             error={error}
                             isPending={isPending}
                             hasMore={hasMore}
@@ -34,8 +34,8 @@ export default function Explore() {
                         />
                         <VerticalPostsView
                             posts={posts.slice(
-                                posts.length / 3,
-                                (2 * posts.length) / 3
+                                posts.length / 3 + 1,
+                                (2 * posts.length) / 3 + 1
                             )}
                             error={error}
                             isPending={isPending}
@@ -45,7 +45,7 @@ export default function Explore() {
                         />
                         <VerticalPostsView
                             posts={posts.slice(
-                                (2 * posts.length) / 3,
+                                (2 * posts.length) / 3 + 1,
                                 posts.length
                             )}
                             error={error}
