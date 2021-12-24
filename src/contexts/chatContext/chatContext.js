@@ -6,11 +6,13 @@ import Axios from 'axios';
 
 export default function ChatContextProvider(props) {
     //const { user } = useContext(UserContext);
-    const user = JSON.parse(localStorage.getItem('user'));
+    const userR = JSON.parse(localStorage.getItem('user'));
+    const user=userR;
     const [pageNumber, setPageNumber] = useState(1);
 
     let currBlogObject = null;
     if (user && user?.userData)
+        console.log(user?.userData);
         currBlogObject = {
             senderName: user?.userData?.blog_name,
             senderId: user?.userData?.primary_blog_id,
