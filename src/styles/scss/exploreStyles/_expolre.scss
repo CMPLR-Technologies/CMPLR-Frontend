@@ -51,7 +51,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        overflow-x: hidden;
         max-width: 625px;
     }
 }
@@ -173,11 +172,24 @@
 }
 
 .explore-posts {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    position: relative;
     width: 100%;
+    flex-wrap: wrap;
+    .container-grid {
+        max-width: 300px;
+        width: 300px;
+        margin-left: 1%;
+    }
 }
 
 .mid-size {
     max-width: 625px !important;
+    .normal-layout {
+        width: 100%;
+    }
 }
 
 .moreTags {

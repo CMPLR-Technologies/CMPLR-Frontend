@@ -114,7 +114,7 @@
   width: 100%;
   left: 40px;
 }
-@media (max-width: 800px) {
+@media (max-width: 960px) {
   .post-wrapper {
     width: 80%;
   }
@@ -153,6 +153,7 @@
 .radar-post-wrapper {
   left: 0;
   top: 10px;
+  width: 100% !important;
 }
 
 .author-avatar-mob {
@@ -202,12 +203,20 @@
   justify-content: flex-end;
   margin-right: 15px;
 }
+.options-btn .options-radar {
+  left: 22% !important;
+}
 .options-btn .options {
   position: absolute;
-  left: 80%;
+  left: 54%;
   top: 100%;
   overflow-y: visible;
   z-index: 2;
+}
+@media (max-width: 960px) {
+  .options-btn .options {
+    left: 50%;
+  }
 }
 .options-btn .options .list {
   position: absolute;
@@ -4414,7 +4423,6 @@ body #reset-pass-logo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-x: hidden;
   max-width: 625px;
 }
 
@@ -4523,11 +4531,24 @@ body #reset-pass-logo {
 }
 
 .explore-posts {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  position: relative;
   width: 100%;
+  flex-wrap: wrap;
+}
+.explore-posts .container-grid {
+  max-width: 300px;
+  width: 300px;
+  margin-left: 1%;
 }
 
 .mid-size {
   max-width: 625px !important;
+}
+.mid-size .normal-layout {
+  width: 100%;
 }
 
 .moreTags {
