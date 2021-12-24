@@ -177,8 +177,8 @@ export const getServiceErrors = err => {
         }
     }
 
-    if (err.response.data.error?.password) {
-        let len = err.response.data.error?.password?.length;
+    if (err.response?.data?.error?.password) {
+        let len = err.response.data?.error?.password?.length;
         for (let i = 0; i < len; i++) {
             errors.push(err.response.data.error?.password[i]);
         }

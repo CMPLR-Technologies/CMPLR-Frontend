@@ -24,21 +24,28 @@ export default function AuthLinks() {
     const [openAccountPopup, setOpenAccountPopup] = useState(false);
 
     //const [openPopup, setOpenPopup] = useState(false);
-    const user = JSON.parse(localStorage.getItem('user'));
 
     // when the navbar run go loadChat and count the unreadMsgs
     let { loadChats, chats } = useContext(ChatContext);
     const [unReadMsgs, setUnReadMsgs] = useState(0);
 
     useEffect(async () => {
-        if (!user) return;
-        await loadChats();
-        let count = 0;
-        chats &&
-            chats.forEach(chat => {
+                // this will clear Timeout
+        // when component unmount like in willComponentUnmount
+        // and show will not change to true
+        let timer1 = setTimeout(async() => {
+            await loadChats();
+            let count = 0;
+            chats?.forEach(chat => {
                 if (!chat.is_read) count++;
             });
-        setUnReadMsgs(count);
+            setUnReadMsgs(count);
+        },2000);
+
+        return () => {
+          clearTimeout(timer1);
+        };
+       
     }, []);
 
     //close dropdown message list
@@ -51,7 +58,6 @@ export default function AuthLinks() {
         //console.log("colse");
     };
     const clickMessagePopup = () => {
-        if (!user) return;
         // if i open it
         if (!openMessagePopup) {
             //close other popup

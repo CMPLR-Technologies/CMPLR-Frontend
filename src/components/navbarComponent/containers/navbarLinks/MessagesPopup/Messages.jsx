@@ -19,26 +19,26 @@ export default function Messages(props) {
             {loadingChats ? (
                 <LinearProgress />
             ) : chats && chats.length ? (
-                chats.map((message, index) => (
+                chats?.map((message, index) => (
                     <MessageItem
                         key={index}
                         lastOneSend={
-                            message.from_blog_id === BlogId
+                            message?.from_blog_id === BlogId
                                 ? BlogName
-                                : message.blog_data.blog_name
+                                : message?.blog_data?.blog_name
                         }
                         sender={BlogName}
                         senderId={BlogId}
-                        receiver={message.blog_data.blog_name}
-                        receiverId={message.blog_data.blog_id}
-                        message={message.content}
+                        receiver={message?.blog_data?.blog_name}
+                        receiverId={message?.blog_data?.blog_id}
+                        message={message?.content}
                         chat={true}
-                        photo={message.blog_data.avatar}
-                        shape={message.blog_data.avatar_shape}
+                        photo={message?.blog_data?.avatar}
+                        shape={message?.blog_data?.avatar_shape}
                         chatId={index}
                         clickMessagePopup={clickMessagePopup}
                         mobile={mobile}
-                        isRead={message.is_read}
+                        isRead={message?.is_read}
                     />
                 ))
             ) : (

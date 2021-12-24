@@ -82,7 +82,7 @@ export default function SearchResult(props) {
                     </li>
                 </Link>
                 {searchResults.tags &&
-                    searchResults.tags.map((item, index) => (
+                    searchResults.tags?.map((item, index) => (
                         <SearchResultItemContent
                             key={index}
                             res={item}
@@ -97,7 +97,7 @@ export default function SearchResult(props) {
                     </li>
                 </Link>
                 {searchResults.blogs &&
-                    searchResults.blogs.map((item, index) => (
+                    searchResults.blogs?.map((item, index) => (
                         <SearchResultItemBlog
                             key={index}
                             blogName={item.blog_name}

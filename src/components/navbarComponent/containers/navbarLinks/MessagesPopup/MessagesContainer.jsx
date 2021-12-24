@@ -12,7 +12,7 @@ export default function MessagesContainer(props) {
     const clickNewMessageButton = () => {
         setOpenNewMessageButton(!openNewMessageButton);
     };
-    let { loadChats } = useContext(ChatContext);
+    let { loadChats,currBlog } = useContext(ChatContext);
     useEffect(() => {
         loadChats();
     }, []);
@@ -29,7 +29,7 @@ export default function MessagesContainer(props) {
                         <i className="fas fa-angle-left"></i>
                     </NavLink>
                 </span>
-                <h3>gaser ashraf</h3>
+                <h3>{currBlog?.senderName}</h3>
                 {!openNewMessageButton ? (
                     <button onClick={clickNewMessageButton}>new message</button>
                 ) : (
@@ -52,7 +52,7 @@ export default function MessagesContainer(props) {
                     mobile={mobile}
                 />
             ) : (
-                <SearchNewMessage />
+                <SearchNewMessage clickMessagePopup={clickMessagePopup} />
             )}
         </>
     );

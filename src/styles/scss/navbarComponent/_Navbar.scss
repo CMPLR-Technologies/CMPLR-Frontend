@@ -491,6 +491,13 @@ $border-radius-primary: 3px;
         // }
         &-header {
             padding: 15px;
+            display :flex;
+            align-items: center;
+            .loading{
+                transform: translateX(15px);
+                display :flex;
+                align-items: center;
+            }
         }
         input {
             @extend %defultbtn;

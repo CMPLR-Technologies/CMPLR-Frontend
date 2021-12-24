@@ -10,12 +10,12 @@ export default function ChatContextProvider(props) {
     const [pageNumber, setPageNumber] = useState(1);
 
     let currBlogObject = null;
-    if (user && user.userData)
+    if (user && user?.userData)
         currBlogObject = {
-            senderName: user.userData.blog_name,
-            senderId: user.userData.primary_blog_id,
-            senderPhoto: user.userData.avatar,
-            senderShape: user.userData.avatar_shape
+            senderName: user?.userData?.blog_name,
+            senderId: user?.userData?.primary_blog_id,
+            senderPhoto: user?.userData?.avatar,
+            senderShape: user?.userData?.avatar_shape
         };
     const [currBlog, setCurrBlog] = useState(currBlogObject);
     const [blogs, setBlogs] = useState(null);
@@ -42,29 +42,29 @@ export default function ChatContextProvider(props) {
         const config = { signal: abortCont.signal };
         if (user) {
             config['headers'] = {
-                Authorization: `Bearer ${user.token}`,
+                Authorization: `Bearer ${user?.token}`,
                 Accept: 'application/json'
             };
         }
-        let blogId = currBlog.senderId; //user.userData.id;
+        let blogId = currBlog?.senderId; //user.userData.id;
         setLoadingChats(true);
         console.log(user);
 
         Axios.get(`${apiBaseUrl}/blog/messaging/${blogId}`, config)
             .then(res => {
                 if (!res.error) {
-                    setChats(res.data);
+                    setChats(res?.data);
                     setLoadingChats(false);
                     setErrLoadingChat(null);
                     console.log('ss');
                 } else {
-                    throw Error(res.error);
+                    throw Error(res?.error);
                 }
             })
             .catch(err => {
-                if (err.name !== 'AbortError') {
+                if (err?.name !== 'AbortError') {
                     setLoadingChats(false);
-                    setErrLoadingChat(err.message);
+                    setErrLoadingChat(err?.message);
                 }
             });
         //setChats(charArr);
