@@ -47,7 +47,8 @@ Footer.propTypes = {
     setIsModalOpenN: PropTypes.func,
     blogPage: PropTypes.bool,
     radar: PropTypes.bool,
-    isLiked: PropTypes.bool
+    isLiked: PropTypes.bool,
+    setIsLiked: PropTypes.func
 };
 
 export default function Footer(props) {
@@ -62,7 +63,8 @@ export default function Footer(props) {
         authorAvatar,
         setIsModalOpenN,
         blogPage,
-        radar
+        radar,
+        setIsLiked
     } = props;
     const [isShareListOpen, setIsShareListOpen] = useState(false);
     const [loveFillColor, setLoveFillColor] = useState(
@@ -75,9 +77,18 @@ export default function Footer(props) {
     const [counts, setCounts] = useState({});
     const [numberNotes, setNumberNotes] = useState(0);
     const { user } = useContext(UserContext);
+    //TODO BlogIdentifier1
     const blogIdentifier = 'yahia.tumblr.com';
 
     const navigate = useNavigate();
+
+    const handleNote = () => {
+        if (!notesView) {
+            setNoteType('comment');
+            getPostNotes(blogIdentifier, setNotes, setCounts, postId);
+        }
+        setNotesView(!notesView);
+    };
 
     useEffect(() => {
         getPostNotes(blogIdentifier, setNotes, setCounts, postId);
@@ -112,7 +123,12 @@ export default function Footer(props) {
                             text="Ok"
                             color="rgb(0, 184, 255)"
                             handleClick={() => {
-                                deletePost(postId, setIsModalOpen);
+                                deletePost(
+                                    postId,
+                                    setIsModalOpen,
+                                    user?.token,
+                                    navigate
+                                );
                             }}
                         />
                     </Modal>
@@ -130,7 +146,9 @@ export default function Footer(props) {
                     >
                         {numberNotes > 1
                             ? `${numberNotes} notes`
-                            : numberNotes === undefined || numberNotes === 0
+                            : numberNotes === undefined ||
+                              numberNotes === 0 ||
+                              isNaN(numberNotes)
                             ? ''
                             : `${numberNotes} note`}
                     </span>
@@ -215,14 +233,7 @@ export default function Footer(props) {
                     {!blogPage && !radar && (
                         <button
                             onClick={() => {
-                                setNotesView(true);
-                                setNoteType('comment');
-                                getPostNotes(
-                                    blogIdentifier,
-                                    setNotes,
-                                    setCounts,
-                                    postId
-                                );
+                                handleNote();
                             }}
                             className="icon"
                             data-testid={`note-icon-footer-ts${postId}`}
@@ -243,23 +254,17 @@ export default function Footer(props) {
                         <ReblogBtn />
                     </button>
                     <button
-                        onClick={e => {
-                            submitNote(
-                                e,
-                                'love',
-                                '',
-                                blogIdentifier,
-                                setNotes,
-                                setCounts
-                            );
+                        onClick={() => {
                             !isLiked
                                 ? handleLikePost(
                                       setLoveFillColor,
+                                      setIsLiked,
                                       postId,
                                       user?.token
                                   )
                                 : handleUnlikePost(
                                       setLoveFillColor,
+                                      setIsLiked,
                                       postId,
                                       user?.token
                                   );

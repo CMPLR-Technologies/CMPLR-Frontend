@@ -3,41 +3,9 @@ import { validatePosting } from './Controller';
 import Axios from 'axios';
 import { apiBaseUrl } from '../../config.json';
 
-export const handlePosting = (bodyData, navigate) => {
+export const handlePosting = (bodyData, handleClose, token) => {
     let errors = validatePosting(bodyData?.title, bodyData?.content);
-    const response = {
-        Meta: {
-            Status: 200,
-            msg: 'Success'
-        },
-        response: {
-            posts: [
-                {
-                    post: {
-                        post_id: 1,
-                        type: 'photos',
-                        state: 'publish',
-                        title: bodyData?.title,
-                        content: bodyData?.content,
-                        date: 'Friday, 17-Dec-21 23:27:28 UTC',
-                        reblog_key: 'fsdfas',
-                        number_notes: 1,
-                        source_content: 'google.com',
-                        tags: ['summer', 'winter']
-                    },
-                    blog: {
-                        blog_id: 11,
-                        blog_name: 'ahmed_3',
-                        avatar: 'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
-                        avatar_shape: 'circle',
-                        replies: 'everyone'
-                    }
-                }
-            ]
-        }
-    };
     if (errors?.length > 0) {
-        //console.log(errors);
         return { status: false, err: errors };
     } else {
         Axios({
@@ -45,12 +13,13 @@ export const handlePosting = (bodyData, navigate) => {
             url: `${apiBaseUrl}/posts`,
             headers: {
                 'Content-Type': 'application/json',
-                Accept: 'application/json'
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
             },
-            data: response
+            data: bodyData
         })
             .then(res => {
-                navigate('/dashboard');
+                handleClose(); //redirect to dahsboard
                 return res;
             })
             .catch(err => {
@@ -59,13 +28,25 @@ export const handlePosting = (bodyData, navigate) => {
     }
 };
 
-export function fetchPost(postId, setPost, edit, setTitlePost, setContent) {
+export function fetchPost(
+    postId,
+    setPost,
+    edit,
+    setTitlePost,
+    setContent,
+    token
+) {
     Axios({
         method: 'GET',
-        url: `${apiBaseUrl}/post/${postId}`
+        url: `${apiBaseUrl}/edit/kholdbold/${postId}`,
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        }
     })
         .then(res => {
-            if (res.data.Meta.Status === 200) {
+            if (res.data.meta.status_code === 200) {
                 setPost(res.data.response);
                 if (edit === true) {
                     setTitlePost(res.data.response.post.title);
@@ -76,19 +57,16 @@ export function fetchPost(postId, setPost, edit, setTitlePost, setContent) {
         .catch(() => {});
 }
 
-export function reblogPost(post, comment, navigate) {
+export function editPost(postId, dataBody, navigate, token) {
     Axios({
-        method: 'POST',
-        url: `${apiBaseUrl}/posts/reblog`,
+        method: 'PUT',
+        url: `${apiBaseUrl}/update/ahmed_1/${postId}`,
         headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json'
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
         },
-        data: {
-            id: post['post_id'],
-            reblog_key: post['reblog_key'],
-            comment: comment
-        }
+        data: dataBody
     })
         .then(res => {
             navigate('/dashboard');
@@ -97,17 +75,19 @@ export function reblogPost(post, comment, navigate) {
         .catch(() => {});
 }
 
-export function editPost(postId, dataBody, navigate) {
+export function reblogPost(post, comment, navigate, token) {
     Axios({
         method: 'POST',
-        url: `${apiBaseUrl}/posts/edit`,
+        url: `${apiBaseUrl}/posts/reblog`,
         headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json'
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
         },
         data: {
-            id: postId,
-            data: dataBody
+            id: post['post_id'],
+            reblog_key: post['reblog_key'],
+            comment: comment
         }
     })
         .then(res => {

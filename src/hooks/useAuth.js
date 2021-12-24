@@ -6,10 +6,10 @@ const useAuth = () => {
     const user = useContext(UserContext)?.user;
     const navigate = useNavigate();
     useEffect(() => {
-        if (!user) {
+        if (!localStorage.getItem('user')) {
             navigate('/login');
         }
-    }, [user]);
+    }, []);
 };
 
 export default useAuth;

@@ -48,7 +48,6 @@ export function getEmail(token, setEmail) {
     })
         .then(res => {
             if (res.data.meta.status_code === 200) {
-                console.log(res.data.response.email);
                 setEmail(res.data.response.email);
             }
         })

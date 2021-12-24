@@ -12,6 +12,12 @@ import HandMadeTextEditor from '../RichTextEditor/View';
 import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
 
+import FollowingPage from '../followingComponent/View';
+import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
+import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
+import Hashtag from '../hashtagsComponent/View';
+import Explore from '../explore/View';
+
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
     const css = `
@@ -27,32 +33,45 @@ export default function MainRoutes() {
             <Router>
                 <Navbar />
                 <Routes>
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/messaging" element={<MessagesPageMobile />} />
-                    <Route path="/new/post" element={<CreateModal />} />
-                    <Route path="/rich" element={<HandMadeTextEditor />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/login" element={<LoginView />} />
-                    <Route path="/" element={<HomePage />} />
-                    <Route
-                        path="/forget_password"
-                        element={<ForgetPassword />}
-                    />
-                    <Route
-                        path="/reset_password/:token"
-                        element={<ResetPassword />}
-                    />
+                    <Route path="/tagged/:tag" element={<Hashtag />} />
 
-                    <Route
-                        path="/reblog/:blogName/:postId/:reblogKey"
-                        element={<CreateModal reblog={true} />}
-                    />
+                    <Route element={<RequireUnAuth />}>
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/login" element={<LoginView />} />
 
-                    <Route
-                        path="/edit/:blogName/:postId"
-                        element={<CreateModal reblog={false} edit={true} />}
-                    />
+                        <Route
+                            path="/forget_password"
+                            element={<ForgetPassword />}
+                        />
+
+                        <Route
+                            path="/reset_password/:token"
+                            element={<ResetPassword />}
+                        />
+
+                        <Route path="/" element={<HomePage />} />
+                    </Route>
+
+                    <Route element={<RequireAuth />}>
+                        <Route path="/rich" element={<HandMadeTextEditor />} />
+                        <Route path="/following" element={<FollowingPage />} />
+                        <Route
+                            path="/edit/:blogName/:postId"
+                            element={<CreateModal reblog={false} edit={true} />}
+                        />
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route
+                            path="/reblog/:blogName/:postId/:reblogKey"
+                            element={<CreateModal reblog={true} />}
+                        />
+                        <Route
+                            path="/messaging"
+                            element={<MessagesPageMobile />}
+                        />
+                        <Route path="/new/post" element={<CreateModal />} />
+                        <Route path="/explore" element={<Explore />} />
+                    </Route>
                 </Routes>
                 <style>{css}</style>
             </Router>

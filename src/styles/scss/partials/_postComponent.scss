@@ -11,7 +11,7 @@
     width: 100%;
     left: 40px;
 
-    @media (max-width: 800px) {
+    @media (max-width: 960px) {
         width: 80%;
     }
 }
@@ -98,13 +98,20 @@
     align-items: center;
     justify-content: flex-end;
     margin-right: 15px;
+    .options-radar {
+        left: 22% !important;
+    }
 
     .options {
         position: absolute;
-        left: 80%;
+        left: 54%;
         top: 100%;
         overflow-y: visible;
         z-index: 2;
+
+        @media (max-width: 960px) {
+            left: 50%;
+        }
 
         .list {
             position: absolute;

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import useFetch from '../../../hooks/useFetch';
-import { apiBaseUrl } from '../../../config.json';
+import PropTypes from 'prop-types';
 import BlogInfo from './BlogInfo';
 import {
     themes,
@@ -8,20 +7,24 @@ import {
 } from '../../../contexts/themeContext/ThemeContext';
 import { LinearProgress } from '@mui/material';
 
-export default function RecommendBlogs() {
+export default function RecommendBlogs(props) {
+    const { blogsError, blogs, blogsIsPending } = props;
     const theme = useContext(ThemeContext)[0];
-    const {
-        error,
-        data: recommendedBlogs,
-        isPending
-    } = useFetch(`${apiBaseUrl}/recommended-blogs`);
-
     return (
         <div className="dashboard-recommend-blogs">
-            {error && <div className="no-data-error">{"Couldn't load"}</div>}
-            {isPending && <LinearProgress />}
-            {recommendedBlogs &&
-                recommendedBlogs.map(blog => (
+            <h3
+                style={{
+                    color: `rgb(${themes[theme].whiteOnDark})`
+                }}
+            >
+                Check out these blogs
+            </h3>
+            {blogsError && (
+                <div className="no-data-error">{"Couldn't load"}</div>
+            )}
+            {blogsIsPending && <LinearProgress />}
+            {blogs &&
+                blogs.map(blog => (
                     <div key={blog.blogName}>
                         <BlogInfo
                             blogName={blog.blogName}
@@ -40,3 +43,9 @@ export default function RecommendBlogs() {
         </div>
     );
 }
+
+RecommendBlogs.propTypes = {
+    blogsError: PropTypes.string,
+    blogs: PropTypes.array,
+    blogsIsPending: PropTypes.bool
+};

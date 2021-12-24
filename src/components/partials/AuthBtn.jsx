@@ -15,7 +15,7 @@ export default function AuthBtn(props) {
     const { text, color, logo = null, handleClick, id, dataTestid } = props;
 
     return (
-        <a
+        <button
             onClick={handleClick}
             className="AuthBtn "
             style={{ backgroundColor: color }}
@@ -33,7 +33,7 @@ export default function AuthBtn(props) {
                 />
             )}
             {text}
-        </a>
+        </button>
     );
 }
 
