@@ -75,8 +75,7 @@ export default function PostComponent(props) {
         blog_name: blogName,
         avatar: avatar,
         blog_identifier: blogIdentifier,
-        blog_url: blogUrl,
-        blog_email: blogEmail
+        blog_url: blogUrl
     } = blog && blog;
     const [liked, setIsLiked] = useState(isLiked && isLiked);
     useEffect(() => {

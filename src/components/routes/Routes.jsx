@@ -12,7 +12,6 @@ import HandMadeTextEditor from '../RichTextEditor/View';
 import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
 
-import PostComponent from '../partials/postComponent/View';
 import FollowingPage from '../followingComponent/View';
 import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
 import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
@@ -62,15 +61,6 @@ export default function MainRoutes() {
                             element={<CreateModal reblog={false} edit={true} />}
                         />
                         <Route path="/dashboard" element={<Dashboard />} />
-                        <Route
-                            path="/post"
-                            element={
-                                <PostComponent
-                                    userBlogName="kholdbold"
-                                    isFollowed={false}
-                                />
-                            }
-                        />
                         <Route
                             path="/reblog/:blogName/:postId/:reblogKey"
                             element={<CreateModal reblog={true} />}

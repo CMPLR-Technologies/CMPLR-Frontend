@@ -38,14 +38,14 @@ export default function NotesHeader(props) {
                         : `${numberNotes} note`}
                 </span>
                 {/* TODO check this with back end  */}
-                {/* <div className="notes-view-header-right-icons">
+                <div className="notes-view-header-right-icons">
                     <button className="subscribe-to-conversation  btn">
                         <ConversationSubscribe />
                     </button>
                     <button className="notes-view-tags btn">
                         <ViewTagsBtn />
                     </button>
-                </div> */}
+                </div>
             </div>
 
             <button className="notes-summary btn">

@@ -29,7 +29,7 @@ export default function VerticalPostsView(props) {
                             <div ref={lastPostElementRef} key={index}>
                                 <PostComponent
                                     post={post}
-                                    userBlogName="quis"
+                                    userBlogName="ahmed_3"
                                     isFollowed={true}
                                 />
                             </div>
@@ -40,7 +40,7 @@ export default function VerticalPostsView(props) {
                                 key={index}
                                 post={post}
                                 isFollowed={true}
-                                userBlogName="quis"
+                                userBlogName="ahmed_3"
                             />
                         );
                     }

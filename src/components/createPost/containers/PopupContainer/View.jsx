@@ -32,7 +32,6 @@ export default function CreateModal(props) {
     const handleClose = () => {
         navigate('/dashboard');
     };
-
     const handlePost = () => {
         //draft private publish
         const dataBody = {
@@ -46,7 +45,7 @@ export default function CreateModal(props) {
                     : 'publish',
             type: 'text',
             // eslint-disable-next-line camelcase
-            blog_name: 'kholdbold',
+            blog_name: user?.blogName,
             tags: tags
         };
 
@@ -71,7 +70,7 @@ export default function CreateModal(props) {
                     : 'publish',
             type: 'text',
             // eslint-disable-next-line camelcase
-            blog_name: 'kholdbold',
+            blog_name: user?.blogName,
             tags: tags,
             user: user
         };
@@ -83,7 +82,7 @@ export default function CreateModal(props) {
             fetchPost(
                 postId,
                 setPost,
-                true,
+                edit,
                 setEditTitlePost,
                 setEditContent,
                 user?.token

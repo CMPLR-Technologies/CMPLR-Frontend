@@ -1,6 +1,5 @@
 import React from 'react';
 import { copyLink } from '../Controller';
-import { unfollow } from '../Services';
 import PropTypes from 'prop-types';
 import { unfollowAccount } from '../../../followingComponent/Service';
 
@@ -12,7 +11,6 @@ export default function OptionsList(props) {
         postLink,
         postId,
         following,
-        blogUrl,
         setFollowing,
         setIsModalOpen,
         setIsOptionListOpen
@@ -113,7 +111,6 @@ OptionsList.propTypes = {
     postLink: PropTypes.string,
     postId: PropTypes.number,
     following: PropTypes.bool,
-    blogUrl: PropTypes.string,
     setFollowing: PropTypes.func,
     setIsModalOpen: PropTypes.func,
     setIsOptionListOpen: PropTypes.func

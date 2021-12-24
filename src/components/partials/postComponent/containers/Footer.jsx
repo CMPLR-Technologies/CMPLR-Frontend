@@ -47,7 +47,8 @@ Footer.propTypes = {
     setIsModalOpenN: PropTypes.func,
     blogPage: PropTypes.bool,
     radar: PropTypes.bool,
-    isLiked: PropTypes.bool
+    isLiked: PropTypes.bool,
+    setIsLiked: PropTypes.func
 };
 
 export default function Footer(props) {

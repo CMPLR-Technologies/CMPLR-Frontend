@@ -33,14 +33,14 @@ export default function HandMadeTextEditor(props) {
     return (
         <>
             {reblog && post?.post && (
-                <PostComponent                                                                                                                                      
+                <PostComponent
                     radar={true}
                     reblog={true}
                     padding="20px"
                     left="-20px"
-                    post={post}                                                                                                                                                                             
+                    post={post}
                 />
-            )}                                                                                                                                                                          
+            )}
             <div className="main-richeditor">
                 <div
                     className="content"
