@@ -132,6 +132,7 @@
     &-chat {
         height: 320px;
         overflow-y: scroll;
+        scroll-behavior: auto;
         font-size: 'sans-serif';
         a {
             text-decoration: none;
@@ -334,9 +335,11 @@
 // mobile screen
 @media screen and (max-width: 960px) {
     .chat-popup-container {
-        display: none;
+       // display: none;
+       width: 100vw;
+       height:  100vw;
         .chat-popup {
-            display: none;
+            //display: none;
         }
     }
     .chat-side-icons {

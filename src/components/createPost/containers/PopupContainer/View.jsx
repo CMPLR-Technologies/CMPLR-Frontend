@@ -5,8 +5,6 @@ import { useState } from 'react';
 import TitleField from './TitleField';
 import HeaderCreatePost from './Header';
 import BottomMainControllers from './Bottom/BottomContainer';
-import { UserContext } from '../../../../contexts/userContext/UserContext';
-import { useContext } from 'react';
 import HandMadeTextEditor from '../../../RichTextEditor/View';
 import { handlePosting, reblogPost, editPost } from '../../Service';
 import { useNavigate, useParams } from 'react-router-dom';

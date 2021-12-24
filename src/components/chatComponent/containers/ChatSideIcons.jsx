@@ -13,8 +13,8 @@ export default function chatSideIcons() {
 
     return (
         <div className="chat-side-icons">
-            {sideIconOpenChat &&
-                sideIconOpenChat.map((chatIcon, index) => (
+            {sideIconOpenChat !== undefined &&
+                sideIconOpenChat?.map((chatIcon, index) => (
                     <ChatSideIconItem
                         key={index}
                         senderId={chatIcon.senderId}

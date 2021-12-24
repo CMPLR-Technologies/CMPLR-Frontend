@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-import { ChatContext } from '../../contexts/chatContext/ChatContext';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
-
+import { ChatContext } from '../../contexts/chatContext/ChatContext.js';
 import ChatPopUp from './containers/ChatPopUp';
 import ChatSideIcons from './containers/ChatSideIcons';
 /**
@@ -42,7 +41,7 @@ export default function View() {
     }
     `;
     return (
-        <div className='chat-container'>
+        <div className="chat-container">
             {currPopUpOpenChat && (
                 <ChatPopUp
                     sender="gaser"

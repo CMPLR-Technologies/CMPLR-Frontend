@@ -18,13 +18,12 @@ import {
  * @returns {Component} list of option
  */
 export default function ChatOption(props) {
-    let {
-        deleteChat
-    } = useContext(ChatContext);
+    let { deleteChat } = useContext(ChatContext);
     const theme = useContext(ThemeContext)[0];
     let name = props.name; //name of the chat reciver
     let close = props.close; //function to close the option
     let myBlog = props.myBlog; //curr blog i open
+    let { senderId, receiverId } = props;
     const [isOpenDeleteModel, setisOpenDeleteModel] = useState(false);
     const [isOpenBlockModel, setisOpenBlockModel] = useState(false);
     //open delete model popup
@@ -49,7 +48,7 @@ export default function ChatOption(props) {
     };
     const blockUser = () => {};
     const deleteConversation = () => {
-        deleteChat();
+        deleteChat(senderId, receiverId);
     };
     return (
         <>
@@ -123,5 +122,7 @@ export default function ChatOption(props) {
 ChatOption.propTypes = {
     name: PropTypes.string.isRequired,
     myBlog: PropTypes.string.isRequired,
-    close: PropTypes.func.isRequired
+    close: PropTypes.func.isRequired,
+    senderId: PropTypes.string.isRequired,
+    receiverId: PropTypes.string.isRequired
 };

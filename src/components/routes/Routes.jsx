@@ -5,12 +5,10 @@ import HomePage from '../homeComponent/View';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from '../navbarComponent/View';
 import MessagesPageMobile from '../navbarComponent/containers/navbarLinks/MessagesPopup/MessagesPageMobile';
-import ChatMessageMobileView from '../chatComponent/containers/ChatMessageMobileView';
 import NewPostPopup from '../navbarComponent/containers/navbarLinks/newPost/NewPostPopup';
 import ForgetPassword from '../forgetPasswordComponent/View';
 import ResetPassword from '../resetPasswordComponent/View';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
-import HandMadeTextEditor from '../RichTextEditor/View';
 import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
 import PostComponent from '../partials/postComponent/View';
@@ -55,7 +53,6 @@ export default function MainRoutes() {
                     </Route>
 
                     <Route element={<RequireAuth />}>
-                        <Route path="/rich" element={<HandMadeTextEditor />} />
                         <Route path="/following" element={<FollowingPage />} />
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route
@@ -71,11 +68,9 @@ export default function MainRoutes() {
                             path="/reblog/:blogName/:postId/:reblogKey"
                             element={<CreateModal reblog={true} />}
                         />
-                        <Route
-                            path="/messaging"
-                            element={<MessagesPageMobile />}
-                        />
+                        <Route path="/messaging" element={<MessagesPageMobile />} />
                         <Route path="/new/post" element={<CreateModal />} />
+                        <Route path="/new" element={<NewPostPopup />} />
                     </Route>
                 </Routes>
                 <style>{css}</style>

@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import { LinearProgress } from '@mui/material';
 
 export default function Messages(props) {
-    let { chats, loadingChats,errLoadingChat } = useContext(ChatContext);
-    let BlogName = 'gaser';
-    let BlogId = 10;
-  //  let BlogAvatar =
+    let { chats, loadingChats, errLoadingChat, currBlog } =
+        useContext(ChatContext);
+    let BlogName = currBlog?.senderName;
+    let BlogId = currBlog?.senderId;
+    //  let BlogAvatar =
     //    'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png';
     // eslint-disable-next-line react/prop-types
     let { clickMessagePopup, mobile } = props;
@@ -21,7 +22,11 @@ export default function Messages(props) {
                 chats.map((message, index) => (
                     <MessageItem
                         key={index}
-                        lastOneSend={message.from_blog_id===BlogId?BlogName:message.blog_data.blog_name}
+                        lastOneSend={
+                            message.from_blog_id === BlogId
+                                ? BlogName
+                                : message.blog_data.blog_name
+                        }
                         sender={BlogName}
                         senderId={BlogId}
                         receiver={message.blog_data.blog_name}

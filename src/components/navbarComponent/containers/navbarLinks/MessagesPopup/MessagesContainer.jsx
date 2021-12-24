@@ -8,7 +8,7 @@ import { ChatContext } from '../../../../../contexts/chatContext/ChatContext';
 export default function MessagesContainer(props) {
     const [openNewMessageButton, setOpenNewMessageButton] = useState(false);
     // eslint-disable-next-line react/prop-types
-    let { clickMessagePopup,mobile } = props;
+    let { clickMessagePopup, mobile } = props;
     const clickNewMessageButton = () => {
         setOpenNewMessageButton(!openNewMessageButton);
     };
@@ -47,7 +47,10 @@ export default function MessagesContainer(props) {
 
             {/*if not click on new message button then show the messages else show the search users*/}
             {!openNewMessageButton ? (
-                <Messages clickMessagePopup={clickMessagePopup} mobile={mobile} />
+                <Messages
+                    clickMessagePopup={clickMessagePopup}
+                    mobile={mobile}
+                />
             ) : (
                 <SearchNewMessage />
             )}
@@ -56,5 +59,5 @@ export default function MessagesContainer(props) {
 }
 PropTypes.propTypes = {
     clickMessagePopup: PropTypes.func.isRequired,
-    mobile:PropTypes.bool
+    mobile: PropTypes.bool
 };

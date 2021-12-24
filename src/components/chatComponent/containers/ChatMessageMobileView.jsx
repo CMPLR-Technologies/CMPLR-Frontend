@@ -3,7 +3,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { ChatContext } from '../../../contexts/chatContext/ChatContext';
 import ChatMessages from './ChatMessages';
 import ChatOption from './ChatOption';
-import useInfiniteScrolling from '../../../hooks/useInfiniteScrolling';
+import useInfiniteScrollingChat from '../../../hooks/useInfiniteScrollingChat';
 import { apiBaseUrl } from '../../../config.json';
 /**
  * ChatMessageMobileView Component
@@ -17,41 +17,47 @@ import { apiBaseUrl } from '../../../config.json';
  * @returns {Component} chat container in mobile view
  */
 export default function ChatMessageMobileView() {
-    // eslint-disable-next-line react/prop-types
-    //let { sender, receiver } = props.match.params;
+    // get sender id ,reciver id form the url
     let { sender, receiver } = useParams();
-    const messagesEndRef = useRef(null);
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    };
-    let {
-        currPopUpOpenChat,
-        sendMessage,
-        pageNumber,
-        setConversationMsg,
-        conversationMsg
-    } = useContext(ChatContext);
-    let { senderName, receiverName } = currPopUpOpenChat || {};
+    console.log(receiver);
+    let senderId = sender;
+    let receiverId = receiver;
+
+    // import this functions from context
+    let { sendMessage, pageNumber, setConversationMsg, conversationMsg } =
+        useContext(ChatContext);
+    // useInfite scroll chat to fetch the msgs
     const {
         error,
         data: msgs,
         isPending,
-        hasMore
-    } = useInfiniteScrolling(
+        hasMore,
+        blogData,
+        loadingFirstPage
+    } = useInfiniteScrollingChat(
         `${apiBaseUrl}/messaging/conversation/${sender}/${receiver}?page=${pageNumber}`
     );
-    useEffect(() => {}, []);
+    // when the msgs update then update ConversationMsg
     useEffect(() => {
         setConversationMsg(msgs);
     }, [msgs]);
 
+    // message input the sender must type it
     const [messageToSend, setMessageToSend] = useState('');
     useEffect(() => {
         setMessageToSend('');
     }, []);
+
+    // scroll when any change from the conversationMsg
+    const messagesEndRef = useRef(null);
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
     useEffect(() => {
         scrollToBottom();
-    }, [currPopUpOpenChat]);
+    }, [conversationMsg]);
+
+    // on change the message input
     const onChange = e => {
         setMessageToSend(e.target.value);
     };
@@ -59,7 +65,7 @@ export default function ChatMessageMobileView() {
     // send message on submit
     const sendMessageTo = () => {
         if (messageToSend.length !== 0 && messageToSend.trim() !== '') {
-            sendMessage(messageToSend);
+            sendMessage(messageToSend, senderId, receiverId);
             setMessageToSend('');
         }
     };
@@ -71,6 +77,8 @@ export default function ChatMessageMobileView() {
             sendMessageTo();
         }
     };
+
+    // part of view more options
     const [showOption, setShowOption] = useState(false);
     const toggleOption = () => {
         //console.log('gas');
@@ -81,48 +89,72 @@ export default function ChatMessageMobileView() {
         setShowOption(false);
     };
     return (
-        <div className="chat-mobileview">
-            <div className="chat-popup">
-                <div className="chat-popup-header">
-                    {showOption && (
-                        <ChatOption close={closeOption} name={receiverName} />
-                    )}
-                    <NavLink to="/messaging">
-                        <i className="fas fa-angle-left"></i>
-                    </NavLink>
-                    <div className="names">
-                        <a href={senderName}>{senderName}</a>
-                        {' + '}
-                        <a href={receiverName}>{receiverName}</a>
-                    </div>
-                    <div className="btns">
-                        <button onClick={toggleOption}>
-                            <i className="fas fa-ellipsis-h"></i>
-                        </button>
-                    </div>
-                </div>
+        <>
+            {loadingFirstPage && (
+                <div className="chat-mobileview">
+                    <div className="chat-popup">
+                        <div className="chat-popup-header">
+                            {showOption && (
+                                <ChatOption
+                                    close={closeOption}
+                                    name={blogData ? blogData.blog_name : ''}
+                                    senderId={senderId}
+                                    receiverId={receiverId}
+                                />
+                            )}
+                            <NavLink to="/messaging">
+                                <i className="fas fa-angle-left"></i>
+                            </NavLink>
+                            <div className="names">
+                                <a href={'gaser'}>{'gaser'}</a>
+                                {' + '}
+                                <a href={blogData ? blogData.blog_name : ''}>
+                                    {blogData ? blogData.blog_name : ''}
+                                </a>
+                            </div>
+                            <div className="btns">
+                                <button onClick={toggleOption}>
+                                    <i className="fas fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+                        </div>
 
-                <ChatMessages
-                    messagesEndRef={messagesEndRef}
-                    msgs={conversationMsg}
-                    isPending={isPending}
-                    error={error}
-                    hasMore={hasMore}
-                />
-                <div className="chat-popup-footer">
-                    <textarea
-                        autoFocus
-                        type="text"
-                        placeholder="Say something"
-                        onChange={onChange}
-                        value={messageToSend}
-                        onKeyDown={onEnterPress}
-                    />
-                    <div className="send" onClick={sendMessageTo}>
-                        <i className="far fa-paper-plane"></i>
+                        <ChatMessages
+                            messagesEndRef={messagesEndRef}
+                            msgs={conversationMsg}
+                            isPending={isPending}
+                            error={error}
+                            hasMore={hasMore}
+                            senderId={senderId}
+                            receiverId={receiverId}
+                            senderName={'gaser'}
+                            receiverName={blogData ? blogData.blog_name : ''}
+                            loadingFirstPage={loadingFirstPage}
+                            receiverPhoto={blogData ? blogData.avatar : ''}
+                            receiverShape={
+                                blogData ? blogData.avatar_shape : ''
+                            }
+                            senderPhoto={
+                                'https://assets.tumblr.com/images/default_avatar/sphere_open_64.png'
+                            }
+                            senderShape={'circle'}
+                        />
+                        <div className="chat-popup-footer">
+                            <textarea
+                                autoFocus
+                                type="text"
+                                placeholder="Say something"
+                                onChange={onChange}
+                                value={messageToSend}
+                                onKeyDown={onEnterPress}
+                            />
+                            <div className="send" onClick={sendMessageTo}>
+                                <i className="far fa-paper-plane"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            )}
+        </>
     );
 }

@@ -66,7 +66,7 @@ export default function SearchBar() {
                         <CircularProgress size={'25px'} />
                     </div>
                 )}
-                {openSearch && (
+                {openSearch &&!loading && (
                     <SearchResult
                         data-testid="search-result"
                         search={searchWord}
