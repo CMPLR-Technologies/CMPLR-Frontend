@@ -210,6 +210,15 @@ export default function ChatContextProvider(props) {
                 }
             });
     };
+    const clear = () => {
+        setCurrBlog(null);
+        if (currPopUpOpenChat) closeChatPopup();
+        setChats(null);
+        setErrLoadingChat(null);
+        setConversationMsg([]);
+        setCurrPopUpOpenChat(null);
+        setSideIconOpenChat([]);
+    };
     return (
         <ChatContext.Provider
             value={{
@@ -240,7 +249,8 @@ export default function ChatContextProvider(props) {
                 conversationMsg,
                 setConversationMsg,
 
-                deleteChat
+                deleteChat,
+                clear
             }}
         >
             {props.children}

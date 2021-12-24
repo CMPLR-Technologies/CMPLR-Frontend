@@ -9,6 +9,7 @@ import { UserContext } from '../../../../../../contexts/userContext/UserContext'
 import AuthBtn from '../../../../../partials/AuthBtn';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { ChatContext } from '../../../../../../contexts/chatContext/ChatContext';
 
 /** EDIT THIS!!!!
  * @function LogOutOverlay
@@ -20,6 +21,7 @@ import { useNavigate } from 'react-router-dom';
 export default function LogOutOverlay(props) {
     const theme = useContext(ThemeContext)[0];
     const { user, setUser } = useContext(UserContext);
+    const {clear} = useContext(ChatContext);
     const navigate = useNavigate();
 
     const logOut = () => {
@@ -28,7 +30,9 @@ export default function LogOutOverlay(props) {
             .then(() => {
                 setUser(null);
                 localStorage.removeItem('user');
+                clear();
                 navigate('/');
+               
             })
             .catch(() => {});
     };
