@@ -9,6 +9,7 @@ import Nav from './containers/Nav';
 
 export default function Explore() {
     const [pageNumber, setPageNumber] = useState(1);
+    const [grid, setGrid] = useState(false);
     const {
         error,
         data: posts,
@@ -18,18 +19,52 @@ export default function Explore() {
 
     return (
         <div className="explore">
-            <div className="explore-main">
-                <Nav />
+            <div className={`explore-main ${!grid ? 'mid-size' : ''} `}>
+                <Nav grid={grid} setGrid={setGrid} />
                 <HashtagsList />
-                <div className="explore-posts">
+                {grid ? (
+                    <div className="explore-posts">
+                        <VerticalPostsView
+                            posts={posts.slice(0, posts.length / 3 + 1)}
+                            error={error}
+                            isPending={isPending}
+                            hasMore={hasMore}
+                            setPageNumber={setPageNumber}
+                            isRadar={grid}
+                        />
+                        <VerticalPostsView
+                            posts={posts.slice(
+                                posts.length / 3 + 1,
+                                (2 * posts.length) / 3 + 1
+                            )}
+                            error={error}
+                            isPending={isPending}
+                            hasMore={hasMore}
+                            setPageNumber={setPageNumber}
+                            isRadar={grid}
+                        />
+                        <VerticalPostsView
+                            posts={posts.slice(
+                                (2 * posts.length) / 3 + 1,
+                                posts.length
+                            )}
+                            error={error}
+                            isPending={isPending}
+                            hasMore={hasMore}
+                            setPageNumber={setPageNumber}
+                            isRadar={grid}
+                        />
+                    </div>
+                ) : (
                     <VerticalPostsView
                         posts={posts}
                         error={error}
                         isPending={isPending}
                         hasMore={hasMore}
                         setPageNumber={setPageNumber}
+                        isRadar={grid}
                     />
-                </div>
+                )}
             </div>
             <div className="explore-sidebar">
                 <Following />

@@ -153,6 +153,7 @@
 .radar-post-wrapper {
   left: 0;
   top: 10px;
+  width: 100% !important;
 }
 
 .author-avatar-mob {
@@ -2066,10 +2067,7 @@
 .notifications-btn {
   position: relative;
 }
-.notifications-btn .notf-body {
-  max-height: 500px;
-}
-.notifications-btn .notf-body .notf-date {
+.notifications-btn .notf-date {
   color: rgba(0, 0, 0, 0.65);
   background-color: rgba(0, 0, 0, 0.07);
   display: flex;
@@ -2077,14 +2075,21 @@
   padding: 5px;
   font-size: 0.9rem;
 }
-.notifications-btn .notf-body .notf-date .duration {
+.notifications-btn .notf-date .duration {
   font-weight: 600;
+}
+.notifications-btn .notf-body {
+  max-height: 500px;
 }
 .notifications-btn .notf-body .notf-content {
   flex: 1;
   display: flex;
   overflow: hidden;
   flex-wrap: wrap;
+}
+.notifications-btn .notf-body .notf-content .post-snap * {
+  font-size: 14px !important;
+  display: inline !important;
 }
 .notifications-btn .notifications-container {
   overflow-y: auto;
@@ -2147,6 +2152,33 @@
   line-height: 1.5;
   padding: 15px 15px 8px;
   width: 100%;
+  padding-bottom: 0;
+  flex-direction: column;
+}
+.notifications-btn .notifications-container .notf-types {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 1.25rem;
+}
+.notifications-btn .notifications-container .notf-types .all,
+.notifications-btn .notifications-container .notf-types .reblogs,
+.notifications-btn .notifications-container .notf-types .replies {
+  flex-grow: 1;
+  text-align: center;
+  padding: 8px;
+}
+.notifications-btn .notifications-container .notf-types .all.selected,
+.notifications-btn .notifications-container .notf-types .reblogs.selected,
+.notifications-btn .notifications-container .notf-types .replies.selected {
+  color: #00b8ff;
+  border-bottom: 1px solid #00b8ff;
+}
+.notifications-btn .notifications-container .notf-types .all:hover,
+.notifications-btn .notifications-container .notf-types .reblogs:hover,
+.notifications-btn .notifications-container .notf-types .replies:hover {
+  cursor: pointer;
 }
 .notifications-btn .notifications-container .control-left {
   text-align: left;
@@ -4558,7 +4590,6 @@ body #reset-pass-logo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-x: hidden;
   max-width: 625px;
 }
 
@@ -4663,10 +4694,27 @@ body #reset-pass-logo {
   border-radius: 3px;
 }
 .explore-hashtag-images :first-child {
-  margin-right: 8px;
+  margin-right: 10px;
 }
 
 .explore-posts {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  position: relative;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.explore-posts .container-grid {
+  max-width: 300px;
+  width: 300px;
+  margin-left: 1%;
+}
+
+.mid-size {
+  max-width: 625px !important;
+}
+.mid-size .normal-layout {
   width: 100%;
 }
 

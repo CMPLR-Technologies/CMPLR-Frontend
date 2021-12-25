@@ -3,4 +3,9 @@ const scrollWithClick = amount => {
     myElement.scrollLeft += amount;
 };
 
-export { scrollWithClick };
+const changeView = (setGrid, toGrid) => {
+    if (toGrid) setGrid(true);
+    else setGrid(false);
+};
+
+export { scrollWithClick, changeView };

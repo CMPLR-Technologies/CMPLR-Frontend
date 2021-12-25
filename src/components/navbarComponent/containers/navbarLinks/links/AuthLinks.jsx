@@ -6,6 +6,9 @@ import AccountPopup from '../AccountPopup/AccountPopup';
 import { Link, NavLink } from 'react-router-dom';
 import Notifications from '../../Notifications/Notifications';
 import Badge from './Badge';
+import { useEffect } from 'react';
+import Axios from 'axios';
+import { apiBaseUrl } from '../../../../../config.json';
 /**
  * Navbar AuthLinks: includes all links dashboard and inbox and expolre ...
  * @function NavbarAuthLinks
@@ -22,6 +25,8 @@ export default function AuthLinks() {
     const [openMessagePopup, setOpenMessagePopup] = useState(false);
     const [openNotificationsPopup, setOpenNotificationsPopup] = useState(false);
     const [openAccountPopup, setOpenAccountPopup] = useState(false);
+    const [notfArray, setNotfArray] = useState(null);
+    const user = JSON.parse(localStorage.getItem('user'));
 
     //const [openPopup, setOpenPopup] = useState(false);
 
@@ -61,65 +66,21 @@ export default function AuthLinks() {
         }
         setOpenAccountPopup(!openAccountPopup);
     };
-    const notfArray = [
-        {
-            notfDate: 'Friday, 17-Dec-21',
-            notfAvatar:
-                'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
-            notfType: 'reblog',
-            notfUser: 'kholdbold',
-            postSnap: 'kak'
-        },
-        {
-            notfDate: 'Friday, 17-Dec-21',
-            notfAvatar:
-                'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
-            notfType: 'reblog',
-            notfUser: 'kholdbold',
-            postSnap: 'kak'
-        },
-        {
-            notfDate: 'Friday, 17-Dec-21',
-            notfAvatar:
-                'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
-            notfType: 'comment',
-            notfUser: 'kholdbold',
-            postSnap: 'kak'
-        },
-        {
-            notfDate: 'Friday, 17-Dec-21',
-            notfAvatar:
-                'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
-            notfType: 'reblog',
-            notfUser: 'kholdbold',
-            postSnap: 'kak'
-        },
-        {
-            notfDate: 'Friday, 17-Dec-21',
-            notfAvatar:
-                'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
-            notfType: 'like',
-            notfUser: 'kholdbold',
-            postSnap: 'kak'
-        },
-        {
-            notfDate: 'Friday, 17-Dec-21',
-            notfAvatar:
-                'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
-            notfType: 'like',
-            notfUser: 'kholdbold',
-            postSnap:
-                'kaaaa aaa aaaaaaaaaaaaaaaa a aaaaaaaaaaaaaaaa aaa aa a aa aaaaaaaaaa aaaaaaaaaaaaaak'
-        },
-        {
-            notfDate: 'Friday, 17-Dec-21',
-            notfAvatar:
-                'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
-            notfType: 'reblog',
-            notfUser: 'kholdbold',
-            postSnap: 'kak'
-        }
-    ];
+
+    useEffect(() => {
+        Axios({
+            method: 'GET',
+            url: `${apiBaseUrl}/blog/blogName/notifications`,
+            headers: {
+                'content-type': 'application/json',
+                Authorization: `Bearer ${user?.token}`
+            }
+        }).then(res => {
+            if (res.data.meta.status_code === 200)
+                setNotfArray(res.data.response);
+        });
+    }, []);
+
     /*  const clickOpenPopup = () => {
     console.log("closeg");
     setOpenPopup(!openPopup);
@@ -139,7 +100,7 @@ export default function AuthLinks() {
             <li className="link-icon">
                 <NavLink
                     className={navData => (navData.isActive ? 'active' : '')}
-                    to="/recommended-for-you"
+                    to="/explore/recommended-for-you"
                 >
                     <i className="far fa-compass"></i>
                 </NavLink>
@@ -176,12 +137,13 @@ export default function AuthLinks() {
                 >
                     <i className="fas fa-bolt"></i>
                 </li>
-                <Badge num={notfArray.length} />
+                <Badge num={notfArray?.length} />
                 {openNotificationsPopup && (
                     <Notifications
-                        userBlogName="ahmed_3"
-                        userAvatar="https://assets.tumblr.com/images/default_avatar/cone_closed_128.png"
-                        notfArray={notfArray}
+                        userBlogName={user?.blogName}
+                        userAvatar={user?.userData?.avatar}
+                        notfArray={notfArray && notfArray}
+                        setNotfArray={setNotfArray}
                     />
                 )}
             </div>

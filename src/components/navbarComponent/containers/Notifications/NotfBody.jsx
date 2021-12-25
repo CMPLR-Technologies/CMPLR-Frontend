@@ -4,21 +4,22 @@ import LoveReact from '../../../partials/postComponent/containers/Notes/LoveReac
 import CommentReact from '../../../partials/postComponent/containers/Notes/CommentReact.svg';
 import { Link } from 'react-router-dom';
 
+import PropTypes from 'prop-types';
+
+NotfBody.propTypes = {
+    notf: PropTypes.object
+};
+
 export default function NotfBody(props) {
-    const { notfDate, notfAvatar, notfType, notfUser, postSnap } = props;
+    const { notf } = props;
     return (
         <div className="notf-body">
-            <div className="notf-date">
-                <div className="duration">2 days ago</div>{' '}
-                {/*TODO calc duration depends on BE response format*/}
-                <div className="date">{notfDate}</div>
-            </div>
             <div className="relative">
                 <div className="notes-summary-avatars-react">
                     <div className="noter-avatar">
                         <img
                             className="noter-avatar-img"
-                            src={notfAvatar}
+                            src={notf['from_blog_avatar']}
                             sizes="24px"
                             alt="Avatar"
                             loading="eager"
@@ -29,9 +30,9 @@ export default function NotfBody(props) {
                         data-testid={`avatar-react-ts`}
                         className="avatar-react"
                     >
-                        {notfType === 'reblog' ? (
+                        {notf['type'] === 'reblog' ? (
                             <ReblogReact />
-                        ) : notfType === 'like' ? (
+                        ) : notf['type'] === 'like' ? (
                             <LoveReact />
                         ) : (
                             <CommentReact />
@@ -40,16 +41,21 @@ export default function NotfBody(props) {
                 </div>
                 <div className="notf-content">
                     <strong>
-                        {notfUser} <span style={{ marginRight: '5px' }}> </span>
+                        {notf['from_blog_name']}{' '}
+                        <span style={{ marginRight: '5px' }}> </span>
                     </strong>
-
-                    {`${
-                        notfType === 'comment'
-                            ? ' replied to your post: '
-                            : notfType === 'like'
-                            ? ' loved your post: '
-                            : ' rebloged your post: '
-                    }${postSnap}`}
+                    <span
+                        className="post-snap"
+                        dangerouslySetInnerHTML={{
+                            __html: `${
+                                notf['type'] === 'reply'
+                                    ? ' replied to your post: '
+                                    : notf['type'] === 'like'
+                                    ? ' loved your post: '
+                                    : ' rebloged your post: '
+                            }${notf['post_ask_answer_content']}`
+                        }}
+                    ></span>
                 </div>
                 <div className="type">
                     <Link className="post-link" to="*">

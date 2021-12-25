@@ -349,7 +349,6 @@ $border-radius-primary: 3px;
         display: flex;
         justify-content: space-between;
         padding: 10px;
-        //border-bottom: 1px solid #dedede;
         span {
             display: none;
         }
@@ -798,26 +797,32 @@ $border-radius-primary: 3px;
 }
 .notifications-btn {
     position: relative;
+    .notf-date {
+        color: rgba(0, 0, 0, 0.65);
+        background-color: rgba(0, 0, 0, 0.07);
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+        font-size: 0.9rem;
+        .duration {
+            font-weight: 600;
+        }
+    }
 
     .notf-body {
         max-height: 500px;
 
-        .notf-date {
-            color: rgba(0, 0, 0, 0.65);
-            background-color: rgba(0, 0, 0, 0.07);
-            display: flex;
-            justify-content: space-between;
-            padding: 5px;
-            font-size: 0.9rem;
-            .duration {
-                font-weight: 600;
-            }
-        }
         .notf-content {
             flex: 1;
             display: flex;
             overflow: hidden;
             flex-wrap: wrap;
+            .post-snap {
+                * {
+                    font-size: 14px !important;
+                    display: inline !important;
+                }
+            }
         }
     }
     .notifications-container {
@@ -880,6 +885,29 @@ $border-radius-primary: 3px;
             line-height: 1.5;
             padding: 15px 15px 8px;
             width: 100%;
+            padding-bottom: 0;
+            flex-direction: column;
+        }
+        .notf-types {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            color: rgba(0, 0, 0, 0.65);
+            font-size: 1.25rem;
+            .all,
+            .reblogs,
+            .replies {
+                flex-grow: 1;
+                text-align: center;
+                padding: 8px;
+                &.selected {
+                    color: rgb(0, 184, 255);
+                    border-bottom: 1px solid rgb(0, 184, 255);
+                }
+                &:hover {
+                    cursor: pointer;
+                }
+            }
         }
         .control-left {
             text-align: left;

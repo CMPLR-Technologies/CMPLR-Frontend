@@ -70,7 +70,10 @@ export default function MainRoutes() {
                             element={<MessagesPageMobile />}
                         />
                         <Route path="/new/post" element={<CreateModal />} />
-                        <Route path="/explore" element={<Explore />} />
+                        <Route
+                            path="/explore/recommended-for-you"
+                            element={<Explore />}
+                        />
                     </Route>
                 </Routes>
                 <style>{css}</style>

@@ -27,11 +27,7 @@
     }
   },
   "like": {
-<<<<<<< HEAD
-    "id": 4
-=======
     "id": 1
->>>>>>> Task11
   },
   "unlike": {
     "id": 1,
@@ -136,7 +132,75 @@
             "type": "photos",
             "state": "publish",
             "title": "test title",
-            "content": "<h1>hello i am ahmed4 </h1> <br/> <div><img src='https://image.shutterstock.com/image-photo/extra-wide-panorama-high-tatra-260nw-686813899.jpg'/></div>",
+            "content": "<h1>hello i am ahmed1 </h1>",
+            "date": "Friday, 17-Dec-21 23:27:28 UTC",
+            "reblog_key": "fsdfas",
+            "number_notes": 1,
+            "source_content": "google.com",
+            "tags": [
+              "summer",
+              "winter"
+            ]
+          },
+          "blog": {
+            "blog_id": 11,
+            "blog_name": "ahmed_3",
+            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+            "avatar_shape": "circle",
+            "replies": "everyone"
+          }
+        },
+        {
+          "post": {
+            "post_id": 4,
+            "type": "photos",
+            "state": "publish",
+            "title": "test title",
+            "content": "<h1>hello i am ahmed2 </h1>",
+            "date": "Friday, 17-Dec-21 23:27:26 UTC",
+            "source_content": "google.com",
+            "tags": [
+              "summer",
+              "winter"
+            ]
+          },
+          "blog": {
+            "blog_id": 11,
+            "blog_name": "ahmed_3",
+            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+            "avatar_shape": "circle",
+            "replies": "everyone"
+          }
+        },
+        {
+          "post": {
+            "post_id": 4,
+            "type": "photos",
+            "state": "publish",
+            "title": "test title",
+            "content": "<h1>hello i am ahmed3 </h1><h1>hello i am ahmed5 </h1><h1>hello i am ahmed5 </h1><h1>hello i am ahmed5 </h1><h1>hello i am ahmed5 </h1><h1>hello i am ahmed5 </h1>",
+            "date": "Friday, 17-Dec-21 23:27:26 UTC",
+            "source_content": "google.com",
+            "tags": [
+              "summer",
+              "winter"
+            ]
+          },
+          "blog": {
+            "blog_id": 11,
+            "blog_name": "ahmed_3",
+            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+            "avatar_shape": "circle",
+            "replies": "everyone"
+          }
+        },
+        {
+          "post": {
+            "post_id": 1,
+            "type": "photos",
+            "state": "publish",
+            "title": "test title",
+            "content": "<h1>hello i am ahmed4 </h1>",
             "date": "Friday, 17-Dec-21 23:27:28 UTC",
             "reblog_key": "fsdfas",
             "number_notes": 1,
@@ -162,6 +226,76 @@
             "title": "test title",
             "content": "<h1>hello i am ahmed5 </h1>",
             "date": "Friday, 17-Dec-21 23:27:26 UTC",
+            "source_content": "google.com",
+            "tags": [
+              "summer",
+              "winter"
+            ]
+          },
+          "blog": {
+            "blog_id": 11,
+            "blog_name": "ahmed_3",
+            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+            "avatar_shape": "circle",
+            "replies": "everyone"
+          }
+        },
+        {
+          "post": {
+            "post_id": 1,
+            "type": "photos",
+            "state": "publish",
+            "title": "test title",
+            "content": "<h1>hello i am ahmed6 </h1>",
+            "date": "Friday, 17-Dec-21 23:27:28 UTC",
+            "reblog_key": "fsdfas",
+            "number_notes": 1,
+            "source_content": "google.com",
+            "tags": [
+              "summer",
+              "winter"
+            ]
+          },
+          "blog": {
+            "blog_id": 11,
+            "blog_name": "ahmed_3",
+            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+            "avatar_shape": "circle",
+            "replies": "everyone"
+          }
+        },
+        {
+          "post": {
+            "post_id": 4,
+            "type": "photos",
+            "state": "publish",
+            "title": "test title",
+            "content": "<h1>hello i am ahmed7 </h1><h1>hello i am ahmed5 </h1><h1>hello i am ahmed5 </h1><h1>hello i am ahmed5 </h1><h1>hello i am ahmed5 </h1><h1>hello i am ahmed5 </h1>",
+            "date": "Friday, 17-Dec-21 23:27:26 UTC",
+            "source_content": "google.com",
+            "tags": [
+              "summer",
+              "winter"
+            ]
+          },
+          "blog": {
+            "blog_id": 11,
+            "blog_name": "ahmed_3",
+            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+            "avatar_shape": "circle",
+            "replies": "everyone"
+          }
+        },
+        {
+          "post": {
+            "post_id": 1,
+            "type": "photos",
+            "state": "publish",
+            "title": "test title",
+            "content": "<h1>hello i am ahmed8 </h1>",
+            "date": "Friday, 17-Dec-21 23:27:28 UTC",
+            "reblog_key": "fsdfas",
+            "number_notes": 1,
             "source_content": "google.com",
             "tags": [
               "summer",
@@ -498,6 +632,137 @@
         },
         "blogName": "khold"
       }
+    }
+  },
+  "notifications": {
+    "meta": {
+      "status_code": 200,
+      "msg": "Success"
+    },
+    "response": {
+      "25-Dec-21": [
+        {
+          "from_blog_id": 7,
+          "from_blog_name": "blog3",
+          "from_blog_avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "from_blog_avatar_shape": null,
+          "to_blog_id": 1,
+          "to_blog_name": "yousef",
+          "type": "reblog",
+          "seen": false,
+          "post_ask_answer_id": 11,
+          "post_ask_answer_content": "<p>kak</p>",
+          "created_at": "25-Dec-21 02:05:36"
+        },
+        {
+          "from_blog_id": 1,
+          "from_blog_name": "yousef",
+          "from_blog_avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "from_blog_avatar_shape": "circle",
+          "to_blog_id": 1,
+          "to_blog_name": "yousef",
+          "type": "reply",
+          "seen": true,
+          "post_ask_answer_id": null,
+          "post_ask_answer_content": "<h1>fdsfsd</h1>",
+          "created_at": "25-Dec-21 02:00:27"
+        }
+      ],
+      "24-Dec-21": [
+        {
+          "from_blog_id": 1,
+          "from_blog_name": "yousef",
+          "from_blog_avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "from_blog_avatar_shape": "circle",
+          "to_blog_id": 6,
+          "to_blog_name": "atef",
+          "type": "reblog",
+          "seen": false,
+          "post_ask_answer_id": null,
+          "post_ask_answer_content": "<h1>fdsfsd</h1>",
+          "created_at": "24-Dec-21 02:07:52"
+        },
+        {
+          "from_blog_id": 7,
+          "from_blog_name": "blog3",
+          "from_blog_avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "from_blog_avatar_shape": null,
+          "to_blog_id": 1,
+          "to_blog_name": "yousef",
+          "type": "answer",
+          "seen": false,
+          "post_ask_answer_id": 12,
+          "post_ask_answer_content": "<p>dskoekfe</p>",
+          "created_at": "24-Dec-21 02:06:41"
+        },
+        {
+          "from_blog_id": 1,
+          "from_blog_name": "yousef",
+          "from_blog_avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "from_blog_avatar_shape": "circle",
+          "to_blog_id": 1,
+          "to_blog_name": "yousef",
+          "type": "reblog",
+          "seen": false,
+          "post_ask_answer_id": 9,
+          "post_ask_answer_content": "<h3> dsdsadfsdf</h3>",
+          "created_at": "24-Dec-21 02:01:15"
+        }
+      ],
+      "23-Dec-21": [
+        {
+          "from_blog_id": 1,
+          "from_blog_name": "yousef",
+          "from_blog_avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "from_blog_avatar_shape": "circle",
+          "to_blog_id": 6,
+          "to_blog_name": "atef",
+          "type": "reblog",
+          "seen": false,
+          "post_ask_answer_id": null,
+          "post_ask_answer_content": "<h1>fdsfsd</h1>",
+          "created_at": "24-Dec-21 02:07:52"
+        },
+        {
+          "from_blog_id": 7,
+          "from_blog_name": "blog3",
+          "from_blog_avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "from_blog_avatar_shape": null,
+          "to_blog_id": 1,
+          "to_blog_name": "yousef",
+          "type": "reply",
+          "seen": false,
+          "post_ask_answer_id": 12, 
+          "post_ask_answer_content": "<p>dskoekfe</p>",
+          "created_at": "24-Dec-21 02:06:41"
+        },
+        {
+          "from_blog_id": 1,
+          "from_blog_name": "yousef",
+          "from_blog_avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "from_blog_avatar_shape": "circle",
+          "to_blog_id": 1,
+          "to_blog_name": "yousef",
+          "type": "ask",
+          "seen": false,
+          "post_ask_answer_id": 9,
+          "post_ask_answer_content": "<h3> dsdsadfsdf</h3>",
+          "created_at": "24-Dec-21 02:01:15"
+        },
+        {
+          "from_blog_id": 1,
+          "from_blog_name": "yousef",
+          "from_blog_avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "from_blog_avatar_shape": "circle",
+          "to_blog_id": 1,
+          "to_blog_name": "yousef",
+          "type": "ask",
+          "seen": false,
+          "post_ask_answer_id": 9,
+          "post_ask_answer_content": "<h3> dsdsadfsdf</h3>",
+          "created_at": "24-Dec-21 02:01:15"
+        }
+      ]
     }
   }
 }

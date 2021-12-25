@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, Fragment } from 'react';
 import PostComponent from './postComponent/containers/PostComponent';
 import { LinearProgress } from '@mui/material';
 import PropTypes from 'prop-types';
@@ -19,21 +19,20 @@ export default function VerticalPostsView(props) {
         },
         [isPending, hasMore]
     );
-
     return (
-        <>
+        <section className={isRadar ? 'container-grid' : 'normal-layout'}>
             {posts &&
                 posts.map((post, index) => {
                     if (posts.length === index + 1) {
                         return (
-                            <div ref={lastPostElementRef} key={index}>
+                            <Fragment ref={lastPostElementRef} key={index}>
                                 <PostComponent
                                     post={post}
                                     userBlogName="ahmed_3"
                                     isFollowed={true}
                                     radar={isRadar}
                                 />
-                            </div>
+                            </Fragment>
                         );
                     } else {
                         return (
@@ -50,7 +49,7 @@ export default function VerticalPostsView(props) {
 
             {error && <div className="no-data-error">{"Couldn't load"}</div>}
             {isPending && <LinearProgress />}
-        </>
+        </section>
     );
 }
 
