@@ -350,22 +350,24 @@ export default function PostComponent(props) {
                                     </button>
                                 )}
                             </div>
-                            <div className="options-btn">
-                                {!reblog && (
-                                    <button
-                                        onClick={() => {
-                                            setIsOptionListOpen(
-                                                !isOptionListOpen
-                                            );
-                                        }}
-                                        className="btn"
-                                        data-testid="opt-btn-header-ts"
-                                    >
-                                        <OptionsButton />
-                                    </button>
-                                )}
-                                {isOptionListOpen && !blogPage && (
-                                  
+                            <ClickAwayListener
+                                onClickAway={() => setIsOptionListOpen(false)}
+                            >
+                                <div className="options-btn">
+                                    {!reblog && (
+                                        <button
+                                            onClick={() => {
+                                                setIsOptionListOpen(
+                                                    !isOptionListOpen
+                                                );
+                                            }}
+                                            className="btn"
+                                            data-testid="opt-btn-header-ts"
+                                        >
+                                            <OptionsButton />
+                                        </button>
+                                    )}
+                                    {isOptionListOpen && !blogPage && (
                                         <OptionsList
                                             postTime={postTime}
                                             userBlogName={userBlogName}
@@ -381,8 +383,9 @@ export default function PostComponent(props) {
                                             }
                                             radar={radar}
                                         />
-                                )}
-                            </div>
+                                    )}
+                                </div>
+                            </ClickAwayListener>
                         </div>
                     </header>
                 )}
