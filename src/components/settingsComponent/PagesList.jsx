@@ -1,56 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 export default function PagesList() {
+    
+    const endPoints = [
+        '/settings/account',
+        '/settings/dashboard',
+        '/settings/notifications',
+        '/settings/apps'
+    ];
+    const pageName = ['Account', 'Dashboard', 'Notifications', 'Apps'];
+    const pageDescription = [
+        'The essentials',
+        ' Appearance options, text editor',
+        'Via email & mobile',
+        " Things you've connected"
+    ];
     return (
         <div className="container2">
             <div className="wrapper">
                 <ul className="list">
-                    <li className="list-item">
-                        <Link
-                            className="list-item-anchor"
-                            to="/settings/account"
-                        >
-                            <span className="list-item-span">Account</span>
-                            <small className="list-item-anchor-small">
-                                The essentials
-                            </small>
-                        </Link>
-                    </li>
-                    <li className="list-item">
-                        <Link
-                            className="list-item-anchor"
-                            to="/settings/dashboard"
-                        >
-                            <span className="list-item-span">Dashboard</span>
-                            <small className="list-item-anchor-small">
-                                Appearance options, text editor
-                            </small>
-                        </Link>
-                    </li>
-                    <li className="list-item">
-                        <Link
-                            className="list-item-anchor"
-                            to="/settings/notifications"
-                        >
-                            <span className="list-item-span">
-                                Notifications
-                            </span>
-                            <small className="list-item-anchor-small">
-                                Via email & mobile
-                            </small>
-                        </Link>
-                    </li>
-                    <li className="list-item">
-                        <Link
-                            className="list-item-anchor"
-                            to="/settings/apps"
-                        >
-                            <span className="list-item-span">Apps</span>
-                            <small className="list-item-anchor-small">
-                                Things you've connected
-                            </small>
-                        </Link>
-                    </li>
+                    {endPoints.map((endPoint, i) => {
+                        return (
+                            <li key={i} className="list-item">
+                                <Link
+                                    className="list-item-anchor"
+                                    to={endPoint}
+                                >
+                                    <span className="list-item-span">
+                                        {pageName[i]}
+                                    </span>
+                                    <small className="list-item-anchor-small">
+                                        {pageDescription[i]}
+                                    </small>
+                                </Link>
+                            </li>
+                        );
+                    })}
                 </ul>
                 <div className="blog">
                     <h1 className="blog-h1">Blog</h1>

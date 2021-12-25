@@ -14,6 +14,8 @@ import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
 import DeleteAccount from '../deleteAccountComponent/View';
 import PostComponent from '../partials/postComponent/View';
+import BlogSettings from '../blogSettingsComponent/View';
+import DeleteBlogCard from '../blogSettingsComponent/containers/deleteBlog/DeleteBlog';
 import PropTypes from 'prop-types';
 const WithNavbar = ({ component }) => {
     return (
@@ -37,6 +39,10 @@ export default function MainRoutes() {
             <Router>
                 {/* <Navbar /> */}
                 <Routes>
+                    <Route
+                        path="/blog/:blogName/delete"
+                        element={<DeleteBlogCard />}
+                    />
                     <Route
                         path="/register"
                         element={<WithNavbar component={<Register />} />}
@@ -74,7 +80,6 @@ export default function MainRoutes() {
                         element={<ForgetPassword />}
                     />
                     <Route path="/reset_password" element={<ResetPassword />} />
-
                     <Route
                         path="/settings/account"
                         element={
@@ -128,6 +133,14 @@ export default function MainRoutes() {
                         }
                     />
                     <Route path="/account/delete" element={<DeleteAccount />} />
+                    <Route
+                        path="/blog/new"
+                        element={
+                            <WithNavbar
+                                component={<BlogSettings page={'create'} />}
+                            />
+                        }
+                    />
                 </Routes>
                 <style>{css}</style>
             </Router>
