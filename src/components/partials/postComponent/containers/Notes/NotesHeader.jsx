@@ -17,7 +17,8 @@ NotesHeader.propTypes = {
 };
 
 export default function NotesHeader(props) {
-    const { numberNotes, totalLikes, totalReblogs, setNotesView, notes } =
+    const { numberNotes, totalLikes, totalReblogs,        totalReplys,
+        setNotesView, notes } =
         props;
     return (
         <header className="notes-view-header">
@@ -82,8 +83,9 @@ export default function NotesHeader(props) {
                             ))}
                     </div>
                     <div className="notes-summary-count">
-                        {totalLikes} likes and {totalReblogs} reblogs
-                    </div>
+                    {totalLikes ? `${totalLikes} likes , ` : ''}
+                        {totalReblogs ? `${totalReblogs} reblogs and ` : ''}
+                        {totalReplys ? `${totalReplys} replys` : ''}                    </div>
                 </span>
             </button>
         </header>

@@ -68,29 +68,37 @@ export function deletePost(postId, setIsModalOpen, token, navigate) {
 //=================================================PostComponent Services============================================
 
 export function block(
-    blogIdentifier,
+    blogName,
+    userBlogName,
     setIsOptionListOpen,
     setIsModalOpen,
     setIsMsgModalOpen,
+    setBlockResponse,
     token
 ) {
-    Axios({
+   return  Axios({
         method: 'POST',
         headers: {
             'content-type': 'application/json',
             Accept: 'application/json',
             Authorization: `Bearer ${token}`
         },
-        url: `${apiBaseUrl}/blog/${blogIdentifier}/blocks`
+        url: `${apiBaseUrl}/blog/${userBlogName}/blocks`,
+        data: {
+            blockName: blogName
+        }
     })
-        .then(response => {
-            if (response.data.meta.status === 200) {
-                setIsOptionListOpen(false);
-                setIsModalOpen(false);
-                setIsMsgModalOpen(true);
-            }
+        .then(res => {
+            setIsOptionListOpen(false);
+            setIsModalOpen(false);
+            setIsMsgModalOpen(true);
+            if (res?.data?.meta?.status_code === 200)
+                setBlockResponse(`${blogName} has been blocked.`);
         })
-        .catch(() => {});
+        .catch(err => {
+            return Promise.reject(err)
+          
+        });
 }
 
 //=================================================Notes Services============================================

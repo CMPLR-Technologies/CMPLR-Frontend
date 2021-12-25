@@ -166,8 +166,9 @@ export default function Footer(props) {
                                 >
                                     <NotesHeader
                                         numberNotes={numberNotes}
-                                        totalLikes={counts.totalLikes}
-                                        totalReblogs={counts.totalReblogs}
+                                        totalLikes={counts?.totalLikes}
+                                        totalReblogs={counts?.totalReblogs}
+                                        totalReplys={counts?.totalReplys}
                                         setNotesView={setNotesView}
                                         notes={notes}
                                     />
@@ -223,16 +224,16 @@ export default function Footer(props) {
                     >
                         {!blogPage && (
                             <button
-                                onClick={() =>
-                                    toggleShareList(
-                                        isShareListOpen,
-                                        setIsShareListOpen
-                                    )
-                                }
-                                className="icon"
+                                onClick={() => copyLink(postLink, postId, true)}
+                                className="icon copy-link-cont"
                                 data-testid={`share-icon-footer-ts`}
                             >
-                                <ShareBtn />
+                                <CopyLink />
+                                <div
+                                    className="opt-btn copy-btn btn link-copied"
+                                    id={`copy-btn${postId}`}
+                                    data-testid={`copy-btn-footer-ts${postId}`}
+                                ></div>
                             </button>
                         )}
                         {!blogPage && !radar && (
