@@ -34,6 +34,8 @@ export default function Dashboard() {
                     isPending={isPending}
                     hasMore={hasMore}
                     setPageNumber={setPageNumber}
+                    isRadar={false}
+                    isRef={true}
                 />
             </div>
             <div className="dashboard-sidebar">

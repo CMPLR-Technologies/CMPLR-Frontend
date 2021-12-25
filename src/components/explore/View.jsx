@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import VerticalPostsView from '../partials/VerticalPostsView';
+import GridPostsView from '../partials/GridPostsView';
 import { apiBaseUrl } from '../../config.json';
 import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
 
@@ -10,6 +12,9 @@ import Nav from './containers/Nav';
 export default function Explore() {
     const [pageNumber, setPageNumber] = useState(1);
     const [grid, setGrid] = useState(false);
+    const isBigScreen = useMediaQuery({
+        query: '(min-device-width: 960px )'
+    });
     const {
         error,
         data: posts,
@@ -22,39 +27,14 @@ export default function Explore() {
             <div className={`explore-main ${!grid ? 'mid-size' : ''} `}>
                 <Nav grid={grid} setGrid={setGrid} />
                 <HashtagsList />
-                {grid ? (
-                    <div className="explore-posts">
-                        <VerticalPostsView
-                            posts={posts.slice(0, posts.length / 3 + 1)}
-                            error={error}
-                            isPending={isPending}
-                            hasMore={hasMore}
-                            setPageNumber={setPageNumber}
-                            isRadar={grid}
-                        />
-                        <VerticalPostsView
-                            posts={posts.slice(
-                                posts.length / 3 + 1,
-                                (2 * posts.length) / 3 + 1
-                            )}
-                            error={error}
-                            isPending={isPending}
-                            hasMore={hasMore}
-                            setPageNumber={setPageNumber}
-                            isRadar={grid}
-                        />
-                        <VerticalPostsView
-                            posts={posts.slice(
-                                (2 * posts.length) / 3 + 1,
-                                posts.length
-                            )}
-                            error={error}
-                            isPending={isPending}
-                            hasMore={hasMore}
-                            setPageNumber={setPageNumber}
-                            isRadar={grid}
-                        />
-                    </div>
+                {grid && isBigScreen ? (
+                    <GridPostsView
+                        posts={posts}
+                        error={error}
+                        isPending={isPending}
+                        hasMore={hasMore}
+                        setPageNumber={setPageNumber}
+                    />
                 ) : (
                     <VerticalPostsView
                         posts={posts}
@@ -63,6 +43,7 @@ export default function Explore() {
                         hasMore={hasMore}
                         setPageNumber={setPageNumber}
                         isRadar={grid}
+                        isRef={true}
                     />
                 )}
             </div>

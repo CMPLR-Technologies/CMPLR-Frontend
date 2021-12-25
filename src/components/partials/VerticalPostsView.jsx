@@ -1,9 +1,10 @@
-import React, { useRef, useCallback, Fragment } from 'react';
+import React, { useRef, useCallback } from 'react';
 import PostComponent from './postComponent/containers/PostComponent';
 import { LinearProgress } from '@mui/material';
 import PropTypes from 'prop-types';
 export default function VerticalPostsView(props) {
-    const { posts, error, isPending, hasMore, setPageNumber, isRadar } = props;
+    const { posts, error, isPending, hasMore, setPageNumber, isRadar, isRef } =
+        props;
 
     const observer = useRef();
     const lastPostElementRef = useCallback(
@@ -23,16 +24,16 @@ export default function VerticalPostsView(props) {
         <section className={isRadar ? 'container-grid' : 'normal-layout'}>
             {posts &&
                 posts.map((post, index) => {
-                    if (posts.length === index + 1) {
+                    if (posts.length === index + 1 && isRef) {
                         return (
-                            <Fragment ref={lastPostElementRef} key={index}>
+                            <div ref={lastPostElementRef} key={index}>
                                 <PostComponent
                                     post={post}
                                     userBlogName="ahmed_3"
                                     isFollowed={true}
                                     radar={isRadar}
                                 />
-                            </Fragment>
+                            </div>
                         );
                     } else {
                         return (
@@ -59,5 +60,6 @@ VerticalPostsView.propTypes = {
     isPending: PropTypes.bool,
     hasMore: PropTypes.bool,
     setPageNumber: PropTypes.func,
-    isRadar: PropTypes.bool
+    isRadar: PropTypes.bool,
+    isRef: PropTypes.bool
 };
