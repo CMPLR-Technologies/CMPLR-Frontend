@@ -11,12 +11,13 @@ import ResetPassword from '../resetPasswordComponent/View';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
-import PostComponent from '../partials/postComponent/View';
 import FollowingPage from '../followingComponent/View';
 import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
 import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
 import Hashtag from '../hashtagsComponent/View';
 import GoogleCard from '../registerComponent/GoogleCard';
+import Explore from '../explore/View';
+
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
     const css = `
@@ -43,6 +44,7 @@ export default function MainRoutes() {
                             path="/forget_password"
                             element={<ForgetPassword />}
                         />
+
                         <Route
                             path="/reset_password/:token"
                             element={<ResetPassword />}
@@ -54,23 +56,22 @@ export default function MainRoutes() {
 
                     <Route element={<RequireAuth />}>
                         <Route path="/following" element={<FollowingPage />} />
-                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route
-                            path="/post"
-                            element={
-                                <PostComponent
-                                    userBlogName="kholdbold"
-                                    isFollowed={false}
-                                />
-                            }
+                            path="/edit/:blogName/:postId"
+                            element={<CreateModal reblog={false} edit={true} />}
                         />
+                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route
                             path="/reblog/:blogName/:postId/:reblogKey"
                             element={<CreateModal reblog={true} />}
                         />
-                        <Route path="/messaging" element={<MessagesPageMobile />} />
+                        <Route
+                            path="/messaging"
+                            element={<MessagesPageMobile />}
+                        />
                         <Route path="/new/post" element={<CreateModal />} />
                         <Route path="/new" element={<NewPostPopup />} />
+                        <Route path="/explore" element={<Explore />} />
                     </Route>
                 </Routes>
                 <style>{css}</style>

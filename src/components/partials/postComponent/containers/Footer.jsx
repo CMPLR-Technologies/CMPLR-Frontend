@@ -9,12 +9,19 @@ import ShareBtn from './SVG/ShareBtn.svg';
 import Modal from '../../Modal';
 import AuthBtn from '../../AuthBtn';
 import { toggleShareList, copyLink } from '../Controller';
-import { handleLikePost, deletePost, submitNote } from '../Services';
+import {
+    handleLikePost,
+    handleUnlikePost,
+    deletePost,
+    submitNote
+} from '../Services';
 import PropTypes from 'prop-types';
 import NotesHeader from './Notes/NotesHeader';
 import NotesContent from './Notes/NotesContent';
 import { getPostNotes } from '../Services';
 import { useNavigate } from 'react-router';
+import { useContext } from 'react';
+import { UserContext } from '../../../../contexts/userContext/UserContext';
 
 /**
  * @function Footer
@@ -30,22 +37,23 @@ import { useNavigate } from 'react-router';
  */
 
 Footer.propTypes = {
-    numberNotes: PropTypes.number.isRequired,
     isAuthor: PropTypes.bool.isRequired,
     postLink: PropTypes.string.isRequired,
-    reblogKey: PropTypes.string.isRequired,
+    reblogKey: PropTypes.string,
     postId: PropTypes.number.isRequired,
     postAuthor: PropTypes.string.isRequired,
     authorAvatar: PropTypes.string.isRequired,
     blogName: PropTypes.string.isRequired,
     setIsModalOpenN: PropTypes.func,
     blogPage: PropTypes.bool,
-    radar: PropTypes.bool
+    radar: PropTypes.bool,
+    isLiked: PropTypes.bool,
+    setIsLiked: PropTypes.func
 };
 
 export default function Footer(props) {
     const {
-        numberNotes,
+        isLiked,
         isAuthor,
         postLink,
         reblogKey,
@@ -55,22 +63,42 @@ export default function Footer(props) {
         authorAvatar,
         setIsModalOpenN,
         blogPage,
-        radar
+        radar,
+        setIsLiked
     } = props;
     const [isShareListOpen, setIsShareListOpen] = useState(false);
-    const [loveFillColor, setLoveFillColor] = useState('gray');
+    const [loveFillColor, setLoveFillColor] = useState(
+        `${isLiked ? 'rgb(255,73,47)' : 'gray'}`
+    );
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [notesView, setNotesView] = useState(false);
     const [noteType, setNoteType] = useState('');
     const [notes, setNotes] = useState([]);
     const [counts, setCounts] = useState({});
+    const [numberNotes, setNumberNotes] = useState(0);
+    const { user } = useContext(UserContext);
+    //TODO BlogIdentifier1
     const blogIdentifier = 'yahia.tumblr.com';
 
     const navigate = useNavigate();
 
+    const handleNote = () => {
+        if (!notesView) {
+            setNoteType('comment');
+            // getPostNotes(blogIdentifier, setNotes, setCounts, postId);
+        }
+        setNotesView(!notesView);
+    };
+
     useEffect(() => {
-        getPostNotes(blogIdentifier, setNotes, setCounts);
-    }, []);
+        getPostNotes(blogIdentifier, setNotes, setCounts, postId);
+    }, [loveFillColor]);
+
+    useEffect(() => {
+        setNumberNotes(
+            counts?.totalLikes + counts?.totalReblogs + counts?.totalReplys
+        );
+    }, [counts]);
 
     return (
         <>
@@ -95,7 +123,12 @@ export default function Footer(props) {
                             text="Ok"
                             color="rgb(0, 184, 255)"
                             handleClick={() => {
-                                deletePost(postId, setIsModalOpen);
+                                deletePost(
+                                    postId,
+                                    setIsModalOpen,
+                                    user?.token,
+                                    navigate
+                                );
                             }}
                         />
                     </Modal>
@@ -197,8 +230,7 @@ export default function Footer(props) {
                     {!blogPage && !radar && (
                         <button
                             onClick={() => {
-                                setNotesView(true);
-                                setNoteType('comment');
+                                handleNote();
                             }}
                             className="icon"
                             data-testid={`note-icon-footer-ts${postId}`}
@@ -228,12 +260,19 @@ export default function Footer(props) {
                                 setNotes,
                                 setCounts
                             );
-                            handleLikePost(
-                                loveFillColor,
-                                setLoveFillColor,
-                                postId,
-                                reblogKey
-                            );
+                            !isLiked
+                                ? handleLikePost(
+                                      setLoveFillColor,
+                                      setIsLiked,
+                                      postId,
+                                      user?.token
+                                  )
+                                : handleUnlikePost(
+                                      setLoveFillColor,
+                                      setIsLiked,
+                                      postId,
+                                      user?.token
+                                  );
                         }}
                         className="icon "
                         data-testid={`love-icon-footer${postId}`}

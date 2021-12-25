@@ -82,9 +82,11 @@ export const unfollowAccount = (userToken, unfollowAcc, setResponseMsg) => {
     })
         .then(() => {
             setResponseMsg(`you're not following ${unfollowAcc} anymore`);
+            return true;
         })
         .catch(err => {
             let errMsg = err.response.data.error;
             setResponseMsg(errMsg);
+            return false;
         });
 };

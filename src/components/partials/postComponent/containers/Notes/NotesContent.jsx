@@ -6,10 +6,10 @@ import { submitNote } from '../../Services';
 NotesContent.propTypes = {
     postAuthor: PropTypes.string.isRequired,
     authorAvatar: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
     notes: PropTypes.array,
     setNotes: PropTypes.func,
     setCounts: PropTypes.func,
-    type: PropTypes.bool.isRequired,
     setIsModalOpen: PropTypes.func,
     setNotesView: PropTypes.func
 };
@@ -26,6 +26,7 @@ export default function NotesContent(props) {
         setNotesView
     } = props;
     const [reply, setReply] = useState('');
+    //TODO BlogIdentifier2
     const blogIdentifier = 'yahia.tumblr.com';
 
     return (

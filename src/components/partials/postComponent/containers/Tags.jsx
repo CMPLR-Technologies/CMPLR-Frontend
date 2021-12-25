@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 Tags.propTypes = {
     tagsArray: PropTypes.array
@@ -11,14 +12,14 @@ export default function Tags(props) {
         <div data-testid="tags-cont-ts" className="tags">
             {tagsArray &&
                 tagsArray.map((tag, index) => (
-                    <a
+                    <Link
                         data-testid="tag-header-ts"
                         key={index}
                         className="tag"
-                        href="/tagged"
+                        to={`/tagged/${tag}`}
                     >
                         {`#${tag}`}
-                    </a>
+                    </Link>
                 ))}
         </div>
     );

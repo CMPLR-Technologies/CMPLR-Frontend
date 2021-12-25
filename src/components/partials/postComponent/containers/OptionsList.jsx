@@ -1,7 +1,7 @@
 import React from 'react';
 import { copyLink } from '../Controller';
-import { unfollow } from '../Services';
 import PropTypes from 'prop-types';
+import { unfollowAccount } from '../../../followingComponent/Service';
 
 export default function OptionsList(props) {
     const {
@@ -11,11 +11,12 @@ export default function OptionsList(props) {
         postLink,
         postId,
         following,
-        blogUrl,
         setFollowing,
         setIsModalOpen,
         setIsOptionListOpen
     } = props;
+    const user = JSON.parse(localStorage.getItem('user'));
+
     return (
         <div data-testid="options-list-header-ts" className="options">
             <div data-testid="list-header-ts" className="list">
@@ -45,10 +46,10 @@ export default function OptionsList(props) {
                         {following && (
                             <div
                                 onClick={() =>
-                                    unfollow(
-                                        blogUrl,
-                                        setFollowing,
-                                        setIsOptionListOpen
+                                    unfollowAccount(
+                                        user?.token,
+                                        blogName,
+                                        setFollowing
                                     )
                                 }
                                 className="opt-btn follow-btn"
@@ -57,12 +58,6 @@ export default function OptionsList(props) {
                                 Unfollow
                             </div>
                         )}
-                        <div
-                            data-testid={`report-btn-header-ts${postId}`}
-                            className="opt-btn report-btn"
-                        >
-                            Report
-                        </div>
                         <div
                             onClick={() => setIsModalOpen(true)}
                             className="opt-btn block-btn"
@@ -84,13 +79,6 @@ export default function OptionsList(props) {
                 {/**Post's author is logged user */}
                 {userBlogName === blogName && (
                     <>
-                        {' '}
-                        <div
-                            data-testid={`pin-btn-header-ts${postId}`}
-                            className="opt-btn pin-btn"
-                        >
-                            Pin
-                        </div>
                         <div
                             onClick={() => copyLink(postLink, postId)}
                             className="opt-btn copy-btn"
@@ -122,7 +110,6 @@ OptionsList.propTypes = {
     postLink: PropTypes.string,
     postId: PropTypes.number,
     following: PropTypes.bool,
-    blogUrl: PropTypes.string,
     setFollowing: PropTypes.func,
     setIsModalOpen: PropTypes.func,
     setIsOptionListOpen: PropTypes.func

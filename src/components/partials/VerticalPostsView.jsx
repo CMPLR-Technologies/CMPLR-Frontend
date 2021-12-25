@@ -27,11 +27,22 @@ export default function VerticalPostsView(props) {
                     if (posts.length === index + 1) {
                         return (
                             <div ref={lastPostElementRef} key={index}>
-                                <PostComponent post={post} />
+                                <PostComponent
+                                    post={post}
+                                    userBlogName="ahmed_3"
+                                    isFollowed={true}
+                                />
                             </div>
                         );
                     } else {
-                        return <PostComponent key={index} post={post} />;
+                        return (
+                            <PostComponent
+                                key={index}
+                                post={post}
+                                isFollowed={true}
+                                userBlogName="ahmed_3"
+                            />
+                        );
                     }
                 })}
 
