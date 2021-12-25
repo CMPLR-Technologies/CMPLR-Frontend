@@ -3,6 +3,7 @@ import OptionsCreatePost from './containers/DashboardContainer/OptionsCard';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 import ProfilePicContainer from './containers/DashboardContainer/ProfilePicContainer';
 import useAuth from '../../hooks/useAuth';
+import ProfileMiniHoverWrapper from '../profileViews/mini&sideViews/View';
 
 export default function CreatePost() {
     useAuth();
@@ -35,7 +36,9 @@ export default function CreatePost() {
             <div className="create1div">
                 <main className="create_main">
                     <div className="create_container">
-                        <ProfilePicContainer />
+                        <ProfileMiniHoverWrapper blogID={'16'}>
+                            <ProfilePicContainer />
+                        </ProfileMiniHoverWrapper>
                         <OptionsCreatePost />
                     </div>
                 </main>

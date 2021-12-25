@@ -1,0 +1,88 @@
+.profile-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    color: black;
+    height: 100vh;
+    margin: auto;
+    max-width: 600px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: auto;
+    width: 100%;
+    position: relative;
+
+    &-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &-div {
+            position: sticky;
+            top: -30vh;
+            background-color: white;
+            &-bg {
+                object-fit: cover;
+                height: calc(30vh + 50px);
+                width: 600px;
+                -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+                clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+                cursor: pointer;
+            }
+        }
+        &-fixed {
+            object-fit: cover;
+            position: fixed;
+            top: 0;
+            height: 50px;
+            width: 600px;
+            -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+            cursor: pointer;
+        }
+
+        &-avatar {
+            position: absolute;
+            left: 50%;
+            top: calc(30vh + 50px);
+            transform: translateX(-50%) translateY(-50%);
+            width: 96px;
+            height: 96px;
+            object-fit: cover;
+            border: 5px solid white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        &-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            padding-top: 48px;
+            padding-bottom: 40px;
+
+            &-title {
+                font-weight: bold;
+                font-size: 42px;
+                line-height: 1.2;
+                margin-bottom: 8px;
+                overflow: hidden;
+                hyphens: auto;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                text-align: center;
+            }
+            &-desc {
+                font-size: 100%;
+                overflow: hidden;
+                hyphens: auto;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                text-align: center;
+            }
+        }
+    }
+}

@@ -8,7 +8,7 @@ export default function ProfilePicContainer() {
                 <div className="profilepicinner_create">
                     <span className="innerspan">
                         <span className="innerspan">
-                            <a className="inneranchor" href="/user/prfile/TODO">
+                            <a className="inneranchor">
                                 <div className="picontainer">
                                     <div className="picStyles">
                                         <div className="picDiv">

@@ -7,6 +7,7 @@
         "@ckeditor/ckeditor5-react": "^3.0.3",
         "@emotion/react": "^11.6.0",
         "@emotion/styled": "^11.6.0",
+        "@material-ui/core": "^4.12.3",
         "@mui/icons-material": "^5.0.5",
         "@mui/material": "^5.1.1",
         "@testing-library/jest-dom": "^5.11.4",

@@ -18,7 +18,7 @@ import { useNavigate } from 'react-router-dom';
  */
 
 export default function LogOutOverlay(props) {
-    const theme = useContext(ThemeContext)[0];
+    const [theme, changeTheme] = useContext(ThemeContext);
     const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
@@ -27,6 +27,7 @@ export default function LogOutOverlay(props) {
         Axios.post(`${apiBaseUrl}/logout`, {}, config)
             .then(() => {
                 setUser(null);
+                changeTheme('trueBlue');
                 localStorage.removeItem('user');
                 navigate('/');
             })

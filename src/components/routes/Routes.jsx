@@ -11,6 +11,7 @@ import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 import HandMadeTextEditor from '../RichTextEditor/View';
 import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
+import ProfileFull from '../profileViews/fullView/View';
 
 import PostComponent from '../partials/postComponent/View';
 export default function MainRoutes() {
@@ -58,6 +59,10 @@ export default function MainRoutes() {
                     <Route
                         path="/reblog/:blogName/:postId/:reblogKey"
                         element={<CreateModal reblog={true} />}
+                    />
+                    <Route
+                        path="/blog/view/:blogID/:content"
+                        element={<ProfileFull />}
                     />
                 </Routes>
                 <style>{css}</style>
