@@ -11,6 +11,7 @@ import { block } from '../Services';
 import { followAccount } from '../../../followingComponent/Service';
 import PropTypes from 'prop-types';
 import OptionsList from './OptionsList';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 import {
     ThemeContext,
     themes
@@ -349,38 +350,42 @@ export default function PostComponent(props) {
                                     </button>
                                 )}
                             </div>
-                            <div className="options-btn">
-                                {!reblog && (
-                                    <button
-                                        onClick={() => {
-                                            setIsOptionListOpen(
-                                                !isOptionListOpen
-                                            );
-                                        }}
-                                        className="btn"
-                                        data-testid="opt-btn-header-ts"
-                                    >
-                                        <OptionsButton />
-                                    </button>
-                                )}
-                                {isOptionListOpen && !blogPage && (
-                                    <OptionsList
-                                        postTime={postTime}
-                                        userBlogName={userBlogName}
-                                        blogName={blogName}
-                                        postLink={`${apiBaseUrl}/post/${postId}`} //change if needed
-                                        postId={postId}
-                                        following={following}
-                                        blogUrl={blogUrl}
-                                        setFollowing={setFollowing}
-                                        setIsModalOpen={setIsModalOpen}
-                                        setIsOptionListOpen={
-                                            setIsOptionListOpen
-                                        }
-                                        radar={radar}
-                                    />
-                                )}
-                            </div>
+                            <ClickAwayListener
+                                onClickAway={() => setIsOptionListOpen(false)}
+                            >
+                                <div className="options-btn">
+                                    {!reblog && (
+                                        <button
+                                            onClick={() => {
+                                                setIsOptionListOpen(
+                                                    !isOptionListOpen
+                                                );
+                                            }}
+                                            className="btn"
+                                            data-testid="opt-btn-header-ts"
+                                        >
+                                            <OptionsButton />
+                                        </button>
+                                    )}
+                                    {isOptionListOpen && !blogPage && (
+                                        <OptionsList
+                                            postTime={postTime}
+                                            userBlogName={userBlogName}
+                                            blogName={blogName}
+                                            postLink={`${apiBaseUrl}/post/${postId}`} //change if needed
+                                            postId={postId}
+                                            following={following}
+                                            blogUrl={blogUrl}
+                                            setFollowing={setFollowing}
+                                            setIsModalOpen={setIsModalOpen}
+                                            setIsOptionListOpen={
+                                                setIsOptionListOpen
+                                            }
+                                            radar={radar}
+                                        />
+                                    )}
+                                </div>
+                            </ClickAwayListener>
                         </div>
                     </header>
                 )}
