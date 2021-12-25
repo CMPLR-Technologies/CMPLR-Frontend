@@ -17,6 +17,7 @@ export default function OptionsList(props) {
         radar
     } = props;
     const user = JSON.parse(localStorage.getItem('user'));
+    console.log(following)
 
     return (
         <div

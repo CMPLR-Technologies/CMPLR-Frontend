@@ -15,13 +15,14 @@ NotesContent.propTypes = {
 };
 
 export default function NotesContent(props) {
+    const user = JSON.parse(localStorage.getItem('user'));
     const {
         postAuthor,
         authorAvatar,
         notes,
         setNotes,
         setCounts,
-        type,
+        postId,
         setIsModalOpen,
         setNotesView
     } = props;
@@ -75,9 +76,10 @@ export default function NotesContent(props) {
                     onClick={e => {
                         submitNote(
                             e,
-                            type,
                             reply,
+                            postId,
                             blogIdentifier,
+                            user?.token,
                             setNotes,
                             setCounts
                         );

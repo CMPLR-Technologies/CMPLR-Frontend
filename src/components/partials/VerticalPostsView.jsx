@@ -4,7 +4,7 @@ import { LinearProgress } from '@mui/material';
 import PropTypes from 'prop-types';
 export default function VerticalPostsView(props) {
     const { posts, error, isPending, hasMore, setPageNumber, isRadar } = props;
-
+    const user = JSON.parse(localStorage.getItem('user'));
     const observer = useRef();
     const lastPostElementRef = useCallback(
         node => {
@@ -28,7 +28,7 @@ export default function VerticalPostsView(props) {
                             <Fragment ref={lastPostElementRef} key={index}>
                                 <PostComponent
                                     post={post}
-                                    userBlogName="ahmed_3"
+                                    userBlogName={user?.blogName}
                                     isFollowed={true}
                                     radar={isRadar}
                                 />
@@ -40,7 +40,7 @@ export default function VerticalPostsView(props) {
                                 key={index}
                                 post={post}
                                 isFollowed={true}
-                                userBlogName="ahmed_3"
+                                userBlogName={user?.blogName}
                                 radar={isRadar}
                             />
                         );

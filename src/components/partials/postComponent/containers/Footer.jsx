@@ -182,6 +182,7 @@ export default function Footer(props) {
                                         type={noteType}
                                         setIsModalOpen={setIsModalOpenN}
                                         setNotesView={setNotesView}
+                                        postId={postId}
                                     />
                                 </div>
                             </div>
@@ -224,16 +225,16 @@ export default function Footer(props) {
                     >
                         {!blogPage && (
                             <button
-                                onClick={() =>
-                                    toggleShareList(
-                                        isShareListOpen,
-                                        setIsShareListOpen
-                                    )
-                                }
-                                className="icon"
+                                onClick={() => copyLink(postLink, postId, true)}
+                                className="icon copy-link-cont"
                                 data-testid={`share-icon-footer-ts`}
                             >
-                                <ShareBtn />
+                                <CopyLink />
+                                <div
+                                    className="opt-btn copy-btn btn link-copied"
+                                    id={`copy-btn${postId}`}
+                                    data-testid={`copy-btn-footer-ts${postId}`}
+                                ></div>
                             </button>
                         )}
                         {!blogPage && !radar && (
