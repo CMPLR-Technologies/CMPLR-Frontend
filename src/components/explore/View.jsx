@@ -4,14 +4,13 @@ import VerticalPostsView from '../partials/VerticalPostsView';
 import GridPostsView from '../partials/GridPostsView';
 import { apiBaseUrl } from '../../config.json';
 import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
-
-import Following from './containers/Following';
 import HashtagsList from './containers/HashtagsList';
 import Nav from './containers/Nav';
+import ExploreSidebar from './containers/ExploreSidebar';
 
 export default function Explore() {
     const [pageNumber, setPageNumber] = useState(1);
-    const [grid, setGrid] = useState(false);
+    const [grid, setGrid] = useState(true);
     const isBigScreen = useMediaQuery({
         query: '(min-device-width: 960px )'
     });
@@ -47,9 +46,7 @@ export default function Explore() {
                     />
                 )}
             </div>
-            <div className="explore-sidebar">
-                <Following />
-            </div>
+            <ExploreSidebar />
         </div>
     );
 }

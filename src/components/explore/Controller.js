@@ -27,15 +27,4 @@ const showTags = (end, setStart, setEnd) => {
     }
 };
 
-function returnWidth() {
-    let e = window,
-        a = 'inner';
-    if (!('innerWidth' in window)) {
-        a = 'client';
-        e = document.documentElement || document.body;
-    }
-    console.log(e[a + 'Width']);
-    return e[a + 'Width'];
-}
-
-export { scrollWithClick, changeView, showTags, returnWidth };
+export { scrollWithClick, changeView, showTags };

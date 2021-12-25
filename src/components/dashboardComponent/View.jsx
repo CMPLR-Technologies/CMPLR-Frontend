@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import CreatePost from '../createPost/View';
-import RecommendBlogs from './containers/RecommendBlogs';
-import Radar from '../partials/Radar';
 import VerifyEmail from '../VerifyEmail/View';
 import VerticalPostsView from '../partials/VerticalPostsView';
 import { apiBaseUrl } from '../../config.json';
 import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
-import useFetch from '../../hooks/useFetch';
+import Sidebar from './containers/Sidebar';
 
 export default function Dashboard() {
     const [pageNumber, setPageNumber] = useState(1);
@@ -16,12 +14,6 @@ export default function Dashboard() {
         isPending,
         hasMore
     } = useInfiniteScrolling(`${apiBaseUrl}/user/dashboard?page=${pageNumber}`);
-
-    const {
-        error: blogsError,
-        data: blogs,
-        isPending: blogsIsPending
-    } = useFetch(`${apiBaseUrl}/recommended-blogs`);
 
     return (
         <div className="dashboard">
@@ -38,14 +30,7 @@ export default function Dashboard() {
                     isRef={true}
                 />
             </div>
-            <div className="dashboard-sidebar">
-                <RecommendBlogs
-                    blogsError={blogsError}
-                    blogs={blogs}
-                    blogsIsPending={blogsIsPending}
-                />
-                <Radar />
-            </div>
+            <Sidebar />
         </div>
     );
 }

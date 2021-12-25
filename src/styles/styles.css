@@ -2991,8 +2991,8 @@ body #reset-pass-logo {
 }
 
 .no-data-error {
-  padding-left: 10px;
-  padding-top: 10px;
+  padding-left: 15px;
+  padding-top: 15px;
   color: brown;
 }
 
@@ -3026,7 +3026,7 @@ body #reset-pass-logo {
 }
 
 .dashboard-blogInfo {
-  padding: 8px 10px;
+  padding: 16px;
 }
 .dashboard-blogInfo img {
   width: 37px;
@@ -3075,6 +3075,18 @@ body #reset-pass-logo {
   display: flex;
   width: 100%;
   justify-content: center;
+}
+
+.posts-region {
+  width: 625px;
+}
+
+.total-likes {
+  font-size: 1.13rem;
+  font-weight: 400;
+  line-height: 1.333;
+  margin-bottom: 8px;
+  margin-left: 85px;
 }
 
 @media screen and (max-width: 950px) {
@@ -4471,6 +4483,7 @@ body #reset-pass-logo {
   background: transparent;
   text-decoration: none;
   border: none;
+  cursor: pointer;
 }
 .explore-nav-links {
   display: flex;
@@ -4562,6 +4575,10 @@ body #reset-pass-logo {
   margin-top: 8px;
   padding: 16px;
   cursor: pointer;
+}
+
+.explore-following {
+  margin-bottom: 16px;
 }
 
 @media screen and (min-width: 1500px) {

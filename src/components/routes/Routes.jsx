@@ -17,6 +17,7 @@ import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
 import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
 import Hashtag from '../hashtagsComponent/View';
 import Explore from '../explore/View';
+import LikedBlogs from '../likesComponent/View';
 
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
@@ -56,6 +57,7 @@ export default function MainRoutes() {
                     <Route element={<RequireAuth />}>
                         <Route path="/rich" element={<HandMadeTextEditor />} />
                         <Route path="/following" element={<FollowingPage />} />
+                        <Route path="/likes" element={<LikedBlogs />} />
                         <Route
                             path="/edit/:blogName/:postId"
                             element={<CreateModal reblog={false} edit={true} />}

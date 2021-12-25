@@ -8,6 +8,7 @@ const useInfiniteScrolling = url => {
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
     const [hasMore, setHasMore] = useState(false);
+    const [total, setTotal] = useState(0);
 
     const abortCont = new AbortController();
 
@@ -31,6 +32,7 @@ const useInfiniteScrolling = url => {
                     setIsPending(false);
                     setHasMore(res.data.response.next_url);
                     setError(null);
+                    setTotal(res.data?.response?.total);
                 } else {
                     throw Error(res.error);
                 }
@@ -47,7 +49,7 @@ const useInfiniteScrolling = url => {
         };
     }, [url]);
 
-    return { error, data, isPending, hasMore };
+    return { error, data, isPending, hasMore, total };
 };
 
 export default useInfiniteScrolling;
