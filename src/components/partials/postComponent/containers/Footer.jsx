@@ -84,7 +84,6 @@ export default function Footer(props) {
     const navigate = useNavigate();
 
     const handleNote = () => {
-        console.log('dsdsadas');
         setNotesView(prev => !prev);
         if (!notesView) {
             setNoteType('comment');
