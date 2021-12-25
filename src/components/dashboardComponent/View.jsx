@@ -1,51 +1,49 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import CreatePost from '../createPost/View';
-import Sidebar from './containers/Sidebar';
-import useFetch from '../../hooks/useFetch';
-import useAuth from '../../hooks/useAuth';
-import { LinearProgress } from '@mui/material';
-import { apiBaseUrl } from '../../config.json';
+import RecommendBlogs from './containers/RecommendBlogs';
+import Radar from '../partials/Radar';
 import VerifyEmail from '../VerifyEmail/View';
-import { UserContext } from '../../contexts/userContext/UserContext';
-import Axios from 'axios';
-import ProfileMiniHoverWrapper from '../profileViews/mini&sideViews/View';
+import VerticalPostsView from '../partials/VerticalPostsView';
+import { apiBaseUrl } from '../../config.json';
+import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
+import useFetch from '../../hooks/useFetch';
 
 export default function Dashboard() {
-    const [response, setResponse] = useState([]);
-    const { user } = useContext(UserContext);
-    const blogIdentifier = 'yahia.tumbler.com';
+    const [pageNumber, setPageNumber] = useState(1);
     const {
         error,
-        data: radarPost,
-        isPending
-    } = useFetch(`${apiBaseUrl}/radar-post`);
-    useAuth();
-    useEffect(() => {
-        Axios({
-            method: 'GET',
-            url: `${apiBaseUrl}/posts`,
-            params: {
-                'blog-identifier': blogIdentifier
-            }
-        })
-            .then(res => {
-                if (res.data.Meta.Status === 200) {
-                    setResponse(res.data.response.posts);
-                }
-            })
-            .catch(() => {});
-    }, []);
+        data: posts,
+        isPending,
+        hasMore
+    } = useInfiniteScrolling(`${apiBaseUrl}/user/dashboard?page=${pageNumber}`);
+
+    const {
+        error: blogsError,
+        data: blogs,
+        isPending: blogsIsPending
+    } = useFetch(`${apiBaseUrl}/recommended-blogs`);
 
     return (
         <div className="dashboard">
             <div className="posts-region">
                 <CreatePost />
                 <VerifyEmail />
-                <ProfileMiniHoverWrapper blogID={'16'}>
-                    <span>lol</span>
-                </ProfileMiniHoverWrapper>
+                <VerticalPostsView
+                    posts={posts}
+                    error={error}
+                    isPending={isPending}
+                    hasMore={hasMore}
+                    setPageNumber={setPageNumber}
+                />
             </div>
-            <Sidebar />
+            <div className="dashboard-sidebar">
+                <RecommendBlogs
+                    blogsError={blogsError}
+                    blogs={blogs}
+                    blogsIsPending={blogsIsPending}
+                />
+                <Radar />
+            </div>
         </div>
     );
 }

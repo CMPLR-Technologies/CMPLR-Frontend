@@ -96,9 +96,14 @@
                         margin: 0;
                         user-select: none;
                         .spanStyle {
-                            transition: transform 80ms linear;
+                            transition: top ease 80ms;
+                            position: relative;
+                            top: 0;
                             display: flex;
                             flex-direction: column;
+                            &:hover {
+                                top: -4px;
+                            }
                             svg {
                                 margin-bottom: 5px;
                                 overflow: hidden;

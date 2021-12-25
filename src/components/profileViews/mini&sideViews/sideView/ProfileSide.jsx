@@ -8,15 +8,35 @@ import {
     ThemeContext,
     themes
 } from '../../../../contexts/themeContext/ThemeContext';
+import PostComponent from '../../../partials/postComponent/containers/PostComponent';
+import useInfiniteScrolling from '../../../../hooks/useInfiniteScrolling';
+import VerticalPostsView from '../../../partials/VerticalPostsView';
 
 export default function ProfileSide(props) {
-    const { blogID, setSidePostID, setShowSideBlog, sidePostID, body } = props;
-    const { avatar, header_image: headerImage, title, desciption } = body;
+    const {
+        blogID,
+        /*blogName,*/
+        /*setSidePostID, setShowSideBlog,*/ sidePostID,
+        body
+    } = props;
+    const {
+        avatar,
+        header_image: headerImage,
+        title,
+        desciption,
+        blog_name: blogName
+    } = body;
+    const [pageNumber, setPageNumber] = useState(1);
     const {
         error,
         data: post,
-        isPending
-    } = useFetch(`${apiBaseUrl}/posts/${sidePostID}`);
+        isPending,
+        hasMore
+    } = sidePostID
+        ? useFetch(`${apiBaseUrl}/posts/${sidePostID}`)
+        : useInfiniteScrolling(
+              `${apiBaseUrl}/posts/view/${blogName}?page=${pageNumber}`
+          );
 
     const [scrollTop, setScrollTop] = useState(0);
     const headerScrollAnimation = el => {
@@ -25,6 +45,9 @@ export default function ProfileSide(props) {
     const theme = useContext(ThemeContext)[0];
 
     const css = `
+        .post-container{
+            box-shadow: 0 0 0 1px rgba(${themes[theme].black},.07);
+        }
         .overlay-no-theme {
             background-color: rgb(${themes[theme].navy});
         }
@@ -35,9 +58,6 @@ export default function ProfileSide(props) {
         .profile-side-header-div-bg{
             filter: blur(${Math.min(scrollTop, 260) / 40}px);
             object-position: 0 ${Math.min(scrollTop / 2, 108)}px;
-        }
-        .profile-side-header-fixed{
-            filter: blur(${Math.min(scrollTop, 260) / 40}px);
         }
     `;
     // const body = {
@@ -59,7 +79,7 @@ export default function ProfileSide(props) {
                 />
             )*/}
                 <NavLink
-                    to={`/blog/view/${blogID}`}
+                    to={`/blog/view/${blogName}/${blogID}`}
                     className="profile-side-header-div"
                 >
                     <img
@@ -68,7 +88,7 @@ export default function ProfileSide(props) {
                         alt="couldn't load bg"
                     />
                 </NavLink>
-                <NavLink to={`/blog/view/${blogID}`}>
+                <NavLink to={`/blog/view/${blogName}/${blogID}`}>
                     <img
                         className="profile-side-header-avatar"
                         src={avatar}
@@ -84,80 +104,35 @@ export default function ProfileSide(props) {
                         {desciption}
                     </div>
                 </div>
-                {sidePostID ? (
-                    error ? (
-                        <div className="no-data-error">{"Couldn't load"}</div>
-                    ) : isPending ? (
-                        <LinearProgress />
-                    ) : post ? (
-                        <div>{sidePostID}</div>
+                <div className="profile-side-header-post-container">
+                    {sidePostID ? (
+                        error ? (
+                            <div className="no-data-error">
+                                {"Couldn't load"}
+                            </div>
+                        ) : isPending ? (
+                            <LinearProgress />
+                        ) : post ? (
+                            <PostComponent
+                                post={{ blog: post.blog, post: post.post }}
+                                blogPage={true}
+                                userBlogName={blogName}
+                            />
+                        ) : (
+                            <div></div>
+                        )
                     ) : (
-                        <div></div>
-                    )
-                ) : (
-                    <div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                    </div>
-                )}
+                        <VerticalPostsView
+                            posts={post}
+                            error={error}
+                            isPending={isPending}
+                            hasMore={hasMore}
+                            setPageNumber={setPageNumber}
+                            blogPage={true}
+                            userBlogName={blogName}
+                        />
+                    )}
+                </div>
                 <style>{css}</style>
             </div>
         </div>
@@ -165,9 +140,10 @@ export default function ProfileSide(props) {
 }
 
 ProfileSide.propTypes = {
-    blogID: PropTypes.string.isRequired,
-    setShowSideBlog: PropTypes.func.isRequired,
-    setSidePostID: PropTypes.func.isRequired,
+    blogID: PropTypes.number.isRequired,
+    blogName: PropTypes.string.isRequired,
+    setShowSideBlog: PropTypes.func,
+    setSidePostID: PropTypes.func,
     body: PropTypes.object.isRequired,
-    sidePostID: PropTypes.string.isRequired
+    sidePostID: PropTypes.string
 };

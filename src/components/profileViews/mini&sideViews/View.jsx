@@ -4,14 +4,17 @@ import { Popover } from '@mui/material';
 import ProfileMini from './miniView/ProfileMini';
 import PropTypes from 'prop-types';
 import ProfilsSideContainer from './sideView/ProfilsSideContainer';
-import { apiBaseUrl } from '../../../config.json';
-import useFetch from '../../../hooks/useFetch';
 
 export default function ProfileMiniHoverWrapper(props) {
-    const { blogID, children } = props;
+    const { blogID, blogName, children } = props;
     const [showSideBlog, setShowSideBlog] = useState(false);
     const [sidePostID, setSidePostID] = useState('');
 
+    const css = `
+        body{
+            ${showSideBlog && 'overflow-y: hidden;'}            
+        }
+        `;
     const useStyles = makeStyles(() => ({
         popover: {
             pointerEvents: 'none'
@@ -26,7 +29,6 @@ export default function ProfileMiniHoverWrapper(props) {
         setOpenedPopover(true);
     };
 
-    const response = useFetch(`${apiBaseUrl}/MiniProfileView/${blogID}`);
     const popoverLeave = () => {
         setOpenedPopover(false);
     };
@@ -34,7 +36,7 @@ export default function ProfileMiniHoverWrapper(props) {
     const classes = useStyles();
 
     return (
-        <div>
+        <span>
             <span
                 className="anchor"
                 ref={popoverAnchor}
@@ -70,27 +72,31 @@ export default function ProfileMiniHoverWrapper(props) {
                     onMouseLeave: popoverLeave
                 }}
             >
-                <ProfileMini
-                    blogID={blogID}
-                    response={response}
-                    setShowSideBlog={setShowSideBlog}
-                    setSidePostID={setSidePostID}
-                />
+                {openedPopover && (
+                    <ProfileMini
+                        blogID={blogID}
+                        blogName={blogName}
+                        setShowSideBlog={setShowSideBlog}
+                        setSidePostID={setSidePostID}
+                    />
+                )}
             </Popover>
             {showSideBlog && (
                 <ProfilsSideContainer
                     blogID={blogID}
+                    blogName={blogName}
                     setShowSideBlog={setShowSideBlog}
                     sidePostID={sidePostID}
-                    response={response}
                     setSidePostID={setSidePostID}
                 />
             )}
-        </div>
+            <style>{css}</style>
+        </span>
     );
 }
 
 ProfileMiniHoverWrapper.propTypes = {
     children: PropTypes.object.isRequired,
-    blogID: PropTypes.string.isRequired
+    blogID: PropTypes.string.isRequired,
+    blogName: PropTypes.string.isRequired
 };

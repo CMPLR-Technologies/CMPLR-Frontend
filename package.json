@@ -24,13 +24,15 @@
         "react-editor-js": "^2.0.3",
         "react-google-recaptcha": "^2.1.0",
         "react-icons": "^4.3.1",
+        "react-infinite-scroll-component": "^6.1.0",
+        "react-player": "^2.9.0",
         "react-router-dom": "^6.0.2",
         "react-scripts": "^3.4.4",
         "web-vitals": "^1.0.1"
     },
     "scripts": {
         "start": "react-scripts start",
-        "db": "json-server --watch ./src/__mock_database/db.json -p 3333",
+        "db": "json-server --watch ./src/__mock_database/db.json -p 3333 --routes ./src/__mock_database/routes.json ",
         "styles": "sass --no-source-map --watch ./src/styles/scss/styles.scss ./src/styles/styles.css        ",
         "build": "react-scripts build",
         "test": "react-scripts test",

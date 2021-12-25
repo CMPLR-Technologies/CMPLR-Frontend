@@ -2,10 +2,13 @@ import React from 'react';
 import { LinearProgress } from '@mui/material';
 import PropTypes from 'prop-types';
 import ProfileSide from './ProfileSide';
+import { apiBaseUrl } from '../../../../config.json';
+import useFetch from '../../../../hooks/useFetch';
 
 export default function ProfilsSideContainer(props) {
-    const { blogID, setShowSideBlog, setSidePostID, sidePostID, response } =
+    const { blogID, blogName, setShowSideBlog, setSidePostID, sidePostID } =
         props;
+    const response = useFetch(`${apiBaseUrl}/MiniProfileView/${blogID}`);
     const { error, data, isPending } = response;
 
     return (
@@ -19,22 +22,23 @@ export default function ProfilsSideContainer(props) {
             </div>
             {error && <div className="no-data-error">{"Couldn't load"}</div>}
             {isPending && <LinearProgress />}
-            {data && data.response && (
+            {data && (
                 <ProfileSide
                     blogID={blogID}
+                    blogName={blogName}
                     setShowSideBlog={setShowSideBlog}
                     sidePostID={sidePostID}
                     setSidePostID={setSidePostID}
-                    body={data.response.blog}
+                    body={data.blog}
                 />
             )}
         </div>
     );
 }
 ProfilsSideContainer.propTypes = {
-    blogID: PropTypes.string.isRequired,
+    blogID: PropTypes.number.isRequired,
+    blogName: PropTypes.string.isRequired,
     setShowSideBlog: PropTypes.func.isRequired,
     setSidePostID: PropTypes.func.isRequired,
-    response: PropTypes.object.isRequired,
     sidePostID: PropTypes.string.isRequired
 };

@@ -1,25 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { apiBaseUrl } from '../../../../config.json';
+import useFetch from '../../../../hooks/useFetch';
+import { LinearProgress } from '@mui/material';
+import {
+    ThemeContext,
+    themes
+} from '../../../../contexts/themeContext/ThemeContext';
 
 export default function ProfileFullHeader(props) {
-    const { blogID, content } = props;
-    const { avatar, header_image: headerImage, title, desciption } = body;
+    const { blogName, blogID, content } = props;
+    const response = useFetch(`${apiBaseUrl}/MiniProfileView/${blogID}`);
+    const { error, data, isPending } = response;
+
     const [scrollTop, setScrollTop] = useState(0);
     const headerScrollAnimation = el => {
         setScrollTop(el.target.scrollTop);
     };
+    const theme = useContext(ThemeContext)[0];
+    console.log(scrollTop);
     const css = `
+        .post-container{
+            box-shadow: 0 0 0 1px rgba(${themes[theme].black},.07);
+        }
         .profile-side-header-avatar {
-            opacity: ${Math.min(Math.max((108 - scrollTop) / 108, 0), 1)};
+            opacity: ${Math.min(Math.max((150 - scrollTop) / 150, 0), 1)};
             ${scrollTop > 108 && 'display: none'}            
         }
         .profile-side-header-div-bg{
-            filter: blur(${Math.min(scrollTop, 260) / 40}px);
-            object-position: 0 ${Math.min(scrollTop / 2, 108)}px;
-        }
-        .profile-side-header-fixed{
-            filter: blur(${Math.min(scrollTop, 260) / 40}px);
+            filter: blur(${Math.min(scrollTop, 300) / 40}px);
+            object-position: 0 ${Math.min(scrollTop / 2, 150)}px;
         }
     `;
     // const body = {
@@ -31,111 +42,125 @@ export default function ProfileFullHeader(props) {
     // };
 
     return (
-        <div className="profile-side" onScroll={headerScrollAnimation}>
-            <div className="profile-side-header">
-                {/*scrollTop > 216 && (
-                <img
-                    className="profile-side-header-fixed"
-                    src={body.bg}
-                    alt="couldn't load bg"
-                />
-            )*/}
-                <NavLink
-                    to={`/blog/view/${blogID}`}
-                    className="profile-side-header-div"
-                >
-                    <img
-                        className="profile-side-header-div-bg"
-                        src={headerImage}
-                        alt="couldn't load bg"
-                    />
-                </NavLink>
-                <img
-                    className="profile-side-header-avatar"
-                    src={avatar}
-                    alt="couldn't load avatar"
-                />
-                <div className="profile-side-header-text">
-                    <div className="profile-side-header-text-title">
-                        {title}
+        <div className="profile-full" onScroll={headerScrollAnimation}>
+            {error && <div className="no-data-error">{"Couldn't load"}</div>}
+            {isPending && <LinearProgress />}
+            {data && (
+                <div className="profile-side-header">
+                    <NavLink
+                        to={`/blog/view/${blogName}/${blogID}`}
+                        className="profile-side-header-div"
+                    >
+                        <img
+                            className="profile-side-header-div-bg"
+                            src={data.blog.header_image}
+                            alt="couldn't load bg"
+                        />
+                    </NavLink>
+                    <NavLink to={`/blog/view/${blogName}/${blogID}`}>
+                        <img
+                            className="profile-side-header-avatar"
+                            src={data.blog.avatar}
+                            alt="couldn't load avatar"
+                        />
+                    </NavLink>
+
+                    <div className="profile-side-header-text">
+                        <NavLink
+                            className="profile-side-header-text-link"
+                            to={`/blog/view/${blogName}/${blogID}`}
+                        >
+                            <div className="profile-side-header-text-title">
+                                {data.blog.title}
+                            </div>
+                        </NavLink>
+                        <div className="profile-side-header-text-desc">
+                            {data.blog.desciption}
+                        </div>
                     </div>
-                    <div className="profile-side-header-text-desc">
-                        {desciption}
-                    </div>
-                </div>
-                {sidePostID ? (
-                    <div>{sidePostID}</div>
-                ) : (
                     <div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
-                        <div> fwaw </div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
+                        <div>ffwafwa</div>
                     </div>
-                )}
-                <style>{css}</style>
-            </div>
+                    <style>{css}</style>
+                </div>
+            )}
         </div>
     );
 }
 
 ProfileFullHeader.propTypes = {
+    blogName: PropTypes.string.isRequired,
     blogID: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired
+    content: PropTypes.string
 };

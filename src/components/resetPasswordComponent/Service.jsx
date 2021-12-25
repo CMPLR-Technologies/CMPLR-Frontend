@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import axios from 'axios';
 import { apiBaseUrl } from '../../config.json';
 import { handleNewPssword } from './Controller';
@@ -22,7 +23,6 @@ export function newPassword(
             }
         })
             .then(res => {
-              
                 if (res.data.meta.status_code === 200) {
                     const user = {
                         token: res.data.response.token,
@@ -48,7 +48,6 @@ export function getEmail(token, setEmail) {
     })
         .then(res => {
             if (res.data.meta.status_code === 200) {
-                console.log(res.data.response.email);
                 setEmail(res.data.response.email);
             }
         })

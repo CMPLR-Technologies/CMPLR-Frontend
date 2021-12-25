@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 export default function TitleField(props) {
-    const { setTitlePost } = props;
+    const { setTitlePost, editTitlePost } = props;
     const handleChangeTitle = () => {
         setTitlePost(document.getElementById('content-title-cpost').innerHTML);
     };
@@ -17,7 +17,9 @@ export default function TitleField(props) {
                             id="content-title-cpost"
                             onInput={handleChangeTitle}
                             data-placeholder="Title"
-                        ></div>
+                        >
+                            {editTitlePost}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -27,5 +29,6 @@ export default function TitleField(props) {
 
 TitleField.propTypes = {
     // titlePost: PropTypes.string.isRequired,
-    setTitlePost: PropTypes.func.isRequired
+    setTitlePost: PropTypes.func.isRequired,
+    editTitlePost: PropTypes.string
 };

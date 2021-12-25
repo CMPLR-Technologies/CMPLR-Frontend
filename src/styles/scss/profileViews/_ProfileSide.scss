@@ -18,9 +18,22 @@
         flex-direction: column;
         align-items: center;
 
+        .post-wrapper {
+            left: 0;
+            width: 100%;
+        }
+
+        &-post-container {
+            width: 100%;
+            padding: 0 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
         &-div {
             position: sticky;
             top: -30vh;
+            z-index: 1000;
             background-color: white;
             &-bg {
                 object-fit: cover;
@@ -31,20 +44,11 @@
                 cursor: pointer;
             }
         }
-        &-fixed {
-            object-fit: cover;
-            position: fixed;
-            top: 0;
-            height: 50px;
-            width: 600px;
-            -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-            cursor: pointer;
-        }
 
         &-avatar {
             position: absolute;
             left: 50%;
+            z-index: 2000;
             top: calc(30vh + 50px);
             transform: translateX(-50%) translateY(-50%);
             width: 96px;
@@ -62,6 +66,10 @@
             padding-top: 48px;
             padding-bottom: 40px;
 
+            &-link {
+                text-decoration: none;
+                color: black;
+            }
             &-title {
                 font-weight: bold;
                 font-size: 42px;

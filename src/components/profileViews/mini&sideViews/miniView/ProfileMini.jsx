@@ -3,6 +3,8 @@ import ProfileMiniBody from './ProfileMiniBody';
 import ProfileMiniImages from './ProfileMiniImages';
 import { LinearProgress } from '@mui/material';
 import PropTypes from 'prop-types';
+import { apiBaseUrl } from '../../../../config.json';
+import useFetch from '../../../../hooks/useFetch';
 
 // import {
 //     ThemeContext,
@@ -10,9 +12,10 @@ import PropTypes from 'prop-types';
 // } from '../../../contexts/themeContext/ThemeContext';
 
 export default function ProfileMini(props) {
-    const { setShowSideBlog, setSidePostID, response } = props;
-    //const [postSideView, setPostSideView] = useState('');
+    const { setShowSideBlog, setSidePostID, blogID } = props;
+    const response = useFetch(`${apiBaseUrl}/MiniProfileView/${blogID}`);
     const { error, data, isPending } = response;
+
     // const body = {
     //     username: 'huh',
     //     avatar: 'https://pbs.twimg.com/profile_images/1026496068555612160/Klg8BS8p_400x400.jpg',
@@ -38,26 +41,25 @@ export default function ProfileMini(props) {
         <div className="profile-mini">
             {error && <div className="no-data-error">{"Couldn't load"}</div>}
             {isPending && <LinearProgress />}
-            {data && data.response && (
+            {data && (
                 <ProfileMiniBody
                     setShowSideBlog={setShowSideBlog}
                     setSidePostID={setSidePostID}
-                    body={data.response.blog}
+                    body={data.blog}
                 />
             )}
-            {data && data.response && data.response.views && (
-                /* data.response.views.length === 3 &&*/ <ProfileMiniImages
+            {data && data.views && data.views.length === 3 && (
+                <ProfileMiniImages
                     setShowSideBlog={setShowSideBlog}
                     setSidePostID={setSidePostID}
-                    imgs={data.response.views}
+                    imgs={data.views}
                 />
             )}
         </div>
     );
 }
 ProfileMini.propTypes = {
-    blogID: PropTypes.string.isRequired,
+    blogID: PropTypes.number.isRequired,
     setShowSideBlog: PropTypes.func.isRequired,
-    setSidePostID: PropTypes.func.isRequired,
-    response: PropTypes.object.isRequired
+    setSidePostID: PropTypes.func.isRequired
 };

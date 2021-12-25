@@ -18,11 +18,26 @@ Modal.propTypes = {
 export default function Modal(props) {
     const { messageHeading, messageDesc, children } = props;
     return (
-        <div className="modal">
-            <div className="modal-container">
-                <div className="msg-heading">{messageHeading}</div>
-                <div className="msg-description">{messageDesc}</div>
-                <div className="buttons-box modal-btns">{children}</div>
+        <div data-testid={`modal-ts`} className="modal">
+            <div data-testid={`modal-container-ts`} className="modal-container">
+                <div
+                    data-testid={`modal-message-heading-ts`}
+                    className="msg-heading"
+                >
+                    {messageHeading}
+                </div>
+                <div
+                    data-testid={`modal-message-desc-ts`}
+                    className="msg-description"
+                >
+                    {messageDesc}
+                </div>
+                <div
+                    data-testid={`modal-btns-ts`}
+                    className="buttons-box modal-btns"
+                >
+                    {children}
+                </div>
             </div>
         </div>
     );

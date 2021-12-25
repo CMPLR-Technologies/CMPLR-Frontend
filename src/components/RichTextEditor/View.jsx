@@ -7,7 +7,8 @@ import {
     AiOutlineUnorderedList,
     AiOutlineOrderedList,
     AiOutlineStrikethrough,
-    AiOutlineLink
+    AiOutlineLink,
+    AiFillVideoCamera
 } from 'react-icons/ai';
 import { FaPencilAlt } from 'react-icons/fa';
 import { RiPaintFill } from 'react-icons/ri';
@@ -19,18 +20,19 @@ import {
     handleActionWithoutArg,
     handleUploadImage,
     handleCreateLink,
-    handleColor
+    handleColor,
+    handleUploadVideo
 } from './Controller';
 import PostComponent from '../partials/postComponent/containers/PostComponent';
 const Input = styled('input')({
     display: 'none'
 });
 export default function HandMadeTextEditor(props) {
-    const { setContent, reblog, post } = props;
-
+    const { setContent, reblog, post, setSpinner, editContent } = props;
+    const user = JSON.parse(localStorage.getItem('user'));
     return (
         <>
-            {reblog && (
+            {reblog && post?.post && (
                 <PostComponent
                     radar={true}
                     reblog={true}
@@ -47,6 +49,7 @@ export default function HandMadeTextEditor(props) {
                     data-testid="content-postInput"
                     onInput={() => handleChanges(setContent)}
                     data-placeholder="Your text here"
+                    dangerouslySetInnerHTML={{ __html: editContent }}
                 ></div>
                 <div className="text-editor-header">
                     <select
@@ -108,7 +111,12 @@ export default function HandMadeTextEditor(props) {
                     <label htmlFor="to-image-words">
                         <Input
                             onChange={e =>
-                                handleUploadImage(e.target.files[0], setContent)
+                                handleUploadImage(
+                                    e.target.files[0],
+                                    setContent,
+                                    setSpinner,
+                                    user?.token
+                                )
                             }
                             accept="image/*"
                             data-element="insertImage"
@@ -116,7 +124,23 @@ export default function HandMadeTextEditor(props) {
                             type="file"
                         />
 
-                        <AiFillCamera />
+                        <AiFillCamera className="fileEffect" />
+                    </label>
+
+                    <label htmlFor="to-video-words">
+                        <Input
+                            onChange={e =>
+                                handleUploadVideo(
+                                    e.target.files[0],
+                                    setSpinner,
+                                    user?.token
+                                )
+                            }
+                            id="to-video-words"
+                            type="file"
+                        />
+
+                        <AiFillVideoCamera className="fileEffect" />
                     </label>
 
                     <button
@@ -181,6 +205,7 @@ export default function HandMadeTextEditor(props) {
                                         setContent
                                     )
                                 }
+                                style={{ cursor: 'pointer' }}
                                 id="to-hilitecolor-words"
                                 className="colorStyle"
                             />
@@ -196,6 +221,7 @@ export default function HandMadeTextEditor(props) {
                                         setContent
                                     )
                                 }
+                                style={{ cursor: 'pointer' }}
                                 id="to-forecolor-words"
                                 className="colorStyle"
                             />
@@ -209,6 +235,8 @@ export default function HandMadeTextEditor(props) {
 
 HandMadeTextEditor.propTypes = {
     setContent: PropTypes.func.isRequired,
+    setSpinner: PropTypes.func.isRequired,
     reblog: PropTypes.bool,
-    post: PropTypes.object
+    post: PropTypes.object,
+    editContent: PropTypes.string
 };
