@@ -68,17 +68,20 @@ export default function AuthLinks() {
     };
 
     useEffect(() => {
-        Axios({
-            method: 'GET',
-            url: `${apiBaseUrl}/blog/${user?.blogName}/notifications`,
-            headers: {
-                'content-type': 'application/json',
-                Authorization: `Bearer ${user?.token}`
-            }
-        }).then(res => {
-            if (res.data.meta.status_code === 200)
-                setNotfArray(res.data.response);
-        });
+        user?.blogName !== undefined &&
+            Axios({
+                method: 'GET',
+                url: `${apiBaseUrl}/blog/${user?.blogName}/notifications`,
+                headers: {
+                    'content-type': 'application/json',
+                    Authorization: `Bearer ${user?.token}`
+                }
+            })
+                .then(res => {
+                    if (res.data.meta.status_code === 200)
+                        setNotfArray(res.data.response);
+                })
+                .catch(() => {});
     }, []);
 
     /*  const clickOpenPopup = () => {

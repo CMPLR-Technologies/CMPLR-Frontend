@@ -4,7 +4,9 @@ import NotfHeader from './NotfHeader';
 
 export default function Notifications(props) {
     const { userBlogName, userAvatar, notfArray, setNotfArray } = props;
-    const [notfDates, setNotfDates] = useState(Object.keys(notfArray));
+    const [notfDates, setNotfDates] = useState(
+        notfArray ? Object.keys(notfArray) : []
+    );
     const [notf, setNotf] = useState(notfArray);
     const filterNotf = filter => {
         if (filter === 'all') {
@@ -12,15 +14,16 @@ export default function Notifications(props) {
             return;
         }
         const tempNotf = {};
-        notfDates.map(date => {
-            notfArray[date] &&
-                notfArray[date].map(notf => {
-                    if (notf.type === filter) {
-                        tempNotf[date] = [];
-                        tempNotf[date].push(notf);
-                    }
-                });
-        });
+        notfDates &&
+            notfDates.map(date => {
+                notfArray[date] &&
+                    notfArray[date].map(notf => {
+                        if (notf.type === filter) {
+                            tempNotf[date] = [];
+                            tempNotf[date].push(notf);
+                        }
+                    });
+            });
         setNotf(tempNotf);
     };
 

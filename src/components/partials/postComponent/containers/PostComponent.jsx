@@ -437,7 +437,7 @@ export default function PostComponent(props) {
                             reblogKey={reblogKey}
                             postId={postId}
                             blogName={blogName}
-                            postAuthor={userBlogName}
+                            postAuthor={blogName}
                             authorAvatar={avatar}
                             setIsModalOpenN={setIsModalOpen}
                             blogPage={blogPage}

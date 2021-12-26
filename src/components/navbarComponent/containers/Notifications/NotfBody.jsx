@@ -71,9 +71,13 @@ export default function NotfBody(props) {
                                     : notf['type'] === 'follow'
                                     ? 'followed your blog'
                                     : null
-                            }${notf['post_ask_answer_content']}`
+                            }`
                         }}
                     ></span>
+                    <span style={{ marginLeft: '5px' }}>
+                        {' '}
+                        {notf['post_ask_answer_content']}
+                    </span>
                 </div>
                 <div className="type">
                     {notf['type'] === 'like' ? (
