@@ -118,7 +118,7 @@ export default function FollowingPage() {
                         >
                             <section className="NedHV">
                                 {followingList &&
-                                    followingList.map((f, i) => {
+                                    followingList?.map((f, i) => {
                                         return (
                                             <ItemList
                                                 key={

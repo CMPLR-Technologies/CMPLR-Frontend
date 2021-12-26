@@ -5,7 +5,7 @@ import useFetch from '../../../../hooks/useFetch';
 import { LinearProgress } from '@mui/material';
 import PostComponent from '../../../partials/postComponent/containers/PostComponent';
 
-export default function ProfileSide(props) {
+export default function ProfileSideOnePost(props) {
     const { blogName, sidePostID } = props;
     const {
         error,
@@ -32,7 +32,7 @@ export default function ProfileSide(props) {
     );
 }
 
-ProfileSide.propTypes = {
+ProfileSideOnePost.propTypes = {
     blogID: PropTypes.string,
     blogName: PropTypes.string.isRequired,
     sidePostID: PropTypes.string

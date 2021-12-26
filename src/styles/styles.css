@@ -5908,21 +5908,20 @@ body #reset-pass-logo {
 .ZN143 {
   display: none;
 }
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 950px) {
   .ZN143 {
     display: unset;
     margin-bottom: 20px;
-    background-color: #122943;
   }
 }
 .ZN143 .iGLU3 {
-  background: #e33408;
+  background: linear-gradient(0.25turn, #214e61, #ebf8e1, #976127);
   height: 232px;
   min-height: 232px;
   padding: 16px;
   position: relative;
 }
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 950px) {
   .ZN143 .iGLU3 {
     height: 0;
     min-height: 186px;
@@ -5947,7 +5946,7 @@ body #reset-pass-logo {
   width: 100%;
   height: 100%;
 }
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 950px) {
   .ZN143 .iGLU3 .ZV6oZ {
     align-items: flex-end;
     display: flex;
@@ -5962,7 +5961,6 @@ body #reset-pass-logo {
 }
 .ZN143 .iGLU3 .ZV6oZ .kckjF {
   align-items: center;
-  color: #fff;
   display: flex;
   justify-content: flex-end;
   text-decoration: none;
@@ -5972,7 +5970,6 @@ body #reset-pass-logo {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
-  color: white;
   margin-right: 10px;
   text-align: end;
 }
@@ -6006,7 +6003,6 @@ body #reset-pass-logo {
   object-fit: cover;
 }
 .ZN143 .YOf31 {
-  color: white;
   padding: 16px;
   align-items: flex-start;
   display: flex;
@@ -6015,7 +6011,7 @@ body #reset-pass-logo {
   margin: auto;
   position: relative;
 }
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 950px) {
   .ZN143 .YOf31 {
     max-width: 940px;
   }
@@ -6025,10 +6021,8 @@ body #reset-pass-logo {
   font-weight: 400;
   line-height: 1.5;
   margin-bottom: 2px;
-  color: white;
 }
 .ZN143 .YOf31 .Wo4gS {
-  color: white;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   display: -webkit-box;
@@ -6039,7 +6033,7 @@ body #reset-pass-logo {
   text-overflow: ellipsis;
   word-break: break-word;
 }
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 950px) {
   .ZN143 .YOf31 .Wo4gS {
     font-size: 1.625rem;
     font-weight: 400;
@@ -6077,8 +6071,6 @@ body #reset-pass-logo {
   }
 }
 .ZN143 .YOf31 .emvA3 .EVsUa .WdYx4 {
-  background-color: #00b8ff;
-  color: #00161f;
   border-radius: 3px;
   font-size: 1rem;
   font-weight: 700;
@@ -6095,19 +6087,17 @@ body #reset-pass-logo {
 .ZN143 .YOf31 .XVkC9 {
   align-items: flex-start;
   display: flex;
-  color: white;
   overflow-x: auto;
 }
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 950px) {
   .ZN143 .YOf31 .XVkC9 {
     flex-wrap: wrap;
     margin: 20px 0 -10px;
   }
 }
-.ZN143 .YOf31 .XVkC9 span {
+.ZN143 .YOf31 .XVkC9 .spanTaghandler {
   background-color: transparent;
   border: 2px solid rgba(74, 121, 150, 0.25);
-  color: white;
   cursor: pointer !important;
   font-weight: 400;
   margin-bottom: 10px;
@@ -6117,31 +6107,27 @@ body #reset-pass-logo {
   border-radius: 30px;
   padding: 2px 13px;
 }
-.ZN143 .YOf31 .XVkC9 span:hover {
-  background-color: #0d4d72 !important;
-  color: #00b8ff !important;
-}
-@media screen and (min-width: 990px) {
-  .ZN143 .YOf31 .XVkC9 span {
+@media screen and (min-width: 950px) {
+  .ZN143 .YOf31 .XVkC9 .spanTaghandler {
     cursor: pointer !important;
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: break-all;
   }
 }
-.ZN143 .YOf31 .XVkC9 span a {
+.ZN143 .YOf31 .XVkC9 .spanTaghandler a {
   outline: none;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
 }
-@media screen and (min-width: 990px) {
-  .ZN143 .YOf31 .XVkC9 span a {
+@media screen and (min-width: 950px) {
+  .ZN143 .YOf31 .XVkC9 .spanTaghandler a {
     word-break: break-all;
   }
 }
 
-@media screen and (min-width: 989px) {
+@media screen and (min-width: 950px) {
   .viewMobController {
     display: none;
   }
@@ -6151,7 +6137,7 @@ body #reset-pass-logo {
   min-height: 300px;
   padding: 16px;
   position: relative;
-  background: #e33408;
+  background: linear-gradient(0.25turn, #214e61, #ebf8e1, #976127);
   width: 100%;
 }
 .viewMobController .iGLU3 .BSUG4 {
@@ -6187,7 +6173,7 @@ body #reset-pass-logo {
   pointer-events: none;
   position: relative;
 }
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 950px) {
   .viewMobController .iGLU3 .ZV6oZ .YOf31 {
     color: #fff;
   }
@@ -6204,7 +6190,6 @@ body #reset-pass-logo {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   display: -webkit-box;
-  color: white;
   font-size: 2rem;
   font-weight: 400;
   line-height: 1.25;
@@ -6240,22 +6225,18 @@ body #reset-pass-logo {
   cursor: pointer;
   margin: 0;
   padding: 0;
-  color: #001935;
 }
 .viewMobController .iGLU3 .ZV6oZ .YOf31 .mainDivHash .emvA3 .sNQra .WdYx4 {
   border-radius: 3px;
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.5;
-  background-color: #00b8ff;
-  color: #001935;
   display: block;
   display: block;
   padding: 8px 20.5px;
 }
 .viewMobController .iGLU3 .ZV6oZ .YOf31 .kckjF {
   align-items: center;
-  color: #fff;
   display: flex;
   justify-content: flex-end;
   text-decoration: none;
@@ -6265,7 +6246,6 @@ body #reset-pass-logo {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
-  color: white;
   margin-right: 10px;
   text-align: end;
 }
@@ -6308,10 +6288,9 @@ body #reset-pass-logo {
 .viewMobController .XVkC9::-webkit-scrollbar {
   display: none;
 }
-.viewMobController .XVkC9 .theScrollhandler span {
+.viewMobController .XVkC9 .theScrollhandler .spanTaghandler {
   background-color: transparent;
   border: 2px solid rgba(74, 121, 150, 0.25);
-  color: white;
   cursor: pointer !important;
   font-weight: 400;
   margin-bottom: 10px;
@@ -6321,29 +6300,25 @@ body #reset-pass-logo {
   border-radius: 30px;
   padding: 2px 13px;
 }
-.viewMobController .XVkC9 .theScrollhandler span:first-child {
+.viewMobController .XVkC9 .theScrollhandler .spanTaghandler:first-child {
   margin-left: 16px;
 }
-.viewMobController .XVkC9 .theScrollhandler span:hover {
-  background-color: #0d4d72 !important;
-  color: #00b8ff !important;
-}
-@media screen and (min-width: 990px) {
-  .viewMobController .XVkC9 .theScrollhandler span {
+@media screen and (min-width: 950px) {
+  .viewMobController .XVkC9 .theScrollhandler .spanTaghandler {
     cursor: pointer !important;
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: break-all;
   }
 }
-.viewMobController .XVkC9 .theScrollhandler span a {
+.viewMobController .XVkC9 .theScrollhandler .spanTaghandler a {
   outline: none;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
 }
-@media screen and (min-width: 990px) {
-  .viewMobController .XVkC9 .theScrollhandler span a {
+@media screen and (min-width: 950px) {
+  .viewMobController .XVkC9 .theScrollhandler .spanTaghandler a {
     word-break: break-all;
   }
 }
@@ -6357,16 +6332,13 @@ body #reset-pass-logo {
 }
 .lSyOz .p4DiZ {
   align-items: center;
-  border-bottom: 1px solid white;
   display: flex;
   margin-bottom: 20px;
   width: 100%;
 }
 .lSyOz .p4DiZ .uM3pd {
   align-items: flex-end;
-  color: RGB(var(--white-on-dark));
   display: flex;
-  font-family: var(--font-family);
   font-size: 1.125rem;
   font-weight: 700;
   justify-content: space-evenly;
@@ -6375,7 +6347,7 @@ body #reset-pass-logo {
   overflow: hidden;
   width: 100%;
 }
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 950px) {
   .lSyOz .p4DiZ .uM3pd {
     justify-content: flex-start;
     overflow-x: auto;
@@ -6383,7 +6355,7 @@ body #reset-pass-logo {
     max-width: 940px;
   }
 }
-@media screen and (min-width: 990px) and (min-width: 640px) {
+@media screen and (min-width: 950px) and (min-width: 640px) {
   .lSyOz .p4DiZ .uM3pd {
     max-width: 620 px;
   }

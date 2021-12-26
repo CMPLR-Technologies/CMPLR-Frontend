@@ -1,24 +1,43 @@
-import React, { useContext } from 'react';
-import {
-    themes,
-    ThemeContext
-} from '../../../contexts/themeContext/ThemeContext';
+import React from 'react';
 import RecommendBlogs from '../../dashboardComponent/containers/RecommendBlogs';
 import HashtagView from './Hashtag';
+import PropTypes from 'prop-types';
 
-export default function SidebarTag() {
-    const theme = useContext(ThemeContext)[0];
+export default function SidebarTag(props) {
+    const {
+        loading,
+        totalPosts,
+        totalFollowers,
+        isFollower,
+        tagName,
+        recommendedTags,
+        handleFollowHashtag,
+        isPendingFollow
+    } = props;
     return (
         <div className="dashboard-sidebar">
-            <HashtagView />
-            <h3
-                style={{
-                    color: `rgb(${themes[theme].whiteOnDark})`
-                }}
-            >
-                Check out these blogs
-            </h3>
+            <HashtagView
+                loading={loading}
+                totalPosts={totalPosts}
+                totalFollowers={totalFollowers}
+                isFollower={isFollower}
+                tagName={tagName}
+                recommendedTags={recommendedTags}
+                handleFollowHashtag={handleFollowHashtag}
+                isPendingFollow={isPendingFollow}
+            />
             <RecommendBlogs />
         </div>
     );
 }
+
+SidebarTag.propTypes = {
+    loading: PropTypes.bool.isRequired,
+    totalPosts: PropTypes.number,
+    totalFollowers: PropTypes.number,
+    isFollower: PropTypes.bool,
+    tagName: PropTypes.string,
+    recommendedTags: PropTypes.any,
+    handleFollowHashtag: PropTypes.func,
+    isPendingFollow: PropTypes.bool
+};
