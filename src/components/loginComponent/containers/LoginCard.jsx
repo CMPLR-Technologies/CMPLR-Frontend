@@ -70,13 +70,15 @@ export default function LoginCard() {
                     text="Log in"
                     color="#00b8ff"
                     dataTestid="login"
+                    isPending={isPending}
                     handleClick={() =>
                         handleLogin(
                             email,
                             password,
                             setError,
                             setUser,
-                            setIsPending
+                            setIsPending,
+                            navigate
                         )
                     }
                 ></AuthBtn>
@@ -104,6 +106,7 @@ export default function LoginCard() {
                 }
                 onFailure={res => responseGoogleFailure(res, setError)}
                 cookiePolicy={'single_host_origin'}
+                disabled={isPending}
             />
 
             <p className="LoginCard__a">

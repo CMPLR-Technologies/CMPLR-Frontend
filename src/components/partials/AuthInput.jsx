@@ -35,6 +35,7 @@ export default function AuthInput(props) {
             placeholder={placeholder}
             readOnly={readonly}
             data-testid={dataTestid}
+            autoComplete="off"
         />
     );
 }

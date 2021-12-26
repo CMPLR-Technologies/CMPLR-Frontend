@@ -6492,7 +6492,7 @@ body #reset-pass-logo {
   border-radius: 6px;
   padding: 8px;
   width: 140px;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 .explore-hashtag a {
   text-decoration: none;
@@ -6535,15 +6535,15 @@ body #reset-pass-logo {
   position: relative;
   width: 100%;
   flex-wrap: wrap;
+  gap: 10px;
 }
 .explore-posts .container-grid {
   max-width: 300px;
   width: 300px;
-  margin-left: 1%;
 }
 
 .mid-size {
-  max-width: 625px !important;
+  width: 625px !important;
 }
 .mid-size .normal-layout {
   width: 100%;
@@ -6566,9 +6566,58 @@ body #reset-pass-logo {
   margin-bottom: 16px;
 }
 
+.explore-hashtags-main a {
+  text-decoration: none;
+}
+
+.trending-tag {
+  min-width: 300px;
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 3px;
+}
+.trending-tag .tag-info {
+  margin: 12px 20px;
+  display: flex;
+  font-size: 1.2rem;
+  line-height: 18px;
+}
+.trending-tag .tag-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blanchedalmond;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+.tag-img {
+  width: 64px;
+  margin: 12px 12px 12px 8px;
+}
+.tag-img img {
+  width: 100%;
+  border-radius: 3px;
+}
+
+.explore-trending-main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  height: 200px;
+}
+.explore-trending-main a {
+  text-decoration: none;
+}
+
 @media screen and (min-width: 1500px) {
   .explore-main {
-    max-width: 940px;
+    max-width: 930px;
   }
 }
 @media screen and (max-width: 960px) {

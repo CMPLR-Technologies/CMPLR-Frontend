@@ -103,6 +103,7 @@ export default function RegisterStepOne(props) {
                     dataTestid="register_step1"
                     text="Sign up"
                     color="#00b8ff"
+                    isPending={isPending}
                 />
             </div>
             {isPending && (
@@ -124,6 +125,7 @@ export default function RegisterStepOne(props) {
                 }
                 onFailure={res => responseGoogleFailure(res, setError)}
                 cookiePolicy={'single_host_origin'}
+                disabled={isPending}
             />
 
             <p className="LoginCard__a ">

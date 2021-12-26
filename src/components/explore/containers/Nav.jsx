@@ -8,10 +8,12 @@ import WhatshotIcon from '@mui/icons-material/Whatshot';
 import StarsIcon from '@mui/icons-material/Stars';
 import PropTypes from 'prop-types';
 import { changeView } from '../Controller';
+import { Link, useParams } from 'react-router-dom';
 
 export default function Nav(props) {
     const { grid, setGrid } = props;
     const theme = useContext(ThemeContext)[0];
+    const { type } = useParams();
     const linkStyles = {
         color: `rgb(${themes[theme].whiteOnDark})`
     };
@@ -20,25 +22,48 @@ export default function Nav(props) {
     };
     const active = `rgb(${themes[theme].whiteOnDark})`;
     const deActive = `rgba(${themes[theme].whiteOnDark}, 0.65)`;
+    const css = `
+        .mainLink{
+            color: rgb(${themes[theme].accent}) !important;
+            box-shadow: inset 0 -0.5px 0 rgb(${themes[theme].accent})
+        }
+
+        .otherLinks{
+            color: rgb(${themes[theme].whiteOnDark}) !important;
+        }
+
+        .otherLinks:hover{
+            background: rgba(${themes[theme].whiteOnDark}, 0.13);
+        }
+    `;
 
     return (
         <div className="explore-nav" style={navStyles}>
             <div className="explore-nav-links">
-                <a
-                    href="/"
-                    style={{
-                        color: `rgb(${themes[theme].accent})`,
-                        boxShadow: `inset 0 -0.5px 0 rgb(${themes[theme].accent})`
-                    }}
+                <Link
+                    to="/explore/recommended-for-you"
+                    className={
+                        type !== 'recommended-for-you'
+                            ? 'otherLinks'
+                            : 'mainLink'
+                    }
                 >
                     For You <FavoriteIcon className="emoji" />
-                </a>
-                <a href="/" style={linkStyles}>
+                </Link>
+                <Link
+                    to="/explore/trending "
+                    style={linkStyles}
+                    className={type === 'trending' ? 'mainLink' : 'otherLinks'}
+                >
                     Trending <WhatshotIcon className="emoji" />
-                </a>
-                <a href="/" style={linkStyles}>
+                </Link>
+                <Link
+                    to="/explore/staff"
+                    style={linkStyles}
+                    className={type === 'staff' ? 'mainLink' : 'otherLinks'}
+                >
                     Staff Picks <StarsIcon className="emoji" />
-                </a>
+                </Link>
             </div>
 
             <div className="explore-nav-icons">
@@ -77,6 +102,7 @@ export default function Nav(props) {
                     </svg>
                 </button>
             </div>
+            <style>{css}</style>
         </div>
     );
 }

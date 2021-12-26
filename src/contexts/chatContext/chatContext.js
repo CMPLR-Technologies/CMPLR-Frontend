@@ -7,7 +7,7 @@ export const ChatContext = createContext();
 export default function ChatContextProvider(props) {
     //const { user } = useContext(UserContext);
     const userR = JSON.parse(localStorage.getItem('user'));
-    const user=userR;
+    const user = userR;
     const [pageNumber, setPageNumber] = useState(1);
 
     let currBlogObject = null;

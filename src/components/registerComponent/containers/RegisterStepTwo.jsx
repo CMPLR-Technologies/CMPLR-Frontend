@@ -49,6 +49,7 @@ export default function RegisterStepTwo(props) {
                     text="Next"
                     color="#00b8ff"
                     dataTestid="register_step2"
+                    isPending={isPending}
                 />
                 {isPending && (
                     <div className="load-circle">

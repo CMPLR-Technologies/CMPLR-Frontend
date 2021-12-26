@@ -75,11 +75,6 @@ export default function MainRoutes() {
                         />
                         <Route path="/new/post" element={<CreateModal />} />
                         <Route path="/new" element={<NewPostPopup />} />
-                        <Route path="/explore" element={<Explore />} />
-                        <Route
-                            path="/explore/recommended-for-you"
-                            element={<Explore />}
-                        />
 
                         <Route
                             path="/blog/view/:blogName/:blogID/"
@@ -89,6 +84,8 @@ export default function MainRoutes() {
                             path="/blog/view/:blogName/:blogID/:content"
                             element={<ProfileFull />}
                         />
+
+                        <Route path="/explore/:type" element={<Explore />} />
                     </Route>
                 </Routes>
                 <style>{css}</style>

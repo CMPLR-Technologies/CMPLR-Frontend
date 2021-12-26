@@ -7,13 +7,13 @@ export default function GridPostsView(props) {
     return (
         <div className="explore-posts">
             <VerticalPostsView
-                posts={posts.slice(0, posts.length / 3)}
+                posts={posts.slice((2 * posts.length) / 3, posts.length)}
                 error={error}
                 isPending={isPending}
                 hasMore={hasMore}
                 setPageNumber={setPageNumber}
                 isRadar={true}
-                isRef={posts.length === 1}
+                isRef={posts.length > 2}
             />
             <VerticalPostsView
                 posts={posts.slice(posts.length / 3, (2 * posts.length) / 3)}
@@ -25,13 +25,13 @@ export default function GridPostsView(props) {
                 isRef={posts.length === 2}
             />
             <VerticalPostsView
-                posts={posts.slice((2 * posts.length) / 3, posts.length)}
+                posts={posts.slice(0, posts.length / 3)}
                 error={error}
                 isPending={isPending}
                 hasMore={hasMore}
                 setPageNumber={setPageNumber}
                 isRadar={true}
-                isRef={posts.length > 2}
+                isRef={posts.length === 1}
             />
         </div>
     );

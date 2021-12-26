@@ -139,4 +139,42 @@ const exploreBlogs = [
         blogIcon: 'https://64.media.tumblr.com/avatar_330a6ac8a0bc_128.pnj'
     }
 ];
-export { hashTagsData, colors, followingHashtags, exploreBlogs };
+
+const trendingTags = [
+    {
+        tag: 'art',
+        img: 'https://64.media.tumblr.com/4917c34d4d57f65653d8e6c5843c44c9/24e1d8beae302a00-2a/s2048x3072/008811b81122c31a6f22044d12f8c15e73deeaa6.jpg'
+    },
+    {
+        tag: 'art',
+        img: 'https://64.media.tumblr.com/4917c34d4d57f65653d8e6c5843c44c9/24e1d8beae302a00-2a/s2048x3072/008811b81122c31a6f22044d12f8c15e73deeaa6.jpg'
+    },
+    {
+        tag: 'art',
+        img: 'https://64.media.tumblr.com/4917c34d4d57f65653d8e6c5843c44c9/24e1d8beae302a00-2a/s2048x3072/008811b81122c31a6f22044d12f8c15e73deeaa6.jpg'
+    },
+    {
+        tag: 'art',
+        img: 'https://64.media.tumblr.com/4917c34d4d57f65653d8e6c5843c44c9/24e1d8beae302a00-2a/s2048x3072/008811b81122c31a6f22044d12f8c15e73deeaa6.jpg'
+    },
+    {
+        tag: 'art',
+        img: 'https://64.media.tumblr.com/4917c34d4d57f65653d8e6c5843c44c9/24e1d8beae302a00-2a/s2048x3072/008811b81122c31a6f22044d12f8c15e73deeaa6.jpg'
+    }
+];
+
+const trendingColors = [
+    '232,215,56',
+    '255,138,0',
+    '255,73,47',
+    '255,73,47',
+    '255,73,47'
+];
+export {
+    hashTagsData,
+    colors,
+    followingHashtags,
+    exploreBlogs,
+    trendingTags,
+    trendingColors
+};
