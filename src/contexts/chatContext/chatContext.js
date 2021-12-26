@@ -1,9 +1,9 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
-export const ChatContext = createContext();
 import { apiBaseUrl } from '../../config.json';
 import Axios from 'axios';
 
+export const ChatContext = createContext();
 export default function ChatContextProvider(props) {
     //const { user } = useContext(UserContext);
     const userR = JSON.parse(localStorage.getItem('user'));
