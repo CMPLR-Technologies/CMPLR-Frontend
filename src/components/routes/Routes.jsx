@@ -17,6 +17,7 @@ import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
 import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
 import Hashtag from '../hashtagsComponent/View';
 import GoogleCard from '../registerComponent/GoogleCard';
+import ActivityPage from '../activityPageComponent/ActivityPage';
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
     const css = `
@@ -50,6 +51,7 @@ export default function MainRoutes() {
 
                         <Route path="/" element={<HomePage />} />
                         <Route path="/onboarding" element={<GoogleCard />} />
+                        <Route path="/activity" element={<ActivityPage />} />
                     </Route>
 
                     <Route element={<RequireAuth />}>
@@ -68,7 +70,10 @@ export default function MainRoutes() {
                             path="/reblog/:blogName/:postId/:reblogKey"
                             element={<CreateModal reblog={true} />}
                         />
-                        <Route path="/messaging" element={<MessagesPageMobile />} />
+                        <Route
+                            path="/messaging"
+                            element={<MessagesPageMobile />}
+                        />
                         <Route path="/new/post" element={<CreateModal />} />
                         <Route path="/new" element={<NewPostPopup />} />
                     </Route>

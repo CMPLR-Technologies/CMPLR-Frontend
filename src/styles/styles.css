@@ -5005,6 +5005,161 @@ body #reset-pass-logo {
     display: none;
   }
 }
+.activity-home {
+  width: 50%;
+  margin: auto;
+  margin-top: 54px;
+}
+.activity-home .activity-container {
+  margin: 0 15px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+.activity-home .graph .gra {
+  width: 625px;
+  height: 250px;
+  margin: 100px 0 0 40px;
+}
+.activity-home .btns {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.activity-home .btns .box {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  width: 200px;
+  height: 75px;
+  border-radius: 6px;
+  margin: 0 3px 6px;
+  cursor: pointer;
+}
+.activity-home .btns .box span:first-of-type {
+  font-size: 1.3125rem;
+  font-weight: 700;
+  height: 50%;
+  line-height: 1.5238;
+}
+.activity-home .btns .box span:last-of-type {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.333;
+  text-align: center;
+}
+.activity-home .btns .active0,
+.activity-home .btns .acitve1,
+.activity-home .btns .avtive2 {
+  background-color: transparent;
+}
+.activity-home .btns .active0 {
+  box-shadow: 0px 0px 0px 3px #00b8ff inset;
+}
+.activity-home .btns .active1 {
+  box-shadow: 0px 0px 0px 3px #ff62ce inset;
+}
+.activity-home .btns .active2 {
+  box-shadow: 0px 0px 0px 3px #00cf35 inset;
+}
+.activity-home .BiggestFans {
+  width: 100%;
+}
+.activity-home .BiggestFans .head {
+  font-size: 1.125rem;
+  font-weight: 400;
+  justify-content: space-between;
+  line-height: 1.333;
+  margin: 0 15px 10px 0;
+  display: block;
+}
+.activity-home .BiggestFans .BiggestFansBoxs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.activity-home .BiggestFans .BiggestFansBoxs .aBox {
+  color: inherit;
+  text-decoration: none;
+}
+.activity-home .BiggestFans .BiggestFansBoxs .bigBox {
+  background: #fff;
+  border-radius: 3px;
+  justify-content: start;
+  height: 175px;
+  width: 150px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+.activity-home .BiggestFans .BiggestFansBoxs .bigBox .header-box {
+  width: 100%;
+  height: 20%;
+}
+.activity-home .BiggestFans .BiggestFansBoxs .bigBox .header-box img {
+  width: 100%;
+}
+.activity-home .BiggestFans .BiggestFansBoxs .bigBox .Bigcontent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -15px;
+}
+.activity-home .BiggestFans .BiggestFansBoxs .bigBox .Bigcontent .img {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  border: 5px solid white;
+}
+.activity-home .BiggestFans .BiggestFansBoxs .bigBox .Bigcontent .img img {
+  width: 100%;
+  border-radius: 50%;
+}
+.activity-home .BiggestFans .BiggestFansBoxs .bigBox .Bigcontent .name {
+  font-weight: bold;
+  color: black;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 960px) {
+  .activity-home {
+    width: 100%;
+  }
+  .activity-home .activity-container {
+    margin: 0 5px;
+  }
+  .activity-home .graph .gra {
+    width: 100%;
+    height: 60vw;
+    margin: 70px 0px 0 0px;
+  }
+  .activity-home .btns {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .activity-home .btns .box:first-of-type,
+.activity-home .btns .box:nth-of-type(2) {
+    width: 48%;
+  }
+  .activity-home .btns .box:last-of-type {
+    width: 100%;
+  }
+  .activity-home .BiggestFans .BiggestFansBoxs .bigBox {
+    width: 55%;
+    height: 200px;
+    margin: auto;
+    margin-bottom: 15px;
+  }
+  .activity-home .BiggestFans .BiggestFansBoxs .bigBox .Bigcontent {
+    margin-top: 7px;
+  }
+}
 .account-popup {
   position: absolute;
   width: 240px;
