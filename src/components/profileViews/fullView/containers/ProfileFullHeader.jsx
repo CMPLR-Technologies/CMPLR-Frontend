@@ -19,7 +19,6 @@ export default function ProfileFullHeader(props) {
         setScrollTop(el.target.scrollTop);
     };
     const theme = useContext(ThemeContext)[0];
-    console.log(scrollTop);
     const css = `
         .post-container{
             box-shadow: 0 0 0 1px rgba(${themes[theme].black},.07);

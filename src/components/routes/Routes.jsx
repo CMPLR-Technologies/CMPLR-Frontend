@@ -19,6 +19,9 @@ import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
 import Hashtag from '../hashtagsComponent/View';
 import GoogleCard from '../registerComponent/GoogleCard';
 import Explore from '../explore/View';
+import HelpCenter from '../HelpCenter/View';
+import Article from '../HelpCenter/containers/Article';
+import ArticleCategoryIndividual from '../HelpCenter/containers/ArticleCategoryIndividual';
 import LikedBlogs from '../likesComponent/View';
 
 export default function MainRoutes() {
@@ -37,7 +40,15 @@ export default function MainRoutes() {
                 <Navbar />
                 <Routes>
                     <Route path="/tagged/:tag" element={<Hashtag />} />
-
+                    <Route path="/help" element={<HelpCenter />} />
+                    <Route
+                        path="/help/:category"
+                        element={<ArticleCategoryIndividual />}
+                    />
+                    <Route
+                        path="/help/:category/:article"
+                        element={<Article />}
+                    />
                     <Route element={<RequireUnAuth />}>
                         <Route path="/register" element={<Register />} />
                         <Route path="/register" element={<Register />} />
@@ -77,11 +88,7 @@ export default function MainRoutes() {
                         <Route path="/new" element={<NewPostPopup />} />
 
                         <Route
-                            path="/blog/view/:blogName/:blogID/"
-                            element={<ProfileFull />}
-                        />
-                        <Route
-                            path="/blog/view/:blogName/:blogID/:content"
+                            path="/blog/view/:blogName/:blogID/:content?"
                             element={<ProfileFull />}
                         />
 
