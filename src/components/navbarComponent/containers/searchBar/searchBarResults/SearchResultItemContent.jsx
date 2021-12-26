@@ -13,5 +13,5 @@ export default function SearchResultItemContent(props) {
 }
 SearchResultItemContent.propTypes = {
     res: PropTypes.string,
-    closeOpenSearch: PropTypes.funt
+    closeOpenSearch: PropTypes.func
 };
