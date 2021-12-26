@@ -12,7 +12,6 @@ import { followAccount } from '../../../followingComponent/Service';
 import PropTypes from 'prop-types';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import OptionsList from './OptionsList';
-import ClickAwayListener from '@mui/base/ClickAwayListener';
 import {
     ThemeContext,
     themes
@@ -60,6 +59,7 @@ export default function PostComponent(props) {
     const [mobileView, setMobileView] = useState(false);
     const user = JSON.parse(localStorage.getItem('user'));
     const { blog: blog, post: postData } = post;
+    const blogId = user?.userData?.blog_id;
 
     const {
         date: postTime,
@@ -398,7 +398,7 @@ export default function PostComponent(props) {
                                             postTime={postTime}
                                             userBlogName={userBlogName}
                                             blogName={blogName}
-                                            postLink={`${apiBaseUrl}/post/${postId}`} //change if needed
+                                            postLink={`${apiBaseUrl}/post/${blogName}/${blogId}/${postId}`} //change if needed
                                             postId={postId}
                                             following={following}
                                             blogUrl={blogUrl}

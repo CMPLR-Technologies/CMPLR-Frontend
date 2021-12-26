@@ -137,7 +137,7 @@ export default function AuthLinks() {
                 >
                     <i className="fas fa-bolt"></i>
                 </li>
-                {notfArray?.length && <Badge num={notfArray?.length} />}
+                {1 && <Badge num="5" />}
                 {openNotificationsPopup && (
                     <Notifications
                         userBlogName={user?.blogName}

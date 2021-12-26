@@ -778,9 +778,7 @@ $border-radius-primary: 3px;
 }
 .badge {
     position: absolute;
-    background-color: rgb(0, 177, 255);
     transform: scale(1);
-    border: 2px solid rgb(0, 25, 53);
     align-items: center;
     border-radius: 4px;
     display: flex;
@@ -798,8 +796,7 @@ $border-radius-primary: 3px;
 .notifications-btn {
     position: relative;
     .notf-date {
-        color: rgba(0, 0, 0, 0.65);
-        background-color: rgba(0, 0, 0, 0.07);
+       
         display: flex;
         justify-content: space-between;
         padding: 5px;
@@ -827,9 +824,8 @@ $border-radius-primary: 3px;
     }
     .notifications-container {
         overflow-y: auto;
-        scrollbar-color: rgba(0, 0, 0, 0.4) rgba(255, 255, 255, 0.1);
+       
         scrollbar-width: thin;
-        background-color: white;
         width: 380px;
         height: auto;
         max-height: 580px;
@@ -892,7 +888,6 @@ $border-radius-primary: 3px;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            color: rgba(0, 0, 0, 0.65);
             font-size: 1.25rem;
             .all,
             .reblogs,
@@ -901,8 +896,6 @@ $border-radius-primary: 3px;
                 text-align: center;
                 padding: 8px;
                 &.selected {
-                    color: rgb(0, 184, 255);
-                    border-bottom: 1px solid rgb(0, 184, 255);
                 }
                 &:hover {
                     cursor: pointer;
@@ -930,15 +923,25 @@ $border-radius-primary: 3px;
                         sans-serif;
                     font-size: 1.2rem;
                     font-weight: 700;
-                    color: rgba(0, 0, 0, 0.65);
                     margin-left: 10px;
                 }
             }
         }
 
+        .hi-link {
+            align-items: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 3px;
+            cursor: pointer;
+            display: flex;
+            height: 36px;
+            justify-content: center;
+            width: 36px;
+        }
+
         .post-link {
             align-items: center;
-            background-color: rgb(0, 184, 255);
             background-repeat: no-repeat;
             background-size: cover;
             border-radius: 3px;

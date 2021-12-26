@@ -595,7 +595,7 @@
     }
   },
   "user_theme": {
-    "theme": "trueBlue"
+    "theme": "cement"
   },
   "edit": {
     "id": "1",
@@ -676,7 +676,7 @@
           "from_blog_avatar_shape": "circle",
           "to_blog_id": 6,
           "to_blog_name": "atef",
-          "type": "reblog",
+          "type": "like",
           "seen": false,
           "post_ask_answer_id": null,
           "post_ask_answer_content": "<h1>fdsfsd</h1>",
@@ -702,7 +702,7 @@
           "from_blog_avatar_shape": "circle",
           "to_blog_id": 1,
           "to_blog_name": "yousef",
-          "type": "reblog",
+          "type": "follow",
           "seen": false,
           "post_ask_answer_id": 9,
           "post_ask_answer_content": "<h3> dsdsadfsdf</h3>",
@@ -732,7 +732,7 @@
           "to_blog_name": "yousef",
           "type": "reply",
           "seen": false,
-          "post_ask_answer_id": 12, 
+          "post_ask_answer_id": 12,
           "post_ask_answer_content": "<p>dskoekfe</p>",
           "created_at": "24-Dec-21 02:06:41"
         },
