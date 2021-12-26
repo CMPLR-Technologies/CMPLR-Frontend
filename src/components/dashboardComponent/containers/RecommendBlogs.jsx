@@ -27,8 +27,8 @@ export default function RecommendBlogs(props) {
             )}
             {blogsIsPending && <LinearProgress />}
             {blogs &&
-                blogs.map(blog => (
-                    <div key={blog.blogName}>
+                blogs.map((blog, index) => (
+                    <div key={index}>
                         <BlogInfo
                             blogName={blog.blogName}
                             blogDesc={blog.blogDesc}
@@ -50,7 +50,7 @@ export default function RecommendBlogs(props) {
 }
 
 RecommendBlogs.propTypes = {
-    blogsError: PropTypes.string,
+    blogsError: PropTypes.any,
     blogs: PropTypes.array,
     blogsIsPending: PropTypes.bool,
     showExplore: PropTypes.bool,

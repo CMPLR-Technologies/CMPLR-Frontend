@@ -5,7 +5,6 @@ import {
     ThemeContext
 } from '../../../contexts/themeContext/ThemeContext';
 
-// eslint-disable-next-line react/prop-types
 export default function BlogInfo({ blogName, blogDesc, blogIcon }) {
     const theme = useContext(ThemeContext)[0];
 
@@ -54,7 +53,8 @@ export default function BlogInfo({ blogName, blogDesc, blogIcon }) {
         </div>
     );
 }
-BlogInfo.prototype = {
-    blogName: PropTypes.string.isRequired,
-    blogDesc: PropTypes.string.isRequired
+BlogInfo.propTypes = {
+    blogName: PropTypes.string,
+    blogDesc: PropTypes.string,
+    blogIcon: PropTypes.string
 };

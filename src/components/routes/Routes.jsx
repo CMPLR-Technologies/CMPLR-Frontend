@@ -73,11 +73,8 @@ export default function MainRoutes() {
                         />
                         <Route path="/new/post" element={<CreateModal />} />
                         <Route path="/new" element={<NewPostPopup />} />
-                        <Route path="/explore" element={<Explore />} />
-                        <Route
-                            path="/explore/recommended-for-you"
-                            element={<Explore />}
-                        />
+
+                        <Route path="/explore/:type" element={<Explore />} />
                     </Route>
                 </Routes>
                 <style>{css}</style>
