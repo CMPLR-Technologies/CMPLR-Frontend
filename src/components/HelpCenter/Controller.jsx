@@ -12,11 +12,22 @@ export const articleTree = {
     SearchandDiscovery: {
         categoryTitle: 'Search And Discovery',
         color: '#00B8FF',
-        articles: ['Search And Filtering Basics', 'Tagging Your Posts']
+        articles: [
+            'Search And Filtering Basics',
+            'Tagging Your Posts',
+            'Dashboard Preferences',
+            'Top Posts',
+            'Tag And Post Content Filtering',
+            'Appearing In Search Results',
+            'Recommendations'
+        ]
     },
     Post: {
         categoryTitle: 'Post+',
         color: '#FF492F',
-        articles: []
+        articles: [
+            'Information For Post Supporters',
+            'Information For Post Creators'
+        ]
     }
 };
