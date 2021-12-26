@@ -5210,6 +5210,13 @@ body #reset-pass-logo {
   flex-direction: column;
   width: 625px;
 }
+@media screen and (max-width: 960px) {
+  .main_verify {
+    width: 90%;
+    margin: auto;
+    padding-bottom: 20px;
+  }
+}
 .main_verify .mid_verify {
   outline: none;
 }
@@ -5272,12 +5279,6 @@ body #reset-pass-logo {
   font: inherit;
 }
 
-@media screen and (max-width: 960px) {
-  .main_verify {
-    width: 90%;
-    margin: auto;
-  }
-}
 .lSyOz {
   align-items: flex-end;
   display: flex;
@@ -5293,7 +5294,6 @@ body #reset-pass-logo {
 }
 .lSyOz .rmkqO .IiZ2z {
   font-weight: 400;
-  color: white;
   font-size: 1.125rem;
   line-height: 1.333;
   margin-bottom: 10px;

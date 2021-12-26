@@ -12,7 +12,7 @@ export default function ChatContextProvider(props) {
 
     let currBlogObject = null;
     if (user && user?.userData)
-        console.log(user?.userData);
+        //console.log(user?.userData);
         currBlogObject = {
             senderName: user?.userData?.blog_name,
             senderId: user?.userData?.primary_blog_id,
@@ -50,7 +50,7 @@ export default function ChatContextProvider(props) {
         }
         let blogId = currBlog?.senderId; //user.userData.id;
         setLoadingChats(true);
-        console.log(user);
+        //console.log(user);
 
         Axios.get(`${apiBaseUrl}/blog/messaging/${blogId}`, config)
             .then(res => {
@@ -58,7 +58,7 @@ export default function ChatContextProvider(props) {
                     setChats(res?.data);
                     setLoadingChats(false);
                     setErrLoadingChat(null);
-                    console.log('ss');
+                    //console.log('ss');
                 } else {
                     throw Error(res?.error);
                 }
@@ -168,7 +168,7 @@ export default function ChatContextProvider(props) {
                         // eslint-disable-next-line camelcase
                         created_at: new Date()
                     };
-                    console.log(newMsg.created_at);
+                    //console.log(newMsg.created_at);
                     setConversationMsg([...conversationMsg, newMsg]);
                 } else {
                     throw Error(res.error);

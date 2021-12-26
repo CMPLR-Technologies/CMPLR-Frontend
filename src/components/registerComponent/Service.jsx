@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import { validateGoogle, validateStepOne, validateStepTwo } from './Controller';
 import { apiBaseUrl } from '../../config.json';
+import { sendDesktopNotifyToken } from '../desktopNotifications/Service';
 
 export const handleStepOne = (
     bodyData,
@@ -89,6 +90,7 @@ export const handleStepTwo = (
                 localStorage.setItem('user', JSON.stringify(user));
                 navigate('/dashboard');
                 setIsPending(false);
+                sendDesktopNotifyToken();
             })
             .catch(err => {
                 const errorArr = getServiceErrors(err);
@@ -141,6 +143,7 @@ export const handleGoogleAuth = (
                 localStorage.setItem('user', JSON.stringify(user));
                 navigate('/dashboard');
                 setIsPending(false);
+                sendDesktopNotifyToken();
             })
             .catch(err => {
                 const errorArr = getServiceErrors(err);

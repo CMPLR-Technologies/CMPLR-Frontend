@@ -5,8 +5,16 @@ import DropDownPostListFollow from './DropDownListFollow';
 import { Popover } from '@mui/material';
 
 export default function ItemList(props) {
-    const { handleUnfollow, profileName, avatar, lastUpdated, setOpenBlock } =
-        props;
+    const {
+        handleUnfollow,
+        profileName,
+        avatar,
+        lastUpdated,
+        setOpenBlock,
+        openPopup,
+        handleBlock,
+        myBlogName
+    } = props;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -56,7 +64,7 @@ export default function ItemList(props) {
                     <div className="xWjHY">
                         <button
                             className="TRX6J"
-                            onClick={() => handleUnfollow()}
+                            onClick={() => handleUnfollow(profileName)}
                         >
                             <span className="f68ED">Unfollow</span>
                         </button>
@@ -101,6 +109,10 @@ export default function ItemList(props) {
                                     <DropDownPostListFollow
                                         setOpen={handleClose}
                                         setOpenBlock={setOpenBlock}
+                                        openPopup={openPopup}
+                                        handleBlock={handleBlock}
+                                        profileName={profileName}
+                                        myBlogName={myBlogName}
                                     />
                                 </Popover>
                             </span>
@@ -118,5 +130,8 @@ ItemList.propTypes = {
     profileName: PropTypes.string.isRequired,
     setOpen: PropTypes.string.isRequired,
     setOpenBlock: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired
+    avatar: PropTypes.string.isRequired,
+    handleBlock: PropTypes.func,
+    openPopup: PropTypes.bool,
+    myBlogName: PropTypes.string
 };

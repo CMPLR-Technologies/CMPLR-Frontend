@@ -30,22 +30,23 @@ export default function AuthLinks() {
     const [unReadMsgs, setUnReadMsgs] = useState(0);
 
     useEffect(async () => {
-                // this will clear Timeout
+        // this will clear Timeout
         // when component unmount like in willComponentUnmount
         // and show will not change to true
-        let timer1 = setTimeout(async() => {
+        let timer1 = setTimeout(async () => {
             await loadChats();
             let count = 0;
-            chats?.forEach(chat => {
-                if (!chat.is_read) count++;
-            });
+            // if (chats) {
+            //     chats?.map(chat => {
+            //         if (!chat.is_read) count++;
+            //     });
+            // }
             setUnReadMsgs(count);
-        },2000);
+        }, 2000);
 
         return () => {
-          clearTimeout(timer1);
+            clearTimeout(timer1);
         };
-       
     }, []);
 
     //close dropdown message list

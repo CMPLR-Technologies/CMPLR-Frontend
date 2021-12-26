@@ -23,6 +23,7 @@ export default function LogOutOverlay(props) {
     const navigate = useNavigate();
 
     const logOut = () => {
+        console.log(user.token);
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
         Axios.post(`${apiBaseUrl}/logout`, {}, config)
             .then(() => {

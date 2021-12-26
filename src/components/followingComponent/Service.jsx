@@ -30,6 +30,7 @@ export const getFollowingList = (
             if (res?.data?.response?.blogs?.length < 15) {
                 setHasMore(false);
             }
+            console.log(res?.data?.response?.blogs);
             setFollowingList([...followingList, ...newArr]);
             setTotalFollowing(
                 res?.data?.response?.total_following
@@ -60,10 +61,12 @@ export const followAccount = (userToken, searchedName, setResponseMsg) => {
     })
         .then(() => {
             setResponseMsg(`you're now following ${searchedName} successfully`);
+            return;
         })
         .catch(err => {
             let errMsg = err?.response?.data?.error;
             setResponseMsg(errMsg);
+            return;
         });
 };
 
@@ -86,6 +89,35 @@ export const unfollowAccount = (userToken, unfollowAcc, setResponseMsg) => {
         })
         .catch(err => {
             let errMsg = err.response.data.error;
+            setResponseMsg(errMsg);
+            return false;
+        });
+};
+
+export const blockAccount = (
+    userToken,
+    blockAcc,
+    setResponseMsg,
+    userBlogName
+) => {
+    Axios({
+        method: 'POST',
+        url: `${apiBaseUrl}/blog/${userBlogName}/blocks`,
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${userToken}`
+        },
+        data: {
+            blogName: blockAcc
+        }
+    })
+        .then(() => {
+            setResponseMsg(`you've blocked ${blockAcc}`);
+            return true;
+        })
+        .catch(err => {
+            let errMsg = err?.response?.data?.error;
             setResponseMsg(errMsg);
             return false;
         });
