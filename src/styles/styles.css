@@ -6234,6 +6234,7 @@ body #reset-pass-logo {
   flex-direction: column;
   align-items: center;
   max-width: 625px;
+  width: 100%;
 }
 
 .arrow-icon {
@@ -6440,6 +6441,11 @@ body #reset-pass-logo {
 
   .explore-nav {
     justify-content: center;
+  }
+  .explore-nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
   }
 
   .explore-nav-icons {
