@@ -1,19 +1,13 @@
 import React from 'react';
-import CreateBlog from './containers/createBlog/CreateBlog';
-// import SettingsDashboard from './containers/dashboard/SettingsDashboard';
-// import SettingsNotifications from './containers/notfications/SettingsNotifications';
-// import SettingsApps from './containers/settingsApps/SettingsApps';
-// import SettingsContextProvider from '../../contexts/settingsContext/SettingsContext';
-export default function blogSettings(page) {
-    const currentPage = page.page;
+import BlogSettings from './containers/blogSettings/BlogSettings';
+import BlogsContextProvider from '../../contexts/blogSettingsContext/BlogSettingsContext';
+export default function BlogSettingsCard() {
+  
     return (
-        // <SettingsContextProvider>
+        <BlogsContextProvider>
             <div className="settings">
-                {currentPage === 'create' && <CreateBlog />}
-                {/* {currentPage === 'dashboard' && <SettingsDashboard />}
-                {currentPage === 'notifications' && <SettingsNotifications />}
-                {currentPage === 'apps' && <SettingsApps />} */}
+                <BlogSettings />
             </div>
-        // </SettingsContextProvider>
+        </BlogsContextProvider>
     );
 }

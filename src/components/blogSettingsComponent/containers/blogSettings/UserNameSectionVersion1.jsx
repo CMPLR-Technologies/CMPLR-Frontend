@@ -1,15 +1,19 @@
 import React, { useContext } from 'react';
-import { SettingsContext } from '../../../../contexts/settingsContext/SettingsContext';
+import { BlogSettingsContext } from '../../../../contexts/blogSettingsContext/BlogSettingsContext';
 import PropTypes from 'prop-types';
-export default function EmailSectionVersion1({ setVersionOne }) {
-    const { email } = useContext(SettingsContext);
+export default function UserNameSectionVersion1({
+    setVersionOne,
+    sectionName
+}) {
+    const { blogName } = useContext(BlogSettingsContext);
+
     return (
         <div className="email" id="section">
             <div className="sub-section-left">
-                <h3>Email</h3>
+                <h3>{sectionName}</h3>
             </div>
             <div className="sub-section-right">
-                <p className="email">{email}</p>
+                <p className="email">{blogName}</p>
                 <button className="edit" onClick={() => setVersionOne(false)}>
                     <svg
                         viewBox="0 0 17.6 17.6"
@@ -24,6 +28,7 @@ export default function EmailSectionVersion1({ setVersionOne }) {
         </div>
     );
 }
-EmailSectionVersion1.propTypes = {
-    setVersionOne: PropTypes.func.isRequired
+UserNameSectionVersion1.propTypes = {
+    setVersionOne: PropTypes.func.isRequired,
+    sectionName: PropTypes.string.isRequired
 };

@@ -14,8 +14,9 @@ import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
 import DeleteAccount from '../deleteAccountComponent/View';
 import PostComponent from '../partials/postComponent/View';
-import BlogSettings from '../blogSettingsComponent/View';
-import DeleteBlogCard from '../blogSettingsComponent/containers/deleteBlog/DeleteBlog';
+import BlogSettingsCard from '../blogSettingsComponent/View';
+import DeleteBlog from '../blogSettingsComponent/containers/deleteBlog/DeleteBlog';
+import CreateBlog from '../blogSettingsComponent/containers/createBlog/CreateBlog';
 import PropTypes from 'prop-types';
 const WithNavbar = ({ component }) => {
     return (
@@ -39,10 +40,6 @@ export default function MainRoutes() {
             <Router>
                 {/* <Navbar /> */}
                 <Routes>
-                    <Route
-                        path="/blog/:blogName/delete"
-                        element={<DeleteBlogCard />}
-                    />
                     <Route
                         path="/register"
                         element={<WithNavbar component={<Register />} />}
@@ -135,10 +132,16 @@ export default function MainRoutes() {
                     <Route path="/account/delete" element={<DeleteAccount />} />
                     <Route
                         path="/blog/new"
+                        element={<WithNavbar component={<CreateBlog />} />}
+                    />
+                    <Route
+                        path="/blog/:blogName/delete"
+                        element={<DeleteBlog />}
+                    />
+                    <Route
+                        path="/settings/blog/:blogNameParams"
                         element={
-                            <WithNavbar
-                                component={<BlogSettings page={'create'} />}
-                            />
+                            <WithNavbar component={<BlogSettingsCard />} />
                         }
                     />
                 </Routes>

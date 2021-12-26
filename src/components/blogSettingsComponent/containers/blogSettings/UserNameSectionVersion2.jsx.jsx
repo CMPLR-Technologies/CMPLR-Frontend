@@ -1,41 +1,32 @@
 import React, { useContext, useState } from 'react';
-import {updateEmailInDb} from '../../Service';
+import { updateEmailInDb } from '../../Service';
 import AuthInput from '../../../partials/AuthInput';
 import AuthBtn from '../../../partials/AuthBtn';
-import { SettingsContext } from '../../../../contexts/settingsContext/SettingsContext';
+import { BlogSettingsContext } from '../../../../contexts/blogSettingsContext/BlogSettingsContext';
 import PropTypes from 'prop-types';
-export default function EmailSectionVersion2({ setVersionOne }) {
-    const { email, updateProperty } = useContext(SettingsContext);
-    const [newEmail, setNewEmail] = useState(email);
-    const [password, setPassword] = useState('');
+export default function UserNameSectionVersion2({
+    setVersionOne,
+    sectionName
+}) {
+    const { blogName, updateProperty } = useContext(BlogSettingsContext);
+    const [newUserName, setNewUserName] = useState(blogName);
     const [errorMsg, setErrorMsg] = useState('');
     return (
         <div className="email" id="section">
             <div className="sub-section-left">
-                <h3>Email</h3>
+                <h3>{sectionName}</h3>
             </div>
             <div className="sub-section-right">
                 <AuthInput
                     name="email"
-                    type="email"
+                    type="text"
                     placeholder={
-                        newEmail !== '' ? newEmail : 'Your email address'
+                        newUserName !== '' ? newUserName : ' New Blog Name'
                     }
                     className="text-field"
-                    value={newEmail}
-                    setValue={setNewEmail}
+                    value={newUserName}
+                    setValue={setNewUserName}
                     id="update-email-email"
-                ></AuthInput>
-                <AuthInput
-                    name="password"
-                    type="password"
-                    placeholder={
-                        password !== '' ? password : 'Confirm password'
-                    }
-                    className="text-field"
-                    value={password}
-                    setValue={setPassword}
-                    id="update-email-password"
                 ></AuthInput>
 
                 {errorMsg.length !== 0 && (
@@ -54,13 +45,13 @@ export default function EmailSectionVersion2({ setVersionOne }) {
                         text="Save"
                         color="#00b8ff"
                         handleClick={() => {
-                            updateEmailInDb(
-                                newEmail,
-                                password,
-                                setErrorMsg,
-                                updateProperty,
-                                setVersionOne
-                            );
+                            // updateEmailInDb(
+                            //     newUserName,
+                            //     setErrorMsg,
+                            //     updateProperty,
+                            //     setVersionOne
+                            // );
+                           
                         }}
                         id="update-email-btn-save"
                     ></AuthBtn>
@@ -69,6 +60,7 @@ export default function EmailSectionVersion2({ setVersionOne }) {
         </div>
     );
 }
-EmailSectionVersion2.propTypes = {
-    setVersionOne: PropTypes.func.isRequired
+UserNameSectionVersion2.propTypes = {
+    setVersionOne: PropTypes.func.isRequired,
+    sectionName: PropTypes.string.isRequired
 };

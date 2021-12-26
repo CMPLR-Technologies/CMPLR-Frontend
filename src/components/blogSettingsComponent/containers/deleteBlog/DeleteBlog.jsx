@@ -14,7 +14,7 @@ import { useParams } from 'react-router-dom';
  * @returns {component} the component of DeleteBlog
  */
 
-export default function DeleteBlogCard() {
+export default function DeleteBlog() {
     const { blogName } = useParams();
     const history = useNavigate();
     const [password, setPassword] = useState('');
@@ -103,6 +103,6 @@ export default function DeleteBlogCard() {
         </div>
     );
 }
-DeleteBlogCard.propTypes = {
+DeleteBlog.propTypes = {
     blogName: PropsTypes.string.isRequired
 };
