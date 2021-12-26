@@ -5,7 +5,6 @@ import { newPassword } from '../Service';
 import { getEmail } from '../Service';
 import { useParams } from 'react-router-dom';
 import { UserContext } from '../../../contexts/userContext/UserContext';
-
 /**
  * @function ResetPassword
  * @description this is the statful component of the reset password page

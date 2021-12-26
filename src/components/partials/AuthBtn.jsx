@@ -19,13 +19,14 @@ export default function AuthBtn(props) {
         handleClick,
         id,
         dataTestid,
-        isPending = false
+        isPending = false,
+        className
     } = props;
 
     return (
         <button
             onClick={handleClick}
-            className="AuthBtn "
+            className={`AuthBtn ${className}`}
             style={{ backgroundColor: color }}
             id={id}
             data-testid={dataTestid}
@@ -53,5 +54,6 @@ AuthBtn.propTypes = {
     handleClick: PropTypes.func.isRequired,
     id: PropTypes.string,
     dataTestid: PropTypes.string,
-    isPending: PropTypes.bool
+    isPending: PropTypes.bool,
+    className: PropTypes.string
 };
