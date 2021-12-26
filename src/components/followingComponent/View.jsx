@@ -33,7 +33,30 @@ export default function FollowingPage() {
     const theme = useContext(ThemeContext)[0];
     const css = `
         .IiZ2z {
-            color: rgb(${themes[theme]?.white});
+            color: rgb(${themes[theme]?.whiteOnDark});
+        }
+        .dyc2r {
+            background: rgb(${themes[theme]?.whiteOnDark},0.25);
+            color: rgb(${themes[theme]?.whiteOnDark},0.65);
+        }
+        .dyc2r::placeholder {
+            color: rgb(${themes[theme]?.whiteOnDark},0.65);
+        }
+        .dyc2r:active , .dyc2r:focus {
+            color: rgb(${themes[theme]?.black});
+            background: rgb(${themes[theme]?.white});
+        }
+        .eXQ6G{
+            background:rgb(${themes[theme]?.white});
+        }
+        .gLEkw{
+            color:rgb(${themes[theme]?.black});
+        }
+        .f68ED{
+            color:rgb(${themes[theme]?.accent});
+        }
+        .Tb7Ey{
+            color: rgb(${themes[theme]?.whiteOnDark},0.65);
         }
     `;
 

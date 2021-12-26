@@ -34,7 +34,7 @@ export default function AccountPopupActions() {
 
     const toggleTheme = () => {
         setPaletteChanged(true);
-        changeTheme(theme);
+        changeTheme();
     };
     const viewShortcuts = () => {
         setShortcutOverlay(true);

@@ -11,6 +11,8 @@ import ResetPassword from '../resetPasswordComponent/View';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
+import ProfileFull from '../profileViews/fullView/View';
+
 import FollowingPage from '../followingComponent/View';
 import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
 import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
@@ -77,6 +79,15 @@ export default function MainRoutes() {
                         <Route
                             path="/explore/recommended-for-you"
                             element={<Explore />}
+                        />
+
+                        <Route
+                            path="/blog/view/:blogName/:blogID/"
+                            element={<ProfileFull />}
+                        />
+                        <Route
+                            path="/blog/view/:blogName/:blogID/:content"
+                            element={<ProfileFull />}
                         />
                     </Route>
                 </Routes>

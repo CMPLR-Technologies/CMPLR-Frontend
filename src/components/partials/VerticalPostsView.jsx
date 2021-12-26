@@ -3,8 +3,17 @@ import PostComponent from './postComponent/containers/PostComponent';
 import { LinearProgress } from '@mui/material';
 import PropTypes from 'prop-types';
 export default function VerticalPostsView(props) {
-    const { posts, error, isPending, hasMore, setPageNumber, isRadar, isRef } =
-        props;
+    const {
+        posts,
+        error,
+        isPending,
+        hasMore,
+        isRef,
+        setPageNumber,
+        isRadar,
+        blogPage,
+        userBlogName
+    } = props;
 
     const observer = useRef();
     const lastPostElementRef = useCallback(
@@ -29,9 +38,12 @@ export default function VerticalPostsView(props) {
                             <div ref={lastPostElementRef} key={index}>
                                 <PostComponent
                                     post={post}
-                                    userBlogName="ahmed_3"
+                                    userBlogName={
+                                        userBlogName ? userBlogName : 'ahmed_3'
+                                    }
                                     isFollowed={true}
                                     radar={isRadar}
+                                    blogPage={blogPage}
                                 />
                             </div>
                         );
@@ -41,8 +53,11 @@ export default function VerticalPostsView(props) {
                                 key={index}
                                 post={post}
                                 isFollowed={true}
-                                userBlogName="ahmed_3"
+                                userBlogName={
+                                    userBlogName ? userBlogName : 'ahmed_3'
+                                }
                                 radar={isRadar}
+                                blogPage={blogPage}
                             />
                         );
                     }
@@ -61,5 +76,7 @@ VerticalPostsView.propTypes = {
     hasMore: PropTypes.bool,
     setPageNumber: PropTypes.func,
     isRadar: PropTypes.bool,
-    isRef: PropTypes.bool
+    isRef: PropTypes.bool,
+    blogPage: PropTypes.bool,
+    userBlogName: PropTypes.string
 };

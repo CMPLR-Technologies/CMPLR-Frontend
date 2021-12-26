@@ -8,7 +8,7 @@ import ChatSideIconItem from './ChatSideIconItem';
  * @property {array} sideIconOpenChat - array of sideIconOpenChat
  * @returns {Component} array of message item
  */
-export default function chatSideIcons() {
+export default function ChatSideIcons() {
     let { sideIconOpenChat } = useContext(ChatContext);
 
     return (

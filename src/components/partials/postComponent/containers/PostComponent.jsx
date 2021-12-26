@@ -17,6 +17,7 @@ import {
 } from '../../../../contexts/themeContext/ThemeContext';
 import { apiBaseUrl } from '../../../../config.json';
 import { Link } from 'react-router-dom';
+import ProfileMiniHoverWrapper from '../../../profileViews/mini&sideViews/View';
 /**
  * @function PostComponent
  * @description Base Unit Component for all post compoennt types
@@ -72,7 +73,7 @@ export default function PostComponent(props) {
     const {
         blog_name: blogName,
         avatar: avatar,
-        blog_identifier: blogIdentifier,
+        blog_id: blogIdentifier,
         blog_url: blogUrl,
         follower: follower
     } = blog && blog;
@@ -286,15 +287,20 @@ export default function PostComponent(props) {
 
             <article data-testid="post-container-ts" className="post-container">
                 {!radar && !mobileView && !blogPage && (
-                    <div className="author-avatar">
-                        <div className="sticky-avatar">
-                            <img
-                                data-testid="avatar-img-ts"
-                                src={avatar}
-                                className="avatar-img"
-                            />
+                    <ProfileMiniHoverWrapper
+                        blogName={userBlogName}
+                        blogID={blogIdentifier}
+                    >
+                        <div className="author-avatar">
+                            <div className="sticky-avatar">
+                                <img
+                                    data-testid="avatar-img-ts"
+                                    src={avatar}
+                                    className="avatar-img"
+                                />
+                            </div>
                         </div>
-                    </div>
+                    </ProfileMiniHoverWrapper>
                 )}
                 {!blogPage && (
                     <header
@@ -303,15 +309,20 @@ export default function PostComponent(props) {
                         className="post-header"
                     >
                         {(mobileView || radar) && (
-                            <div className="author-avatar author-avatar-mob">
-                                <div className="sticky-avatar sticky-avatar-mob">
-                                    <img
-                                        data-testid="avatar-img-mob-ts"
-                                        src={avatar}
-                                        className="avatar-img avatar-img-mob"
-                                    />
+                            <ProfileMiniHoverWrapper
+                                blogName={userBlogName}
+                                blogID={blogIdentifier}
+                            >
+                                <div className="author-avatar author-avatar-mob">
+                                    <div className="sticky-avatar sticky-avatar-mob">
+                                        <img
+                                            data-testid="avatar-img-mob-ts"
+                                            src={avatar}
+                                            className="avatar-img avatar-img-mob"
+                                        />
+                                    </div>
                                 </div>
-                            </div>
+                            </ProfileMiniHoverWrapper>
                         )}
                         <div
                             data-testid="header-flex-ts"
@@ -321,9 +332,10 @@ export default function PostComponent(props) {
                                 data-testid="header-title-ts"
                                 className="header-title"
                             >
-                                <Link
+                                <ProfileMiniHoverWrapper
+                                    blogID={blogIdentifier}
+                                    blogName={userBlogName}
                                     style={{ textDecoration: 'none' }}
-                                    to={`/blog/view/${blogName}`}
                                 >
                                     <span
                                         data-testid="post-heading-ts"
@@ -331,7 +343,7 @@ export default function PostComponent(props) {
                                     >
                                         {blogName}
                                     </span>
-                                </Link>
+                                </ProfileMiniHoverWrapper>
 
                                 {!following && !reblog && (
                                     <button
