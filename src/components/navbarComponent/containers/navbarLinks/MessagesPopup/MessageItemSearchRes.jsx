@@ -15,7 +15,7 @@ export default function MessageItemSearchRes(props) {
         photo,
         clickMessagePopup,
         //mobile,
-        shape,
+        shape
     } = props;
     let { openChatPopup, currBlog } = useContext(ChatContext);
     // const navigate = useNavigate();
@@ -38,13 +38,10 @@ export default function MessageItemSearchRes(props) {
             receiverName
         );
         // close the dropdown list
-        clickMessagePopup();
+        if (clickMessagePopup) clickMessagePopup();
     };
     return (
-        <div
-            onClick={openChat}
-            className='popup-messages-message'
-        >
+        <div onClick={openChat} className="popup-messages-message">
             <div className={`popup-messages-message-img ${shape}`}>
                 <img src={photo}></img>
             </div>

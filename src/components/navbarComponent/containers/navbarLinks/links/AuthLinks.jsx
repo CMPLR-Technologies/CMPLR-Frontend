@@ -6,6 +6,7 @@ import AccountPopup from '../AccountPopup/AccountPopup';
 import { Link, NavLink } from 'react-router-dom';
 import UnReadMsg from './UnReadMsg';
 import { ChatContext } from '../../../../../contexts/chatContext/ChatContext';
+import { UserContext } from '../../../../../contexts/userContext/UserContext';
 /**
  * Navbar AuthLinks: includes all links dashboard and inbox and expolre ...
  * @function NavbarAuthLinks
@@ -19,6 +20,7 @@ import { ChatContext } from '../../../../../contexts/chatContext/ChatContext';
  */
 export default function AuthLinks() {
     //dropdown lists
+    const { user } = useContext(UserContext);
     const [openMessagePopup, setOpenMessagePopup] = useState(false);
     const [openNotificationsPopup, setOpenNotificationsPopup] = useState(false);
     const [openAccountPopup, setOpenAccountPopup] = useState(false);
@@ -33,6 +35,10 @@ export default function AuthLinks() {
         // and show will not change to true
         getUnReadMsgsCount(setUnReadMsgs);
     }, []);
+    useEffect(() => {
+        // and show will not change to true
+        getUnReadMsgsCount(setUnReadMsgs);
+    }, [user, user?.userData]);
 
     //close dropdown message list
     const closeMessagePopup = () => {

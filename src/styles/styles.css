@@ -2395,8 +2395,17 @@
     max-height: 70vh;
   }
 
+  .messagepage-mobile .popup-header {
+    top: 54px;
+  }
+  .messagepage-mobile .popup-messages {
+    margin-top: 108px;
+  }
   .messagepage-mobile .popup-messages {
     background-color: white;
+  }
+  .messagepage-mobile .popup-newmessage {
+    margin-top: 108px;
   }
 }
 @media screen and (max-width: 960px) {
@@ -4118,8 +4127,17 @@ body #reset-pass-logo {
     max-height: 70vh;
   }
 
+  .messagepage-mobile .popup-header {
+    top: 54px;
+  }
+  .messagepage-mobile .popup-messages {
+    margin-top: 108px;
+  }
   .messagepage-mobile .popup-messages {
     background-color: white;
+  }
+  .messagepage-mobile .popup-newmessage {
+    margin-top: 108px;
   }
 }
 @media screen and (max-width: 960px) {

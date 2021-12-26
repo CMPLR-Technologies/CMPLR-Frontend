@@ -738,8 +738,19 @@ $border-radius-primary: 3px;
         }
     }
     .messagepage-mobile {
+        .popup-header {
+            top: 54px;
+            
+        }
+        .popup-messages{
+            margin-top: 108px;
+
+        }
         .popup-messages {
             background-color: $primiry-color;
+        }
+        .popup-newmessage{
+            margin-top: 108px;
         }
     }
 }

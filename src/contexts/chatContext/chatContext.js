@@ -57,7 +57,7 @@ export default function ChatContextProvider(props) {
                 Authorization: `Bearer ${user?.token}`,
                 Accept: 'application/json'
             };
-        }
+        } else return;
         let count = 0;
         let blogId = currBlog?.senderId; //user.userData.id;
         Axios.get(`${apiBaseUrl}/blog/messaging/${blogId}`, config)
@@ -65,7 +65,8 @@ export default function ChatContextProvider(props) {
                 if (!res.error) {
                     setChats(res?.data);
                     res?.data.forEach(chat => {
-                        if (!chat.is_read) count++;
+                        if (!chat?.is_read && blogId !== chat?.from_blog_id)
+                            count++;
                     });
                     setUnReadMsgs(count);
                 } else {

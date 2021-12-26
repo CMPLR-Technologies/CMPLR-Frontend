@@ -218,18 +218,8 @@ export default function Navbar() {
                 background: RGB(${themes[theme].white});
                 border-bottom: 1px solid rgba(${themes[theme].black},.13);
             }
-            .popup {
-                &-header {
-                    background-color: $primiry-bg;
-                    h3 {
-                        color: $primiry-color;
-                    }
-                    span {
-                        i {
-                            color: $primiry-color;
-                        }
-                    }
-                }
+            .navbar-menu-mobile-footer footer{
+                color: rgba(${themes[theme].whiteOnDark});
             }
         }
     `;

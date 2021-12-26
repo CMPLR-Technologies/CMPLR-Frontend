@@ -26,29 +26,31 @@ const useInfiniteScrollingChat = url => {
         Axios.get(url, config)
             .then(res => {
                 if (!res.error) {
-                    console.log(res.data);
+                    // console.log(res.data);
                     // load first page
                     if (!loadingFirstPage) {
                         setBlogData(res.data.blog_data);
                         setLoadingFirstPage(true);
                     }
-                    let rev = res.data.messages.reverse();
-                    setData(prevData => {
-                        return [...rev, ...prevData];
-                    });
+                    let rev = res?.data?.messages?.reverse();
+                    if (rev) {
+                        setData(prevData => {
+                            return [...rev, ...prevData];
+                        });
+                    }
                     setIsPending(false);
-                    setHasMore(res.data.next_url);
+                    setHasMore(res?.data?.next_url);
                     setError(null);
                 } else {
                     //console.log("gaaaaa");
-                    throw Error(res.error);
+                    throw Error(res?.error);
                 }
             })
             .catch(err => {
                 if (err.name !== 'AbortError') {
                     setIsPending(false);
                     console.log('here', err);
-                    setError(err.message);
+                    setError(err?.message);
                 }
             });
 
