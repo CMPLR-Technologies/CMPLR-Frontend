@@ -134,7 +134,7 @@
   width: 100%;
   left: 40px;
 }
-@media (max-width: 800px) {
+@media (max-width: 960px) {
   .post-wrapper {
     width: 80%;
   }
@@ -173,6 +173,7 @@
 .radar-post-wrapper {
   left: 0;
   top: 10px;
+  width: 100% !important;
 }
 
 .author-avatar-mob {
@@ -222,12 +223,20 @@
   justify-content: flex-end;
   margin-right: 15px;
 }
+.options-btn .options-radar {
+  left: 22% !important;
+}
 .options-btn .options {
   position: absolute;
-  left: 80%;
+  left: 54%;
   top: 100%;
   overflow-y: visible;
   z-index: 2;
+}
+@media (max-width: 960px) {
+  .options-btn .options {
+    left: 50%;
+  }
 }
 .options-btn .options .list {
   position: absolute;
@@ -3512,6 +3521,7 @@ body #reset-pass-logo {
   outline: inherit;
 }
 
+<<<<<<< HEAD
 .nav {
   background-color: transparent;
   position: absolute;
@@ -3520,6 +3530,12 @@ body #reset-pass-logo {
   width: 100%;
   z-index: 99;
   height: 54px;
+=======
+.no-data-error {
+  padding-left: 15px;
+  padding-top: 15px;
+  color: brown;
+>>>>>>> Task6
 }
 .nav-container {
   height: 54px;
@@ -3564,11 +3580,17 @@ body #reset-pass-logo {
   font-size: 19px;
   border-radius: 3px 0 0 3px;
 }
+<<<<<<< HEAD
 .nav .section1 .search .loading {
   position: absolute;
   left: 93%;
   width: 25px;
   height: 25px;
+=======
+
+.dashboard-blogInfo {
+  padding: 16px;
+>>>>>>> Task6
 }
 .nav .section1 .search .loading .MuiCircularProgress-root {
   background: inherit;
@@ -4858,6 +4880,18 @@ body #reset-pass-logo {
   display: flex;
   width: 100%;
   justify-content: center;
+}
+
+.posts-region {
+  width: 625px;
+}
+
+.total-likes {
+  font-size: 1.13rem;
+  font-weight: 400;
+  line-height: 1.333;
+  margin-bottom: 8px;
+  margin-left: 85px;
 }
 
 @media screen and (max-width: 950px) {
@@ -6183,14 +6217,44 @@ body #reset-pass-logo {
   padding: 15px;
   justify-content: space-between;
 }
+.explore-following-main {
+  cursor: pointer;
+  min-height: 308px;
+}
+.explore-following-main a {
+  text-decoration: none;
+}
 .explore-hashtags {
   display: flex;
-  position: relative;
+  overflow-x: scroll;
+  margin-bottom: 40px;
 }
-.explore-hashtags .arrow-icon {
+.explore-hashtags::-webkit-scrollbar {
+  display: none;
+}
+.explore-hashtags-main {
   position: relative;
+  width: 100%;
+}
+.explore-hashtags-main .hide {
+  display: none;
+}
+.explore-hashtags-main .show {
+  display: block;
+}
+.explore-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 625px;
+}
+
+.arrow-icon {
+  position: absolute;
   top: 80px;
   color: white;
+  z-index: 100;
+  cursor: pointer;
 }
 
 .following-hashtag {
@@ -6226,13 +6290,18 @@ body #reset-pass-logo {
   font-size: 1.25rem;
   display: inline-block;
 }
-.explore-nav-links {
-  margin-right: 3rem;
-}
 .explore-nav-icons button {
   background: transparent;
   text-decoration: none;
   border: none;
+  cursor: pointer;
+}
+.explore-nav-links {
+  display: flex;
+  align-items: center;
+}
+.explore-nav .emoji {
+  margin-bottom: -5px;
 }
 
 .explore-sidebar {
@@ -6243,8 +6312,8 @@ body #reset-pass-logo {
 }
 
 .explore-hashtag {
-  background-color: #ca8c55;
-  border-color: #e3a56e;
+  background-color: #28396f;
+  border-color: #415288;
   border: 1px solid transparent;
   border-radius: 6px;
   padding: 8px;
@@ -6253,7 +6322,7 @@ body #reset-pass-logo {
 }
 .explore-hashtag a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 .explore-hashtag span {
   display: block;
@@ -6268,6 +6337,7 @@ body #reset-pass-logo {
   padding: 8px 20.5px;
   width: 100%;
   font-size: 1rem;
+  color: #28396f;
   cursor: pointer;
 }
 .explore-hashtag-images {
@@ -6278,8 +6348,68 @@ body #reset-pass-logo {
   height: 93.3333333333px;
   width: 56px;
   object-fit: cover;
+  border-radius: 3px;
+}
+.explore-hashtag-images :first-child {
+  margin-right: 10px;
 }
 
+.explore-posts {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  position: relative;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.explore-posts .container-grid {
+  max-width: 300px;
+  width: 300px;
+  margin-left: 1%;
+}
+
+.mid-size {
+  max-width: 625px !important;
+}
+.mid-size .normal-layout {
+  width: 100%;
+}
+
+.moreTags {
+  width: 100%;
+  background: transparent;
+  border: none;
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-top: 8px;
+  padding: 16px;
+  cursor: pointer;
+}
+
+.explore-following {
+  margin-bottom: 16px;
+}
+
+@media screen and (min-width: 1500px) {
+  .explore-main {
+    max-width: 940px;
+  }
+}
+@media screen and (max-width: 960px) {
+  .explore-sidebar {
+    display: none;
+  }
+
+  .explore-nav {
+    justify-content: center;
+  }
+
+  .explore-nav-icons {
+    display: none;
+  }
+}
 * {
   margin: 0;
   padding: 0;

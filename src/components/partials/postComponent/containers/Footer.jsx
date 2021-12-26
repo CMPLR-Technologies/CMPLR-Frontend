@@ -85,7 +85,7 @@ export default function Footer(props) {
     const handleNote = () => {
         if (!notesView) {
             setNoteType('comment');
-            // getPostNotes(blogIdentifier, setNotes, setCounts, postId);
+            getPostNotes(blogIdentifier, setNotes, setCounts, postId);
         }
         setNotesView(!notesView);
     };
@@ -146,7 +146,9 @@ export default function Footer(props) {
                     >
                         {numberNotes > 1
                             ? `${numberNotes} notes`
-                            : numberNotes === undefined || numberNotes === 0
+                            : numberNotes === undefined ||
+                              numberNotes === 0 ||
+                              isNaN(numberNotes)
                             ? ''
                             : `${numberNotes} note`}
                     </span>
@@ -251,15 +253,7 @@ export default function Footer(props) {
                         <ReblogBtn />
                     </button>
                     <button
-                        onClick={e => {
-                            submitNote(
-                                e,
-                                'love',
-                                '',
-                                blogIdentifier,
-                                setNotes,
-                                setCounts
-                            );
+                        onClick={() => {
                             !isLiked
                                 ? handleLikePost(
                                       setLoveFillColor,

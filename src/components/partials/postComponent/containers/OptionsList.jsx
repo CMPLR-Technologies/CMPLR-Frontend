@@ -13,12 +13,16 @@ export default function OptionsList(props) {
         following,
         setFollowing,
         setIsModalOpen,
-        setIsOptionListOpen
+        setIsOptionListOpen,
+        radar
     } = props;
     const user = JSON.parse(localStorage.getItem('user'));
 
     return (
-        <div data-testid="options-list-header-ts" className="options">
+        <div
+            data-testid="options-list-header-ts"
+            className={`options ${radar ? 'options-radar' : ''}`}
+        >
             <div data-testid="list-header-ts" className="list">
                 <a
                     data-testid="post-time-ts"

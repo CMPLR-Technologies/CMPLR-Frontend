@@ -23,8 +23,8 @@
 }
 
 .no-data-error {
-    padding-left: 10px;
-    padding-top: 10px;
+    padding-left: 15px;
+    padding-top: 15px;
     color: brown;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .dashboard-blogInfo {
-    padding: 8px 10px;
+    padding: 16px;
     img {
         width: 37px;
         height: 37px;
@@ -115,6 +115,19 @@
     display: flex;
     width: 100%;
     justify-content: center;
+}
+
+.posts-region {
+    width: 625px;
+}
+
+// like styles
+.total-likes {
+    font-size: 1.13rem;
+    font-weight: 400;
+    line-height: 1.333;
+    margin-bottom: 8px;
+    margin-left: 85px;
 }
 
 @media screen and (max-width: 950px) {

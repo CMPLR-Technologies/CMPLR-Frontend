@@ -39,8 +39,8 @@ const responseGoogleSuccess = (respond, navigate, setIsPending, setUser) => {
     })
         .then(res => {
             const user = {
-                token: res.data.token,
-                userData: res.data.user,
+                token: res.data.response.token,
+                userData: res.data.response.user,
                 blogName: res.data?.response?.blog_name
             };
             setUser(user);

@@ -3,7 +3,8 @@ import PostComponent from './postComponent/containers/PostComponent';
 import { LinearProgress } from '@mui/material';
 import PropTypes from 'prop-types';
 export default function VerticalPostsView(props) {
-    const { posts, error, isPending, hasMore, setPageNumber } = props;
+    const { posts, error, isPending, hasMore, setPageNumber, isRadar, isRef } =
+        props;
 
     const observer = useRef();
     const lastPostElementRef = useCallback(
@@ -19,18 +20,18 @@ export default function VerticalPostsView(props) {
         },
         [isPending, hasMore]
     );
-
     return (
-        <>
+        <section className={isRadar ? 'container-grid' : 'normal-layout'}>
             {posts &&
                 posts.map((post, index) => {
-                    if (posts.length === index + 1) {
+                    if (posts.length === index + 1 && isRef) {
                         return (
                             <div ref={lastPostElementRef} key={index}>
                                 <PostComponent
                                     post={post}
                                     userBlogName="ahmed_3"
                                     isFollowed={true}
+                                    radar={isRadar}
                                 />
                             </div>
                         );
@@ -41,6 +42,7 @@ export default function VerticalPostsView(props) {
                                 post={post}
                                 isFollowed={true}
                                 userBlogName="ahmed_3"
+                                radar={isRadar}
                             />
                         );
                     }
@@ -48,7 +50,7 @@ export default function VerticalPostsView(props) {
 
             {error && <div className="no-data-error">{"Couldn't load"}</div>}
             {isPending && <LinearProgress />}
-        </>
+        </section>
     );
 }
 
@@ -57,5 +59,7 @@ VerticalPostsView.propTypes = {
     error: PropTypes.string,
     isPending: PropTypes.bool,
     hasMore: PropTypes.bool,
-    setPageNumber: PropTypes.func
+    setPageNumber: PropTypes.func,
+    isRadar: PropTypes.bool,
+    isRef: PropTypes.bool
 };

@@ -51,14 +51,15 @@ export default function NotesContent(props) {
                     </div>
                 </div>
                 <div className="notes-list">
-                    {notes.map((note, key) => (
-                        <NotePost
-                            key={key}
-                            note={note}
-                            setIsModalOpen={setIsModalOpen}
-                            setNotesView={setNotesView}
-                        />
-                    ))}
+                    {notes &&
+                        notes.map((note, key) => (
+                            <NotePost
+                                key={key}
+                                note={note}
+                                setIsModalOpen={setIsModalOpen}
+                                setNotesView={setNotesView}
+                            />
+                        ))}
                 </div>
             </div>
             <div data-testid={`input-form-note-ts`} className="input-area">

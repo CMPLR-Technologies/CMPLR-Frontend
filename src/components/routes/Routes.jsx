@@ -17,6 +17,7 @@ import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
 import Hashtag from '../hashtagsComponent/View';
 import GoogleCard from '../registerComponent/GoogleCard';
 import Explore from '../explore/View';
+import LikedBlogs from '../likesComponent/View';
 
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
@@ -56,6 +57,7 @@ export default function MainRoutes() {
 
                     <Route element={<RequireAuth />}>
                         <Route path="/following" element={<FollowingPage />} />
+                        <Route path="/likes" element={<LikedBlogs />} />
                         <Route
                             path="/edit/:blogName/:postId"
                             element={<CreateModal reblog={false} edit={true} />}
@@ -72,6 +74,10 @@ export default function MainRoutes() {
                         <Route path="/new/post" element={<CreateModal />} />
                         <Route path="/new" element={<NewPostPopup />} />
                         <Route path="/explore" element={<Explore />} />
+                        <Route
+                            path="/explore/recommended-for-you"
+                            element={<Explore />}
+                        />
                     </Route>
                 </Routes>
                 <style>{css}</style>
