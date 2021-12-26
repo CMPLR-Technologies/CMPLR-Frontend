@@ -132,7 +132,7 @@
     border-radius: 6px;
     padding: 8px;
     width: 140px;
-    margin-right: 20px;
+    margin-right: 10px;
 
     a {
         text-decoration: none;
@@ -179,15 +179,15 @@
     position: relative;
     width: 100%;
     flex-wrap: wrap;
+    gap: 10px;
     .container-grid {
         max-width: 300px;
         width: 300px;
-        margin-left: 1%;
     }
 }
 
 .mid-size {
-    max-width: 625px !important;
+    width: 625px !important;
     .normal-layout {
         width: 100%;
     }
@@ -216,7 +216,8 @@
     }
 }
 .trending-tag {
-    min-width: 290px;
+    //max-width: 300px;
+    min-width: 300px;
     height: 90px;
     display: flex;
     justify-content: space-between;
@@ -265,7 +266,7 @@
 
 @media screen and (min-width: 1500px) {
     .explore-main {
-        max-width: 950px;
+        max-width: 930px;
     }
 }
 

@@ -76,7 +76,8 @@ export default function LoginCard() {
                             password,
                             setError,
                             setUser,
-                            setIsPending
+                            setIsPending,
+                            navigate
                         )
                     }
                 ></AuthBtn>

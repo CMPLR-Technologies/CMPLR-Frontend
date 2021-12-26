@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 export default function GridPostsView(props) {
     const { posts, error, isPending, hasMore, setPageNumber } = props;
     return (
-        <div className="explore-posts 1">
+        <div className="explore-posts">
             <VerticalPostsView
                 posts={posts.slice((2 * posts.length) / 3, posts.length)}
                 error={error}
