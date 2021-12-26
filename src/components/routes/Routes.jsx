@@ -40,10 +40,6 @@ export default function MainRoutes() {
                 {/* <Navbar /> */}
                 <Routes>
                     <Route
-                        path="/blog/:blogName/delete"
-                        element={<DeleteBlogCard />}
-                    />
-                    <Route
                         path="/register"
                         element={<WithNavbar component={<Register />} />}
                     />
@@ -79,9 +75,12 @@ export default function MainRoutes() {
                         path="/forget_password"
                         element={<ForgetPassword />}
                     />
-                    <Route path="/reset_password" element={<ResetPassword />} />
                     <Route
-                        path="/settings/account"
+                        path="/reset_password/:token"
+                        element={<ResetPassword />}
+                    />
+                        <Route
+                        path="/settings"
                         element={
                             <WithNavbar
                                 component={<Settings page={'account'} />}
@@ -89,7 +88,7 @@ export default function MainRoutes() {
                         }
                     />
                     <Route
-                        path="/settings"
+                        path="/settings/account"
                         element={
                             <WithNavbar
                                 component={<Settings page={'account'} />}
@@ -121,10 +120,6 @@ export default function MainRoutes() {
                         }
                     />
                     <Route
-                        path="/reset_password/:token"
-                        element={<ResetPassword />}
-                    />
-                    <Route
                         path="/reblog/:blogName/:postId/:reblogKey"
                         element={
                             <WithNavbar
@@ -140,6 +135,10 @@ export default function MainRoutes() {
                                 component={<BlogSettings page={'create'} />}
                             />
                         }
+                    />
+                    <Route
+                        path="/blog/:blogName/delete"
+                        element={<DeleteBlogCard />}
                     />
                 </Routes>
                 <style>{css}</style>
