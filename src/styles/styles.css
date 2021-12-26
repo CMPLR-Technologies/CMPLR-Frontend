@@ -2471,6 +2471,17 @@ body #reset-pass-logo {
   text-decoration: none;
   margin: 5px;
 }
+.help-center-container .article-info {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+}
+.help-center-container .article-info .article-content {
+  line-height: 2;
+}
+.help-center-container .article-info img {
+  max-width: 100%;
+}
 .help-center-container-wide-panel {
   display: flex;
   justify-content: center;

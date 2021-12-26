@@ -20,6 +20,17 @@
                 margin: 5px;
             }
         }
+        .article-info {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            .article-content {
+                line-height: 2;
+            }
+            img {
+                max-width: 100%;
+            }
+        }
         &-wide-panel {
             display: flex;
             justify-content: center;

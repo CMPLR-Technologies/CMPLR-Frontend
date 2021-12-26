@@ -3,31 +3,20 @@ export const articleTree = {
         categoryTitle: 'Your Account',
         color: '#FF62CE',
         articles: [
-            'Managing Time zones',
-            'Connecting to Twitter',
-            'Changing Your Username / URL',
+            'Managing Time Zones',
+            'Connecting To Twitter',
+            'Changing Your Username Or Url',
             'Bug Bounty Program'
         ]
     },
     SearchandDiscovery: {
-        categoryTitle: 'Search and Discovery',
+        categoryTitle: 'Search And Discovery',
         color: '#00B8FF',
-        articles: [
-            'Tagging your posts',
-            'Dashboard Preferences',
-            'Top Posts',
-            'Tag and Post Content Filtering',
-            'Appearing In Search Results',
-            'Organizing With Tags',
-            'Recommendations'
-        ]
+        articles: ['Search And Filtering Basics', 'Tagging Your Posts']
     },
     Post: {
         categoryTitle: 'Post+',
         color: '#FF492F',
-        articles: [
-            'Information for Post Supporters',
-            'Information for Post Creators'
-        ]
+        articles: []
     }
 };
