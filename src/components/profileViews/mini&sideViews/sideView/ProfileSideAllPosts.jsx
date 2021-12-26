@@ -15,17 +15,18 @@ export default function ProfileSideAllPosts(props) {
     } = useInfiniteScrolling(
         `${apiBaseUrl}/posts/view/${blogName}?page=${pageNumber}`
     );
-
-    <VerticalPostsView
-        posts={posts}
-        error={error}
-        isPending={isPending}
-        hasMore={hasMore}
-        setPageNumber={setPageNumber}
-        blogPage={true}
-        isRef={true}
-        userBlogName={blogName}
-    />;
+    return (
+        <VerticalPostsView
+            posts={posts}
+            error={error}
+            isPending={isPending}
+            hasMore={hasMore}
+            setPageNumber={setPageNumber}
+            blogPage={true}
+            isRef={true}
+            userBlogName={blogName}
+        />
+    );
 }
 
 ProfileSideAllPosts.propTypes = {
