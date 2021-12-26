@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ChatContext } from '../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../contexts/chatContext/chatContext';
 import ChatSideIconItem from './ChatSideIconItem';
 /**
  * chatSideIcons Component

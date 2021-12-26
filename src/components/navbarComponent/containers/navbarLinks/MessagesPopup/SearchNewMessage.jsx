@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import MessageItemSearchRes from './MessageItemSearchRes';
 import CircularProgress from '@mui/material/CircularProgress';
 import PropTypes from 'prop-types';
-import { ChatContext } from '../../../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
 import Axios from 'axios';
 import { apiBaseUrl } from '../../../../../config.json';
 

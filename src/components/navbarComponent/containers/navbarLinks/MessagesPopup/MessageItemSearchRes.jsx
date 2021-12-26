@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { ChatContext } from '../../../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
 export default function MessageItemSearchRes(props) {
     {
         /*to do load the real data(photo sender,rec,message*/
@@ -15,7 +15,7 @@ export default function MessageItemSearchRes(props) {
         photo,
         clickMessagePopup,
         //mobile,
-        shape,
+        shape
     } = props;
     let { openChatPopup, currBlog } = useContext(ChatContext);
     // const navigate = useNavigate();
@@ -41,10 +41,7 @@ export default function MessageItemSearchRes(props) {
         clickMessagePopup();
     };
     return (
-        <div
-            onClick={openChat}
-            className='popup-messages-message'
-        >
+        <div onClick={openChat} className="popup-messages-message">
             <div className={`popup-messages-message-img ${shape}`}>
                 <img src={photo}></img>
             </div>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { Link } from 'react-router-dom';
 import AuthBtn from '../../partials/AuthBtn';
-import { ChatContext } from '../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../contexts/chatContext/chatContext';
 
 import {
     ThemeContext,

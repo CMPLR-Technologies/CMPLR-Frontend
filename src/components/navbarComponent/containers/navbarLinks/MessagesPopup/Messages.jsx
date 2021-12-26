@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import MessageItem from './MessageItem';
-import { ChatContext } from '../../../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
 import PropTypes from 'prop-types';
 import { LinearProgress } from '@mui/material';
 

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
-import { ChatContext } from '../../contexts/chatContext/ChatContext.js';
+import { ChatContext } from '../../contexts/chatContext/chatContext.js';
 import ChatPopUp from './containers/ChatPopUp';
 import ChatSideIcons from './containers/ChatSideIcons';
 /**

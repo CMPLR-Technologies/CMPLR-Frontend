@@ -2,7 +2,7 @@ import './styles/styles.css';
 import { ThemeContextProvider } from './contexts/themeContext/ThemeContext';
 import React, { useState } from 'react';
 import UserContextProvider from './contexts/userContext/UserContext';
-import ChatContextProvider from './contexts/chatContext/ChatContext';
+import ChatContextProvider from './contexts/chatContext/chatContext';
 import MainRoutes from './components/routes/Routes';
 import StyledDesktopNotification from './components/desktopNotifications/StyledDesktopNotification';
 import DesktopNotification from './components/desktopNotifications/View';

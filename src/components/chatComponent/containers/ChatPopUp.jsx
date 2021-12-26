@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
-import { ChatContext } from '../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../contexts/chatContext/chatContext';
 import ChatMessages from './ChatMessages';
 import ChatOption from './ChatOption';
 import useInfiniteScrollingChat from '../../../hooks/useInfinteScrollingChat';

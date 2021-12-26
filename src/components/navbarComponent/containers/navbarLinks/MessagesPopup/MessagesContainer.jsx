@@ -3,7 +3,7 @@ import Messages from './Messages';
 import SearchNewMessage from './SearchNewMessage';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { ChatContext } from '../../../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
 
 export default function MessagesContainer(props) {
     const [openNewMessageButton, setOpenNewMessageButton] = useState(false);
@@ -12,7 +12,7 @@ export default function MessagesContainer(props) {
     const clickNewMessageButton = () => {
         setOpenNewMessageButton(!openNewMessageButton);
     };
-    let { loadChats,currBlog } = useContext(ChatContext);
+    let { loadChats, currBlog } = useContext(ChatContext);
     useEffect(() => {
         loadChats();
     }, []);
