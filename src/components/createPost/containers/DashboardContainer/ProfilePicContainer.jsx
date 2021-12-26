@@ -1,7 +1,8 @@
-import React from 'react';
-import p0 from '../../../../assets/images/profile_pic0.png';
+import React, { useContext } from 'react';
+import { UserContext } from '../../../../contexts/userContext/UserContext';
 
 export default function ProfilePicContainer() {
+    const { user } = useContext(UserContext);
     return (
         <>
             <div className="profilepic_create">
@@ -13,7 +14,7 @@ export default function ProfilePicContainer() {
                                     <div className="picStyles">
                                         <div className="picDiv">
                                             <img
-                                                src={p0}
+                                                src={user?.userData?.avatar}
                                                 alt="avatar"
                                                 loading="eager"
                                             />

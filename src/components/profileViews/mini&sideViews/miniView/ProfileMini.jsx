@@ -59,7 +59,7 @@ export default function ProfileMini(props) {
     );
 }
 ProfileMini.propTypes = {
-    blogID: PropTypes.number.isRequired,
+    blogID: PropTypes.string.isRequired,
     setShowSideBlog: PropTypes.func.isRequired,
     setSidePostID: PropTypes.func.isRequired
 };

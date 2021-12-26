@@ -8,13 +8,16 @@ import {
 import { LinearProgress } from '@mui/material';
 
 export default function RecommendBlogs(props) {
-    const { blogsError, blogs, blogsIsPending } = props;
+    const { blogsError, blogs, blogsIsPending, showExplore, otherClass } =
+        props;
     const theme = useContext(ThemeContext)[0];
     return (
-        <div className="dashboard-recommend-blogs">
+        <div className={`dashboard-recommend-blogs ${otherClass}`}>
             <h3
                 style={{
-                    color: `rgb(${themes[theme].whiteOnDark})`
+                    color: `rgb(${themes[theme].whiteOnDark})`,
+                    padding: '15px',
+                    borderBottom: `solid 1px rgba(${themes[theme].whiteOnDark}, 0.13)`
                 }}
             >
                 Check out these blogs
@@ -33,13 +36,15 @@ export default function RecommendBlogs(props) {
                         />
                     </div>
                 ))}
-            <a
-                style={{ color: `rgb(${themes[theme].accent})` }}
-                className="explore-link"
-                href="/explore"
-            >
-                Explore all of Tumblr
-            </a>
+            {showExplore && (
+                <a
+                    style={{ color: `rgb(${themes[theme].accent})` }}
+                    className="explore-link"
+                    href="/explore/recommended-for-you"
+                >
+                    Explore all of Tumblr
+                </a>
+            )}
         </div>
     );
 }
@@ -47,5 +52,7 @@ export default function RecommendBlogs(props) {
 RecommendBlogs.propTypes = {
     blogsError: PropTypes.string,
     blogs: PropTypes.array,
-    blogsIsPending: PropTypes.bool
+    blogsIsPending: PropTypes.bool,
+    showExplore: PropTypes.bool,
+    otherClass: PropTypes.string
 };

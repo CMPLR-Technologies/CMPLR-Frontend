@@ -22,7 +22,10 @@ export default function SearchForm(props) {
             />
             <button
                 className="TRX6J"
-                onClick={handleSearchFollow}
+                onClick={e => {
+                    e.preventDefault();
+                    handleSearchFollow();
+                }}
                 disabled={search?.length < 2}
                 style={{
                     backgroundColor:

@@ -389,6 +389,7 @@ export default function PostComponent(props) {
                                         setIsOptionListOpen={
                                             setIsOptionListOpen
                                         }
+                                        radar={radar}
                                     />
                                 )}
                             </div>

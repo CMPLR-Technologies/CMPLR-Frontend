@@ -8,6 +8,7 @@ export default function VerticalPostsView(props) {
         error,
         isPending,
         hasMore,
+        isRef,
         setPageNumber,
         isRadar,
         blogPage,
@@ -28,12 +29,11 @@ export default function VerticalPostsView(props) {
         },
         [isPending, hasMore]
     );
-
     return (
-        <>
+        <section className={isRadar ? 'container-grid' : 'normal-layout'}>
             {posts &&
                 posts.map((post, index) => {
-                    if (posts.length === index + 1) {
+                    if (posts.length === index + 1 && isRef) {
                         return (
                             <div ref={lastPostElementRef} key={index}>
                                 <PostComponent
@@ -65,7 +65,7 @@ export default function VerticalPostsView(props) {
 
             {error && <div className="no-data-error">{"Couldn't load"}</div>}
             {isPending && <LinearProgress />}
-        </>
+        </section>
     );
 }
 
@@ -76,6 +76,7 @@ VerticalPostsView.propTypes = {
     hasMore: PropTypes.bool,
     setPageNumber: PropTypes.func,
     isRadar: PropTypes.bool,
+    isRef: PropTypes.bool,
     blogPage: PropTypes.bool,
     userBlogName: PropTypes.string
 };

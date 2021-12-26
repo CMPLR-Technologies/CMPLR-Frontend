@@ -72,6 +72,7 @@ export default function RegisterCard() {
                     openError={openError}
                     errorMessage={errorMessage}
                     isPending={isPending}
+                    setIsPending={setIsPending}
                 />
             )}
             {registerStep === 2 && (

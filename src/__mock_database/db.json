@@ -132,6 +132,74 @@
             "type": "photos",
             "state": "publish",
             "title": "test title",
+            "content": "<h1>hello i am ahmed1 </h1>",
+            "date": "Friday, 17-Dec-21 23:27:28 UTC",
+            "reblog_key": "fsdfas",
+            "number_notes": 1,
+            "source_content": "google.com",
+            "tags": [
+              "summer",
+              "winter"
+            ]
+          },
+          "blog": {
+            "blog_id": 11,
+            "blog_name": "ahmed_3",
+            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+            "avatar_shape": "circle",
+            "replies": "everyone"
+          }
+        },
+        {
+          "post": {
+            "post_id": 4,
+            "type": "photos",
+            "state": "publish",
+            "title": "test title",
+            "content": "<h1>hello i am ahmed2 </h1>",
+            "date": "Friday, 17-Dec-21 23:27:26 UTC",
+            "source_content": "google.com",
+            "tags": [
+              "summer",
+              "winter"
+            ]
+          },
+          "blog": {
+            "blog_id": 11,
+            "blog_name": "ahmed_3",
+            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+            "avatar_shape": "circle",
+            "replies": "everyone"
+          }
+        },
+        {
+          "post": {
+            "post_id": 4,
+            "type": "photos",
+            "state": "publish",
+            "title": "test title",
+            "content": "<h1>hello i am ahmed3 </h1><h1>hello i am ahmed5 </h1><h1>hello i am ahmed5 </h1><h1>hello i am ahmed5 </h1><h1>hello i am ahmed5 </h1><h1>hello i am ahmed5 </h1>",
+            "date": "Friday, 17-Dec-21 23:27:26 UTC",
+            "source_content": "google.com",
+            "tags": [
+              "summer",
+              "winter"
+            ]
+          },
+          "blog": {
+            "blog_id": 11,
+            "blog_name": "ahmed_3",
+            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+            "avatar_shape": "circle",
+            "replies": "everyone"
+          }
+        },
+        {
+          "post": {
+            "post_id": 1,
+            "type": "photos",
+            "state": "publish",
+            "title": "test title",
             "content": "<h1>hello i am ahmed4 </h1>",
             "date": "Friday, 17-Dec-21 23:27:28 UTC",
             "reblog_key": "fsdfas",
@@ -171,264 +239,332 @@
             "avatar_shape": "circle",
             "replies": "everyone"
           }
+        },
+        {
+          "post": {
+            "post_id": 1,
+            "type": "photos",
+            "state": "publish",
+            "title": "test title",
+            "content": "<h1>hello i am ahmed6 </h1>",
+            "date": "Friday, 17-Dec-21 23:27:28 UTC",
+            "reblog_key": "fsdfas",
+            "number_notes": 1,
+            "source_content": "google.com",
+            "tags": [
+              "summer",
+              "winter"
+            ]
+          },
+          "blog": {
+            "blog_id": 11,
+            "blog_name": "ahmed_3",
+            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+            "avatar_shape": "circle",
+            "replies": "everyone"
+          }
+        },
+        {
+          "post": {
+            "post_id": 4,
+            "type": "photos",
+            "state": "publish",
+            "title": "test title",
+            "content": "<h1>hello i am ahmed7 </h1><h1>hello i am ahmed5 </h1><h1>hello i am ahmed5 </h1><h1>hello i am ahmed5 </h1><h1>hello i am ahmed5 </h1><h1>hello i am ahmed5 </h1>",
+            "date": "Friday, 17-Dec-21 23:27:26 UTC",
+            "source_content": "google.com",
+            "tags": [
+              "summer",
+              "winter"
+            ]
+          },
+          "blog": {
+            "blog_id": 11,
+            "blog_name": "ahmed_3",
+            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+            "avatar_shape": "circle",
+            "replies": "everyone"
+          }
+        },
+        {
+          "post": {
+            "post_id": 1,
+            "type": "photos",
+            "state": "publish",
+            "title": "test title",
+            "content": "<h1>hello i am ahmed8 </h1>",
+            "date": "Friday, 17-Dec-21 23:27:28 UTC",
+            "reblog_key": "fsdfas",
+            "number_notes": 1,
+            "source_content": "google.com",
+            "tags": [
+              "summer",
+              "winter"
+            ]
+          },
+          "blog": {
+            "blog_id": 11,
+            "blog_name": "ahmed_3",
+            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+            "avatar_shape": "circle",
+            "replies": "everyone"
+          }
         }
       ],
-      "next_url": "http://127.0.0.1:8000/api/posts/view/ahmed_3?page=2",
+      "next_url": null,
       "total": 5,
       "current_page": 1,
       "posts_per_page": 2
     }
   },
   "notes": [
-    [
-      {
-        "notes": [
-          {
-            "post_id": 3,
-            "type": "like",
-            "content": null,
-            "timestamp": "2021-12-16T22:36:31.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "like",
-            "content": null,
-            "timestamp": "2021-12-17T14:04:21.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "like",
-            "content": null,
-            "timestamp": "2021-12-17T14:04:24.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "like",
-            "content": null,
-            "timestamp": "2021-12-17T14:04:26.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "like",
-            "content": null,
-            "timestamp": "2021-12-17T14:04:28.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "like",
-            "content": null,
-            "timestamp": "2021-12-17T14:04:30.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "like",
-            "content": null,
-            "timestamp": "2021-12-17T14:05:10.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reply",
-            "content": null,
-            "timestamp": "2021-12-18T20:45:48.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reply",
-            "content": null,
-            "timestamp": "2021-12-18T20:45:53.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reply",
-            "content": null,
-            "timestamp": "2021-12-18T20:47:52.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reply",
-            "content": null,
-            "timestamp": "2021-12-18T20:47:53.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reply",
-            "content": null,
-            "timestamp": "2021-12-18T20:47:54.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reply",
-            "content": null,
-            "timestamp": "2021-12-18T20:47:55.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reply",
-            "content": null,
-            "timestamp": "2021-12-18T20:47:56.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reply",
-            "content": null,
-            "timestamp": "2021-12-18T20:47:56.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reblog",
-            "content": null,
-            "timestamp": "2021-12-18T20:51:23.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reblog",
-            "content": null,
-            "timestamp": "2021-12-18T20:51:24.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reblog",
-            "content": null,
-            "timestamp": "2021-12-18T20:51:24.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reblog",
-            "content": null,
-            "timestamp": "2021-12-18T20:51:25.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reblog",
-            "content": null,
-            "timestamp": "2021-12-18T20:51:26.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reblog",
-            "content": null,
-            "timestamp": "2021-12-18T20:51:27.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reblog",
-            "content": null,
-            "timestamp": "2021-12-18T20:51:28.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reblog",
-            "content": null,
-            "timestamp": "2021-12-18T20:51:28.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          },
-          {
-            "post_id": 3,
-            "type": "reblog",
-            "content": null,
-            "timestamp": "2021-12-18T20:51:29.000000Z",
-            "blog_name": "yousif",
-            "blog_url": "http://localhost\\/blogs\\/yousif",
-            "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
-            "avatar_shape": "circle"
-          }
-        ],
-        "total_likes": 7,
-        "total_reblogs": 9,
-        "total_replys": 8
-      }
-    ]
+    {
+      "notes": [
+        {
+          "post_id": 3,
+          "type": "like",
+          "content": null,
+          "timestamp": "2021-12-16T22:36:31.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "like",
+          "content": null,
+          "timestamp": "2021-12-17T14:04:21.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "like",
+          "content": null,
+          "timestamp": "2021-12-17T14:04:24.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "like",
+          "content": null,
+          "timestamp": "2021-12-17T14:04:26.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "like",
+          "content": null,
+          "timestamp": "2021-12-17T14:04:28.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "like",
+          "content": null,
+          "timestamp": "2021-12-17T14:04:30.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "like",
+          "content": null,
+          "timestamp": "2021-12-17T14:05:10.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reply",
+          "content": null,
+          "timestamp": "2021-12-18T20:45:48.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reply",
+          "content": null,
+          "timestamp": "2021-12-18T20:45:53.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reply",
+          "content": null,
+          "timestamp": "2021-12-18T20:47:52.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reply",
+          "content": null,
+          "timestamp": "2021-12-18T20:47:53.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reply",
+          "content": null,
+          "timestamp": "2021-12-18T20:47:54.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reply",
+          "content": null,
+          "timestamp": "2021-12-18T20:47:55.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reply",
+          "content": null,
+          "timestamp": "2021-12-18T20:47:56.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reply",
+          "content": null,
+          "timestamp": "2021-12-18T20:47:56.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reblog",
+          "content": null,
+          "timestamp": "2021-12-18T20:51:23.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reblog",
+          "content": null,
+          "timestamp": "2021-12-18T20:51:24.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reblog",
+          "content": null,
+          "timestamp": "2021-12-18T20:51:24.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reblog",
+          "content": null,
+          "timestamp": "2021-12-18T20:51:25.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reblog",
+          "content": null,
+          "timestamp": "2021-12-18T20:51:26.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reblog",
+          "content": null,
+          "timestamp": "2021-12-18T20:51:27.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reblog",
+          "content": null,
+          "timestamp": "2021-12-18T20:51:28.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reblog",
+          "content": null,
+          "timestamp": "2021-12-18T20:51:28.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        },
+        {
+          "post_id": 3,
+          "type": "reblog",
+          "content": null,
+          "timestamp": "2021-12-18T20:51:29.000000Z",
+          "blog_name": "yousif",
+          "blog_url": "http://localhost\\/blogs\\/yousif",
+          "avatar": "https://assets.tumblr.com/images/default_avatar/cone_closed_128.png",
+          "avatar_shape": "circle"
+        }
+      ],
+      "total_likes": 7,
+      "total_reblogs": 9,
+      "total_replys": 8
+    }
   ],
   "reblog": {
     "comment": "daasda"

@@ -5,7 +5,7 @@ import { newPassword } from '../Service';
 import { getEmail } from '../Service';
 import { useParams } from 'react-router-dom';
 import { UserContext } from '../../../contexts/userContext/UserContext';
-import useRedirect from '../../../hooks/useRedirect';
+
 /**
  * @function ResetPassword
  * @description this is the statful component of the reset password page
@@ -15,7 +15,6 @@ import useRedirect from '../../../hooks/useRedirect';
 
 export default function ResetPasswordCard() {
     const { setUser } = useContext(UserContext);
-    useRedirect();
     const [firstPassword, setFirstPassword] = React.useState('');
     const [secondPassword, setSecondPassword] = React.useState('');
     const [errorMsg, setErrorMsg] = React.useState('');

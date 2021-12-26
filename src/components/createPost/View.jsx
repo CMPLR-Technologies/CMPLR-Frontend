@@ -3,8 +3,10 @@ import OptionsCreatePost from './containers/DashboardContainer/OptionsCard';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 import ProfilePicContainer from './containers/DashboardContainer/ProfilePicContainer';
 import ProfileMiniHoverWrapper from '../profileViews/mini&sideViews/View';
+import { UserContext } from '../../contexts/userContext/UserContext';
 
 export default function CreatePost() {
+    const { user } = useContext(UserContext);
     const theme = useContext(ThemeContext)[0];
     const css = `
         .create_container {
@@ -35,8 +37,8 @@ export default function CreatePost() {
                 <main className="create_main">
                     <div className="create_container">
                         <ProfileMiniHoverWrapper
-                            blogID={'16'}
-                            blogName={'vero'}
+                            blogID={user?.userData?.primary_blog_id}
+                            blogName={user?.blogName}
                         >
                             <ProfilePicContainer />
                         </ProfileMiniHoverWrapper>

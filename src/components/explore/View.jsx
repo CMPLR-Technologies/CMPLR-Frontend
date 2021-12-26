@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import VerticalPostsView from '../partials/VerticalPostsView';
+import GridPostsView from '../partials/GridPostsView';
 import { apiBaseUrl } from '../../config.json';
 import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
-
-import Following from './containers/Following';
 import HashtagsList from './containers/HashtagsList';
 import Nav from './containers/Nav';
+import ExploreSidebar from './containers/ExploreSidebar';
 
 export default function Explore() {
     const [pageNumber, setPageNumber] = useState(1);
-    const [grid, setGrid] = useState(false);
+    const [grid, setGrid] = useState(true);
+    const isBigScreen = useMediaQuery({
+        query: '(min-device-width: 960px )'
+    });
     const {
         error,
         data: posts,
@@ -22,7 +26,15 @@ export default function Explore() {
             <div className={`explore-main ${!grid ? 'mid-size' : ''} `}>
                 <Nav grid={grid} setGrid={setGrid} />
                 <HashtagsList />
-                <div className="explore-posts">
+                {grid && isBigScreen ? (
+                    <GridPostsView
+                        posts={posts}
+                        error={error}
+                        isPending={isPending}
+                        hasMore={hasMore}
+                        setPageNumber={setPageNumber}
+                    />
+                ) : (
                     <VerticalPostsView
                         posts={posts}
                         error={error}
@@ -30,12 +42,11 @@ export default function Explore() {
                         hasMore={hasMore}
                         setPageNumber={setPageNumber}
                         isRadar={grid}
+                        isRef={true}
                     />
-                </div>
+                )}
             </div>
-            <div className="explore-sidebar">
-                <Following />
-            </div>
+            <ExploreSidebar />
         </div>
     );
 }

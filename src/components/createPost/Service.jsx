@@ -3,11 +3,12 @@ import { validatePosting } from './Controller';
 import Axios from 'axios';
 import { apiBaseUrl } from '../../config.json';
 
-export const handlePosting = (bodyData, handleClose, token) => {
+export const handlePosting = (bodyData, handleClose, token, setSpinnerPost) => {
     let errors = validatePosting(bodyData?.title, bodyData?.content);
     if (errors?.length > 0) {
         return { status: false, err: errors };
     } else {
+        console.log('data to sent ', bodyData);
         Axios({
             method: 'POST',
             url: `${apiBaseUrl}/posts`,
@@ -19,10 +20,13 @@ export const handlePosting = (bodyData, handleClose, token) => {
             data: bodyData
         })
             .then(res => {
+                setSpinnerPost(false);
                 handleClose(); //redirect to dahsboard
                 return res;
             })
             .catch(err => {
+                setSpinnerPost(false);
+                console.log(err.data);
                 return err;
             });
     }

@@ -46,9 +46,7 @@ export const uploadSelectedVideo = (
             'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${userToken}`
         },
-        data: {
-            video: file
-        }
+        data: formData
     })
         .then(res => {
             let url = res?.data?.response?.url;

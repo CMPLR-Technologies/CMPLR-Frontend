@@ -116,4 +116,27 @@ const followingHashtags = [
         posts: 69
     }
 ];
-export { hashTagsData, colors, followingHashtags };
+
+const exploreBlogs = [
+    {
+        blogName: 'c++',
+        blogDesc: 'welcome to c++ blog',
+        blogIcon: 'https://64.media.tumblr.com/avatar_330a6ac8a0bc_128.pnj'
+    },
+    {
+        blogName: 'c++',
+        blogDesc: 'welcome to c++ blog',
+        blogIcon: 'https://64.media.tumblr.com/avatar_330a6ac8a0bc_128.pnj'
+    },
+    {
+        blogName: 'c++',
+        blogDesc: 'welcome to c++ blog',
+        blogIcon: 'https://64.media.tumblr.com/avatar_330a6ac8a0bc_128.pnj'
+    },
+    {
+        blogName: 'c++',
+        blogDesc: 'welcome to c++ blog',
+        blogIcon: 'https://64.media.tumblr.com/avatar_330a6ac8a0bc_128.pnj'
+    }
+];
+export { hashTagsData, colors, followingHashtags, exploreBlogs };

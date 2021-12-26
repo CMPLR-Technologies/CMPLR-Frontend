@@ -1,16 +1,12 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { apiBaseUrl } from '../../../../config.json';
-import useFetch from '../../../../hooks/useFetch';
-import { LinearProgress } from '@mui/material';
 import {
     ThemeContext,
     themes
 } from '../../../../contexts/themeContext/ThemeContext';
-import PostComponent from '../../../partials/postComponent/containers/PostComponent';
-import useInfiniteScrolling from '../../../../hooks/useInfiniteScrolling';
-import VerticalPostsView from '../../../partials/VerticalPostsView';
+import ProfileSideOnePost from './ProfileSideOnePost';
+import ProfileSideAllPosts from './ProfileSideAllPosts';
 
 export default function ProfileSide(props) {
     const {
@@ -26,17 +22,6 @@ export default function ProfileSide(props) {
         desciption,
         blog_name: blogName
     } = body;
-    const [pageNumber, setPageNumber] = useState(1);
-    const {
-        error,
-        data: post,
-        isPending,
-        hasMore
-    } = sidePostID
-        ? useFetch(`${apiBaseUrl}/posts/${sidePostID}`)
-        : useInfiniteScrolling(
-              `${apiBaseUrl}/posts/view/${blogName}?page=${pageNumber}`
-          );
 
     const [scrollTop, setScrollTop] = useState(0);
     const headerScrollAnimation = el => {
@@ -106,31 +91,13 @@ export default function ProfileSide(props) {
                 </div>
                 <div className="profile-side-header-post-container">
                     {sidePostID ? (
-                        error ? (
-                            <div className="no-data-error">
-                                {"Couldn't load"}
-                            </div>
-                        ) : isPending ? (
-                            <LinearProgress />
-                        ) : post ? (
-                            <PostComponent
-                                post={{ blog: post.blog, post: post.post }}
-                                blogPage={true}
-                                userBlogName={blogName}
-                            />
-                        ) : (
-                            <div></div>
-                        )
-                    ) : (
-                        <VerticalPostsView
-                            posts={post}
-                            error={error}
-                            isPending={isPending}
-                            hasMore={hasMore}
-                            setPageNumber={setPageNumber}
-                            blogPage={true}
-                            userBlogName={blogName}
+                        <ProfileSideOnePost
+                            blogName={blogName}
+                            blogID={blogID}
+                            sidePostID={sidePostID}
                         />
+                    ) : (
+                        <ProfileSideAllPosts blogName={blogName} />
                     )}
                 </div>
                 <style>{css}</style>
@@ -140,7 +107,7 @@ export default function ProfileSide(props) {
 }
 
 ProfileSide.propTypes = {
-    blogID: PropTypes.number.isRequired,
+    blogID: PropTypes.string.isRequired,
     blogName: PropTypes.string.isRequired,
     setShowSideBlog: PropTypes.func,
     setSidePostID: PropTypes.func,

@@ -11,7 +11,6 @@
         display: block;
         .IiZ2z {
             font-weight: 400;
-            color: white;
             font-size: 1.125rem;
             line-height: 1.333;
             margin-bottom: 10px;
@@ -21,11 +20,10 @@
             display: flex;
             margin: 10px 0;
             .dyc2r {
-                background: #4f565e;
                 border: none;
                 border-radius: 3px;
                 box-sizing: border-box;
-                color: #a6afb0;
+
                 font-size: 1rem;
                 font-weight: 400;
                 line-height: 1.5;
@@ -33,17 +31,6 @@
                 display: inline-block;
                 transition: background-color 0.25s ease;
                 width: 100%;
-                &:active {
-                    background: white;
-                    color: black;
-                }
-                &:focus {
-                    background: white;
-                    color: black;
-                }
-                &::placeholder {
-                    color: #a6afb0;
-                }
                 &:placeholder-shown {
                     text-overflow: ellipsis;
                 }
@@ -51,7 +38,6 @@
             .TRX6J {
                 color: inherit;
                 font: inherit;
-                cursor: pointer;
                 background-color: transparent;
                 border: 1px solid #405368;
                 margin: 0;
@@ -59,13 +45,12 @@
                 user-select: none;
                 margin-left: 10px;
                 &:disabled {
-                    cursor: unset;
+                    cursor: inherit;
                     border: 1px solid #405368;
                 }
                 .Tb7Ey {
                     background: none;
                     border-radius: 3px;
-                    color: #a6afb0;
                     font-size: 1rem;
                     font-weight: 700;
                     line-height: 1.5;
@@ -80,7 +65,7 @@
                 &:hover {
                     background: #e5e7ea;
                 }
-                background: white;
+
                 display: flex;
                 justify-content: center;
                 position: relative;
@@ -165,7 +150,7 @@
                                 display: flex;
                                 text-align: left;
                                 word-break: break-word;
-                                color: black;
+
                                 cursor: pointer;
                                 font-size: 0.875rem;
                                 font-weight: 700;
@@ -226,7 +211,6 @@
                             padding: 0;
                             user-select: none;
                             .f68ED {
-                                color: #00b8ff;
                                 font-size: 0.875rem;
                                 font-weight: 700;
                                 line-height: 1.5;
