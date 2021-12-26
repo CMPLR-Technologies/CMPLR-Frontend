@@ -36,7 +36,7 @@ export default function ProfilsSideContainer(props) {
     );
 }
 ProfilsSideContainer.propTypes = {
-    blogID: PropTypes.number.isRequired,
+    blogID: PropTypes.string.isRequired,
     blogName: PropTypes.string.isRequired,
     setShowSideBlog: PropTypes.func.isRequired,
     setSidePostID: PropTypes.func.isRequired,
