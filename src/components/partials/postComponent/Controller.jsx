@@ -99,9 +99,10 @@ export function toggleShareList(isShareListOpen, setIsShareListOpen) {
 
 export function copyLink(postLink, postId) {
     navigator.clipboard.writeText(postLink);
-    document.getElementById(`copy-btn${postId}`).textContent = 'Link Copied!';
+    const btn = document.getElementById(`copy-btn${postId}`);
+    btn.textContent = 'Link Copied!';
     setTimeout(() => {
-        document.getElementById(`copy-btn${postId}`).textContent = 'Copy link';
+        btn.textContent = 'Copy link';
     }, 2000);
 }
 
@@ -134,22 +135,6 @@ export function closeImagePreview(imgSrcUrl, postId) {
 }
 
 //=================================================ImageList Controller============================================
-export function extractPostContent(content) {
-    let textPost, imagePost, linkPost, audioPost, videoPost;
-    content &&
-        content.map(item => {
-            if (
-                item.type === 'text' ||
-                item.type === 'chat' ||
-                item.type === 'link'
-            )
-                textPost = item;
-            else if (item.type === 'image') imagePost = item;
-            else if (item.type === 'audio') audioPost = item;
-            else if (item.type === 'video') videoPost = item;
-        });
-    return { textPost, imagePost, linkPost, audioPost, videoPost };
-}
 
 export function chaneMobileView(setMobileView) {
     if (window.innerWidth > 960) {

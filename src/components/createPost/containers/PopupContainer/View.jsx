@@ -5,55 +5,90 @@ import { useState } from 'react';
 import TitleField from './TitleField';
 import HeaderCreatePost from './Header';
 import BottomMainControllers from './Bottom/BottomContainer';
-import { UserContext } from '../../../../contexts/userContext/UserContext';
-import { useContext } from 'react';
 import HandMadeTextEditor from '../../../RichTextEditor/View';
-import useAuth from '../../../../hooks/useAuth';
-import { handlePosting, reblogPost } from '../../Service';
+import { handlePosting, reblogPost, editPost } from '../../Service';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchPost } from '../../Service';
 import PropTypes from 'prop-types';
+import TagsInput from './Bottom/TagsInput';
 
 export default function CreateModal(props) {
-    useAuth();
+    const [spinner, setSpinner] = useState(false);
+    const [spinnerPost, setSpinnerPost] = useState(false);
     const [titlePost, setTitlePost] = useState('');
     const [content, setContent] = useState('');
+
+    const [titleEditPost, setEditTitlePost] = useState('');
+    const [editContent, setEditContent] = useState(null);
     const [post, setPost] = useState({});
+    const [tags, setTags] = useState([]);
     const [postType, setPostType] = useState('Post now');
     const navigate = useNavigate();
-    const { user } = useContext(UserContext);
+    const user = JSON.parse(localStorage.getItem('user'));
     const { postId } = useParams();
-    const { reblog } = props;
+    const { reblog, edit } = props;
 
     const handleClose = () => {
         navigate('/dashboard');
     };
-
     const handlePost = () => {
+        setSpinnerPost(true);
+        //draft private publish
         const dataBody = {
             title: titlePost,
             content: content,
-            user: user
+            state:
+                postType === 'Post privately'
+                    ? 'private'
+                    : postType === 'Save as draft'
+                    ? 'draft'
+                    : 'publish',
+            type: 'text',
+            // eslint-disable-next-line camelcase
+            blog_name: user?.blogName,
+            tags: tags
         };
 
-        handlePosting(dataBody, navigate);
+        console.log('body to be sent', dataBody);
+
+        handlePosting(dataBody, handleClose, user?.token, setSpinnerPost);
     };
 
-    const handleReblog = () => {
+    const handleReblog = post => {
+        reblogPost(post, content, navigate);
+    };
+
+    const handleEdit = () => {
         const dataBody = {
+            title: titlePost,
             content: content,
+            state:
+                postType === 'Post privately'
+                    ? 'private'
+                    : postType === 'Save as draft'
+                    ? 'draft'
+                    : 'publish',
+            type: 'text',
+            // eslint-disable-next-line camelcase
+            blog_name: user?.blogName,
+            tags: tags,
             user: user
         };
-
-        reblogPost(dataBody, navigate);
+        editPost(postId, dataBody, navigate, user?.token);
     };
 
     useEffect(() => {
         if (postId !== undefined) {
-            fetchPost(postId, setPost);
+            fetchPost(
+                postId,
+                setPost,
+                edit,
+                setEditTitlePost,
+                setEditContent,
+                user?.token
+            );
         }
     }, [postId]);
-
     return (
         <>
             <Modal
@@ -75,13 +110,23 @@ export default function CreateModal(props) {
                                     <div className="post-container">
                                         <div className="post-container-inner">
                                             {/**---------------------First hazemkak */}
-                                            <HeaderCreatePost />
+                                            <HeaderCreatePost
+                                                reblog={reblog}
+                                                parentBlogAuthor={
+                                                    post?.blog &&
+                                                    post.blog['blog_name']
+                                                }
+                                                spinner={spinner}
+                                            />
                                             <div className="post-form--form">
                                                 {!reblog && (
                                                     <div>
                                                         <TitleField
                                                             titlePost={
                                                                 titlePost
+                                                            }
+                                                            editTitlePost={
+                                                                titleEditPost
                                                             }
                                                             cantedit={true}
                                                             setTitlePost={
@@ -94,25 +139,43 @@ export default function CreateModal(props) {
                                                     <div className="editor-wrapper">
                                                         <div className="editor-slot">
                                                             <HandMadeTextEditor
+                                                                setSpinner={
+                                                                    setSpinner
+                                                                }
                                                                 content={
                                                                     content
+                                                                }
+                                                                editContent={
+                                                                    editContent &&
+                                                                    editContent
                                                                 }
                                                                 cantedit={true}
                                                                 setContent={
                                                                     setContent
                                                                 }
                                                                 reblog={reblog}
-                                                                post={post}
+                                                                post={
+                                                                    post?.post &&
+                                                                    post
+                                                                }
                                                             />
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {/*----------------TAGS---------------*/}
+                                                <TagsInput
+                                                    tags={tags}
+                                                    setTags={setTags}
+                                                />
                                             </div>
                                             <BottomMainControllers
                                                 handleCloseModal={handleClose}
                                                 handlePost={
                                                     reblog
-                                                        ? handleReblog
+                                                        ? () =>
+                                                              handleReblog(post)
+                                                        : edit
+                                                        ? handleEdit
                                                         : handlePost
                                                 }
                                                 postType={postType}
@@ -121,6 +184,7 @@ export default function CreateModal(props) {
                                                     reblog ? null : titlePost
                                                 }
                                                 setPostType={setPostType}
+                                                spinnerPost={spinnerPost}
                                             />
                                         </div>
                                     </div>
@@ -135,5 +199,6 @@ export default function CreateModal(props) {
 }
 
 CreateModal.propTypes = {
-    reblog: PropTypes.bool
+    reblog: PropTypes.bool,
+    edit: PropTypes.bool
 };

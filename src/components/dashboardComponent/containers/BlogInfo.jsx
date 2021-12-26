@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import img from './logo.png';
 import PropTypes from 'prop-types';
 import {
     themes,
@@ -7,14 +6,14 @@ import {
 } from '../../../contexts/themeContext/ThemeContext';
 
 // eslint-disable-next-line react/prop-types
-export default function BlogInfo({ blogName, blogDesc }) {
+export default function BlogInfo({ blogName, blogDesc, blogIcon }) {
     const theme = useContext(ThemeContext)[0];
 
     return (
         <div className="dashboard-blogInfo" style={{ position: 'relative' }}>
             <a href="/">
                 <div className="blogInfo-row">
-                    <img src={img} alt="" />
+                    <img src={blogIcon} alt="" />
                     <div className="blogInfo-column">
                         <p
                             style={{

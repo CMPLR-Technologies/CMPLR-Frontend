@@ -4,7 +4,7 @@ import MessagesContainer from './MessagesContainer';
 export default function MessagesPageMobile() {
     return (
         <div className="messagepage-mobile">
-            <MessagesContainer />
+            <MessagesContainer mobile={true}/>
         </div>
     );
 }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 export default function NewPostPopupItem(props) {
     return (
-        <Link to="/home">
+        <Link to={props.link}>
             <div className="new-post-popup-box">
                 <div
                     className={`new-post-popup-box-icon new-post-popup-box-icon${props.id}`}
@@ -19,5 +19,6 @@ export default function NewPostPopupItem(props) {
 NewPostPopupItem.propTypes = {
     id: PropTypes.string,
     icon: PropTypes.string,
-    type: PropTypes.string
+    type: PropTypes.string,
+    link:PropTypes.string,
 };

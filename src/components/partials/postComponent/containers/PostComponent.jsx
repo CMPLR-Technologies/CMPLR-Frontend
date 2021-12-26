@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import AudioPost from './postTypesComponents/AudioPost';
-import ImageList from './postTypesComponents/ImageList';
+import React, { useEffect, useState, useContext } from 'react';
 import OptionsButton from './SVG/OptionsButton.svg';
 import TextPost from './postTypesComponents/TextPost';
 import Tags from './Tags';
-import VideoPost from './postTypesComponents/VideoPost';
 import Footer from './Footer';
 import Divider from './Divider';
 import Modal from '../../Modal';
 import AuthBtn from '../../AuthBtn';
-import { extractPostContent, chaneMobileView } from '../Controller';
-import { follow, block } from '../Services';
+import { chaneMobileView } from '../Controller';
+import { block } from '../Services';
+import { followAccount } from '../../../followingComponent/Service';
 import PropTypes from 'prop-types';
 import OptionsList from './OptionsList';
-
+import {
+    ThemeContext,
+    themes
+} from '../../../../contexts/themeContext/ThemeContext';
+import { apiBaseUrl } from '../../../../config.json';
+import { Link } from 'react-router-dom';
+import ProfileMiniHoverWrapper from '../../../profileViews/mini&sideViews/View';
 /**
  * @function PostComponent
  * @description Base Unit Component for all post compoennt types
@@ -26,49 +30,212 @@ import OptionsList from './OptionsList';
 
 PostComponent.propTypes = {
     post: PropTypes.object.isRequired,
-    isFollowed: PropTypes.bool.isRequired,
     userBlogName: PropTypes.string.isRequired,
+    isFollowed: PropTypes.bool,
     radar: PropTypes.bool,
     left: PropTypes.string,
+    padding: PropTypes.string,
     reblog: PropTypes.bool,
-    padding: PropTypes.string
+    blogPage: PropTypes.bool,
+    themeDeactivate: PropTypes.bool
 };
 
 export default function PostComponent(props) {
-    const { post, isFollowed, userBlogName, radar, left, reblog, padding } =
-        props;
-
+    const {
+        post,
+        userBlogName,
+        radar,
+        left,
+        reblog,
+        padding,
+        blogPage,
+        themeDeactivate
+    } = props;
+    const theme = useContext(ThemeContext)[0];
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);
-    const [following, setFollowing] = useState(isFollowed);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
     const [mobileView, setMobileView] = useState(false);
+    const user = JSON.parse(localStorage.getItem('user'));
+    const { blog: blog, post: postData } = post;
+
+    const {
+        date: postTime,
+        tags: tags,
+        title: title,
+        content: content,
+        state: state,
+        post_id: postId,
+        reblog_key: reblogKey,
+        number_notes: numberNotes,
+        is_liked: isLiked
+    } = postData && postData;
     const {
         blog_name: blogName,
-        blog_email: blogEmail,
+        avatar: avatar,
+        blog_id: blogIdentifier,
         blog_url: blogUrl,
-        post_timestamp: postTime,
-        tags: tags,
-        content: content,
-        post_link: postLink,
-        blog_identifier: blogIdentifier,
-        blog_avatar: avatar,
-        number_notes: numberNotes,
-        reblog_key: reblogKey,
-        post_id: postId
-    } = post;
+        follower: follower
+    } = blog && blog;
+    const [liked, setIsLiked] = useState(isLiked && isLiked);
+    const [following, setFollowing] = useState(follower && follower);
     useEffect(() => {
         chaneMobileView(setMobileView);
     }, []);
-    let returned = extractPostContent(content);
 
     window.addEventListener('resize', () => chaneMobileView(setMobileView));
+    const css = `
+    .post-container, .list{
+        background-color:rgb(${themes[theme].white});
+        color:rgb(${themes[theme].black})
+    }
+
+    .post-header{
+        background-color:rgb(${themes[theme].white});
+        color:rgb(${themes[theme].black})
+    }
+    .divider, .post-time {
+        border-bottom: 1px solid rgba(${themes[theme].black}, 0.13);
+    }
+    .options-list-btn-svg{
+        fill:rgb(${themes[theme].black});
+    }
+
+    .options-btn .options .list{
+        box-shadow: 0 0 15px 0 rgba(0,0,0, 0.5);
+    }
+    .post-time-text,
+    .opt-btn,
+    .opt-btn .follow-btn,
+    .post-heading,
+    .body-content,
+    .text-title-content,
+    .message span,
+    .message span strong{   
+        color:rgb(${themes[theme].black})
+    }
+
+    .follow-btn:hover{
+        text-decoration:none;
+    }
+
+    .post-time:hover,.options-btn .options .list .opt-btn:hover{
+        background-color:rgb(${themes[theme].secondaryAccent});
+    }
+
+    .report-btn,
+    .block-btn {
+        color:rgb(${themes[theme].red})
+    }
+
+    .follow-btn{
+        color:rgb(${themes[theme].accent});
+    }
+
+    .show-image-modal{
+        background-color:rgba(0,0,0,.8);
+    }
+    
+    .audio-post{
+        background-color:rgb(${themes[theme].purple});
+    }
+
+    .seek-bar{
+        background-color:rgba(${themes[theme].black},.25);
+    }
+
+    .video-post-content{
+        background-color:rgb(0,0,0);
+    }
+
+    .progreesbar .bar{
+        background-color:rgba(${themes[theme].white},.2);
+        filter: drop-shadow(0 0 3px rgb(${themes[theme].black}));
+    }
+    .progreesbar .bar .slider{
+        background-color:rgb(${themes[theme].white});
+        filter: drop-shadow(0 0 3px rgb(${themes[theme].black}));
+    }
+    .play-pause-button, .elapsed-time{
+        filter: drop-shadow(0 0 3px rgb(${themes[theme].black}));
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+    }
+    .circle{
+        background-color:rgb(${themes[theme].white});
+    }
+    .tag, .notes-count{
+        color:rgba(${themes[theme].black},.65);
+    }
+    .share-options .options .list:hover{
+        background-color:rgba(${themes[theme].black},.07);
+    }
+    .circled-border{
+        background-color:rgb(255,255,255)
+    }
+    .modal{
+        background-color:rgba(0,0,0,.95);
+    }
+
+    .msg-heading, .msg-description{
+        color:rgb(${themes[theme].whiteOnDark});
+    }
+    .notes-view-container {
+        background-color:rgb(${themes[theme].white});
+        color:rgb(${themes[theme].black})
+    }
+    .notes-view-header-icons,.notes-summary{
+        border-bottom: 1px solid rgba(${themes[theme].black}, 0.13);
+    }
+    .notes-view-content {
+        background-color:rgba(${themes[theme].black},.07);
+        scrollbar-color: rgba(${themes[theme].black},.4) rgba(${themes[theme].white},.1);
+        scrollbar-width: thin;
+    }
+
+    .notes-summary-count{
+        color:rgb(${themes[theme].black})
+
+    }
+    .notes-view-header-icons .btn svg{
+        fill:rgb(${themes[theme].black})
+    }
+    .notes-list .note-content{
+        background-color:rgb(${themes[theme].white});
+    }
+    .note-author{
+        color:rgb(${themes[theme].black})
+    }
+    .reblog-sign-span{
+        fill:rgba(${themes[theme].black},.65);
+    }
+
+    .reblogger-name{
+        color:rgba(${themes[theme].black},.65);
+    }
+    
+    .input-area{
+        background-color:rgb(${themes[theme].white});
+        border-top:1px solid rgba(${themes[theme].black}, 0.13);
+    }
+
+    .reply-btn{
+        color:rgb(${themes[theme].accent})
+    }
+
+    .reply-btn:disabled{
+        color:rgba(${themes[theme].black},.4)
+    }
+
+    .note-option-btn svg{
+        fill:rgba(${themes[theme].black}, 0.65)
+    }
+    `;
 
     return (
         <div
             data-testid="post-wrapper-ts"
             style={{ left: left }}
-            className="post-wrapper"
+            className={`post-wrapper ${radar ? 'radar-post-wrapper' : ''}`}
         >
             {isMsgModalOpen && (
                 <Modal messageHeading={`${blogName} has been blocked`}>
@@ -110,7 +277,8 @@ export default function PostComponent(props) {
                                 blogIdentifier,
                                 setIsOptionListOpen,
                                 setIsModalOpen,
-                                setIsMsgModalOpen
+                                setIsMsgModalOpen,
+                                user?.token
                             );
                         }}
                     />
@@ -118,118 +286,123 @@ export default function PostComponent(props) {
             )}
 
             <article data-testid="post-container-ts" className="post-container">
-                {!radar && !mobileView && (
-                    <div className="author-avatar">
-                        <div className="sticky-avatar">
-                            <img src={avatar} className="avatar-img" />
-                        </div>
-                    </div>
-                )}
-                <header
-                    data-testid="post-header-ts"
-                    style={{ padding: padding }}
-                    className="post-header"
-                >
-                    {(mobileView || radar) && (
-                        <div className="author-avatar mob">
-                            <div className="sticky-avatar mob">
+                {!radar && !mobileView && !blogPage && (
+                    <ProfileMiniHoverWrapper
+                        blogName={userBlogName}
+                        blogID={blogIdentifier}
+                    >
+                        <div className="author-avatar">
+                            <div className="sticky-avatar">
                                 <img
-                                    data-testid="avatar-img-mob-ts"
+                                    data-testid="avatar-img-ts"
                                     src={avatar}
-                                    className="avatar-img mob"
+                                    className="avatar-img"
                                 />
                             </div>
                         </div>
-                    )}
-                    <div data-testid="header-flex-ts" className="header-flex">
-                        <div
-                            data-testid="header-title-ts"
-                            className="header-title"
-                        >
-                            <span
-                                data-testid="post-heading-ts"
-                                className="post-heading"
+                    </ProfileMiniHoverWrapper>
+                )}
+                {!blogPage && (
+                    <header
+                        data-testid="post-header-ts"
+                        style={{ padding: padding }}
+                        className="post-header"
+                    >
+                        {(mobileView || radar) && (
+                            <ProfileMiniHoverWrapper
+                                blogName={userBlogName}
+                                blogID={blogIdentifier}
                             >
-                                {blogName}
-                            </span>
-                            {!following && !reblog && (
-                                <button
-                                    onClick={() =>
-                                        follow(blogUrl, blogEmail, setFollowing)
-                                    }
-                                    className="follow-btn"
-                                    data-testid="follow-btn-header-ts"
+                                <div className="author-avatar author-avatar-mob">
+                                    <div className="sticky-avatar sticky-avatar-mob">
+                                        <img
+                                            data-testid="avatar-img-mob-ts"
+                                            src={avatar}
+                                            className="avatar-img avatar-img-mob"
+                                        />
+                                    </div>
+                                </div>
+                            </ProfileMiniHoverWrapper>
+                        )}
+                        <div
+                            data-testid="header-flex-ts"
+                            className="header-flex"
+                        >
+                            <div
+                                data-testid="header-title-ts"
+                                className="header-title"
+                            >
+                                <ProfileMiniHoverWrapper
+                                    blogID={blogIdentifier}
+                                    blogName={userBlogName}
+                                    style={{ textDecoration: 'none' }}
                                 >
-                                    Follow
-                                </button>
-                            )}
+                                    <span
+                                        data-testid="post-heading-ts"
+                                        className="post-heading"
+                                    >
+                                        {blogName}
+                                    </span>
+                                </ProfileMiniHoverWrapper>
+
+                                {!following && !reblog && (
+                                    <button
+                                        onClick={() =>
+                                            followAccount(
+                                                user?.token,
+                                                blogName,
+                                                setFollowing
+                                            )
+                                        }
+                                        className="follow-btn"
+                                        data-testid="follow-btn-header-ts"
+                                    >
+                                        Follow
+                                    </button>
+                                )}
+                            </div>
+                            <div className="options-btn">
+                                {!reblog && (
+                                    <button
+                                        onClick={() => {
+                                            setIsOptionListOpen(
+                                                !isOptionListOpen
+                                            );
+                                        }}
+                                        className="btn"
+                                        data-testid="opt-btn-header-ts"
+                                    >
+                                        <OptionsButton />
+                                    </button>
+                                )}
+                                {isOptionListOpen && !blogPage && (
+                                    <OptionsList
+                                        postTime={postTime}
+                                        userBlogName={userBlogName}
+                                        blogName={blogName}
+                                        postLink={`${apiBaseUrl}/post/${postId}`} //change if needed
+                                        postId={postId}
+                                        following={following}
+                                        blogUrl={blogUrl}
+                                        setFollowing={setFollowing}
+                                        setIsModalOpen={setIsModalOpen}
+                                        setIsOptionListOpen={
+                                            setIsOptionListOpen
+                                        }
+                                        radar={radar}
+                                    />
+                                )}
+                            </div>
                         </div>
-                        <div className="options-btn">
-                            {!reblog && (
-                                <button
-                                    onClick={() => {
-                                        setIsOptionListOpen(!isOptionListOpen);
-                                    }}
-                                    className="btn"
-                                    data-testid="opt-btn-header-ts"
-                                >
-                                    <OptionsButton />
-                                </button>
-                            )}
-                            {isOptionListOpen && (
-                                <OptionsList
-                                    postTime={postTime}
-                                    userBlogName={userBlogName}
-                                    blogName={blogName}
-                                    postLink={postLink}
-                                    postId={postId}
-                                    following={following}
-                                    blogUrl={blogUrl}
-                                    setFollowing={setFollowing}
-                                    setIsModalOpen={setIsModalOpen}
-                                    setIsOptionListOpen={setIsOptionListOpen}
-                                />
-                            )}
-                        </div>
-                    </div>
-                </header>
-                {returned.textPost !== undefined && (
+                    </header>
+                )}
+                {state === 'publish' && (
                     <>
                         <TextPost
-                            title={returned.textPost.title}
-                            content={returned.textPost.content}
+                            title={title && title}
+                            content={content && content}
                         />
                         <Divider />
-                    </>
-                )}
-                {returned.imagePost !== undefined && (
-                    <>
-                        <ImageList
-                            imageTag={returned.imagePost.imageTag}
-                            caption={returned.imagePost.caption}
-                            altText={returned.imagePost.altText}
-                            postId={postId}
-                        />
-                        <Divider />
-                    </>
-                )}
-                {returned.audioPost !== undefined && (
-                    <>
-                        <AudioPost
-                            url={returned.audioPost.url}
-                            artist={returned.audioPost.artist}
-                            track={returned.audioPost.track}
-                            description={returned.audioPost.description}
-                        />
-                        <Divider />
-                    </>
-                )}
-                {returned.videoPost !== undefined && (
-                    <>
-                        <VideoPost
-                            id={postId + returned.videoPost.videoTag}
-                            videoTag={returned.videoPost.videoTag}
-                        />
                     </>
                 )}
                 {!reblog && (
@@ -240,7 +413,7 @@ export default function PostComponent(props) {
                         <Tags tagsArray={tags} />
                         <Footer
                             isAuthor={userBlogName === blogName}
-                            postLink={postLink}
+                            postLink={`${apiBaseUrl}/post/${postId}`}
                             numberNotes={numberNotes}
                             reblogKey={reblogKey}
                             postId={postId}
@@ -248,10 +421,15 @@ export default function PostComponent(props) {
                             postAuthor={userBlogName}
                             authorAvatar={avatar}
                             setIsModalOpenN={setIsModalOpen}
+                            blogPage={blogPage}
+                            radar={radar}
+                            isLiked={liked}
+                            setIsLiked={setIsLiked}
                         />
                     </div>
-                )}{' '}
+                )}
             </article>
+            {!themeDeactivate && <style>{css}</style>}
         </div>
     );
 }

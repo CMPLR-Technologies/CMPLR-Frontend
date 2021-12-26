@@ -1,0 +1,73 @@
+.profile-full {
+    background-color: white;
+    width: 100vw;
+    min-height: 100vh;
+
+    .profile-side-header {
+        .post-wrapper {
+            left: 0;
+            width: 100%;
+        }
+
+        &-div {
+            position: sticky;
+            top: -300px;
+            background-color: white;
+            &-bg {
+                object-fit: cover;
+                height: calc(300px + 50px);
+                width: 100vw;
+                -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+                clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+                cursor: pointer;
+            }
+        }
+
+        &-avatar {
+            position: absolute;
+            left: 50%;
+            top: calc(300px + 50px);
+            transform: translateX(-50%) translateY(-50%);
+            width: 96px;
+            height: 96px;
+            object-fit: cover;
+            border: 5px solid white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        &-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            padding-top: 48px;
+            padding-bottom: 40px;
+
+            &-link {
+                text-decoration: none;
+                color: black;
+            }
+            &-title {
+                font-weight: bold;
+                font-size: 42px;
+                line-height: 1.2;
+                margin-bottom: 8px;
+                overflow: hidden;
+                hyphens: auto;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                text-align: center;
+            }
+            &-desc {
+                font-size: 100%;
+                overflow: hidden;
+                hyphens: auto;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                text-align: center;
+            }
+        }
+    }
+}

@@ -1,0 +1,231 @@
+.explore {
+    display: flex;
+    margin: 79px auto 0;
+    justify-content: center;
+
+    &-following {
+        &-head {
+            display: flex;
+            flex-direction: row;
+            font-size: 1.125rem;
+            font-weight: 700;
+            line-height: 1.333;
+            margin-bottom: 8px;
+            padding: 15px;
+            justify-content: space-between;
+        }
+
+        &-main {
+            cursor: pointer;
+            min-height: 308px;
+
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+
+    &-hashtags {
+        display: flex;
+        overflow-x: scroll;
+        margin-bottom: 40px;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        &-main {
+            position: relative;
+            width: 100%;
+            .hide {
+                display: none;
+            }
+
+            .show {
+                display: block;
+            }
+        }
+    }
+
+    &-main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 625px;
+    }
+}
+
+.arrow-icon {
+    position: absolute;
+    top: 80px;
+    //background-color: black;
+    color: white;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.following-hashtag {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    img {
+        width: 64px;
+        height: 45px;
+        border-radius: 3px;
+        object-fit: cover;
+        margin-right: 16px;
+    }
+
+    &-info {
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.5;
+    }
+}
+
+.explore-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+
+    a {
+        text-decoration: none;
+        padding: 14px 16px;
+        font-size: 1.25rem;
+        display: inline-block;
+    }
+
+    &-icons {
+        button {
+            background: transparent;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+    }
+
+    &-links {
+        display: flex;
+        align-items: center;
+    }
+
+    .emoji {
+        margin-bottom: -5px;
+    }
+}
+
+.explore-sidebar {
+    width: 320px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.explore-hashtag {
+    background-color: rgb(40, 57, 111);
+    border-color: rgb(65, 82, 136);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 8px;
+    width: 140px;
+    margin-right: 20px;
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+    span {
+        display: block;
+        margin: 10px 0;
+        font-size: 0.875rem;
+    }
+
+    button {
+        text-decoration: none;
+        border: none;
+        border-radius: 3px;
+        margin-top: 8px;
+        padding: 8px 20.5px;
+        width: 100%;
+        font-size: 1rem;
+        color: rgb(40, 57, 111);
+        cursor: pointer;
+    }
+
+    &-images {
+        display: flex;
+        justify-content: space-between;
+        img {
+            height: 93.3333333333px;
+            width: 56px;
+            object-fit: cover;
+            border-radius: 3px;
+        }
+
+        :first-child {
+            margin-right: 10px;
+        }
+    }
+}
+
+.explore-posts {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    position: relative;
+    width: 100%;
+    flex-wrap: wrap;
+    .container-grid {
+        max-width: 300px;
+        width: 300px;
+        margin-left: 1%;
+    }
+}
+
+.mid-size {
+    max-width: 625px !important;
+    .normal-layout {
+        width: 100%;
+    }
+}
+
+.moreTags {
+    width: 100%;
+    background: transparent;
+    border: none;
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-top: 8px;
+    padding: 16px;
+    cursor: pointer;
+}
+
+.explore-following {
+    margin-bottom: 16px;
+}
+
+@media screen and (min-width: 1500px) {
+    .explore-main {
+        max-width: 940px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .explore-sidebar {
+        display: none;
+    }
+
+    .explore-nav {
+        justify-content: center;
+    }
+
+    .explore-nav-icons {
+        display: none;
+    }
+}

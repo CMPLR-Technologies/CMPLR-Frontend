@@ -8,19 +8,27 @@
 @import './partials/_onOffSwitch.scss';
 @import url(//db.onlinewebfonts.com/c/d73d37902ec72250867b578d3763ee38?family=Favorit);
 
+@import './chatStyles/chatStyles';
+
 @import './homeStyles/_homeStyles.scss';
 @import './navbarComponent/_Navbar.scss';
 @import './loginStyles/LoginCard.scss';
 @import './loginStyles/LoginView.scss';
 @import './forgetPasswordStyles/_forgetPasswordStyles.scss';
 @import './settingsStyles/_settingsStyles';
+@import './profileViews/_ProfileMini';
+@import './profileViews/_ProfileSide';
+@import './profileViews/_ProfileFull';
 @import './shortcutsStyles/shortcuts.scss';
 @import './createPostStyles/createPostStyles.scss';
 @import './createPostStyles/createPostPopup.scss';
 @import './richTextEditorStyles/rich.scss';
-@import './dashboardStyles/dashboardStyles';
 
 @import './navbarComponent/_navbar.scss';
+@import './navbarProfileViewsStyles/NavbarProfileView';
+@import './accountpopupComponent/_accountpopup.scss';
+@import './dashboardStyles/dashboardStyles';
+
 @import './accountpopupComponent/_accountpopup.scss';
 
 @import './loginStyles/LoginCard.scss';
@@ -29,6 +37,13 @@
 @import './verifyEmailStyles/verifyEmail.scss';
 @import './deleteAccountStyles/_deleteAccountStyles.scss';
 @import './blogSettingsStyles/_createBlogStyles.scss';
+
+@import './followingStyles/following.scss';
+@import './hashtagsStyles/hashtagsStyles.scss';
+@import './hashtagsStyles/hashtagMobStyles.scss';
+@import './hashtagsStyles/hashtagPosts.scss';
+
+@import './exploreStyles/expolre';
 * {
     margin: 0;
     padding: 0;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import AuthInput from '../../partials/AuthInput';
 import AuthBtn from '../../partials/AuthBtn';
@@ -8,8 +8,10 @@ import AuthAlert from '../../partials/AuthAlert';
 import { handleLogin } from '../Controller';
 import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
 import { useContext } from 'react';
+import { responseGoogleFailure, responseGoogleSuccess } from '../Service.jsx';
 import { UserContext } from '../../../contexts/userContext/UserContext';
 import { CircularProgress } from '@mui/material';
+import GoogleLogin from 'react-google-login';
 
 /**
  * LoginCard Component
@@ -26,22 +28,18 @@ export default function LoginCard() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isPending, setIsPending] = useState(false);
+    const navigate = useNavigate();
     return (
         <div className="LoginCard">
             <div className="LoginCard__logo-container">
                 <p className="LoginCard__logo">cmplr</p>
             </div>
-            {error &&
-                error?.length !== 0 &&
-                error?.map((errorMsg, index) => {
-                    return (
-                        <AuthAlert
-                            key={index}
-                            openError={error.length !== 0}
-                            errorMessage={errorMsg}
-                        />
-                    );
-                })}
+            {error && error !== '' && (
+                <AuthAlert
+                    openError={error.length !== 0}
+                    errorMessage={error}
+                />
+            )}
 
             <div className="login-form">
                 <AuthInput
@@ -95,12 +93,18 @@ export default function LoginCard() {
 
             <OrBar></OrBar>
 
-            <AuthBtn
-                text="Continue with Google"
-                color="white"
-                logo="https://upload.wikimedia.org/wikipedia/commons/archive/5/53/20210618182605%21Google_%22G%22_Logo.svg"
-                handleClick={() => '@todo'}
-            ></AuthBtn>
+            <GoogleLogin
+                className="AuthBtnGoogle"
+                clientId={
+                    '897018969322-knobrd9ontkafr46u2ukkv3rnjc5qej8.apps.googleusercontent.com'
+                }
+                buttonText="Continue with Google"
+                onSuccess={res =>
+                    responseGoogleSuccess(res, navigate, setIsPending, setUser)
+                }
+                onFailure={res => responseGoogleFailure(res, setError)}
+                cookiePolicy={'single_host_origin'}
+            />
 
             <p className="LoginCard__a">
                 New to Cmplr?{' '}

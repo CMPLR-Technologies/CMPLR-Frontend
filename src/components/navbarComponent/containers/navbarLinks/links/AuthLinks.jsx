@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import '../../../../../styles/styles.css';
 import MessagesPopUp from '../MessagesPopup/MessagesPopUp';
 import AccountPopup from '../AccountPopup/AccountPopup';
 import { Link, NavLink } from 'react-router-dom';
+import UnReadMsg from './UnReadMsg';
+import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
 /**
  * Navbar AuthLinks: includes all links dashboard and inbox and expolre ...
  * @function NavbarAuthLinks
@@ -22,6 +24,30 @@ export default function AuthLinks() {
     const [openAccountPopup, setOpenAccountPopup] = useState(false);
 
     //const [openPopup, setOpenPopup] = useState(false);
+
+    // when the navbar run go loadChat and count the unreadMsgs
+    let { loadChats, chats } = useContext(ChatContext);
+    const [unReadMsgs, setUnReadMsgs] = useState(0);
+
+    useEffect(async () => {
+        // this will clear Timeout
+        // when component unmount like in willComponentUnmount
+        // and show will not change to true
+        let timer1 = setTimeout(async () => {
+            await loadChats();
+            let count = 0;
+            // if (chats) {
+            //     chats?.map(chat => {
+            //         if (!chat.is_read) count++;
+            //     });
+            // }
+            setUnReadMsgs(count);
+        }, 2000);
+
+        return () => {
+            clearTimeout(timer1);
+        };
+    }, []);
 
     //close dropdown message list
     const closeMessagePopup = () => {
@@ -79,7 +105,7 @@ export default function AuthLinks() {
             <li className="link-icon">
                 <NavLink
                     className={navData => (navData.isActive ? 'active' : '')}
-                    to="/recommended-for-you"
+                    to="/explore/recommended-for-you"
                 >
                     <i className="far fa-compass"></i>
                 </NavLink>
@@ -103,8 +129,13 @@ export default function AuthLinks() {
                         }`}
                     >
                         <i className="fas fa-comment-dots"></i>
+                        {unReadMsgs !== 0 && (
+                            <UnReadMsg unReadMsgs={unReadMsgs} />
+                        )}
                     </li>
-                    {openMessagePopup && <MessagesPopUp />}
+                    {openMessagePopup && (
+                        <MessagesPopUp clickMessagePopup={clickMessagePopup} />
+                    )}
                 </div>
             </ClickAwayListener>
 
@@ -129,11 +160,11 @@ export default function AuthLinks() {
                     {openAccountPopup && <AccountPopup />}
                 </div>
             </ClickAwayListener>
-            <li className="link-icon pen">
-                <Link to="/new">
+            <Link to="/new">
+                <li className="link-icon pen">
                     <i className="fas fa-pen"></i>
-                </Link>
-            </li>
+                </li>
+            </Link>
             {/* <Route
         path="/new"
         children={({ match }) => (

@@ -1,11 +1,18 @@
-import { Popover } from '@mui/material';
+import { CircularProgress, Popover } from '@mui/material';
 import React from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import PropTypes from 'prop-types';
 import DropDownPostList from './DropDownPostList';
 
 export default function PostButton(props) {
-    const { handlePost, postType, setPostType, content, titlePost } = props;
+    const {
+        handlePost,
+        postType,
+        setPostType,
+        content,
+        titlePost,
+        spinnerPost
+    } = props;
     const [anchorEl, setAnchorEl] = React.useState(null);
     const handlePopover = event => {
         setAnchorEl(event.currentTarget);
@@ -20,17 +27,30 @@ export default function PostButton(props) {
         <>
             <div className="post-form-save-button">
                 <div className="split-button">
-                    {/**TODO: add a spinner */}
+                    {spinnerPost && (
+                        <CircularProgress
+                            style={{
+                                width: '20px',
+                                height: '20px',
+                                color: 'white',
+                                marginLeft: '2px',
+                                cursor: 'wait'
+                            }}
+                        />
+                    )}
                     <button
                         className="to-post-button"
                         data-testid="post-postBtn"
                         onClick={handlePost}
-                        disabled={
-                            (content === '' || titlePost === '') &&
-                            !(titlePost === null)
-                        }
+                        disabled={content === ''}
                     >
-                        {titlePost===null?"Reblog":"Post"}
+                        {titlePost === null
+                            ? 'Reblog'
+                            : postType === 'Post now'
+                            ? 'Post'
+                            : postType === 'Save as draft'
+                            ? 'Save draft'
+                            : 'Post privately'}
                     </button>
                     <div
                         aria-describedby="popover_post"
@@ -74,5 +94,6 @@ PostButton.propTypes = {
     postType: PropTypes.string.isRequired,
     setPostType: PropTypes.func.isRequired,
     content: PropTypes.any.isRequired,
-    titlePost: PropTypes.string.isRequired
+    titlePost: PropTypes.string.isRequired,
+    spinnerPost: PropTypes.bool.isRequired
 };

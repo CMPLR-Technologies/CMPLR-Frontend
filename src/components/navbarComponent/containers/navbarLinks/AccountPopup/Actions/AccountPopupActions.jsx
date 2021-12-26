@@ -34,7 +34,7 @@ export default function AccountPopupActions() {
 
     const toggleTheme = () => {
         setPaletteChanged(true);
-        changeTheme(theme);
+        changeTheme();
     };
     const viewShortcuts = () => {
         setShortcutOverlay(true);
@@ -46,13 +46,13 @@ export default function AccountPopupActions() {
             .then(response => {
                 setLikesCount(response.data.length);
             })
-            .catch(err => {});
+            .catch(() => {});
         axios
             .get(`${apiBaseUrl}/following`)
             .then(response => {
                 setFollowingCount(response.data.length);
             })
-            .catch(err => {});
+            .catch(() => {});
     }, []);
 
     return (

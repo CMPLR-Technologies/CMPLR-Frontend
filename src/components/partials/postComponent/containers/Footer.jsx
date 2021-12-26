@@ -9,12 +9,19 @@ import ShareBtn from './SVG/ShareBtn.svg';
 import Modal from '../../Modal';
 import AuthBtn from '../../AuthBtn';
 import { toggleShareList, copyLink } from '../Controller';
-import { handleLikePost, deletePost, submitNote } from '../Services';
+import {
+    handleLikePost,
+    handleUnlikePost,
+    deletePost,
+    submitNote
+} from '../Services';
 import PropTypes from 'prop-types';
 import NotesHeader from './Notes/NotesHeader';
 import NotesContent from './Notes/NotesContent';
 import { getPostNotes } from '../Services';
 import { useNavigate } from 'react-router';
+import { useContext } from 'react';
+import { UserContext } from '../../../../contexts/userContext/UserContext';
 
 /**
  * @function Footer
@@ -30,20 +37,23 @@ import { useNavigate } from 'react-router';
  */
 
 Footer.propTypes = {
-    numberNotes: PropTypes.number.isRequired,
     isAuthor: PropTypes.bool.isRequired,
     postLink: PropTypes.string.isRequired,
-    reblogKey: PropTypes.string.isRequired,
-    postId: PropTypes.string.isRequired,
+    reblogKey: PropTypes.string,
+    postId: PropTypes.number.isRequired,
     postAuthor: PropTypes.string.isRequired,
     authorAvatar: PropTypes.string.isRequired,
     blogName: PropTypes.string.isRequired,
-    setIsModalOpenN: PropTypes.func
+    setIsModalOpenN: PropTypes.func,
+    blogPage: PropTypes.bool,
+    radar: PropTypes.bool,
+    isLiked: PropTypes.bool,
+    setIsLiked: PropTypes.func
 };
 
 export default function Footer(props) {
     const {
-        numberNotes,
+        isLiked,
         isAuthor,
         postLink,
         reblogKey,
@@ -51,22 +61,44 @@ export default function Footer(props) {
         blogName,
         postAuthor,
         authorAvatar,
-        setIsModalOpenN
+        setIsModalOpenN,
+        blogPage,
+        radar,
+        setIsLiked
     } = props;
     const [isShareListOpen, setIsShareListOpen] = useState(false);
-    const [loveFillColor, setLoveFillColor] = useState('gray');
+    const [loveFillColor, setLoveFillColor] = useState(
+        `${isLiked ? 'rgb(255,73,47)' : 'gray'}`
+    );
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [notesView, setNotesView] = useState(false);
     const [noteType, setNoteType] = useState('');
     const [notes, setNotes] = useState([]);
     const [counts, setCounts] = useState({});
+    const [numberNotes, setNumberNotes] = useState(0);
+    const { user } = useContext(UserContext);
+    //TODO BlogIdentifier1
     const blogIdentifier = 'yahia.tumblr.com';
 
     const navigate = useNavigate();
 
+    const handleNote = () => {
+        if (!notesView) {
+            setNoteType('comment');
+            getPostNotes(blogIdentifier, setNotes, setCounts, postId);
+        }
+        setNotesView(!notesView);
+    };
+
     useEffect(() => {
-        getPostNotes(blogIdentifier, setNotes, setCounts);
-    }, []);
+        getPostNotes(blogIdentifier, setNotes, setCounts, postId);
+    }, [loveFillColor]);
+
+    useEffect(() => {
+        setNumberNotes(
+            counts?.totalLikes + counts?.totalReblogs + counts?.totalReplys
+        );
+    }, [counts]);
 
     return (
         <>
@@ -91,7 +123,12 @@ export default function Footer(props) {
                             text="Ok"
                             color="rgb(0, 184, 255)"
                             handleClick={() => {
-                                deletePost(postId, setIsModalOpen);
+                                deletePost(
+                                    postId,
+                                    setIsModalOpen,
+                                    user?.token,
+                                    navigate
+                                );
                             }}
                         />
                     </Modal>
@@ -109,7 +146,9 @@ export default function Footer(props) {
                     >
                         {numberNotes > 1
                             ? `${numberNotes} notes`
-                            : numberNotes === undefined || numberNotes === 0
+                            : numberNotes === undefined ||
+                              numberNotes === 0 ||
+                              isNaN(numberNotes)
                             ? ''
                             : `${numberNotes} note`}
                     </span>
@@ -176,25 +215,31 @@ export default function Footer(props) {
                     </div>
                 )}
                 <div data-testid={`footer-icons-ts`} className="footer-icons">
-                    <button
-                        onClick={() =>
-                            toggleShareList(isShareListOpen, setIsShareListOpen)
-                        }
-                        className="icon"
-                        data-testid={`share-icon-footer-ts`}
-                    >
-                        <ShareBtn />
-                    </button>
-                    <button
-                        onClick={() => {
-                            setNotesView(true);
-                            setNoteType('comment');
-                        }}
-                        className="icon"
-                        data-testid={`note-icon-footer-ts${postId}`}
-                    >
-                        <Note />
-                    </button>
+                    {!blogPage && (
+                        <button
+                            onClick={() =>
+                                toggleShareList(
+                                    isShareListOpen,
+                                    setIsShareListOpen
+                                )
+                            }
+                            className="icon"
+                            data-testid={`share-icon-footer-ts`}
+                        >
+                            <ShareBtn />
+                        </button>
+                    )}
+                    {!blogPage && !radar && (
+                        <button
+                            onClick={() => {
+                                handleNote();
+                            }}
+                            className="icon"
+                            data-testid={`note-icon-footer-ts${postId}`}
+                        >
+                            <Note />
+                        </button>
+                    )}
                     <button
                         onClick={() => {
                             setNoteType('reblog');
@@ -208,21 +253,20 @@ export default function Footer(props) {
                         <ReblogBtn />
                     </button>
                     <button
-                        onClick={e => {
-                            submitNote(
-                                e,
-                                'love',
-                                '',
-                                blogIdentifier,
-                                setNotes,
-                                setCounts
-                            );
-                            handleLikePost(
-                                loveFillColor,
-                                setLoveFillColor,
-                                postId,
-                                reblogKey
-                            );
+                        onClick={() => {
+                            !isLiked
+                                ? handleLikePost(
+                                      setLoveFillColor,
+                                      setIsLiked,
+                                      postId,
+                                      user?.token
+                                  )
+                                : handleUnlikePost(
+                                      setLoveFillColor,
+                                      setIsLiked,
+                                      postId,
+                                      user?.token
+                                  );
                         }}
                         className="icon "
                         data-testid={`love-icon-footer${postId}`}
@@ -241,6 +285,9 @@ export default function Footer(props) {
                             <button
                                 data-testid={`edit-footer-icon-ts${postId}`}
                                 className="icon"
+                                onClick={() =>
+                                    navigate(`/edit/${blogName}/${postId}`)
+                                }
                             >
                                 <EditBtn />
                             </button>

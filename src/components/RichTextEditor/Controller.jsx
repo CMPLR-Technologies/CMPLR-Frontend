@@ -1,42 +1,29 @@
-import firebase from '../../firebase/index';
+import { uploadSelectedImage, uploadSelectedVideo } from './Service';
 
 export const handleActionWithoutArg = (elementId, setContent) => {
     const element = document.getElementById(elementId);
-
-    if (element.style.backgroundColor === 'gray') {
-        element.style.backgroundColor = 'unset';
-        element.style.padding = '0';
-    } else {
-        element.style.backgroundColor = 'gray';
-        element.style.padding = '2px';
-    }
     document.execCommand(element.dataset['element'], false, null);
     setContent(document.getElementById('editable-content').innerHTML);
 };
 
-export const handleUploadImage = (file, setContent) => {
-    const uploadTask = firebase.storage().ref(`images/${file.name}`).put(file);
+export const handleUploadImage = async (
+    file,
+    setContent,
+    setSpinner,
+    userToken
+) => {
+    setSpinner(true);
+    uploadSelectedImage(file, setContent, setSpinner, userToken);
+};
 
-    uploadTask.on(
-        'state_changed',
-        () => {},
-        error => {
-            console.log(error);
-        },
-        () => {
-            firebase
-                .storage()
-                .ref('images')
-                .child(file.name)
-                .getDownloadURL()
-                .then(url => {
-                    document.getElementById('editable-content').focus();
-                    document.execCommand('insertImage', false, url);
-                });
-        }
-    );
-
-    setContent(document.getElementById('editable-content').innerHTML);
+export const handleUploadVideo = async (
+    file,
+    setContent,
+    setSpinner,
+    userToken
+) => {
+    setSpinner(true);
+    uploadSelectedVideo(file, setContent, setSpinner, userToken);
 };
 
 export const handleHeading = (cmd, setContent) => {

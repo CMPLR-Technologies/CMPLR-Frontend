@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { IoIosSettings } from 'react-icons/io';
 import { RiArrowDropDownLine } from 'react-icons/ri';
+import ReblogSIgn from '../../../partials/postComponent/containers/Notes/ReblogSign.svg';
+import PropTypes from 'prop-types';
+import CircularProgress from '@mui/material/CircularProgress';
+import { UserContext } from '../../../../contexts/userContext/UserContext';
 
-export default function HeaderCreatePost() {
+export default function HeaderCreatePost(props) {
+    const { user } = useContext(UserContext);
+    console.log('your user', user);
+    const { reblog, parentBlogAuthor } = props;
+    const { spinner } = props;
     return (
         <>
             <div className="post-form--header">
@@ -10,7 +18,9 @@ export default function HeaderCreatePost() {
                     <div className="control-left">
                         <div>
                             <button className="btn-control">
-                                <span className="caption">hazemkak</span>
+                                <span className="caption">
+                                    {user?.blogName}
+                                </span>
                                 <span className="icon_arrow_carrot_down">
                                     <RiArrowDropDownLine
                                         style={{
@@ -19,10 +29,20 @@ export default function HeaderCreatePost() {
                                     />
                                 </span>
                             </button>
+                            {reblog && (
+                                <span className="caption">
+                                    <ReblogSIgn />
+                                    <span>{parentBlogAuthor}</span>
+                                </span>
+                            )}
                         </div>
                     </div>
                     <div className="control-right">
-                        {/**------TODO: Add a Div which contains a spinner for uploading */}
+                        {spinner && (
+                            <CircularProgress
+                                style={{ width: '20px', height: '20px' }}
+                            />
+                        )}
                         <div className="post-form--post-settings-button">
                             <div className="post-settings">
                                 <span className="settings-icon">
@@ -40,3 +60,9 @@ export default function HeaderCreatePost() {
         </>
     );
 }
+
+HeaderCreatePost.propTypes = {
+    reblog: PropTypes.bool,
+    parentBlogAuthor: PropTypes.string,
+    spinner: PropTypes.bool
+};

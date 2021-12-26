@@ -3,50 +3,62 @@ import Axios from 'axios';
 import { apiBaseUrl } from '../../../config.json';
 
 //=================================================Footer Services============================================
-export function handleLikePost(
-    loveFillColor,
-    setLoveFillColor,
-    postId,
-    reblogKey
-) {
-    const url =
-        loveFillColor === 'gray'
-            ? `${apiBaseUrl}/user/like`
-            : `${apiBaseUrl}/user/unlike`;
+export function handleLikePost(setLoveFillColor, setIsLiked, postId, token) {
     Axios({
         method: 'POST',
-        url: url,
+        url: `${apiBaseUrl}/user/like`,
         headers: {
-            'content-type': 'application/json'
-        },
-        data: {
-            id: postId,
-            reblogKey: reblogKey
-        }
-    })
-        .then(res => {
-            if (res.status === 201) {
-                setLoveFillColor(
-                    loveFillColor === 'gray' ? 'rgb(255,73,47)' : 'gray'
-                );
-            }
-        })
-        .catch(() => {});
-}
-
-export function deletePost(postId, setIsModalOpen) {
-    Axios({
-        method: 'DELETE',
-        url: `${apiBaseUrl}/post/delete`,
-        headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            Authorization: `Bearer ${token}`
         },
         data: {
             id: postId
         }
     })
         .then(res => {
-            if (res.data.Meta.Status === 200) {
+            if (res.status === 200) {
+                setLoveFillColor('rgb(255,73,47)');
+                setIsLiked(true);
+            }
+        })
+        .catch(() => {});
+}
+
+export function handleUnlikePost(setLoveFillColor, setIsLiked, postId, token) {
+    Axios({
+        method: 'DELETE',
+        url: `${apiBaseUrl}/user/unlike`,
+        headers: {
+            'content-type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        data: {
+            id: postId
+        }
+    })
+        .then(res => {
+            if (res.status === 200) {
+                setLoveFillColor('gray');
+                setIsLiked(false);
+            }
+        })
+        .catch(() => {});
+}
+
+export function deletePost(postId, setIsModalOpen, token, navigate) {
+    Axios({
+        method: 'DELETE',
+        url: `${apiBaseUrl}/post/delete/${postId}`,
+        headers: {
+            'content-type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    })
+        .then(res => {
+            if (res.data.meta.status_code === 200) {
+                navigate('/empty');
+                navigate('/dashboard');
                 setIsModalOpen(false);
             }
         })
@@ -54,53 +66,20 @@ export function deletePost(postId, setIsModalOpen) {
 }
 
 //=================================================PostComponent Services============================================
-export function unfollow(blogUrl, setFollowing, setIsOptionListOpen) {
-    Axios({
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        url: `${apiBaseUrl}/user/unfollow`,
-        data: {
-            url: blogUrl
-        }
-    })
-        .then(response => {
-            if (response.status === 200) {
-                setFollowing(false);
-                setIsOptionListOpen(false);
-            }
-        })
-        .catch(() => {});
-}
-export function follow(blogUrl, blogEmail, setFollowing) {
-    Axios({
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        url: `${apiBaseUrl}/user/follow`,
-        data: {
-            url: blogUrl,
-            email: blogEmail
-        }
-    })
-        .then(response => {
-            if (response.status === 200) setFollowing(true);
-        })
-        .catch(() => {});
-}
 
 export function block(
     blogIdentifier,
     setIsOptionListOpen,
     setIsModalOpen,
-    setIsMsgModalOpen
+    setIsMsgModalOpen,
+    token
 ) {
     Axios({
         method: 'POST',
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
         },
         url: `${apiBaseUrl}/blog/${blogIdentifier}/blocks`
     })
@@ -115,19 +94,23 @@ export function block(
 }
 
 //=================================================Notes Services============================================
-export function getPostNotes(blogIdentifier, setNotes, setCounts) {
+export function getPostNotes(blogIdentifier, setNotes, setCounts, postId) {
     Axios({
         url: `${apiBaseUrl}/post/notes`,
         method: 'GET',
         params: {
-            'blog-identifier': blogIdentifier
+            'blog-identifier': blogIdentifier,
+            post_id: postId
         }
     })
         .then(res => {
-            if (res.data.Meta.Status === 200) {
-                setNotes(res.data.response.notes);
-                setCounts(res.data.response.counts);
-            }
+            setNotes(res.data[0].notes);
+            let count = {
+                totalLikes: res.data[0]['total_likes'],
+                totalReblogs: res.data[0]['total_reblogs'],
+                totalReplys: res.data[0]['total_replys']
+            };
+            setCounts(count);
         })
         .catch(() => {});
 }
