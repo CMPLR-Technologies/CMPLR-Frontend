@@ -27,7 +27,7 @@ export const validateStepTwo = age => {
 };
 
 export const validateGoogle = (blogName, age) => {
-    if (age <= 18 || age >= 80) {
+    if (age < 18 || age > 80) {
         return 'Age must be between 18-80';
     }
     if (blogName && blogName?.length < 2 && blogName?.length > 64) {
