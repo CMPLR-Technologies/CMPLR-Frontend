@@ -5,7 +5,7 @@ import AuthInput from '../../../partials/AuthInput';
 import { SettingsContext } from '../../../../contexts/settingsContext/SettingsContext';
 import PropTypes from 'prop-types';
 export default function PasswordSectionVersion2({ setVersionOne }) {
-    const { updatePassword } = useContext(SettingsContext);
+    const user = JSON.parse(localStorage.getItem('user'));
     const [currPassword, setCurrPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
@@ -72,7 +72,8 @@ export default function PasswordSectionVersion2({ setVersionOne }) {
                                 newPassword,
                                 confirmNewPassword,
                                 setVersionOne,
-                                setErrorMsg
+                                setErrorMsg,
+                                user?.token
                             );
                         }}
                         id="update-password-btn-save"

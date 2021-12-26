@@ -15,6 +15,7 @@ import { useParams } from 'react-router-dom';
  */
 
 export default function DeleteBlogCard() {
+    const user = JSON.parse(localStorage.getItem('user'));
     const { blogName } = useParams();
     const history = useNavigate();
     const [password, setPassword] = useState('');
@@ -84,7 +85,8 @@ export default function DeleteBlogCard() {
                                 email,
                                 blogName,
                                 setErrorMsg,
-                                history
+                                history,
+                                user?.token
                             )
                         }
                         dataTestid="button-reset-password"

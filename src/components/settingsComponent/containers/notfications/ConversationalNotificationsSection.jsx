@@ -4,11 +4,12 @@ import { toggleProperty } from '../../Service';
 export default function ConversationalNotificationsSection() {
     const { conversationalNotification, updateProperty } =
         useContext(SettingsContext);
+        const user = JSON.parse(localStorage.getItem('user'));
 
     return (
         <div className="security" id="section">
             <div className="sub-section-left">
-                <h3>Conversational notifications</h3>
+                <h3 className="conversational-notifications">Conversational notifications</h3>
             </div>
             <div className="sub-section-right">
                 <div className="sub-section-right-up">
@@ -21,7 +22,8 @@ export default function ConversationalNotificationsSection() {
                                     toggleProperty(
                                         'conversationalNotification',
                                         !conversationalNotification,
-                                        updateProperty
+                                        updateProperty,
+                                        user?.token
                                     );
                                 }}
                             ></input>

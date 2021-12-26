@@ -16,6 +16,7 @@ export default function CreateSection({
     // const { setUser } = useContext(UserContext);
     // useRedirect();
     const history = useNavigate();
+    const user = JSON.parse(localStorage.getItem('user'));
     console.log(errorMsg);
     return (
         <div className="security" id="section-create-blog">
@@ -37,7 +38,8 @@ export default function CreateSection({
                             password,
                             errorMsg,
                             setErrorMsg,
-                            history
+                            history,
+                            user?.token
                         );
                     }}
                 ></AuthBtn>

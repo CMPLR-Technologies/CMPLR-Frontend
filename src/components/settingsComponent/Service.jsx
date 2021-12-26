@@ -11,10 +11,15 @@ const camelToSnakeCase = str => {
     }
     return str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
 };
-export function getUserAccount(setSettings) {
+export function getUserAccount(setSettings, token) {
     axios({
         method: 'get',
-        url: `${apiBaseUrl}/settings`
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        url: `${apiBaseUrl}/user/settings`
     })
         .then(res => {
             if (res.data.meta.status_code === 200) {
@@ -34,28 +39,38 @@ export function updateEmailInDb(
     password,
     setErrorMsg,
     updateProperty,
-    setVersionOne
+    setVersionOne,
+    token
 ) {
     if (checkUpdateEmail(newEmail, password, setErrorMsg)) {
         axios({
-            //TODO change to post
-            method: 'get',
-            url: `${apiBaseUrl}/settings/change-email`
-            // data: {
-            //     email: newEmail,
-            //     password: password
-            // }
+            //TODO change to put
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
+            },
+            url: `${apiBaseUrl}/settings/change_email`,
+            data: {
+                email: newEmail,
+                password: password
+            }
         })
             .then(res => {
                 if (res.data.meta.status_code === 200) {
                     updateProperty('email', res.data.response);
                     setVersionOne(true);
-                } else {
-                    setErrorMsg('Invalid email entered');
                 }
             })
-            .catch(() => {
-                setErrorMsg('Error updating email');
+            .catch(err => {
+                if (err.response.status === 422) {
+                    setErrorMsg('Invalid email entered');
+                } else if (err.response.status === 400) {
+                    setErrorMsg('Invalid password entered');
+                } else {
+                    setErrorMsg('Error updating email');
+                }
             });
     }
 }
@@ -65,7 +80,8 @@ export function updatePasswordInDb(
     newPassword,
     confirmNewPassword,
     setVersionOne,
-    setErrorMsg
+    setErrorMsg,
+    token
 ) {
     if (
         checkUpdatePassword(
@@ -76,37 +92,47 @@ export function updatePasswordInDb(
         )
     ) {
         axios({
-            //TODO change to post
-            method: 'get',
-            url: `${apiBaseUrl}/settings/change-password`
-            // data: {
-            //     password: currPassword,
-            //     new_password: newPassword,
-            //     confirm_new_password: confirmNewPassword
-            // }
+            //TODO change to put
+            method: 'put',
+            url: `${apiBaseUrl}/settings/change_password`,
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
+            },
+            data: {
+                password: currPassword,
+                new_password: newPassword,
+                confirm_new_password: confirmNewPassword
+            }
         })
             .then(res => {
                 if (res.data.meta.status_code === 200) {
                     setVersionOne(true);
-                } else {
-                    setErrorMsg('Invalid password entered');
                 }
             })
-            .catch(() => {
-                setErrorMsg('Error updating password');
+            .catch(err => {
+                if (err.response.status === 400) {
+                    setErrorMsg('Current password is not valid');
+                } else setErrorMsg('Error updating password');
             });
     }
 }
 
-export function toggleProperty(property, value, updateProperty) {
+export function toggleProperty(property, value, updateProperty, token) {
     axios({
         //TODO change to put and update endpoint
-        method: 'get',
+        method: 'put',
         //TODO change it to settings
-        url: `${apiBaseUrl}/user/settings2`
-        // data: {
-        //     [camelToSnakeCase(property)]: value
-        // }
+        url: `${apiBaseUrl}/user/settings`,
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        data: {
+            [camelToSnakeCase(property)]: value
+        }
     })
         .then(res => {
             if (res.data.meta.status_code === 200) {
@@ -122,16 +148,22 @@ export function addFilteredTag(
     tag,
     setErrMsg,
     url,
-    filteringType
+    filteringType,
+    token
 ) {
     if (checkAddTag(filteredTags, tag, setErrMsg, filteringType)) {
         axios({
-            //TODO change to post
-            method: 'get',
-            url: `${apiBaseUrl}/user/${url}`
-            // data: {
-            //    filteringType: filteredTags
-            // }
+            //TODO change to put
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
+            },
+            url: `${apiBaseUrl}/user/${url}`,
+            data: {
+                filteringType: filteredTags
+            }
         })
             .then(res => {
                 if (res.data.meta.status_code === 200) {
@@ -153,14 +185,20 @@ export function deleteFilteredTag(
     tag,
     setErrMsg,
     url,
-    filteringType
+    filteringType,
+    token
 ) {
     console.log(tags);
     axios({
-        //TODO change to Delete
-        method: 'get',
+        //TODO change to put
+        method: 'put',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
         //TODO change it to /user/filtered_tags/${tag}
-        url: `${apiBaseUrl}/user/${url}`
+        url: `${apiBaseUrl}/user/filtered_tags/${tag}`
     })
         .then(res => {
             if (res.data.meta.status_code === 200) {

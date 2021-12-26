@@ -7,8 +7,9 @@ import { getUserAccount } from '../../Service';
 import { SettingsContext } from '../../../../contexts/settingsContext/SettingsContext';
 export default function SettingsAccount() {
     const { setSettings } = useContext(SettingsContext);
+    const user = JSON.parse(localStorage.getItem('user'));
     useEffect(() => {
-        getUserAccount(setSettings);
+        getUserAccount(setSettings, user?.token);
     }, []);
 
     return (

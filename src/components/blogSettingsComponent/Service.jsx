@@ -19,60 +19,80 @@ export function createBlog(
     password,
     errorMsg,
     setErrorMsg,
-    history
+    history,
+    token
 ) {
     if (checkCreateBlog(title, url, privacy, password, errorMsg, setErrorMsg)) {
         setErrorMsg([]);
         axios({
             //TODO change to post
-            method: 'get',
-            url: `${apiBaseUrl}/blog`
-            // data: {
-            //     title: title,
-            //     blogName:title,
-            //     privacy: privacy,
-            //     password: password,
-            // }
+            method: 'post',
+            url: `${apiBaseUrl}/blog`,
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
+            },
+            data: {
+                title: title,
+                blogName: title,
+                privacy: privacy,
+                password: password
+            }
         })
             .then(res => {
                 if (res.data.meta.status_code === 201) {
                     console.log(res.data.meta.status_code);
                     history(`/blog/${title}`);
                     setErrorMsg([]);
-                } else if (res.data.meta.status_code === 422) {
-                    setErrorMsg([...errorMsg, 'url already exists']);
                 }
             })
-            .catch(() => {
+            .catch(err => {
+                if (err.response.status === 422) {
+                    setErrorMsg([...errorMsg, 'Blog Name is not available']);
+                }
                 setErrorMsg([...errorMsg, 'error creating blog']);
             });
     }
 }
 
-export function deleteBlog(password, email, blogName, setErrorMsg, history) {
+export function deleteBlog(
+    password,
+    email,
+    blogName,
+    setErrorMsg,
+    history,
+    token
+) {
     if (checkDeleteBlog(password, email, setErrorMsg)) {
         setErrorMsg('');
         axios({
-            //TODO change to delete
-            method: 'get',
+            //TODO change to post
+            method: 'post',
             //TODO change to url: `${apiBaseUrl}/blog/${blogName}`
-            url: `${apiBaseUrl}/blog`
-            // data: {
-            //     email: email,
-            //     password: password
-            // }
+            url: `${apiBaseUrl}/blog/${blogName}`,
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
+            },
+            data: {
+                email: email,
+                password: password
+            }
         })
             .then(res => {
                 if (res.data.meta.status_code === 200) {
                     history('/settings/account');
-                } else if (res.data.meta.status_code === 404) {
-                    setErrorMsg('blog name is not available');
-                } else if (res.data.meta.status_code === 403) {
-                    setErrorMsg('email or password is incorrect');
                 }
             })
-            .catch(() => {
-                setErrorMsg('error deleting blog');
+            .catch(err => {
+                console.log(err.response.status);
+                if (err.response.status === 404) {
+                    setErrorMsg('blog name is not available');
+                } else if (err.response.status === 403) {
+                    setErrorMsg('email or password is incorrect');
+                } else setErrorMsg('error deleting blog');
             });
     }
 }

@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
-import {updateEmailInDb} from '../../Service';
+import { updateEmailInDb } from '../../Service';
 import AuthInput from '../../../partials/AuthInput';
 import AuthBtn from '../../../partials/AuthBtn';
 import { SettingsContext } from '../../../../contexts/settingsContext/SettingsContext';
 import PropTypes from 'prop-types';
 export default function EmailSectionVersion2({ setVersionOne }) {
+    const user = JSON.parse(localStorage.getItem('user'));
     const { email, updateProperty } = useContext(SettingsContext);
     const [newEmail, setNewEmail] = useState(email);
     const [password, setPassword] = useState('');
@@ -59,7 +60,8 @@ export default function EmailSectionVersion2({ setVersionOne }) {
                                 password,
                                 setErrorMsg,
                                 updateProperty,
-                                setVersionOne
+                                setVersionOne,
+                                user?.token
                             );
                         }}
                         id="update-email-btn-save"

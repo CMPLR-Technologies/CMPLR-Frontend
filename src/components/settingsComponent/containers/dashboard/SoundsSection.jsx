@@ -3,6 +3,7 @@ import { SettingsContext } from '../../../../contexts/settingsContext/SettingsCo
 import { toggleProperty } from '../../Service';
 export default function SoundsSection() {
     const { msgSound, updateProperty } = useContext(SettingsContext);
+    const user = JSON.parse(localStorage.getItem('user'));
     return (
         <div className="security" id="section">
             <div className="sub-section-left">
@@ -19,7 +20,8 @@ export default function SoundsSection() {
                                     toggleProperty(
                                         'msgSound',
                                         !msgSound,
-                                        updateProperty
+                                        updateProperty,
+                                        user?.token
                                     );
                                 }}
                             ></input>

@@ -4,6 +4,7 @@ import { toggleProperty } from '../../Service';
 export default function InterfaceSection() {
     const { endlessScrolling, showBadge, updateProperty } =
         useContext(SettingsContext);
+    const user = JSON.parse(localStorage.getItem('user'));
     return (
         <div className="security" id="section">
             <div className="sub-section-left">
@@ -20,7 +21,8 @@ export default function InterfaceSection() {
                                     toggleProperty(
                                         'endlessScrolling',
                                         !endlessScrolling,
-                                        updateProperty
+                                        updateProperty,
+                                        user?.token
                                     );
                                 }}
                             ></input>
@@ -47,7 +49,8 @@ export default function InterfaceSection() {
                                     toggleProperty(
                                         'showBadge',
                                         !showBadge,
-                                        updateProperty
+                                        updateProperty,
+                                        user?.token
                                     );
                                 }}
                             ></input>

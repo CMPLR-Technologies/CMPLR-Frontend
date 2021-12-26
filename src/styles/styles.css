@@ -2884,7 +2884,7 @@ body .settings .container1 .subcontainer #section .sub-section-left {
   min-width: 145px;
   padding: 0 10px;
 }
-body .settings .container1 .subcontainer #section .sub-section-left h3 {
+body .settings .container1 .subcontainer #section .sub-section-left conversational-notifications {
   color: black;
   white-space: nowrap;
 }

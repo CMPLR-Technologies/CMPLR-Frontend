@@ -28,6 +28,7 @@ export function checkUpdatePassword(
     setErrorMsg
 ) {
     console.log('I am in checkUpdatePassword');
+    setErrorMsg('');
     if (currPassword === '') {
         setErrorMsg('Current Password is empty.');
         return false;

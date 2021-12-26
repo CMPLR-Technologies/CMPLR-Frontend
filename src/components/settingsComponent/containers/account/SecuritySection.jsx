@@ -4,6 +4,7 @@ import { toggleProperty } from '../../Service';
 export default function SecuritySection() {
     const { emailActivityCheck, TFA, updateProperty } =
         useContext(SettingsContext);
+        const user = JSON.parse(localStorage.getItem('user'));
 
     return (
         <div className="security" id="section">
@@ -21,7 +22,8 @@ export default function SecuritySection() {
                                     toggleProperty(
                                         'emailActivityCheck',
                                         !emailActivityCheck,
-                                        updateProperty
+                                        updateProperty,
+                                        user?.token
                                     );
                                 }}
                             ></input>
@@ -45,7 +47,7 @@ export default function SecuritySection() {
                                 type="checkbox"
                                 checked={TFA}
                                 onChange={() => {
-                                    toggleProperty('TFA', !TFA, updateProperty);
+                                    toggleProperty('TFA', !TFA, updateProperty, user?.token);
                                 }}
                             ></input>
                             <span className="slider round"></span>

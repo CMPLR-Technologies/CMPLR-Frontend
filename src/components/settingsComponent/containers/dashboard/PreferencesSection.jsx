@@ -4,6 +4,7 @@ import { toggleProperty } from '../../Service';
 export default function PreferencesSection() {
     const { bestStuffFirst, includeFollowedTags, updateProperty } =
         useContext(SettingsContext);
+    const user = JSON.parse(localStorage.getItem('user'));
     return (
         <div className="security" id="section">
             <div className="sub-section-left">
@@ -20,7 +21,8 @@ export default function PreferencesSection() {
                                     toggleProperty(
                                         'bestStuffFirst',
                                         !bestStuffFirst,
-                                        updateProperty
+                                        updateProperty,
+                                        user?.token
                                     );
                                 }}
                             ></input>
@@ -45,7 +47,8 @@ export default function PreferencesSection() {
                                     toggleProperty(
                                         'includeFollowedTags',
                                         !includeFollowedTags,
-                                        updateProperty
+                                        updateProperty,
+                                        user?.token
                                     );
                                 }}
                             ></input>
