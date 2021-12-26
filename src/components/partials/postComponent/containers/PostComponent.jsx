@@ -59,7 +59,6 @@ export default function PostComponent(props) {
     const [mobileView, setMobileView] = useState(false);
     const user = JSON.parse(localStorage.getItem('user'));
     const { blog: blog, post: postData } = post;
-    const blogId = user?.userData?.blog_id;
 
     const {
         date: postTime,
@@ -81,6 +80,7 @@ export default function PostComponent(props) {
     } = blog && blog;
     const [liked, setIsLiked] = useState(isLiked && isLiked);
     const [following, setFollowing] = useState(follower && follower);
+    const blogId = user?.userData?.primary_blog_id;
     const handleBlock = () => {
         block(
             blogName,
@@ -398,7 +398,7 @@ export default function PostComponent(props) {
                                             postTime={postTime}
                                             userBlogName={userBlogName}
                                             blogName={blogName}
-                                            postLink={`${apiBaseUrl}/post/${blogName}/${blogId}/${postId}`} //change if needed
+                                            postLink={`${apiBaseUrl}/${blogName}/${blogId}/posts/${postId}`}
                                             postId={postId}
                                             following={following}
                                             blogUrl={blogUrl}
@@ -432,7 +432,7 @@ export default function PostComponent(props) {
                         <Tags tagsArray={tags} />
                         <Footer
                             isAuthor={userBlogName === blogName}
-                            postLink={`${apiBaseUrl}/post/${postId}`}
+                            postLink={`${apiBaseUrl}/${blogName}/${blogId}/posts/${postId}`}
                             numberNotes={numberNotes}
                             reblogKey={reblogKey}
                             postId={postId}

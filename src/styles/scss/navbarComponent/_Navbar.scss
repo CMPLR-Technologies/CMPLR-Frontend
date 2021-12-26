@@ -796,7 +796,6 @@ $border-radius-primary: 3px;
 .notifications-btn {
     position: relative;
     .notf-date {
-       
         display: flex;
         justify-content: space-between;
         padding: 5px;
@@ -824,7 +823,7 @@ $border-radius-primary: 3px;
     }
     .notifications-container {
         overflow-y: auto;
-       
+
         scrollbar-width: thin;
         width: 380px;
         height: auto;
@@ -910,7 +909,44 @@ $border-radius-primary: 3px;
                     margin: 0 !important;
                 }
             }
+            .blogs-list {
+                background-color: white;
+                display: flex;
+                flex-direction: column;
+                .account-popup-blogs-container {
+                    display: flex;
+                    flex-direction: row;
+                    margin-bottom: 10px;
+                    align-items: center;
+                    .account-popup-blog-head-img {
+                        padding: 0;
+                        margin: 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        img {
+                            width: 30px;
+                            height: 30px;
+                            object-fit: cover;
+                            border-radius: 2px;
+                            margin: 0;
+                            margin-right: 10px;
+                        }
+                    }
+                    .account-popup-blog-head-text {
+                        h1 {
+                            margin-top: 10px;
+                            color: rgba(0, 0, 0);
+                        }
+                        div {
+                            color: rgba(0, 0, 0, 0.65);
+                        }
+                    }
+                }
+            }
             .btn-control {
+                display: flex;
+                align-items: center;
                 background-color: transparent;
                 border: 0;
                 color: inherit;
@@ -918,6 +954,9 @@ $border-radius-primary: 3px;
                 margin: 0;
                 padding: 0;
                 user-select: none;
+                .icon_arrow_carrot_down {
+                    font-size: 2rem;
+                }
                 .caption {
                     font-family: Helvetica Neue, HelveticaNeue, Helvetica, Arial,
                         sans-serif;

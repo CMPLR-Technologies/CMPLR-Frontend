@@ -91,7 +91,7 @@ export default function NotesHeader(props) {
                     <div className="notes-summary-count">
                         {totalLikes ? `${totalLikes} likes , ` : ''}
                         {totalReblogs ? `${totalReblogs} reblogs and ` : ''}
-                        {totalReplys ? `${totalReplys} replys` : ''}
+                        {totalReplys ? `${totalReplys} replys` : ''}{' '}
                     </div>
                 </span>
             </button>

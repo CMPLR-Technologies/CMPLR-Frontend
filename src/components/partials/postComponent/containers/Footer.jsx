@@ -100,7 +100,6 @@ export default function Footer(props) {
             counts?.totalLikes + counts?.totalReblogs + counts?.totalReplys
         );
     }, [counts]);
-    console.log(notesView);
 
     return (
         <>

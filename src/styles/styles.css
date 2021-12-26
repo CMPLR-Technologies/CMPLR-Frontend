@@ -2187,7 +2187,42 @@
 .notifications-btn .notifications-container .control-left .header-flex-cont .avatar-img-mob {
   margin: 0 !important;
 }
+.notifications-btn .notifications-container .control-left .blogs-list {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+.notifications-btn .notifications-container .control-left .blogs-list .account-popup-blogs-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.notifications-btn .notifications-container .control-left .blogs-list .account-popup-blogs-container .account-popup-blog-head-img {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notifications-btn .notifications-container .control-left .blogs-list .account-popup-blogs-container .account-popup-blog-head-img img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 2px;
+  margin: 0;
+  margin-right: 10px;
+}
+.notifications-btn .notifications-container .control-left .blogs-list .account-popup-blogs-container .account-popup-blog-head-text h1 {
+  margin-top: 10px;
+  color: black;
+}
+.notifications-btn .notifications-container .control-left .blogs-list .account-popup-blogs-container .account-popup-blog-head-text div {
+  color: rgba(0, 0, 0, 0.65);
+}
 .notifications-btn .notifications-container .control-left .btn-control {
+  display: flex;
+  align-items: center;
   background-color: transparent;
   border: 0;
   color: inherit;
@@ -2195,6 +2230,9 @@
   margin: 0;
   padding: 0;
   user-select: none;
+}
+.notifications-btn .notifications-container .control-left .btn-control .icon_arrow_carrot_down {
+  font-size: 2rem;
 }
 .notifications-btn .notifications-container .control-left .btn-control .caption {
   font-family: Helvetica Neue, HelveticaNeue, Helvetica, Arial, sans-serif;

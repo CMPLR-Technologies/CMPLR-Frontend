@@ -70,7 +70,7 @@ export default function AuthLinks() {
     useEffect(() => {
         Axios({
             method: 'GET',
-            url: `${apiBaseUrl}/blog/blogName/notifications`,
+            url: `${apiBaseUrl}/blog/${user?.blogName}/notifications`,
             headers: {
                 'content-type': 'application/json',
                 Authorization: `Bearer ${user?.token}`
@@ -137,7 +137,7 @@ export default function AuthLinks() {
                 >
                     <i className="fas fa-bolt"></i>
                 </li>
-                {1 && <Badge num="5" />}
+                {notfArray?.unseen && <Badge num={notfArray?.unseen} />}
                 {openNotificationsPopup && (
                     <Notifications
                         userBlogName={user?.blogName}
