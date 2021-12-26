@@ -2447,6 +2447,72 @@ body #reset-pass-logo {
   text-align: center;
 }
 
+.help-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.help-center-container {
+  width: 100%;
+  min-height: 100vh;
+  max-width: 1280px;
+  padding: calc(10vw + 30px) 5%;
+}
+.help-center-container-anchors {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+  align-items: center;
+}
+.help-center-container-anchors-category {
+  padding: 8px;
+  border-radius: 50px;
+  color: white;
+  text-decoration: none;
+  margin: 5px;
+}
+.help-center-container-wide-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vw;
+  font-size: calc(24px + 3vw);
+  font-weight: 600;
+  color: white;
+}
+.help-center-container-category {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.help-center-container-category-header {
+  color: white;
+  text-decoration: none;
+  border-radius: 10px 10px 0 0;
+  padding: 10px 15px 10px 15px;
+  font-size: calc(2vw + 10px);
+  padding-right: 40px;
+  line-height: 3vw;
+  font-weight: bold;
+}
+.help-center-container-category-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px 15px 10px 15px;
+  justify-content: space-between;
+}
+.help-center-container-category-content-link {
+  width: 300px;
+  color: black;
+  font-size: 16px;
+  padding: 10px 0;
+  text-decoration: none;
+}
+
 @media (max-width: 988px) {
   .overlay-container {
     display: none !important;
