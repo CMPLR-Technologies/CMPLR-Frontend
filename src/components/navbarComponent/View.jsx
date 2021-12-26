@@ -207,6 +207,17 @@ export default function Navbar() {
             .log-out-overlay{
                 background: rgb(${themes[theme].navy});
             }
+            .popup-newmessage{
+                background: rgb(${themes[theme].white});
+            }
+            .popup-newmessage .popup-newmessage-header{
+                background: rgb(${themes[theme].white});
+                color: rgba(${themes[theme].black},.65);
+            }
+            .popup-newmessage .popup-messages-message{
+                background: RGB(${themes[theme].white});
+                border-bottom: 1px solid rgba(${themes[theme].black},.13);
+            }
             .popup {
                 &-header {
                     background-color: $primiry-bg;

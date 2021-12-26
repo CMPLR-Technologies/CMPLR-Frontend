@@ -116,6 +116,9 @@ export default function ChatPopUp() {
     const toggleOption = () => {
         setShowOption(!showOption);
     };
+    const openOption = () => {
+        if (!showOption) setShowOption(true);
+    };
     const close = () => {
         closeChatPopup();
     };
@@ -147,10 +150,10 @@ export default function ChatPopUp() {
                         <a href={receiverName}>{receiverName}</a>
                     </div>
                     <div className="btns">
-                        <button onClick={toggleOption}>
+                        <button onClick={openOption}>
                             <i className="fas fa-ellipsis-h"></i>
                         </button>
-                        <button onClick={partialClose}>
+                        <button className='parClose' onClick={partialClose}>
                             <i className="fas fa-compress-alt"></i>
                         </button>
                         <button onClick={close}>

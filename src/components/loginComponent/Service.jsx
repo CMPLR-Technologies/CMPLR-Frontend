@@ -2,7 +2,14 @@ import { apiBaseUrl } from '../../config.json';
 import Axios from 'axios';
 import { getServiceErrors } from '../registerComponent/Service';
 
-const logUser = (email, password, setUser, setError, setIsPending) => {
+const logUser = (
+    email,
+    password,
+    setUser,
+    setError,
+    setIsPending,
+    setUserBlog
+) => {
     Axios.post(`${apiBaseUrl}/login`, {
         email,
         password
@@ -16,6 +23,7 @@ const logUser = (email, password, setUser, setError, setIsPending) => {
             setUser(user);
             localStorage.setItem('user', JSON.stringify(user));
             setIsPending(false);
+            setUserBlog(user.userData);
         })
         .catch(err => {
             const errorArr = getServiceErrors(err);

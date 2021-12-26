@@ -32,7 +32,7 @@ const useInfiniteScrollingChat = url => {
                         setBlogData(res.data.blog_data);
                         setLoadingFirstPage(true);
                     }
-                    let rev=res.data.messages.reverse();
+                    let rev = res.data.messages.reverse();
                     setData(prevData => {
                         return [...rev, ...prevData];
                     });
@@ -47,12 +47,12 @@ const useInfiniteScrollingChat = url => {
             .catch(err => {
                 if (err.name !== 'AbortError') {
                     setIsPending(false);
+                    console.log('here', err);
                     setError(err.message);
                 }
             });
 
         return () => {
-            console.log("gaaaaa");
             return abortCont.abort();
         };
     }, [url]);

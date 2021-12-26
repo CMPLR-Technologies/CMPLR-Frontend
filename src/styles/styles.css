@@ -912,6 +912,7 @@
 
 .chat-container {
   position: absolute;
+  z-index: 100;
 }
 
 .chat-popup-container {
@@ -935,7 +936,7 @@
   padding: 12px 7px;
   height: 44px;
   width: 100%;
-  background-color: black;
+  background-image: linear-gradient(#282F37, #414242, #404242);
   color: white;
   position: relative;
 }
@@ -977,6 +978,16 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.chat-popup-header .option-model-btns .AuthBtn {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  padding: 6px 15px;
+  width: auto;
+}
+.chat-popup-header .option-model-btns .AuthBtn:last-of-type {
+  margin-left: 15px;
 }
 .chat-popup-header .option-model-btns a {
   margin: 15px 8px 0;
@@ -1092,6 +1103,7 @@
 .chat-popup-chat-messages .message .img {
   width: 30px;
   height: 30px;
+  background-color: inherit;
 }
 .chat-popup-chat-messages .message .img img {
   width: 100%;
@@ -1148,6 +1160,13 @@
   color: #00b8ff;
 }
 
+.chat-popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
 .chat-popup-container.side {
   right: 100px;
 }
@@ -1202,7 +1221,7 @@
 }
 .chat-mobileview .chat-popup-chat {
   margin-top: 54px;
-  height: calc(100vh - 54px - 44px);
+  height: 100%;
   background-color: #fff;
 }
 .chat-mobileview .chat-popup-footer {
@@ -1242,7 +1261,7 @@
     left: 0;
   }
   .chat-popup-container .chat-popup .chat-popup-chat {
-    height: 80vh;
+    height: 100%;
   }
 
   .chat-side-icons {
@@ -1250,6 +1269,15 @@
   }
   .chat-side-icons .chat-side-icon-item {
     display: none;
+  }
+
+  .chat-popup-header .btns .parClose {
+    display: none;
+  }
+
+  .chat-popup-header-option {
+    right: 50px;
+    left: auto;
   }
 
   .option-model .option-model-text div:last-of-type {
@@ -2135,12 +2163,28 @@
 .popup-messages-message-text .sender-up {
   display: flex;
 }
+.popup-messages-message-text .receiver {
+  margin-bottom: 1px;
+}
+.popup-messages-message-text .sender {
+  font-size: 0.875rem;
+  font-weight: 700;
+  justify-content: space-between;
+  letter-spacing: 0.01px;
+  line-height: 1.5;
+  line-height: 21px;
+}
+.popup-messages-message-text .sender-up .sender, .popup-messages-message-text .sender-up .message {
+  font-size: 0.73125rem;
+  font-weight: 700;
+  line-height: 1.44;
+  line-height: 15px;
+}
 .popup-messages-message-text .sender {
   margin-right: 5px;
 }
 .popup-messages-message-text .message {
   font-weight: 400;
-  width: 100%;
   overflow: hidden;
   display: inline-block;
   text-overflow: ellipsis;
@@ -2178,7 +2222,7 @@
 .messagepage-mobile .popup-header {
   position: absolute;
   top: 0;
-  z-index: 1000;
+  z-index: 70;
   left: 0;
   width: 100%;
   height: 54px;
@@ -2189,10 +2233,15 @@
   height: 100%;
 }
 .messagepage-mobile .popup-messages .sender {
-  font-size: 15px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  line-height: 18px;
 }
 .messagepage-mobile .popup-messages .receiver {
-  font-size: 17px;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
 }
 .messagepage-mobile .popup-messages .sender-up {
   display: flex;
@@ -2204,11 +2253,13 @@
 .messagepage-mobile .popup-messages-message {
   font-size: 15px;
 }
-
 .popup-header {
   background-color: white;
 }
 
+.popup-messages .popup-messages-message-img {
+  background: inherit;
+}
 .popup-messages .no-chat {
   align-items: center;
   padding: 15px 0;
@@ -2354,6 +2405,7 @@
     background: #001935;
     position: fixed;
     top: 0;
+    z-index: 50;
   }
   .nav-container {
     max-width: 970px;
@@ -2382,6 +2434,10 @@
     transition: all 0.25s ease;
     width: 100%;
   }
+  .nav .section1 .navbar-menu-mobile a {
+    color: inherit;
+    text-decoration: none;
+  }
   .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-close {
     background: none;
     color: inherit;
@@ -2406,6 +2462,16 @@
     z-index: 1000;
     width: 90vw;
     overflow-y: scroll;
+  }
+  .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu .AuthBtn {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    padding: 6px 15px;
+    width: auto;
+  }
+  .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu .AuthBtn:last-of-type {
+    margin-left: 15px;
   }
   .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu::-webkit-scrollbar {
     display: none;
@@ -2565,6 +2631,15 @@
   .popup-header span i {
     color: white;
     font-size: 24px;
+  }
+  .popup-newmessage {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 54px;
+  }
+  .popup-newmessage-header input {
+    width: 80%;
   }
 }
 /*  @media (min-width: 768px) {
@@ -3811,12 +3886,28 @@ body #reset-pass-logo {
 .popup-messages-message-text .sender-up {
   display: flex;
 }
+.popup-messages-message-text .receiver {
+  margin-bottom: 1px;
+}
+.popup-messages-message-text .sender {
+  font-size: 0.875rem;
+  font-weight: 700;
+  justify-content: space-between;
+  letter-spacing: 0.01px;
+  line-height: 1.5;
+  line-height: 21px;
+}
+.popup-messages-message-text .sender-up .sender, .popup-messages-message-text .sender-up .message {
+  font-size: 0.73125rem;
+  font-weight: 700;
+  line-height: 1.44;
+  line-height: 15px;
+}
 .popup-messages-message-text .sender {
   margin-right: 5px;
 }
 .popup-messages-message-text .message {
   font-weight: 400;
-  width: 100%;
   overflow: hidden;
   display: inline-block;
   text-overflow: ellipsis;
@@ -3854,7 +3945,7 @@ body #reset-pass-logo {
 .messagepage-mobile .popup-header {
   position: absolute;
   top: 0;
-  z-index: 1000;
+  z-index: 70;
   left: 0;
   width: 100%;
   height: 54px;
@@ -3865,10 +3956,15 @@ body #reset-pass-logo {
   height: 100%;
 }
 .messagepage-mobile .popup-messages .sender {
-  font-size: 15px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  line-height: 18px;
 }
 .messagepage-mobile .popup-messages .receiver {
-  font-size: 17px;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
 }
 .messagepage-mobile .popup-messages .sender-up {
   display: flex;
@@ -3880,11 +3976,13 @@ body #reset-pass-logo {
 .messagepage-mobile .popup-messages-message {
   font-size: 15px;
 }
-
 .popup-header {
   background-color: white;
 }
 
+.popup-messages .popup-messages-message-img {
+  background: inherit;
+}
 .popup-messages .no-chat {
   align-items: center;
   padding: 15px 0;
@@ -4030,6 +4128,7 @@ body #reset-pass-logo {
     background: #001935;
     position: fixed;
     top: 0;
+    z-index: 50;
   }
   .nav-container {
     max-width: 970px;
@@ -4058,6 +4157,10 @@ body #reset-pass-logo {
     transition: all 0.25s ease;
     width: 100%;
   }
+  .nav .section1 .navbar-menu-mobile a {
+    color: inherit;
+    text-decoration: none;
+  }
   .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-close {
     background: none;
     color: inherit;
@@ -4082,6 +4185,16 @@ body #reset-pass-logo {
     z-index: 1000;
     width: 90vw;
     overflow-y: scroll;
+  }
+  .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu .AuthBtn {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    padding: 6px 15px;
+    width: auto;
+  }
+  .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu .AuthBtn:last-of-type {
+    margin-left: 15px;
   }
   .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu::-webkit-scrollbar {
     display: none;
@@ -4241,6 +4354,15 @@ body #reset-pass-logo {
   .popup-header span i {
     color: white;
     font-size: 24px;
+  }
+  .popup-newmessage {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 54px;
+  }
+  .popup-newmessage-header input {
+    width: 80%;
   }
 }
 /*  @media (min-width: 768px) {

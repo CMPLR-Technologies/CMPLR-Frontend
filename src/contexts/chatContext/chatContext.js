@@ -17,6 +17,7 @@ export default function ChatContextProvider(props) {
             senderPhoto: user?.userData?.avatar,
             senderShape: user?.userData?.avatar_shape
         };
+    //console.log('f', currBlogObject, user);
     const [currBlog, setCurrBlog] = useState(currBlogObject);
     const [blogs, setBlogs] = useState(null);
 
@@ -35,6 +36,46 @@ export default function ChatContextProvider(props) {
     const [currPopUpOpenChat, setCurrPopUpOpenChat] = useState(null);
     const [sideIconOpenChat, setSideIconOpenChat] = useState([]); //array contains chats side icons opened
 
+    const setUserBlog = userData => {
+        let currBlogObject = null;
+
+        currBlogObject = {
+            senderName: userData?.blog_name,
+            senderId: userData?.primary_blog_id,
+            senderPhoto: userData?.avatar,
+            senderShape: userData?.avatar_shape
+        };
+        //console.log('s', currBlogObject, user);
+
+        setCurrBlog(currBlogObject);
+    };
+    const getUnReadMsgsCount = setUnReadMsgs => {
+        const abortCont = new AbortController();
+        const config = { signal: abortCont.signal };
+        if (user) {
+            config['headers'] = {
+                Authorization: `Bearer ${user?.token}`,
+                Accept: 'application/json'
+            };
+        }
+        let count = 0;
+        let blogId = currBlog?.senderId; //user.userData.id;
+        Axios.get(`${apiBaseUrl}/blog/messaging/${blogId}`, config)
+            .then(res => {
+                if (!res.error) {
+                    setChats(res?.data);
+                    res?.data.forEach(chat => {
+                        if (!chat.is_read) count++;
+                    });
+                    setUnReadMsgs(count);
+                } else {
+                    throw Error(res?.error);
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
     //this function load chats in navbavr dropdown list
     const loadChats = async () => {
         // to DO load real chat by axios request,, Doing it!
@@ -48,7 +89,6 @@ export default function ChatContextProvider(props) {
         }
         let blogId = currBlog?.senderId; //user.userData.id;
         setLoadingChats(true);
-        console.log(user);
 
         Axios.get(`${apiBaseUrl}/blog/messaging/${blogId}`, config)
             .then(res => {
@@ -250,7 +290,9 @@ export default function ChatContextProvider(props) {
                 setConversationMsg,
 
                 deleteChat,
-                clear
+                clear,
+                setUserBlog,
+                getUnReadMsgsCount
             }}
         >
             {props.children}

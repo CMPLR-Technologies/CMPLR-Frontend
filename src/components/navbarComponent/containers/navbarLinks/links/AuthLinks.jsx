@@ -26,26 +26,12 @@ export default function AuthLinks() {
     //const [openPopup, setOpenPopup] = useState(false);
 
     // when the navbar run go loadChat and count the unreadMsgs
-    let { loadChats, chats } = useContext(ChatContext);
+    let { getUnReadMsgsCount } = useContext(ChatContext);
     const [unReadMsgs, setUnReadMsgs] = useState(0);
 
-    useEffect(async () => {
-                // this will clear Timeout
-        // when component unmount like in willComponentUnmount
+    useEffect(() => {
         // and show will not change to true
-        let timer1 = setTimeout(async() => {
-            await loadChats();
-            let count = 0;
-            chats?.forEach(chat => {
-                if (!chat.is_read) count++;
-            });
-            setUnReadMsgs(count);
-        },2000);
-
-        return () => {
-          clearTimeout(timer1);
-        };
-       
+        getUnReadMsgsCount(setUnReadMsgs);
     }, []);
 
     //close dropdown message list
