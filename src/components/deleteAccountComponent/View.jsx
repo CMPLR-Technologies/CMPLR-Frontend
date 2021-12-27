@@ -1,6 +1,10 @@
-import React from 'react';
+import React ,{useEffect}from 'react';
 import DeleteAccountCard from './containers/DeleteAccountCard';
-export default function DeleteAccount() {
+import PropsTypes from 'prop-types';
+export default function DeleteAccount({setWithNav}) {
+    useEffect(() => {
+        setWithNav(false);
+    }, []);
     return (
         <div
             data-testid="delete-account-container"
@@ -11,3 +15,7 @@ export default function DeleteAccount() {
         </div>
     );
 }
+DeleteAccount
+.propTypes = {
+    setWithNav: PropsTypes.func.isRequired,
+};

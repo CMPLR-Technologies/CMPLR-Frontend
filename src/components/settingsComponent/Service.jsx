@@ -59,7 +59,7 @@ export function updateEmailInDb(
         })
             .then(res => {
                 if (res.data.meta.status_code === 200) {
-                    updateProperty('email', res.data.response);
+                    updateProperty('email', res.data.response.email);
                     setVersionOne(true);
                 }
             })

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AuthBtn from '../../../partials/AuthBtn';
 import AuthInput from '../../../partials/AuthInput';
 
@@ -14,13 +14,16 @@ import { useParams } from 'react-router-dom';
  * @returns {component} the component of DeleteBlog
  */
 
-export default function DeleteBlogCard() {
+export default function DeleteBlogCard({ setWithNav }) {
     const user = JSON.parse(localStorage.getItem('user'));
     const { blogName } = useParams();
     const history = useNavigate();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
+    useEffect(() => {
+        setWithNav(false);
+    }, []);
     return (
         <div
             data-testid="delete-account-container"
@@ -106,5 +109,6 @@ export default function DeleteBlogCard() {
     );
 }
 DeleteBlogCard.propTypes = {
-    blogName: PropsTypes.string.isRequired
+    blogName: PropsTypes.string.isRequired,
+    setWithNav: PropsTypes.func.isRequired
 };

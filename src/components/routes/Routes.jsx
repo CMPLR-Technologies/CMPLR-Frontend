@@ -31,7 +31,7 @@ import LikedBlogs from '../likesComponent/View';
 
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
-    //const [withNav, setWithNav] = useState(true);
+    const [withNav, setWithNav] = useState(true);
     const css = `
         body{
             background-color: rgb(${
@@ -43,7 +43,7 @@ export default function MainRoutes() {
     return (
         <>
             <Router>
-                <Navbar />
+                {withNav && <Navbar />}
                 <Routes>
                     <Route path="/tagged/:tag" element={<Hashtag />} />
                     <Route path="/help" element={<HelpCenter />} />
@@ -74,7 +74,7 @@ export default function MainRoutes() {
                     <Route element={<RequireAuth />}>
                         <Route
                             path="/blog/:blogName/delete"
-                            element={<DeleteBlogCard />} //WITHOUTNAV
+                            element={<DeleteBlogCard setWithNav={setWithNav}/>} //WITHOUTNAV
                         />
                         <Route
                             path="/settings"
@@ -98,11 +98,11 @@ export default function MainRoutes() {
                         />
                         <Route
                             path="/account/delete"
-                            element={<DeleteAccount />} //WITHOUTNAV
+                            element={<DeleteAccount setWithNav={setWithNav} />} //WITHOUTNAV
                         />
                         <Route
                             path="/blog/new"
-                            element={<BlogSettings page={'create'} />} //WITHOUTNAV
+                            element={<BlogSettings page={'create'} setWithNav={setWithNav} />} //WITHOUTNAV
                         />
                         <Route path="/following" element={<FollowingPage />} />
                         <Route path="/likes" element={<LikedBlogs />} />

@@ -4,9 +4,12 @@ import CreateSection from './CreateSection';
 import PrivacySection from './PrivacySection';
 import UrlSection from './UrlSection';
 import TextSection from './TextSection';
-
+import PropsTypes from 'prop-types';
 // import { createBlog } from '../../Service';
-export default function CreateBlog() {
+export default function CreateBlog({ setWithNav }) {
+    useEffect(() => {
+        setWithNav(false);
+    }, []);
     const [checkBox, setCheckBox] = useState(false);
     const [errorMsg, setErrorMsg] = useState([]);
     const [title, setTitle] = useState('');
@@ -50,3 +53,6 @@ export default function CreateBlog() {
         </div>
     );
 }
+CreateBlog.propTypes = {
+    setWithNav: PropsTypes.func.isRequired
+};
