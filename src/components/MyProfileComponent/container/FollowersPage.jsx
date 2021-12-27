@@ -38,7 +38,7 @@ export default function FollowersPage(props) {
 
     return (
         <>
-            {!followers?.length && <NoXAvailable x="followers" />}
+            {!followers?.length && !isPending && <NoXAvailable x="followers" />}
 
             {isMsgModalOpen && (
                 <Modal messageHeading={`${blogName} has been blocked`}>
@@ -86,7 +86,7 @@ export default function FollowersPage(props) {
                     />
                 </Modal>
             )}
-            {followers?.length && (
+            {followers?.length !== 0 && (
                 <InfiniteScroll
                     dataLength={followers?.length} //This is important field to render the next data
                     next={handleScroll}

@@ -10,15 +10,23 @@ export default function NotfHeader(props) {
     const [selected, setSelected] = useState(1);
     const [blogs, setBlogs] = useState([]);
     const [blogsView, setBlogsView] = useState(false);
+    const token = JSON.parse(localStorage.getItem('user'))?.token;
     useEffect(() => {
-        axios
-            .get(`${apiBaseUrl}/blogs`)
+        axios({
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                accept: 'application/json',
+                Authorization: `Bearer ${token}`
+            },
+            url: `${apiBaseUrl}/user/info`
+        })
             .then(response => {
-                setBlogs(response.data);
+                setBlogs(response.data.response.blogs);
             })
             .catch(() => {});
     }, []);
-
+    console.log(blogs);
     return (
         <div className="header">
             <div className="control-left">
@@ -60,7 +68,7 @@ export default function NotfHeader(props) {
                                                     key={index}
                                                 >
                                                     <NavLink
-                                                        to={`/blog/${blog?.url}`}
+                                                        to={`/blog/${blog?.blog_name}`}
                                                         className="account-popup-blog-head-img"
                                                     >
                                                         <img
@@ -69,10 +77,10 @@ export default function NotfHeader(props) {
                                                         />
                                                     </NavLink>
                                                     <NavLink
-                                                        to={`/blog/${blog?.url}`}
+                                                        to={`/blog/${blog?.blog_name}`}
                                                         className="account-popup-blog-head-text"
                                                     >
-                                                        <h1>{blog?.url}</h1>
+                                                        <h1>{blog?.blog_name}</h1>
                                                         <div>{blog?.title}</div>
                                                     </NavLink>
                                                 </div>

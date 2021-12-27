@@ -1,75 +1,58 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import MessageItem from './MessageItem';
-export default function Messages() {
-    const messages = [
-        {
-            id: 1,
-            sender: 'gaser',
-            receiver: 'twix123',
-            message: 'hi',
-            chat: true
-        },
-        {
-            id: 2,
-            sender: 'gaser1',
-            receiver: 'twix123',
-            message: 'hi',
-            chat: true
-        },
-        {
-            id: 3,
-            sender: 'gaser2',
-            receiver: 'twix123',
-            message: 'hi',
-            chat: true
-        },
-        {
-            id: 4,
-            sender: 'gaser3',
-            receiver: 'twix123',
-            message: 'hi',
-            chat: true
-        },
-        {
-            id: 5,
-            sender: 'gaser3',
-            receiver: 'twix123',
-            message: 'hi',
-            chat: true
-        },
-        {
-            id: 6,
-            sender: 'gaser3',
-            receiver: 'twix123',
-            message: 'hi',
-            chat: true
-        },
-        {
-            id: 7,
-            sender: 'gaser3',
-            receiver: 'twix123',
-            message: 'hi',
-            chat: true
-        },
-        {
-            id: 8,
-            sender: 'gaser3',
-            receiver: 'twix123',
-            message: 'hi',
-            chat: true
-        }
-    ];
+import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
+import PropTypes from 'prop-types';
+import { LinearProgress } from '@mui/material';
+
+export default function Messages(props) {
+    let { chats, loadingChats, errLoadingChat, currBlog } =
+        useContext(ChatContext);
+    let BlogName = currBlog.senderName;
+    let BlogId = currBlog.senderId;
+    //  let BlogAvatar =
+    //    'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png';
+    // eslint-disable-next-line react/prop-types
+    let { clickMessagePopup, mobile } = props;
     return (
         <div className="popup-messages">
-            {messages.map(message => (
-                <MessageItem
-                    key={message.id}
-                    sender={message.sender}
-                    receiver={message.receiver}
-                    message={message.message}
-                    chat={message.chat}
-                />
-            ))}
+            {errLoadingChat}
+            {loadingChats ? (
+                <LinearProgress />
+            ) : chats && chats.length ? (
+                chats.map((message, index) => (
+                    <MessageItem
+                        key={index}
+                        lastOneSend={
+                            message.from_blog_id === BlogId
+                                ? BlogName
+                                : message.blog_data.blog_name
+                        }
+                        sender={BlogName}
+                        senderId={BlogId}
+                        receiver={message.blog_data.blog_name}
+                        receiverId={message.blog_data.blog_id}
+                        message={message.content}
+                        chat={true}
+                        photo={message.blog_data.avatar}
+                        shape={message.blog_data.avatar_shape}
+                        chatId={index}
+                        clickMessagePopup={clickMessagePopup}
+                        mobile={mobile}
+                        isRead={message.is_read}
+                    />
+                ))
+            ) : (
+                <div className="no-chat">
+                    <div className="icon">
+                        <i className="far fa-comment-dots"></i>
+                    </div>
+                    <div className="text">Talk to a Tumblr</div>
+                </div>
+            )}
         </div>
     );
 }
+PropTypes.propTypes = {
+    clickMessagePopup: PropTypes.func.isRequired,
+    mobile: PropTypes.bool
+};

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../../../../styles/styles.css';
 import SearchResult from './searchBarResults/SearchResult';
+import CircularProgress from '@mui/material/CircularProgress';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { getSearchRes } from '../../Service';
 /**
  * Navbar SearchBar: includes the input field for search
  * @function NavbarSearchBar
@@ -18,6 +20,8 @@ export default function SearchBar(props) {
     const [isHover, setIsHover] = useState(false);
     const [searchWord, setSearchWord] = useState('');
     const [openSearch, setOpenSearch] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [searchResults, setSearchResults] = useState([]);
     const onChange = e => {
         setSearchWord(e.target.value);
     };
@@ -62,11 +66,17 @@ export default function SearchBar(props) {
                     className="search-input"
                     placeholder={placeHolder ? placeHolder : 'Search Tumblr'}
                 ></input>
-                {openSearch && (
+                {loading && (
+                    <div className="loading">
+                        <CircularProgress size={'25px'} />
+                    </div>
+                )}
+                {openSearch &&!loading && (
                     <SearchResult
                         data-testid="search-result"
                         search={searchWord}
-                        theme="normal"
+                        searchResults={searchResults}
+                        closeOpenSearch={closeOpenSearch}
                     />
                 )}
             </div>

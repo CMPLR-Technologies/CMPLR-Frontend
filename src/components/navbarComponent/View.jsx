@@ -4,7 +4,7 @@ import NavbarLinks from './containers/navbarLinks/NavbarLinks';
 import NavbarSection1 from './containers/section1/NavbarSection1';
 import { UserContext } from '../../contexts/userContext/UserContext';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
-
+import ChatView from '../chatComponent/View';
 /**
  * Navbar Main Component
  * @function Navbar
@@ -71,6 +71,9 @@ export default function Navbar() {
         .search.focus {
             background-color:  rgb(${themes[theme].white});
         }
+        .search.focus .search-input::placeholder {
+            color:  rgb(${themes[theme].black},.50);
+        }
         .search.focus .search-input {
             color:  rgb(${themes[theme].black});
         }
@@ -123,7 +126,7 @@ export default function Navbar() {
         }
 
         .messagepage-mobile .popup-messages{
-            background-color: rgb(${themes[theme].navy});
+            background-color: rgb(${themes[theme].white});
         }
         .messagepage-mobile .popup-header{
             background-color: rgb(${themes[theme].navy});
@@ -215,9 +218,11 @@ export default function Navbar() {
     let nav = (
         <div className="nav">
             <div className="nav-container">
+                <ChatView />
                 {/*section 1 contains logo and search bar*/}
                 <NavbarSection1 />
                 {/*section 2 contains links*/}
+                {/*<NavbarLinks isAuth={user ? true : false} />*/}
                 <NavbarLinks isAuth={user ? true : false} />
             </div>
             <style>{css}</style>

@@ -300,29 +300,26 @@ export default function Footer(props) {
                                 </button>
                             </>
                         )}
-                        {isAuthor &&
-                            !draft(
-                                <>
-                                    <button
-                                        onClick={() => setIsModalOpen(true)}
-                                        className="icon"
-                                        data-testid={`delete-footer-icon-ts${postId}`}
-                                    >
-                                        <DeleteBtn />
-                                    </button>
-                                    <button
-                                        data-testid={`edit-footer-icon-ts${postId}`}
-                                        className="icon"
-                                        onClick={() =>
-                                            navigate(
-                                                `/edit/${blogName}/${postId}`
-                                            )
-                                        }
-                                    >
-                                        <EditBtn />
-                                    </button>
-                                </>
-                            )}
+                        {isAuthor && !draft && (
+                            <>
+                                <button
+                                    onClick={() => setIsModalOpen(true)}
+                                    className="icon"
+                                    data-testid={`delete-footer-icon-ts${postId}`}
+                                >
+                                    <DeleteBtn />
+                                </button>
+                                <button
+                                    data-testid={`edit-footer-icon-ts${postId}`}
+                                    className="icon"
+                                    onClick={() =>
+                                        navigate(`/edit/${blogName}/${postId}`)
+                                    }
+                                >
+                                    <EditBtn />
+                                </button>
+                            </>
+                        )}
                     </div>
                 </footer>
             </ClickAwayListener>

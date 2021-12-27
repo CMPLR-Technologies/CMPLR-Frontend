@@ -16,25 +16,31 @@ export default function Sidebar(props) {
             primary: blogUrlIdf,
             secondary: 'khaldon',
             prof: false,
-            link: '/blog/kholdbold'
+            link: `/blog/${blogUrlIdf}`
         },
         {
             primary: 'Posts',
             secondary: postLength ? postLength : '0',
             prof: true,
-            link: '/blog/kholdbold'
+            link: `/blog/${blogUrlIdf}`
+        },
+        {
+            primary: 'Activity',
+            secondary: postLength ? postLength : '0',
+            prof: true,
+            link: `/blog/${blogUrlIdf}/activity`
         },
         {
             primary: 'Followers',
             secondary: followersLength ? followersLength : '0',
             prof: true,
-            link: '/blog/kholdbold/followers'
+            link: `/blog/${blogUrlIdf}/followers`
         },
         {
             primary: 'Drafts',
             secondary: draftsLength ? draftsLength : '0',
             prof: true,
-            link: '/blog/kholdbold/drafts'
+            link: `/blog/${blogUrlIdf}/drafts`
         }
     ];
     return (

@@ -87,6 +87,7 @@ export const handleStepTwo = (
                 setIsPending(false);
             })
             .catch(err => {
+                console.log(err.response);
                 if (err.response) setErrorMessage(err.response.data.error);
                 else setErrorMessage(["Couldn't Sign Up"]);
                 setOpenError(true);

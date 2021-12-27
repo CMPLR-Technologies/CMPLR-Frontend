@@ -11,11 +11,14 @@ import { getFollowersList } from './Service';
 export default function MyProfile() {
     const location = useLocation();
     const [activeSide, setActiveSide] = useState(null);
+    const blogName = JSON.parse(localStorage.getItem('user'))?.blogName;
     useEffect(() => {
         if (location.pathname.includes('/followers')) {
-            setActiveSide(3);
-        } else if (location.pathname.includes('/drafts')) {
             setActiveSide(4);
+        } else if (location.pathname.includes('/drafts')) {
+            setActiveSide(5);
+        } else if (location.pathname.includes('/activity')) {
+            setActiveSide(3);
         } else {
             setActiveSide(2);
         }
@@ -25,9 +28,8 @@ export default function MyProfile() {
         error,
         data: posts,
         isPending
-    } = useInfiniteScrolling(`${apiBaseUrl}/posts/view/kholdbold`); //change to blogName
+    } = useInfiniteScrolling(`${apiBaseUrl}/posts/view/${blogName}`);
 
-    const blogIdentifier = 'kholdbold';
     const [isPendingFollowers, setIsPendingFollowers] = useState(true);
     const [errorFollowers, setErrorFollowers] = useState(false);
     const [followers, setFollowers] = useState([]);
@@ -49,12 +51,13 @@ export default function MyProfile() {
             );
         }
     }, []);
-
+    const drafts = posts.slice();
+    const published = posts.slice();
     const {
         error: errorDrafts,
-        data: drafts,
+        data: draftss,
         isPending: isPendingDrafts
-    } = useInfiniteScrolling(`${apiBaseUrl}/posts/view/kholdbold`); //change to blogName
+    } = useInfiniteScrolling(`${apiBaseUrl}/posts/view/${blogName}`); //change to blogName
     const user = JSON.parse(localStorage.getItem('user'));
     const handleScroll = () => {
         if (hasMore) {
@@ -87,20 +90,36 @@ export default function MyProfile() {
                 ) : location.pathname.includes('/drafts') ? (
                     <PostsPage
                         response={{
-                            posts: drafts,
+                            posts: drafts.filter(
+                                post => post?.post?.state === 'draft'
+                            ),
                             errorDrafts,
                             isPendingDrafts
                         }}
                         draft={true}
                     />
                 ) : (
-                    <PostsPage response={{ posts, error, isPending }} />
+                    <PostsPage
+                        response={{
+                            posts: published.filter(
+                                post => post?.post?.state === 'publish'
+                            ),
+                            error,
+                            isPending
+                        }}
+                        draft={false}
+                    />
                 )}
             </div>
             <Sidebar
-                postLength={posts?.length}
+                postLength={
+                    published.filter(post => post?.post?.state === 'publish')
+                        ?.length
+                }
                 followersLength={totalFollowing}
-                draftsLength={drafts?.length}
+                draftsLength={
+                    drafts.filter(post => post?.post?.state === 'draft')?.length
+                }
                 activeSide={activeSide && activeSide}
             />
         </div>

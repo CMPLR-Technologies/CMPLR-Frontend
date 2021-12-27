@@ -1,18 +1,19 @@
 import './styles/styles.css';
-import {
-    ThemeContextProvider,
-} from './contexts/themeContext/ThemeContext';
+import { ThemeContextProvider } from './contexts/themeContext/ThemeContext';
 import React from 'react';
 import UserContextProvider from './contexts/userContext/UserContext';
+import ChatContextProvider from './contexts/chatContext/chatContext';
 import MainRoutes from './components/routes/Routes';
 
 export default function App() {
     return (
         <UserContextProvider>
             <ThemeContextProvider>
-                <div>
-                    <MainRoutes />
-                </div>
+                <ChatContextProvider>
+                    <div>
+                        <MainRoutes />
+                    </div>
+                </ChatContextProvider>
             </ThemeContextProvider>
         </UserContextProvider>
     );

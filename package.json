@@ -27,6 +27,8 @@
         "react-player": "^2.9.0",
         "react-router-dom": "^6.0.2",
         "react-scripts": "^3.4.4",
+        "react-scroll-to-bottom": "^4.2.0",
+        "timeago-react": "^3.0.4",
         "web-vitals": "^1.0.1"
     },
     "scripts": {
