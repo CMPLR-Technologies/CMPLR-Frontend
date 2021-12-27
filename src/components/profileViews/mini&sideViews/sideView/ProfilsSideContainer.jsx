@@ -12,7 +12,11 @@ export default function ProfilsSideContainer(props) {
     const { data, isPending } = response;
 
     return (
-        <div className="overlay-container" data-testid="OverlayContainer">
+        <div
+            className="overlay-container"
+            data-testid="OverlayContainer"
+            style={{ display: 'flex' }}
+        >
             <div
                 className="overlay-div overlay-no-theme"
                 onClick={() => setShowSideBlog(false)}

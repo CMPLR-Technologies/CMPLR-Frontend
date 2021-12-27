@@ -2765,6 +2765,7 @@ body #reset-pass-logo {
   background-color: white;
   align-items: center;
   width: 280px;
+  position: relative;
 }
 .profile-mini-body {
   display: flex;
@@ -2922,22 +2923,20 @@ body #reset-pass-logo {
   text-align: center;
 }
 
-.profile-full {
+.profile-full-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   color: black;
   height: 100vh;
   margin: auto;
-  overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior-y: auto;
-  width: 100%;
-  position: relative;
+  width: 100vw;
   background-color: white;
+  position: relative;
 }
 .profile-full-header .post-wrapper {
-  left: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -2948,8 +2947,18 @@ body #reset-pass-logo {
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
+  width: 100%;
+  padding: 0 20px;
+}
+.profile-full-header-content-side {
+  margin-left: 30px;
+  margin-top: 10px;
+  width: 300px;
+  font-weight: 700;
+  font-size: 13px;
 }
 .profile-full-header-nav {
+  z-index: 10000;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -2957,6 +2966,7 @@ body #reset-pass-logo {
   padding: 10px;
   position: sticky;
   top: 55px;
+  width: 100%;
   background-color: white;
 }
 .profile-full-header-nav-link {
@@ -2971,8 +2981,10 @@ body #reset-pass-logo {
   border-bottom: 2px solid;
 }
 .profile-full-header-div {
+  width: 100%;
   position: sticky;
-  top: 40px;
+  z-index: 10000;
+  top: -295px;
   background-color: white;
 }
 .profile-full-header-div-bg {
@@ -2986,9 +2998,9 @@ body #reset-pass-logo {
 .profile-full-header-avatar {
   position: absolute;
   left: 50%;
-  top: 350px;
   transform: translateX(-50%) translateY(-50%);
   width: 96px;
+  z-index: 10001;
   height: 96px;
   object-fit: cover;
   border: 5px solid white;
@@ -2999,11 +3011,12 @@ body #reset-pass-logo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px;
+  width: 100%;
   padding-top: 48px;
   padding-bottom: 20px;
 }
 .profile-full-header-text-link {
+  width: 100%;
   text-decoration: none;
   color: black;
 }
@@ -3029,6 +3042,25 @@ body #reset-pass-logo {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   text-align: center;
+}
+
+.profile-following {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+.profile-following .explore-posts {
+  justify-content: center;
+}
+.profile-following .profile-mini {
+  margin: 10px;
+  border: #dddddd solid 2px;
+  border-radius: 4px;
 }
 
 .help-center {

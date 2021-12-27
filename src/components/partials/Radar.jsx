@@ -4,8 +4,9 @@ import PostComponent from './postComponent/containers/PostComponent';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 import { apiBaseUrl } from './../../config.json';
 import useFetch from '../../hooks/useFetch';
+import PropTypes from 'prop-types';
 
-export default function Radar() {
+export default function Radar(noTheme = false) {
     const { error, data, isPending } = useFetch(`${apiBaseUrl}/posts/radar/`);
     const theme = useContext(ThemeContext)[0];
 
@@ -28,9 +29,14 @@ export default function Radar() {
                         otherClass="radar-post"
                         isFollowed={false}
                         userBlogName="kholdbold"
+                        themeDeactivate={noTheme}
                     />
                 </div>
             )}
         </div>
     );
 }
+
+Radar.propTypes = {
+    noTheme: PropTypes.bool
+};
