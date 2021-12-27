@@ -65,11 +65,14 @@ export default function Footer(props) {
         setIsModalOpenN,
         blogPage,
         radar,
+        draft,
+        postSubmit,
         setIsLiked
     } = props;
+    const [liked, setLiked] = useState(isLiked);
     const [isShareListOpen, setIsShareListOpen] = useState(false);
     const [loveFillColor, setLoveFillColor] = useState(
-        `${isLiked ? 'rgb(255,73,47)' : 'gray'}`
+        `${liked ? 'rgb(255,73,47)' : 'gray'}`
     );
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [notesView, setNotesView] = useState(false);
@@ -237,50 +240,67 @@ export default function Footer(props) {
                             </button>
                         )}
                         {!blogPage && !radar && (
-                            <button
-                                onClick={() => {
-                                    handleNote();
-                                }}
-                                className="icon"
-                                data-testid={`note-icon-footer-ts${postId}`}
-                            >
-                                <Note />
-                            </button>
+                            <>
+                                {!draft && (
+                                    <button
+                                        onClick={() => {
+                                            handleNote();
+                                        }}
+                                        className="icon"
+                                        data-testid={`note-icon-footer-ts${postId}`}
+                                    >
+                                        <Note />
+                                    </button>
+                                )}
+                                {draft && (
+                                    <button
+                                        data-testid={`edit-footer-icon-ts${postId}`}
+                                        className="icon post-icon"
+                                        onClick={postSubmit}
+                                    >
+                                        Post
+                                    </button>
+                                )}
+                            </>
                         )}
-                        <button
-                            onClick={() => {
-                                setNoteType('reblog');
-                                navigate(
-                                    `/reblog/${blogName}/${postId}/${reblogKey}`
-                                );
-                            }}
-                            className="icon"
-                            data-testid={`reblog-icon-footer${postId}`}
-                        >
-                            <ReblogBtn />
-                        </button>
-                        <button
-                            onClick={() => {
-                                !isLiked
-                                    ? handleLikePost(
-                                          setLoveFillColor,
-                                          setIsLiked,
-                                          postId,
-                                          user?.token
-                                      )
-                                    : handleUnlikePost(
-                                          setLoveFillColor,
-                                          setIsLiked,
-                                          postId,
-                                          user?.token
-                                      );
-                            }}
-                            className="icon "
-                            data-testid={`love-icon-footer${postId}`}
-                        >
-                            <LoveBtn fillColor={loveFillColor} />
-                        </button>
-                        {isAuthor && (
+                        {!draft && (
+                            <>
+                                <button
+                                    onClick={() => {
+                                        setNoteType('reblog');
+                                        navigate(
+                                            `/reblog/${blogName}/${postId}/${reblogKey}`
+                                        );
+                                    }}
+                                    className="icon"
+                                    data-testid={`reblog-icon-footer${postId}`}
+                                >
+                                    <ReblogBtn />
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        !isLiked
+                                            ? handleLikePost(
+                                                  setLoveFillColor,
+                                                  setIsLiked,
+                                                  postId,
+                                                  user?.token
+                                              )
+                                            : handleUnlikePost(
+                                                  setLoveFillColor,
+                                                  setIsLiked,
+                                                  postId,
+                                                  user?.token
+                                              );
+                                    }}
+                                    className="icon "
+                                    data-testid={`love-icon-footer${postId}`}
+                                >
+                                    <LoveBtn fillColor={loveFillColor} />
+                                </button>
+                            </>
+                        )}
+                        {isAuthor && !draft && (
                             <>
                                 <button
                                     onClick={() => setIsModalOpen(true)}

@@ -8,6 +8,11 @@ import Sidebar from './containers/Sidebar';
 
 export default function Dashboard() {
     const [pageNumber, setPageNumber] = useState(1);
+    // eslint-disable-next-line no-unused-vars
+    const [response, setResponse] = useState([]);
+    // eslint-disable-next-line no-unused-vars
+    const user = JSON.parse(localStorage.getItem('user'));
+    const blogIdentifier = 'yahia.tumbler.com';
     const {
         error,
         data: posts,

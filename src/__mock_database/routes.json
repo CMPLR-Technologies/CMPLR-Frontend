@@ -3,7 +3,15 @@
     "/settings/*": "/$1",
     "/user/*": "/$1",
     "/post/*": "/$1",
+    "/posts/view/*": "/$1",
     "/posts/*": "/$1",
+<<<<<<< HEAD
     "/post/:blog_identifier/*": "/$1"
 }
 
+=======
+    "/post/:blog_identifier/*": "/$1",
+    "blog/:blog_identifier/": "/$1",
+    "blog/*/*": "$1"
+}
+>>>>>>> 2a4014d2e65c783747c2b07e0cd1a18a0c095716

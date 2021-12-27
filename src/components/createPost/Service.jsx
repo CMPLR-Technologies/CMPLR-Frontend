@@ -94,7 +94,7 @@ export function reblogPost(post, comment, navigate, token) {
             reblog_key: post['reblog_key'],
             comment: comment
         }
-    })
+    })  
         .then(res => {
             navigate('/dashboard');
             return res;

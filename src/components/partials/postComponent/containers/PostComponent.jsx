@@ -17,6 +17,8 @@ import {
     themes
 } from '../../../../contexts/themeContext/ThemeContext';
 import { apiBaseUrl } from '../../../../config.json';
+import { handlePosting } from '../../../createPost/Service';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import ProfileMiniHoverWrapper from '../../../profileViews/mini&sideViews/View';
 /**
@@ -50,7 +52,8 @@ export default function PostComponent(props) {
         reblog,
         padding,
         blogPage,
-        themeDeactivate
+        themeDeactivate,
+        draft
     } = props;
     const theme = useContext(ThemeContext)[0];
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);
@@ -79,6 +82,23 @@ export default function PostComponent(props) {
         blog_url: blogUrl,
         follower: follower
     } = blog && blog;
+
+    const navigate = useNavigate();
+
+    const postSubmit = () => {
+        const dataBody = {
+            title: title,
+            content: content,
+            state:'publish',
+            type: 'text',
+            // eslint-disable-next-line camelcase
+            blog_name: user?.blogName,
+            tags: tags
+        };
+
+        handlePosting(dataBody, navigate, user?.token);
+    };
+
     const [liked, setIsLiked] = useState(isLiked && isLiked);
     const [following, setFollowing] = useState(follower && follower);
     const blogId = user?.userData?.primary_blog_id;
@@ -114,7 +134,7 @@ export default function PostComponent(props) {
 
     window.addEventListener('resize', () => chaneMobileView(setMobileView));
     const css = `
-    .post-container, .list{
+    .post-container, .post-container.list{
         background-color:rgb(${themes[theme].white});
         color:rgb(${themes[theme].black})
     }
@@ -132,6 +152,8 @@ export default function PostComponent(props) {
 
     .options-btn .options .list{
         box-shadow: 0 0 15px 0 rgba(0,0,0, 0.5);
+        background-color:rgb(${themes[theme].white});
+        
     }
 
     .share-options .options .list{
@@ -410,7 +432,7 @@ export default function PostComponent(props) {
                                             postTime={postTime}
                                             userBlogName={userBlogName}
                                             blogName={blogName}
-                                            postLink={`${apiBaseUrl}/${blogName}/${blogId}/posts/${postId}`}
+                                            postLink={`${apiBaseUrl}/blog/view/${blogName}/${blogId}/posts/${postId}`}
                                             postId={postId}
                                             following={following}
                                             blogUrl={blogUrl}
@@ -427,7 +449,7 @@ export default function PostComponent(props) {
                         </div>
                     </header>
                 )}
-                {state === 'publish' && (
+                {
                     <>
                         <TextPost
                             title={title && title}
@@ -435,7 +457,7 @@ export default function PostComponent(props) {
                         />
                         <Divider />
                     </>
-                )}
+                }
                 {!reblog && (
                     <div
                         data-testid="post-footer-cont-ts"
@@ -444,7 +466,7 @@ export default function PostComponent(props) {
                         <Tags tagsArray={tags} />
                         <Footer
                             isAuthor={userBlogName === blogName}
-                            postLink={`${apiBaseUrl}/${blogName}/${blogId}/posts/${postId}`}
+                            postLink={`${apiBaseUrl}/blog/view/${blogName}/${blogId}/posts/${postId}`}
                             numberNotes={numberNotes}
                             reblogKey={reblogKey}
                             postId={postId}
@@ -454,7 +476,9 @@ export default function PostComponent(props) {
                             setIsModalOpenN={setIsModalOpen}
                             blogPage={blogPage}
                             radar={radar}
-                            isLiked={liked}
+                            isLiked={isLiked}
+                            draft={draft}
+                            postSubmit={postSubmit}
                             setIsLiked={setIsLiked}
                         />
                     </div>

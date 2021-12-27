@@ -34,14 +34,10 @@ export default function NavbarMenuMobile(props) {
             url: `${apiBaseUrl}/user/info`
         })
             .then(response => {
-                let d = response.data.response;
-                console.log(d);
                 setUserInfo(response.data.response);
-                console.log(userInfo);
             })
             .catch(() => {});
     }, []);
-    console.log(userInfo);
 
     let { isOpenSetting, openSetting, closeMenuPar, active } = props;
 

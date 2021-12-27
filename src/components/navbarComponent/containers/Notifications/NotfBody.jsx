@@ -71,15 +71,20 @@ export default function NotfBody(props) {
                                     : notf['type'] === 'answer'
                                     ? 'answerd your ask: '
                                     : notf['type'] === 'follow'
-                                    ? 'followed your blog'
+                                    ? 'started following your blog'
                                     : null
                             }`
                         }}
                     ></span>
-                    <span style={{ marginLeft: '5px' }}>
-                        {' '}
-                        {notf['post_ask_answer_content']}
-                    </span>
+                    {notf['post_ask_answer_content'] ? (
+                        <span
+                            className="post-ask-answer-content"
+                            style={{ marginLeft: '5px' }}
+                            dangerouslySetInnerHTML={{
+                                __html: `${notf['post_ask_answer_content']}`
+                            }}
+                        ></span>
+                    ) : null}
                 </div>
                 <div className="type">
                     {notf['type'] === 'like' ? (

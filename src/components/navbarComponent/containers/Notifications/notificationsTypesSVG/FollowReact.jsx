@@ -2,7 +2,12 @@ import React from 'react';
 
 export default function FollowReact() {
     return (
-        <svg viewBox="0 0 16 16" width="14" height="14" className='follow-r-svg'>
+        <svg
+            viewBox="0 0 16 16"
+            width="14"
+            height="14"
+            className="follow-r-svg"
+        >
             <circle cx="8" cy="8" r="8"></circle>
             <path
                 fill="#ffffff"

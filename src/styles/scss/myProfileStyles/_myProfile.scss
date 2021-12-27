@@ -1,0 +1,266 @@
+.myprofile-container {
+    display: flex;
+    box-sizing: border-box;
+    max-width: 990px;
+    padding: 0 8px;
+    width: 100%;
+    margin: 50px auto 0;
+}
+.follow-search-result {
+    color: white;
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+.search-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 540px;
+    height: 34px;
+    align-items: center;
+    margin-left: 85px;
+    .followers-num {
+        color: white;
+        font-size: 1.2rem;
+        flex: 1;
+    }
+    .search {
+        transition: all 0.3s ease-in-out;
+        display: flex;
+        align-items: center;
+        //background-color: rgba(255, 255, 255, 0.25);
+        border-radius: $border-radius-primary;
+        height: 36px;
+        position: relative;
+        flex: 2;
+        &-icon {
+            display: none;
+        }
+        &-input {
+            background-color: inherit;
+            border-radius: 0 $border-radius-primary $border-radius-primary 0;
+            //color: $secondary-color;
+            padding: 10px 0;
+            padding-left: 10px;
+            //font-size: 15px;
+            outline: none;
+            box-shadow: none;
+            -webkit-appearance: none;
+            border: none;
+            font-weight: 550;
+            flex: 2;
+
+            &::placeholder {
+                //color: #bcc3ca;
+                font-size: 17px;
+                transform: translate3d(0, 1.5px, 0);
+                font-weight: 400;
+            }
+        }
+    }
+}
+
+.settings {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    max-width: 990px;
+    padding: 0 8px;
+    align-items: end;
+    .container2 {
+        display: flex;
+        flex-direction: column;
+        margin-left: 30px;
+        width: 320px;
+        .wrapper {
+            margin-bottom: 38px;
+            width: 100%;
+            .list {
+                color: white;
+                font-size: 1.125rem;
+                font-weight: 400;
+                line-height: 1.333;
+                padding-left: 0;
+                width: 100%;
+                list-style: none;
+                margin: 0;
+                margin-bottom: 38px;
+                .list-item {
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+                    padding: 8px 12px;
+                    font-size: 1.2rem;
+                    &:hover {
+                        background-color: rgba(255, 255, 255, 0.07);
+                    }
+
+                    &.clicked {
+                        background-color: rgba(255, 255, 255, 0.07);
+                    }
+                    .list-item-anchor {
+                        color: #001935;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        text-decoration: none;
+                        &.prof {
+                            flex-direction: row !important;
+                            align-items: center;
+                        }
+                        .list-item-span {
+                            color: white;
+                            font-size: 1.5rem;
+                            font-weight: 400;
+                            line-height: 1.8;
+                        }
+                    }
+
+                    .list-item-anchor-small {
+                        color: rgba(255, 255, 255, 0.65);
+                        font-size: 13px;
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+        .blog {
+            margin-bottom: 0;
+            .blog-h1 {
+                color: white;
+                padding-bottom: 5px;
+                border-bottom: 1.5px solid rgba(white, 0.1);
+            }
+            .list-item {
+                padding: 0;
+                .temp {
+                    display: flex;
+                    justify-content: space-between;
+                    position: relative;
+                    width: 100%;
+                    .blog-item-anchor {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+
+                        .icon-text {
+                            align-items: center;
+                            display: flex;
+                            justify-content: space-between;
+                            .icon {
+                                margin-right: 11px;
+                                position: relative;
+                            }
+                            .text {
+                                position: relative;
+                                text-align: left;
+                                word-break: break-word;
+                                .text-up {
+                                    align-items: center;
+                                    display: flex;
+                                    font-size: 0.875rem;
+                                    font-weight: 700;
+                                    line-height: 1.5;
+                                    .text-up-span {
+                                        -webkit-box-orient: vertical;
+                                        -webkit-line-clamp: 1;
+                                        display: -webkit-box;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                    }
+                                }
+                                .text-down {
+                                    -webkit-box-orient: vertical;
+                                    -webkit-line-clamp: 1;
+                                    display: -webkit-box;
+                                    font-family: var(--font-family);
+                                    font-size: 0.875rem;
+                                    font-weight: 400;
+                                    line-height: 1.5;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                }
+                            }
+                        }
+                        .star {
+                            align-items: center;
+                            display: flex;
+                            padding-right: 14px;
+                            position: relative;
+                            text-align: right;
+                            margin-left: 40px;
+                            .star-svg {
+                                text-align: right;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.followers-list {
+    background-color: white;
+    width: 540px;
+    display: flex;
+    height: auto;
+    margin-top: 3%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 85px;
+    .follower {
+        height: 60px;
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        .left-control-group {
+            display: flex;
+            align-items: center;
+            position: relative;
+            .options-btn {
+                margin-left: 10px;
+                margin-right: 0;
+            }
+        }
+        .name {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding-left: 3%;
+            line-height: 1.33;
+            .primary {
+                font-weight: 700;
+                font-size: 1rem;
+            }
+            .secondary {
+                color: rgba(0, 0, 0, 0.65);
+                font-size: 0.875rem;
+            }
+        }
+        .avatar-img {
+            width: 37px;
+            height: 37px;
+        }
+    }
+}
+
+.not-available {
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    color: rgba(255, 255, 255, 0.65);
+    display: flex;
+    flex-direction: column;
+    font-size: 1.3125rem;
+    font-weight: 700;
+    justify-content: center;
+    line-height: 1.5238;
+    padding: 100px 20px;
+    text-align: center;
+    width: 540px;
+    margin-left: 85px;
+}

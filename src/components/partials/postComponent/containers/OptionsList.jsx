@@ -14,6 +14,7 @@ export default function OptionsList(props) {
         setFollowing,
         setIsModalOpen,
         setIsOptionListOpen,
+        followersPage,
         radar
     } = props;
     const user = JSON.parse(localStorage.getItem('user'));
@@ -25,29 +26,33 @@ export default function OptionsList(props) {
             className={`options ${radar ? 'options-radar' : ''}`}
         >
             <div data-testid="list-header-ts" className="list">
-                <a
-                    data-testid="post-time-ts"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="post-time"
-                >
-                    <span
-                        data-testid={`post-time-text-ts${postId}`}
-                        className="post-time-text"
+                {!followersPage && (
+                    <a
+                        data-testid="post-time-ts"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="post-time"
                     >
-                        Posted - {postTime}
-                    </span>
-                </a>
+                        <span
+                            data-testid={`post-time-text-ts${postId}`}
+                            className="post-time-text"
+                        >
+                            Posted - {postTime}
+                        </span>
+                    </a>
+                )}
                 {userBlogName !== blogName && (
                     <>
-                        <div
-                            onClick={() => copyLink(postLink, postId)}
-                            className="opt-btn copy-btn"
-                            id={`copy-btn${postId}`}
-                            data-testid={`copy-btn-header-ts${postId}`}
-                        >
-                            Copy Link
-                        </div>
+                        {!followersPage && (
+                            <div
+                                onClick={() => copyLink(postLink, postId)}
+                                className="opt-btn copy-btn"
+                                id={`copy-btn${postId}`}
+                                data-testid={`copy-btn-header-ts${postId}`}
+                            >
+                                Copy Link
+                            </div>
+                        )}
                         {following && (
                             <div
                                 onClick={() =>
@@ -73,7 +78,9 @@ export default function OptionsList(props) {
                         </div>
                         <div
                             onClick={() => {
-                                setIsOptionListOpen(false);
+                                followersPage
+                                    ? setIsOptionListOpen(-1)
+                                    : setIsOptionListOpen(false);
                             }}
                             className="opt-btn close-btn"
                             data-testid={`close-btn-header-ts${postId}`}
