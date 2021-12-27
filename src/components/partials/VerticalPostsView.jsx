@@ -13,6 +13,7 @@ export default function VerticalPostsView(props) {
         isRadar,
         blogPage
     } = props;
+    const user = JSON.parse(localStorage.getItem('user'));
 
     const observer = useRef();
     const lastPostElementRef = useCallback(
