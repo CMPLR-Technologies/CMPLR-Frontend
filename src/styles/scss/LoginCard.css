@@ -1,7 +1,7 @@
 .LoginCard {
   width: 300px;
   height: 100%;
-  padding-top: 4rem;
+  padding-top: 1rem;
 }
 
 .LoginCard .LoginCard__a {
@@ -12,6 +12,11 @@
   color: white;
   text-decoration: none;
   text-align: center;
+}
+
+.trending-link {
+  margin-bottom: 30px;
+  cursor: pointer;
 }
 
 .LoginCard__logo-container {
@@ -26,7 +31,7 @@
   font-size: 6rem;
   color: white;
   font-weight: bold;
-  font-family: "Bookman Old Style Regular";
+  font-family: 'Bookman Old Style Regular';
 }
 
 .login-form p {
@@ -43,6 +48,16 @@
   display: none;
 }
 
+.load-circle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 900px) {
   .LoginCard__stores-logos {
     width: 300px;
@@ -52,7 +67,7 @@
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    margin-top: 30px;
+    margin: 35px 0;
   }
   .LoginCard__stores-logos img {
     width: 100%;

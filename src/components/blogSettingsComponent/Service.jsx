@@ -25,7 +25,6 @@ export function createBlog(
     if (checkCreateBlog(title, url, privacy, password, errorMsg, setErrorMsg)) {
         setErrorMsg([]);
         axios({
-            //TODO change to post
             method: 'post',
             url: `${apiBaseUrl}/blog`,
             headers: {
@@ -42,7 +41,6 @@ export function createBlog(
         })
             .then(res => {
                 if (res.data.meta.status_code === 201) {
-                    console.log(res.data.meta.status_code);
                     history(`/blog/${title}`);
                     setErrorMsg([]);
                 }
@@ -65,11 +63,11 @@ export function deleteBlog(
     token
 ) {
     if (checkDeleteBlog(password, email, setErrorMsg)) {
+        //TODO if its the primary key clear local storage and refresh
+        //TODO If its not the primary key then just delete the blog and return to settings
         setErrorMsg('');
         axios({
-            //TODO change to post
             method: 'post',
-            //TODO change to url: `${apiBaseUrl}/blog/${blogName}`
             url: `${apiBaseUrl}/blog/${blogName}`,
             headers: {
                 'Content-Type': 'application/json',
@@ -87,7 +85,6 @@ export function deleteBlog(
                 }
             })
             .catch(err => {
-                console.log(err.response.status);
                 if (err.response.status === 404) {
                     setErrorMsg('blog name is not available');
                 } else if (err.response.status === 403) {
@@ -95,4 +92,50 @@ export function deleteBlog(
                 } else setErrorMsg('error deleting blog');
             });
     }
+}
+export function getBlogSettings(setBlogs, token, blogName) {
+    axios({
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        url: `${apiBaseUrl}/blog/${blogName}/settings`
+    })
+        .then(res => {
+            if (res.data.meta.status === 200) {
+                setBlogs(res.data.response[0][0]);
+            }
+        })
+        .catch(() => {});
+}
+
+export function updatePropertyInDb(
+    token,
+    blogName,
+    updateProperty,
+    property,
+    propertyValue
+) {
+    axios({
+        method: 'put',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        url: `${apiBaseUrl}/blog/${blogName}/settings/save`,
+        data: {
+            [camelToSnakeCase(property)]: propertyValue
+        }
+    })
+        .then(res => {
+            if (res.data.meta.status === 200) {
+                updateProperty(property, propertyValue);
+            }
+        })
+        .catch(() => {
+            console.log(camelToSnakeCase(property));
+        });
 }

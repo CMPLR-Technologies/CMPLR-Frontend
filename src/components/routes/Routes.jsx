@@ -14,7 +14,8 @@ import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
 import DeleteAccount from '../deleteAccountComponent/View';
 import BlogSettings from '../blogSettingsComponent/View';
-import DeleteBlogCard from '../blogSettingsComponent/containers/deleteBlog/DeleteBlog';
+import DeleteBlog from '../blogSettingsComponent/containers/deleteBlog/DeleteBlog';
+import CreateBlog from '../blogSettingsComponent/containers/createBlog/CreateBlog';
 
 import ProfileFull from '../profileViews/fullView/View';
 
@@ -74,7 +75,7 @@ export default function MainRoutes() {
                     <Route element={<RequireAuth />}>
                         <Route
                             path="/blog/:blogName/delete"
-                            element={<DeleteBlogCard setWithNav={setWithNav}/>} //WITHOUTNAV
+                            element={<DeleteBlog setWithNav={setWithNav} />} //WITHOUTNAV
                         />
                         <Route
                             path="/settings"
@@ -102,7 +103,11 @@ export default function MainRoutes() {
                         />
                         <Route
                             path="/blog/new"
-                            element={<BlogSettings page={'create'} setWithNav={setWithNav} />} //WITHOUTNAV
+                            element={<CreateBlog setWithNav={setWithNav} />} //WITHOUTNAV
+                        />
+                        <Route
+                            path="/blog/:blogName/settings"
+                            element={<BlogSettings />}
                         />
                         <Route path="/following" element={<FollowingPage />} />
                         <Route path="/likes" element={<LikedBlogs />} />

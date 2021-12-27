@@ -1,6 +1,6 @@
 .LoginView {
-  width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -14,8 +14,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-family: "Favorit", Arial, Helvetica, sans-serif;
+  font-family: 'Favorit', Arial, Helvetica, sans-serif;
   background: url("../assets/backgrounds/b1.jpg");
+  height: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;

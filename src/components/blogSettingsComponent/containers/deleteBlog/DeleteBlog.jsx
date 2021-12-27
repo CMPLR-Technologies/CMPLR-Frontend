@@ -14,7 +14,7 @@ import { useParams } from 'react-router-dom';
  * @returns {component} the component of DeleteBlog
  */
 
-export default function DeleteBlogCard({ setWithNav }) {
+export default function DeleteBlog({ setWithNav }) {
     const user = JSON.parse(localStorage.getItem('user'));
     const { blogName } = useParams();
     const history = useNavigate();
@@ -108,7 +108,7 @@ export default function DeleteBlogCard({ setWithNav }) {
         </div>
     );
 }
-DeleteBlogCard.propTypes = {
+DeleteBlog.propTypes = {
     blogName: PropsTypes.string.isRequired,
     setWithNav: PropsTypes.func.isRequired
 };

@@ -2,11 +2,15 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  width: 100%;
   padding: 15px 10px;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
 }
 
 .AuthFooter a {

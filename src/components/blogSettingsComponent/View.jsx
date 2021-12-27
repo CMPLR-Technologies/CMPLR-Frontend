@@ -1,10 +1,12 @@
 import React from 'react';
-import CreateBlog from './containers/createBlog/CreateBlog';
-export default function blogSettings({ page, setWithNav }) {
-    const currentPage = page;
+import BlogSettingsCard from './containers/blogSettings/BlogSettingsCard';
+import BlogsContextProvider from '../../contexts/blogSettingsContext/BlogSettingsContext';
+export default function BlogSettings() {
     return (
         <div className="settings">
-            {currentPage === 'create' && <CreateBlog setWithNav={setWithNav} />}
+            <BlogsContextProvider>
+                <BlogSettingsCard />
+            </BlogsContextProvider>
         </div>
     );
 }

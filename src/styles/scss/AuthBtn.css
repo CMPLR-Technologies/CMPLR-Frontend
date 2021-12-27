@@ -11,14 +11,40 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1.5;
   background-color: white;
-  font-family: "Favorit", Arial, Helvetica, sans-serif;
-  color: black;
+  font-family: 'Favorit', Arial, Helvetica, sans-serif;
   text-decoration: none;
   cursor: pointer;
   border: none;
   border-radius: 3px;
+}
+
+.AuthBtnGoogle {
+  opacity: 1 !important;
+  width: 300px;
+  padding: 10px 15px;
+  margin-top: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1.5 !important;
+  color: black !important;
+  background-color: white !important;
+  font-family: 'Favorit', Arial, Helvetica, sans-serif !important;
+  text-decoration: none;
+  cursor: pointer !important;
+  border: none !important;
+  border-radius: 3px !important;
 }
 /*# sourceMappingURL=AuthBtn.css.map */
