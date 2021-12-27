@@ -883,8 +883,8 @@
   justify-content: center;
   height: auto;
   position: absolute;
-  top: -5px;
-  left: 0;
+  bottom: 0;
+  left: -55px;
   height: auto;
   width: 250px;
   height: auto;
@@ -917,6 +917,17 @@
 .like-btn {
   transform: translateZ(0);
   transition: fill 0.25s;
+}
+
+.copy-link-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.copy-link-cont .link-copied {
+  margin-left: 5px;
+  font-size: 1em;
+  font-weight: 700;
 }
 
 .switch {
@@ -2636,6 +2647,233 @@ input:checked + .slider:before {
     font-size: 24px;
   }
 }
+.badge {
+  position: absolute;
+  transform: scale(1);
+  align-items: center;
+  border-radius: 4px;
+  display: flex;
+  font-size: 0.78125rem;
+  font-weight: 700;
+  height: 17px;
+  justify-content: center;
+  left: 100%;
+  line-height: 1.44;
+  min-width: 11px;
+  padding: 0 3px;
+  text-decoration: none;
+  top: -40%;
+}
+
+.notifications-btn {
+  position: relative;
+}
+.notifications-btn .notf-date {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  font-size: 0.9rem;
+}
+.notifications-btn .notf-date .duration {
+  font-weight: 600;
+}
+.notifications-btn .notf-body {
+  max-height: 500px;
+}
+.notifications-btn .notf-body .notf-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+.notifications-btn .notf-body .notf-content .post-snap * {
+  font-size: 14px !important;
+  display: inline !important;
+}
+.notifications-btn .notifications-container {
+  scrollbar-width: thin;
+  width: 380px;
+  height: auto;
+  max-height: 580px;
+  position: absolute;
+  transform: translate3d(-232px, 18px, 0px);
+  display: flex;
+  flex-direction: column;
+}
+.notifications-btn .notifications-container .notf-body-cont {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  width: 380px;
+  height: auto;
+  max-height: 580px;
+  display: flex;
+  flex-direction: column;
+  scrollbar-color: #555555 #060022;
+}
+.notifications-btn .notifications-container .see-everything-btn a {
+  text-decoration: none;
+}
+.notifications-btn .notifications-container .see-everything-btn .see-everything {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.07);
+}
+.notifications-btn .notifications-container .relative {
+  display: flex;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 10px;
+  position: relative;
+  max-height: 60px;
+}
+.notifications-btn .notifications-container .noter-avatar {
+  position: absolute;
+  width: 24px;
+  height: 30px;
+}
+.notifications-btn .notifications-container .noter-avatar .noter-avatar-img {
+  width: 24px;
+  height: 24px;
+}
+.notifications-btn .notifications-container .notes-summary-avatars-react {
+  margin-right: 10px;
+  width: 24px;
+  height: 24px;
+}
+.notifications-btn .notifications-container .summary-avatar {
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+}
+.notifications-btn .notifications-container .avatar-react {
+  bottom: 13px;
+  display: flex;
+  height: 14px;
+  position: absolute;
+  left: 24px;
+  width: 14px;
+}
+.notifications-btn .notifications-container .header {
+  position: unset !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+  border-radius: 3px 3px 0 0;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 1rem;
+  font-weight: 700;
+  justify-content: space-between;
+  line-height: 1.5;
+  padding: 15px 15px 8px;
+  width: 100%;
+  padding-bottom: 0;
+  flex-direction: column;
+}
+.notifications-btn .notifications-container .notf-types {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 1.25rem;
+}
+.notifications-btn .notifications-container .notf-types .all,
+.notifications-btn .notifications-container .notf-types .reblogs,
+.notifications-btn .notifications-container .notf-types .replies {
+  flex-grow: 1;
+  text-align: center;
+  padding: 8px;
+}
+.notifications-btn .notifications-container .notf-types .all:hover,
+.notifications-btn .notifications-container .notf-types .reblogs:hover,
+.notifications-btn .notifications-container .notf-types .replies:hover {
+  cursor: pointer;
+}
+.notifications-btn .notifications-container .control-left {
+  text-align: left;
+}
+.notifications-btn .notifications-container .control-left .header-flex-cont {
+  display: flex;
+}
+.notifications-btn .notifications-container .control-left .header-flex-cont .avatar-img-mob {
+  margin: 0 !important;
+}
+.notifications-btn .notifications-container .control-left .blogs-list {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+.notifications-btn .notifications-container .control-left .blogs-list .account-popup-blogs-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.notifications-btn .notifications-container .control-left .blogs-list .account-popup-blogs-container .account-popup-blog-head-img {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notifications-btn .notifications-container .control-left .blogs-list .account-popup-blogs-container .account-popup-blog-head-img img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 2px;
+  margin: 0;
+  margin-right: 10px;
+}
+.notifications-btn .notifications-container .control-left .blogs-list .account-popup-blogs-container .account-popup-blog-head-text h1 {
+  margin-top: 10px;
+  color: black;
+}
+.notifications-btn .notifications-container .control-left .blogs-list .account-popup-blogs-container .account-popup-blog-head-text div {
+  color: rgba(0, 0, 0, 0.65);
+}
+.notifications-btn .notifications-container .control-left .btn-control {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+.notifications-btn .notifications-container .control-left .btn-control .icon_arrow_carrot_down {
+  font-size: 2rem;
+}
+.notifications-btn .notifications-container .control-left .btn-control .caption {
+  font-family: Helvetica Neue, HelveticaNeue, Helvetica, Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-left: 10px;
+}
+.notifications-btn .notifications-container .hi-link {
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  width: 36px;
+}
+.notifications-btn .notifications-container .post-link {
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  width: 36px;
+}
+
 /*  @media (min-width: 768px) {
     .container {
       width: 750px;
@@ -5037,6 +5275,233 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
     font-size: 24px;
   }
 }
+.badge {
+  position: absolute;
+  transform: scale(1);
+  align-items: center;
+  border-radius: 4px;
+  display: flex;
+  font-size: 0.78125rem;
+  font-weight: 700;
+  height: 17px;
+  justify-content: center;
+  left: 100%;
+  line-height: 1.44;
+  min-width: 11px;
+  padding: 0 3px;
+  text-decoration: none;
+  top: -40%;
+}
+
+.notifications-btn {
+  position: relative;
+}
+.notifications-btn .notf-date {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  font-size: 0.9rem;
+}
+.notifications-btn .notf-date .duration {
+  font-weight: 600;
+}
+.notifications-btn .notf-body {
+  max-height: 500px;
+}
+.notifications-btn .notf-body .notf-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+.notifications-btn .notf-body .notf-content .post-snap * {
+  font-size: 14px !important;
+  display: inline !important;
+}
+.notifications-btn .notifications-container {
+  scrollbar-width: thin;
+  width: 380px;
+  height: auto;
+  max-height: 580px;
+  position: absolute;
+  transform: translate3d(-232px, 18px, 0px);
+  display: flex;
+  flex-direction: column;
+}
+.notifications-btn .notifications-container .notf-body-cont {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  width: 380px;
+  height: auto;
+  max-height: 580px;
+  display: flex;
+  flex-direction: column;
+  scrollbar-color: #555555 #060022;
+}
+.notifications-btn .notifications-container .see-everything-btn a {
+  text-decoration: none;
+}
+.notifications-btn .notifications-container .see-everything-btn .see-everything {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.07);
+}
+.notifications-btn .notifications-container .relative {
+  display: flex;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 10px;
+  position: relative;
+  max-height: 60px;
+}
+.notifications-btn .notifications-container .noter-avatar {
+  position: absolute;
+  width: 24px;
+  height: 30px;
+}
+.notifications-btn .notifications-container .noter-avatar .noter-avatar-img {
+  width: 24px;
+  height: 24px;
+}
+.notifications-btn .notifications-container .notes-summary-avatars-react {
+  margin-right: 10px;
+  width: 24px;
+  height: 24px;
+}
+.notifications-btn .notifications-container .summary-avatar {
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+}
+.notifications-btn .notifications-container .avatar-react {
+  bottom: 13px;
+  display: flex;
+  height: 14px;
+  position: absolute;
+  left: 24px;
+  width: 14px;
+}
+.notifications-btn .notifications-container .header {
+  position: unset !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+  border-radius: 3px 3px 0 0;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 1rem;
+  font-weight: 700;
+  justify-content: space-between;
+  line-height: 1.5;
+  padding: 15px 15px 8px;
+  width: 100%;
+  padding-bottom: 0;
+  flex-direction: column;
+}
+.notifications-btn .notifications-container .notf-types {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 1.25rem;
+}
+.notifications-btn .notifications-container .notf-types .all,
+.notifications-btn .notifications-container .notf-types .reblogs,
+.notifications-btn .notifications-container .notf-types .replies {
+  flex-grow: 1;
+  text-align: center;
+  padding: 8px;
+}
+.notifications-btn .notifications-container .notf-types .all:hover,
+.notifications-btn .notifications-container .notf-types .reblogs:hover,
+.notifications-btn .notifications-container .notf-types .replies:hover {
+  cursor: pointer;
+}
+.notifications-btn .notifications-container .control-left {
+  text-align: left;
+}
+.notifications-btn .notifications-container .control-left .header-flex-cont {
+  display: flex;
+}
+.notifications-btn .notifications-container .control-left .header-flex-cont .avatar-img-mob {
+  margin: 0 !important;
+}
+.notifications-btn .notifications-container .control-left .blogs-list {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+.notifications-btn .notifications-container .control-left .blogs-list .account-popup-blogs-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.notifications-btn .notifications-container .control-left .blogs-list .account-popup-blogs-container .account-popup-blog-head-img {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notifications-btn .notifications-container .control-left .blogs-list .account-popup-blogs-container .account-popup-blog-head-img img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 2px;
+  margin: 0;
+  margin-right: 10px;
+}
+.notifications-btn .notifications-container .control-left .blogs-list .account-popup-blogs-container .account-popup-blog-head-text h1 {
+  margin-top: 10px;
+  color: black;
+}
+.notifications-btn .notifications-container .control-left .blogs-list .account-popup-blogs-container .account-popup-blog-head-text div {
+  color: rgba(0, 0, 0, 0.65);
+}
+.notifications-btn .notifications-container .control-left .btn-control {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+.notifications-btn .notifications-container .control-left .btn-control .icon_arrow_carrot_down {
+  font-size: 2rem;
+}
+.notifications-btn .notifications-container .control-left .btn-control .caption {
+  font-family: Helvetica Neue, HelveticaNeue, Helvetica, Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-left: 10px;
+}
+.notifications-btn .notifications-container .hi-link {
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  width: 36px;
+}
+.notifications-btn .notifications-container .post-link {
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  width: 36px;
+}
+
 /*  @media (min-width: 768px) {
     .container {
       width: 750px;

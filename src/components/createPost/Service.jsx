@@ -34,6 +34,7 @@ export const handlePosting = (bodyData, handleClose, token, setSpinnerPost) => {
 
 export function fetchPost(
     postId,
+    blogName,
     setPost,
     edit,
     setTitlePost,
@@ -42,7 +43,7 @@ export function fetchPost(
 ) {
     Axios({
         method: 'GET',
-        url: `${apiBaseUrl}/edit/kholdbold/${postId}`,
+        url: `${apiBaseUrl}/edit/${blogName}/${postId}`,
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
@@ -61,10 +62,10 @@ export function fetchPost(
         .catch(() => {});
 }
 
-export function editPost(postId, dataBody, navigate, token) {
+export function editPost(postId, blogName, dataBody, navigate, token) {
     Axios({
         method: 'PUT',
-        url: `${apiBaseUrl}/update/ahmed_1/${postId}`,
+        url: `${apiBaseUrl}/update/${blogName}/${postId}`,
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',

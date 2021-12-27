@@ -70,7 +70,12 @@ export const followAccount = (userToken, searchedName, setResponseMsg) => {
         });
 };
 
-export const unfollowAccount = (userToken, unfollowAcc, setResponseMsg) => {
+export const unfollowAccount = (
+    userToken,
+    unfollowAcc,
+    setResponseMsg,
+    unfollow
+) => {
     Axios({
         method: 'DELETE',
         url: `${apiBaseUrl}/user/follow`,
@@ -84,7 +89,8 @@ export const unfollowAccount = (userToken, unfollowAcc, setResponseMsg) => {
         }
     })
         .then(() => {
-            setResponseMsg(`you're not following ${unfollowAcc} anymore`);
+            if (unfollow === true) setResponseMsg(false);
+            else setResponseMsg(`you're not following ${unfollowAcc} anymore`);
             return true;
         })
         .catch(err => {

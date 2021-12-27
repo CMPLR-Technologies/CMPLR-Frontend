@@ -11,8 +11,7 @@ export default function VerticalPostsView(props) {
         isRef,
         setPageNumber,
         isRadar,
-        blogPage,
-        userBlogName
+        blogPage
     } = props;
 
     const observer = useRef();
@@ -38,9 +37,7 @@ export default function VerticalPostsView(props) {
                             <div ref={lastPostElementRef} key={index}>
                                 <PostComponent
                                     post={post}
-                                    userBlogName={
-                                        userBlogName ? userBlogName : 'ahmed_3'
-                                    }
+                                    userBlogName={user?.blogName}
                                     isFollowed={true}
                                     radar={isRadar}
                                     blogPage={blogPage}
@@ -53,9 +50,7 @@ export default function VerticalPostsView(props) {
                                 key={index}
                                 post={post}
                                 isFollowed={true}
-                                userBlogName={
-                                    userBlogName ? userBlogName : 'ahmed_3'
-                                }
+                                userBlogName={user?.blogName}
                                 radar={isRadar}
                                 blogPage={blogPage}
                             />

@@ -17,6 +17,7 @@ export default function OptionsList(props) {
         radar
     } = props;
     const user = JSON.parse(localStorage.getItem('user'));
+    console.log(following);
 
     return (
         <div
@@ -53,7 +54,8 @@ export default function OptionsList(props) {
                                     unfollowAccount(
                                         user?.token,
                                         blogName,
-                                        setFollowing
+                                        setFollowing,
+                                        true
                                     )
                                 }
                                 className="opt-btn follow-btn"
