@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
@@ -7,8 +7,9 @@ import {
 } from '../../../../contexts/themeContext/ThemeContext';
 import LogOutOverlay from '../navbarLinks/AccountPopup/Seperators/LogOutOverlay';
 import { apiBaseUrl } from '../../../../config.json';
-import axios from 'axios';
 import AccountPopupBlogsContainer from '../navbarLinks/AccountPopup/Blogs/AccountPopupBlogsContainer';
+import useFetch from '../../../../hooks/useFetch';
+
 /**
  * Navbar menu mobile: includes navbar links when mobile view
  * @function NavbarMenuMobile
@@ -19,26 +20,7 @@ import AccountPopupBlogsContainer from '../navbarLinks/AccountPopup/Blogs/Accoun
 export default function NavbarMenuMobile(props) {
     const [theme, changeTheme] = useContext(ThemeContext);
     const [paletteChanged, setPaletteChanged] = useState(false);
-    //hossam work on popup
-    const [userInfo, setUserInfo] = useState(null);
-    const token = JSON.parse(localStorage.getItem('user'))?.token;
-    useEffect(() => {
-        if (userInfo !== null) return;
-        axios({
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-                Accept: 'application/json',
-                Authorization: `Bearer ${token}`
-            },
-            url: `${apiBaseUrl}/user/info`
-        })
-            .then(response => {
-                setUserInfo(response.data.response);
-            })
-            .catch(() => {});
-    }, []);
-
+    const { data: userInfo } = useFetch(`${apiBaseUrl}/user/info`);
     let { isOpenSetting, openSetting, closeMenuPar, active } = props;
 
     //for logout
@@ -115,7 +97,7 @@ export default function NavbarMenuMobile(props) {
                                         <i className="fas fa-heart"></i> Likes
                                     </div>
                                     <span className="val">
-                                        {userInfo?.user?.likes_count}
+                                        {userInfo && userInfo.user.likes_count}
                                     </span>
                                 </div>
                             </li>
@@ -128,7 +110,8 @@ export default function NavbarMenuMobile(props) {
                                         Following
                                     </div>
                                     <span className="val">
-                                        {userInfo?.user?.following_count}
+                                        {userInfo &&
+                                            userInfo.user.following_count}
                                     </span>
                                 </div>
                             </li>
