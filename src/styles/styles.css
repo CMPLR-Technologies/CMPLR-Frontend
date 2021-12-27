@@ -2100,7 +2100,7 @@
   overflow: hidden;
   flex-wrap: wrap;
 }
-.notifications-btn .notf-body .notf-content .post-snap * {
+.notifications-btn .notf-body .notf-content .post-ask-answer-content * {
   font-size: 14px !important;
   display: inline !important;
 }

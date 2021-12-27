@@ -241,15 +241,17 @@ export default function Footer(props) {
                         )}
                         {!blogPage && !radar && (
                             <>
-                                <button
-                                    onClick={() => {
-                                        handleNote();
-                                    }}
-                                    className="icon"
-                                    data-testid={`note-icon-footer-ts${postId}`}
-                                >
-                                    <Note />
-                                </button>
+                                {!draft && (
+                                    <button
+                                        onClick={() => {
+                                            handleNote();
+                                        }}
+                                        className="icon"
+                                        data-testid={`note-icon-footer-ts${postId}`}
+                                    >
+                                        <Note />
+                                    </button>
+                                )}
                                 {draft && (
                                     <button
                                         data-testid={`edit-footer-icon-ts${postId}`}
@@ -261,59 +263,66 @@ export default function Footer(props) {
                                 )}
                             </>
                         )}
-                        <button
-                            onClick={() => {
-                                setNoteType('reblog');
-                                navigate(
-                                    `/reblog/${blogName}/${postId}/${reblogKey}`
-                                );
-                            }}
-                            className="icon"
-                            data-testid={`reblog-icon-footer${postId}`}
-                        >
-                            <ReblogBtn />
-                        </button>
-                        <button
-                            onClick={() => {
-                                !isLiked
-                                    ? handleLikePost(
-                                          setLoveFillColor,
-                                          setIsLiked,
-                                          postId,
-                                          user?.token
-                                      )
-                                    : handleUnlikePost(
-                                          setLoveFillColor,
-                                          setIsLiked,
-                                          postId,
-                                          user?.token
-                                      );
-                            }}
-                            className="icon "
-                            data-testid={`love-icon-footer${postId}`}
-                        >
-                            <LoveBtn fillColor={loveFillColor} />
-                        </button>
-                        {isAuthor && (
+                        {!draft && (
                             <>
                                 <button
-                                    onClick={() => setIsModalOpen(true)}
+                                    onClick={() => {
+                                        setNoteType('reblog');
+                                        navigate(
+                                            `/reblog/${blogName}/${postId}/${reblogKey}`
+                                        );
+                                    }}
                                     className="icon"
-                                    data-testid={`delete-footer-icon-ts${postId}`}
+                                    data-testid={`reblog-icon-footer${postId}`}
                                 >
-                                    <DeleteBtn />
+                                    <ReblogBtn />
                                 </button>
                                 <button
-                                    data-testid={`edit-footer-icon-ts${postId}`}
-                                    className="icon"
-                                    onClick={() =>
-                                        navigate(`/edit/${blogName}/${postId}`)
-                                    }
+                                    onClick={() => {
+                                        !isLiked
+                                            ? handleLikePost(
+                                                  setLoveFillColor,
+                                                  setIsLiked,
+                                                  postId,
+                                                  user?.token
+                                              )
+                                            : handleUnlikePost(
+                                                  setLoveFillColor,
+                                                  setIsLiked,
+                                                  postId,
+                                                  user?.token
+                                              );
+                                    }}
+                                    className="icon "
+                                    data-testid={`love-icon-footer${postId}`}
                                 >
-                                    <EditBtn />
+                                    <LoveBtn fillColor={loveFillColor} />
                                 </button>
                             </>
                         )}
+                        {isAuthor &&
+                            !draft(
+                                <>
+                                    <button
+                                        onClick={() => setIsModalOpen(true)}
+                                        className="icon"
+                                        data-testid={`delete-footer-icon-ts${postId}`}
+                                    >
+                                        <DeleteBtn />
+                                    </button>
+                                    <button
+                                        data-testid={`edit-footer-icon-ts${postId}`}
+                                        className="icon"
+                                        onClick={() =>
+                                            navigate(
+                                                `/edit/${blogName}/${postId}`
+                                            )
+                                        }
+                                    >
+                                        <EditBtn />
+                                    </button>
+                                </>
+                            )}
                     </div>
                 </footer>
             </ClickAwayListener>

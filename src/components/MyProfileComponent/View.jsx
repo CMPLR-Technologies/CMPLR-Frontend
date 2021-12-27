@@ -6,7 +6,7 @@ import PostsPage from './container/PostsPage';
 import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
 import { apiBaseUrl } from '../../config.json';
 import useFetch from '../../hooks/useFetch';
-import { getFollowingList } from '../followingComponent/Service';
+import { getFollowersList } from './Service';
 
 export default function MyProfile() {
     const location = useLocation();
@@ -36,7 +36,7 @@ export default function MyProfile() {
     const [totalFollowing, setTotalFollowing] = useState(0);
     useEffect(() => {
         if (hasMore) {
-            getFollowingList(
+            getFollowersList(
                 setFollowers,
                 followers,
                 user?.token,
