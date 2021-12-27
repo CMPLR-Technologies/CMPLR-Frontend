@@ -7,6 +7,7 @@ import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
 import { apiBaseUrl } from '../../config.json';
 import useFetch from '../../hooks/useFetch';
 import { getFollowersList } from './Service';
+import { getFollowingList } from '../followingComponent/Service';
 
 export default function MyProfile() {
     const location = useLocation();
