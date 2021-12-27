@@ -28,6 +28,7 @@ export default function CreateModal(props) {
     const { user } = useContext(UserContext);
     const { postId } = useParams();
     const { reblog, edit } = props;
+    const blogName = JSON.parse(localStorage.getItem('user'))?.blogName;
 
     const handleClose = () => {
         navigate('/dashboard');
@@ -74,13 +75,14 @@ export default function CreateModal(props) {
             tags: tags,
             user: user
         };
-        editPost(postId, dataBody, navigate, user?.token);
+        editPost(postId, blogName, dataBody, navigate, user?.token);
     };
 
     useEffect(() => {
         if (postId !== undefined) {
             fetchPost(
                 postId,
+                blogName,
                 setPost,
                 edit,
                 setEditTitlePost,

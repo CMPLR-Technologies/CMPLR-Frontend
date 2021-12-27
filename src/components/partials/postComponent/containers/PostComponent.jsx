@@ -10,6 +10,7 @@ import { chaneMobileView } from '../Controller';
 import { block } from '../Services';
 import { followAccount } from '../../../followingComponent/Service';
 import PropTypes from 'prop-types';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 import OptionsList from './OptionsList';
 import {
     ThemeContext,
@@ -57,6 +58,7 @@ export default function PostComponent(props) {
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
+    const [blockResponse, setBlockResponse] = useState('');
     const [mobileView, setMobileView] = useState(false);
     const user = JSON.parse(localStorage.getItem('user'));
     const { blog: blog, post: postData } = post;
@@ -92,6 +94,33 @@ export default function PostComponent(props) {
 
     const [liked, setIsLiked] = useState(isLiked && isLiked);
     const [following, setFollowing] = useState(follower && follower);
+    const blogId = user?.userData?.primary_blog_id;
+    const handleBlock = () => {
+        block(
+            blogName,
+            userBlogName,
+            setIsOptionListOpen,
+            setIsModalOpen,
+            setIsMsgModalOpen,
+            setBlockResponse,
+            user?.token
+        ).catch(err => {
+            setIsOptionListOpen(false);
+            setIsModalOpen(false);
+            setIsMsgModalOpen(true);
+            if (err.response.status === 409)
+                setBlockResponse(`${blogName} is already blocked.`);
+            else if (err.response.status === 404) {
+                setBlockResponse(`${blogName} is not found.`);
+            } else if (err.response.status === 403) {
+                setBlockResponse(`you can't block ${blogName}`);
+            } else {
+                setBlockResponse(
+                    `Something went wrong while blocking ${blogName}`
+                );
+            }
+        });
+    };
     useEffect(() => {
         chaneMobileView(setMobileView);
     }, []);
@@ -118,6 +147,10 @@ export default function PostComponent(props) {
         box-shadow: 0 0 15px 0 rgba(0,0,0, 0.5);
         background-color:rgb(${themes[theme].white});
         
+    }
+
+    .share-options .options .list{
+        box-shadow: 0 0 15px 0 rgba(0,0,0, 0.5);
     }
     .post-time-text,
     .opt-btn,
@@ -182,7 +215,7 @@ export default function PostComponent(props) {
         color:rgba(${themes[theme].black},.65);
     }
     .share-options .options .list:hover{
-        background-color:rgba(${themes[theme].black},.07);
+        background-color:rgba(${themes[theme].white},.65);
     }
     .circled-border{
         background-color:rgb(255,255,255)
@@ -253,7 +286,7 @@ export default function PostComponent(props) {
             className={`post-wrapper ${radar ? 'radar-post-wrapper' : ''}`}
         >
             {isMsgModalOpen && (
-                <Modal messageHeading={`${blogName} has been blocked`}>
+                <Modal messageHeading={blockResponse}>
                     <AuthBtn
                         id="nevermind-btn"
                         text="close"
@@ -288,13 +321,7 @@ export default function PostComponent(props) {
                         text="Block"
                         color="rgb(255, 73, 47)"
                         handleClick={() => {
-                            block(
-                                blogIdentifier,
-                                setIsOptionListOpen,
-                                setIsModalOpen,
-                                setIsMsgModalOpen,
-                                user?.token
-                            );
+                            handleBlock();
                         }}
                     />
                 </Modal>
@@ -365,37 +392,42 @@ export default function PostComponent(props) {
                                     </button>
                                 )}
                             </div>
-                            <div className="options-btn">
-                                {!reblog && (
-                                    <button
-                                        onClick={() => {
-                                            setIsOptionListOpen(
-                                                !isOptionListOpen
-                                            );
-                                        }}
-                                        className="btn"
-                                        data-testid="opt-btn-header-ts"
-                                    >
-                                        <OptionsButton />
-                                    </button>
-                                )}
-                                {isOptionListOpen && !blogPage && (
-                                    <OptionsList
-                                        postTime={postTime}
-                                        userBlogName={userBlogName}
-                                        blogName={blogName}
-                                        postLink={`${apiBaseUrl}/post/${postId}`} //change if needed
-                                        postId={postId}
-                                        following={following}
-                                        blogUrl={blogUrl}
-                                        setFollowing={setFollowing}
-                                        setIsModalOpen={setIsModalOpen}
-                                        setIsOptionListOpen={
-                                            setIsOptionListOpen
-                                        }
-                                    />
-                                )}
-                            </div>
+                            <ClickAwayListener
+                                onClickAway={() => setIsOptionListOpen(false)}
+                            >
+                                <div className="options-btn">
+                                    {!reblog && (
+                                        <button
+                                            onClick={() => {
+                                                setIsOptionListOpen(
+                                                    !isOptionListOpen
+                                                );
+                                            }}
+                                            className="btn"
+                                            data-testid="opt-btn-header-ts"
+                                        >
+                                            <OptionsButton />
+                                        </button>
+                                    )}
+                                    {isOptionListOpen && !blogPage && (
+                                        <OptionsList
+                                            postTime={postTime}
+                                            userBlogName={userBlogName}
+                                            blogName={blogName}
+                                            postLink={`${apiBaseUrl}/${blogName}/${blogId}/posts/${postId}`}
+                                            postId={postId}
+                                            following={following}
+                                            blogUrl={blogUrl}
+                                            setFollowing={setFollowing}
+                                            setIsModalOpen={setIsModalOpen}
+                                            setIsOptionListOpen={
+                                                setIsOptionListOpen
+                                            }
+                                            radar={radar}
+                                        />
+                                    )}
+                                </div>
+                            </ClickAwayListener>
                         </div>
                     </header>
                 )}
@@ -416,12 +448,12 @@ export default function PostComponent(props) {
                         <Tags tagsArray={tags} />
                         <Footer
                             isAuthor={userBlogName === blogName}
-                            postLink={`${apiBaseUrl}/post/${postId}`}
+                            postLink={`${apiBaseUrl}/${blogName}/${blogId}/posts/${postId}`}
                             numberNotes={numberNotes}
                             reblogKey={reblogKey}
                             postId={postId}
                             blogName={blogName}
-                            postAuthor={userBlogName}
+                            postAuthor={blogName}
                             authorAvatar={avatar}
                             setIsModalOpenN={setIsModalOpen}
                             blogPage={blogPage}

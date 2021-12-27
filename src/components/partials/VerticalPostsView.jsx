@@ -1,10 +1,10 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, Fragment } from 'react';
 import PostComponent from './postComponent/containers/PostComponent';
 import { LinearProgress } from '@mui/material';
 import PropTypes from 'prop-types';
 export default function VerticalPostsView(props) {
-    const { posts, error, isPending, hasMore, setPageNumber } = props;
-
+    const { posts, error, isPending, hasMore, setPageNumber, isRadar } = props;
+    const user = JSON.parse(localStorage.getItem('user'));
     const observer = useRef();
     const lastPostElementRef = useCallback(
         node => {
@@ -19,20 +19,20 @@ export default function VerticalPostsView(props) {
         },
         [isPending, hasMore]
     );
-
     return (
-        <>
+        <section className={isRadar ? 'container-grid' : 'normal-layout'}>
             {posts &&
                 posts.map((post, index) => {
                     if (posts.length === index + 1) {
                         return (
-                            <div ref={lastPostElementRef} key={index}>
+                            <Fragment ref={lastPostElementRef} key={index}>
                                 <PostComponent
                                     post={post}
-                                    userBlogName="ahmed_3"
+                                    userBlogName={user?.blogName}
                                     isFollowed={true}
+                                    radar={isRadar}
                                 />
-                            </div>
+                            </Fragment>
                         );
                     } else {
                         return (
@@ -40,7 +40,8 @@ export default function VerticalPostsView(props) {
                                 key={index}
                                 post={post}
                                 isFollowed={true}
-                                userBlogName="ahmed_3"
+                                userBlogName={user?.blogName}
+                                radar={isRadar}
                             />
                         );
                     }
@@ -48,7 +49,7 @@ export default function VerticalPostsView(props) {
 
             {error && <div className="no-data-error">{"Couldn't load"}</div>}
             {isPending && <LinearProgress />}
-        </>
+        </section>
     );
 }
 
@@ -57,5 +58,6 @@ VerticalPostsView.propTypes = {
     error: PropTypes.string,
     isPending: PropTypes.bool,
     hasMore: PropTypes.bool,
-    setPageNumber: PropTypes.func
+    setPageNumber: PropTypes.func,
+    isRadar: PropTypes.bool
 };

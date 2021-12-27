@@ -11,7 +11,7 @@
     width: 100%;
     left: 40px;
 
-    @media (max-width: 800px) {
+    @media (max-width: 960px) {
         width: 80%;
     }
 }
@@ -56,6 +56,7 @@
 .radar-post-wrapper {
     left: 0;
     top: 10px;
+    width: 100% !important;
 }
 
 .author-avatar-mob {
@@ -104,13 +105,20 @@
     align-items: center;
     justify-content: flex-end;
     margin-right: 15px;
+    .options-radar {
+        left: 22% !important;
+    }
 
     .options {
         position: absolute;
-        left: 80%;
+        left: 54%;
         top: 100%;
         overflow-y: visible;
         z-index: 2;
+
+        @media (max-width: 960px) {
+            left: 50%;
+        }
 
         .list {
             position: absolute;
@@ -802,8 +810,8 @@
             justify-content: center;
             height: auto;
             position: absolute;
-            top: -5px;
-            left: 0;
+            bottom: 0;
+            left: -55px;
             height: auto;
             width: 250px;
             height: auto;
@@ -838,4 +846,14 @@
 .like-btn {
     transform: translateZ(0);
     transition: fill 0.25s;
+}
+.copy-link-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .link-copied {
+        margin-left: 5px;
+        font-size: 1em;
+        font-weight: 700;
+    }
 }

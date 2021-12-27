@@ -75,7 +75,10 @@ export default function MainRoutes() {
                             path="/blog/:blogUrlIdf/*"
                             element={<MyProfile />}
                         />
-                        <Route path="/explore" element={<Explore />} />
+                        <Route
+                            path="/explore/recommended-for-you"
+                            element={<Explore />}
+                        />
                     </Route>
                 </Routes>
                 <style>{css}</style>

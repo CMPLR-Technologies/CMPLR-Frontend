@@ -15,11 +15,16 @@ export default function OptionsList(props) {
         setIsModalOpen,
         setIsOptionListOpen,
         followersPage,
+        radar
     } = props;
     const user = JSON.parse(localStorage.getItem('user'));
+    console.log(following);
 
     return (
-        <div data-testid="options-list-header-ts" className="options">
+        <div
+            data-testid="options-list-header-ts"
+            className={`options ${radar ? 'options-radar' : ''}`}
+        >
             <div data-testid="list-header-ts" className="list">
                 {!followersPage && (
                     <a
@@ -54,7 +59,8 @@ export default function OptionsList(props) {
                                     unfollowAccount(
                                         user?.token,
                                         blogName,
-                                        setFollowing
+                                        setFollowing,
+                                        true
                                     )
                                 }
                                 className="opt-btn follow-btn"

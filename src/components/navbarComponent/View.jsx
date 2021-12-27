@@ -146,8 +146,56 @@ export default function Navbar() {
         .new-post-popup-box-text{
             color: rgb(${themes[theme].whiteOnDark});
         }
+        .badge{
+            background-color:rgb(${themes[theme].accent});
+            color:rgb(${themes[theme].navy});
+            border:2px solid rgb(${themes[theme].navy});
+        }
+        .notf-date{
+            color: rgba(${themes[theme].black} ,0.65);
+            background-color: rgba(${themes[theme].black} ,0.07);
+        }
+        .notifications-container {
+            scrollbar-color: rgba(${themes[theme].black}, 0.4) rgba(${
+        themes[theme].white
+    }, 0.1);
+            background-color: rgb(${themes[theme].white});
+        }
 
-
+        .notf-types{
+            color: rgba(${themes[theme].black}, 0.65);
+        }
+        .selected{
+            color: rgb(${themes[theme].accent});
+            border-bottom: 1px solid rgb(${themes[theme].accent});
+        }
+        .btn-control .caption{
+            color: rgba(${themes[theme].black}, 0.65);
+        }
+        .hi-link{
+            background-color: rgb(${themes[theme].accent});
+        }
+        .post-link{
+            background-color: rgb(${themes[theme].black});
+        }
+        .ask-i-svg{
+            fill:rgb(${themes[theme].white});
+        }
+        .ask-r-svg{
+            fill:rgb(${themes[theme].black});
+        }
+        .follow-r-svg{
+            fill:rgb(${themes[theme].black});
+        }
+        .hi-i-svg{
+            fill:rgb(${themes[theme].white})
+        }
+        .post-i-svg{
+            fill:rgb(${themes[theme].white});
+        }
+        .notf-content{
+            color:rgb(${themes[theme].black})
+        }
     `;
 
     const [mobileView, setMobileView] = useState(false);
