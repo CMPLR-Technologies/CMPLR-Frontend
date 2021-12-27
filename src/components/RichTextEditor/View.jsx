@@ -28,6 +28,7 @@ const Input = styled('input')({
     display: 'none'
 });
 export default function HandMadeTextEditor(props) {
+    // eslint-disable-next-line no-unused-vars
     const { setContent, reblog, post, setSpinner, editContent } = props;
     const user = JSON.parse(localStorage.getItem('user'));
     return (
@@ -52,11 +53,12 @@ export default function HandMadeTextEditor(props) {
                 ></div>
                 <div className="text-editor-header">
                     <select
-                        onChange={() =>
-                            handleHeading('formatBlock', setContent)
-                        }
+                        onChange={() => {
+                            handleHeading('formatBlock', setContent);
+                        }}
                         id="headSelector"
                     >
+                        <option value="none">Heading</option>
                         <option value="H1">H1</option>
                         <option value="H2">H2</option>
                         <option value="H3">H3</option>
