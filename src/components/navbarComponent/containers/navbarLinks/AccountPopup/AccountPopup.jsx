@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import AccountPopupSeperator from './Seperators/AccountPopupSeperator';
 import AccountPopupHeader from './Seperators/AccountPopupHeader';
 import AccountPopupFooter from './Seperators/AccountPopupFooter';
 import AccountPopupActions from './Actions/AccountPopupActions';
 import AccountPopupBlogsContainer from './Blogs/AccountPopupBlogsContainer';
+import { apiBaseUrl } from '../../../../../config.json';
+import axios from 'axios';
 
 import {
     ThemeContext,
@@ -18,6 +20,24 @@ import {
 
 export default function AccountPopup() {
     const theme = useContext(ThemeContext)[0];
+    const [userInfo, setUserInfo] = useState(null);
+    const token = JSON.parse(localStorage.getItem('user'))?.token;
+    useEffect(() => {
+        axios({
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
+            },
+            url: `${apiBaseUrl}/user/info`
+        })
+            .then(response => {
+                setUserInfo(response.data.response);
+            })
+            .catch(() => {});
+    }, []);
+
     const css = `
     .account-popup {
         background-color: rgb(${themes[theme].white});
@@ -73,9 +93,9 @@ export default function AccountPopup() {
     return (
         <div data-testid="AccountPopup" className={`account-popup`}>
             <AccountPopupHeader />
-            <AccountPopupActions />
+            <AccountPopupActions userInfo={userInfo?.user} />
             <AccountPopupSeperator />
-            <AccountPopupBlogsContainer />
+            <AccountPopupBlogsContainer blogs={userInfo?.blogs} />
             <AccountPopupFooter />
             <style>{css}</style>
         </div>

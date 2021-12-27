@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { apiBaseUrl } from '../../../../../../config.json';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import {
     ThemeContext,
@@ -7,7 +6,7 @@ import {
 } from '../../../../../../contexts/themeContext/ThemeContext';
 import AccountPopupActionRow from './AccountPopupActionRow';
 import ShortcutsPageOverlay from './shortcuts/ShortcutsPageOverlay';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
 /**
  * @function AccountPopupActions
@@ -25,12 +24,13 @@ import axios from 'axios';
  * @returns {Component}
  */
 
-export default function AccountPopupActions() {
+export default function AccountPopupActions(props) {
     const [theme, changeTheme] = useContext(ThemeContext);
     const [paletteChanged, setPaletteChanged] = useState(false);
     const [shortcutOverlay, setShortcutOverlay] = useState(false);
-    const [likesCount, setLikesCount] = useState(0);
-    const [followingCount, setFollowingCount] = useState(0);
+    const { likesCount, followingCount } = props.userInfo
+        ? props.userInfo
+        : { likesCount: 0, followingCount: 0 };
 
     const toggleTheme = () => {
         setPaletteChanged(true);
@@ -39,21 +39,6 @@ export default function AccountPopupActions() {
     const viewShortcuts = () => {
         setShortcutOverlay(true);
     };
-
-    useEffect(() => {
-        axios
-            .get(`${apiBaseUrl}/likes`)
-            .then(response => {
-                setLikesCount(response.data.length);
-            })
-            .catch(() => {});
-        axios
-            .get(`${apiBaseUrl}/following`)
-            .then(response => {
-                setFollowingCount(response.data.length);
-            })
-            .catch(() => {});
-    }, []);
 
     return (
         <div
@@ -69,7 +54,7 @@ export default function AccountPopupActions() {
                     key="1"
                     icon="likes"
                     title="Likes"
-                    count={likesCount ? likesCount : ' '}
+                    count={likesCount ? likesCount : '0'}
                 />
             </NavLink>
             <NavLink to="/following" className={`account-action-link`}>
@@ -77,7 +62,7 @@ export default function AccountPopupActions() {
                     key="2"
                     icon="following"
                     title="Following"
-                    count={followingCount ? followingCount : ' '}
+                    count={followingCount ? followingCount : '0'}
                 />
             </NavLink>
             <NavLink to="/settings/account" className={`account-action-link`}>
@@ -125,3 +110,7 @@ export default function AccountPopupActions() {
         </div>
     );
 }
+
+AccountPopupActions.propTypes = {
+    userInfo: PropTypes.object
+};

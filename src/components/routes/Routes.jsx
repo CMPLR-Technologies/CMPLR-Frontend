@@ -93,7 +93,7 @@ export default function MainRoutes() {
                         />
 
                         <Route
-                            path="/blog/view/:blogName/:blogID/:content?"
+                            path="/blog/view/:blogName/:blogID"
                             element={<ProfileFull />}
                         />
                     </Route>

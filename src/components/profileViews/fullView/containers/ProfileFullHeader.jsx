@@ -13,7 +13,7 @@ export default function ProfileFullHeader(props) {
     const { blogName, blogID, content } = props;
     const response = useFetch(`${apiBaseUrl}/MiniProfileView/${blogID}`);
     const { error, data, isPending } = response;
-
+    console.log(response);
     const [scrollTop, setScrollTop] = useState(0);
     const headerScrollAnimation = el => {
         setScrollTop(el.target.scrollTop);

@@ -20,7 +20,6 @@ export default function ProfilsSideContainer(props) {
             >
                 {' '}
             </div>
-            {error && <div className="no-data-error">{"Couldn't load"}</div>}
             {isPending && <LinearProgress />}
             {data && (
                 <ProfileSide
