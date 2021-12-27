@@ -6,24 +6,23 @@
     width: 100%;
     .p4DiZ {
         align-items: center;
-        border-bottom: 1px solid white;
+        // border-bottom: 1px solid white;
         display: flex;
         margin-bottom: 20px;
         width: 100%;
         .uM3pd {
-            @media screen and (min-width: 990px) {
+            @media screen and (min-width: 950px) {
                 justify-content: flex-start;
                 overflow-x: auto;
                 white-space: nowrap;
                 max-width: 940px;
             }
-            @media screen and (min-width: 990px) and (min-width: 640px) {
+            @media screen and (min-width: 950px) and (min-width: 640px) {
                 max-width: 620 px;
             }
             align-items: flex-end;
-            color: RGB(var(--white-on-dark));
+            // color: RGB(var(--white-on-dark));
             display: flex;
-            font-family: var(--font-family);
             font-size: 1.125rem;
             font-weight: 700;
             justify-content: space-evenly;

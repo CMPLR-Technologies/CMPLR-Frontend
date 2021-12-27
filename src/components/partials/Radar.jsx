@@ -8,6 +8,7 @@ import useFetch from '../../hooks/useFetch';
 export default function Radar() {
     const { error, data, isPending } = useFetch(`${apiBaseUrl}/posts/radar/`);
     const theme = useContext(ThemeContext)[0];
+    const user = JSON.parse(localStorage.getItem('user'));
 
     return (
         <div className="Radar">
@@ -27,6 +28,7 @@ export default function Radar() {
                         radar={true}
                         otherClass="radar-post"
                         isFollowed={false}
+                        userBlogName={user?.blogName}
                     />
                 </div>
             )}

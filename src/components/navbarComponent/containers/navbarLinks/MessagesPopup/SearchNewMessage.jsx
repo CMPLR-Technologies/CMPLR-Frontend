@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import MessageItemSearchRes from './MessageItemSearchRes';
 import CircularProgress from '@mui/material/CircularProgress';
 import PropTypes from 'prop-types';
-import { ChatContext } from '../../../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
 import Axios from 'axios';
 import { apiBaseUrl } from '../../../../../config.json';
 
@@ -62,20 +62,25 @@ export default function SearchNewMessage(props) {
                 )}
             </div>
             {searchRes &&
-                searchRes?.blogs?.map((message, index) => (
-                    <MessageItemSearchRes
-                        key={index}
-                        receiver={message.blog_name}
-                        receiverId={message.settings.blog_id}
-                        shortParagrah={message.title}
-                        chat={message.chat}
-                        photo={message.settings.avatar}
-                        shape={message.settings.avatar_shape}
-                        clickMessagePopup={clickMessagePopup}
-                        sender={BlogName}
-                        senderId={BlogId}
-                    />
-                ))}
+                searchRes?.blogs?.map((message, index) => {
+                    {
+                        if (message.settings.blog_id !== BlogId)
+                            return (
+                                <MessageItemSearchRes
+                                    key={index}
+                                    receiver={message.blog_name}
+                                    receiverId={message.settings.blog_id}
+                                    shortParagrah={message.title}
+                                    chat={message.chat}
+                                    photo={message.settings.avatar}
+                                    shape={message.settings.avatar_shape}
+                                    clickMessagePopup={clickMessagePopup}
+                                    sender={BlogName}
+                                    senderId={BlogId}
+                                />
+                            );
+                    }
+                })}
         </div>
     );
 }

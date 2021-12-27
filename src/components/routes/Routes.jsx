@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import LoginView from '../loginComponent/View';
 import Register from '../registerComponent/View';
 import HomePage from '../homeComponent/View';
@@ -8,18 +8,29 @@ import MessagesPageMobile from '../navbarComponent/containers/navbarLinks/Messag
 import NewPostPopup from '../navbarComponent/containers/navbarLinks/newPost/NewPostPopup';
 import ForgetPassword from '../forgetPasswordComponent/View';
 import ResetPassword from '../resetPasswordComponent/View';
+import Settings from '../settingsComponent/View';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
-import PostComponent from '../partials/postComponent/View';
+import DeleteAccount from '../deleteAccountComponent/View';
+import BlogSettings from '../blogSettingsComponent/View';
+import DeleteBlogCard from '../blogSettingsComponent/containers/deleteBlog/DeleteBlog';
 import FollowingPage from '../followingComponent/View';
 import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
 import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
 import Hashtag from '../hashtagsComponent/View';
 import GoogleCard from '../registerComponent/GoogleCard';
 import ActivityPage from '../activityPageComponent/ActivityPage';
+import Explore from '../explore/View';
+import HelpCenter from '../HelpCenter/View';
+import Article from '../HelpCenter/containers/Article';
+import ArticleCategoryIndividual from '../HelpCenter/containers/ArticleCategoryIndividual';
+import LikedBlogs from '../likesComponent/View';
+import ProfileFullContainer from '../profileViews/fullView/View';
+
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
+    const [withNav, setWithNav] = useState(true);
     const css = `
         body{
             background-color: rgb(${
@@ -31,15 +42,22 @@ export default function MainRoutes() {
     return (
         <>
             <Router>
-                <Navbar />
+                {withNav && <Navbar />}
                 <Routes>
                     <Route path="/tagged/:tag" element={<Hashtag />} />
+                    <Route path="/help" element={<HelpCenter />} />
+                    <Route
+                        path="/help/:category"
+                        element={<ArticleCategoryIndividual />}
+                    />
+                    <Route
+                        path="/help/:category/:article"
+                        element={<Article />}
+                    />
 
                     <Route element={<RequireUnAuth />}>
                         <Route path="/register" element={<Register />} />
-                        <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<LoginView />} />
-
                         <Route
                             path="/forget_password"
                             element={<ForgetPassword />}
@@ -48,24 +66,56 @@ export default function MainRoutes() {
                             path="/reset_password/:token"
                             element={<ResetPassword />}
                         />
-
                         <Route path="/" element={<HomePage />} />
                         <Route path="/onboarding" element={<GoogleCard />} />
                         <Route path="/activity" element={<ActivityPage />} />
                     </Route>
 
                     <Route element={<RequireAuth />}>
-                        <Route path="/following" element={<FollowingPage />} />
-                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route
-                            path="/post"
-                            element={
-                                <PostComponent
-                                    userBlogName="kholdbold"
-                                    isFollowed={false}
-                                />
-                            }
+                            path="/blog/:blogName/delete"
+                            element={<DeleteBlogCard setWithNav={setWithNav} />} //WITHOUTNAV
                         />
+                        <Route
+                            path="/settings"
+                            element={<Settings page={'account'} />}
+                        />
+                        <Route
+                            path="/settings/account"
+                            element={<Settings page={'account'} />}
+                        />
+                        <Route
+                            path="/settings/dashboard"
+                            element={<Settings page={'dashboard'} />}
+                        />
+                        <Route
+                            path="/settings/notifications"
+                            element={<Settings page={'notifications'} />}
+                        />
+                        <Route
+                            path="/settings/apps"
+                            element={<Settings page={'apps'} />}
+                        />
+                        <Route
+                            path="/account/delete"
+                            element={<DeleteAccount setWithNav={setWithNav} />} //WITHOUTNAV
+                        />
+                        <Route
+                            path="/blog/new"
+                            element={
+                                <BlogSettings
+                                    page={'create'}
+                                    setWithNav={setWithNav}
+                                />
+                            } //WITHOUTNAV
+                        />
+                        <Route path="/following" element={<FollowingPage />} />
+                        <Route path="/likes" element={<LikedBlogs />} />
+                        <Route
+                            path="/edit/:blogName/:postId"
+                            element={<CreateModal reblog={false} edit={true} />}
+                        />
+                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route
                             path="/reblog/:blogName/:postId/:reblogKey"
                             element={<CreateModal reblog={true} />}
@@ -76,6 +126,17 @@ export default function MainRoutes() {
                         />
                         <Route path="/new/post" element={<CreateModal />} />
                         <Route path="/new" element={<NewPostPopup />} />
+
+                        <Route
+                            path="/blog/view/:blogName/:blogID/:content/:postID"
+                            element={<ProfileFullContainer />}
+                        />
+                        <Route
+                            path="/blog/view/:blogName/:blogID/:content"
+                            element={<ProfileFullContainer />}
+                        />
+
+                        <Route path="/explore/:type" element={<Explore />} />
                     </Route>
                 </Routes>
                 <style>{css}</style>

@@ -149,6 +149,21 @@ export default function Navbar() {
         .new-post-popup-box-text{
             color: rgb(${themes[theme].whiteOnDark});
         }
+        .badge{
+            background-color:rgb(${themes[theme].accent});
+            color:rgb(${themes[theme].navy});
+            border:2px solid rgb(${themes[theme].navy});
+        }
+        .notf-date{
+            color: rgba(${themes[theme].black} ,0.65);
+            background-color: rgba(${themes[theme].black} ,0.07);
+        }
+        .notifications-container {
+            scrollbar-color: rgba(${themes[theme].black}, 0.4) rgba(${
+        themes[theme].white
+    }, 0.1);
+            background-color: rgb(${themes[theme].white});
+        }
 
         @media screen and (max-width: 960px) {
 
@@ -166,9 +181,7 @@ export default function Navbar() {
                 color: inherit;
             }
             .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-close span{
-                background-color: rgb(${
-                    themes[theme].navy
-                }, 0.95);
+                background-color: rgb(${themes[theme].navy}, 0.95);
             }
             .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu {
                 background-color:rgb(${themes[theme].navy});
@@ -181,7 +194,9 @@ export default function Navbar() {
             .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu ul li a{
                 color: rgb(${themes[theme].whiteOnDark});
             }
-         
+            .navbar-menu-mobile   .navbar-menu-mobile-menu-item{
+                color: rgb(${themes[theme].whiteOnDark});
+            }
             .nav .section1 .search{
                 background-color: rgb(${themes[theme].white});
             }
@@ -221,6 +236,45 @@ export default function Navbar() {
             .navbar-menu-mobile-footer footer{
                 color: rgba(${themes[theme].whiteOnDark});
             }
+        .notf-types{
+            color: rgba(${themes[theme].black}, 0.65);
+        }
+        .selected{
+            color: rgb(${themes[theme].accent});
+            border-bottom: 1px solid rgb(${themes[theme].accent});
+        }
+        .btn-control .caption{
+            color: rgba(${themes[theme].black}, 0.65);
+        }
+        .hi-link{
+            background-color: rgb(${themes[theme].accent});
+        }
+        .post-link{
+            background-color: rgb(${themes[theme].black});
+        }
+        .ask-i-svg{
+            fill:rgb(${themes[theme].white});
+        }
+        .ask-r-svg{
+            fill:rgb(${themes[theme].black});
+        }
+        .follow-r-svg{
+            fill:rgb(${themes[theme].black});
+        }
+        .hi-i-svg{
+            fill:rgb(${themes[theme].white})
+        }
+        .post-i-svg{
+            fill:rgb(${themes[theme].white});
+        }
+        .notf-content{
+            color:rgb(${themes[theme].black})
+        }
+        .navbar-menu-mobile-menu  .account-popup-blog-head h1,.navbar-menu-mobile-menu .account-popup-blog-head div{
+            color: rgba(${themes[theme].whiteOnDark});
+        }
+        .navbar-menu-mobile-menu  .account-popup-blog-links .account-popup-blog-link-row .link-row-title{
+            color: rgba(${themes[theme].whiteOnDark});
         }
     `;
 

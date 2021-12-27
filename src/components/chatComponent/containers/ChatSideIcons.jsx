@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ChatContext } from '../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../contexts/chatContext/chatContext';
 import ChatSideIconItem from './ChatSideIconItem';
 /**
  * chatSideIcons Component
@@ -8,7 +8,7 @@ import ChatSideIconItem from './ChatSideIconItem';
  * @property {array} sideIconOpenChat - array of sideIconOpenChat
  * @returns {Component} array of message item
  */
-export default function chatSideIcons() {
+export default function ChatSideIcons() {
     let { sideIconOpenChat } = useContext(ChatContext);
 
     return (
@@ -17,14 +17,14 @@ export default function chatSideIcons() {
                 sideIconOpenChat?.map((chatIcon, index) => (
                     <ChatSideIconItem
                         key={index}
-                        senderId={chatIcon.senderId}
-                        receiverId={chatIcon.receiverId}
-                        senderPhoto={chatIcon.senderPhoto}
-                        senderShape={chatIcon.senderShape}
-                        receiverPhoto={chatIcon.receiverPhoto}
-                        receiverShape={chatIcon.receiverShape}
-                        senderName={chatIcon.senderName}
-                        receiverName={chatIcon.receiverName}
+                        senderId={chatIcon?.senderId}
+                        receiverId={chatIcon?.receiverId}
+                        senderPhoto={chatIcon?.senderPhoto}
+                        senderShape={chatIcon?.senderShape}
+                        receiverPhoto={chatIcon?.receiverPhoto}
+                        receiverShape={chatIcon?.receiverShape}
+                        senderName={chatIcon?.senderName}
+                        receiverName={chatIcon?.receiverName}
                     />
                 ))}
         </div>

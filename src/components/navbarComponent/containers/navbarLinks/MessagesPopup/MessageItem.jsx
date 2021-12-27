@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { ChatContext } from '../../../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
 //import { useNavigate } from 'react-router-dom';
 
 export default function MessageItem(props) {

@@ -21,10 +21,7 @@ export default function NotePost(props) {
         reblog_parent_blog_url: reblogParentBlogUrl,
         avatar: avatar,
         content: content
-        // followed: followed,
-        // post_id: postId,
     } = props.note;
-
     const { setIsModalOpen, setNotesView } = props;
 
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);
@@ -53,7 +50,7 @@ export default function NotePost(props) {
                     >
                         {type === 'reblog' ? (
                             <ReblogReact />
-                        ) : type === 'love' ? (
+                        ) : type === 'like' ? (
                             <LoveReact />
                         ) : (
                             <CommentReact />
@@ -78,7 +75,7 @@ export default function NotePost(props) {
                                         <ReblogSign />
                                     </span>
                                     <Link
-                                        to={reblogParentBlogUrl}
+                                        to={'/reblogParentBlogUrl'}
                                         target="_blank"
                                         role="link"
                                         className="reblogger-name"
@@ -108,9 +105,6 @@ export default function NotePost(props) {
                                     <div className="option-list">
                                         {user.blogName !== blogName && (
                                             <>
-                                                <div className="opt-btn report-btn">
-                                                    Report
-                                                </div>
                                                 <div
                                                     onClick={() => {
                                                         setNotesView(false);
@@ -135,7 +129,7 @@ export default function NotePost(props) {
                                         {/**Post's author is logged user */}
                                         {user.blogName === blogName && (
                                             <>
-                                                {' '}
+                                                {/*TODO delete note*/}
                                                 <div className="opt-btn pin-btn block-btn">
                                                     Delete Reply
                                                 </div>

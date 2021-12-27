@@ -22,6 +22,7 @@ const handleLogin = (
     setError,
     setUser,
     setIsPending,
+    navigate,
     setUserBlog
 ) => {
     const err = inputCheck(email, password);
@@ -29,8 +30,17 @@ const handleLogin = (
     if (err) {
         setError([err]);
         setIsPending(false);
-    } else
-        logUser(email, password, setUser, setError, setIsPending, setUserBlog);
+    } else {
+        logUser(
+            email,
+            password,
+            setUser,
+            setError,
+            setIsPending,
+            navigate,
+            setUserBlog
+        );
+    }
 };
 
 export { getRandomImage, handleLogin };

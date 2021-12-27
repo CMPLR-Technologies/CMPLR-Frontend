@@ -12,16 +12,26 @@ import PropTypes from 'prop-types';
  */
 
 export default function AuthBtn(props) {
-    const { text, color, logo = null, handleClick, id, dataTestid } = props;
+    const {
+        text,
+        color,
+        logo = null,
+        handleClick,
+        id,
+        dataTestid,
+        isPending = false,
+        className
+    } = props;
 
     return (
         <button
             onClick={handleClick}
-            className="AuthBtn "
+            className={`AuthBtn ${className}`}
             style={{ backgroundColor: color }}
             id={id}
             data-testid={dataTestid}
             title={text}
+            disabled={isPending}
         >
             {logo && (
                 <img
@@ -43,5 +53,7 @@ AuthBtn.propTypes = {
     logo: PropTypes.string,
     handleClick: PropTypes.func.isRequired,
     id: PropTypes.string,
-    dataTestid: PropTypes.string
+    dataTestid: PropTypes.string,
+    isPending: PropTypes.bool,
+    className: PropTypes.string
 };

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
-import { ChatContext } from '../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../contexts/chatContext/chatContext';
 import ChatMessages from './ChatMessages';
 import ChatOption from './ChatOption';
 import useInfiniteScrollingChat from '../../../hooks/useInfinteScrollingChat';
@@ -69,14 +69,14 @@ export default function ChatPopUp() {
     const messagesEndRef = useRef(null);
     const messagesEndRef10 = useRef(null);
     const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({
+        messagesEndRef?.current?.scrollIntoView({
             behavior: 'auto',
             block: 'end',
             inline: 'nearest'
         });
     };
     const scrollToBottom10 = () => {
-        messagesEndRef10.current?.scrollIntoView({
+        messagesEndRef10?.current?.scrollIntoView({
             behavior: 'auto',
             block: 'end',
             inline: 'nearest'

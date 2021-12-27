@@ -1,11 +1,10 @@
-import React, { useEffect,useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import AuthInput from '../../partials/AuthInput';
 import AuthBtn from '../../partials/AuthBtn';
 import { newPassword } from '../Service';
 import { getEmail } from '../Service';
 import { useParams } from 'react-router-dom';
-import {UserContext} from '../../../contexts/userContext/UserContext';
-import useRedirect from '../../../hooks/useRedirect';
+import { UserContext } from '../../../contexts/userContext/UserContext';
 /**
  * @function ResetPassword
  * @description this is the statful component of the reset password page
@@ -14,8 +13,7 @@ import useRedirect from '../../../hooks/useRedirect';
  */
 
 export default function ResetPasswordCard() {
-    const {setUser} =useContext(UserContext);
-    useRedirect();
+    const { setUser } = useContext(UserContext);
     const [firstPassword, setFirstPassword] = React.useState('');
     const [secondPassword, setSecondPassword] = React.useState('');
     const [errorMsg, setErrorMsg] = React.useState('');
@@ -23,8 +21,8 @@ export default function ResetPasswordCard() {
     const { token } = useParams();
     const [email, setEmail] = React.useState();
     useEffect(() => {
-        getEmail(token,setEmail)
-    }, [])
+        getEmail(token, setEmail);
+    }, []);
 
     return (
         <div className="LoginCard">

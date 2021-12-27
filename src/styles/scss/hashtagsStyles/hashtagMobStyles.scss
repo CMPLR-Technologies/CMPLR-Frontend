@@ -1,5 +1,5 @@
 .viewMobController {
-    @media screen and (min-width: 989px) {
+    @media screen and (min-width: 950px) {
         display: none;
     }
     .iGLU3 {
@@ -7,7 +7,7 @@
         min-height: 300px;
         padding: 16px;
         position: relative;
-        background: rgb(227, 52, 8);
+        background: linear-gradient(0.25turn, #214e61, #ebf8e1, #976127);
         width: 100%;
         .BSUG4 {
             cursor: pointer;
@@ -40,7 +40,7 @@
                 margin: auto;
                 pointer-events: none;
                 position: relative;
-                @media screen and (max-width: 989px) {
+                @media screen and (max-width: 950px) {
                     color: #fff;
                 }
                 .NmAj2 {
@@ -55,7 +55,6 @@
                     -webkit-box-orient: vertical;
                     -webkit-line-clamp: 2;
                     display: -webkit-box;
-                    color: white;
                     font-size: 2rem;
                     font-weight: 400;
                     line-height: 1.25;
@@ -89,14 +88,11 @@
                             cursor: pointer;
                             margin: 0;
                             padding: 0;
-                            color: #001935;
                             .WdYx4 {
                                 border-radius: 3px;
                                 font-size: 1rem;
                                 font-weight: 700;
                                 line-height: 1.5;
-                                background-color: #00b8ff;
-                                color: #001935;
                                 display: block;
                                 display: block;
                                 padding: 8px 20.5px;
@@ -106,7 +102,6 @@
                 }
                 .kckjF {
                     align-items: center;
-                    color: #fff;
                     display: flex;
                     justify-content: flex-end;
                     text-decoration: none;
@@ -115,7 +110,6 @@
                         font-size: 0.875rem;
                         font-weight: 400;
                         line-height: 1.5;
-                        color: white;
                         margin-right: 10px;
                         text-align: end;
                     }
@@ -163,10 +157,9 @@
             display: none;
         }
         .theScrollhandler {
-            span {
+            .spanTaghandler {
                 background-color: transparent;
                 border: 2px solid rgb(74, 121, 150, 0.25);
-                color: white;
                 cursor: pointer !important;
                 font-weight: 400;
                 margin-bottom: 10px;
@@ -178,11 +171,11 @@
                 &:first-child {
                     margin-left: 16px;
                 }
-                &:hover {
-                    background-color: #0d4d72 !important;
-                    color: #00b8ff !important;
-                }
-                @media screen and (min-width: 990px) {
+                // &:hover {
+                //     background-color: #0d4d72 !important;
+                //     color: #00b8ff !important;
+                // }
+                @media screen and (min-width: 950px) {
                     cursor: pointer !important;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -193,7 +186,7 @@
                     text-decoration: none;
                     color: inherit;
                     cursor: pointer;
-                    @media screen and (min-width: 990px) {
+                    @media screen and (min-width: 950px) {
                         word-break: break-all;
                     }
                 }

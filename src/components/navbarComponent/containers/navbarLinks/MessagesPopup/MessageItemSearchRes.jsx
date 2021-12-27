@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { ChatContext } from '../../../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
 export default function MessageItemSearchRes(props) {
     {
         /*to do load the real data(photo sender,rec,message*/

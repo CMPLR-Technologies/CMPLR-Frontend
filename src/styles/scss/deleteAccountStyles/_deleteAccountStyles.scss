@@ -1,0 +1,27 @@
+#delete-account-card {
+    width: 385px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    .logo-delete-account {
+        font-size: 30px;
+        margin-top: 15px;
+        width: 100%;
+    }
+
+    .form-msg-delete-account {
+        background-color: #001935;
+        width: 345px;
+        text-align: center;
+        font-size: 15px;
+        padding: 0;
+        color: white;
+        width: 100%;
+    }
+    #delete-account-form {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}

@@ -1,16 +1,18 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
-export const ChatContext = createContext();
 import { apiBaseUrl } from '../../config.json';
 import Axios from 'axios';
 
+export const ChatContext = createContext();
 export default function ChatContextProvider(props) {
     //const { user } = useContext(UserContext);
-    const user = JSON.parse(localStorage.getItem('user'));
+    const userR = JSON.parse(localStorage.getItem('user'));
+    const user = userR;
     const [pageNumber, setPageNumber] = useState(1);
 
     let currBlogObject = null;
     if (user && user?.userData)
+        //console.log(user?.userData);
         currBlogObject = {
             senderName: user?.userData?.blog_name,
             senderId: user?.userData?.primary_blog_id,
@@ -38,14 +40,14 @@ export default function ChatContextProvider(props) {
 
     const setUserBlog = userData => {
         let currBlogObject = null;
-
+        console.log(userData);
         currBlogObject = {
             senderName: userData?.blog_name,
             senderId: userData?.primary_blog_id,
             senderPhoto: userData?.avatar,
             senderShape: userData?.avatar_shape
         };
-        //console.log('s', currBlogObject, user);
+        console.log('s', currBlogObject, userData);
 
         setCurrBlog(currBlogObject);
     };
@@ -90,6 +92,7 @@ export default function ChatContextProvider(props) {
         }
         let blogId = currBlog?.senderId; //user.userData.id;
         setLoadingChats(true);
+        //console.log(user);
 
         Axios.get(`${apiBaseUrl}/blog/messaging/${blogId}`, config)
             .then(res => {
@@ -97,7 +100,7 @@ export default function ChatContextProvider(props) {
                     setChats(res?.data);
                     setLoadingChats(false);
                     setErrLoadingChat(null);
-                    console.log('ss');
+                    //console.log('ss');
                 } else {
                     throw Error(res?.error);
                 }
@@ -207,7 +210,7 @@ export default function ChatContextProvider(props) {
                         // eslint-disable-next-line camelcase
                         created_at: new Date()
                     };
-                    console.log(newMsg.created_at);
+                    //console.log(newMsg.created_at);
                     setConversationMsg([...conversationMsg, newMsg]);
                 } else {
                     throw Error(res.error);

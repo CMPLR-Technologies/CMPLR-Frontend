@@ -24,21 +24,28 @@ import { NavLink } from 'react-router-dom';
  */
 
 export default function AccountPopupBlog(props) {
-    const { avatar, url, title, posts, followers, drafts, queue, primary } =
-        props.blog;
+    const {
+        avatar,
+        blog_name: blogName,
+        title,
+        posts_count: posts,
+        followers_count: followers
+    } = props.blog;
+    const { closeMenu } = props;
+    const url = blogName;
 
-    const [expanded, setExpanded] = useState(primary);
+    const [expanded, setExpanded] = useState(false);
     const theme = useContext(ThemeContext)[0];
     const rows = [
         {
             title: 'Posts',
             link: `/blog/${url}`,
-            count: posts ? posts.length : 0
+            count: posts ? posts : 0
         },
         {
             title: 'Followers',
             link: `/blog/${url}/followers`,
-            count: followers ? followers.length : 0
+            count: followers ? followers : 0
         },
         {
             title: 'Activity',
@@ -48,12 +55,12 @@ export default function AccountPopupBlog(props) {
         {
             title: 'Drafts',
             link: `/blog/${url}/drafts`,
-            count: drafts ? drafts.length : 0
+            count: 0
         },
         {
             title: 'Queue',
             link: `/blog/${url}/queue`,
-            count: queue ? queue.length : 0
+            count: 0
         },
         {
             title: 'Edit Appearence',
@@ -91,6 +98,9 @@ export default function AccountPopupBlog(props) {
                 <NavLink
                     to={`/blog/${url}`}
                     className="account-popup-blog-head-text"
+                    onClick={() => {
+                        if (closeMenu) closeMenu();
+                    }}
                 >
                     <h1>{url}</h1>
                     <div>{title === '' ? 'untitled' : title}</div>
@@ -130,5 +140,6 @@ export default function AccountPopupBlog(props) {
     );
 }
 AccountPopupBlog.propTypes = {
-    blog: PropTypes.object.isRequired
+    blog: PropTypes.object.isRequired,
+    closeMenu: PropTypes.func.isRequired
 };

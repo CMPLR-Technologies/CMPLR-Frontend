@@ -10,7 +10,7 @@ import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
 import { useContext } from 'react';
 import { responseGoogleFailure, responseGoogleSuccess } from '../Service.jsx';
 import { UserContext } from '../../../contexts/userContext/UserContext';
-import { ChatContext } from '../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../contexts/chatContext/chatContext';
 import { CircularProgress } from '@mui/material';
 import GoogleLogin from 'react-google-login';
 
@@ -72,6 +72,7 @@ export default function LoginCard() {
                     text="Log in"
                     color="#00b8ff"
                     dataTestid="login"
+                    isPending={isPending}
                     handleClick={() =>
                         handleLogin(
                             email,
@@ -79,6 +80,7 @@ export default function LoginCard() {
                             setError,
                             setUser,
                             setIsPending,
+                            navigate,
                             setUserBlog
                         )
                     }
@@ -107,6 +109,7 @@ export default function LoginCard() {
                 }
                 onFailure={res => responseGoogleFailure(res, setError)}
                 cookiePolicy={'single_host_origin'}
+                disabled={isPending}
             />
 
             <p className="LoginCard__a">

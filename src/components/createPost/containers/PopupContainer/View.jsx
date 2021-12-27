@@ -19,7 +19,7 @@ export default function CreateModal(props) {
     const [content, setContent] = useState('');
 
     const [titleEditPost, setEditTitlePost] = useState('');
-    const [editContent, setEditContent] = useState('');
+    const [editContent, setEditContent] = useState(null);
     const [post, setPost] = useState({});
     const [tags, setTags] = useState([]);
     const [postType, setPostType] = useState('Post now');
@@ -27,11 +27,11 @@ export default function CreateModal(props) {
     const user = JSON.parse(localStorage.getItem('user'));
     const { postId } = useParams();
     const { reblog, edit } = props;
+    const blogName = JSON.parse(localStorage.getItem('user'))?.blogName;
 
     const handleClose = () => {
         navigate('/dashboard');
     };
-
     const handlePost = () => {
         setSpinnerPost(true);
         //draft private publish
@@ -63,14 +63,32 @@ export default function CreateModal(props) {
         const dataBody = {
             title: titlePost,
             content: content,
+            state:
+                postType === 'Post privately'
+                    ? 'private'
+                    : postType === 'Save as draft'
+                    ? 'draft'
+                    : 'publish',
+            type: 'text',
+            // eslint-disable-next-line camelcase
+            blog_name: user?.blogName,
+            tags: tags,
             user: user
         };
-        editPost(postId, dataBody, navigate);
+        editPost(postId, blogName, dataBody, navigate, user?.token);
     };
 
     useEffect(() => {
         if (postId !== undefined) {
-            fetchPost(postId, setPost, edit, setEditTitlePost, setEditContent);
+            fetchPost(
+                postId,
+                blogName,
+                setPost,
+                edit,
+                setEditTitlePost,
+                setEditContent,
+                user?.token
+            );
         }
     }, [postId]);
     return (
@@ -130,6 +148,7 @@ export default function CreateModal(props) {
                                                                     content
                                                                 }
                                                                 editContent={
+                                                                    editContent &&
                                                                     editContent
                                                                 }
                                                                 cantedit={true}

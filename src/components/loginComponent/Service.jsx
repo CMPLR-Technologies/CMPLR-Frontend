@@ -1,6 +1,7 @@
 import { apiBaseUrl } from '../../config.json';
 import Axios from 'axios';
 import { getServiceErrors } from '../registerComponent/Service';
+import { sendDesktopNotifyToken } from '../desktopNotifications/Service';
 
 const logUser = (
     email,
@@ -8,6 +9,7 @@ const logUser = (
     setUser,
     setError,
     setIsPending,
+    navigate,
     setUserBlog
 ) => {
     Axios.post(`${apiBaseUrl}/login`, {
@@ -24,6 +26,8 @@ const logUser = (
             localStorage.setItem('user', JSON.stringify(user));
             setIsPending(false);
             setUserBlog(user.userData);
+            sendDesktopNotifyToken();
+            navigate('/dashboard');
         })
         .catch(err => {
             const errorArr = getServiceErrors(err);
@@ -45,14 +49,15 @@ const responseGoogleSuccess = (respond, navigate, setIsPending, setUser) => {
     })
         .then(res => {
             const user = {
-                token: res.data.token,
-                userData: res.data.user,
+                token: res.data.response.token,
+                userData: res.data.response.user,
                 blogName: res.data?.response?.blog_name
             };
             setUser(user);
             localStorage.setItem('user', JSON.stringify(user));
             navigate('/dashboard');
             setIsPending(false);
+            sendDesktopNotifyToken();
         })
         .catch(() => {
             setIsPending(false);

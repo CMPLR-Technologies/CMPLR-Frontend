@@ -2,12 +2,13 @@ import { useEffect, useState, useContext } from 'react';
 import { UserContext } from '../contexts/userContext/UserContext';
 import Axios from 'axios';
 
-const useInfiniteScrolling = url => {
+const useInfiniteScrolling = (url,response=true) => {
     const { user } = useContext(UserContext);
     const [data, setData] = useState([]);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
     const [hasMore, setHasMore] = useState(false);
+    const [total, setTotal] = useState(0);
 
     const abortCont = new AbortController();
 
@@ -25,12 +26,15 @@ const useInfiniteScrolling = url => {
         Axios.get(url, config)
             .then(res => {
                 if (!res.error) {
+                    console.log("our dataa ",res.data);
                     setData(prevData => {
-                        return [...prevData, ...res.data.response.post];
+                        let newArr=response ? res.data.response.post:res.data.post;
+                        return [...prevData,...newArr];
                     });
                     setIsPending(false);
-                    setHasMore(res.data.response.next_url);
+                    setHasMore(response ? res.data.response.next_url:res.data.next_url);
                     setError(null);
+                    setTotal(response ? res.data?.response?.total:res.data?.total);
                 } else {
                     throw Error(res.error);
                 }
@@ -47,7 +51,7 @@ const useInfiniteScrolling = url => {
         };
     }, [url]);
 
-    return { error, data, isPending, hasMore };
+    return { error, data, isPending, hasMore, total };
 };
 
 export default useInfiniteScrolling;

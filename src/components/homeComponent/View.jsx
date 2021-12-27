@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import useRedirect from '../../hooks/useRedirect';
 import HomeSec1 from './containers/Sec1/HomeSec1';
 import HomeSec2 from './containers/Sec2/HomeSec2';
 import HomeSec3 from './containers/Sec3/HomeSec3';
@@ -8,7 +7,6 @@ import HomeSec5 from './containers/Sec5/HomeSec5';
 import SideNav from './containers/SideNav/SideNav';
 
 export default function HomePage() {
-    useRedirect();
     const [activeSection, setActiveSection] = useState(1);
     const [isBrowserSize, setIsBrowserSize] = useState(
         window.matchMedia('(min-width: 990px)').matches

@@ -32,13 +32,26 @@ export const handlePosting = (bodyData, handleClose, token, setSpinnerPost) => {
     }
 };
 
-export function fetchPost(postId, setPost, edit, setTitlePost, setContent) {
+export function fetchPost(
+    postId,
+    blogName,
+    setPost,
+    edit,
+    setTitlePost,
+    setContent,
+    token
+) {
     Axios({
         method: 'GET',
-        url: `${apiBaseUrl}/post/${postId}`
+        url: `${apiBaseUrl}/edit/${blogName}/${postId}`,
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        }
     })
         .then(res => {
-            if (res.data.Meta.Status === 200) {
+            if (res.data.meta.status_code === 200) {
                 setPost(res.data.response);
                 if (edit === true) {
                     setTitlePost(res.data.response.post.title);
@@ -49,19 +62,16 @@ export function fetchPost(postId, setPost, edit, setTitlePost, setContent) {
         .catch(() => {});
 }
 
-export function reblogPost(post, comment, navigate) {
+export function editPost(postId, blogName, dataBody, navigate, token) {
     Axios({
-        method: 'POST',
-        url: `${apiBaseUrl}/posts/reblog`,
+        method: 'PUT',
+        url: `${apiBaseUrl}/update/${blogName}/${postId}`,
         headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json'
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
         },
-        data: {
-            id: post['post_id'],
-            reblog_key: post['reblog_key'],
-            comment: comment
-        }
+        data: dataBody
     })
         .then(res => {
             navigate('/dashboard');
@@ -70,17 +80,19 @@ export function reblogPost(post, comment, navigate) {
         .catch(() => {});
 }
 
-export function editPost(postId, dataBody, navigate) {
+export function reblogPost(post, comment, navigate, token) {
     Axios({
         method: 'POST',
-        url: `${apiBaseUrl}/posts/edit`,
+        url: `${apiBaseUrl}/posts/reblog`,
         headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json'
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
         },
         data: {
-            id: postId,
-            data: dataBody
+            id: post['post_id'],
+            reblog_key: post['reblog_key'],
+            comment: comment
         }
     })
         .then(res => {

@@ -9,7 +9,7 @@ import { UserContext } from '../../../../../../contexts/userContext/UserContext'
 import AuthBtn from '../../../../../partials/AuthBtn';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { ChatContext } from '../../../../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../../../../contexts/chatContext/chatContext';
 
 /** EDIT THIS!!!!
  * @function LogOutOverlay
@@ -19,16 +19,18 @@ import { ChatContext } from '../../../../../../contexts/chatContext/ChatContext'
  */
 
 export default function LogOutOverlay(props) {
-    const theme = useContext(ThemeContext)[0];
+    const [theme, changeTheme] = useContext(ThemeContext);
     const { user, setUser } = useContext(UserContext);
     const {clear} = useContext(ChatContext);
     const navigate = useNavigate();
 
     const logOut = () => {
+        console.log(user.token);
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
         Axios.post(`${apiBaseUrl}/logout`, {}, config)
             .then(() => {
                 setUser(null);
+                changeTheme('trueBlue');
                 localStorage.removeItem('user');
                 clear();
                 navigate('/');

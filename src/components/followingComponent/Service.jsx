@@ -30,6 +30,7 @@ export const getFollowingList = (
             if (res?.data?.response?.blogs?.length < 15) {
                 setHasMore(false);
             }
+            console.log(res?.data?.response?.blogs);
             setFollowingList([...followingList, ...newArr]);
             setTotalFollowing(
                 res?.data?.response?.total_following
@@ -60,14 +61,21 @@ export const followAccount = (userToken, searchedName, setResponseMsg) => {
     })
         .then(() => {
             setResponseMsg(`you're now following ${searchedName} successfully`);
+            return;
         })
         .catch(err => {
             let errMsg = err?.response?.data?.error;
             setResponseMsg(errMsg);
+            return;
         });
 };
 
-export const unfollowAccount = (userToken, unfollowAcc, setResponseMsg) => {
+export const unfollowAccount = (
+    userToken,
+    unfollowAcc,
+    setResponseMsg,
+    unfollow
+) => {
     Axios({
         method: 'DELETE',
         url: `${apiBaseUrl}/user/follow`,
@@ -81,10 +89,42 @@ export const unfollowAccount = (userToken, unfollowAcc, setResponseMsg) => {
         }
     })
         .then(() => {
-            setResponseMsg(`you're not following ${unfollowAcc} anymore`);
+            if (unfollow === true) setResponseMsg(false);
+            else setResponseMsg(`you're not following ${unfollowAcc} anymore`);
+            return true;
         })
         .catch(err => {
             let errMsg = err.response.data.error;
             setResponseMsg(errMsg);
+            return false;
+        });
+};
+
+export const blockAccount = (
+    userToken,
+    blockAcc,
+    setResponseMsg,
+    userBlogName
+) => {
+    Axios({
+        method: 'POST',
+        url: `${apiBaseUrl}/blog/${userBlogName}/blocks`,
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${userToken}`
+        },
+        data: {
+            blogName: blockAcc
+        }
+    })
+        .then(() => {
+            setResponseMsg(`you've blocked ${blockAcc}`);
+            return true;
+        })
+        .catch(err => {
+            let errMsg = err?.response?.data?.error;
+            setResponseMsg(errMsg);
+            return false;
         });
 };

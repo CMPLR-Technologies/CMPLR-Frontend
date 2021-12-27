@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { IoIosSettings } from 'react-icons/io';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import ReblogSIgn from '../../../partials/postComponent/containers/Notes/ReblogSign.svg';
 import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress';
+import { UserContext } from '../../../../contexts/userContext/UserContext';
 
 export default function HeaderCreatePost(props) {
+    const { user } = useContext(UserContext);
     const { reblog, parentBlogAuthor } = props;
     const { spinner } = props;
     return (
@@ -15,7 +17,9 @@ export default function HeaderCreatePost(props) {
                     <div className="control-left">
                         <div>
                             <button className="btn-control">
-                                <span className="caption">hazemkak</span>
+                                <span className="caption">
+                                    {user?.blogName}
+                                </span>
                                 <span className="icon_arrow_carrot_down">
                                     <RiArrowDropDownLine
                                         style={{

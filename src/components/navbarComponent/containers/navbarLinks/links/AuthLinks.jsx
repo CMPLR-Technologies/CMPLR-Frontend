@@ -5,8 +5,12 @@ import MessagesPopUp from '../MessagesPopup/MessagesPopUp';
 import AccountPopup from '../AccountPopup/AccountPopup';
 import { Link, NavLink } from 'react-router-dom';
 import UnReadMsg from './UnReadMsg';
-import { ChatContext } from '../../../../../contexts/chatContext/ChatContext';
 import { UserContext } from '../../../../../contexts/userContext/UserContext';
+import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
+import Notifications from '../../Notifications/Notifications';
+import Badge from './Badge';
+import Axios from 'axios';
+import { apiBaseUrl } from '../../../../../config.json';
 /**
  * Navbar AuthLinks: includes all links dashboard and inbox and expolre ...
  * @function NavbarAuthLinks
@@ -24,6 +28,7 @@ export default function AuthLinks() {
     const [openMessagePopup, setOpenMessagePopup] = useState(false);
     const [openNotificationsPopup, setOpenNotificationsPopup] = useState(false);
     const [openAccountPopup, setOpenAccountPopup] = useState(false);
+    const [notfArray, setNotfArray] = useState(null);
 
     //const [openPopup, setOpenPopup] = useState(false);
 
@@ -77,6 +82,23 @@ export default function AuthLinks() {
         setOpenAccountPopup(!openAccountPopup);
     };
 
+    useEffect(() => {
+        user?.blogName !== undefined &&
+            Axios({
+                method: 'GET',
+                url: `${apiBaseUrl}/blog/${user?.blogName}/notifications`,
+                headers: {
+                    'content-type': 'application/json',
+                    Authorization: `Bearer ${user?.token}`
+                }
+            })
+                .then(res => {
+                    if (res.data.meta.status_code === 200)
+                        setNotfArray(res.data.response);
+                })
+                .catch(() => {});
+    }, []);
+
     /*  const clickOpenPopup = () => {
     console.log("closeg");
     setOpenPopup(!openPopup);
@@ -96,7 +118,7 @@ export default function AuthLinks() {
             <li className="link-icon">
                 <NavLink
                     className={navData => (navData.isActive ? 'active' : '')}
-                    to="/recommended-for-you"
+                    to="/explore/recommended-for-you"
                 >
                     <i className="far fa-compass"></i>
                 </NavLink>
@@ -129,15 +151,25 @@ export default function AuthLinks() {
                     )}
                 </div>
             </ClickAwayListener>
-
-            <li
-                onClick={clickNotificationsPopup}
-                className={`link-icon  ${
-                    openNotificationsPopup ? 'active' : ''
-                }`}
-            >
-                <i className="fas fa-bolt"></i>
-            </li>
+            <div className="notifications-btn">
+                <li
+                    onClick={clickNotificationsPopup}
+                    className={`link-icon  ${
+                        openNotificationsPopup ? 'active' : ''
+                    }`}
+                >
+                    <i className="fas fa-bolt"></i>
+                </li>
+                {notfArray?.unseen && <Badge num={notfArray?.unseen} />}
+                {openNotificationsPopup && (
+                    <Notifications
+                        userBlogName={user?.blogName}
+                        userAvatar={user?.userData?.avatar}
+                        notfArray={notfArray && notfArray}
+                        setNotfArray={setNotfArray}
+                    />
+                )}
+            </div>
             <ClickAwayListener onClickAway={closeAccountPopup}>
                 <div className="link-popup">
                     <li

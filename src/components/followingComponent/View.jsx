@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { LinearProgress } from '@mui/material';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Sidebar from '../dashboardComponent/containers/Sidebar';
 import SearchForm from './containers/SearchForm';
 import ItemList from './containers/ItemList';
-import PopupBlock from './containers/PopupBlock';
-import { followAccount, unfollowAccount, getFollowingList } from './Service';
+import {
+    followAccount,
+    unfollowAccount,
+    getFollowingList,
+    blockAccount
+} from './Service';
+import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 /**
  * Following Page Component
  * @function FollowingPage
@@ -25,6 +30,36 @@ export default function FollowingPage() {
     const [totalFollowing, setTotalFollowing] = useState(0);
     const [page, setPage] = useState(1);
 
+    const theme = useContext(ThemeContext)[0];
+    const css = `
+        .IiZ2z {
+            color: rgb(${themes[theme]?.whiteOnDark});
+        }
+        .dyc2r {
+            background: rgb(${themes[theme]?.whiteOnDark},0.25);
+            color: rgb(${themes[theme]?.whiteOnDark},0.65);
+        }
+        .dyc2r::placeholder {
+            color: rgb(${themes[theme]?.whiteOnDark},0.65);
+        }
+        .dyc2r:active , .dyc2r:focus {
+            color: rgb(${themes[theme]?.black});
+            background: rgb(${themes[theme]?.white});
+        }
+        .eXQ6G{
+            background:rgb(${themes[theme]?.white});
+        }
+        .gLEkw{
+            color:rgb(${themes[theme]?.black});
+        }
+        .f68ED{
+            color:rgb(${themes[theme]?.accent});
+        }
+        .Tb7Ey{
+            color: rgb(${themes[theme]?.whiteOnDark},0.65);
+        }
+    `;
+
     const handleSearchFollow = () => {
         followAccount(user?.token, search, setResponseMsg);
     };
@@ -33,7 +68,9 @@ export default function FollowingPage() {
         unfollowAccount(user?.token, unfollowAcc, setResponseMsg);
     };
 
-    const handleBlock = () => {};
+    const handleBlock = blockAcc => {
+        blockAccount(user?.token, blockAcc, setResponseMsg, user?.blogName);
+    };
 
     const handleScroll = () => {
         if (hasMore) {
@@ -57,6 +94,7 @@ export default function FollowingPage() {
 
     return (
         <>
+            <style>{css}</style>
             <div className="dashboard">
                 <div className="lSyOz">
                     <div className="rmkqO">
@@ -80,7 +118,7 @@ export default function FollowingPage() {
                         >
                             <section className="NedHV">
                                 {followingList &&
-                                    followingList.map((f, i) => {
+                                    followingList?.map((f, i) => {
                                         return (
                                             <ItemList
                                                 key={
@@ -97,6 +135,9 @@ export default function FollowingPage() {
                                                 }
                                                 handleUnfollow={handleUnfollow}
                                                 avatar={f?.avatar}
+                                                openPopup={openPopup}
+                                                handleBlock={handleBlock}
+                                                myBlogName={user?.blogName}
                                             />
                                         );
                                     })}
@@ -116,13 +157,6 @@ export default function FollowingPage() {
                 </div>
                 <Sidebar />
             </div>
-            <PopupBlock
-                open={openPopup}
-                setOpen={setOpenPopup}
-                handleBlock={handleBlock}
-                myBlogName={'my-profile'}
-                profileName={'your-profile'}
-            />
         </>
     );
 }

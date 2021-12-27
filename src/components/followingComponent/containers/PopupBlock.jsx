@@ -45,7 +45,7 @@ export default function PopupBlock(props) {
                                     </span>
                                 </button>
                                 <button
-                                    onClick={() => handleBlock()}
+                                    onClick={() => handleBlock(profileName)}
                                     style={{ backgroundColor: '#FF4930' }}
                                     className="B5hil"
                                 >

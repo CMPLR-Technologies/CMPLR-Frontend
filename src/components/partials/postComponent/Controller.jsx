@@ -97,11 +97,13 @@ export function toggleShareList(isShareListOpen, setIsShareListOpen) {
     setIsShareListOpen(!isShareListOpen);
 }
 
-export function copyLink(postLink, postId) {
+export function copyLink(postLink, postId, footer) {
     navigator.clipboard.writeText(postLink);
-    document.getElementById(`copy-btn${postId}`).textContent = 'Link Copied!';
+    const btn = document.getElementById(`copy-btn${postId}`);
+    btn.textContent = 'Link Copied!';
     setTimeout(() => {
-        document.getElementById(`copy-btn${postId}`).textContent = 'Copy link';
+        if (footer) btn.textContent = '';
+        else btn.textContent = 'Copy link';
     }, 2000);
 }
 
