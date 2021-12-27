@@ -11,7 +11,6 @@ import ResetPassword from '../resetPasswordComponent/View';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
-import ProfileFull from '../profileViews/fullView/View';
 
 import FollowingPage from '../followingComponent/View';
 import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
@@ -23,6 +22,7 @@ import HelpCenter from '../HelpCenter/View';
 import Article from '../HelpCenter/containers/Article';
 import ArticleCategoryIndividual from '../HelpCenter/containers/ArticleCategoryIndividual';
 import LikedBlogs from '../likesComponent/View';
+import ProfileFullContainer from '../profileViews/fullView/View';
 
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
@@ -93,8 +93,8 @@ export default function MainRoutes() {
                         />
 
                         <Route
-                            path="/blog/view/:blogName/:blogID"
-                            element={<ProfileFull />}
+                            path="/blog/view/:blogName/:blogID/:content"
+                            element={<ProfileFullContainer />}
                         />
                     </Route>
                 </Routes>

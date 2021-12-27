@@ -9,7 +9,7 @@ export default function ProfilsSideContainer(props) {
     const { blogID, blogName, setShowSideBlog, setSidePostID, sidePostID } =
         props;
     const response = useFetch(`${apiBaseUrl}/MiniProfileView/${blogID}`);
-    const { error, data, isPending } = response;
+    const { data, isPending } = response;
 
     return (
         <div className="overlay-container" data-testid="OverlayContainer">
