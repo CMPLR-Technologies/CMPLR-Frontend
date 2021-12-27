@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { apiBaseUrl } from '../../../../config.json';
 import useFetch from '../../../../hooks/useFetch';
 import { LinearProgress } from '@mui/material';
-import { Category } from '@mui/icons-material';
+import ProfileContent from './content/ProfileContent';
 
 export default function ProfileFull(props) {
+    const { postID } = useParams();
     const { blogName, blogID, content, scrollTop } = props;
     const response = useFetch(`${apiBaseUrl}/MiniProfileView/${blogID}`);
     const navArray = [
@@ -125,79 +126,17 @@ quasi aliquam eligendi, placeat qui corporis!`}
                             </NavLink>
                         ))}
                     </div>
-                    <div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
-                        <div>ffwafwa</div>
+                    <div className="profile-full-header-content">
+                        {(content === 'posts' ||
+                            content === 'ask' ||
+                            content === 'subimt') && (
+                            <ProfileContent
+                                blogName={blogName}
+                                blogID={blogID}
+                                content={content}
+                                postID={postID}
+                            />
+                        )}
                     </div>
                 </div>
             )}

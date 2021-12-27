@@ -12,7 +12,8 @@ export default function VerticalPostsView(props) {
         setPageNumber,
         isRadar,
         blogPage,
-        userBlogName
+        userBlogName,
+        noTheme
     } = props;
 
     const observer = useRef();
@@ -44,6 +45,7 @@ export default function VerticalPostsView(props) {
                                     isFollowed={true}
                                     radar={isRadar}
                                     blogPage={blogPage}
+                                    themeDeactivate={noTheme}
                                 />
                             </div>
                         );
@@ -58,6 +60,7 @@ export default function VerticalPostsView(props) {
                                 }
                                 radar={isRadar}
                                 blogPage={blogPage}
+                                themeDeactivate={noTheme}
                             />
                         );
                     }
@@ -78,5 +81,6 @@ VerticalPostsView.propTypes = {
     isRadar: PropTypes.bool,
     isRef: PropTypes.bool,
     blogPage: PropTypes.bool,
-    userBlogName: PropTypes.string
+    userBlogName: PropTypes.string,
+    noTheme: PropTypes.bool
 };

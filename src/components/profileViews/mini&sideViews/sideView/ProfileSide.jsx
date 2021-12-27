@@ -95,9 +95,13 @@ export default function ProfileSide(props) {
                             blogName={blogName}
                             blogID={blogID}
                             sidePostID={sidePostID}
+                            noTheme={false}
                         />
                     ) : (
-                        <ProfileSideAllPosts blogName={blogName} />
+                        <ProfileSideAllPosts
+                            blogName={blogName}
+                            noTheme={false}
+                        />
                     )}
                 </div>
                 <style>{css}</style>
