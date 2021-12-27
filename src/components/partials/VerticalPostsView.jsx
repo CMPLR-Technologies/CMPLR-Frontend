@@ -11,7 +11,10 @@ export default function VerticalPostsView(props) {
         isRef,
         setPageNumber,
         isRadar,
-        blogPage
+        blogPage,
+        // eslint-disable-next-line no-unused-vars
+        userBlogName,
+        noTheme
     } = props;
     const user = JSON.parse(localStorage.getItem('user'));
 
@@ -42,6 +45,7 @@ export default function VerticalPostsView(props) {
                                     isFollowed={true}
                                     radar={isRadar}
                                     blogPage={blogPage}
+                                    themeDeactivate={noTheme}
                                 />
                             </div>
                         );
@@ -54,6 +58,7 @@ export default function VerticalPostsView(props) {
                                 userBlogName={user?.blogName}
                                 radar={isRadar}
                                 blogPage={blogPage}
+                                themeDeactivate={noTheme}
                             />
                         );
                     }
@@ -74,5 +79,6 @@ VerticalPostsView.propTypes = {
     isRadar: PropTypes.bool,
     isRef: PropTypes.bool,
     blogPage: PropTypes.bool,
-    userBlogName: PropTypes.string
+    userBlogName: PropTypes.string,
+    noTheme: PropTypes.bool
 };

@@ -5,8 +5,8 @@ import useFetch from '../../../../hooks/useFetch';
 import { LinearProgress } from '@mui/material';
 import PostComponent from '../../../partials/postComponent/containers/PostComponent';
 
-export default function ProfileSideOnePost(props) {
-    const { blogName, sidePostID } = props;
+export default function ProfileSide(props) {
+    const { blogName, sidePostID, noTheme } = props;
     const {
         error,
         data: post,
@@ -24,6 +24,7 @@ export default function ProfileSideOnePost(props) {
                     post={{ blog: post.blog, post: post.post }}
                     blogPage={true}
                     userBlogName={blogName}
+                    themeDeactivate={noTheme}
                 />
             ) : (
                 <div></div>
@@ -32,8 +33,9 @@ export default function ProfileSideOnePost(props) {
     );
 }
 
-ProfileSideOnePost.propTypes = {
+ProfileSide.propTypes = {
     blogID: PropTypes.string,
     blogName: PropTypes.string.isRequired,
-    sidePostID: PropTypes.string
+    sidePostID: PropTypes.string,
+    noTheme: PropTypes.bool
 };

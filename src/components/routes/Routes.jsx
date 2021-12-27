@@ -15,9 +15,6 @@ import Dashboard from '../dashboardComponent/View';
 import DeleteAccount from '../deleteAccountComponent/View';
 import BlogSettings from '../blogSettingsComponent/View';
 import DeleteBlogCard from '../blogSettingsComponent/containers/deleteBlog/DeleteBlog';
-
-import ProfileFull from '../profileViews/fullView/View';
-
 import FollowingPage from '../followingComponent/View';
 import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
 import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
@@ -28,6 +25,7 @@ import HelpCenter from '../HelpCenter/View';
 import Article from '../HelpCenter/containers/Article';
 import ArticleCategoryIndividual from '../HelpCenter/containers/ArticleCategoryIndividual';
 import LikedBlogs from '../likesComponent/View';
+import ProfileFullContainer from '../profileViews/fullView/View';
 
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
@@ -74,7 +72,7 @@ export default function MainRoutes() {
                     <Route element={<RequireAuth />}>
                         <Route
                             path="/blog/:blogName/delete"
-                            element={<DeleteBlogCard setWithNav={setWithNav}/>} //WITHOUTNAV
+                            element={<DeleteBlogCard setWithNav={setWithNav} />} //WITHOUTNAV
                         />
                         <Route
                             path="/settings"
@@ -102,7 +100,12 @@ export default function MainRoutes() {
                         />
                         <Route
                             path="/blog/new"
-                            element={<BlogSettings page={'create'} setWithNav={setWithNav} />} //WITHOUTNAV
+                            element={
+                                <BlogSettings
+                                    page={'create'}
+                                    setWithNav={setWithNav}
+                                />
+                            } //WITHOUTNAV
                         />
                         <Route path="/following" element={<FollowingPage />} />
                         <Route path="/likes" element={<LikedBlogs />} />
@@ -123,8 +126,12 @@ export default function MainRoutes() {
                         <Route path="/new" element={<NewPostPopup />} />
 
                         <Route
-                            path="/blog/view/:blogName/:blogID/:content?"
-                            element={<ProfileFull />}
+                            path="/blog/view/:blogName/:blogID/:content/:postID"
+                            element={<ProfileFullContainer />}
+                        />
+                        <Route
+                            path="/blog/view/:blogName/:blogID/:content"
+                            element={<ProfileFullContainer />}
                         />
 
                         <Route path="/explore/:type" element={<Explore />} />

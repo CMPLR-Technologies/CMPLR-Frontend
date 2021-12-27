@@ -64,7 +64,7 @@ export default function ProfileSide(props) {
                 />
             )*/}
                 <NavLink
-                    to={`/blog/view/${blogName}/${blogID}`}
+                    to={`/blog/view/${blogName}/${blogID}/posts`}
                     className="profile-side-header-div"
                 >
                     <img
@@ -73,7 +73,7 @@ export default function ProfileSide(props) {
                         alt="couldn't load bg"
                     />
                 </NavLink>
-                <NavLink to={`/blog/view/${blogName}/${blogID}`}>
+                <NavLink to={`/blog/view/${blogName}/${blogID}/posts`}>
                     <img
                         className="profile-side-header-avatar"
                         src={avatar}
@@ -95,9 +95,13 @@ export default function ProfileSide(props) {
                             blogName={blogName}
                             blogID={blogID}
                             sidePostID={sidePostID}
+                            noTheme={false}
                         />
                     ) : (
-                        <ProfileSideAllPosts blogName={blogName} />
+                        <ProfileSideAllPosts
+                            blogName={blogName}
+                            noTheme={false}
+                        />
                     )}
                 </div>
                 <style>{css}</style>
