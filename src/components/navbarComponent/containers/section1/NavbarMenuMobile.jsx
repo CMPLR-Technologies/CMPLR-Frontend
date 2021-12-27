@@ -51,13 +51,13 @@ export default function NavbarMenuMobile(props) {
                     </button>
                     <ul>
                         <li className="navbar-menu-mobile-menu-item">
-                            <NavLink to="/dashbord" onClick={closeMenu}>
+                            <NavLink to="/dashboard" onClick={closeMenu}>
                                 <i className="fas fa-home"></i> Dashboard
                             </NavLink>
                         </li>
                         <li className="navbar-menu-mobile-menu-item">
                             <NavLink
-                                to="/recommended-for-you"
+                                to="/explore/recommended-for-you"
                                 onClick={closeMenu}
                             >
                                 <i className="fas fa-compass"></i> Explore

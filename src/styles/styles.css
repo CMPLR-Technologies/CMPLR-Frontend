@@ -7608,6 +7608,7 @@ body .settings .container1 .subcontainer #section-create-blog .sub-section-right
   flex-direction: column;
   align-items: center;
   max-width: 625px;
+  width: 100%;
 }
 
 .arrow-icon {
@@ -7814,6 +7815,11 @@ body .settings .container1 .subcontainer #section-create-blog .sub-section-right
 
   .explore-nav {
     justify-content: center;
+  }
+  .explore-nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
   }
 
   .explore-nav-icons {
