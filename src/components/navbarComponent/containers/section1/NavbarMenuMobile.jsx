@@ -6,6 +6,8 @@ import {
     themes
 } from '../../../../contexts/themeContext/ThemeContext';
 import LogOutOverlay from '../navbarLinks/AccountPopup/Seperators/LogOutOverlay';
+import useFetch from '../../../../hooks/useFetch';
+import { apiBaseUrl } from '../../../../config.json';
 
 /**
  * Navbar menu mobile: includes navbar links when mobile view
@@ -17,6 +19,7 @@ import LogOutOverlay from '../navbarLinks/AccountPopup/Seperators/LogOutOverlay'
 export default function NavbarMenuMobile(props) {
     const [theme, changeTheme] = useContext(ThemeContext);
     const [paletteChanged, setPaletteChanged] = useState(false);
+    const { data: userInfo } = useFetch(`${apiBaseUrl}/user/info`);
     let { isOpenSetting, openSetting, closeMenuPar, active } = props;
 
     //for logout
@@ -27,7 +30,7 @@ export default function NavbarMenuMobile(props) {
     };
     const toggleTheme = () => {
         setPaletteChanged(true);
-        changeTheme(theme);
+        changeTheme();
     };
     const openSettingHere = () => {
         openSetting();
@@ -87,7 +90,9 @@ export default function NavbarMenuMobile(props) {
                                     <div>
                                         <i className="fas fa-heart"></i> Likes
                                     </div>
-                                    <span className="val">50</span>
+                                    <span className="val">
+                                        {userInfo && userInfo.user.likes_count}
+                                    </span>
                                 </div>
                             </NavLink>
                         </li>
@@ -98,7 +103,10 @@ export default function NavbarMenuMobile(props) {
                                         <i className="far fa-address-book"></i>{' '}
                                         Following
                                     </div>
-                                    <span className="val">50</span>
+                                    <span className="val">
+                                        {userInfo &&
+                                            userInfo.user.following_count}
+                                    </span>
                                 </div>
                             </NavLink>
                         </li>

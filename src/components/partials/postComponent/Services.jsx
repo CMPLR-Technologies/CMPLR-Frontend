@@ -76,7 +76,7 @@ export function block(
     setBlockResponse,
     token
 ) {
-   return  Axios({
+    return Axios({
         method: 'POST',
         headers: {
             'content-type': 'application/json',
@@ -96,8 +96,7 @@ export function block(
                 setBlockResponse(`${blogName} has been blocked.`);
         })
         .catch(err => {
-            return Promise.reject(err)
-          
+            return Promise.reject(err);
         });
 }
 
@@ -112,11 +111,11 @@ export function getPostNotes(blogIdentifier, setNotes, setCounts, postId) {
         }
     })
         .then(res => {
-            setNotes(res.data[0].notes);
+            setNotes(res.data.notes);
             let count = {
-                totalLikes: res.data[0]['total_likes'],
-                totalReblogs: res.data[0]['total_reblogs'],
-                totalReplys: res.data[0]['total_replys']
+                totalLikes: res.data.total_likes,
+                totalReblogs: res.data.total_reblogs,
+                totalReplys: res.data.total_replys
             };
             setCounts(count);
         })

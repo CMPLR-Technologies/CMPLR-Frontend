@@ -28,9 +28,8 @@ export default function AccountPopupActions(props) {
     const [theme, changeTheme] = useContext(ThemeContext);
     const [paletteChanged, setPaletteChanged] = useState(false);
     const [shortcutOverlay, setShortcutOverlay] = useState(false);
-    const { likesCount, followingCount } = props.userInfo
-        ? props.userInfo
-        : { likesCount: 0, followingCount: 0 };
+    const { likes_count: likesCount, following_count: followingCount } =
+        props.userInfo ? props.userInfo : { likesCount: 0, followingCount: 0 };
 
     const toggleTheme = () => {
         setPaletteChanged(true);
