@@ -3789,7 +3789,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
 }
 .profile-full-header-div-bg {
   object-fit: cover;
-  height: calc(300px + 50px);
+  height: 350px;
   width: 100%;
   -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
@@ -3798,7 +3798,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
 .profile-full-header-avatar {
   position: absolute;
   left: 50%;
-  top: calc(300px + 50px);
+  top: 350px;
   transform: translateX(-50%) translateY(-50%);
   width: 96px;
   height: 96px;
