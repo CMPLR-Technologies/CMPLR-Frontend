@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReblogReact from '../../../partials/postComponent/containers/Notes/ReblogReact.svg';
 import LoveReact from '../../../partials/postComponent/containers/Notes/LoveReact.svg';
 import CommentReact from '../../../partials/postComponent/containers/Notes/CommentReact.svg';
@@ -10,13 +10,15 @@ import FollowReact from './notificationsTypesSVG/FollowReact';
 import HiIcon from './notificationsTypesSVG/HiIcon';
 import PostIcon from './notificationsTypesSVG/PostIcon';
 import AskIcon from './notificationsTypesSVG/AskIcon';
-
+import { followAccount } from '../../../followingComponent/Service';
 NotfBody.propTypes = {
     notf: PropTypes.object
 };
 
 export default function NotfBody(props) {
     const { notf } = props;
+    const user = JSON.parse(localStorage.getItem('user'));
+    const [following, setFollowing] = useState(false);
     return (
         <div className="notf-body">
             <div className="relative">
@@ -89,7 +91,18 @@ export default function NotfBody(props) {
                             <AskIcon />
                         </Link>
                     ) : notf['type'] === 'follow' ? (
-                        <button className="follow-btn btn">Follow</button>
+                        <button
+                            onClick={() => {
+                                followAccount(
+                                    user?.token,
+                                    notf['from_blog_name'],
+                                    setFollowing
+                                );
+                            }}
+                            className="follow-btn btn"
+                        >
+                            {following ? '' : 'Follow'}
+                        </button>
                     ) : (
                         <Link className="hi-link" to="*">
                             <HiIcon />

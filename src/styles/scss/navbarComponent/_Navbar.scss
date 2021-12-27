@@ -822,8 +822,6 @@ $border-radius-primary: 3px;
         }
     }
     .notifications-container {
-        overflow-y: auto;
-
         scrollbar-width: thin;
         width: 380px;
         height: auto;
@@ -832,6 +830,29 @@ $border-radius-primary: 3px;
         transform: translate3d(-232px, 18px, 0px);
         display: flex;
         flex-direction: column;
+        .notf-body-cont {
+            overflow-y: auto;
+            scrollbar-width: thin;
+            width: 380px;
+            height: auto;
+            max-height: 580px;
+            display: flex;
+            flex-direction: column;
+            scrollbar-color: #555555 #060022;
+        }
+        .see-everything-btn {
+            a {
+                text-decoration: none;
+            }
+
+            .see-everything {
+                display: block;
+                text-decoration: none;
+                width: 100%;
+                height: 30px;
+                background-color: rgba(0, 0, 0, 0.07);
+            }
+        }
         .relative {
             display: flex;
             font-size: 0.875rem;

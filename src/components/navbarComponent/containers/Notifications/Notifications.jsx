@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import NotfBody from './NotfBody';
 import NotfHeader from './NotfHeader';
 
@@ -44,30 +45,34 @@ export default function Notifications(props) {
                                 <div className="date">{date}</div>
                             </div>
                         )}
-                        {notf[date] &&
-                            notf[date].map((notf, index) => (
-                                <>
-                                    <NotfBody notf={notf} key={index} />
-                                </>
-                            ))}
+                        <div className="notf-body-cont">
+                            {notf[date] &&
+                                notf[date].map((notf, index) => (
+                                    <Link
+                                        style={{ textDecoration: 'none' }}
+                                        to={`/blog/view/${
+                                            notf['from_blog_name']
+                                        }/${
+                                            notf['post_ask_answer_id']
+                                                ? notf['post_ask_answer_id']
+                                                : ''
+                                        }`}
+                                        key={index}
+                                    >
+                                        <NotfBody notf={notf} key={index} />
+                                    </Link>
+                                ))}
+                        </div>
                     </>
                 );
             })}
-            {/* {notfArray.map(
-                (
-                    { notfDate, notfAvatar, notfType, notfUser, postSnap },
-                    index
-                ) => (
-                    <NotfBody
-                        key={index}
-                        notfDate={notfDate}
-                        notfAvatar={notfAvatar}
-                        notfType={notfType}
-                        notfUser={notfUser}
-                        postSnap={postSnap}
-                    />
-                )
-            )} */}
+            <div className="see-everything-btn">
+                <Link to={`/blog/${userBlogName}/activity`}>
+                    <button className="btn see-everything">
+                        See Everything
+                    </button>
+                </Link>
+            </div>
         </div>
     );
 }
