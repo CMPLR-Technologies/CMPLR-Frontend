@@ -105,9 +105,9 @@ export default function ProfileFull(props) {
                         {navArray.map(
                             (category, index) =>
                                 (data.blog.is_primary ||
-                                    content === 'posts' ||
-                                    content === 'ask' ||
-                                    content === 'submit') && (
+                                    category.link === 'posts' ||
+                                    category.link === 'ask' ||
+                                    category.link === 'submit') && (
                                     <NavLink
                                         className={`profile-full-header-nav-link ${
                                             category.link === content &&

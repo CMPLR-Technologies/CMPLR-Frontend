@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { apiBaseUrl } from '../../../../../config.json';
+import useFetch from '../../../../../hooks/useFetch';
 import ProfileSideAllPosts from '../../../mini&sideViews/sideView/ProfileSideAllPosts';
 import ProfileSideOnePost from '../../../mini&sideViews/sideView/ProfileSideOnePost';
-import Radar from '../../../../partials/Radar';
+import PostComponent from '../../../../partials/postComponent/containers/PostComponent';
 import { changeMobileView } from '../../Controller';
+import { LinearProgress } from '@mui/material';
+
 export default function ProfileContent(props) {
     const { blogName, blogID, content, postID } = props;
     const [mobile, setMobile] = useState(false);
     useEffect(() => {
         changeMobileView(setMobile);
     }, []);
+    const {
+        error,
+        data: posts,
+        isPending
+    } = useFetch(`${apiBaseUrl}/profile/likes/${blogName}`);
 
     window.addEventListener('resize', () => changeMobileView(setMobile));
     return (
@@ -32,7 +41,23 @@ export default function ProfileContent(props) {
             {!mobile && (
                 <div className="profile-full-header-content-side">
                     RECENTLY LIKED
-                    <Radar noTheme={true} />
+                    {error ? (
+                        <div className="no-data-error">{"Couldn't load"}</div>
+                    ) : isPending ? (
+                        <LinearProgress />
+                    ) : posts ? (
+                        <PostComponent
+                            post={{
+                                blog: posts.post[0].blog,
+                                post: posts.post[0].post
+                            }}
+                            blogPage={true}
+                            userBlogName={blogName}
+                            themeDeactivate={true}
+                        />
+                    ) : (
+                        <div className="no-data-error">no Liked Posts</div>
+                    )}
                 </div>
             )}
         </div>

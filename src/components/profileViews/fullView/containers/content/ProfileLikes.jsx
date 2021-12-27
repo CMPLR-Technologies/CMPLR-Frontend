@@ -25,6 +25,8 @@ export default function ProfileLikes(props) {
                     isPending={isPending}
                     hasMore={hasMore}
                     setPageNumber={setPageNumber}
+                    noTheme={true}
+                    blogPage={true}
                 />
             ) : (
                 <div>This blog has no liked posts</div>
