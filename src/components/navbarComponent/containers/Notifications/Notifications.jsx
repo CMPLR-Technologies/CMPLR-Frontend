@@ -35,17 +35,17 @@ export default function Notifications(props) {
                 userBlogName={userBlogName}
                 userAvatar={userAvatar}
             />
-            {notfDates.map(date => {
-                return (
-                    <>
-                        {notf[date] && (
-                            <div className="notf-date">
-                                <div className="duration">2 days ago</div>{' '}
-                                {/*TODO calc duration depends on BE response format*/}
-                                <div className="date">{date}</div>
-                            </div>
-                        )}
-                        <div className="notf-body-cont">
+            <div className="notf-body-cont">
+                {notfDates.map(date => {
+                    return (
+                        <>
+                            {notf[date] && (
+                                <div className="notf-date">
+                                    <div className="duration">2 days ago</div>{' '}
+                                    {/*TODO calc duration depends on BE response format*/}
+                                    <div className="date">{date}</div>
+                                </div>
+                            )}
                             {notf[date] &&
                                 notf[date].map((notf, index) => (
                                     <Link
@@ -62,10 +62,10 @@ export default function Notifications(props) {
                                         <NotfBody notf={notf} key={index} />
                                     </Link>
                                 ))}
-                        </div>
-                    </>
-                );
-            })}
+                        </>
+                    );
+                })}
+            </div>
             <div className="see-everything-btn">
                 <Link to={`/blog/${userBlogName}/activity`}>
                     <button className="btn see-everything">

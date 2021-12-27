@@ -4,6 +4,7 @@ import ChatMessages from './ChatMessages';
 import ChatOption from './ChatOption';
 import useInfiniteScrollingChat from '../../../hooks/useInfinteScrollingChat';
 import { apiBaseUrl } from '../../../config.json';
+import Pusher from 'pusher-js';
 
 /**
  * ChatPopUp Component
@@ -25,7 +26,8 @@ export default function ChatPopUp() {
         sendMessage,
         pageNumber,
         setConversationMsg,
-        conversationMsg
+        conversationMsg,
+        currBlog
     } = useContext(ChatContext);
 
     let {
@@ -69,14 +71,14 @@ export default function ChatPopUp() {
     const messagesEndRef = useRef(null);
     const messagesEndRef10 = useRef(null);
     const scrollToBottom = () => {
-        messagesEndRef.current.scrollIntoView({
+        messagesEndRef?.current?.scrollIntoView({
             behavior: 'auto',
             block: 'end',
             inline: 'nearest'
         });
     };
     const scrollToBottom10 = () => {
-        messagesEndRef10.current.scrollIntoView({
+        messagesEndRef10?.current?.scrollIntoView({
             behavior: 'auto',
             block: 'end',
             inline: 'nearest'
@@ -116,12 +118,68 @@ export default function ChatPopUp() {
     const toggleOption = () => {
         setShowOption(!showOption);
     };
+    const openOption = () => {
+        if (!showOption) setShowOption(true);
+    };
     const close = () => {
         closeChatPopup();
     };
     const partialClose = () => {
         paritialCloseChatPopup();
     };
+
+    //pusher work
+    useEffect(() => {
+        //const PUSHER_APP_ID = 1315145;
+        const PUSHER_APP_KEY = 'fda8bb30758c845460d8';
+        //const PUSHER_APP_SECRET = '57f7486c5a4270ce92d8';
+        const PUSHER_APP_CLUSTER = 'eu';
+        Pusher.logToConsole = true;
+        const pusher = new Pusher(PUSHER_APP_KEY, {
+            cluster: PUSHER_APP_CLUSTER,
+            authEndpoint:
+                'http://6ef0-156-223-164-236.ngrok.io/api/broadcasting/auth',
+            auth: {
+                headers: {
+                    'X-CSRF-TOKEN': JSON.parse(localStorage.getItem('user'))
+                        ?.token
+                }
+            }
+        });
+        //private-chat-10
+        let keyC = 'chat-' + currPopUpOpenChat.receiverId;
+        const channel = pusher.subscribe(keyC);
+
+        // eslint-disable-next-line no-useless-escape
+        channel.bind('App\\Events\\MessageSent', data => {
+            console.log(data);
+            let newMsg = {
+                // eslint-disable-next-line camelcase
+                from_blog_id: data?.sender_id,
+                // eslint-disable-next-line camelcase
+                to_blog_id: data?.rec_id,
+                content: data?.message?.content,
+                // eslint-disable-next-line camelcase
+                is_read: false,
+                // eslint-disable-next-line camelcase
+                created_at: new Date()
+            };
+            if (conversationMsg) {
+                setConversationMsg(prevData => {
+                    return [...prevData, newMsg];
+                });
+            } else {
+                let arr = [];
+                arr.push(newMsg);
+                setConversationMsg(arr);
+            }
+            //console.log(newMsg.created_at);
+            //setConversationMsg([...conversationMsg, newMsg]);
+        });
+    }, []);
+    /* useEffect(()=>{
+        console.log(conversationMsg);
+    },[conversationMsg]);*/
     return (
         <div
             className={`chat-popup-container ${
@@ -147,10 +205,10 @@ export default function ChatPopUp() {
                         <a href={receiverName}>{receiverName}</a>
                     </div>
                     <div className="btns">
-                        <button onClick={toggleOption}>
+                        <button onClick={openOption}>
                             <i className="fas fa-ellipsis-h"></i>
                         </button>
-                        <button onClick={partialClose}>
+                        <button className="parClose" onClick={partialClose}>
                             <i className="fas fa-compress-alt"></i>
                         </button>
                         <button onClick={close}>
@@ -174,9 +232,7 @@ export default function ChatPopUp() {
                     loadingFirstPage={loadingFirstPage}
                     receiverPhoto={receiverPhoto}
                     receiverShape={receiverShape}
-                    senderPhoto={
-                        'https://assets.tumblr.com/images/default_avatar/sphere_open_64.png'
-                    }
+                    senderPhoto={currBlog?.senderPhoto}
                     senderShape={'circle'}
                 />
 

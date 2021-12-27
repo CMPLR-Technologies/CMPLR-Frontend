@@ -15,11 +15,14 @@ import Dashboard from '../dashboardComponent/View';
 import DeleteAccount from '../deleteAccountComponent/View';
 import BlogSettings from '../blogSettingsComponent/View';
 import DeleteBlogCard from '../blogSettingsComponent/containers/deleteBlog/DeleteBlog';
+import MyProfile from '../MyProfileComponent/View';
+
 import FollowingPage from '../followingComponent/View';
 import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
 import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
 import Hashtag from '../hashtagsComponent/View';
 import GoogleCard from '../registerComponent/GoogleCard';
+import ActivityPage from '../activityPageComponent/ActivityPage';
 import Explore from '../explore/View';
 import HelpCenter from '../HelpCenter/View';
 import Article from '../HelpCenter/containers/Article';
@@ -134,7 +137,20 @@ export default function MainRoutes() {
                             element={<ProfileFullContainer />}
                         />
 
-                        <Route path="/explore/:type" element={<Explore />} />
+                        <Route
+                            path="/blog/:blogUrlIdf/*"
+                            element={<MyProfile />}
+                        />
+                        <Route  path="/blog/:blogUrlIdf/activity"element={<ActivityPage />} />
+
+                        <Route
+                            path="/explore/recommended-for-you"
+                            element={<Explore />}
+                        />
+                        <Route
+                            path="/messaging"
+                            element={<MessagesPageMobile />}
+                        />
                     </Route>
                 </Routes>
                 <style>{css}</style>

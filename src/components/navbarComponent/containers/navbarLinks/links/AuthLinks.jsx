@@ -5,6 +5,7 @@ import MessagesPopUp from '../MessagesPopup/MessagesPopUp';
 import AccountPopup from '../AccountPopup/AccountPopup';
 import { Link, NavLink } from 'react-router-dom';
 import UnReadMsg from './UnReadMsg';
+import { UserContext } from '../../../../../contexts/userContext/UserContext';
 import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
 import Notifications from '../../Notifications/Notifications';
 import Badge from './Badge';
@@ -23,37 +24,26 @@ import { apiBaseUrl } from '../../../../../config.json';
  */
 export default function AuthLinks() {
     //dropdown lists
+    const { user } = useContext(UserContext);
     const [openMessagePopup, setOpenMessagePopup] = useState(false);
     const [openNotificationsPopup, setOpenNotificationsPopup] = useState(false);
     const [openAccountPopup, setOpenAccountPopup] = useState(false);
     const [notfArray, setNotfArray] = useState(null);
-    const user = JSON.parse(localStorage.getItem('user'));
 
     //const [openPopup, setOpenPopup] = useState(false);
 
     // when the navbar run go loadChat and count the unreadMsgs
-    let { loadChats, chats } = useContext(ChatContext);
+    let { getUnReadMsgsCount } = useContext(ChatContext);
     const [unReadMsgs, setUnReadMsgs] = useState(0);
 
-    useEffect(async () => {
-        // this will clear Timeout
-        // when component unmount like in willComponentUnmount
+    useEffect(() => {
         // and show will not change to true
-        let timer1 = setTimeout(async () => {
-            await loadChats();
-            let count = 0;
-            // if (chats) {
-            //     chats?.map(chat => {
-            //         if (!chat.is_read) count++;
-            //     });
-            // }
-            setUnReadMsgs(count);
-        }, 2000);
-
-        return () => {
-            clearTimeout(timer1);
-        };
+        getUnReadMsgsCount(setUnReadMsgs);
     }, []);
+    useEffect(() => {
+        // and show will not change to true
+        getUnReadMsgsCount(setUnReadMsgs);
+    }, [user, user?.userData]);
 
     //close dropdown message list
     const closeMessagePopup = () => {

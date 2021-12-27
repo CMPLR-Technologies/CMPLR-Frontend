@@ -9,7 +9,8 @@ const logUser = (
     setUser,
     setError,
     setIsPending,
-    navigate
+    navigate,
+    setUserBlog
 ) => {
     Axios.post(`${apiBaseUrl}/login`, {
         email,
@@ -24,6 +25,7 @@ const logUser = (
             setUser(user);
             localStorage.setItem('user', JSON.stringify(user));
             setIsPending(false);
+            setUserBlog(user.userData);
             sendDesktopNotifyToken();
             navigate('/dashboard');
         })

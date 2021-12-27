@@ -19,6 +19,7 @@ export default function ChatContextProvider(props) {
             senderPhoto: user?.userData?.avatar,
             senderShape: user?.userData?.avatar_shape
         };
+    //console.log('f', currBlogObject, user);
     const [currBlog, setCurrBlog] = useState(currBlogObject);
     const [blogs, setBlogs] = useState(null);
 
@@ -37,6 +38,47 @@ export default function ChatContextProvider(props) {
     const [currPopUpOpenChat, setCurrPopUpOpenChat] = useState(null);
     const [sideIconOpenChat, setSideIconOpenChat] = useState([]); //array contains chats side icons opened
 
+    const setUserBlog = userData => {
+        let currBlogObject = null;
+        console.log(userData);
+        currBlogObject = {
+            senderName: userData?.blog_name,
+            senderId: userData?.primary_blog_id,
+            senderPhoto: userData?.avatar,
+            senderShape: userData?.avatar_shape
+        };
+        console.log('s', currBlogObject, userData);
+
+        setCurrBlog(currBlogObject);
+    };
+    const getUnReadMsgsCount = setUnReadMsgs => {
+        const abortCont = new AbortController();
+        const config = { signal: abortCont.signal };
+        if (user) {
+            config['headers'] = {
+                Authorization: `Bearer ${user?.token}`,
+                Accept: 'application/json'
+            };
+        } else return;
+        let count = 0;
+        let blogId = currBlog?.senderId; //user.userData.id;
+        Axios.get(`${apiBaseUrl}/blog/messaging/${blogId}`, config)
+            .then(res => {
+                if (!res.error) {
+                    setChats(res?.data);
+                    res?.data.forEach(chat => {
+                        if (!chat?.is_read && blogId !== chat?.from_blog_id)
+                            count++;
+                    });
+                    setUnReadMsgs(count);
+                } else {
+                    throw Error(res?.error);
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
     //this function load chats in navbavr dropdown list
     const loadChats = async () => {
         // to DO load real chat by axios request,, Doing it!
@@ -212,6 +254,15 @@ export default function ChatContextProvider(props) {
                 }
             });
     };
+    const clear = () => {
+        setCurrBlog(null);
+        if (currPopUpOpenChat) closeChatPopup();
+        setChats(null);
+        setErrLoadingChat(null);
+        setConversationMsg([]);
+        setCurrPopUpOpenChat(null);
+        setSideIconOpenChat([]);
+    };
     return (
         <ChatContext.Provider
             value={{
@@ -242,7 +293,10 @@ export default function ChatContextProvider(props) {
                 conversationMsg,
                 setConversationMsg,
 
-                deleteChat
+                deleteChat,
+                clear,
+                setUserBlog,
+                getUnReadMsgsCount
             }}
         >
             {props.children}

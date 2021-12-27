@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 export default function AccountPopupBlogsContainer(props) {
     //const [blogs, setBlogs] = useState([]);
 
-    const { blogs } = props;
+    const { blogs, closeMenu } = props;
     return (
         <div>
             {blogs && (
@@ -22,7 +22,7 @@ export default function AccountPopupBlogsContainer(props) {
                     className="account-popup-blogs-container"
                 >
                     {blogs.map((blog, index) => (
-                        <AccountPopupBlog blog={blog} key={index} />
+                        <AccountPopupBlog blog={blog} key={index} closeMenu={closeMenu} />
                     ))}
                 </div>
             )}
@@ -30,5 +30,6 @@ export default function AccountPopupBlogsContainer(props) {
     );
 }
 AccountPopupBlogsContainer.propTypes = {
-    blogs: PropTypes.array
+    blogs: PropTypes.array,
+    closeMenu: PropTypes.func
 };

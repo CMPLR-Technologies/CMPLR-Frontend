@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
@@ -6,7 +6,9 @@ import {
     themes
 } from '../../../../contexts/themeContext/ThemeContext';
 import LogOutOverlay from '../navbarLinks/AccountPopup/Seperators/LogOutOverlay';
-
+import { apiBaseUrl } from '../../../../config.json';
+import axios from 'axios';
+import AccountPopupBlogsContainer from '../navbarLinks/AccountPopup/Blogs/AccountPopupBlogsContainer';
 /**
  * Navbar menu mobile: includes navbar links when mobile view
  * @function NavbarMenuMobile
@@ -17,6 +19,26 @@ import LogOutOverlay from '../navbarLinks/AccountPopup/Seperators/LogOutOverlay'
 export default function NavbarMenuMobile(props) {
     const [theme, changeTheme] = useContext(ThemeContext);
     const [paletteChanged, setPaletteChanged] = useState(false);
+    //hossam work on popup
+    const [userInfo, setUserInfo] = useState(null);
+    const token = JSON.parse(localStorage.getItem('user'))?.token;
+    useEffect(() => {
+        if (userInfo !== null) return;
+        axios({
+            method: 'GET',
+            headers: {
+                'content-type': 'application/json',
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
+            },
+            url: `${apiBaseUrl}/user/info`
+        })
+            .then(response => {
+                setUserInfo(response.data.response);
+            })
+            .catch(() => {});
+    }, []);
+
     let { isOpenSetting, openSetting, closeMenuPar, active } = props;
 
     //for logout
@@ -27,7 +49,7 @@ export default function NavbarMenuMobile(props) {
     };
     const toggleTheme = () => {
         setPaletteChanged(true);
-        changeTheme(theme);
+        changeTheme();
     };
     const openSettingHere = () => {
         openSetting();
@@ -50,80 +72,89 @@ export default function NavbarMenuMobile(props) {
                         <i className="fas fa-pen"></i> Create a post
                     </button>
                     <ul>
-                        <li className="navbar-menu-mobile-menu-item">
-                            <NavLink to="/dashboard" onClick={closeMenu}>
+                        <NavLink to="/dashboard" onClick={closeMenu}>
+                            <li className="navbar-menu-mobile-menu-item">
                                 <i className="fas fa-home"></i> Dashboard
-                            </NavLink>
-                        </li>
-                        <li className="navbar-menu-mobile-menu-item">
-                            <NavLink
-                                to="/explore/recommended-for-you"
-                                onClick={closeMenu}
-                            >
+                            </li>
+                        </NavLink>
+                        <NavLink
+                            to="/explore/recommended-for-you"
+                            onClick={closeMenu}
+                        >
+                            <li className="navbar-menu-mobile-menu-item">
                                 <i className="fas fa-compass"></i> Explore
-                            </NavLink>
-                        </li>
-                        <li className="navbar-menu-mobile-menu-item">
-                            <NavLink to="/inbox" onClick={closeMenu}>
+                            </li>
+                        </NavLink>
+                        <NavLink to="/inbox" onClick={closeMenu}>
+                            <li className="navbar-menu-mobile-menu-item">
                                 <i className="fas fa-envelope"></i> Inbox
-                            </NavLink>
-                        </li>
-                        <li className="navbar-menu-mobile-menu-item">
-                            <NavLink to="/messaging" onClick={closeMenu}>
+                            </li>
+                        </NavLink>
+                        <NavLink to="/messaging" onClick={closeMenu}>
+                            <li className="navbar-menu-mobile-menu-item">
                                 <i className="fas fa-comment-dots"></i>{' '}
                                 Messaging
-                            </NavLink>
-                        </li>
-                        <li className="navbar-menu-mobile-menu-item">
-                            <NavLink to="/activity" onClick={closeMenu}>
+                            </li>
+                        </NavLink>
+                        <NavLink
+                            to={`/blog/${
+                                JSON.parse(localStorage.getItem('user'))
+                                    ?.blogName
+                            }/activity`}
+                            onClick={closeMenu}
+                        >
+                            <li className="navbar-menu-mobile-menu-item">
                                 <i className="fas fa-bolt"></i> Activity
-                            </NavLink>
-                        </li>
-
+                            </li>
+                        </NavLink>
                         {/*------------------------------------ account links */}
-                        <li className="navbar-menu-mobile-menu-item">
-                            <NavLink to="/likes" onClick={closeMenu}>
+                        <NavLink to="/likes" onClick={closeMenu}>
+                            <li className="navbar-menu-mobile-menu-item">
                                 <div className="navbar-menu-mobile-menu-item-text">
                                     <div>
                                         <i className="fas fa-heart"></i> Likes
                                     </div>
-                                    <span className="val">50</span>
+                                    <span className="val">
+                                        {userInfo?.user?.likes_count}
+                                    </span>
                                 </div>
-                            </NavLink>
-                        </li>
-                        <li className="navbar-menu-mobile-menu-item">
-                            <NavLink to="/following" onClick={closeMenu}>
+                            </li>
+                        </NavLink>
+                        <NavLink to="/following" onClick={closeMenu}>
+                            <li className="navbar-menu-mobile-menu-item">
                                 <div className="navbar-menu-mobile-menu-item-text">
                                     <div>
                                         <i className="far fa-address-book"></i>{' '}
                                         Following
                                     </div>
-                                    <span className="val">50</span>
+                                    <span className="val">
+                                        {userInfo?.user?.following_count}
+                                    </span>
                                 </div>
-                            </NavLink>
-                        </li>
-                        <li className="navbar-menu-mobile-menu-item">
-                            <a onClick={openSettingHere}>
+                            </li>
+                        </NavLink>
+                        <a onClick={openSettingHere}>
+                            <li className="navbar-menu-mobile-menu-item">
                                 <div className="navbar-menu-mobile-menu-item-text">
                                     <div>
                                         <i className="fas fa-cog"></i>
                                         Settings
                                     </div>
                                 </div>
-                            </a>
-                        </li>
-                        <li className="navbar-menu-mobile-menu-item">
-                            <NavLink to="/help" onClick={closeMenu}>
+                            </li>
+                        </a>
+                        <NavLink to="/help" onClick={closeMenu}>
+                            <li className="navbar-menu-mobile-menu-item">
                                 <div className="navbar-menu-mobile-menu-item-text">
                                     <div>
                                         <i className="fas fa-question-circle"></i>
                                         Help
                                     </div>
                                 </div>
-                            </NavLink>
-                        </li>
-                        <li className="navbar-menu-mobile-menu-item">
-                            <a>
+                            </li>
+                        </NavLink>
+                        <a>
+                            <li className="navbar-menu-mobile-menu-item">
                                 <div
                                     className="navbar-menu-mobile-menu-item-text"
                                     onClick={toggleTheme}
@@ -141,11 +172,15 @@ export default function NavbarMenuMobile(props) {
                                         }/${Object.keys(themes).length}`}
                                     </div>
                                 </div>
-                            </a>
-                        </li>
+                            </li>
+                        </a>
                     </ul>
                     <div className="blogs">
                         <h3>Blogs</h3>
+                        <AccountPopupBlogsContainer
+                            closeMenu={closeMenu}
+                            blogs={userInfo?.blogs}
+                        />
                     </div>
                     <div
                         data-testid="AccountPopupFooter"
@@ -176,50 +211,50 @@ export default function NavbarMenuMobile(props) {
             ) : (
                 <div className="navbar-menu-mobile-menu">
                     <ul>
-                        <li className="navbar-menu-mobile-menu-item">
-                            <NavLink to="/dashbord" onClick={closeMenu}>
+                        <NavLink to="/settings/" onClick={closeMenu}>
+                            <li className="navbar-menu-mobile-menu-item">
                                 Change Password
-                            </NavLink>
-                        </li>
-                        <li className="navbar-menu-mobile-menu-item">
-                            <NavLink
-                                to="/recommended-for-you"
-                                onClick={closeMenu}
-                            >
+                            </li>
+                        </NavLink>
+                        <NavLink to="/settings/account" onClick={closeMenu}>
+                            <li className="navbar-menu-mobile-menu-item">
                                 Two Factor Authentication
-                            </NavLink>
-                        </li>
-                        <li className="navbar-menu-mobile-menu-item">
-                            <NavLink to="/following" onClick={closeMenu}>
+                            </li>
+                        </NavLink>
+                        <NavLink to="/settings/account" onClick={closeMenu}>
+                            <li className="navbar-menu-mobile-menu-item">
                                 <div className="navbar-menu-mobile-menu-item-text">
                                     <div>Account</div>
                                     <span className="val">
                                         <i className="fas fa-share-square"></i>
                                     </span>
                                 </div>
-                            </NavLink>
-                        </li>
-                        <li className="navbar-menu-mobile-menu-item">
-                            <NavLink to="/following" onClick={closeMenu}>
+                            </li>
+                        </NavLink>
+
+                        <NavLink
+                            to="/settings/notifications"
+                            onClick={closeMenu}
+                        >
+                            <li className="navbar-menu-mobile-menu-item">
                                 <div className="navbar-menu-mobile-menu-item-text">
                                     <div>Notifications</div>
                                     <span className="val">
                                         <i className="fas fa-share-square"></i>
                                     </span>
                                 </div>
-                            </NavLink>
-                        </li>
-                        <li className="navbar-menu-mobile-menu-item">
-                            <NavLink to="/following" onClick={closeMenu}>
+                            </li>
+                        </NavLink>
+                        <NavLink to="/settings/apps" onClick={closeMenu}>
+                            <li className="navbar-menu-mobile-menu-item">
                                 <div className="navbar-menu-mobile-menu-item-text">
                                     <div>apps</div>
                                     <span className="val">
                                         <i className="fas fa-share-square"></i>
                                     </span>
                                 </div>
-                            </NavLink>
-                        </li>
-
+                            </li>
+                        </NavLink>
                         {overlay && (
                             <LogOutOverlay
                                 hideOverlay={() => setOverlay(false)}

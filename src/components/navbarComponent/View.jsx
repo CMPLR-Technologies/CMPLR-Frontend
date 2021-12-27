@@ -194,7 +194,9 @@ export default function Navbar() {
             .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu ul li a{
                 color: rgb(${themes[theme].whiteOnDark});
             }
-         
+            .navbar-menu-mobile   .navbar-menu-mobile-menu-item{
+                color: rgb(${themes[theme].whiteOnDark});
+            }
             .nav .section1 .search{
                 background-color: rgb(${themes[theme].white});
             }
@@ -220,18 +222,19 @@ export default function Navbar() {
             .log-out-overlay{
                 background: rgb(${themes[theme].navy});
             }
-            .popup {
-                &-header {
-                    background-color: $primiry-bg;
-                    h3 {
-                        color: $primiry-color;
-                    }
-                    span {
-                        i {
-                            color: $primiry-color;
-                        }
-                    }
-                }
+            .popup-newmessage{
+                background: rgb(${themes[theme].white});
+            }
+            .popup-newmessage .popup-newmessage-header{
+                background: rgb(${themes[theme].white});
+                color: rgba(${themes[theme].black},.65);
+            }
+            .popup-newmessage .popup-messages-message{
+                background: RGB(${themes[theme].white});
+                border-bottom: 1px solid rgba(${themes[theme].black},.13);
+            }
+            .navbar-menu-mobile-footer footer{
+                color: rgba(${themes[theme].whiteOnDark});
             }
         .notf-types{
             color: rgba(${themes[theme].black}, 0.65);
@@ -266,6 +269,12 @@ export default function Navbar() {
         }
         .notf-content{
             color:rgb(${themes[theme].black})
+        }
+        .navbar-menu-mobile-menu  .account-popup-blog-head h1,.navbar-menu-mobile-menu .account-popup-blog-head div{
+            color: rgba(${themes[theme].whiteOnDark});
+        }
+        .navbar-menu-mobile-menu  .account-popup-blog-links .account-popup-blog-link-row .link-row-title{
+            color: rgba(${themes[theme].whiteOnDark});
         }
     `;
 

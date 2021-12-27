@@ -28,7 +28,7 @@ const useFetch = url => {
                     setData(res.data.response);
                     setIsPending(false);
                     setError(null);
-                } else {
+                    } else {
                     throw Error(res.error);
                 }
             })

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
-import { ChatContext } from '../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../contexts/chatContext/chatContext';
 import ChatMessages from './ChatMessages';
 import ChatOption from './ChatOption';
 import useInfiniteScrollingChat from '../../../hooks/useInfiniteScrollingChat';

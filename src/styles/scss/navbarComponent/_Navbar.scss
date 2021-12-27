@@ -440,13 +440,30 @@ $border-radius-primary: 3px;
                 .sender-up {
                     display: flex;
                 }
+                .receiver{
+                    margin-bottom: 1px;
+                }
+                .sender {
+                    //  color:rgba(0,0,0,.65);
+                    font-size: 0.875rem;
+                    font-weight: 700;
+                    justify-content: space-between;
+                    letter-spacing: 0.01px;
+                    line-height: 1.5;
+                    line-height: 21px;
+                }
+                .sender-up .sender,.sender-up .message{
+                    font-size: 0.73125rem;
+                    font-weight: 700;
+                    line-height: 1.44;
+                    line-height: 15px;
+                }
                 .sender {
                     margin-right: 5px;
                 }
                 .message {
                     //color: #878787;
                     font-weight: 400;
-                    width: 100%;
                     overflow: hidden;
                     display: inline-block;
                     text-overflow: ellipsis;
@@ -490,11 +507,11 @@ $border-radius-primary: 3px;
         // }
         &-header {
             padding: 15px;
-            display :flex;
+            display: flex;
             align-items: center;
-            .loading{
+            .loading {
                 transform: translateX(15px);
-                display :flex;
+                display: flex;
                 align-items: center;
             }
         }
@@ -523,7 +540,7 @@ $border-radius-primary: 3px;
     .popup-header {
         position: absolute;
         top: 0;
-        z-index: 1000;
+        z-index: 70;
         left: 0;
         width: 100%;
         height: 54px;
@@ -533,19 +550,16 @@ $border-radius-primary: 3px;
         //  background-color: $primiry-color;
         min-height: calc(100vh - 54px);
         height: 100%;
-        p,
-        h2,
-        h3,
-        span,
-        i {
-            // color: black;
-        }
         .sender {
-            //  color:rgba(0,0,0,.65);
-            font-size: 15px;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1.5;
+            line-height: 18px;
         }
         .receiver {
-            font-size: 17px;
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.5;
         }
         .sender-up {
             display: flex;
@@ -557,7 +571,9 @@ $border-radius-primary: 3px;
 
         &-message {
             font-size: 15px;
-            //border-bottom: 1px solid rgba(0,0,0,.13);
+            &-text {
+                
+            }
         }
     }
 }
@@ -568,6 +584,9 @@ $border-radius-primary: 3px;
     // }
 }
 .popup-messages {
+    .popup-messages-message-img {
+        background: inherit;
+    }
     .no-chat {
         align-items: center;
         padding: 15px 0;
@@ -718,8 +737,19 @@ $border-radius-primary: 3px;
         }
     }
     .messagepage-mobile {
+        .popup-header {
+            top: 54px;
+            
+        }
+        .popup-messages{
+            margin-top: 108px;
+
+        }
         .popup-messages {
             background-color: $primiry-color;
+        }
+        .popup-newmessage{
+            margin-top: 108px;
         }
     }
 }
@@ -731,6 +761,7 @@ $border-radius-primary: 3px;
         background: $primiry-bg;
         position: fixed;
         top: 0;
+        z-index: 50;
         &-container {
             max-width: 970px;
             flex-direction: column;
@@ -761,6 +792,10 @@ $border-radius-primary: 3px;
                 opacity: 1;
                 transition: all 0.25s ease;
                 width: 100%;
+                a {
+                    color: inherit;
+                    text-decoration: none;
+                }
                 .navbar-menu-mobile-close {
                     background: none;
                     color: inherit;
@@ -785,8 +820,39 @@ $border-radius-primary: 3px;
                     z-index: 1000;
                     width: 90vw;
                     overflow-y: scroll;
+                    .AuthBtn {
+                        font-size: 1rem;
+                        font-weight: 700;
+                        line-height: 1.5;
+                        padding: 6px 15px;
+                        width: auto;
+                        &:last-of-type {
+                            margin-left: 15px;
+                        }
+                    }
                     &::-webkit-scrollbar {
                         display: none;
+                    }
+                    .account-popup-blog-head{
+                        h1{
+                            font-size: 1.155rem;
+                            font-weight: 400;
+                            line-height: 1.333;
+                        }
+                        &:active{
+                            background-color: inherit;
+                        }
+                    }
+                    .account-popup-blog-links{
+                        font-size: 1.125rem;
+                        font-weight: 400;
+                        line-height: 1.333;
+                        a.account-popup-blog-link-row{
+                            font-size: 1.125rem;
+                        }
+                    }
+                    .account-popup-blog-head:hover, .account-popup-blog-link-row:hover {
+                        background-color: inherit;
                     }
                     .create-new-post {
                         background: none;
@@ -957,6 +1023,17 @@ $border-radius-primary: 3px;
                 }
             }
         }
+        &-newmessage {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 54px;
+            &-header {
+                input {
+                    width: 80%;
+                }
+            }
+        }
     }
 }
 .badge {
@@ -996,7 +1073,7 @@ $border-radius-primary: 3px;
             display: flex;
             overflow: hidden;
             flex-wrap: wrap;
-            .post-snap {
+            .post-ask-answer-content {
                 * {
                     font-size: 14px !important;
                     display: inline !important;

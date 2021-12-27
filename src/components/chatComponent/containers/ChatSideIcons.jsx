@@ -17,14 +17,14 @@ export default function ChatSideIcons() {
                 sideIconOpenChat?.map((chatIcon, index) => (
                     <ChatSideIconItem
                         key={index}
-                        senderId={chatIcon.senderId}
-                        receiverId={chatIcon.receiverId}
-                        senderPhoto={chatIcon.senderPhoto}
-                        senderShape={chatIcon.senderShape}
-                        receiverPhoto={chatIcon.receiverPhoto}
-                        receiverShape={chatIcon.receiverShape}
-                        senderName={chatIcon.senderName}
-                        receiverName={chatIcon.receiverName}
+                        senderId={chatIcon?.senderId}
+                        receiverId={chatIcon?.receiverId}
+                        senderPhoto={chatIcon?.senderPhoto}
+                        senderShape={chatIcon?.senderShape}
+                        receiverPhoto={chatIcon?.receiverPhoto}
+                        receiverShape={chatIcon?.receiverShape}
+                        senderName={chatIcon?.senderName}
+                        receiverName={chatIcon?.receiverName}
                     />
                 ))}
         </div>
