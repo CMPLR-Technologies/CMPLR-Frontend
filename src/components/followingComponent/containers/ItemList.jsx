@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DropDownPostListFollow from './DropDownListFollow';
 import { Popover } from '@mui/material';
+import PopupBlock from './PopupBlock';
 
 export default function ItemList(props) {
     const {
@@ -120,6 +121,13 @@ export default function ItemList(props) {
                     </div>
                 </div>
             </div>
+            <PopupBlock
+                open={openPopup}
+                setOpen={setOpenBlock}
+                handleBlock={handleBlock}
+                profileName={profileName}
+                myBlogName={myBlogName}
+            />
         </>
     );
 }

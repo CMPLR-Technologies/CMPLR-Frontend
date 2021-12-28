@@ -12,13 +12,20 @@ NotesHeader.propTypes = {
     numberNotes: PropsTypes.number,
     totalLikes: PropsTypes.number,
     totalReblogs: PropsTypes.number,
+    totalReplys: PropsTypes.number,
     setNotesView: PropsTypes.func,
     notes: PropsTypes.array
 };
 
 export default function NotesHeader(props) {
-    const { numberNotes, totalLikes, totalReblogs, setNotesView, notes } =
-        props;
+    const {
+        numberNotes,
+        totalLikes,
+        totalReblogs,
+        totalReplys,
+        setNotesView,
+        notes
+    } = props;
     return (
         <header className="notes-view-header">
             <div className="notes-view-header-icons">
@@ -58,7 +65,7 @@ export default function NotesHeader(props) {
                                     className="notes-summary-avatars-react"
                                 >
                                     <Link
-                                        to={note.blog_url}
+                                        to={`/blog/view`}
                                         className="summary-avatar-link"
                                     >
                                         <img
@@ -82,7 +89,9 @@ export default function NotesHeader(props) {
                             ))}
                     </div>
                     <div className="notes-summary-count">
-                        {totalLikes} likes and {totalReblogs} reblogs
+                        {totalLikes ? `${totalLikes} likes , ` : ''}
+                        {totalReblogs ? `${totalReblogs} reblogs and ` : ''}
+                        {totalReplys ? `${totalReplys} replys` : ''}{' '}
                     </div>
                 </span>
             </button>

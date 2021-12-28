@@ -1,6 +1,7 @@
 import React, { createContext, Component } from 'react';
-export const SettingsContext = createContext();
 import PropTypes from 'prop-types';
+
+export const SettingsContext = createContext();
 class SettingsContextProvider extends Component {
     state = {
         id: 15,

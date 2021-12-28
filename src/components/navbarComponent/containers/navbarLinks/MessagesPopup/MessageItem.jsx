@@ -52,6 +52,7 @@ export default function MessageItem(props) {
             receiverName
         );
         // close the dropdown list
+        if(clickMessagePopup)
         clickMessagePopup();
     };
     return (

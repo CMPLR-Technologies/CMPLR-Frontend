@@ -111,11 +111,11 @@ export function getPostNotes(blogIdentifier, setNotes, setCounts, postId) {
         }
     })
         .then(res => {
-            setNotes(res.data[0].notes);
+            setNotes(res.data.notes);
             let count = {
-                totalLikes: res.data[0]['total_likes'],
-                totalReblogs: res.data[0]['total_reblogs'],
-                totalReplys: res.data[0]['total_replys']
+                totalLikes: res.data.total_likes,
+                totalReblogs: res.data.total_reblogs,
+                totalReplys: res.data.total_replys
             };
             setCounts(count);
         })
@@ -124,47 +124,29 @@ export function getPostNotes(blogIdentifier, setNotes, setCounts, postId) {
 
 export function submitNote(
     e,
-    type,
     reply,
+    postId,
     blogIdentifier,
+    token,
     setNotes = null,
     setCounts = null
 ) {
     e.preventDefault();
     Axios({
-        url: `${apiBaseUrl}/post/notes`,
+        url: `${apiBaseUrl}/user/post/reply`,
         method: 'POST',
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
         },
         data: {
-            Meta: {
-                Status: 200,
-                msg: 'OK'
-            },
-            response: {
-                counts: {
-                    totalLikes: 3,
-                    totalReblogs: 1
-                },
-                notes: [
-                    {
-                        type: type,
-                        blog_name: 'hazom',
-                        blog_url: 'https://hazom.com',
-                        followed: true,
-                        post_id: 2541652,
-                        reblog_parent_blog_name: 'kholdbold',
-                        reblog_parent_blog_url: 'https://kholdbold.com',
-                        avatar: 'https://64.media.tumblr.com/5d65e6564325029026372d750047aca2/da25d5299e6bc43a-9a/s64x64u_c1/d33411435f6a25c6182f6d780030d659f917766b.jpg',
-                        content: reply
-                    }
-                ]
-            }
+            post_id: postId,
+            reply_text: reply
         }
     })
         .then(() => {
-            getPostNotes(blogIdentifier, setNotes, setCounts);
+            getPostNotes(blogIdentifier, setNotes, setCounts, postId);
         })
         .catch(() => {});
 }

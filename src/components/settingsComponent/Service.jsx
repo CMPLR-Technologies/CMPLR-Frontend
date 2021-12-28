@@ -223,7 +223,5 @@ export function getUserBlogs(setBlogs, token) {
                 setBlogs([]);
             }
         })
-        .catch(() => {
-            setBlogs;
-        });
+        .catch(() => {});
 }

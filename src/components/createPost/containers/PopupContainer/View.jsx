@@ -27,6 +27,7 @@ export default function CreateModal(props) {
     const user = JSON.parse(localStorage.getItem('user'));
     const { postId } = useParams();
     const { reblog, edit } = props;
+    const blogName = JSON.parse(localStorage.getItem('user'))?.blogName;
 
     const handleClose = () => {
         navigate('/dashboard');
@@ -48,8 +49,6 @@ export default function CreateModal(props) {
             blog_name: user?.blogName,
             tags: tags
         };
-
-        console.log('body to be sent', dataBody);
 
         handlePosting(dataBody, handleClose, user?.token, setSpinnerPost);
     };
@@ -74,13 +73,14 @@ export default function CreateModal(props) {
             tags: tags,
             user: user
         };
-        editPost(postId, dataBody, navigate, user?.token);
+        editPost(postId, blogName, dataBody, navigate, user?.token);
     };
 
     useEffect(() => {
         if (postId !== undefined) {
             fetchPost(
                 postId,
+                blogName,
                 setPost,
                 edit,
                 setEditTitlePost,

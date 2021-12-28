@@ -25,10 +25,10 @@
 @import './createPostStyles/createPostPopup.scss';
 @import './richTextEditorStyles/rich.scss';
 
-@import './navbarComponent/_navbar.scss';
 @import './navbarProfileViewsStyles/NavbarProfileView';
 @import './accountpopupComponent/_accountpopup.scss';
 @import './dashboardStyles/dashboardStyles';
+@import './activityStyles/activityStyles';
 
 @import './accountpopupComponent/_accountpopup.scss';
 
@@ -38,6 +38,7 @@
 @import './verifyEmailStyles/verifyEmail.scss';
 @import './deleteAccountStyles/_deleteAccountStyles.scss';
 @import './blogSettingsStyles/_createBlogStyles.scss';
+@import './myProfileStyles/_myProfile';
 
 @import './followingStyles/following.scss';
 @import './hashtagsStyles/hashtagsStyles.scss';

@@ -58,6 +58,9 @@ export default function FollowingPage() {
         .Tb7Ey{
             color: rgb(${themes[theme]?.whiteOnDark},0.65);
         }
+        .span_error_styles_following{
+            color:rgb(${themes[theme]?.whiteOnDark},0.65)
+        }
     `;
 
     const handleSearchFollow = () => {
@@ -69,7 +72,13 @@ export default function FollowingPage() {
     };
 
     const handleBlock = blockAcc => {
-        blockAccount(user?.token, blockAcc, setResponseMsg, user?.blogName);
+        blockAccount(
+            user?.token,
+            blockAcc,
+            setResponseMsg,
+            user?.blogName,
+            setOpenPopup
+        );
     };
 
     const handleScroll = () => {

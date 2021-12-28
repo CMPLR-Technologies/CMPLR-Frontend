@@ -8,7 +8,6 @@ import { UserContext } from '../../../../contexts/userContext/UserContext';
 
 export default function HeaderCreatePost(props) {
     const { user } = useContext(UserContext);
-    console.log('your user', user);
     const { reblog, parentBlogAuthor } = props;
     const { spinner } = props;
     return (

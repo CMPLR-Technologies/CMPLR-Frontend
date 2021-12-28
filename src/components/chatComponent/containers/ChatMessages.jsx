@@ -37,7 +37,7 @@ export default function ChatMessages(props) {
         messagesEndRef10,
         messagesEndRef
     } = props;
-    console.log(props);
+    //console.log(props);
     // paganation part
     const observer = useRef();
     const lastPostElementRef = useCallback(
@@ -82,7 +82,7 @@ export default function ChatMessages(props) {
                         <img src={receiverPhoto} />
                     </div>
                     <div className="receiver-link">
-                        <a href={receiverId} className="main">
+                        <a href={`blog/view/${receiverName}/${receiverId}/posts`} className="main">
                             {receiverName}
                         </a>
                     </div>
@@ -95,71 +95,70 @@ export default function ChatMessages(props) {
                 )}
                 {isPending && <LinearProgress />}
 
-                {msgs &&
-                    msgs.map((message, index) => {
-                        if (index === 0) {
-                            return (
-                                <div ref={lastPostElementRef} key={index}>
-                                    <ChatMessageItem
-                                        name={
-                                            message.from_blog_id === senderId
-                                                ? senderName
-                                                : receiverName
-                                        }
-                                        link={
-                                            message.from_blog_id === senderId
-                                                ? senderName
-                                                : receiverName
-                                        }
-                                        photo={
-                                            message.from_blog_id === senderId
-                                                ? senderPhoto
-                                                : receiverPhoto
-                                        }
-                                        shape={
-                                            message.from_blog_id === senderId
-                                                ? senderShape
-                                                : receiverShape
-                                        }
-                                        time={message.created_at}
-                                        message={message.content}
-                                    />
-                                </div>
-                            );
-                        } else {
-                            return (
-                                <>
-                                    {index === 9 && (
-                                        <div ref={messagesEndRef10}></div>
-                                    )}
-                                    <ChatMessageItem
-                                        name={
-                                            message.from_blog_id === senderId
-                                                ? senderName
-                                                : receiverName
-                                        }
-                                        link={
-                                            message.from_blog_id === senderId
-                                                ? senderName
-                                                : receiverName
-                                        }
-                                        photo={
-                                            message.from_blog_id === senderId
-                                                ? senderPhoto
-                                                : receiverPhoto
-                                        }
-                                        shape={
-                                            message.from_blog_id === senderId
-                                                ? senderShape
-                                                : receiverShape
-                                        }
-                                        time={message.created_at}
-                                        message={message.content}
-                                    />
-                                </>
-                            );
-                        }
-                    })}
+                {msgs?.map((message, index) => {
+                    if (index === 0) {
+                        return (
+                            <div ref={lastPostElementRef} key={index}>
+                                <ChatMessageItem
+                                    name={
+                                        message?.from_blog_id === senderId
+                                            ? senderName
+                                            : receiverName
+                                    }
+                                    link={
+                                        message?.from_blog_id === senderId
+                                            ? senderName
+                                            : receiverName
+                                    }
+                                    photo={
+                                        message?.from_blog_id === senderId
+                                            ? senderPhoto
+                                            : receiverPhoto
+                                    }
+                                    shape={
+                                        message?.from_blog_id === senderId
+                                            ? senderShape
+                                            : receiverShape
+                                    }
+                                    time={message?.created_at}
+                                    message={message?.content}
+                                />
+                            </div>
+                        );
+                    } else {
+                        return (
+                            <>
+                                {index === 9 && (
+                                    <div ref={messagesEndRef10}></div>
+                                )}
+                                <ChatMessageItem
+                                    name={
+                                        message?.from_blog_id === senderId
+                                            ? senderName
+                                            : receiverName
+                                    }
+                                    link={
+                                        message?.from_blog_id === senderId
+                                            ? senderName
+                                            : receiverName
+                                    }
+                                    photo={
+                                        message?.from_blog_id === senderId
+                                            ? senderPhoto
+                                            : receiverPhoto
+                                    }
+                                    shape={
+                                        message?.from_blog_id === senderId
+                                            ? senderShape
+                                            : receiverShape
+                                    }
+                                    time={message?.created_at}
+                                    message={message?.content}
+                                />
+                            </>
+                        );
+                    }
+                })}
             </div>
 
             <div ref={messagesEndRef}></div>

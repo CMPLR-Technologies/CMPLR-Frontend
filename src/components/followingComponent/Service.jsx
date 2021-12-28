@@ -30,7 +30,6 @@ export const getFollowingList = (
             if (res?.data?.response?.blogs?.length < 15) {
                 setHasMore(false);
             }
-            console.log(res?.data?.response?.blogs);
             setFollowingList([...followingList, ...newArr]);
             setTotalFollowing(
                 res?.data?.response?.total_following
@@ -70,7 +69,12 @@ export const followAccount = (userToken, searchedName, setResponseMsg) => {
         });
 };
 
-export const unfollowAccount = (userToken, unfollowAcc, setResponseMsg) => {
+export const unfollowAccount = (
+    userToken,
+    unfollowAcc,
+    setResponseMsg,
+    unfollow
+) => {
     Axios({
         method: 'DELETE',
         url: `${apiBaseUrl}/user/follow`,
@@ -84,7 +88,8 @@ export const unfollowAccount = (userToken, unfollowAcc, setResponseMsg) => {
         }
     })
         .then(() => {
-            setResponseMsg(`you're not following ${unfollowAcc} anymore`);
+            if (unfollow === true) setResponseMsg(false);
+            else setResponseMsg(`you're not following ${unfollowAcc} anymore`);
             return true;
         })
         .catch(err => {
@@ -98,7 +103,8 @@ export const blockAccount = (
     userToken,
     blockAcc,
     setResponseMsg,
-    userBlogName
+    userBlogName,
+    setOpenPopup
 ) => {
     Axios({
         method: 'POST',
@@ -109,16 +115,18 @@ export const blockAccount = (
             Authorization: `Bearer ${userToken}`
         },
         data: {
-            blogName: blockAcc
+            blockName: blockAcc
         }
     })
         .then(() => {
             setResponseMsg(`you've blocked ${blockAcc}`);
+            setOpenPopup(false);
             return true;
         })
         .catch(err => {
             let errMsg = err?.response?.data?.error;
             setResponseMsg(errMsg);
+            setOpenPopup(false);
             return false;
         });
 };

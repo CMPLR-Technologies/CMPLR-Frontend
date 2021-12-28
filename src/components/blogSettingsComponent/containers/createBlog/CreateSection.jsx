@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AuthBtn from '../../../../components/partials/AuthBtn';
 import { createBlog } from '../../Service';
 import PropsTypes from 'prop-types';

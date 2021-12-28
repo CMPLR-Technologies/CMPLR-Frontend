@@ -10,13 +10,15 @@ import { chaneMobileView } from '../Controller';
 import { block } from '../Services';
 import { followAccount } from '../../../followingComponent/Service';
 import PropTypes from 'prop-types';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 import OptionsList from './OptionsList';
 import {
     ThemeContext,
     themes
 } from '../../../../contexts/themeContext/ThemeContext';
 import { apiBaseUrl } from '../../../../config.json';
-import { Link } from 'react-router-dom';
+import { handlePosting } from '../../../createPost/Service';
+import { useNavigate } from 'react-router-dom';
 import ProfileMiniHoverWrapper from '../../../profileViews/mini&sideViews/View';
 /**
  * @function PostComponent
@@ -37,7 +39,8 @@ PostComponent.propTypes = {
     padding: PropTypes.string,
     reblog: PropTypes.bool,
     blogPage: PropTypes.bool,
-    themeDeactivate: PropTypes.bool
+    themeDeactivate: PropTypes.bool,
+    draft: PropTypes.bool
 };
 
 export default function PostComponent(props) {
@@ -49,12 +52,14 @@ export default function PostComponent(props) {
         reblog,
         padding,
         blogPage,
-        themeDeactivate
+        themeDeactivate,
+        draft
     } = props;
     const theme = useContext(ThemeContext)[0];
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
+    const [blockResponse, setBlockResponse] = useState('');
     const [mobileView, setMobileView] = useState(false);
     const user = JSON.parse(localStorage.getItem('user'));
     const { blog: blog, post: postData } = post;
@@ -77,15 +82,60 @@ export default function PostComponent(props) {
         blog_url: blogUrl,
         follower: follower
     } = blog && blog;
+
+    const navigate = useNavigate();
+
+    const postSubmit = () => {
+        const dataBody = {
+            title: title,
+            content: content,
+            state: 'publish',
+            type: 'text',
+            // eslint-disable-next-line camelcase
+            blog_name: user?.blogName,
+            tags: tags
+        };
+
+        handlePosting(dataBody, navigate, user?.token);
+    };
+
     const [liked, setIsLiked] = useState(isLiked && isLiked);
+    console.log(postId, liked);
     const [following, setFollowing] = useState(follower && follower);
+    const blogId = user?.userData?.primary_blog_id;
+    const handleBlock = () => {
+        block(
+            blogName,
+            userBlogName,
+            setIsOptionListOpen,
+            setIsModalOpen,
+            setIsMsgModalOpen,
+            setBlockResponse,
+            user?.token
+        ).catch(err => {
+            setIsOptionListOpen(false);
+            setIsModalOpen(false);
+            setIsMsgModalOpen(true);
+            if (err.response.status === 409)
+                setBlockResponse(`${blogName} is already blocked.`);
+            else if (err.response.status === 404) {
+                setBlockResponse(`${blogName} is not found.`);
+            } else if (err.response.status === 403) {
+                setBlockResponse(`you can't block ${blogName}`);
+            } else {
+                setBlockResponse(
+                    `Something went wrong while blocking ${blogName}`
+                );
+            }
+        });
+    };
     useEffect(() => {
         chaneMobileView(setMobileView);
     }, []);
 
     window.addEventListener('resize', () => chaneMobileView(setMobileView));
     const css = `
-    .post-container, .list{
+    .post-container, .post-container.list{
         background-color:rgb(${themes[theme].white});
         color:rgb(${themes[theme].black})
     }
@@ -102,6 +152,12 @@ export default function PostComponent(props) {
     }
 
     .options-btn .options .list{
+        box-shadow: 0 0 15px 0 rgba(0,0,0, 0.5);
+        background-color:rgb(${themes[theme].white});
+        
+    }
+
+    .share-options .options .list{
         box-shadow: 0 0 15px 0 rgba(0,0,0, 0.5);
     }
     .post-time-text,
@@ -167,7 +223,7 @@ export default function PostComponent(props) {
         color:rgba(${themes[theme].black},.65);
     }
     .share-options .options .list:hover{
-        background-color:rgba(${themes[theme].black},.07);
+        background-color:rgba(${themes[theme].white},.65);
     }
     .circled-border{
         background-color:rgb(255,255,255)
@@ -229,6 +285,9 @@ export default function PostComponent(props) {
     .note-option-btn svg{
         fill:rgba(${themes[theme].black}, 0.65)
     }
+    .post-heading svg{
+        fill:rgba(${themes[theme].black}, 0.65)
+    }
     `;
 
     return (
@@ -238,7 +297,7 @@ export default function PostComponent(props) {
             className={`post-wrapper ${radar ? 'radar-post-wrapper' : ''}`}
         >
             {isMsgModalOpen && (
-                <Modal messageHeading={`${blogName} has been blocked`}>
+                <Modal messageHeading={blockResponse}>
                     <AuthBtn
                         id="nevermind-btn"
                         text="close"
@@ -273,13 +332,7 @@ export default function PostComponent(props) {
                         text="Block"
                         color="rgb(255, 73, 47)"
                         handleClick={() => {
-                            block(
-                                blogIdentifier,
-                                setIsOptionListOpen,
-                                setIsModalOpen,
-                                setIsMsgModalOpen,
-                                user?.token
-                            );
+                            handleBlock();
                         }}
                     />
                 </Modal>
@@ -337,66 +390,89 @@ export default function PostComponent(props) {
                                     blogName={userBlogName}
                                     style={{ textDecoration: 'none' }}
                                 >
-                                    <span
-                                        data-testid="post-heading-ts"
-                                        className="post-heading"
-                                    >
-                                        {blogName}
-                                    </span>
+                                    {state === 'publish' ? (
+                                        <span
+                                            data-testid="post-heading-ts"
+                                            className="post-heading"
+                                        >
+                                            {blogName}
+                                        </span>
+                                    ) : (
+                                        <span
+                                            data-testid="post-heading-ts"
+                                            className="post-heading"
+                                        >
+                                            <svg
+                                                viewBox="0 0 24 24"
+                                                width="16"
+                                                height="14"
+                                                fill="rgba(var(--black), 0.65)"
+                                            >
+                                                <path d="M19 11.018V7.88c0-1.914-.601-4.15-1.791-5.434-1.187-1.283-2.744-1.443-4.607-1.442-2.148-.001-3.604-.147-5.075 1.442C5.84 3.725 6 7.066 6 7.88v3.138l-2 .067c-.579.159-1 .523-1 1.003v9.904C3 22.471 3.527 23 4 23h17c.476 0 1-1.04 1-1.04v-9.872c0-1.008-.525-1.07-1-1.07h-2zM9.834 4.736c.65-.794 1.83-1.085 2.768-1.085.936 0 2.062.291 2.712 1.085.647.794.686 2.112.686 3.375v2.885H9V8.11c0-1.263.189-2.578.834-3.375z"></path>
+                                            </svg>
+                                            private
+                                        </span>
+                                    )}
                                 </ProfileMiniHoverWrapper>
 
-                                {!following && !reblog && (
-                                    <button
-                                        onClick={() =>
-                                            followAccount(
-                                                user?.token,
-                                                blogName,
-                                                setFollowing
-                                            )
-                                        }
-                                        className="follow-btn"
-                                        data-testid="follow-btn-header-ts"
-                                    >
-                                        Follow
-                                    </button>
-                                )}
+                                {!following &&
+                                    !reblog &&
+                                    userBlogName !== blogName && (
+                                        <button
+                                            onClick={() =>
+                                                followAccount(
+                                                    user?.token,
+                                                    blogName,
+                                                    setFollowing
+                                                )
+                                            }
+                                            className="follow-btn"
+                                            data-testid="follow-btn-header-ts"
+                                        >
+                                            Follow
+                                        </button>
+                                    )}
                             </div>
-                            <div className="options-btn">
-                                {!reblog && (
-                                    <button
-                                        onClick={() => {
-                                            setIsOptionListOpen(
-                                                !isOptionListOpen
-                                            );
-                                        }}
-                                        className="btn"
-                                        data-testid="opt-btn-header-ts"
-                                    >
-                                        <OptionsButton />
-                                    </button>
-                                )}
-                                {isOptionListOpen && !blogPage && (
-                                    <OptionsList
-                                        postTime={postTime}
-                                        userBlogName={userBlogName}
-                                        blogName={blogName}
-                                        postLink={`${apiBaseUrl}/post/${postId}`} //change if needed
-                                        postId={postId}
-                                        following={following}
-                                        blogUrl={blogUrl}
-                                        setFollowing={setFollowing}
-                                        setIsModalOpen={setIsModalOpen}
-                                        setIsOptionListOpen={
-                                            setIsOptionListOpen
-                                        }
-                                        radar={radar}
-                                    />
-                                )}
-                            </div>
+                            <ClickAwayListener
+                                onClickAway={() => setIsOptionListOpen(false)}
+                            >
+                                <div className="options-btn">
+                                    {!reblog && (
+                                        <button
+                                            onClick={() => {
+                                                setIsOptionListOpen(
+                                                    !isOptionListOpen
+                                                );
+                                            }}
+                                            className="btn"
+                                            data-testid="opt-btn-header-ts"
+                                        >
+                                            <OptionsButton />
+                                        </button>
+                                    )}
+                                    {isOptionListOpen && !blogPage && (
+                                        <OptionsList
+                                            postTime={postTime}
+                                            userBlogName={userBlogName}
+                                            blogName={blogName}
+                                            postLink={`${apiBaseUrl}/blog/view/${blogName}/${blogId}/posts/${postId}`}
+                                            postId={postId}
+                                            following={following}
+                                            blogUrl={blogUrl}
+                                            setFollowing={setFollowing}
+                                            setIsModalOpen={setIsModalOpen}
+                                            setIsOptionListOpen={
+                                                setIsOptionListOpen
+                                            }
+                                            radar={radar}
+                                        />
+                                    )}
+                                </div>
+                            </ClickAwayListener>
                         </div>
                     </header>
                 )}
-                {state === 'publish' && (
+                {
                     <>
                         <TextPost
                             title={title && title}
@@ -404,7 +480,7 @@ export default function PostComponent(props) {
                         />
                         <Divider />
                     </>
-                )}
+                }
                 {!reblog && (
                     <div
                         data-testid="post-footer-cont-ts"
@@ -413,17 +489,19 @@ export default function PostComponent(props) {
                         <Tags tagsArray={tags} />
                         <Footer
                             isAuthor={userBlogName === blogName}
-                            postLink={`${apiBaseUrl}/post/${postId}`}
+                            postLink={`${apiBaseUrl}/blog/view/${blogName}/${blogId}/posts/${postId}`}
                             numberNotes={numberNotes}
                             reblogKey={reblogKey}
                             postId={postId}
                             blogName={blogName}
-                            postAuthor={userBlogName}
+                            postAuthor={blogName}
                             authorAvatar={avatar}
                             setIsModalOpenN={setIsModalOpen}
                             blogPage={blogPage}
                             radar={radar}
                             isLiked={liked}
+                            draft={draft}
+                            postSubmit={postSubmit}
                             setIsLiked={setIsLiked}
                         />
                     </div>

@@ -9,7 +9,8 @@ const logUser = (
     setUser,
     setError,
     setIsPending,
-    navigate
+    navigate,
+    setUserBlog
 ) => {
     Axios.post(`${apiBaseUrl}/login`, {
         email,
@@ -24,6 +25,7 @@ const logUser = (
             setUser(user);
             localStorage.setItem('user', JSON.stringify(user));
             setIsPending(false);
+            setUserBlog(user.userData);
             sendDesktopNotifyToken();
             navigate('/dashboard');
         })
@@ -39,7 +41,13 @@ const logUser = (
         });
 };
 
-const responseGoogleSuccess = (respond, navigate, setIsPending, setUser) => {
+const responseGoogleSuccess = (
+    respond,
+    navigate,
+    setIsPending,
+    setUser,
+    setUserBlog
+) => {
     const token = respond?.accessToken;
     setIsPending(true);
     Axios.post(`${apiBaseUrl}/google/login`, {
@@ -53,6 +61,7 @@ const responseGoogleSuccess = (respond, navigate, setIsPending, setUser) => {
             };
             setUser(user);
             localStorage.setItem('user', JSON.stringify(user));
+            setUserBlog(user.userData);
             navigate('/dashboard');
             setIsPending(false);
             sendDesktopNotifyToken();

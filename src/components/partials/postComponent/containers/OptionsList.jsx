@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { copyLink } from '../Controller';
 import PropTypes from 'prop-types';
 import { unfollowAccount } from '../../../followingComponent/Service';
@@ -14,46 +14,55 @@ export default function OptionsList(props) {
         setFollowing,
         setIsModalOpen,
         setIsOptionListOpen,
-        radar
+        followersPage,
+        radar,
+        setBlogName
     } = props;
     const user = JSON.parse(localStorage.getItem('user'));
-
+    useEffect(() => {
+        setBlogName(blogName);
+    }, []);
     return (
         <div
             data-testid="options-list-header-ts"
             className={`options ${radar ? 'options-radar' : ''}`}
         >
             <div data-testid="list-header-ts" className="list">
-                <a
-                    data-testid="post-time-ts"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="post-time"
-                >
-                    <span
-                        data-testid={`post-time-text-ts${postId}`}
-                        className="post-time-text"
+                {!followersPage && (
+                    <a
+                        data-testid="post-time-ts"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="post-time"
                     >
-                        Posted - {postTime}
-                    </span>
-                </a>
+                        <span
+                            data-testid={`post-time-text-ts${postId}`}
+                            className="post-time-text"
+                        >
+                            Posted - {postTime}
+                        </span>
+                    </a>
+                )}
                 {userBlogName !== blogName && (
                     <>
-                        <div
-                            onClick={() => copyLink(postLink, postId)}
-                            className="opt-btn copy-btn"
-                            id={`copy-btn${postId}`}
-                            data-testid={`copy-btn-header-ts${postId}`}
-                        >
-                            Copy Link
-                        </div>
+                        {!followersPage && (
+                            <div
+                                onClick={() => copyLink(postLink, postId)}
+                                className="opt-btn copy-btn"
+                                id={`copy-btn${postId}`}
+                                data-testid={`copy-btn-header-ts${postId}`}
+                            >
+                                Copy Link
+                            </div>
+                        )}
                         {following && (
                             <div
                                 onClick={() =>
                                     unfollowAccount(
                                         user?.token,
                                         blogName,
-                                        setFollowing
+                                        setFollowing,
+                                        true
                                     )
                                 }
                                 className="opt-btn follow-btn"
@@ -71,7 +80,9 @@ export default function OptionsList(props) {
                         </div>
                         <div
                             onClick={() => {
-                                setIsOptionListOpen(false);
+                                followersPage
+                                    ? setIsOptionListOpen(-1)
+                                    : setIsOptionListOpen(false);
                             }}
                             className="opt-btn close-btn"
                             data-testid={`close-btn-header-ts${postId}`}
@@ -116,5 +127,7 @@ OptionsList.propTypes = {
     following: PropTypes.bool,
     setFollowing: PropTypes.func,
     setIsModalOpen: PropTypes.func,
-    setIsOptionListOpen: PropTypes.func
+    setIsOptionListOpen: PropTypes.func,
+    followersPage: PropTypes.bool,
+    radar: PropTypes.bool
 };

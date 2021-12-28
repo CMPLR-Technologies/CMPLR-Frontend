@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 import axios from 'axios';
 import { apiBaseUrl } from '../../config.json';
-import { useNavigate } from 'react-router-dom';
 import { checkCreateBlog } from './Controller';
 import { checkDeleteBlog } from './Controller';
 

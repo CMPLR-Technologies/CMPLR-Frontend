@@ -19,7 +19,9 @@ export default function BlogSettingsCard() {
     useEffect(() => {
         getBlogSettings(setBlogs, user?.token, blogName);
         getBlocksOfBlog(user?.token, blogName, updateProperty, setErrMsg);
-        errMsg.length !== 0 ? alert(errMsg) : null;
+        if (errMsg?.length !== 0) {
+            alert(errMsg);
+        }
     }, []);
     console.log(blogId);
     return (

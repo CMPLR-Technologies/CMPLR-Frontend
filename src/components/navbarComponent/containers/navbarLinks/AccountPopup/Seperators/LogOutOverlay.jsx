@@ -9,6 +9,7 @@ import { UserContext } from '../../../../../../contexts/userContext/UserContext'
 import AuthBtn from '../../../../../partials/AuthBtn';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { ChatContext } from '../../../../../../contexts/chatContext/chatContext';
 
 /** EDIT THIS!!!!
  * @function LogOutOverlay
@@ -20,6 +21,7 @@ import { useNavigate } from 'react-router-dom';
 export default function LogOutOverlay(props) {
     const [theme, changeTheme] = useContext(ThemeContext);
     const { user, setUser } = useContext(UserContext);
+    const { clear } = useContext(ChatContext);
     const navigate = useNavigate();
 
     const logOut = () => {
@@ -30,6 +32,7 @@ export default function LogOutOverlay(props) {
                 setUser(null);
                 changeTheme('trueBlue');
                 localStorage.removeItem('user');
+                clear();
                 navigate('/');
             })
             .catch(() => {});
@@ -49,12 +52,14 @@ export default function LogOutOverlay(props) {
                     text="Cancel"
                     handleClick={hideOverlay}
                 />{' '}
-                <AuthBtn
-                    key="2"
-                    color={`rgb(${themes[theme].accent})`}
-                    text="OK"
-                    handleClick={logOut}
-                />
+                <div style={{ marginLeft: '4px' }}>
+                    <AuthBtn
+                        key="2"
+                        color={`rgb(${themes[theme].accent})`}
+                        text="OK"
+                        handleClick={logOut}
+                    />
+                </div>
             </div>
         </div>
     );

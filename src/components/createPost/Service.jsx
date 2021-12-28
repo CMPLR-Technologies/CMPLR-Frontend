@@ -8,7 +8,6 @@ export const handlePosting = (bodyData, handleClose, token, setSpinnerPost) => {
     if (errors?.length > 0) {
         return { status: false, err: errors };
     } else {
-        console.log('data to sent ', bodyData);
         Axios({
             method: 'POST',
             url: `${apiBaseUrl}/posts`,
@@ -26,7 +25,6 @@ export const handlePosting = (bodyData, handleClose, token, setSpinnerPost) => {
             })
             .catch(err => {
                 setSpinnerPost(false);
-                console.log(err.data);
                 return err;
             });
     }
@@ -34,6 +32,7 @@ export const handlePosting = (bodyData, handleClose, token, setSpinnerPost) => {
 
 export function fetchPost(
     postId,
+    blogName,
     setPost,
     edit,
     setTitlePost,
@@ -42,7 +41,7 @@ export function fetchPost(
 ) {
     Axios({
         method: 'GET',
-        url: `${apiBaseUrl}/edit/kholdbold/${postId}`,
+        url: `${apiBaseUrl}/edit/${blogName}/${postId}`,
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
@@ -61,10 +60,10 @@ export function fetchPost(
         .catch(() => {});
 }
 
-export function editPost(postId, dataBody, navigate, token) {
+export function editPost(postId, blogName, dataBody, navigate, token) {
     Axios({
         method: 'PUT',
-        url: `${apiBaseUrl}/update/ahmed_1/${postId}`,
+        url: `${apiBaseUrl}/update/${blogName}/${postId}`,
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',

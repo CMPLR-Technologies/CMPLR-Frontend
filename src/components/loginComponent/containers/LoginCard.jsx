@@ -10,6 +10,7 @@ import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
 import { useContext } from 'react';
 import { responseGoogleFailure, responseGoogleSuccess } from '../Service.jsx';
 import { UserContext } from '../../../contexts/userContext/UserContext';
+import { ChatContext } from '../../../contexts/chatContext/chatContext';
 import { CircularProgress } from '@mui/material';
 import GoogleLogin from 'react-google-login';
 
@@ -24,6 +25,7 @@ import GoogleLogin from 'react-google-login';
 
 export default function LoginCard() {
     const { setUser } = useContext(UserContext);
+    const { setUserBlog } = useContext(ChatContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -78,7 +80,8 @@ export default function LoginCard() {
                             setError,
                             setUser,
                             setIsPending,
-                            navigate
+                            navigate,
+                            setUserBlog
                         )
                     }
                 ></AuthBtn>
@@ -102,7 +105,13 @@ export default function LoginCard() {
                 }
                 buttonText="Continue with Google"
                 onSuccess={res =>
-                    responseGoogleSuccess(res, navigate, setIsPending, setUser)
+                    responseGoogleSuccess(
+                        res,
+                        navigate,
+                        setIsPending,
+                        setUser,
+                        setUserBlog
+                    )
                 }
                 onFailure={res => responseGoogleFailure(res, setError)}
                 cookiePolicy={'single_host_origin'}

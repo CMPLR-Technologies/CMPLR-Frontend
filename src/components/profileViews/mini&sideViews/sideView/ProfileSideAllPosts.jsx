@@ -5,7 +5,7 @@ import useInfiniteScrolling from '../../../../hooks/useInfiniteScrolling';
 import VerticalPostsView from '../../../partials/VerticalPostsView';
 
 export default function ProfileSideAllPosts(props) {
-    const { blogName } = props;
+    const { blogName, noTheme } = props;
     const [pageNumber, setPageNumber] = useState(1);
     const {
         error,
@@ -25,10 +25,12 @@ export default function ProfileSideAllPosts(props) {
             blogPage={true}
             isRef={true}
             userBlogName={blogName}
+            noTheme={noTheme}
         />
     );
 }
 
 ProfileSideAllPosts.propTypes = {
-    blogName: PropTypes.string.isRequired
+    blogName: PropTypes.string.isRequired,
+    noTheme: PropTypes.bool
 };

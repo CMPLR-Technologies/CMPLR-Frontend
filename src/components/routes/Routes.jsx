@@ -14,21 +14,21 @@ import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
 import DeleteAccount from '../deleteAccountComponent/View';
 import BlogSettings from '../blogSettingsComponent/View';
+import MyProfile from '../MyProfileComponent/View';
 import DeleteBlog from '../blogSettingsComponent/containers/deleteBlog/DeleteBlog';
 import CreateBlog from '../blogSettingsComponent/containers/createBlog/CreateBlog';
-
-import ProfileFull from '../profileViews/fullView/View';
-
 import FollowingPage from '../followingComponent/View';
 import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
 import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
 import Hashtag from '../hashtagsComponent/View';
 import GoogleCard from '../registerComponent/GoogleCard';
+//import ActivityPage from '../activityPageComponent/ActivityPage';
 import Explore from '../explore/View';
 import HelpCenter from '../HelpCenter/View';
 import Article from '../HelpCenter/containers/Article';
 import ArticleCategoryIndividual from '../HelpCenter/containers/ArticleCategoryIndividual';
 import LikedBlogs from '../likesComponent/View';
+import ProfileFullContainer from '../profileViews/fullView/View';
 
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
@@ -128,11 +128,27 @@ export default function MainRoutes() {
                         <Route path="/new" element={<NewPostPopup />} />
 
                         <Route
-                            path="/blog/view/:blogName/:blogID/:content?"
-                            element={<ProfileFull />}
+                            path="/blog/view/:blogName/:blogID/:content/:postID"
+                            element={<ProfileFullContainer />}
+                        />
+                        <Route
+                            path="/blog/view/:blogName/:blogID/:content"
+                            element={<ProfileFullContainer />}
                         />
 
-                        <Route path="/explore/:type" element={<Explore />} />
+                        <Route
+                            path="/blog/:blogUrlIdf/*"
+                            element={<MyProfile />}
+                        />
+
+                        <Route
+                            path="/explore/recommended-for-you"
+                            element={<Explore />}
+                        />
+                        <Route
+                            path="/messaging"
+                            element={<MessagesPageMobile />}
+                        />
                     </Route>
                 </Routes>
                 <style>{css}</style>

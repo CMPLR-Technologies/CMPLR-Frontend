@@ -41,11 +41,7 @@ export default function BlockSectionVersion1({ setBlocksVersion1 }) {
                                     <img
                                         src={block?.avatar}
                                         alt="can't load image"
-                                        style={{
-                                            width: '30px',
-                                            height: '30px',
-                                            WebkitFilter: blur('2px')
-                                        }}
+                                        className="avatarOfABlockedAcc123"
                                     />
                                 </button>
                             </li>

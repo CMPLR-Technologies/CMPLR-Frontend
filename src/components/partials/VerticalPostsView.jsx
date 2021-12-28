@@ -12,8 +12,11 @@ export default function VerticalPostsView(props) {
         setPageNumber,
         isRadar,
         blogPage,
-        userBlogName
+        // eslint-disable-next-line no-unused-vars
+        userBlogName,
+        noTheme
     } = props;
+    const user = JSON.parse(localStorage.getItem('user'));
 
     const observer = useRef();
     const lastPostElementRef = useCallback(
@@ -38,12 +41,11 @@ export default function VerticalPostsView(props) {
                             <div ref={lastPostElementRef} key={index}>
                                 <PostComponent
                                     post={post}
-                                    userBlogName={
-                                        userBlogName ? userBlogName : 'ahmed_3'
-                                    }
+                                    userBlogName={user?.blogName}
                                     isFollowed={true}
                                     radar={isRadar}
                                     blogPage={blogPage}
+                                    themeDeactivate={noTheme}
                                 />
                             </div>
                         );
@@ -53,11 +55,10 @@ export default function VerticalPostsView(props) {
                                 key={index}
                                 post={post}
                                 isFollowed={true}
-                                userBlogName={
-                                    userBlogName ? userBlogName : 'ahmed_3'
-                                }
+                                userBlogName={user?.blogName}
                                 radar={isRadar}
                                 blogPage={blogPage}
+                                themeDeactivate={noTheme}
                             />
                         );
                     }
@@ -78,5 +79,6 @@ VerticalPostsView.propTypes = {
     isRadar: PropTypes.bool,
     isRef: PropTypes.bool,
     blogPage: PropTypes.bool,
-    userBlogName: PropTypes.string
+    userBlogName: PropTypes.string,
+    noTheme: PropTypes.bool
 };

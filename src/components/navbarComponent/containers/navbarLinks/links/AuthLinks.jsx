@@ -5,7 +5,12 @@ import MessagesPopUp from '../MessagesPopup/MessagesPopUp';
 import AccountPopup from '../AccountPopup/AccountPopup';
 import { Link, NavLink } from 'react-router-dom';
 import UnReadMsg from './UnReadMsg';
+import { UserContext } from '../../../../../contexts/userContext/UserContext';
 import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
+import Notifications from '../../Notifications/Notifications';
+import Badge from './Badge';
+import Axios from 'axios';
+import { apiBaseUrl } from '../../../../../config.json';
 /**
  * Navbar AuthLinks: includes all links dashboard and inbox and expolre ...
  * @function NavbarAuthLinks
@@ -19,35 +24,26 @@ import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
  */
 export default function AuthLinks() {
     //dropdown lists
+    const { user } = useContext(UserContext);
     const [openMessagePopup, setOpenMessagePopup] = useState(false);
     const [openNotificationsPopup, setOpenNotificationsPopup] = useState(false);
     const [openAccountPopup, setOpenAccountPopup] = useState(false);
+    const [notfArray, setNotfArray] = useState(null);
 
     //const [openPopup, setOpenPopup] = useState(false);
 
     // when the navbar run go loadChat and count the unreadMsgs
-    let { loadChats, chats } = useContext(ChatContext);
+    let { getUnReadMsgsCount } = useContext(ChatContext);
     const [unReadMsgs, setUnReadMsgs] = useState(0);
 
-    useEffect(async () => {
-        // this will clear Timeout
-        // when component unmount like in willComponentUnmount
+    useEffect(() => {
         // and show will not change to true
-        let timer1 = setTimeout(async () => {
-            await loadChats();
-            let count = 0;
-            // if (chats) {
-            //     chats?.map(chat => {
-            //         if (!chat.is_read) count++;
-            //     });
-            // }
-            setUnReadMsgs(count);
-        }, 2000);
-
-        return () => {
-            clearTimeout(timer1);
-        };
+        getUnReadMsgsCount(setUnReadMsgs);
     }, []);
+    useEffect(() => {
+        // and show will not change to true
+        getUnReadMsgsCount(setUnReadMsgs);
+    }, [user, user?.userData]);
 
     //close dropdown message list
     const closeMessagePopup = () => {
@@ -85,6 +81,23 @@ export default function AuthLinks() {
         }
         setOpenAccountPopup(!openAccountPopup);
     };
+
+    useEffect(() => {
+        user?.blogName !== undefined &&
+            Axios({
+                method: 'GET',
+                url: `${apiBaseUrl}/blog/${user?.blogName}/notifications`,
+                headers: {
+                    'content-type': 'application/json',
+                    Authorization: `Bearer ${user?.token}`
+                }
+            })
+                .then(res => {
+                    if (res.data.meta.status_code === 200)
+                        setNotfArray(res.data.response);
+                })
+                .catch(() => {});
+    }, []);
 
     /*  const clickOpenPopup = () => {
     console.log("closeg");
@@ -138,15 +151,25 @@ export default function AuthLinks() {
                     )}
                 </div>
             </ClickAwayListener>
-
-            <li
-                onClick={clickNotificationsPopup}
-                className={`link-icon  ${
-                    openNotificationsPopup ? 'active' : ''
-                }`}
-            >
-                <i className="fas fa-bolt"></i>
-            </li>
+            <div className="notifications-btn">
+                <li
+                    onClick={clickNotificationsPopup}
+                    className={`link-icon  ${
+                        openNotificationsPopup ? 'active' : ''
+                    }`}
+                >
+                    <i className="fas fa-bolt"></i>
+                </li>
+                {notfArray?.unseen && <Badge num={notfArray?.unseen} />}
+                {openNotificationsPopup && (
+                    <Notifications
+                        userBlogName={user?.blogName}
+                        userAvatar={user?.userData?.avatar}
+                        notfArray={notfArray && notfArray}
+                        setNotfArray={setNotfArray}
+                    />
+                )}
+            </div>
             <ClickAwayListener onClickAway={closeAccountPopup}>
                 <div className="link-popup">
                     <li
@@ -160,11 +183,13 @@ export default function AuthLinks() {
                     {openAccountPopup && <AccountPopup />}
                 </div>
             </ClickAwayListener>
-            <Link to="/new">
-                <li className="link-icon pen">
+
+            <li className="link-icon pen">
+                <Link to="/new">
                     <i className="fas fa-pen"></i>
-                </li>
-            </Link>
+                </Link>
+            </li>
+
             {/* <Route
         path="/new"
         children={({ match }) => (

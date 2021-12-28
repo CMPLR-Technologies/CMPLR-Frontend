@@ -5,16 +5,10 @@ import EditBtn from './SVG/EditBtn.svg';
 import LoveBtn from './SVG/LoveBtn.svg';
 import Note from './SVG/Note.svg';
 import ReblogBtn from './SVG/ReblogBtn.svg';
-import ShareBtn from './SVG/ShareBtn.svg';
 import Modal from '../../Modal';
 import AuthBtn from '../../AuthBtn';
-import { toggleShareList, copyLink } from '../Controller';
-import {
-    handleLikePost,
-    handleUnlikePost,
-    deletePost,
-    submitNote
-} from '../Services';
+import { copyLink } from '../Controller';
+import { handleLikePost, handleUnlikePost, deletePost } from '../Services';
 import PropTypes from 'prop-types';
 import NotesHeader from './Notes/NotesHeader';
 import NotesContent from './Notes/NotesContent';
@@ -22,6 +16,7 @@ import { getPostNotes } from '../Services';
 import { useNavigate } from 'react-router';
 import { useContext } from 'react';
 import { UserContext } from '../../../../contexts/userContext/UserContext';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 
 /**
  * @function Footer
@@ -48,7 +43,9 @@ Footer.propTypes = {
     blogPage: PropTypes.bool,
     radar: PropTypes.bool,
     isLiked: PropTypes.bool,
-    setIsLiked: PropTypes.func
+    setIsLiked: PropTypes.func,
+    draft: PropTypes.bool,
+    postSubmit: PropTypes.func
 };
 
 export default function Footer(props) {
@@ -64,11 +61,14 @@ export default function Footer(props) {
         setIsModalOpenN,
         blogPage,
         radar,
+        draft,
+        postSubmit,
         setIsLiked
     } = props;
+    const [liked, setLiked] = useState(isLiked);
     const [isShareListOpen, setIsShareListOpen] = useState(false);
     const [loveFillColor, setLoveFillColor] = useState(
-        `${isLiked ? 'rgb(255,73,47)' : 'gray'}`
+        `${liked ? 'rgb(255,73,47)' : 'gray'}`
     );
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [notesView, setNotesView] = useState(false);
@@ -83,11 +83,11 @@ export default function Footer(props) {
     const navigate = useNavigate();
 
     const handleNote = () => {
+        setNotesView(prev => !prev);
         if (!notesView) {
             setNoteType('comment');
             getPostNotes(blogIdentifier, setNotes, setCounts, postId);
         }
-        setNotesView(!notesView);
     };
 
     useEffect(() => {
@@ -102,199 +102,223 @@ export default function Footer(props) {
 
     return (
         <>
-            <footer
-                data-testid="post-footer-icons-ts"
-                className="post-footer-icons"
-            >
-                {isModalOpen && (
-                    <Modal
-                        messageHeading={` Are you sure you want to delete this post?`}
-                    >
-                        <AuthBtn
-                            id="nevermind-btn"
-                            text="Cancel"
-                            color="rgba(255,255,255,.65)"
-                            handleClick={() => {
-                                setIsModalOpen(false);
-                            }}
-                        />
-                        <AuthBtn
-                            id="block-btn"
-                            text="Ok"
-                            color="rgb(0, 184, 255)"
-                            handleClick={() => {
-                                deletePost(
-                                    postId,
-                                    setIsModalOpen,
-                                    user?.token,
-                                    navigate
-                                );
-                            }}
-                        />
-                    </Modal>
-                )}
-                <div
-                    data-testid={`notes-count-footer-ts`}
-                    className="notes-count"
+            <ClickAwayListener onClickAway={() => setNotesView(false)}>
+                <footer
+                    data-testid="post-footer-icons-ts"
+                    className="post-footer-icons"
                 >
-                    <span
-                        onClick={() => {
-                            setNotesView(!notesView);
-                            setNoteType('comment');
-                        }}
-                        data-testid={`notes-count-text-ts`}
+                    {isModalOpen && (
+                        <Modal
+                            messageHeading={` Are you sure you want to delete this post?`}
+                        >
+                            <AuthBtn
+                                id="nevermind-btn"
+                                text="Cancel"
+                                color="rgba(255,255,255,.65)"
+                                handleClick={() => {
+                                    setIsModalOpen(false);
+                                }}
+                            />
+                            <AuthBtn
+                                id="block-btn"
+                                text="Ok"
+                                color="rgb(0, 184, 255)"
+                                handleClick={() => {
+                                    deletePost(
+                                        postId,
+                                        setIsModalOpen,
+                                        user?.token,
+                                        navigate
+                                    );
+                                }}
+                            />
+                        </Modal>
+                    )}
+                    <div
+                        data-testid={`notes-count-footer-ts`}
+                        className="notes-count"
                     >
-                        {numberNotes > 1
-                            ? `${numberNotes} notes`
-                            : numberNotes === undefined ||
-                              numberNotes === 0 ||
-                              isNaN(numberNotes)
-                            ? ''
-                            : `${numberNotes} note`}
-                    </span>
+                        <span
+                            onClick={() => {
+                                setNotesView(!notesView);
+                                setNoteType('comment');
+                            }}
+                            data-testid={`notes-count-text-ts`}
+                        >
+                            {numberNotes > 1
+                                ? `${numberNotes} notes`
+                                : numberNotes === undefined ||
+                                  numberNotes === 0 ||
+                                  isNaN(numberNotes)
+                                ? ''
+                                : `${numberNotes} note`}
+                        </span>
 
-                    {notesView && (
+                        {notesView && (
+                            <div
+                                data-testid={`notes-view-container-ts`}
+                                className="notes-view-container"
+                            >
+                                <div
+                                    data-testid={`notes-view-flex-ts`}
+                                    className="notes-view-flex"
+                                >
+                                    <NotesHeader
+                                        numberNotes={numberNotes}
+                                        totalLikes={counts?.totalLikes}
+                                        totalReblogs={counts?.totalReblogs}
+                                        totalReplys={counts?.totalReplys}
+                                        setNotesView={setNotesView}
+                                        notes={notes && notes}
+                                    />
+                                    <NotesContent
+                                        postAuthor={postAuthor}
+                                        authorAvatar={authorAvatar}
+                                        notes={notes && notes}
+                                        setNotes={setNotes}
+                                        setCounts={setCounts}
+                                        type={noteType}
+                                        setIsModalOpen={setIsModalOpenN}
+                                        setNotesView={setNotesView}
+                                        postId={postId}
+                                    />
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                    {isShareListOpen && (
                         <div
-                            data-testid={`notes-view-container-ts`}
-                            className="notes-view-container"
+                            data-testid={`share-options-ts`}
+                            className="share-options"
                         >
                             <div
-                                data-testid={`notes-view-flex-ts`}
-                                className="notes-view-flex"
+                                data-testid={`options-footer-ts`}
+                                className="options"
                             >
-                                <NotesHeader
-                                    numberNotes={numberNotes}
-                                    totalLikes={counts.totalLikes}
-                                    totalReblogs={counts.totalReblogs}
-                                    setNotesView={setNotesView}
-                                    notes={notes}
-                                />
-                                <NotesContent
-                                    postAuthor={postAuthor}
-                                    authorAvatar={authorAvatar}
-                                    notes={notes}
-                                    setNotes={setNotes}
-                                    setCounts={setCounts}
-                                    type={noteType}
-                                    setIsModalOpen={setIsModalOpenN}
-                                    setNotesView={setNotesView}
-                                />
+                                <div
+                                    onClick={() => copyLink(postLink, postId)}
+                                    className="list"
+                                    data-testid={`list-footer-ts`}
+                                >
+                                    <div
+                                        data-testid={`circled-border-ts`}
+                                        className="circled-border"
+                                    >
+                                        <CopyLink />
+                                    </div>
+                                    <div
+                                        className="opt-btn copy-btn btn"
+                                        id={`copy-btn${postId}`}
+                                        data-testid={`copy-btn-footer-ts${postId}`}
+                                    >
+                                        Copy Link
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     )}
-                </div>
-                {isShareListOpen && (
                     <div
-                        data-testid={`share-options-ts`}
-                        className="share-options"
+                        data-testid={`footer-icons-ts`}
+                        className="footer-icons"
                     >
-                        <div
-                            data-testid={`options-footer-ts`}
-                            className="options"
-                        >
-                            <div
-                                onClick={() => copyLink(postLink, postId)}
-                                className="list"
-                                data-testid={`list-footer-ts`}
+                        {!blogPage && (
+                            <button
+                                onClick={() => copyLink(postLink, postId, true)}
+                                className="icon copy-link-cont"
+                                data-testid={`share-icon-footer-ts`}
                             >
+                                <CopyLink />
                                 <div
-                                    data-testid={`circled-border-ts`}
-                                    className="circled-border"
-                                >
-                                    <CopyLink />
-                                </div>
-                                <div
-                                    className="opt-btn copy-btn btn"
+                                    className="opt-btn copy-btn btn link-copied"
                                     id={`copy-btn${postId}`}
                                     data-testid={`copy-btn-footer-ts${postId}`}
+                                ></div>
+                            </button>
+                        )}
+                        {!blogPage && !radar && (
+                            <>
+                                {!draft && (
+                                    <button
+                                        onClick={() => {
+                                            handleNote();
+                                        }}
+                                        className="icon"
+                                        data-testid={`note-icon-footer-ts${postId}`}
+                                    >
+                                        <Note />
+                                    </button>
+                                )}
+                                {draft && (
+                                    <button
+                                        data-testid={`edit-footer-icon-ts${postId}`}
+                                        className="icon post-icon"
+                                        onClick={postSubmit}
+                                    >
+                                        Post
+                                    </button>
+                                )}
+                            </>
+                        )}
+                        {!draft && (
+                            <>
+                                <button
+                                    onClick={() => {
+                                        setNoteType('reblog');
+                                        navigate(
+                                            `/reblog/${blogName}/${postId}/${reblogKey}`
+                                        );
+                                    }}
+                                    className="icon"
+                                    data-testid={`reblog-icon-footer${postId}`}
                                 >
-                                    Copy Link
-                                </div>
-                            </div>
-                        </div>
+                                    <ReblogBtn />
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        !isLiked
+                                            ? handleLikePost(
+                                                  setLoveFillColor,
+                                                  setIsLiked,
+                                                  postId,
+                                                  user?.token
+                                              )
+                                            : handleUnlikePost(
+                                                  setLoveFillColor,
+                                                  setIsLiked,
+                                                  postId,
+                                                  user?.token
+                                              );
+                                    }}
+                                    className="icon "
+                                    data-testid={`love-icon-footer${postId}`}
+                                >
+                                    <LoveBtn fillColor={loveFillColor} />
+                                </button>
+                            </>
+                        )}
+                        {isAuthor && !draft && (
+                            <>
+                                <button
+                                    onClick={() => setIsModalOpen(true)}
+                                    className="icon"
+                                    data-testid={`delete-footer-icon-ts${postId}`}
+                                >
+                                    <DeleteBtn />
+                                </button>
+                                <button
+                                    data-testid={`edit-footer-icon-ts${postId}`}
+                                    className="icon"
+                                    onClick={() =>
+                                        navigate(`/edit/${blogName}/${postId}`)
+                                    }
+                                >
+                                    <EditBtn />
+                                </button>
+                            </>
+                        )}
                     </div>
-                )}
-                <div data-testid={`footer-icons-ts`} className="footer-icons">
-                    {!blogPage && (
-                        <button
-                            onClick={() =>
-                                toggleShareList(
-                                    isShareListOpen,
-                                    setIsShareListOpen
-                                )
-                            }
-                            className="icon"
-                            data-testid={`share-icon-footer-ts`}
-                        >
-                            <ShareBtn />
-                        </button>
-                    )}
-                    {!blogPage && !radar && (
-                        <button
-                            onClick={() => {
-                                handleNote();
-                            }}
-                            className="icon"
-                            data-testid={`note-icon-footer-ts${postId}`}
-                        >
-                            <Note />
-                        </button>
-                    )}
-                    <button
-                        onClick={() => {
-                            setNoteType('reblog');
-                            navigate(
-                                `/reblog/${blogName}/${postId}/${reblogKey}`
-                            );
-                        }}
-                        className="icon"
-                        data-testid={`reblog-icon-footer${postId}`}
-                    >
-                        <ReblogBtn />
-                    </button>
-                    <button
-                        onClick={() => {
-                            !isLiked
-                                ? handleLikePost(
-                                      setLoveFillColor,
-                                      setIsLiked,
-                                      postId,
-                                      user?.token
-                                  )
-                                : handleUnlikePost(
-                                      setLoveFillColor,
-                                      setIsLiked,
-                                      postId,
-                                      user?.token
-                                  );
-                        }}
-                        className="icon "
-                        data-testid={`love-icon-footer${postId}`}
-                    >
-                        <LoveBtn fillColor={loveFillColor} />
-                    </button>
-                    {isAuthor && (
-                        <>
-                            <button
-                                onClick={() => setIsModalOpen(true)}
-                                className="icon"
-                                data-testid={`delete-footer-icon-ts${postId}`}
-                            >
-                                <DeleteBtn />
-                            </button>
-                            <button
-                                data-testid={`edit-footer-icon-ts${postId}`}
-                                className="icon"
-                                onClick={() =>
-                                    navigate(`/edit/${blogName}/${postId}`)
-                                }
-                            >
-                                <EditBtn />
-                            </button>
-                        </>
-                    )}
-                </div>
-            </footer>
+                </footer>
+            </ClickAwayListener>
         </>
     );
 }

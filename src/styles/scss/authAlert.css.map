@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,WAAW,CAAC;EACR,UAAU,EAAE,mBAAmB;EAC/B,aAAa,EAAE,GAAG;EAClB,KAAK,EAAE,IAAI;EACX,SAAS,EAAE,QAAQ;EACnB,WAAW,EAAE,GAAG;EAChB,MAAM,EAAE,MAAM;EACd,OAAO,EAAE,SAAS;CAKrB;;AAZD,AAQI,WARO,CAQP,EAAE,CAAC;EACC,WAAW,EAAE,kBAAkB;EAC/B,WAAW,EAAE,GAAG;CACnB",
-    "sources": [
-        "partials/authAlert.scss"
-    ],
-    "names": [],
-    "file": "authAlert.css"
-}

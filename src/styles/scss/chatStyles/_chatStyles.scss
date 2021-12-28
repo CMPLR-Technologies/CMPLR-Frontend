@@ -1,5 +1,6 @@
 .chat-container {
     position: absolute;
+    z-index: 100;
 }
 .chat-popup-container {
     position: fixed;
@@ -22,7 +23,7 @@
         padding: 12px 7px;
         height: 44px;
         width: 100%;
-        background-color: black;
+        background-image:linear-gradient(#282F37, #414242, #404242);
         color: white;
         position: relative;
         a {
@@ -62,6 +63,16 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
+                .AuthBtn{
+                    font-size: 1rem;
+                    font-weight: 700;
+                    line-height: 1.5;
+                    padding: 6px 15px;
+                    width: auto;
+                    &:last-of-type{
+                        margin-left: 15px;
+                    }
+                }
                 a {
                     margin: 15px 8px 0;
                     padding: 6px 15px;
@@ -178,6 +189,7 @@
                 .img {
                     width: 30px;
                     height: 30px;
+                    background-color: inherit;
                     img {
                         width: 100%;
                         border-radius: 50%;
@@ -238,7 +250,12 @@
         }
     }
 }
-
+.chat-popup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
 .chat-popup-container.side {
     right: 100px;
 }
@@ -295,7 +312,7 @@
         }
         &-chat {
             margin-top: 54px;
-            height: calc(100vh - 54px - 44px);
+            height: 100%;
             background-color: #fff;
         }
         &-footer {
@@ -343,7 +360,7 @@
         .chat-popup {
             //display: none;
             .chat-popup-chat {
-                height: 80vh;
+                height: 100%;
             }
         }
     }
@@ -352,6 +369,17 @@
         .chat-side-icon-item {
             display: none;
         }
+    }
+    .chat-popup-header{
+        .btns{
+            .parClose{
+                  display: none;  
+            }
+        }
+    }
+    .chat-popup-header-option{
+        right: 50px;
+        left:auto;
     }
     .option-model {
         .option-model-text {

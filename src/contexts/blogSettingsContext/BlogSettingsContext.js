@@ -1,6 +1,6 @@
 import React, { createContext, Component } from 'react';
-export const BlogSettingsContext = createContext();
 import PropTypes from 'prop-types';
+export const BlogSettingsContext = createContext();
 class BlogSettingsContextProvider extends Component {
     state = {
         blogId: 1,
