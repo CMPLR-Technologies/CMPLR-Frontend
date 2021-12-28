@@ -11,7 +11,6 @@ export default function FilteringSectionVersion2({
     setFilteringContentVersion1,
     filteringType
 }) {
-    const user = JSON.parse(localStorage.getItem('user'));
     const { filteredTags } = useContext(SettingsContext);
     const { filteredContent } = useContext(SettingsContext);
     let functionTouse;
@@ -57,8 +56,7 @@ export default function FilteringSectionVersion2({
                             tag,
                             setErrMsg,
                             url,
-                            filteringType,
-                            user?.token
+                            filteringType
                         );
                     }}
                     id="add-tag"
@@ -90,8 +88,7 @@ export default function FilteringSectionVersion2({
                                         tag,
                                         setErrMsg,
                                         url,
-                                        filteringType,
-                                        user?.token
+                                        filteringType
                                     );
                                 }}
                             ></AuthBtn>

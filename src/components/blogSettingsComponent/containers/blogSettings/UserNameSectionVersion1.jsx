@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 export default function UserNameSectionVersion1({
-    setVersionOne,
-    sectionName
+    setVersionOne
 }) {
     const { blogName } = useParams();
     return (
         <div className="email" id="section">
             <div className="sub-section-left">
-                <h3>{sectionName}</h3>
+                <h3>Username</h3>
             </div>
             <div className="sub-section-right">
                 <p className="email">{blogName}</p>

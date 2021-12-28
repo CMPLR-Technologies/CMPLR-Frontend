@@ -74,7 +74,7 @@ export default function MainRoutes() {
 
                     <Route element={<RequireAuth />}>
                         <Route
-                            path="/blog/:blogName/delete"
+                            path="/blog/:blogName/delete/:blogId"
                             element={<DeleteBlog setWithNav={setWithNav} />} //WITHOUTNAV
                         />
                         <Route

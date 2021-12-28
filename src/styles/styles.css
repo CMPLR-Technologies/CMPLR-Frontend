@@ -3010,6 +3010,23 @@ body .settings .container1 .subcontainer #section .sub-section-right .filtering-
   padding: 0;
   max-width: 50px;
 }
+body .settings .container1 .subcontainer #section .sub-section-right .filtering-item-one-img {
+  border-radius: 40px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  list-style: none;
+  margin-right: 5px;
+  padding: 3px 10px;
+}
+body .settings .container1 .subcontainer #section .sub-section-right .filtering-item-one-img button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  max-width: 50px;
+}
 body .settings .container1 .subcontainer #section .sub-section-right #enter-tag {
   flex-basis: 100%;
   flex-grow: 1;
@@ -7053,6 +7070,37 @@ body .settings .container1 .subcontainer #section-create-blog .sub-section-right
 .lSyOz .p4DiZ .uM3pd .wl0Ka .EvhBA {
   display: block;
   text-align: center;
+}
+
+body .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up .sub-section-right-up-allowAsk {
+  flex-grow: 1;
+  max-width: 500px;
+  padding: 0 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+body .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up .sub-section-right-up-allowAsk .Ask-page-title-label {
+  width: 100%;
+  opacity: 0.5;
+}
+body .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up .sub-section-right-up-allowAsk #update-ask-title {
+  border: 1.25px solid #ececec !important;
+  width: 100%;
+  height: 35px;
+}
+body .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up .sub-section-right-up-allowAsk .update-ask-title-btns {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+body .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up .sub-section-right-up-allowAsk .update-ask-title-btns #update-ask-title-btn-save {
+  box-sizing: border-box;
+  text-decoration: none;
+  width: 66px;
+  height: 30px;
+  margin-right: 10px;
 }
 
 .explore {

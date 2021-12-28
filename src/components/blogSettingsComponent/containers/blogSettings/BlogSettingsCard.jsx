@@ -1,16 +1,27 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PagesList from '../../../settingsComponent/PagesList';
 import UserNameSection from './UserNameSection';
 import AllowAskSection from './AllowAskSection';
+import AllowMessaging from './AllowMessaging';
+import VisibilitySection from './VisibilitySection';
+import RepliesSection from './RepliesSection';
+import BlockSection from './BlockSection';
+import DeleteSection from './DeleteSection';
 import { BlogSettingsContext } from '../../../../contexts/blogSettingsContext/BlogSettingsContext';
-import { getBlogSettings } from '../../Service';
+import { getBlogSettings, getBlocksOfBlog } from '../../Service';
+import { useParams } from 'react-router-dom';
 export default function BlogSettingsCard() {
     const user = JSON.parse(localStorage.getItem('user'));
-    const blogName = user?.blogName;
-    const { setBlogs } = useContext(BlogSettingsContext);
+    const { blogName } = useParams();
+    const { setBlogs, updateProperty, blogId } =
+        useContext(BlogSettingsContext);
+    const [errMsg, setErrMsg] = useState('');
     useEffect(() => {
         getBlogSettings(setBlogs, user?.token, blogName);
+        getBlocksOfBlog(user?.token, blogName, updateProperty, setErrMsg);
+        errMsg.length !== 0 ? alert(errMsg) : null;
     }, []);
+    console.log(blogId);
     return (
         <div className="settings">
             <div className="container1">
@@ -18,12 +29,12 @@ export default function BlogSettingsCard() {
                     <h2 className="title">Account</h2>
                     <div>
                         <UserNameSection />
+                        <RepliesSection />
                         <AllowAskSection />
-                        {/* <EmailSection />
-                        <PasswordSection />
-                        <SecuritySection />
-                        <FilteringSection />
-                        <DeleteSection /> */}
+                        <AllowMessaging />
+                        <VisibilitySection />
+                        <BlockSection />
+                        <DeleteSection blogName={blogName} />
                     </div>
                 </div>
             </div>

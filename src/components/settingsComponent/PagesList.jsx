@@ -97,6 +97,19 @@ export default function PagesList() {
                                     </li>
                                 );
                             })}
+                        <li className="list-item blog-item">
+                            <div className="temp">
+                                <Link
+                                    to={'/blog/new'}
+                                    style={{
+                                        color: 'white',
+                                        textDecoration: 'none'
+                                    }}
+                                >
+                                    create a new blog
+                                </Link>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 ;

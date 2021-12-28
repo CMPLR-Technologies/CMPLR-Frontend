@@ -16,7 +16,7 @@ import { useParams } from 'react-router-dom';
 
 export default function DeleteBlog({ setWithNav }) {
     const user = JSON.parse(localStorage.getItem('user'));
-    const { blogName } = useParams();
+    const { blogName, blogId } = useParams();
     const history = useNavigate();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -24,6 +24,8 @@ export default function DeleteBlog({ setWithNav }) {
     useEffect(() => {
         setWithNav(false);
     }, []);
+    console.log(parseInt(blogId));
+    console.log(user?.userData?.primary_blog_id);
     return (
         <div
             data-testid="delete-account-container"
@@ -89,7 +91,11 @@ export default function DeleteBlog({ setWithNav }) {
                                 blogName,
                                 setErrorMsg,
                                 history,
-                                user?.token
+                                user?.token,
+                                parseInt(blogId) ===
+                                    user?.userData?.primary_blog_id
+                                    ? true
+                                    : false
                             )
                         }
                         dataTestid="button-reset-password"

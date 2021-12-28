@@ -60,6 +60,7 @@ export default function FilteringSectionVersion1({
     );
 }
 FilteringSectionVersion1.propTypes = {
-    setFilteringVersion: PropTypes.func.isRequired,
+    setFilteringTagsVersion1: PropTypes.func.isRequired,
+    setFilteringContentVersion1: PropTypes.func.isRequired,
     filteringType: PropTypes.string.isRequired
 };
