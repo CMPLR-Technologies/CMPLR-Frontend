@@ -15,7 +15,7 @@ export default function ProfilsSideContainer(props) {
         <div
             className="overlay-container"
             data-testid="OverlayContainer"
-            style={{ display: 'flex' }}
+            style={{ display: 'flex !important' }}
         >
             <div
                 className="overlay-div overlay-no-theme"

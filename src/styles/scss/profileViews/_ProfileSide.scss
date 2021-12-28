@@ -1,3 +1,11 @@
+.profile-side-outter .overlay-container {
+    display: flex !important;
+}
+@media (max-width: 988px) {
+    .profile-side-outter .overlay-container {
+        display: flex !important;
+    }
+}
 .profile-side {
     display: flex;
     flex-direction: column;
