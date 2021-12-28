@@ -95,7 +95,7 @@ const followingHashtags = [
         name: '# code',
         link: '/tagged/code',
         image: 'https://64.media.tumblr.com/5321df071c0777b12faa659e7662e97a/adf9e8c81bd814f7-70/s640x960/0fb9219fd16d394613e0d8731b02ad44e9e22e4d.jpg',
-        posts: 69
+        posts: 70
     },
     {
         name: '# code',
