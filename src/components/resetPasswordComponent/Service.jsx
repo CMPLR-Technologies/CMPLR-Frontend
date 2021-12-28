@@ -29,6 +29,7 @@ export function newPassword(
                         userData: res.data.response.user,
                         blogName: res.data.response.blog_name
                     };
+                    console.log(user);
                     setUser(user);
                     localStorage.setItem('user', JSON.stringify(user));
                 } else {
