@@ -23,10 +23,12 @@ export default function BlogSettingsCard() {
     }, []);
     console.log(blogId);
     return (
-        <div className="settings">
-            <div className="container1">
-                <div className="subcontainer">
-                    <h2 className="title">Account</h2>
+        <div className="settingss" data-testid="settings">
+            <div className="container1" data-testid="container1">
+                <div className="subcontainer" data-testid="subcontainer">
+                    <h2 className="title" data-testid="title">
+                        Account
+                    </h2>
                     <div>
                         <UserNameSection />
                         <RepliesSection />

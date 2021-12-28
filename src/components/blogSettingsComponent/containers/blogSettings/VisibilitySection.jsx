@@ -8,14 +8,17 @@ export default function VisibilitySection() {
     const user = JSON.parse(localStorage.getItem('user'));
     const { blogName } = useParams();
     return (
-        <div className="security" id="section">
-            <div className="sub-section-left">
+        <div className="security" id="section" data-testid="section">
+            <div className="sub-section-left" data-testid="sub-section-left">
                 <h3>Visibility</h3>
             </div>
-            <div className="sub-section-right">
-                <div className="sub-section-right-up">
-                    <div className="switch-div">
-                        <label className="switch">
+            <div className="sub-section-right" data-testid="sub-section-right">
+                <div
+                    className="sub-section-right-up"
+                    data-testid="sub-section-right-up"
+                >
+                    <div className="switch-div" data-testid="switch-div">
+                        <label className="switch" data-testid="switch">
                             <input
                                 type="checkbox"
                                 checked={dashboardHide}
@@ -28,8 +31,12 @@ export default function VisibilitySection() {
                                         !dashboardHide
                                     );
                                 }}
+                                data-testid="switch-input"
                             ></input>
-                            <span className="slider round"></span>
+                            <span
+                                className="slider round"
+                                data-testid="slider"
+                            ></span>
                         </label>
                     </div>
                     <div className="text">
@@ -40,9 +47,12 @@ export default function VisibilitySection() {
                         </p>
                     </div>
                 </div>
-                <div className="sub-section-right-up">
-                    <div className="switch-div">
-                        <label className="switch">
+                <div
+                    className="sub-section-right-up"
+                    data-testid="sub-section-right-up"
+                >
+                    <div className="switch-div" data-testid="switch-div">
+                        <label className="switch" data-testid="switch">
                             <input
                                 type="checkbox"
                                 checked={searchHide}
@@ -55,6 +65,7 @@ export default function VisibilitySection() {
                                         !searchHide
                                     );
                                 }}
+                                data-testid="switch-input"
                             ></input>
                             <span className="slider round"></span>
                         </label>

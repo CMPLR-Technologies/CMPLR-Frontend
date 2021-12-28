@@ -5,6 +5,10 @@ import { useParams } from 'react-router-dom';
 import AuthInput from '../../../partials/AuthInput';
 import AuthBtn from '../../../partials/AuthBtn';
 import { useEffect } from 'react';
+import {
+    ThemeContext,
+    themes
+} from '../../../../contexts/themeContext/ThemeContext';
 export default function AllowAskSection() {
     const { updateProperty, allowAsk, askPageTitle, allowAnonymousQuestion } =
         useContext(BlogSettingsContext);
@@ -15,15 +19,19 @@ export default function AllowAskSection() {
     useEffect(() => {
         setAskPage(askPageTitle);
     }, [askPageTitle]);
+    const theme = useContext(ThemeContext)[0];
     return (
-        <div className="security" id="section">
-            <div className="sub-section-left">
+        <div className="security" id="section" data-testid="section">
+            <div className="sub-section-left" data-testid="sub-section-left">
                 <h3>Ask</h3>
             </div>
-            <div className="sub-section-right">
-                <div className="sub-section-right-up">
-                    <div className="switch-div">
-                        <label className="switch">
+            <div className="sub-section-right" data-testid="sub-section-right">
+                <div
+                    className="sub-section-right-up"
+                    data-testid="sub-section-right-up"
+                >
+                    <div className="switch-div" data-testid="switch-div">
+                        <label className="switch" data-testid="switch">
                             <input
                                 type="checkbox"
                                 checked={allowAsk}
@@ -36,8 +44,12 @@ export default function AllowAskSection() {
                                         !allowAsk
                                     );
                                 }}
+                                data-testid="switch-input"
                             ></input>
-                            <span className="slider round"></span>
+                            <span
+                                className="slider round"
+                                data-testid="slider"
+                            ></span>
                         </label>
                     </div>
                     <div className="text">
@@ -50,11 +62,18 @@ export default function AllowAskSection() {
                 </div>
                 {allowAsk && (
                     <>
-                        <div className="sub-section-right-up">
-                            <div className="sub-section-right-up-allowAsk">
+                        <div
+                            className="sub-section-right-up"
+                            data-testid="sub-section-right-up"
+                        >
+                            <div
+                                className="sub-section-right-up-allowAsk"
+                                data-testid="sub-section-right-up-allowAsk"
+                            >
                                 <label
                                     className="Ask-page-title-label"
                                     htmlFor="sub-section-right-up-allowAsk"
+                                    data-testid="Ask-page-title-label"
                                 >
                                     Ask page title
                                 </label>
@@ -70,11 +89,14 @@ export default function AllowAskSection() {
                                     value={askPage}
                                     setValue={setAskPage}
                                     id="update-ask-title"
+                                    data-testid="update-ask-title"
                                 ></AuthInput>
-                                <div className="update-ask-title-btns">
+                                <div
+                                    className="update-ask-title-btns"
+                                    data-testid="update-ask-title-btns"
+                                >
                                     <AuthBtn
                                         text="Save"
-                                        color="#00b8ff"
                                         handleClick={() => {
                                             updatePropertyInDb(
                                                 user?.token,
@@ -85,13 +107,21 @@ export default function AllowAskSection() {
                                             );
                                         }}
                                         id="update-ask-title-btn-save"
+                                        data-testid="update-ask-title-btn-save"
+                                        color={`rgb(${themes[theme].black})`}
                                     ></AuthBtn>
                                 </div>
                             </div>
                         </div>
-                        <div className="sub-section-right-up">
-                            <div className="switch-div">
-                                <label className="switch">
+                        <div
+                            className="sub-section-right-up"
+                            data-testid="sub-section-right-up"
+                        >
+                            <div
+                                className="switch-div"
+                                data-testid="switch-div"
+                            >
+                                <label className="switch" data-testid="switch">
                                     <input
                                         type="checkbox"
                                         checked={allowAnonymousQuestion}
@@ -104,8 +134,12 @@ export default function AllowAskSection() {
                                                 !allowAnonymousQuestion
                                             );
                                         }}
+                                        data-testid="switch-input"
                                     ></input>
-                                    <span className="slider round"></span>
+                                    <span
+                                        className="slider round"
+                                        data-testid="slider"
+                                    ></span>
                                 </label>
                             </div>
                             <div className="text">

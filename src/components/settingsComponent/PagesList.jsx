@@ -102,9 +102,9 @@ export default function PagesList() {
                                 <Link
                                     to={'/blog/new'}
                                     style={{
-                                        color: 'white',
                                         textDecoration: 'none'
                                     }}
+                                    className="blog-item-anchor-create-new-blog"
                                 >
                                     create a new blog
                                 </Link>
@@ -112,7 +112,6 @@ export default function PagesList() {
                         </li>
                     </ul>
                 </div>
-                ;
             </div>
         </div>
     );

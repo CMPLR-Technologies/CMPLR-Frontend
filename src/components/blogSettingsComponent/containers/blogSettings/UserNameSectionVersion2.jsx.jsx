@@ -3,22 +3,25 @@ import { updatePropertyInDb } from '../../Service';
 import AuthInput from '../../../partials/AuthInput';
 import AuthBtn from '../../../partials/AuthBtn';
 import { BlogSettingsContext } from '../../../../contexts/blogSettingsContext/BlogSettingsContext';
+import {
+    ThemeContext,
+    themes
+} from '../../../../contexts/themeContext/ThemeContext';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
-export default function UserNameSectionVersion2({
-    setVersionOne
-}) {
+export default function UserNameSectionVersion2({ setVersionOne }) {
     const { blogName } = useParams();
     const { updateProperty } = useContext(BlogSettingsContext);
     const [newUserName, setNewUserName] = useState(blogName);
     const [errorMsg, setErrorMsg] = useState('');
     const user = JSON.parse(localStorage.getItem('user'));
+    const theme = useContext(ThemeContext)[0];
     return (
-        <div className="email" id="section">
-            <div className="sub-section-left">
+        <div className="email" id="section" data-testid="email">
+            <div className="sub-section-left" data-testid="sub-section-left">
                 <h3>Username</h3>
             </div>
-            <div className="sub-section-right">
+            <div className="sub-section-right" data-testid="sub-section-right">
                 <AuthInput
                     name="email"
                     type="text"
@@ -29,6 +32,7 @@ export default function UserNameSectionVersion2({
                     value={newUserName}
                     setValue={setNewUserName}
                     id="update-email-email"
+                    data-testid="update-email-email"
                 ></AuthInput>
 
                 {errorMsg.length !== 0 && (
@@ -39,13 +43,14 @@ export default function UserNameSectionVersion2({
                 <div className="update-email-btns">
                     <AuthBtn
                         text="Cancle"
-                        color="#999999"
                         id="update-email-btn-cancel"
                         handleClick={() => setVersionOne(true)}
+                        data-testid="update-email-btn-cancel"
+                        color={`rgb(${themes[theme].accent})`}
                     ></AuthBtn>
                     <AuthBtn
                         text="Save"
-                        color="#00b8ff"
+                        color={`rgb(${themes[theme].black})`}
                         handleClick={() => {
                             updatePropertyInDb(
                                 user?.token,
@@ -56,6 +61,7 @@ export default function UserNameSectionVersion2({
                             );
                         }}
                         id="update-email-btn-save"
+                        data-testid="update-email-btn-save"
                     ></AuthBtn>
                 </div>
             </div>

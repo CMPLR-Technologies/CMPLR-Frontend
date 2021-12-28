@@ -7,7 +7,12 @@ export default function DeleteSection({ blogName }) {
     const history = useNavigate();
     const { blogId } = useContext(BlogSettingsContext);
     return (
-        <div className="delete" id="section" style={{ borderBottom: 'none' }}>
+        <div
+            className="delete"
+            id="section"
+            data-testid="section"
+            style={{ borderBottom: 'none' }}
+        >
             <AuthBtn
                 dataTestid="cancel-btn"
                 id="delete-account"
