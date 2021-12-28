@@ -91,7 +91,7 @@ export default function SearchResult(props) {
                         />
                     ))}
                 <h3 className="search-result-dis">Tumblrs</h3>
-                <Link to={`profile/${props.search}`} onClick={closeOpenSearch}>
+                <Link to={`blog/${props.search}`} onClick={closeOpenSearch}>
                     <li className="search-result-go">
                         Go to @<span className="color">{props.search}</span>
                     </li>
