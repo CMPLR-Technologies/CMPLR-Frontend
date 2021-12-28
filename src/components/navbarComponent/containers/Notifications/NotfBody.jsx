@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReblogReact from '../../../partials/postComponent/containers/Notes/ReblogReact.svg';
 import LoveReact from '../../../partials/postComponent/containers/Notes/LoveReact.svg';
 import CommentReact from '../../../partials/postComponent/containers/Notes/CommentReact.svg';
@@ -18,7 +18,12 @@ NotfBody.propTypes = {
 export default function NotfBody(props) {
     const { notf } = props;
     const user = JSON.parse(localStorage.getItem('user'));
-    const [following, setFollowing] = useState(false);
+    const [following, setFollowing] = useState(
+        notf ? notf['do_you_follow'] : false
+    );
+    useEffect(() => {
+        setFollowing(notf ? notf['do_you_follow'] : false);
+    }, [notf]);
     return (
         <div className="notf-body">
             <div className="relative">
@@ -26,7 +31,7 @@ export default function NotfBody(props) {
                     <div className="noter-avatar">
                         <img
                             className="noter-avatar-img"
-                            src={notf&&notf['from_blog_avatar']}
+                            src={notf && notf['from_blog_avatar']}
                             sizes="24px"
                             alt="Avatar"
                             loading="eager"
@@ -37,70 +42,72 @@ export default function NotfBody(props) {
                         data-testid={`avatar-react-ts`}
                         className="avatar-react"
                     >
-                        {notf&&notf['type'] === 'reblog' ? (
+                        {notf && notf['type'] === 'reblog' ? (
                             <ReblogReact />
-                        ) : notf&&notf['type'] === 'like' ? (
+                        ) : notf && notf['type'] === 'like' ? (
                             <LoveReact />
-                        ) : notf&&notf['type'] === 'reply' ||
-                          notf&&notf['type'] === 'answer' ? (
+                        ) : (notf && notf['type'] === 'reply') ||
+                          (notf && notf['type'] === 'answer') ? (
                             <CommentReact />
-                        ) : notf&&notf['type'] === 'ask' ? (
+                        ) : notf && notf['type'] === 'ask' ? (
                             <AskReact />
-                        ) : notf&&notf['type'] === 'follow' ? (
+                        ) : notf && notf['type'] === 'follow' ? (
                             <FollowReact />
                         ) : null}
                     </div>
                 </div>
                 <div className="notf-content">
                     <strong>
-                        {notf&&notf['from_blog_name']}{' '}
+                        {notf && notf['from_blog_name']}{' '}
                         <span style={{ marginRight: '5px' }}> </span>
                     </strong>
                     <span
                         className="post-snap"
                         dangerouslySetInnerHTML={{
                             __html: `${
-                                notf&&notf['type'] === 'reply'
+                                notf && notf['type'] === 'reply'
                                     ? ' replied to your post: '
-                                    : notf&&notf['type'] === 'like'
+                                    : notf && notf['type'] === 'like'
                                     ? ' loved your post: '
-                                    : notf&&notf['type'] === 'reblog'
+                                    : notf && notf['type'] === 'reblog'
                                     ? ' rebloged your post: '
-                                    : notf&&notf['type'] === 'ask'
+                                    : notf && notf['type'] === 'ask'
                                     ? 'asked'
-                                    : notf&&notf['type'] === 'answer'
+                                    : notf && notf['type'] === 'answer'
                                     ? 'answerd your ask: '
-                                    : notf&&notf['type'] === 'follow'
+                                    : notf && notf['type'] === 'follow'
                                     ? 'started following your blog'
                                     : null
                             }`
                         }}
                     ></span>
-                    {notf&&notf['post_ask_answer_content'] ? (
+                    {notf && notf['post_ask_answer_content'] ? (
                         <span
                             className="post-ask-answer-content"
                             style={{ marginLeft: '5px' }}
                             dangerouslySetInnerHTML={{
-                                __html: `${notf&&notf['post_ask_answer_content']}`
+                                __html: `${
+                                    notf && notf['post_ask_answer_content']
+                                }`
                             }}
                         ></span>
                     ) : null}
                 </div>
                 <div className="type">
-                    {notf&&notf['type'] === 'like' ? (
+                    {notf && notf['type'] === 'like' ? (
                         <Link className="post-link" to="*">
                             <PostIcon />
                         </Link>
-                    ) : notf&&notf['type'] === 'ask' ? (
+                    ) : notf && notf['type'] === 'ask' ? (
                         <Link className="post-link" to="*">
                             <AskIcon />
                         </Link>
-                    ) : notf&&notf['type'] === 'follow' ? (
+                    ) : notf && notf['type'] === 'follow' ? (
                         <button
                             onClick={() => {
                                 followAccount(
                                     user?.token,
-                                    notf&&notf['from_blog_name'],
+                                    notf && notf['from_blog_name'],
                                     setFollowing
                                 );
                             }}

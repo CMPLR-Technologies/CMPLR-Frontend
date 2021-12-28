@@ -389,6 +389,9 @@
 .post-body img {
   max-width: 100%;
 }
+.post-body video {
+  max-width: 100%;
+}
 .post-body .text-title {
   word-break: break-word;
   white-space: pre-line;
@@ -2863,7 +2866,6 @@ input:checked + .slider:before {
   margin: 0 !important;
 }
 .notf-body .control-left .blogs-list {
-  background-color: white;
   display: flex;
   flex-direction: column;
 }
@@ -3046,7 +3048,6 @@ input:checked + .slider:before {
   margin: 0 !important;
 }
 .notifications-container .control-left .blogs-list {
-  background-color: white;
   display: flex;
   flex-direction: column;
 }
@@ -3073,10 +3074,6 @@ input:checked + .slider:before {
 }
 .notifications-container .control-left .blogs-list .account-popup-blogs-container .account-popup-blog-head-text h1 {
   margin-top: 10px;
-  color: black;
-}
-.notifications-container .control-left .blogs-list .account-popup-blogs-container .account-popup-blog-head-text div {
-  color: rgba(0, 0, 0, 0.65);
 }
 .notifications-container .control-left .btn-control {
   display: flex;
@@ -3138,7 +3135,6 @@ input:checked + .slider:before {
   text-decoration: none;
   width: 100%;
   height: 30px;
-  background-color: rgba(0, 0, 0, 0.07);
 }
 
 .notf-date {
@@ -6215,7 +6211,7 @@ body .settings .container1 .subcontainer #section-create-blog .sub-section-right
   font-weight: 400;
 }
 
-.settings {
+.dashboard-profile .settings {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -6223,17 +6219,17 @@ body .settings .container1 .subcontainer #section-create-blog .sub-section-right
   padding: 0 8px;
   align-items: end;
 }
-.settings .container2 {
+.dashboard-profile .settings .container2 {
   display: flex;
   flex-direction: column;
   margin-left: 30px;
   width: 320px;
 }
-.settings .container2 .wrapper {
+.dashboard-profile .settings .container2 .wrapper {
   margin-bottom: 38px;
   width: 100%;
 }
-.settings .container2 .wrapper .list {
+.dashboard-profile .settings .container2 .wrapper .list {
   font-size: 1.125rem;
   font-weight: 400;
   line-height: 1.333;
@@ -6243,79 +6239,79 @@ body .settings .container1 .subcontainer #section-create-blog .sub-section-right
   margin: 0;
   margin-bottom: 38px;
 }
-.settings .container2 .wrapper .list .list-item {
+.dashboard-profile .settings .container2 .wrapper .list .list-item {
   padding: 8px 12px;
   font-size: 1.2rem;
 }
-.settings .container2 .wrapper .list .list-item .list-item-anchor {
+.dashboard-profile .settings .container2 .wrapper .list .list-item .list-item-anchor {
   color: #001935;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-decoration: none;
 }
-.settings .container2 .wrapper .list .list-item .list-item-anchor.prof {
+.dashboard-profile .settings .container2 .wrapper .list .list-item .list-item-anchor.prof {
   flex-direction: row !important;
   align-items: center;
 }
-.settings .container2 .wrapper .list .list-item .list-item-anchor .list-item-span {
+.dashboard-profile .settings .container2 .wrapper .list .list-item .list-item-anchor .list-item-span {
   font-size: 1.5rem;
   font-weight: 400;
   line-height: 1.8;
 }
-.settings .container2 .wrapper .list .list-item .list-item-anchor-small {
+.dashboard-profile .settings .container2 .wrapper .list .list-item .list-item-anchor-small {
   font-size: 13px;
   font-weight: 400;
 }
-.settings .container2 .blog {
+.dashboard-profile .settings .container2 .blog {
   margin-bottom: 0;
 }
-.settings .container2 .blog .blog-h1 {
+.dashboard-profile .settings .container2 .blog .blog-h1 {
   padding-bottom: 5px;
 }
-.settings .container2 .blog .list-item {
+.dashboard-profile .settings .container2 .blog .list-item {
   padding: 0;
 }
-.settings .container2 .blog .list-item .temp {
+.dashboard-profile .settings .container2 .blog .list-item .temp {
   display: flex;
   justify-content: space-between;
   position: relative;
   width: 100%;
 }
-.settings .container2 .blog .list-item .temp .blog-item-anchor {
+.dashboard-profile .settings .container2 .blog .list-item .temp .blog-item-anchor {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text {
+.dashboard-profile .settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text {
   align-items: center;
   display: flex;
   justify-content: space-between;
 }
-.settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text .icon {
+.dashboard-profile .settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text .icon {
   margin-right: 11px;
   position: relative;
 }
-.settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text {
+.dashboard-profile .settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text {
   position: relative;
   text-align: left;
   word-break: break-word;
 }
-.settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text-up {
+.dashboard-profile .settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text-up {
   align-items: center;
   display: flex;
   font-size: 0.875rem;
   font-weight: 700;
   line-height: 1.5;
 }
-.settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text-up .text-up-span {
+.dashboard-profile .settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text-up .text-up-span {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text-down {
+.dashboard-profile .settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text-down {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   display: -webkit-box;
@@ -6326,7 +6322,7 @@ body .settings .container1 .subcontainer #section-create-blog .sub-section-right
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.settings .container2 .blog .list-item .temp .blog-item-anchor .star {
+.dashboard-profile .settings .container2 .blog .list-item .temp .blog-item-anchor .star {
   align-items: center;
   display: flex;
   padding-right: 14px;
@@ -6334,7 +6330,7 @@ body .settings .container1 .subcontainer #section-create-blog .sub-section-right
   text-align: right;
   margin-left: 40px;
 }
-.settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
+.dashboard-profile .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   text-align: right;
 }
 

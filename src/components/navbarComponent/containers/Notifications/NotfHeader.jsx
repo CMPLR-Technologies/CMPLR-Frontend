@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { apiBaseUrl } from '../../../../config.json';
 import axios from 'axios';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import propTypes from 'prop-types';
+import {
+    ThemeContext,
+    themes
+} from '../../../../contexts/themeContext/ThemeContext';
 
 NotfHeader.propTypes = {
     userBlogName: propTypes.string,
@@ -12,6 +16,7 @@ NotfHeader.propTypes = {
     filterNotf: propTypes.func
 };
 export default function NotfHeader(props) {
+    const theme = useContext(ThemeContext)[0];
     const { userBlogName, userAvatar, filterNotf } = props;
     const [selected, setSelected] = useState(1);
     const [blogs, setBlogs] = useState([]);
@@ -57,7 +62,7 @@ export default function NotfHeader(props) {
                                         <span className="icon_arrow_carrot_down">
                                             <RiArrowDropDownLine
                                                 style={{
-                                                    fill: 'black'
+                                                    fill: `rgb(${themes[theme].black})`
                                                 }}
                                             />
                                         </span>
