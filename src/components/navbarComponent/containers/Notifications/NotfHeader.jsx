@@ -9,6 +9,7 @@ import {
     ThemeContext,
     themes
 } from '../../../../contexts/themeContext/ThemeContext';
+import { getNotifications } from '../../Service';
 
 NotfHeader.propTypes = {
     userBlogName: propTypes.string,
@@ -17,7 +18,13 @@ NotfHeader.propTypes = {
 };
 export default function NotfHeader(props) {
     const theme = useContext(ThemeContext)[0];
-    const { userBlogName, userAvatar, filterNotf } = props;
+    const {
+        userBlogName,
+        userAvatar,
+        filterNotf,
+        setNotfArray,
+        setUnseenNotf
+    } = props;
     const [selected, setSelected] = useState(1);
     const [blogs, setBlogs] = useState([]);
     const [blogsView, setBlogsView] = useState(false);
@@ -73,28 +80,34 @@ export default function NotfHeader(props) {
                                         {blogs &&
                                             blogs.map((blog, index) => (
                                                 <div
+                                                    onClick={() =>
+                                                        getNotifications(
+                                                            blog?.blog_name,
+                                                            token,
+                                                            setNotfArray,
+                                                            setUnseenNotf
+                                                        )
+                                                    }
                                                     data-testid="AccountPopupBlogsContainer"
                                                     className="account-popup-blogs-container"
                                                     key={index}
                                                 >
-                                                    <NavLink
-                                                        to={`/blog/${blog?.blog_name}`}
+                                                    <div
                                                         className="account-popup-blog-head-img"
                                                     >
                                                         <img
                                                             src={blog?.avatar}
                                                             alt="ava"
                                                         />
-                                                    </NavLink>
-                                                    <NavLink
-                                                        to={`/blog/${blog?.blog_name}`}
+                                                    </div>
+                                                    <div
                                                         className="account-popup-blog-head-text"
                                                     >
                                                         <h1>
                                                             {blog?.blog_name}
                                                         </h1>
                                                         <div>{blog?.title}</div>
-                                                    </NavLink>
+                                                    </div>
                                                 </div>
                                             ))}
                                     </div>

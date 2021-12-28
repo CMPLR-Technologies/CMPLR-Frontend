@@ -12,8 +12,14 @@ Notifications.propTypes = {
     activity: propTypes.bool
 };
 export default function Notifications(props) {
-    const { userBlogName, userAvatar, notfArray, setNotfArray, activity } =
-        props;
+    const {
+        userBlogName,
+        userAvatar,
+        notfArray,
+        setNotfArray,
+        setUnseenNotf,
+        activity
+    } = props;
     const [notfDates, setNotfDates] = useState(
         notfArray ? Object.keys(notfArray) : null
     );
@@ -47,6 +53,8 @@ export default function Notifications(props) {
                     filterNotf={filterNotf}
                     userBlogName={userBlogName}
                     userAvatar={userAvatar}
+                    setNotfArray={setNotfArray}
+                    setUnseenNotf={setUnseenNotf}
                 />
             )}{' '}
             <div className={!activity ? `notf-body-cont` : ''}>
@@ -85,6 +93,7 @@ export default function Notifications(props) {
                                             <NotfBody
                                                 notf={notf && notf}
                                                 key={index}
+                                                setUnseenNotf={setUnseenNotf}
                                             />
                                         </Link>
                                     ))}

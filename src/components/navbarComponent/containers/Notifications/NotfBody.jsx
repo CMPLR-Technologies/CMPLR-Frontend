@@ -11,21 +11,53 @@ import HiIcon from './notificationsTypesSVG/HiIcon';
 import PostIcon from './notificationsTypesSVG/PostIcon';
 import AskIcon from './notificationsTypesSVG/AskIcon';
 import { followAccount } from '../../../followingComponent/Service';
+import axios from 'axios';
+import { apiBaseUrl } from '../../../../config.json';
 NotfBody.propTypes = {
     notf: PropTypes.object
 };
 
 export default function NotfBody(props) {
-    const { notf } = props;
+    const { notf, setUnseenNotf } = props;
     const user = JSON.parse(localStorage.getItem('user'));
     const [following, setFollowing] = useState(
         notf ? notf['do_you_follow'] : false
     );
+    const handleClickNotificationBody = id => {
+        axios({
+            method: 'PUT',
+            url: `${apiBaseUrl}/notifications/${id}/see`,
+            headers: {
+                'content-type': 'application/json',
+                accept: 'application/json',
+                Authorization: `Bearer ${user?.token}`
+            }
+        })
+            .then(() => {
+                axios({
+                    method: 'get',
+                    url: `${apiBaseUrl}/notifications/unseens`,
+                    headers: {
+                        'content-type': 'application/json',
+                        accept: 'application/json',
+                        Authorization: `Bearer ${user?.token}`
+                    }
+                })
+                    .then(res => {
+                        setUnseenNotf(res?.data?.response);
+                    })
+                    .catch(() => {});
+            })
+            .catch(() => {});
+    };
     useEffect(() => {
         setFollowing(notf ? notf['do_you_follow'] : false);
     }, [notf]);
     return (
-        <div className="notf-body">
+        <div
+            onClick={() => handleClickNotificationBody(notf['notification_id'])}
+            className="notf-body"
+        >
             <div className="relative">
                 <div className="notes-summary-avatars-react">
                     <div className="noter-avatar">

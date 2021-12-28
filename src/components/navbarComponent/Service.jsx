@@ -14,3 +14,37 @@ const getSearchRes = async (searchWord, setSearchResults, setLoading) => {
 };
 
 export { getSearchRes };
+
+export function getNotifications(
+    userBlogName,
+    token,
+    setNotfArray,
+    setUnseenNotf
+) {
+    Axios({
+        method: 'GET',
+        url: `${apiBaseUrl}/blog/${userBlogName}/notifications`,
+        headers: {
+            'content-type': 'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    })
+        .then(res => {
+            if (res.data.meta.status_code === 200)
+                setNotfArray(res.data.response);
+        })
+        .catch(() => {});
+    Axios({
+        method: 'get',
+        url: `${apiBaseUrl}/notifications/unseens`,
+        headers: {
+            'content-type': 'application/json',
+            accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    })
+        .then(res => {
+            setUnseenNotf(res?.data?.response);
+        })
+        .catch(() => {});
+}

@@ -232,7 +232,7 @@ export default function PostComponent(props) {
     }
 
     .msg-heading, .msg-description{
-        color:rgb(${themes[theme].whiteOnDark});
+        color:rgb(${themes[theme].whiteOnDark},.65);
     }
     .notes-view-container {
         background-color:rgb(${themes[theme].white});

@@ -1139,6 +1139,7 @@ $border-radius-primary: 3px;
         .blogs-list {
             display: flex;
             flex-direction: column;
+
             .account-popup-blogs-container {
                 display: flex;
                 flex-direction: row;
@@ -1150,6 +1151,7 @@ $border-radius-primary: 3px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
+
                     img {
                         width: 30px;
                         height: 30px;
@@ -1451,3 +1453,6 @@ $border-radius-primary: 3px;
       width: 1170px;
     }
   }*/
+.account-popup-blogs-container:hover {
+    cursor: pointer;
+}
