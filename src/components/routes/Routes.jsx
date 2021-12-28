@@ -22,7 +22,6 @@ import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
 import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
 import Hashtag from '../hashtagsComponent/View';
 import GoogleCard from '../registerComponent/GoogleCard';
-import ActivityPage from '../activityPageComponent/ActivityPage';
 import Explore from '../explore/View';
 import HelpCenter from '../HelpCenter/View';
 import Article from '../HelpCenter/containers/Article';
@@ -139,11 +138,6 @@ export default function MainRoutes() {
                         <Route
                             path="/blog/:blogUrlIdf/*"
                             element={<MyProfile />}
-                        />
-
-                        <Route
-                            path="/blog/:blogUrlIdf/activity"
-                            element={<ActivityPage />}
                         />
 
                         <Route path="/explore/:type" element={<Explore />} />
