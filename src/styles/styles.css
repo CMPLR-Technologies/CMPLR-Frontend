@@ -3819,6 +3819,7 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 .profile-side-header-blocked {
   background-color: #222222;
