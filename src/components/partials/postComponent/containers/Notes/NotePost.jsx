@@ -22,7 +22,6 @@ export default function NotePost(props) {
         avatar: avatar,
         content: content
     } = props.note;
-
     const { setIsModalOpen, setNotesView } = props;
 
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);

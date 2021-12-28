@@ -7,6 +7,7 @@ import {
 } from '../../../../contexts/themeContext/ThemeContext';
 import ProfileSideOnePost from './ProfileSideOnePost';
 import ProfileSideAllPosts from './ProfileSideAllPosts';
+import Navbar2SideView from '../../../navbar2Files/navbar2SideView/Navbar2SideView';
 
 export default function ProfileSide(props) {
     const {
@@ -56,6 +57,7 @@ export default function ProfileSide(props) {
     return (
         <div className="profile-side" onScroll={headerScrollAnimation}>
             <div className="profile-side-header">
+                <Navbar2SideView />
                 {/*scrollTop > 216 && (
                 <img
                     className="profile-side-header-fixed"

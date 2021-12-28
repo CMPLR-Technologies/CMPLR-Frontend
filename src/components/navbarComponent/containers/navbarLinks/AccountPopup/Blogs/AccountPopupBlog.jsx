@@ -31,6 +31,7 @@ export default function AccountPopupBlog(props) {
         posts_count: posts,
         followers_count: followers
     } = props.blog;
+    const { closeMenu } = props;
     const url = blogName;
 
     const [expanded, setExpanded] = useState(false);
@@ -97,6 +98,9 @@ export default function AccountPopupBlog(props) {
                 <NavLink
                     to={`/blog/${url}`}
                     className="account-popup-blog-head-text"
+                    onClick={() => {
+                        if (closeMenu) closeMenu();
+                    }}
                 >
                     <h1>{url}</h1>
                     <div>{title === '' ? 'untitled' : title}</div>
@@ -136,5 +140,6 @@ export default function AccountPopupBlog(props) {
     );
 }
 AccountPopupBlog.propTypes = {
-    blog: PropTypes.object.isRequired
+    blog: PropTypes.object.isRequired,
+    closeMenu: PropTypes.func.isRequired
 };

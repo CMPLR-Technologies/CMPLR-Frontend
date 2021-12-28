@@ -5,7 +5,7 @@
 @import './partials/OrBar.scss';
 @import './partials/AuthFooter.scss';
 @import './partials/_postComponent';
-
+@import './partials/_onOffSwitch.scss';
 @import url(//db.onlinewebfonts.com/c/d73d37902ec72250867b578d3763ee38?family=Favorit);
 
 @import './chatStyles/chatStyles';
@@ -15,6 +15,7 @@
 @import './loginStyles/LoginCard.scss';
 @import './loginStyles/LoginView.scss';
 @import './forgetPasswordStyles/_forgetPasswordStyles.scss';
+@import './settingsStyles/_settingsStyles';
 @import './profileViews/_ProfileMini';
 @import './profileViews/_ProfileSide';
 @import './profileViews/_ProfileFull';
@@ -24,10 +25,10 @@
 @import './createPostStyles/createPostPopup.scss';
 @import './richTextEditorStyles/rich.scss';
 
-@import './navbarComponent/_navbar.scss';
 @import './navbarProfileViewsStyles/NavbarProfileView';
 @import './accountpopupComponent/_accountpopup.scss';
 @import './dashboardStyles/dashboardStyles';
+@import './activityStyles/activityStyles';
 
 @import './accountpopupComponent/_accountpopup.scss';
 
@@ -35,6 +36,9 @@
 @import './loginStyles/LoginView.scss';
 @import './forgetPasswordStyles/_forgetPasswordStyles.scss';
 @import './verifyEmailStyles/verifyEmail.scss';
+@import './deleteAccountStyles/_deleteAccountStyles.scss';
+@import './blogSettingsStyles/_createBlogStyles.scss';
+@import './myProfileStyles/_myProfile';
 
 @import './followingStyles/following.scss';
 @import './hashtagsStyles/hashtagsStyles.scss';

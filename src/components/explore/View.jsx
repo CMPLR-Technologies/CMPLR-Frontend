@@ -7,6 +7,8 @@ import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
 import HashtagsList from './containers/HashtagsList';
 import Nav from './containers/Nav';
 import ExploreSidebar from './containers/ExploreSidebar';
+import { useParams } from 'react-router-dom';
+import TrendingTags from './containers/TrendingTags';
 
 export default function Explore() {
     const [pageNumber, setPageNumber] = useState(1);
@@ -20,12 +22,14 @@ export default function Explore() {
         isPending,
         hasMore
     } = useInfiniteScrolling(`${apiBaseUrl}/user/dashboard?page=${pageNumber}`);
+    const { type } = useParams();
 
     return (
         <div className="explore">
             <div className={`explore-main ${!grid ? 'mid-size' : ''} `}>
                 <Nav grid={grid} setGrid={setGrid} />
-                <HashtagsList />
+                {type !== 'trending' && <HashtagsList />}
+                {type === 'trending' && <TrendingTags />}
                 {grid && isBigScreen ? (
                     <GridPostsView
                         posts={posts}

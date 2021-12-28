@@ -1,17 +1,17 @@
 .ZN143 {
     display: none;
-    @media screen and (min-width: 990px) {
+    @media screen and (min-width: 950px) {
         display: unset;
         margin-bottom: 20px;
-        background-color: #122943;
+        // background-color: #122943;
     }
     .iGLU3 {
-        @media screen and (min-width: 990px) {
+        @media screen and (min-width: 950px) {
             height: 0;
             min-height: 186px;
             padding: 0;
         }
-        background: #e33408;
+        background: linear-gradient(0.25turn, #214e61, #ebf8e1, #976127);
         height: 232px;
         min-height: 232px;
         padding: 16px;
@@ -35,7 +35,7 @@
             }
         }
         .ZV6oZ {
-            @media screen and (min-width: 990px) {
+            @media screen and (min-width: 950px) {
                 align-items: flex-end;
                 display: flex;
                 height: calc(100% - 16px);
@@ -48,7 +48,7 @@
             }
             .kckjF {
                 align-items: center;
-                color: #fff;
+                // color: #fff;
                 display: flex;
                 justify-content: flex-end;
                 text-decoration: none;
@@ -57,7 +57,7 @@
                     font-size: 0.875rem;
                     font-weight: 400;
                     line-height: 1.5;
-                    color: white;
+                    // color: white;
                     margin-right: 10px;
                     text-align: end;
                 }
@@ -94,10 +94,10 @@
         }
     }
     .YOf31 {
-        @media screen and (min-width: 990px) {
+        @media screen and (min-width: 950px) {
             max-width: 940px;
         }
-        color: white;
+        // color: white;
         padding: 16px;
         align-items: flex-start;
         display: flex;
@@ -110,10 +110,10 @@
             font-weight: 400;
             line-height: 1.5;
             margin-bottom: 2px;
-            color: white;
+            // color: white;
         }
         .Wo4gS {
-            color: white;
+            // color: white;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2;
             display: -webkit-box;
@@ -123,7 +123,7 @@
             pointer-events: all;
             text-overflow: ellipsis;
             word-break: break-word;
-            @media screen and (min-width: 990px) {
+            @media screen and (min-width: 950px) {
                 font-size: 1.625rem;
                 font-weight: 400;
                 line-height: 1.3077;
@@ -159,8 +159,8 @@
                     @media screen and (min-width: 541px) {
                         width: 100%;
                     }
-                    background-color: #00b8ff;
-                    color: #00161f;
+                    // background-color: #00b8ff;
+                    // color: #00161f;
                     border-radius: 3px;
                     font-size: 1rem;
                     font-weight: 700;
@@ -172,18 +172,18 @@
             }
         }
         .XVkC9 {
-            @media screen and (min-width: 990px) {
+            @media screen and (min-width: 950px) {
                 flex-wrap: wrap;
                 margin: 20px 0 -10px;
             }
             align-items: flex-start;
             display: flex;
-            color: white;
+            // color: white;
             overflow-x: auto;
-            span {
+            .spanTaghandler {
                 background-color: transparent;
                 border: 2px solid rgb(74, 121, 150, 0.25);
-                color: white;
+                // color: white;
                 cursor: pointer !important;
                 font-weight: 400;
                 margin-bottom: 10px;
@@ -192,11 +192,11 @@
                 line-height: 1.5;
                 border-radius: 30px;
                 padding: 2px 13px;
-                &:hover {
-                    background-color: #0d4d72 !important;
-                    color: #00b8ff !important;
-                }
-                @media screen and (min-width: 990px) {
+                // &:hover {
+                //     // background-color: #0d4d72 !important;
+                //     // color: #00b8ff !important;
+                // }
+                @media screen and (min-width: 950px) {
                     cursor: pointer !important;
                     overflow: hidden;
                     text-overflow: ellipsis;
@@ -207,7 +207,7 @@
                     text-decoration: none;
                     color: inherit;
                     cursor: pointer;
-                    @media screen and (min-width: 990px) {
+                    @media screen and (min-width: 950px) {
                         word-break: break-all;
                     }
                 }

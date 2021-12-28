@@ -1,0 +1,111 @@
+body {
+    .settings {
+        .container1 {
+            .subcontainer {
+                .errors-box {
+                    width: 100%;
+                    background-color: #f5e1dc;
+                    color: #c14241;
+                    height: fit-content;
+                    border: 2px solid #c14241;
+                    border-radius: 5px;
+                    .error-msg {
+                        padding: 10px;
+                    }
+                    margin-bottom: 20px;
+                }
+                #section-create-blog {
+                    .text-section {
+                        margin-top: 20px;
+                        margin-bottom: 20px;
+                        height: 90px;
+                    }
+                    .delete {
+                        display: flex;
+                        justify-content: space-between;
+                        .button {
+                            width: fit-content;
+                            height: 29px;
+                            background: white;
+                            border: 1px solid rgba(0, 0, 0, 0.4);
+                            border-radius: 2px;
+                            clear: both;
+                            display: inline-block;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            color: rgba(0, 0, 0, 0.4);
+                            font-size: 13px;
+                            font-weight: 700;
+                            line-height: 28px;
+                            margin: 0 10px 0 0;
+                            padding: 0 10px;
+                            text-decoration: none;
+                        }
+                        #create-blog {
+                            background-color: #00b8ff;
+                            width: fit-content;
+                        }
+                    }
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+                    display: flex;
+                    width: 100%;
+                    align-items: stretch;
+                    max-height: 140px;
+                    flex-wrap: wrap;
+                    .sub-section-left-create-blog {
+                        flex: 0 1 145px;
+                        min-width: 145px;
+                        align-self: stretch;
+                        background-color: #f5f5f5;
+                        .sub-section-left-text {
+                            margin-top: 15px;
+                            color: black;
+                            white-space: nowrap;
+                            font-size: 20px;
+                        }
+                    }
+
+                    .sub-section-right-create-blog {
+                        flex-grow: 1;
+                        min-width: 670px;
+                        padding: 0 10px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
+                        margin: 0 0 10px;
+                        #privacy-create-blog {
+                            border: 1px solid rgba(0, 0, 0, 0.12);
+                            width: 400px;
+                            height: 33px;
+                        }
+                        #url-create-blog {
+                            border: 1px solid rgba(0, 0, 0, 0.12);
+                            width: 400px;
+                            height: 33px;
+                        }
+                        #title-create-blog {
+                            border: 1px solid rgba(0, 0, 0, 0.12);
+                            width: 400px;
+                            height: 33px;
+                        }
+
+                        .text {
+                            opacity: 0.5;
+                            font-size: 10px;
+                            text-align: justify;
+                            padding-top: 15px;
+                            padding-bottom: 15px;
+                            margin-right: 25px;
+                        }
+                        .text-and-checkbox {
+                            #check-password {
+                                margin-right: 5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

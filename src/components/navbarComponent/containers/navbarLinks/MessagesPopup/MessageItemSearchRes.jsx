@@ -38,7 +38,7 @@ export default function MessageItemSearchRes(props) {
             receiverName
         );
         // close the dropdown list
-        clickMessagePopup();
+        if (clickMessagePopup) clickMessagePopup();
     };
     return (
         <div onClick={openChat} className="popup-messages-message">

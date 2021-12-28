@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { UserContext } from '../contexts/userContext/UserContext';
 import Axios from 'axios';
 
-const useInfiniteScrolling = url => {
+const useInfiniteScrolling = (url, response = true) => {
     const { user } = useContext(UserContext);
     const [data, setData] = useState([]);
     const [isPending, setIsPending] = useState(true);
@@ -27,12 +27,21 @@ const useInfiniteScrolling = url => {
             .then(res => {
                 if (!res.error) {
                     setData(prevData => {
-                        return [...prevData, ...res.data.response.post];
+                        let newArr = response
+                            ? res.data.response.post
+                            : res.data.post;
+                        return [...prevData, ...newArr];
                     });
                     setIsPending(false);
-                    setHasMore(res.data.response.next_url);
+                    setHasMore(
+                        response
+                            ? res.data.response.next_url
+                            : res.data.next_url
+                    );
                     setError(null);
-                    setTotal(res.data?.response?.total);
+                    setTotal(
+                        response ? res.data?.response?.total : res.data?.total
+                    );
                 } else {
                     throw Error(res.error);
                 }

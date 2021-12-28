@@ -30,6 +30,7 @@ export const handleHeading = (cmd, setContent) => {
     let size = document.getElementById('headSelector').value;
     document.execCommand(cmd, false, size);
     setContent(document.getElementById('editable-content').innerHTML);
+    document.getElementById('headSelector').value = 'none';
 };
 
 export const handleCreateLink = setContent => {

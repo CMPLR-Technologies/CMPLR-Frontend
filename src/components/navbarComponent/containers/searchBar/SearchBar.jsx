@@ -4,6 +4,8 @@ import SearchResult from './searchBarResults/SearchResult';
 import CircularProgress from '@mui/material/CircularProgress';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { getSearchRes } from '../../Service';
+import PropTypes from 'prop-types';
+
 /**
  * Navbar SearchBar: includes the input field for search
  * @function NavbarSearchBar
@@ -15,7 +17,8 @@ import { getSearchRes } from '../../Service';
  * @property {function} setOpenSearch - Open search Setter state
  * @returns {Component} input field
  */
-export default function SearchBar() {
+export default function SearchBar(props) {
+    const { placeHolder, searchFollower } = props;
     const [isHover, setIsHover] = useState(false);
     const [searchWord, setSearchWord] = useState('');
     const [openSearch, setOpenSearch] = useState(false);
@@ -30,9 +33,11 @@ export default function SearchBar() {
             getSearchRes(searchWord, setSearchResults, setLoading);
             setOpenSearch(true);
         } else setOpenSearch(false);
+        if (searchWord.length > 0 && !placeHolder) setOpenSearch(true);
+        else setOpenSearch(false);
     }, [searchWord]);
     const changeHover = () => {
-        if (!isHover && searchWord !== '') setOpenSearch(true);
+        if (!isHover && searchWord !== '' && !placeHolder) setOpenSearch(true);
         setIsHover(!isHover);
     };
     const closeOpenSearch = () => {
@@ -58,8 +63,14 @@ export default function SearchBar() {
                     onBlur={changeHover}
                     onChange={onChange}
                     focus=""
+                    onKeyUp={e => {
+                        if (e.key === 'Enter' && placeHolder !== '') {
+                            console.log(searchWord);
+                            searchFollower(searchWord);
+                        }
+                    }}
                     className="search-input"
-                    placeholder="Search Tumblr"
+                    placeholder={placeHolder ? placeHolder : 'Search Tumblr'}
                 ></input>
                 {loading && (
                     <div className="loading">
@@ -78,3 +89,8 @@ export default function SearchBar() {
         </ClickAwayListener>
     );
 }
+
+SearchBar.propTypes = {
+    placeHolder: PropTypes.string,
+    searchFollower:PropTypes.func,
+};
