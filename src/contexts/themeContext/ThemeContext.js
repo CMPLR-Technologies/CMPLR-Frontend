@@ -93,6 +93,17 @@ export const themes = {
         follow: `255, 251, 205`,
         purple: `117, 8, 135`,
         red: `225, 0, 17`
+    },
+    manga: {
+        black: `15, 70, 8`,
+        white: `250, 255, 225`,
+        whiteOnDark: `254, 227, 170`,
+        navy: `20, 46, 10`,
+        accent: `240, 110, 23`,
+        secondaryAccent: `255, 251, 205`,
+        follow: `255, 251, 205`,
+        purple: `117, 8, 135`,
+        red: `225, 138, 17`
     }
 };
 

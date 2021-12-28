@@ -13,12 +13,14 @@
         background-color: white;
         position: relative;
         .post-wrapper {
+            position: static;
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         &-content {
+            margin-top: 10px;
             display: flex;
             flex-direction: row;
             justify-content: center;
@@ -27,10 +29,13 @@
             padding: 0 20px;
             &-side {
                 margin-left: 30px;
-                margin-top: 10px;
                 width: 300px;
                 font-weight: 700;
                 font-size: 13px;
+                line-height: 1.2;
+                p {
+                    margin-bottom: 10px;
+                }
             }
         }
         &-nav {

@@ -41,11 +41,13 @@
         }
 
         .post-wrapper {
+            position: static;
             left: 0;
             width: 100%;
         }
 
         &-post-container {
+            position: static;
             width: 100%;
             padding: 0 50px;
             display: flex;
@@ -57,10 +59,13 @@
             top: -30vh;
             z-index: 1000;
             background-color: white;
+            width: 100%;
+
             &-bg {
                 object-fit: cover;
                 height: calc(30vh + 50px);
-                width: 600px;
+                //max-width: 600px;
+                width: 100%;
                 -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
                 clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
                 cursor: pointer;
