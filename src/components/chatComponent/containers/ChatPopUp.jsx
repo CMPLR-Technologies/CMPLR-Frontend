@@ -151,11 +151,11 @@ export default function ChatPopUp() {
         const pusher = new Pusher(PUSHER_APP_KEY, {
             cluster: PUSHER_APP_CLUSTER,
             authEndpoint:
-                'http://6ef0-156-223-164-236.ngrok.io/broadcasting/auth',
+                '/broadcasting/auth',
             auth: {
                 headers: {
-                    'Authorization': 'Bearer ' + token,
-                    'Accept': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                    Accept: 'application/json',
                     'Content-Type': 'application/json'
                 }
             }
@@ -163,11 +163,11 @@ export default function ChatPopUp() {
         //private-chat-10
         let com = '';
         if (currPopUpOpenChat.receiverId > senderId) {
-            com = senderId + '+' + currPopUpOpenChat.receiverId;
+            com = senderId + '-' + currPopUpOpenChat.receiverId;
         } else {
-            com = currPopUpOpenChat.receiverId + '+' + senderId;
+            com = currPopUpOpenChat.receiverId + '-' + senderId;
         }
-        let keyC = 'chat-' + currPopUpOpenChat.receiverId;
+        let keyC = 'chat-' + com;
         const channel = pusher.subscribe(keyC);
 
         // eslint-disable-next-line no-useless-escape
