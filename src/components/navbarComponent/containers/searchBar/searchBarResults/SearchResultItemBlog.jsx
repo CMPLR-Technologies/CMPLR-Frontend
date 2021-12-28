@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 export default function SearchResultItemBlog(props) {
     //to do get the real img
-    let { blogName, title, img, imgShape, closeOpenSearch } = props;
+    let { blogName,blogId, title, img, imgShape, closeOpenSearch } = props;
     return (
-        <Link to={`profile/${blogName}`} onClick={closeOpenSearch}>
+        <Link to={`blog/view/${blogName}/${blogId}/posts`} onClick={closeOpenSearch}>
             <li className="search-result-blog">
                 <div className="search-result-blog-section1">
                     <div
@@ -29,6 +29,7 @@ export default function SearchResultItemBlog(props) {
 SearchResultItemBlog.propTypes = {
     img: PropTypes.string.isRequired,
     imgShape: PropTypes.string.isRequired,
+    blogId:PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     blogName: PropTypes.string.isRequired,
     closeOpenSearch: PropTypes.func.isRequired

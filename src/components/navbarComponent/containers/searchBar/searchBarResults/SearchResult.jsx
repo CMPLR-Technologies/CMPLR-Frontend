@@ -96,14 +96,15 @@ export default function SearchResult(props) {
                         Go to @<span className="color">{props.search}</span>
                     </li>
                 </Link>
-                {searchResults.blogs &&
-                    searchResults.blogs?.map((item, index) => (
+                {searchResults?.blogs &&
+                    searchResults?.blogs?.map((item, index) => (
                         <SearchResultItemBlog
                             key={index}
-                            blogName={item.blog_name}
-                            title={item.title}
-                            img={item.settings.avatar}
-                            imgShape={item.settings.avatar_shape}
+                            blogName={item?.blog_name}
+                            blogId={item?.settings?.blog_id}
+                            title={item?.title}
+                            img={item?.settings?.avatar}
+                            imgShape={item?.settings?.avatar_shape}
                             search={search}
                             closeOpenSearch={closeOpenSearch}
                         />
