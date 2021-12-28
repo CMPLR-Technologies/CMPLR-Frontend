@@ -144,6 +144,7 @@ export default function FollowingPage() {
                                                 }
                                                 handleUnfollow={handleUnfollow}
                                                 avatar={f?.avatar}
+                                                blogId={f?.blog_id}
                                                 openPopup={openPopup}
                                                 handleBlock={handleBlock}
                                                 myBlogName={user?.blogName}

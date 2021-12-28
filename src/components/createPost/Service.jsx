@@ -5,6 +5,7 @@ import { apiBaseUrl } from '../../config.json';
 
 export const handlePosting = (bodyData, handleClose, token, setSpinnerPost) => {
     let errors = validatePosting(bodyData?.title, bodyData?.content);
+    console.log('body to be send', bodyData);
     if (errors?.length > 0) {
         return { status: false, err: errors };
     } else {
