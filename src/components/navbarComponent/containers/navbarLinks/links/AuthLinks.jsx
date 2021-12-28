@@ -12,6 +12,8 @@ import Badge from './Badge';
 import Axios from 'axios';
 import { apiBaseUrl } from '../../../../../config.json';
 import { getNotifications } from '../../../Service';
+import ProfilsSideContainer from '../../../../profileViews/mini&sideViews/sideView/ProfilsSideContainer';
+
 /**
  * Navbar AuthLinks: includes all links dashboard and inbox and expolre ...
  * @function NavbarAuthLinks
@@ -37,7 +39,10 @@ export default function AuthLinks() {
     let { getUnReadMsgsCount } = useContext(ChatContext);
     const [unReadMsgs, setUnReadMsgs] = useState(0);
     const [unseenNotf, setUnseenNotf] = useState(0);
-
+    const [showSideBlog, setShowSideBlog] = useState(false);
+    const [sidePostID, setSidePostID] = useState('');
+    const [sideBlogName, setSideBlogName] = useState('');
+    const [sideBlogId, setSideBlogId] = useState(0);
     useEffect(() => {
         // and show will not change to true
         getUnReadMsgsCount(setUnReadMsgs);
@@ -155,6 +160,15 @@ export default function AuthLinks() {
                 onClickAway={() => setOpenNotificationsPopup(false)}
             >
                 <div className="notifications-btn">
+                    {showSideBlog && (
+                        <ProfilsSideContainer
+                            blogID={sideBlogId}
+                            blogName={sideBlogName}
+                            setShowSideBlog={setShowSideBlog}
+                            sidePostID={sidePostID}
+                            setSidePostID={setSidePostID}
+                        />
+                    )}
                     <li
                         onClick={clickNotificationsPopup}
                         className={`link-icon  ${
@@ -171,6 +185,9 @@ export default function AuthLinks() {
                             notfArray={notfArray && notfArray}
                             setNotfArray={setNotfArray}
                             setUnseenNotf={setUnseenNotf}
+                            setSideBlogId={setSideBlogId}
+                            setSideBlogName={setSideBlogName}
+                            setShowSideBlog={setShowSideBlog}
                         />
                     )}
                 </div>

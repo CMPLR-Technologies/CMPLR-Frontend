@@ -2785,6 +2785,9 @@ input:checked + .slider:before {
   max-height: 500px;
   background-color: white;
 }
+.notf-body:hover {
+  cursor: pointer;
+}
 .notf-body .relative {
   display: flex;
   font-size: 0.875rem;
