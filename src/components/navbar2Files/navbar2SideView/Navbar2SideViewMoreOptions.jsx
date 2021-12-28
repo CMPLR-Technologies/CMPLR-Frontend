@@ -10,14 +10,9 @@ export default function Navbar2SideViewMoreOptions(props) {
         props.close();
     };
     return (
-        <div className='sideViewProfileOption'>
+        <div className="sideViewProfileOption">
             <ClickAwayListener onClickAway={closeOption}>
                 <ul className="chat-popup-header-option">
-                    <Link to="/archive">
-                        <li>
-                            <span>Archive</span>
-                        </li>
-                    </Link>
                     <Link to="/following">
                         <li>
                             <span>Following</span>
@@ -26,8 +21,12 @@ export default function Navbar2SideViewMoreOptions(props) {
                     <li>
                         <span>Get notifications</span>
                     </li>
-                    <li className='red' onClick={report}>Report</li>
-                    <li className='red' onClick={openBlockModel}>Block</li>
+                    <li className="red" onClick={report}>
+                        Report
+                    </li>
+                    <li className="red" onClick={openBlockModel}>
+                        Block
+                    </li>
                     <li onClick={closeOption}>Close</li>
                 </ul>
             </ClickAwayListener>

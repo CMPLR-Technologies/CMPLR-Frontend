@@ -7,6 +7,7 @@ import { LinearProgress } from '@mui/material';
 import ProfileContent from './content/ProfileContent';
 import ProfileFollowing from './content/ProfileFollowing';
 import ProfileLikes from './content/ProfileLikes';
+import Navbar2MainView from '../../../navbar2Files/navbar2MainView/Navbar2MainView';
 
 export default function ProfileFull(props) {
     const { postID } = useParams();
@@ -70,6 +71,7 @@ export default function ProfileFull(props) {
                     className="profile-full-header"
                     onScroll={headerScrollAnimation}
                 >
+                    <Navbar2MainView />
                     <NavLink
                         to={`/blog/view/${blogName}/${blogID}/posts`}
                         className="profile-full-header-div"

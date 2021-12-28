@@ -13,7 +13,8 @@ export default function ProfileSide(props) {
     const {
         blogID,
         /*blogName,*/
-        /*setSidePostID, setShowSideBlog,*/ sidePostID,
+        /*setSidePostID,*/ setShowSideBlog,
+        sidePostID,
         body
     } = props;
     const {

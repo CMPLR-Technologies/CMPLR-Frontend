@@ -23,11 +23,11 @@
     // navber class
     background-color: transparent;
     //border-bottom: 0.5px solid rgba(255, 255, 255, 0.15);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 99;
+    z-index: 1000000;
     height: 54px;
     .container {
         height: 54px;
@@ -56,6 +56,9 @@
         .logo {
             padding-right: 18px;
             font-size: 0.9rem;
+            .fa-downcase-t::before {
+                color: white;
+            }
         }
         //searchbar classs
         .search {
@@ -79,6 +82,9 @@
                 // i {
                 //     color: #bcc3ca;
                 // }
+                .fa-search {
+                    color: white;
+                }
             }
             &-input {
                 width: 450px;
@@ -145,6 +151,7 @@
             line-height: 18px;
             color: black;
             font-weight: bold;
+            border-radius: 3px;
         }
         // button in un auth navbar
         .log,
@@ -178,12 +185,14 @@
 }
 
 .Navbar2SideView {
-    max-width: 500px;
+    max-width: 600px;
+    width: 100%;
     border-radius: 3px;
     display: flex;
     flex-direction: column;
     height: 50px;
-    position: relative;
+    position: fixed;
+    z-index: 100000;
     .container {
         display: flex;
         flex: 1;
@@ -191,7 +200,7 @@
         align-items: center;
         box-sizing: border-box;
         height: 50px;
-        padding: 10px;
+        padding: 10px 20px 10px 10px;
         position: absolute;
         top: 0;
         width: 100%;
@@ -216,6 +225,9 @@
                 align-items: center;
                 color: white;
                 font-size: 19px;
+                .fa-search {
+                    color: white;
+                }
             }
             &-input {
                 background: transparent;
@@ -305,14 +317,14 @@
                     color: black;
                     cursor: pointer;
                     font-size: 14px;
-                    padding: 10px;
+                    padding: 20px;
                     width: 100%;
                     font-weight: bold;
                     &:hover {
                         background: #e5e7ea;
                     }
                 }
-                .red{
+                .red {
                     color: rgb(255, 73, 48);
                 }
             }
@@ -325,7 +337,8 @@
             color: rgb(0, 0, 0);
             background-color: rgb(255, 255, 255);
             cursor: pointer;
-            padding: 10px;
+            padding: 20px 15px;
+            border-radius: 3px;
             display: flex;
             align-items: center;
             font-weight: bold;

@@ -4731,11 +4731,11 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
 
 .navbar2MainView {
   background-color: transparent;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 99;
+  z-index: 1000000;
   height: 54px;
 }
 .navbar2MainView .container {
@@ -4763,6 +4763,9 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   padding-right: 18px;
   font-size: 0.9rem;
 }
+.navbar2MainView .section1 .logo .fa-downcase-t::before {
+  color: white;
+}
 .navbar2MainView .section1 .search {
   transition: all 0.3s ease-in-out;
   display: flex;
@@ -4782,6 +4785,9 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   color: white;
   font-size: 19px;
   border-radius: 3px 0 0 3px;
+}
+.navbar2MainView .section1 .search-icon .fa-search {
+  color: white;
 }
 .navbar2MainView .section1 .search-input {
   width: 450px;
@@ -4841,6 +4847,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   line-height: 18px;
   color: black;
   font-weight: bold;
+  border-radius: 3px;
 }
 .navbar2MainView .section2 .log,
 .navbar2MainView .section2 .sign {
@@ -4871,12 +4878,14 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
 }
 
 .Navbar2SideView {
-  max-width: 500px;
+  max-width: 600px;
+  width: 100%;
   border-radius: 3px;
   display: flex;
   flex-direction: column;
   height: 50px;
-  position: relative;
+  position: fixed;
+  z-index: 100000;
 }
 .Navbar2SideView .container {
   display: flex;
@@ -4885,7 +4894,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   align-items: center;
   box-sizing: border-box;
   height: 50px;
-  padding: 10px;
+  padding: 10px 20px 10px 10px;
   position: absolute;
   top: 0;
   width: 100%;
@@ -4909,6 +4918,9 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   align-items: center;
   color: white;
   font-size: 19px;
+}
+.Navbar2SideView .container .search-icon .fa-search {
+  color: white;
 }
 .Navbar2SideView .container .search-input {
   background: transparent;
@@ -4996,7 +5008,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   color: black;
   cursor: pointer;
   font-size: 14px;
-  padding: 10px;
+  padding: 20px;
   width: 100%;
   font-weight: bold;
 }
@@ -5014,7 +5026,8 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   color: black;
   background-color: white;
   cursor: pointer;
-  padding: 10px;
+  padding: 20px 15px;
+  border-radius: 3px;
   display: flex;
   align-items: center;
   font-weight: bold;

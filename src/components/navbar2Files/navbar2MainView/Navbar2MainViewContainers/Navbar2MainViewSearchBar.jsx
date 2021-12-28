@@ -12,8 +12,8 @@ export default function Navbar2MainViewSearchBar(props) {
             /*
             TO DO make a search filter
             */
-           console.log(searchWord);
-           setSearchWord("");
+            console.log(searchWord);
+            setSearchWord('');
         }
     };
     return (

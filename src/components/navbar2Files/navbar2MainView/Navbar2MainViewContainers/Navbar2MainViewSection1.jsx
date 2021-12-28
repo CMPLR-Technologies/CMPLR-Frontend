@@ -1,9 +1,8 @@
-import React,{useState,useEffect} from 'react'
-import isAuth from '../../../../hooks/isAuth';
+import React, { useState, useEffect } from 'react';
+//import isAuth from '../../../../hooks/isAuth';
 import { Link } from 'react-router-dom';
 import Navbar2MainViewSearchBar from './Navbar2MainViewSearchBar';
 export default function Navbar2MainViewSection1() {
-
     const [mobileView, setMobileView] = useState(false);
     const chaneMobileView = () => {
         if (window.innerWidth > 960) {
@@ -21,11 +20,12 @@ export default function Navbar2MainViewSection1() {
     return (
         <div className="section1">
             <div className="logo main">
-                <Link to={isAuth() ? '/dashboard' : '/'}>
+                {/*isAuth() ? '/dashboard' : '/'*/}
+                <Link to="/dashboard">
                     <span className="fa fa-downcase-t"></span>
                 </Link>
             </div>
-            {!mobileView && <Navbar2MainViewSearchBar name='gaser'/>}
+            {!mobileView && <Navbar2MainViewSearchBar name="gaser" />}
         </div>
     );
 }
