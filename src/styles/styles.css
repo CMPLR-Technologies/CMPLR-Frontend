@@ -5026,7 +5026,8 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   color: black;
   background-color: white;
   cursor: pointer;
-  padding: 20px 15px;
+  padding: 10px;
+  line-height: 1.2;
   border-radius: 3px;
   display: flex;
   align-items: center;
