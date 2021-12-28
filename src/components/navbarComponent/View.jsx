@@ -88,6 +88,7 @@ export default function Navbar() {
             color: rgba(${themes[theme].whiteOnDark});
         }
 
+
         .link-icon.pen{
             background-color: rgb(${themes[theme].accent});
         }
@@ -235,6 +236,10 @@ export default function Navbar() {
             }
             .navbar-menu-mobile-footer footer{
                 color: rgba(${themes[theme].whiteOnDark});
+            }
+          .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu .create-new-post{
+                background-color: rgb(${themes[theme].accent});
+                color: RGB(${themes[theme].white});
             }
         .notf-types{
             color: rgba(${themes[theme].black}, 0.65);
