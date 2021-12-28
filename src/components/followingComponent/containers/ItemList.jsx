@@ -16,7 +16,8 @@ export default function ItemList(props) {
         openPopup,
         handleBlock,
         myBlogName,
-        blogId
+        blogId,
+        setProfileNamePop
     } = props;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -25,6 +26,7 @@ export default function ItemList(props) {
         setAnchorEl(null);
     };
     const handleClick = event => {
+        console.log('clicked for ', profileName);
         setAnchorEl(event.currentTarget);
     };
     const openPost = Boolean(anchorEl);
@@ -37,7 +39,6 @@ export default function ItemList(props) {
                     <div className="yElCb">
                         <ProfileMiniHoverWrapper
                             blogID={blogId?.toString()}
-                            // blogID={user?.userData?.primary_blog_id.toString()}
                             blogName={profileName}
                         >
                             <div className="qgKw0">
@@ -106,6 +107,7 @@ export default function ItemList(props) {
                                         vertical: 'top',
                                         horizontal: 'center'
                                     }}
+                                    key={profileName}
                                     // eslint-disable-next-line react/jsx-no-duplicate-props
                                     anchorOrigin={{
                                         vertical: 'bottom',
@@ -116,6 +118,8 @@ export default function ItemList(props) {
                                     onClose={handleClose}
                                 >
                                     <DropDownPostListFollow
+                                        key={profileName}
+                                        setProfileNamePop={setProfileNamePop}
                                         setOpen={handleClose}
                                         setOpenBlock={setOpenBlock}
                                         openPopup={openPopup}
@@ -129,13 +133,6 @@ export default function ItemList(props) {
                     </div>
                 </div>
             </div>
-            <PopupBlock
-                open={openPopup}
-                setOpen={setOpenBlock}
-                handleBlock={handleBlock}
-                profileName={profileName}
-                myBlogName={myBlogName}
-            />
         </>
     );
 }
@@ -150,5 +147,6 @@ ItemList.propTypes = {
     handleBlock: PropTypes.func,
     openPopup: PropTypes.bool,
     myBlogName: PropTypes.string,
-    blogId: PropTypes.any
+    blogId: PropTypes.any,
+    setProfileNamePop: PropTypes.func
 };

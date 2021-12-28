@@ -42,7 +42,7 @@ export default function PostButton(props) {
                         className="to-post-button"
                         data-testid="post-postBtn"
                         onClick={handlePost}
-                        disabled={content === '' || titlePost === ''}
+                        disabled={content === ''}
                     >
                         {titlePost === null
                             ? 'Reblog'

@@ -52,7 +52,7 @@ export default function BlogInfo({ blogName, blogDesc, blogIcon, blogId }) {
                 >
                     {followMsg && followMsg.includes('successfully')
                         ? ''
-                        : 'Following'}
+                        : 'Follow'}
                 </button>
             </div>
             <button className="init-btn remove-btn">
