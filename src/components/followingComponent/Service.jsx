@@ -115,7 +115,7 @@ export const blockAccount = (
             Authorization: `Bearer ${userToken}`
         },
         data: {
-            blogName: blockAcc
+            blockName: blockAcc
         }
     })
         .then(() => {
