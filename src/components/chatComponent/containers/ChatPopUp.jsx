@@ -135,18 +135,25 @@ export default function ChatPopUp() {
         //const PUSHER_APP_SECRET = '57f7486c5a4270ce92d8';
         const PUSHER_APP_CLUSTER = 'eu';
         Pusher.logToConsole = true;
+        let token = JSON.parse(localStorage.getItem('user'));
         const pusher = new Pusher(PUSHER_APP_KEY, {
             cluster: PUSHER_APP_CLUSTER,
             authEndpoint:
-                'http://6ef0-156-223-164-236.ngrok.io/api/broadcasting/auth',
+                'http://6ef0-156-223-164-236.ngrok.io/broadcasting/auth',
             auth: {
                 headers: {
-                    'X-CSRF-TOKEN': JSON.parse(localStorage.getItem('user'))
-                        ?.token
+                    Authorization: 'Bearer ' + token,
+                    'Content-Type': 'application/json'
                 }
             }
         });
         //private-chat-10
+        let com = '';
+        if (currPopUpOpenChat.receiverId > senderId) {
+            com = senderId + '+' + currPopUpOpenChat.receiverId;
+        } else {
+            com = currPopUpOpenChat.receiverId + '+' + senderId;
+        }
         let keyC = 'chat-' + currPopUpOpenChat.receiverId;
         const channel = pusher.subscribe(keyC);
 
