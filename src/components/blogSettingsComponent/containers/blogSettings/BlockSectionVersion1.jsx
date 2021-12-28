@@ -18,7 +18,6 @@ export default function BlockSectionVersion1({ setBlocksVersion1 }) {
         }
     }, [blocks]);
 
-    console.log(blocks?.length);
     return (
         <>
             {numOfBlocks === 0 && <p className="email">Not a soul</p>}

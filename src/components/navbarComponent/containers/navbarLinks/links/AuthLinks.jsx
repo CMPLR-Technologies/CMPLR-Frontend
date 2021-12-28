@@ -100,7 +100,6 @@ export default function AuthLinks() {
     }, []);
 
     /*  const clickOpenPopup = () => {
-    console.log("closeg");
     setOpenPopup(!openPopup);
   };*/
     return (

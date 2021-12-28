@@ -14,7 +14,6 @@ export default function AllowAskSection() {
         useContext(BlogSettingsContext);
     const user = JSON.parse(localStorage.getItem('user'));
     const { blogName } = useParams();
-    console.log(askPageTitle);
     const [askPage, setAskPage] = useState('');
     useEffect(() => {
         setAskPage(askPageTitle);

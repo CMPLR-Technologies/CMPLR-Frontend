@@ -23,7 +23,6 @@ export default function BlogSettingsCard() {
             alert(errMsg);
         }
     }, []);
-    console.log(blogId);
     return (
         <div className="settings" data-testid="settings">
             <div className="container1" data-testid="container1">

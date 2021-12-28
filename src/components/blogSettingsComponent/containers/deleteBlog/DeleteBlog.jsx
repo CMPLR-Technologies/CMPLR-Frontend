@@ -24,8 +24,6 @@ export default function DeleteBlog({ setWithNav }) {
     useEffect(() => {
         setWithNav(false);
     }, []);
-    console.log(parseInt(blogId));
-    console.log(user?.userData?.primary_blog_id);
     window.addEventListener('popstate', function (event) {
         setWithNav(true);
     });

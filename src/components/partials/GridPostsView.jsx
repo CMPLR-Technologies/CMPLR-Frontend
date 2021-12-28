@@ -3,7 +3,15 @@ import VerticalPostsView from './VerticalPostsView';
 import PropTypes from 'prop-types';
 
 export default function GridPostsView(props) {
-    const { posts, error, isPending, hasMore, setPageNumber } = props;
+    const {
+        posts,
+        error,
+        isPending,
+        hasMore,
+        setPageNumber,
+        blogPage = false,
+        noTheme = false
+    } = props;
     return (
         <div className="explore-posts">
             <VerticalPostsView
@@ -13,6 +21,8 @@ export default function GridPostsView(props) {
                 hasMore={hasMore}
                 setPageNumber={setPageNumber}
                 isRadar={true}
+                blogPage={blogPage}
+                noTheme={noTheme}
                 isRef={posts.length > 2}
             />
             <VerticalPostsView
@@ -23,6 +33,8 @@ export default function GridPostsView(props) {
                 setPageNumber={setPageNumber}
                 isRadar={true}
                 isRef={posts.length === 2}
+                blogPage={blogPage}
+                noTheme={noTheme}
             />
             <VerticalPostsView
                 posts={posts.slice(0, posts.length / 3)}
@@ -31,6 +43,8 @@ export default function GridPostsView(props) {
                 hasMore={hasMore}
                 setPageNumber={setPageNumber}
                 isRadar={true}
+                blogPage={blogPage}
+                noTheme={noTheme}
                 isRef={posts.length === 1}
             />
         </div>
@@ -42,5 +56,7 @@ GridPostsView.propTypes = {
     error: PropTypes.bool,
     isPending: PropTypes.bool,
     hasMore: PropTypes.bool,
+    blogPage: PropTypes.bool,
+    noTheme: PropTypes.bool,
     setPageNumber: PropTypes.func
 };

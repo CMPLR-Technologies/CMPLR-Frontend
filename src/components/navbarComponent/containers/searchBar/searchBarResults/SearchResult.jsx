@@ -72,7 +72,6 @@ export default function SearchResult(props) {
             }
         ]
     };*/
-   // console.log(searchResults);
     return (
         <div className="search-result">
             <ul>

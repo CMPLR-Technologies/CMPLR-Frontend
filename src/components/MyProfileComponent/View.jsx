@@ -57,7 +57,6 @@ export default function MyProfile() {
         chaneMobileView(setMobileView);
     }, []);
     window.addEventListener('resize', () => chaneMobileView(setMobileView));
-    console.log(followers);
     const user = JSON.parse(localStorage.getItem('user'));
     const handleScroll = () => {
         if (hasMore) {

@@ -38,7 +38,6 @@ export default function GoogleCard() {
             blog_name: blogName,
             age: age
         };
-        console.log('passed data', bodyData);
 
         setIsPending(true);
         handleGoogleAuth(

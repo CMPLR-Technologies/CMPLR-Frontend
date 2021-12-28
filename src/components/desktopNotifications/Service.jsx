@@ -4,7 +4,6 @@ import Axios from 'axios';
 export const sendDesktopNotifyToken = () => {
     let apiToken = JSON.parse(localStorage.getItem('desktopToken'));
     let apiUser = JSON.parse(localStorage.getItem('user'));
-    console.log('token to be sent is ', apiToken?.token);
     Axios({
         method: 'POST',
         url: `${apiBaseUrl}/notifications/store-token`,
@@ -17,9 +16,7 @@ export const sendDesktopNotifyToken = () => {
             token: apiToken?.token
         }
     })
-        .then(() => {
-            console.log('desktop notify is stored successfully');
-        })
+        .then(() => {})
         .catch(err => {
             console.log(err);
         });

@@ -50,7 +50,6 @@ export function deleteAccount(
     isPrimaryBlog,
     setWithNav
 ) {
-    console.log(isPrimaryBlog);
     if (checkDeleteAccount(password, email, setErrorMsg)) {
         //TODO if its the primary key clear local storage and refresh
         //TODO If its not the primary key then just delete the blog and return to settings
@@ -69,13 +68,9 @@ export function deleteAccount(
             }
         })
             .then(res => {
-                console.log('inside res');
                 if (res?.data?.meta?.status_code === 200) {
-                    console.log('inside 200');
                     setWithNav(true);
-                    console.log('afterset');
                     if (isPrimaryBlog === true) {
-                        console.log('inside true');
                         localStorage.clear();
                         history(`/login`);
                     } else {
@@ -84,8 +79,6 @@ export function deleteAccount(
                 }
             })
             .catch(err => {
-                console.log('inside err');
-                console.log(err);
                 if (err?.response?.status === 404) {
                     setErrorMsg('blog name is not available');
                 } else if (err?.response?.status === 403) {

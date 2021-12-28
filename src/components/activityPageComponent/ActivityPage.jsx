@@ -78,9 +78,7 @@ export default function ActivityPage() {
                         //console.log(res.data.response);
                     }
                 })
-                .catch(err => {
-                    console.log(err?.message);
-                });
+                .catch(() => {});
     }, []);
     const css = `
     .btns .box{
@@ -113,7 +111,7 @@ export default function ActivityPage() {
                     loading={loading}
                 />
                 {/*<BiggestFans />*/}
-                <div className='Lhead'>Latest Notes</div>
+                <div className="Lhead">Latest Notes</div>
                 <Notification
                     activity={true}
                     notfArray={notfArray && notfArray}
