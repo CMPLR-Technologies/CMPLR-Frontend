@@ -26,7 +26,7 @@ export default function NotfBody(props) {
                     <div className="noter-avatar">
                         <img
                             className="noter-avatar-img"
-                            src={notf['from_blog_avatar']}
+                            src={notf&&notf['from_blog_avatar']}
                             sizes="24px"
                             alt="Avatar"
                             loading="eager"
@@ -37,70 +37,70 @@ export default function NotfBody(props) {
                         data-testid={`avatar-react-ts`}
                         className="avatar-react"
                     >
-                        {notf['type'] === 'reblog' ? (
+                        {notf&&notf['type'] === 'reblog' ? (
                             <ReblogReact />
-                        ) : notf['type'] === 'like' ? (
+                        ) : notf&&notf['type'] === 'like' ? (
                             <LoveReact />
-                        ) : notf['type'] === 'reply' ||
-                          notf['type'] === 'answer' ? (
+                        ) : notf&&notf['type'] === 'reply' ||
+                          notf&&notf['type'] === 'answer' ? (
                             <CommentReact />
-                        ) : notf['type'] === 'ask' ? (
+                        ) : notf&&notf['type'] === 'ask' ? (
                             <AskReact />
-                        ) : notf['type'] === 'follow' ? (
+                        ) : notf&&notf['type'] === 'follow' ? (
                             <FollowReact />
                         ) : null}
                     </div>
                 </div>
                 <div className="notf-content">
                     <strong>
-                        {notf['from_blog_name']}{' '}
+                        {notf&&notf['from_blog_name']}{' '}
                         <span style={{ marginRight: '5px' }}> </span>
                     </strong>
                     <span
                         className="post-snap"
                         dangerouslySetInnerHTML={{
                             __html: `${
-                                notf['type'] === 'reply'
+                                notf&&notf['type'] === 'reply'
                                     ? ' replied to your post: '
-                                    : notf['type'] === 'like'
+                                    : notf&&notf['type'] === 'like'
                                     ? ' loved your post: '
-                                    : notf['type'] === 'reblog'
+                                    : notf&&notf['type'] === 'reblog'
                                     ? ' rebloged your post: '
-                                    : notf['type'] === 'ask'
+                                    : notf&&notf['type'] === 'ask'
                                     ? 'asked'
-                                    : notf['type'] === 'answer'
+                                    : notf&&notf['type'] === 'answer'
                                     ? 'answerd your ask: '
-                                    : notf['type'] === 'follow'
+                                    : notf&&notf['type'] === 'follow'
                                     ? 'started following your blog'
                                     : null
                             }`
                         }}
                     ></span>
-                    {notf['post_ask_answer_content'] ? (
+                    {notf&&notf['post_ask_answer_content'] ? (
                         <span
                             className="post-ask-answer-content"
                             style={{ marginLeft: '5px' }}
                             dangerouslySetInnerHTML={{
-                                __html: `${notf['post_ask_answer_content']}`
+                                __html: `${notf&&notf['post_ask_answer_content']}`
                             }}
                         ></span>
                     ) : null}
                 </div>
                 <div className="type">
-                    {notf['type'] === 'like' ? (
+                    {notf&&notf['type'] === 'like' ? (
                         <Link className="post-link" to="*">
                             <PostIcon />
                         </Link>
-                    ) : notf['type'] === 'ask' ? (
+                    ) : notf&&notf['type'] === 'ask' ? (
                         <Link className="post-link" to="*">
                             <AskIcon />
                         </Link>
-                    ) : notf['type'] === 'follow' ? (
+                    ) : notf&&notf['type'] === 'follow' ? (
                         <button
                             onClick={() => {
                                 followAccount(
                                     user?.token,
-                                    notf['from_blog_name'],
+                                    notf&&notf['from_blog_name'],
                                     setFollowing
                                 );
                             }}

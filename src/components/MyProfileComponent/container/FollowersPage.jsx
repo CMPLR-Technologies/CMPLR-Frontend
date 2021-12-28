@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import SearchBar from '../../navbarComponent/containers/searchBar/SearchBar';
 import { LinearProgress } from '@mui/material';
 import OptionsList from '../../partials/postComponent/containers/OptionsList';
@@ -9,16 +9,24 @@ import NoXAvailable from './NoXAvailable';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Axios from 'axios';
 import { apiBaseUrl } from '../../../config.json';
-
+import PropTypes from 'prop-types';
+import { followAccount } from '../../followingComponent/Service';
+import { useParams } from 'react-router-dom';
+FollowersPage.propTypes = {
+    response: PropTypes.object,
+    hasMore: PropTypes.bool,
+    handleScroll: PropTypes.func
+};
 export default function FollowersPage(props) {
-    const { error, followers, isPending } = props.response;
+    const { followers, isPending } = props.response;
     const { hasMore, handleScroll } = props;
     const [isOptionListOpen, setIsOptionListOpen] = useState(-1);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
     const [followResultMessage, setFollowResultMessage] = useState(null);
-    const userBlogName = 'kak';
-    const blogName = 'kaak';
+    const user = JSON.parse(localStorage.getItem('user'));
+    const userBlogName = user?.blogName;
+    const [blogName, setBlogName] = useState('');
 
     const searchFollower = input => {
         //send axios request
@@ -87,13 +95,7 @@ export default function FollowersPage(props) {
                 </Modal>
             )}
             {followers?.length !== 0 && (
-                <InfiniteScroll
-                    dataLength={followers?.length} //This is important field to render the next data
-                    next={handleScroll}
-                    hasMore={hasMore}
-                    loader={<LinearProgress />}
-                    endMessage={<></>}
-                >
+                <>
                     <div className="search-area">
                         <span className="followers-num">
                             {`${followers?.length ? followers?.length : '0'} `}
@@ -107,6 +109,7 @@ export default function FollowersPage(props) {
                     <div className="follow-search-result">
                         {followResultMessage}
                     </div>
+
                     <div className="followers-list">
                         {followers?.map((follower, index) => (
                             <div key={index} className="follower">
@@ -120,15 +123,24 @@ export default function FollowersPage(props) {
                                 </div>
                                 <div className="name">
                                     <span className="primary">
-                                        {follower?.followerName}
+                                        {follower?.blog_name}
                                     </span>
                                     <span className="secondary">
-                                        {follower?.blogName}
+                                        {follower?.title}
                                     </span>
                                 </div>
                                 <div className="left-control-group">
                                     {!follower?.isFollowed && (
-                                        <button className="follow-btn btn">
+                                        <button
+                                            onClick={() =>
+                                                followAccount(
+                                                    user?.token,
+                                                    follower?.blog_name,
+                                                    setFollowResultMessage
+                                                )
+                                            }
+                                            className="follow-btn btn"
+                                        >
                                             Follow
                                         </button>
                                     )}
@@ -157,13 +169,14 @@ export default function FollowersPage(props) {
 
                                         {isOptionListOpen === index && (
                                             <OptionsList
-                                                userBlogName=""
-                                                blogName="a"
+                                                userBlogName={userBlogName}
+                                                blogName={follower?.blog_name}
                                                 followersPage={true}
                                                 setIsOptionListOpen={
                                                     setIsOptionListOpen
                                                 }
                                                 setIsModalOpen={setIsModalOpen}
+                                                setBlogName={setBlogName}
                                             />
                                         )}
                                     </div>
@@ -171,7 +184,7 @@ export default function FollowersPage(props) {
                             </div>
                         ))}
                     </div>
-                </InfiniteScroll>
+                </>
             )}
         </>
     );

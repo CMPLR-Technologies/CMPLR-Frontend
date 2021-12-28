@@ -30,7 +30,6 @@ export const getFollowingList = (
             if (res?.data?.response?.blogs?.length < 15) {
                 setHasMore(false);
             }
-            console.log(res?.data?.response?.blogs);
             setFollowingList([...followingList, ...newArr]);
             setTotalFollowing(
                 res?.data?.response?.total_following

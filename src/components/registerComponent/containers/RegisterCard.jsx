@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 
 import { handleStepOne, handleStepTwo } from '../Service';
+import { ChatContext } from '../../../contexts/chatContext/chatContext';
 
 /**
  * Register Main Component
@@ -14,6 +15,7 @@ import { handleStepOne, handleStepTwo } from '../Service';
  * @returns {Component} the Component of RegisterStepOne & RegisterStepTwo for handling the whole registeration
  */
 export default function RegisterCard() {
+    const { setUserBlog } = useContext(ChatContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [blogName, setBlogName] = useState('');
@@ -55,7 +57,8 @@ export default function RegisterCard() {
             setErrorMessage,
             setUser,
             navigate,
-            setIsPending
+            setIsPending,
+            setUserBlog
         );
     };
     return (

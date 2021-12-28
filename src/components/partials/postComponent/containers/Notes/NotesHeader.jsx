@@ -65,7 +65,7 @@ export default function NotesHeader(props) {
                                     className="notes-summary-avatars-react"
                                 >
                                     <Link
-                                        to={note.blog_url}
+                                        to={`/blog/view`}
                                         className="summary-avatar-link"
                                     >
                                         <img

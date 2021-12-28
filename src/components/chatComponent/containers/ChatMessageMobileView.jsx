@@ -19,7 +19,6 @@ import { apiBaseUrl } from '../../../config.json';
 export default function ChatMessageMobileView() {
     // get sender id ,reciver id form the url
     let { sender, receiver } = useParams();
-    console.log(receiver);
     let senderId = sender;
     let receiverId = receiver;
 

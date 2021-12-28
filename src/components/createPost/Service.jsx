@@ -8,7 +8,6 @@ export const handlePosting = (bodyData, handleClose, token, setSpinnerPost) => {
     if (errors?.length > 0) {
         return { status: false, err: errors };
     } else {
-        console.log('data to sent ', bodyData);
         Axios({
             method: 'POST',
             url: `${apiBaseUrl}/posts`,
@@ -26,7 +25,6 @@ export const handlePosting = (bodyData, handleClose, token, setSpinnerPost) => {
             })
             .catch(err => {
                 setSpinnerPost(false);
-                console.log(err.data);
                 return err;
             });
     }
@@ -94,7 +92,7 @@ export function reblogPost(post, comment, navigate, token) {
             reblog_key: post['reblog_key'],
             comment: comment
         }
-    })  
+    })
         .then(res => {
             navigate('/dashboard');
             return res;
