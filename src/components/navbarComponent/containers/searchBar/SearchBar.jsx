@@ -29,7 +29,7 @@ export default function SearchBar(props) {
     };
     useEffect(() => {
         //TO DO : send req to backend and get the users
-        if (searchWord.length > 0&&searchWord.trim()!=='') {
+        if (searchWord.length > 0 && searchWord.trim() !== '') {
             getSearchRes(searchWord, setSearchResults, setLoading);
             setOpenSearch(true);
         } else setOpenSearch(false);
@@ -65,7 +65,6 @@ export default function SearchBar(props) {
                     focus=""
                     onKeyUp={e => {
                         if (e.key === 'Enter' && placeHolder !== '') {
-                            console.log(searchWord);
                             searchFollower(searchWord);
                         }
                     }}
@@ -77,7 +76,7 @@ export default function SearchBar(props) {
                         <CircularProgress size={'25px'} />
                     </div>
                 )}
-                {openSearch &&!loading && (
+                {openSearch && !loading && (
                     <SearchResult
                         data-testid="search-result"
                         search={searchWord}
@@ -92,5 +91,5 @@ export default function SearchBar(props) {
 
 SearchBar.propTypes = {
     placeHolder: PropTypes.string,
-    searchFollower:PropTypes.func,
+    searchFollower: PropTypes.func
 };

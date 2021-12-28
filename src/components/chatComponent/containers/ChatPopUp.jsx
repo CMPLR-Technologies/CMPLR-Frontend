@@ -44,15 +44,13 @@ export default function ChatPopUp() {
         data: msgs,
         isPending,
         hasMore,
-        blogData,
+        //blogData,
         loadingFirstPage
     } = useInfiniteScrollingChat(
         `${apiBaseUrl}/messaging/conversation/${senderId}/${receiverId}?page=${pageNumber}`
     );
     useEffect(() => {
         setConversationMsg(msgs);
-        console.log(msgs);
-        console.log(blogData);
     }, [msgs]);
     /* useEffect(() => {
         //setConversationMsg(msgs);
@@ -142,7 +140,8 @@ export default function ChatPopUp() {
                 'http://6ef0-156-223-164-236.ngrok.io/broadcasting/auth',
             auth: {
                 headers: {
-                    Authorization: 'Bearer ' + token,
+                    'Authorization': 'Bearer ' + token,
+                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 }
             }

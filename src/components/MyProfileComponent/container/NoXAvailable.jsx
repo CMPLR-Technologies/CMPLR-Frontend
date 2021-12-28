@@ -1,5 +1,9 @@
 import React from 'react';
+import propTypes from 'prop-types';
 
+NoXAvailable.propTypes = {
+    x: propTypes.string
+};
 export default function NoXAvailable(props) {
     const { x } = props;
     return (

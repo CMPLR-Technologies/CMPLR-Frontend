@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { copyLink } from '../Controller';
 import PropTypes from 'prop-types';
 import { unfollowAccount } from '../../../followingComponent/Service';
@@ -15,11 +15,13 @@ export default function OptionsList(props) {
         setIsModalOpen,
         setIsOptionListOpen,
         followersPage,
-        radar
+        radar,
+        setBlogName
     } = props;
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(following);
-
+    useEffect(() => {
+        setBlogName(blogName);
+    }, []);
     return (
         <div
             data-testid="options-list-header-ts"
@@ -125,5 +127,7 @@ OptionsList.propTypes = {
     following: PropTypes.bool,
     setFollowing: PropTypes.func,
     setIsModalOpen: PropTypes.func,
-    setIsOptionListOpen: PropTypes.func
+    setIsOptionListOpen: PropTypes.func,
+    followersPage: PropTypes.bool,
+    radar: PropTypes.bool
 };

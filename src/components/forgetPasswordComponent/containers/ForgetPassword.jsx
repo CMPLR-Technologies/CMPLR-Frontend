@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import { emailInDataBase } from '../Service';
-import { Password } from '@mui/icons-material';
 
 /**
  * @function ForgetPassword

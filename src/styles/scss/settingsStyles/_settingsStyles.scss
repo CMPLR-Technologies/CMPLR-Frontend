@@ -307,7 +307,6 @@ body {
             margin-bottom: 38px;
             width: 100%;
             .list {
-                color: white;
                 font-size: 1.125rem;
                 font-weight: 400;
                 line-height: 1.333;
@@ -320,18 +319,15 @@ body {
                     border-top: 1px solid rgba(255, 255, 255, 0.07);
                     padding: 8px 12px;
                     .list-item-anchor {
-                        color: #001935;
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
                         text-decoration: none;
                         .list-item-span {
-                            color: white;
                         }
                     }
 
                     .list-item-anchor-small {
-                        color: rgba(255, 255, 255, 0.65);
                         font-size: 13px;
                         font-weight: 400;
                     }

@@ -4,7 +4,13 @@ import axios from 'axios';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
+import propTypes from 'prop-types';
 
+NotfHeader.propTypes = {
+    userBlogName: propTypes.string,
+    userAvatar: propTypes.string,
+    filterNotf: propTypes.func
+};
 export default function NotfHeader(props) {
     const { userBlogName, userAvatar, filterNotf } = props;
     const [selected, setSelected] = useState(1);
@@ -26,7 +32,6 @@ export default function NotfHeader(props) {
             })
             .catch(() => {});
     }, []);
-    console.log(blogs);
     return (
         <div className="header">
             <div className="control-left">
@@ -80,7 +85,9 @@ export default function NotfHeader(props) {
                                                         to={`/blog/${blog?.blog_name}`}
                                                         className="account-popup-blog-head-text"
                                                     >
-                                                        <h1>{blog?.blog_name}</h1>
+                                                        <h1>
+                                                            {blog?.blog_name}
+                                                        </h1>
                                                         <div>{blog?.title}</div>
                                                     </NavLink>
                                                 </div>

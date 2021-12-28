@@ -34,7 +34,6 @@ export function checkCreateBlog(
             flag = false;
         }
     }
-    console.log(errorMsg);
     return flag;
 }
 export function checkDeleteBlog(password, email, setErrorMsg) {

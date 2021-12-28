@@ -1,17 +1,24 @@
 import React from 'react';
-import Sidebar from '../container/SideBar';
 import CreatePost from '../../createPost/View';
 import PostComponent from '../../partials/postComponent/containers/PostComponent';
 import { LinearProgress } from '@mui/material';
 import NoXAvailable from './NoXAvailable';
+import propTypes from 'prop-types';
+PostsPage.propTypes = {
+    response: propTypes.object,
+    hasMore: propTypes.bool,
+    handleScroll: propTypes.func,
+    draft: propTypes.bool,
+    mobileView: propTypes.bool
+};
 
 export default function PostsPage(props) {
     const { posts, isPending, error } = props.response;
-    const { draft } = props;
+    const { draft, mobileView } = props;
     const user = JSON.parse(localStorage.getItem('user'));
     return (
         <>
-            <CreatePost />
+            {!mobileView && <CreatePost />}
             {!posts.length && !isPending && (
                 <NoXAvailable x={draft ? 'drafts' : 'posts'} />
             )}

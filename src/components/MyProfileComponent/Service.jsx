@@ -5,6 +5,7 @@ export const getFollowersList = (
     setFollowingList,
     followingList,
     userToken,
+    blogName,
     setIsPending,
     setError,
     setTotalFollowing,
@@ -14,7 +15,7 @@ export const getFollowersList = (
 ) => {
     Axios({
         method: 'GET',
-        url: `${apiBaseUrl}/user/followers?page=${page}`,
+        url: `${apiBaseUrl}/blog/${blogName}/followers?page=${page}`,
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
@@ -24,16 +25,16 @@ export const getFollowersList = (
         .then(res => {
             setIsPending(false);
             let newArr = [];
-            if (res?.data?.response?.blogs?.length !== 0) {
-                newArr = res?.data?.response?.blogs;
+            if (res?.data?.response?.followers?.length !== 0) {
+                newArr = res?.data?.response?.followers;
             }
-            if (res?.data?.response?.blogs?.length < 15) {
+            if (res?.data?.response?.followers?.length < 15) {
                 setHasMore(false);
             }
             setFollowingList([...followingList, ...newArr]);
             setTotalFollowing(
-                res?.data?.response?.total_following
-                    ? res?.data?.response?.total_following
+                res?.data?.response?.number_of_followers
+                    ? res?.data?.response?.number_of_followers
                     : 0
             );
             const newPage = page + 1;

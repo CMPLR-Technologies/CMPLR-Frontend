@@ -11,7 +11,9 @@ NotesContent.propTypes = {
     setNotes: PropTypes.func,
     setCounts: PropTypes.func,
     setIsModalOpen: PropTypes.func,
-    setNotesView: PropTypes.func
+    setNotesView: PropTypes.func,
+    postId: PropTypes.number,
+
 };
 
 export default function NotesContent(props) {
