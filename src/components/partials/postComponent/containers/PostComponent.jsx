@@ -100,7 +100,6 @@ export default function PostComponent(props) {
     };
 
     const [liked, setIsLiked] = useState(isLiked && isLiked);
-    console.log(postId, liked);
     const [following, setFollowing] = useState(follower && follower);
     const blogId = user?.userData?.primary_blog_id;
     const handleBlock = () => {
@@ -455,7 +454,7 @@ export default function PostComponent(props) {
                                             postTime={postTime}
                                             userBlogName={userBlogName}
                                             blogName={blogName}
-                                            postLink={`${apiBaseUrl}/blog/view/${blogName}/${blogId}/posts/${postId}`}
+                                            postLink={`${window.location.host}/blog/view/${blogName}/${blogId}/posts/${postId}`}
                                             postId={postId}
                                             following={following}
                                             blogUrl={blogUrl}
@@ -489,7 +488,7 @@ export default function PostComponent(props) {
                         <Tags tagsArray={tags} />
                         <Footer
                             isAuthor={userBlogName === blogName}
-                            postLink={`${apiBaseUrl}/blog/view/${blogName}/${blogId}/posts/${postId}`}
+                            postLink={`${window.location.host}/blog/view/${blogName}/${blogId}/posts/${postId}`}
                             numberNotes={numberNotes}
                             reblogKey={reblogKey}
                             postId={postId}
