@@ -1,19 +1,28 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import {
     ThemeContext,
     themes
 } from '../../../../contexts/themeContext/ThemeContext';
-export default function PasswordSectionVersion1({ setVersionOne }) {
+
+export default function UserNameSectionVersion1({ setVersionOne }) {
+    const { blogName } = useParams();
     const theme = useContext(ThemeContext)[0];
     return (
-        <div className="password" id="section">
-            <div className="sub-section-left">
-                <h3>Password</h3>
+        <div className="email" id="section" data-testid="email">
+            <div className="sub-section-left" data-testid="sub-section-left">
+                <h3>Username</h3>
             </div>
-            <div className="sub-section-right">
-                <p className="password-dots">••••••••••</p>
-                <button className="edit" onClick={() => setVersionOne(false)}>
+            <div className="sub-section-right" data-testid="sub-section-right">
+                <p className="email" data-testid="email">
+                    {blogName}
+                </p>
+                <button
+                    className="edit"
+                    data-testid="edit"
+                    onClick={() => setVersionOne(false)}
+                >
                     <svg
                         viewBox="0 0 17.6 17.6"
                         width="16"
@@ -27,6 +36,7 @@ export default function PasswordSectionVersion1({ setVersionOne }) {
         </div>
     );
 }
-PasswordSectionVersion1.propTypes = {
-    setVersionOne: PropTypes.func.isRequired
+UserNameSectionVersion1.propTypes = {
+    setVersionOne: PropTypes.func.isRequired,
+    sectionName: PropTypes.string.isRequired
 };

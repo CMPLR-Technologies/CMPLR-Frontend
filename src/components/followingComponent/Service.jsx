@@ -104,7 +104,8 @@ export const blockAccount = (
     userToken,
     blockAcc,
     setResponseMsg,
-    userBlogName
+    userBlogName,
+    setOpenPopup
 ) => {
     Axios({
         method: 'POST',
@@ -120,11 +121,13 @@ export const blockAccount = (
     })
         .then(() => {
             setResponseMsg(`you've blocked ${blockAcc}`);
+            setOpenPopup(false);
             return true;
         })
         .catch(err => {
             let errMsg = err?.response?.data?.error;
             setResponseMsg(errMsg);
+            setOpenPopup(false);
             return false;
         });
 };

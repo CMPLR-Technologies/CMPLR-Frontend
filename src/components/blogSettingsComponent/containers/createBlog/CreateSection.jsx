@@ -17,7 +17,6 @@ export default function CreateSection({
     // useRedirect();
     const history = useNavigate();
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(errorMsg);
     return (
         <div className="security" id="section-create-blog">
             <div

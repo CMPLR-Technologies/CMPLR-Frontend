@@ -16,7 +16,7 @@ export default function CreateBlog({ setWithNav }) {
     const [url, setUrl] = useState('');
     const [password, setPassword] = useState('');
     return (
-        <div className="settings">
+        <div className="settings2">
             <div className="container1">
                 <div className="subcontainer">
                     <h2 className="title">Create a new blog</h2>
