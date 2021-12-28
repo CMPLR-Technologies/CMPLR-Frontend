@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Sidebar from './container/SideBar';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import FollowersPage from './container/FollowersPage';
 import PostsPage from './container/PostsPage';
 import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
 import { apiBaseUrl } from '../../config.json';
-import { getFollowersList } from './Service';
+import { getBlogPosts, getFollowersList } from './Service';
 import ActivityPage from '../activityPageComponent/ActivityPage';
 import { chaneMobileView } from '../partials/postComponent/Controller';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
@@ -13,9 +13,9 @@ import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 
 export default function MyProfile() {
     const location = useLocation();
+    const { blogUrlIdf } = useParams();
     const theme = useContext(ThemeContext)[0];
     const [activeSide, setActiveSide] = useState(null);
-    const blogName = JSON.parse(localStorage.getItem('user'))?.blogName;
     useEffect(() => {
         if (location.pathname.includes('/followers')) {
             setActiveSide(4);
@@ -26,36 +26,32 @@ export default function MyProfile() {
         }
     }, [location.pathname]);
 
-    const {
-        error,
-        data: posts,
-        isPending
-    } = useInfiniteScrolling(`${apiBaseUrl}/posts/view/${blogName}`);
-
     const [isPendingFollowers, setIsPendingFollowers] = useState(true);
     const [errorFollowers, setErrorFollowers] = useState(false);
     const [followers, setFollowers] = useState([]);
+    const [isPending, setIsPending] = useState(true);
+    const [posts, setPosts] = useState([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [totalFollowing, setTotalFollowing] = useState(0);
     const [mobileView, setMobileView] = useState(false);
+
     useEffect(() => {
-        if (hasMore) {
-            getFollowersList(
-                setFollowers,
-                followers,
-                user?.token,
-                user?.blogName,
-                setIsPendingFollowers,
-                setErrorFollowers,
-                setTotalFollowing,
-                page,
-                setPage,
-                setHasMore
-            );
-        }
+        getFollowersList(
+            setFollowers,
+            followers,
+            user?.token,
+            blogUrlIdf,
+            setIsPendingFollowers,
+            setErrorFollowers,
+            setTotalFollowing,
+            page,
+            setPage,
+            setHasMore
+        );
+        getBlogPosts(blogUrlIdf, user?.token, setPosts, setIsPending);
         chaneMobileView(setMobileView);
-    }, []);
+    }, [blogUrlIdf, activeSide]);
     window.addEventListener('resize', () => chaneMobileView(setMobileView));
     const user = JSON.parse(localStorage.getItem('user'));
     const handleScroll = () => {
@@ -64,7 +60,7 @@ export default function MyProfile() {
                 setFollowers,
                 followers,
                 user?.token,
-                user?.blogName,
+                blogUrlIdf,
                 setIsPendingFollowers,
                 setErrorFollowers,
                 setTotalFollowing,
@@ -124,7 +120,12 @@ export default function MyProfile() {
 
     .not-available {
         background-color: rgba(${themes[theme].white}, 0.07);
+         color: rgba(${themes[theme].whiteOnDark},.65);
     }
+
+    .not-available svg {
+        fill: rgba(${themes[theme].whiteOnDark},.65);
+        }
     `;
 
     return (
@@ -148,7 +149,6 @@ export default function MyProfile() {
                             mobileView={mobileView}
                             response={{
                                 posts: posts,
-                                error,
                                 isPending
                             }}
                             draft={false}

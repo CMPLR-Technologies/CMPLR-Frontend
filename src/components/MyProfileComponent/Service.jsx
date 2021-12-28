@@ -24,14 +24,7 @@ export const getFollowersList = (
     })
         .then(res => {
             setIsPending(false);
-            let newArr = [];
-            if (res?.data?.response?.followers?.length !== 0) {
-                newArr = res?.data?.response?.followers;
-            }
-            if (res?.data?.response?.followers?.length < 15) {
-                setHasMore(false);
-            }
-            setFollowingList([...followingList, ...newArr]);
+            setFollowingList(res?.data?.response?.followers);
             setTotalFollowing(
                 res?.data?.response?.number_of_followers
                     ? res?.data?.response?.number_of_followers
@@ -45,3 +38,22 @@ export const getFollowersList = (
             setIsPending(false);
         });
 };
+
+export function getBlogPosts(blogUrlIdf, userToken, setPosts, setIsPending) {
+    Axios({
+        method: 'GET',
+        url: `${apiBaseUrl}/posts/view/${blogUrlIdf}`,
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${userToken}`
+        }
+    })
+        .then(res => {
+            if (!res.error) {
+                setPosts(res?.data?.response?.post);
+                setIsPending(false);
+            }
+        })
+        .catch(() => {});
+}

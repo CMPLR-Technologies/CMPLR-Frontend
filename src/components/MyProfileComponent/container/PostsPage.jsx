@@ -23,11 +23,11 @@ export default function PostsPage(props) {
     return (
         <>
             {!mobileView && <CreatePost />}
-            {!posts.length && !isPending && (
+            {!posts?.length && !isPending && (
                 <NoXAvailable x={draft ? 'drafts' : 'posts'} />
             )}
 
-            {posts.length !== 0 &&
+            {posts?.length !== 0 &&
                 posts.map((post, index) => {
                     return (
                         <PostComponent

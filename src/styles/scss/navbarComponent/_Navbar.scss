@@ -1137,9 +1137,9 @@ $border-radius-primary: 3px;
             }
         }
         .blogs-list {
-            background-color: white;
             display: flex;
             flex-direction: column;
+
             .account-popup-blogs-container {
                 display: flex;
                 flex-direction: row;
@@ -1151,6 +1151,7 @@ $border-radius-primary: 3px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
+
                     img {
                         width: 30px;
                         height: 30px;
@@ -1327,7 +1328,6 @@ $border-radius-primary: 3px;
             }
         }
         .blogs-list {
-            background-color: white;
             display: flex;
             flex-direction: column;
             .account-popup-blogs-container {
@@ -1353,10 +1353,8 @@ $border-radius-primary: 3px;
                 .account-popup-blog-head-text {
                     h1 {
                         margin-top: 10px;
-                        color: rgba(0, 0, 0);
                     }
                     div {
-                        color: rgba(0, 0, 0, 0.65);
                     }
                 }
             }
@@ -1428,7 +1426,6 @@ $border-radius-primary: 3px;
             text-decoration: none;
             width: 100%;
             height: 30px;
-            background-color: rgba(0, 0, 0, 0.07);
         }
     }
 }
@@ -1456,3 +1453,6 @@ $border-radius-primary: 3px;
       width: 1170px;
     }
   }*/
+.account-popup-blogs-container:hover {
+    cursor: pointer;
+}
