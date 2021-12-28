@@ -222,9 +222,9 @@ export default function ChatPopUp() {
                     )}
 
                     <div className="names">
-                        <a href={senderName}>{senderName}</a>
+                        <a href={`blog/view/${senderName}/${senderId}/posts`}>{senderName}</a>
                         {' + '}
-                        <a href={receiverName}>{receiverName}</a>
+                        <a href={`blog/view/${receiverName}/${receiverId}/posts`}>{receiverName}</a>
                     </div>
                     <div className="btns">
                         <button onClick={openOption}>

@@ -113,7 +113,7 @@ export default function ChatOption(props) {
                         </li>
                     </Link>
                     <li onClick={openDeleteModel}>Delete conversation</li>
-                    <li onClick={openBlockModel}>Block {name}</li>
+                   {/* <li onClick={openBlockModel}>Block {name}</li>*/}
                 </ul>
             </ClickAwayListener>
         </>

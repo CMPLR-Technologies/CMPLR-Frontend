@@ -82,7 +82,7 @@ export default function ChatMessages(props) {
                         <img src={receiverPhoto} />
                     </div>
                     <div className="receiver-link">
-                        <a href={receiverId} className="main">
+                        <a href={`blog/view/${receiverName}/${receiverId}/posts`} className="main">
                             {receiverName}
                         </a>
                     </div>
