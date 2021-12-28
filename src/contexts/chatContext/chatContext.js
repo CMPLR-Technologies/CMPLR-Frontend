@@ -67,8 +67,12 @@ export default function ChatContextProvider(props) {
                 //for production use
                 if (!res.error) {
                     setChats(res?.data);
-                    for(let i=0;i<res?.data?.length;i++){
-                        if((res?.data[i]?.is_read && blogId) !== (res?.data[i]?.from_blog_id)){
+                    for (let i = 0; i < res?.data?.length; i++) {
+                        if (
+                            (res?.data[i]?.is_read && blogId) !==
+                                res?.data[i]?.from_blog_id &&
+                            res?.data[i]?.is_read === false
+                        ) {
                             count++;
                         }
                     }
@@ -77,7 +81,7 @@ export default function ChatContextProvider(props) {
                     throw Error(res?.error);
                 }
             })
-            .catch((err) => {
+            .catch(err => {
                 console.log(err);
             });
     };
@@ -264,7 +268,8 @@ export default function ChatContextProvider(props) {
         setCurrPopUpOpenChat(null);
         setSideIconOpenChat([]);
     };
-    return <ChatContext.Provider
+    return (
+        <ChatContext.Provider
             value={{
                 currBlog,
                 setCurrBlog,
@@ -296,7 +301,8 @@ export default function ChatContextProvider(props) {
             }}
         >
             {props.children}
-    </ChatContext.Provider>;
+        </ChatContext.Provider>
+    );
 }
 
 ChatContextProvider.propTypes = {
