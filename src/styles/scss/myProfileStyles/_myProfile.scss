@@ -70,7 +70,7 @@
     }
 }
 
-.settings {
+.dashboard-profile .settings {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -259,7 +259,7 @@
 // mobile screen
 @media screen and (max-width: 960px) {
     .dashboard-profile {
-        .posts-region{
+        .posts-region {
             width: 100%;
         }
     }

@@ -25,7 +25,7 @@ export default function BlogSettingsCard() {
     }, []);
     console.log(blogId);
     return (
-        <div className="settingss" data-testid="settings">
+        <div className="settings" data-testid="settings">
             <div className="container1" data-testid="container1">
                 <div className="subcontainer" data-testid="subcontainer">
                     <h2 className="title" data-testid="title">
