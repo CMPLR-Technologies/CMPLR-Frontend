@@ -3,8 +3,16 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Radar from '../../partials/Radar';
 import ListItem from './ListItem';
+import propTypes from 'prop-types';
+
+Sidebar.propTypes = {
+    activeSide: propTypes.number,
+    postLength: propTypes.number,
+    followersLength: propTypes.number
+};
+
 export default function Sidebar(props) {
-    const { activeSide, postLength, followersLength, draftsLength } = props;
+    const { activeSide, postLength, followersLength } = props;
     const { blogUrlIdf } = useParams();
     const [clicked, setClicked] = useState(activeSide);
     useEffect(() => {
@@ -26,7 +34,6 @@ export default function Sidebar(props) {
         },
         {
             primary: 'Activity',
-            secondary: postLength ? postLength : '0',
             prof: true,
             link: `/blog/${blogUrlIdf}/activity`
         },
@@ -35,12 +42,6 @@ export default function Sidebar(props) {
             secondary: followersLength ? followersLength : '0',
             prof: true,
             link: `/blog/${blogUrlIdf}/followers`
-        },
-        {
-            primary: 'Drafts',
-            secondary: draftsLength ? draftsLength : '0',
-            prof: true,
-            link: `/blog/${blogUrlIdf}/drafts`
         }
     ];
     return (

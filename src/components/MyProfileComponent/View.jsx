@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Sidebar from './container/SideBar';
 import { useLocation } from 'react-router-dom';
 import FollowersPage from './container/FollowersPage';
 import PostsPage from './container/PostsPage';
 import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
 import { apiBaseUrl } from '../../config.json';
-import useFetch from '../../hooks/useFetch';
 import { getFollowersList } from './Service';
-
+import ActivityPage from '../activityPageComponent/ActivityPage';
+import { chaneMobileView } from '../partials/postComponent/Controller';
+import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 export default function MyProfile() {
     const location = useLocation();
+    const theme = useContext(ThemeContext)[0];
     const [activeSide, setActiveSide] = useState(null);
     const blogName = JSON.parse(localStorage.getItem('user'))?.blogName;
     useEffect(() => {
         if (location.pathname.includes('/followers')) {
             setActiveSide(4);
-        } else if (location.pathname.includes('/drafts')) {
-            setActiveSide(5);
         } else if (location.pathname.includes('/activity')) {
             setActiveSide(3);
         } else {
@@ -36,12 +36,14 @@ export default function MyProfile() {
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [totalFollowing, setTotalFollowing] = useState(0);
+    const [mobileView, setMobileView] = useState(false);
     useEffect(() => {
         if (hasMore) {
             getFollowersList(
                 setFollowers,
                 followers,
                 user?.token,
+                user?.blogName,
                 setIsPendingFollowers,
                 setErrorFollowers,
                 setTotalFollowing,
@@ -50,21 +52,18 @@ export default function MyProfile() {
                 setHasMore
             );
         }
+        chaneMobileView(setMobileView);
     }, []);
-    const drafts = posts.slice();
-    const published = posts.slice();
-    const {
-        error: errorDrafts,
-        data: draftss,
-        isPending: isPendingDrafts
-    } = useInfiniteScrolling(`${apiBaseUrl}/posts/view/${blogName}`); //change to blogName
+    window.addEventListener('resize', () => chaneMobileView(setMobileView));
+    console.log(followers);
     const user = JSON.parse(localStorage.getItem('user'));
     const handleScroll = () => {
         if (hasMore) {
-            getFollowingList(
+            getFollowersList(
                 setFollowers,
                 followers,
                 user?.token,
+                user?.blogName,
                 setIsPendingFollowers,
                 setErrorFollowers,
                 setTotalFollowing,
@@ -74,54 +73,96 @@ export default function MyProfile() {
             );
         }
     };
+
+    const css = `
+    .follow-search-result {
+        color: rgb(${themes[theme].whiteOnDark});
+    }
+    .followers-num {
+        color: rgb(${themes[theme].whiteOnDark});
+    }
+    .wrapper .list{
+        color: rgb(${themes[theme].whiteOnDark});       
+        background-color:rgba(${themes[theme].whiteOnDark},);
+    }
+    .wrapper .list .list-item{
+        border-bottom: 1px solid rgba(${themes[theme].white}, 0.07);
+    }
+    .wrapper .list .list-item:hover {
+        background-color:rgba(${themes[theme].whiteOnDark},.07);
+        border-bottom: 1px solid rgba(${themes[theme].white}, 0.07);
+    }
+    .wrapper .list  .clicked {
+        background-color:rgba(${themes[theme].whiteOnDark},.07);
+        border-bottom: 1px solid rgba(${themes[theme].white}, 0.07);
+    }
+    .wrapper .list .list-item .list-item-anchor {
+        color: #001935;
+    }
+
+    .wrapper .list .list-item .list-item-anchor .list-item-span {
+        color: rgb(${themes[theme].whiteOnDark},.65);
+    }
+    .list-item-anchor-small {
+        color: rgb(${themes[theme].whiteOnDark},.65);
+    }
+    .primary,.blog-h1 {
+        color: rgb(${themes[theme].whiteOnDark});
+        border-bottom: 1.5px solid rgba(${themes[theme].white}, 0.1);
+    }
+
+    .followers-list {
+        background-color: rgb(${themes[theme].white});
+    }
+    .name .primary{
+        color: rgb(${themes[theme].black})
+    }
+    .name .secondary {
+        color: rgba(${themes[theme].black}, 0.65)
+    }
+
+    .not-available {
+        background-color: rgba(${themes[theme].white}, 0.07);
+    }
+    `;
+
     return (
-        <div className="dashboard">
-            <div className="posts-region">
-                {location.pathname.includes('/followers') ? (
-                    <FollowersPage
-                        response={{
-                            followers,
-                            errorFollowers,
-                            isPendingFollowers
-                        }}
-                        hasMore={hasMore}
-                        handleScrole={handleScroll}
-                    />
-                ) : location.pathname.includes('/drafts') ? (
-                    <PostsPage
-                        response={{
-                            posts: drafts.filter(
-                                post => post?.post?.state === 'draft'
-                            ),
-                            errorDrafts,
-                            isPendingDrafts
-                        }}
-                        draft={true}
-                    />
-                ) : (
-                    <PostsPage
-                        response={{
-                            posts: published.filter(
-                                post => post?.post?.state === 'publish'
-                            ),
-                            error,
-                            isPending
-                        }}
-                        draft={false}
+        <>
+            <div className="dashboard-profile">
+                <div className="posts-region">
+                    {location.pathname.includes('/followers') ? (
+                        <FollowersPage
+                            response={{
+                                followers,
+                                errorFollowers,
+                                isPendingFollowers
+                            }}
+                            hasMore={hasMore}
+                            handleScrole={handleScroll}
+                        />
+                    ) : location.pathname.includes('/activity') ? (
+                        <ActivityPage />
+                    ) : (
+                        <PostsPage
+                            mobileView={mobileView}
+                            response={{
+                                posts: posts,
+                                error,
+                                isPending
+                            }}
+                            draft={false}
+                        />
+                    )}
+                </div>
+                {!mobileView && (
+                    <Sidebar
+                        postLength={posts?.length}
+                        followersLength={totalFollowing}
+                        activeSide={activeSide && activeSide}
                     />
                 )}
             </div>
-            <Sidebar
-                postLength={
-                    published.filter(post => post?.post?.state === 'publish')
-                        ?.length
-                }
-                followersLength={totalFollowing}
-                draftsLength={
-                    drafts.filter(post => post?.post?.state === 'draft')?.length
-                }
-                activeSide={activeSide && activeSide}
-            />
-        </div>
+            <style>{css}</style>
+        </>
     );
 }

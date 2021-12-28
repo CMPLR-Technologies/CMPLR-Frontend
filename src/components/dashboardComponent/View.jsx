@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CreatePost from '../createPost/View';
-import VerifyEmail from '../VerifyEmail/View';
+// import VerifyEmail from '../VerifyEmail/View';
 import VerticalPostsView from '../partials/VerticalPostsView';
 import { apiBaseUrl } from '../../config.json';
 import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
@@ -12,7 +12,6 @@ export default function Dashboard() {
     const [response, setResponse] = useState([]);
     // eslint-disable-next-line no-unused-vars
     const user = JSON.parse(localStorage.getItem('user'));
-    const blogIdentifier = 'yahia.tumbler.com';
     const {
         error,
         data: posts,
@@ -24,9 +23,11 @@ export default function Dashboard() {
         <div className="dashboard">
             <div className="posts-region">
                 <CreatePost />
-                <VerifyEmail />
+                {/* <VerifyEmail /> */}
                 <VerticalPostsView
-                    posts={posts}
+                    posts={posts.filter(
+                        post => post?.post?.state === 'publish'
+                    )}
                     error={error}
                     isPending={isPending}
                     hasMore={hasMore}

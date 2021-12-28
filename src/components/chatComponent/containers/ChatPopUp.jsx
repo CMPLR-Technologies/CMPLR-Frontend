@@ -49,8 +49,6 @@ export default function ChatPopUp() {
     );
     useEffect(() => {
         setConversationMsg(msgs);
-        console.log(msgs);
-        console.log(blogData);
     }, [msgs]);
     /* useEffect(() => {
         //setConversationMsg(msgs);
@@ -153,7 +151,7 @@ export default function ChatPopUp() {
                         <button onClick={openOption}>
                             <i className="fas fa-ellipsis-h"></i>
                         </button>
-                        <button className='parClose' onClick={partialClose}>
+                        <button className="parClose" onClick={partialClose}>
                             <i className="fas fa-compress-alt"></i>
                         </button>
                         <button onClick={close}>

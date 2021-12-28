@@ -19,7 +19,6 @@ import {
 import { apiBaseUrl } from '../../../../config.json';
 import { handlePosting } from '../../../createPost/Service';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import ProfileMiniHoverWrapper from '../../../profileViews/mini&sideViews/View';
 /**
  * @function PostComponent
@@ -40,7 +39,8 @@ PostComponent.propTypes = {
     padding: PropTypes.string,
     reblog: PropTypes.bool,
     blogPage: PropTypes.bool,
-    themeDeactivate: PropTypes.bool
+    themeDeactivate: PropTypes.bool,
+    draft: PropTypes.bool
 };
 
 export default function PostComponent(props) {
@@ -89,7 +89,7 @@ export default function PostComponent(props) {
         const dataBody = {
             title: title,
             content: content,
-            state:'publish',
+            state: 'publish',
             type: 'text',
             // eslint-disable-next-line camelcase
             blog_name: user?.blogName,
@@ -100,6 +100,7 @@ export default function PostComponent(props) {
     };
 
     const [liked, setIsLiked] = useState(isLiked && isLiked);
+    console.log(postId, liked);
     const [following, setFollowing] = useState(follower && follower);
     const blogId = user?.userData?.primary_blog_id;
     const handleBlock = () => {
@@ -284,6 +285,9 @@ export default function PostComponent(props) {
     .note-option-btn svg{
         fill:rgba(${themes[theme].black}, 0.65)
     }
+    .post-heading svg{
+        fill:rgba(${themes[theme].black}, 0.65)
+    }
     `;
 
     return (
@@ -386,29 +390,48 @@ export default function PostComponent(props) {
                                     blogName={userBlogName}
                                     style={{ textDecoration: 'none' }}
                                 >
-                                    <span
-                                        data-testid="post-heading-ts"
-                                        className="post-heading"
-                                    >
-                                        {blogName}
-                                    </span>
+                                    {state === 'publish' ? (
+                                        <span
+                                            data-testid="post-heading-ts"
+                                            className="post-heading"
+                                        >
+                                            {blogName}
+                                        </span>
+                                    ) : (
+                                        <span
+                                            data-testid="post-heading-ts"
+                                            className="post-heading"
+                                        >
+                                            <svg
+                                                viewBox="0 0 24 24"
+                                                width="16"
+                                                height="14"
+                                                fill="rgba(var(--black), 0.65)"
+                                            >
+                                                <path d="M19 11.018V7.88c0-1.914-.601-4.15-1.791-5.434-1.187-1.283-2.744-1.443-4.607-1.442-2.148-.001-3.604-.147-5.075 1.442C5.84 3.725 6 7.066 6 7.88v3.138l-2 .067c-.579.159-1 .523-1 1.003v9.904C3 22.471 3.527 23 4 23h17c.476 0 1-1.04 1-1.04v-9.872c0-1.008-.525-1.07-1-1.07h-2zM9.834 4.736c.65-.794 1.83-1.085 2.768-1.085.936 0 2.062.291 2.712 1.085.647.794.686 2.112.686 3.375v2.885H9V8.11c0-1.263.189-2.578.834-3.375z"></path>
+                                            </svg>
+                                            private
+                                        </span>
+                                    )}
                                 </ProfileMiniHoverWrapper>
 
-                                {!following && !reblog && (
-                                    <button
-                                        onClick={() =>
-                                            followAccount(
-                                                user?.token,
-                                                blogName,
-                                                setFollowing
-                                            )
-                                        }
-                                        className="follow-btn"
-                                        data-testid="follow-btn-header-ts"
-                                    >
-                                        Follow
-                                    </button>
-                                )}
+                                {!following &&
+                                    !reblog &&
+                                    userBlogName !== blogName && (
+                                        <button
+                                            onClick={() =>
+                                                followAccount(
+                                                    user?.token,
+                                                    blogName,
+                                                    setFollowing
+                                                )
+                                            }
+                                            className="follow-btn"
+                                            data-testid="follow-btn-header-ts"
+                                        >
+                                            Follow
+                                        </button>
+                                    )}
                             </div>
                             <ClickAwayListener
                                 onClickAway={() => setIsOptionListOpen(false)}
@@ -476,7 +499,7 @@ export default function PostComponent(props) {
                             setIsModalOpenN={setIsModalOpen}
                             blogPage={blogPage}
                             radar={radar}
-                            isLiked={isLiked}
+                            isLiked={liked}
                             draft={draft}
                             postSubmit={postSubmit}
                             setIsLiked={setIsLiked}

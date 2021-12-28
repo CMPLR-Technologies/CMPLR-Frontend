@@ -50,8 +50,6 @@ export default function CreateModal(props) {
             tags: tags
         };
 
-        console.log('body to be sent', dataBody);
-
         handlePosting(dataBody, handleClose, user?.token, setSpinnerPost);
     };
 

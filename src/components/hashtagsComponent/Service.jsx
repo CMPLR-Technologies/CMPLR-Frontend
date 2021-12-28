@@ -29,7 +29,6 @@ export const getHashtagData = (
             if (res?.data?.post?.length < 15) {
                 setHasMore(false);
             }
-            console.log('our posts ', newArr);
             setPosts([...posts, ...newArr]);
             let p = page + 1;
             setPage(p);

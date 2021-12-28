@@ -5,16 +5,10 @@ import EditBtn from './SVG/EditBtn.svg';
 import LoveBtn from './SVG/LoveBtn.svg';
 import Note from './SVG/Note.svg';
 import ReblogBtn from './SVG/ReblogBtn.svg';
-import ShareBtn from './SVG/ShareBtn.svg';
 import Modal from '../../Modal';
 import AuthBtn from '../../AuthBtn';
-import { toggleShareList, copyLink } from '../Controller';
-import {
-    handleLikePost,
-    handleUnlikePost,
-    deletePost,
-    submitNote
-} from '../Services';
+import { copyLink } from '../Controller';
+import { handleLikePost, handleUnlikePost, deletePost } from '../Services';
 import PropTypes from 'prop-types';
 import NotesHeader from './Notes/NotesHeader';
 import NotesContent from './Notes/NotesContent';
@@ -49,7 +43,9 @@ Footer.propTypes = {
     blogPage: PropTypes.bool,
     radar: PropTypes.bool,
     isLiked: PropTypes.bool,
-    setIsLiked: PropTypes.func
+    setIsLiked: PropTypes.func,
+    draft: PropTypes.bool,
+    postSubmit: PropTypes.func
 };
 
 export default function Footer(props) {

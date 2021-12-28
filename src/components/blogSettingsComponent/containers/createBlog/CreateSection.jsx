@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AuthBtn from '../../../../components/partials/AuthBtn';
 import { createBlog } from '../../Service';
 import PropsTypes from 'prop-types';
@@ -17,7 +17,6 @@ export default function CreateSection({
     // useRedirect();
     const history = useNavigate();
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(errorMsg);
     return (
         <div className="security" id="section-create-blog">
             <div

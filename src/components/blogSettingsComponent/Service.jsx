@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 import axios from 'axios';
 import { apiBaseUrl } from '../../config.json';
-import { useNavigate } from 'react-router-dom';
 import { checkCreateBlog } from './Controller';
 import { checkDeleteBlog } from './Controller';
 import {} from './Controller';
@@ -42,7 +41,6 @@ export function createBlog(
         })
             .then(res => {
                 if (res.data.meta.status_code === 201) {
-                    console.log(res.data.meta.status_code);
                     history(`/blog/${title}`);
                     setErrorMsg([]);
                 }
@@ -87,7 +85,6 @@ export function deleteBlog(
                 }
             })
             .catch(err => {
-                console.log(err.response.status);
                 if (err.response.status === 404) {
                     setErrorMsg('blog name is not available');
                 } else if (err.response.status === 403) {

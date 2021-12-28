@@ -1,8 +1,4 @@
 .activity-home {
-    width: 50%;
-    margin: auto;
-    margin-top: 54px;
-
     .activity-container {
         margin: 0 15px;
         display: flex;
@@ -13,7 +9,6 @@
         .gra {
             width: 625px;
             height: 250px;
-            margin: 100px 0 0 40px;
         }
     }
     .btns {
@@ -78,7 +73,6 @@
             .aBox {
                 color: inherit;
                 text-decoration: none;
-                
             }
             .bigBox {
                 background: #fff;
@@ -154,9 +148,8 @@
                 .bigBox {
                     width: 55%;
                     height: 200px;
-                    .Bigcontent{
+                    .Bigcontent {
                         margin-top: 7px;
-
                     }
                     margin: auto;
                     margin-bottom: 15px;
