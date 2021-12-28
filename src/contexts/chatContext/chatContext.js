@@ -69,8 +69,7 @@ export default function ChatContextProvider(props) {
                     setChats(res?.data);
                     for (let i = 0; i < res?.data?.length; i++) {
                         if (
-                            (res?.data[i]?.is_read && blogId) !==
-                                res?.data[i]?.from_blog_id &&
+                            blogId !== res?.data[i]?.from_blog_id &&
                             res?.data[i]?.is_read === false
                         ) {
                             count++;

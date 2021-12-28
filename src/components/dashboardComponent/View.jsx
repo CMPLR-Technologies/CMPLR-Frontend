@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CreatePost from '../createPost/View';
-import VerifyEmail from '../verifyEmail/View';
+import VerifyEmail from '../VerifyEmail/View';
 import VerticalPostsView from '../partials/VerticalPostsView';
 import { apiBaseUrl } from '../../config.json';
 import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
