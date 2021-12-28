@@ -98,7 +98,7 @@ export default function MainRoutes() {
                             element={<Settings page={'apps'} />}
                         />
                         <Route
-                            path="/account/delete"
+                            path="/account/delete/:blogName"
                             element={<DeleteAccount setWithNav={setWithNav} />} //WITHOUTNAV
                         />
                         <Route

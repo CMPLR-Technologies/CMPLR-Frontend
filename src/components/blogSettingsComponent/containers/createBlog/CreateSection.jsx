@@ -11,14 +11,15 @@ export default function CreateSection({
     checkBox,
     password,
     errorMsg,
-    setErrorMsg
+    setErrorMsg,
+    setWithNav
 }) {
     // const { setUser } = useContext(UserContext);
     // useRedirect();
     const history = useNavigate();
     const user = JSON.parse(localStorage.getItem('user'));
     return (
-        <div className="security" id="section-create-blog">
+        <div className="security" id="section-create-blog-btns">
             <div
                 className="delete"
                 id="section"
@@ -38,16 +39,19 @@ export default function CreateSection({
                             errorMsg,
                             setErrorMsg,
                             history,
-                            user?.token
+                            user?.token,
+                            setWithNav
                         );
                     }}
                 ></AuthBtn>
                 <AuthBtn
                     dataTestid="cancel-btn"
+                    id="cancel-btn"
                     className="button"
                     text="Cancel"
                     handleClick={() => {
                         // setUser
+                        setWithNav(true);
                         history('/dashboard');
                     }}
                 ></AuthBtn>
@@ -61,5 +65,6 @@ CreateSection.propTypes = {
     checkBox: PropsTypes.bool.isRequired,
     password: PropsTypes.string.isRequired,
     errorMsg: PropsTypes.array.isRequired,
-    setErrorMsg: PropsTypes.func.isRequired
+    setErrorMsg: PropsTypes.func.isRequired,
+    setWithNav: PropsTypes.func.isRequired
 };

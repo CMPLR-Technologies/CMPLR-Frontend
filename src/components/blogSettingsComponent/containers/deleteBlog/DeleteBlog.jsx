@@ -26,6 +26,10 @@ export default function DeleteBlog({ setWithNav }) {
     }, []);
     console.log(parseInt(blogId));
     console.log(user?.userData?.primary_blog_id);
+    window.addEventListener('popstate', function (event) {
+        setWithNav(true);
+    });
+
     return (
         <div
             data-testid="delete-account-container"

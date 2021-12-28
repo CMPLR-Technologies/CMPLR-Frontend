@@ -18,7 +18,8 @@ export function createBlog(
     errorMsg,
     setErrorMsg,
     history,
-    token
+    token,
+    setWithNav
 ) {
     if (checkCreateBlog(title, url, privacy, password, errorMsg, setErrorMsg)) {
         setErrorMsg([]);
@@ -39,6 +40,7 @@ export function createBlog(
         })
             .then(res => {
                 if (res?.data?.meta?.status_code === 201) {
+                    setWithNav(true);
                     history(`/blog/${title}`);
                     setErrorMsg([]);
                 }
@@ -61,7 +63,6 @@ export function deleteBlog(
     token,
     isPrimaryBlog
 ) {
-    console.log(isPrimaryBlog);
     if (checkDeleteBlog(password, email, setErrorMsg)) {
         //TODO if its the primary key clear local storage and refresh
         //TODO If its not the primary key then just delete the blog and return to settings
@@ -80,10 +81,8 @@ export function deleteBlog(
             }
         })
             .then(res => {
-                console.log('inside res');
                 if (res?.data?.meta?.status_code === 200) {
                     if (isPrimaryBlog === true) {
-                        console.log('inside true');
                         localStorage.clear();
                         history(`/login`);
                     } else {
@@ -92,7 +91,6 @@ export function deleteBlog(
                 }
             })
             .catch(err => {
-                console.log('inside err');
                 if (err?.response?.status === 404) {
                     setErrorMsg('blog name is not available');
                 } else if (err?.response?.status === 403) {
@@ -143,9 +141,7 @@ export function updatePropertyInDb(
                 updateProperty(property, propertyValue);
             }
         })
-        .catch(() => {
-            console.log(camelToSnakeCase(property));
-        });
+        .catch(() => {});
 }
 
 export function getBlocksOfBlog(token, blogName, updateProperty, setErrorMsg) {
@@ -160,7 +156,6 @@ export function getBlocksOfBlog(token, blogName, updateProperty, setErrorMsg) {
     })
         .then(res => {
             if (res?.data?.meta?.status_code === 200) {
-                console.log(res?.data?.response?.blocks);
                 updateProperty('blocks', res?.data?.response?.blocks);
             }
         })

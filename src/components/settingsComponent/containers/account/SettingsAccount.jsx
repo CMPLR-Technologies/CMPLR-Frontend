@@ -25,7 +25,7 @@ export default function SettingsAccount() {
                         <PasswordSection />
                         <SecuritySection />
                         <FilteringSection />
-                        <DeleteSection />
+                        <DeleteSection blogName={user?.userData?.blog_name} />
                     </div>
                 </div>
             </div>

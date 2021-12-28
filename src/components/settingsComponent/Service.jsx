@@ -183,7 +183,6 @@ export function deleteFilteredTag(
     filteringType,
     token
 ) {
-    console.log(tags);
     axios({
         method: 'put',
         headers: {
@@ -217,7 +216,6 @@ export function getUserBlogs(setBlogs, token) {
     })
         .then(res => {
             if (res.data.meta.status_code === 200) {
-                console.log(res.data.response.blogs);
                 setBlogs(res.data.response.blogs);
             } else {
                 setBlogs([]);
