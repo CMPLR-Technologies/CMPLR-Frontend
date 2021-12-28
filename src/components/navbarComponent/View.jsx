@@ -223,6 +223,12 @@ export default function Navbar() {
             .log-out-overlay{
                 background: rgb(${themes[theme].navy});
             }
+            .log-out-overlay-text{
+                color: rgb(${themes[theme].whiteOnDark});
+            }
+            .log-out-overlay .AuthBtn {
+                color: rgb(${themes[theme].navy});
+            }
             .popup-newmessage{
                 background: rgb(${themes[theme].white});
             }
