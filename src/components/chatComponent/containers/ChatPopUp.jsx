@@ -171,7 +171,7 @@ export default function ChatPopUp() {
 
         // eslint-disable-next-line no-useless-escape
         channel.bind('App\\Events\\MessageSent', data => {
-            console.log('d5l');
+            //console.log('d5l');
             let newMsg = {
                 // eslint-disable-next-line camelcase
                 from_blog_id: data?.sender_id,
@@ -185,7 +185,7 @@ export default function ChatPopUp() {
             };
             // not me 
             if (newMsg.from_blog_id !== senderId) {
-                console.log('d5lrec');
+                //console.log('d5lrec');
 
                 if (conversationMsg) {
                     setConversationMsg(prevData => {

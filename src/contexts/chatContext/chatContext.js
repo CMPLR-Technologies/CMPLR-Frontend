@@ -40,14 +40,14 @@ export default function ChatContextProvider(props) {
 
     const setUserBlog = userData => {
         let currBlogObject = null;
-        console.log(userData);
+       // console.log(userData);
         currBlogObject = {
             senderName: userData?.blog_name,
             senderId: userData?.primary_blog_id,
             senderPhoto: userData?.avatar,
             senderShape: userData?.avatar_shape
         };
-        console.log('s', currBlogObject, userData);
+        //console.log('s', currBlogObject, userData);
 
         setCurrBlog(currBlogObject);
     };
@@ -202,7 +202,7 @@ export default function ChatContextProvider(props) {
         )
             .then(res => {
                 if (!res.error) {
-                    console.log('send message succfully!');
+                   // console.log('send message succfully!');
                     let newMsg = {
                         // eslint-disable-next-line camelcase
                         from_blog_id: senderId,
@@ -243,7 +243,7 @@ export default function ChatContextProvider(props) {
         )
             .then(res => {
                 if (!res.error) {
-                    console.log('deleted chat succfully!');
+                    //console.log('deleted chat succfully!');
                     setConversationMsg([]);
                     closeChatPopup();
                     // to do delete it form chats

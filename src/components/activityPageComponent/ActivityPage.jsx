@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 import HeaderGraph from './containers/HeaderGraph';
-import BiggestFans from './containers/BiggestFans';
+//import BiggestFans from './containers/BiggestFans';
 import Notification from '../navbarComponent/containers/Notifications/Notifications';
 import { useEffect } from 'react';
 import { apiBaseUrl } from '../../config.json';
@@ -55,7 +55,7 @@ export default function ActivityPage() {
                         let notesC = 0;
                         let nFC = 0;
                         let tFC = 0;
-                        console.log(res.data.response.data);
+                        //console.log(res.data.response.data);
                         res.data.response.data.forEach(element => {
                             //notes: 0, new followers: 0, total followers: 0, date: '23-12-2021'
                             arrNotes.push(element.notes);
@@ -112,7 +112,7 @@ export default function ActivityPage() {
                     tFCount={tFCount}
                     loading={loading}
                 />
-                <BiggestFans />
+                {/*<BiggestFans />*/}
                 <div className='Lhead'>Latest Notes</div>
                 <Notification
                     activity={true}

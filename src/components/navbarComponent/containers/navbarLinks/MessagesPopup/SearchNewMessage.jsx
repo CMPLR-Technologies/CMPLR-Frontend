@@ -25,7 +25,7 @@ export default function SearchNewMessage(props) {
         if (search.length > 0 && search.trim() !== '') {
             try {
                 setSearchResLoading(true);
-                console.log('here');
+               // console.log('here');
                 const res = await Axios.get(`${apiBaseUrl}/search/${search}`);
                 console.log(res.data.response);
                 setSearchRes(res.data.response);
