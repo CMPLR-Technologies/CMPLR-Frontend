@@ -89,7 +89,7 @@ export default function MobileHashtagBar(props) {
                                         </button>
                                     )}
                                 </div>
-                                <a className="kckjF" href="#">
+                                <a className="kckjF" href="/#">
                                     <div className="CrU4O">
                                         <span>Posted by</span>
                                     </div>

@@ -69,18 +69,32 @@ export default function ChatPopUp() {
     const messagesEndRef = useRef(null);
     const messagesEndRef10 = useRef(null);
     const scrollToBottom = () => {
-        messagesEndRef?.current?.scrollIntoView({
-            behavior: 'auto',
-            block: 'end',
-            inline: 'nearest'
-        });
+        //for production use
+        if (
+            messagesEndRef &&
+            messagesEndRef.current &&
+            messagesEndRef.current.scrollIntoView
+        ) {
+            messagesEndRef.current.scrollIntoView({
+                behavior: 'auto',
+                block: 'end',
+                inline: 'nearest'
+            });
+        }
     };
     const scrollToBottom10 = () => {
-        messagesEndRef10?.current?.scrollIntoView({
-            behavior: 'auto',
-            block: 'end',
-            inline: 'nearest'
-        });
+        //for production use
+        if (
+            messagesEndRef10 &&
+            messagesEndRef10.current &&
+            messagesEndRef10.current.scrollIntoView
+        ) {
+            messagesEndRef10.current.scrollIntoView({
+                behavior: 'auto',
+                block: 'end',
+                inline: 'nearest'
+            });
+        }
     };
     // const scrollToBottom = useScrollToBottom();
     useEffect(() => {

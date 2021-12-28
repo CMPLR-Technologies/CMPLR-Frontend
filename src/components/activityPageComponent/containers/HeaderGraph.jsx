@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import Skeleton from '@mui/material/Skeleton';
+import PropTypes from 'prop-types';
 
 import {
     Chart as ChartJS,
@@ -22,22 +23,15 @@ ChartJS.register(
     Tooltip,
     Legend
 );
-export default function HeaderGraph() {
+export default function HeaderGraph(props) {
     const [activeLink, setActiveLink] = useState(0);
     const colors = ['#00B8FF', '#FF62CE', '#00CF35'];
     const name = ['Notes', 'New followers', 'Total followers'];
-    const loading = false;
-
+    //const loading = false;
+    const { dates, notes, nF, tF, loading, notesCount, nFCount, tFCount } =
+        props;
     const data = {
-        labels: [
-            '12/26/2021',
-            '12/26/2021',
-            '12/26/2021',
-            '12/26/2021',
-            '12/26/2021',
-            '12/26/2021',
-            '12/26/2021'
-        ],
+        labels: dates,
         datasets: [
             {
                 label: name[activeLink],
@@ -58,7 +52,7 @@ export default function HeaderGraph() {
                 pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
-                data: [65, 59, 80, 81, 56, 55, 40]
+                data: activeLink === 0 ? notes : activeLink === 1 ? nF : tF
             }
         ]
     };
@@ -83,8 +77,10 @@ export default function HeaderGraph() {
             }
         }
     };
+
     return (
         <div className="graph">
+            <div className="Lhead">Last week</div>
             <div className="gra">
                 {loading ? (
                     <Skeleton height={400} />
@@ -97,24 +93,34 @@ export default function HeaderGraph() {
                     className={`box ${activeLink === 0 ? 'active0' : ''}`}
                     onClick={() => setActiveLink(0)}
                 >
-                    <span>0</span>
+                    <span>{notesCount}</span>
                     <span>Notes</span>
                 </span>
                 <span
                     className={`box ${activeLink === 1 ? 'active1' : ''}`}
                     onClick={() => setActiveLink(1)}
                 >
-                    <span>0</span>
+                    <span>{nFCount}</span>
                     <span>New followers</span>
                 </span>
                 <span
                     className={`box ${activeLink === 2 ? 'active2' : ''}`}
                     onClick={() => setActiveLink(2)}
                 >
-                    <span>0</span>
+                    <span>{tFCount}</span>
                     <span>Total followers</span>
                 </span>
             </div>
         </div>
     );
 }
+HeaderGraph.propTypes = {
+    dates: PropTypes.array.isRequired,
+    notes: PropTypes.array.isRequired,
+    nF: PropTypes.array.isRequired,
+    tF: PropTypes.array.isRequired,
+    notesCount:PropTypes.number.isRequired,
+    nFCount:PropTypes.number.isRequired,
+    tFCount:PropTypes.number.isRequired,
+    loading: PropTypes.bool.isRequired
+};

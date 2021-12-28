@@ -5461,9 +5461,18 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   flex-direction: column;
   margin-bottom: 50px;
 }
+.activity-home .Lhead {
+  font-size: 1.125rem;
+  font-weight: 400;
+  justify-content: space-between;
+  line-height: 1.333;
+  margin: 0 15px 10px 0;
+  display: block;
+}
 .activity-home .graph .gra {
   width: 625px;
   height: 250px;
+  overflow: hidden;
 }
 .activity-home .btns {
   display: flex;
@@ -5580,6 +5589,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
     width: 100%;
     height: 60vw;
     margin: 70px 0px 0 0px;
+    overflow: hidden;
   }
   .activity-home .btns {
     display: flex;
@@ -7292,6 +7302,7 @@ body .settings .container1 .subcontainer #section-create-blog .sub-section-right
   flex-direction: column;
   align-items: center;
   max-width: 625px;
+  width: 100%;
 }
 
 .arrow-icon {
@@ -7498,6 +7509,11 @@ body .settings .container1 .subcontainer #section-create-blog .sub-section-right
 
   .explore-nav {
     justify-content: center;
+  }
+  .explore-nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
   }
 
   .explore-nav-icons {

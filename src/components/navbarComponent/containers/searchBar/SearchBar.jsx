@@ -65,7 +65,7 @@ export default function SearchBar(props) {
                     focus=""
                     onKeyUp={e => {
                         if (e.key === 'Enter' && placeHolder !== '') {
-                            searchFollower(searchWord);
+                            if (searchFollower) searchFollower(searchWord);
                         }
                     }}
                     className="search-input"
