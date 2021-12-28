@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { apiBaseUrl } from '../../../../config.json';
 import axios from 'axios';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { NavLink } from 'react-router-dom';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import propTypes from 'prop-types';
+import {
+    ThemeContext,
+    themes
+} from '../../../../contexts/themeContext/ThemeContext';
+import { getNotifications } from '../../Service';
 
 NotfHeader.propTypes = {
     userBlogName: propTypes.string,
@@ -12,7 +17,14 @@ NotfHeader.propTypes = {
     filterNotf: propTypes.func
 };
 export default function NotfHeader(props) {
-    const { userBlogName, userAvatar, filterNotf } = props;
+    const theme = useContext(ThemeContext)[0];
+    const {
+        userBlogName,
+        userAvatar,
+        filterNotf,
+        setNotfArray,
+        setUnseenNotf
+    } = props;
     const [selected, setSelected] = useState(1);
     const [blogs, setBlogs] = useState([]);
     const [blogsView, setBlogsView] = useState(false);
@@ -57,7 +69,7 @@ export default function NotfHeader(props) {
                                         <span className="icon_arrow_carrot_down">
                                             <RiArrowDropDownLine
                                                 style={{
-                                                    fill: 'black'
+                                                    fill: `rgb(${themes[theme].black})`
                                                 }}
                                             />
                                         </span>
@@ -68,28 +80,34 @@ export default function NotfHeader(props) {
                                         {blogs &&
                                             blogs.map((blog, index) => (
                                                 <div
+                                                    onClick={() =>
+                                                        getNotifications(
+                                                            blog?.blog_name,
+                                                            token,
+                                                            setNotfArray,
+                                                            setUnseenNotf
+                                                        )
+                                                    }
                                                     data-testid="AccountPopupBlogsContainer"
                                                     className="account-popup-blogs-container"
                                                     key={index}
                                                 >
-                                                    <NavLink
-                                                        to={`/blog/${blog?.blog_name}`}
+                                                    <div
                                                         className="account-popup-blog-head-img"
                                                     >
                                                         <img
                                                             src={blog?.avatar}
                                                             alt="ava"
                                                         />
-                                                    </NavLink>
-                                                    <NavLink
-                                                        to={`/blog/${blog?.blog_name}`}
+                                                    </div>
+                                                    <div
                                                         className="account-popup-blog-head-text"
                                                     >
                                                         <h1>
                                                             {blog?.blog_name}
                                                         </h1>
                                                         <div>{blog?.title}</div>
-                                                    </NavLink>
+                                                    </div>
                                                 </div>
                                             ))}
                                     </div>

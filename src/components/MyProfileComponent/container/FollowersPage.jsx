@@ -33,15 +33,20 @@ export default function FollowersPage(props) {
         Axios({
             method: 'get',
             url: `${apiBaseUrl}/blog/${input}/followed_by`
-        }).then(res => {
-            if (res.data.meta.status_code === 200) {
-                if (res.data.response.followed_by) {
-                    setFollowResultMessage(`${input} followed you!`);
-                } else if (res.data.response.followed_by === false) {
-                    setFollowResultMessage(`${input} doesn't followe you!`);
+        })
+            .then(res => {
+                if (res.data.meta.status_code === 200) {
+                    if (res.data.response.followed_by) {
+                        setFollowResultMessage(`${input} followed you!`);
+                    } else if (res.data.response.followed_by === false) {
+                        setFollowResultMessage(`${input} doesn't followe you!`);
+                    }
                 }
-            }
-        });
+            })
+            .catch(err => {
+                if (err.response.status === 404)
+                    setFollowResultMessage(`Blog name is not available`);
+            });
     };
 
     return (

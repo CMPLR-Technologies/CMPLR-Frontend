@@ -233,7 +233,7 @@ export default function PostComponent(props) {
     }
 
     .msg-heading, .msg-description{
-        color:rgb(${themes[theme].whiteOnDark});
+        color:rgb(${themes[theme].whiteOnDark},.65);
     }
     .notes-view-container {
         background-color:rgb(${themes[theme].white});
@@ -455,7 +455,7 @@ export default function PostComponent(props) {
                                             postTime={postTime}
                                             userBlogName={userBlogName}
                                             blogName={blogName}
-                                            postLink={`${apiBaseUrl}/blog/view/${blogName}/${blogId}/posts/${postId}`}
+                                            postLink={`${window.location.host}/blog/view/${blogName}/${blogId}/posts/${postId}`}
                                             postId={postId}
                                             following={following}
                                             blogUrl={blogUrl}
@@ -489,7 +489,7 @@ export default function PostComponent(props) {
                         <Tags tagsArray={tags} />
                         <Footer
                             isAuthor={userBlogName === blogName}
-                            postLink={`${apiBaseUrl}/blog/view/${blogName}/${blogId}/posts/${postId}`}
+                            postLink={`${window.location.host}/blog/view/${blogName}/${blogId}/posts/${postId}`}
                             numberNotes={numberNotes}
                             reblogKey={reblogKey}
                             postId={postId}

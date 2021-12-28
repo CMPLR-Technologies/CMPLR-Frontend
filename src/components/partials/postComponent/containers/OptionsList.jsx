@@ -20,7 +20,7 @@ export default function OptionsList(props) {
     } = props;
     const user = JSON.parse(localStorage.getItem('user'));
     useEffect(() => {
-        setBlogName(blogName);
+        if (setBlogName !== undefined) setBlogName(blogName);
     }, []);
     return (
         <div
