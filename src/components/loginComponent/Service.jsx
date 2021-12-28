@@ -72,7 +72,7 @@ const responseGoogleSuccess = (
         });
 };
 const responseGoogleFailure = (res, setError) => {
-    setError(res.error);
+    if (res.error !== 'idpiframe_initialization_failed') setError(res.error);
 };
 
 export { logUser, responseGoogleSuccess, responseGoogleFailure };
