@@ -141,12 +141,12 @@ export default function MainRoutes() {
                             path="/blog/:blogUrlIdf/*"
                             element={<MyProfile />}
                         />
-                        <Route  path="/blog/:blogUrlIdf/activity"element={<ActivityPage />} />
-
                         <Route
-                            path="/explore/recommended-for-you"
-                            element={<Explore />}
+                            path="/blog/:blogUrlIdf/activity"
+                            element={<ActivityPage />}
                         />
+
+                        <Route path="/explore/:type" element={<Explore />} />
                         <Route
                             path="/messaging"
                             element={<MessagesPageMobile />}

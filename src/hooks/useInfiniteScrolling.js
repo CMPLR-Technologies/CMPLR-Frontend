@@ -58,7 +58,7 @@ const useInfiniteScrolling = (url, response = true) => {
         };
     }, [url]);
 
-    return { error, data, isPending, hasMore, total };
+    return { error, data, isPending, hasMore, total, setData };
 };
 
 export default useInfiniteScrolling;

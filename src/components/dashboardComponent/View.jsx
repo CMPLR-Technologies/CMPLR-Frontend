@@ -13,7 +13,6 @@ export default function Dashboard() {
     const [response, setResponse] = useState([]);
     // eslint-disable-next-line no-unused-vars
     const user = JSON.parse(localStorage.getItem('user'));
-    const blogIdentifier = 'yahia.tumbler.com';
     const {
         error,
         data: posts,
