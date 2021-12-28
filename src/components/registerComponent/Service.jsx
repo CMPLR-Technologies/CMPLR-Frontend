@@ -147,7 +147,6 @@ export const handleGoogleAuth = (
             })
             .catch(err => {
                 const errorArr = getServiceErrors(err);
-                console.log(err, errorArr);
                 if (err.response)
                     setErrorMessage(
                         errorArr?.length !== 0
