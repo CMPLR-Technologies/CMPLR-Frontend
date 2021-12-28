@@ -55,7 +55,8 @@ export default function PostComponent(props) {
         themeDeactivate,
         draft
     } = props;
-    const theme = useContext(ThemeContext)[0];
+    let theme = useContext(ThemeContext)[0];
+    if (themeDeactivate) theme = 'trueBlue';
     const [isOptionListOpen, setIsOptionListOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
@@ -506,7 +507,7 @@ export default function PostComponent(props) {
                     </div>
                 )}
             </article>
-            {!themeDeactivate && <style>{css}</style>}
+            {<style>{css}</style>}
         </div>
     );
 }

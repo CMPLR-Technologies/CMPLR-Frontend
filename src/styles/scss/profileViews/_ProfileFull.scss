@@ -1,20 +1,18 @@
 .profile-full {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: black;
-    height: 100vh;
-    margin: auto;
-    overflow-x: hidden;
-    overflow-y: auto;
-    overscroll-behavior-y: auto;
-    width: 100%;
-    position: relative;
-    background-color: white;
-
     &-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: black;
+        height: 100vh;
+        margin: auto;
+        //overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior-y: auto;
+        width: 100vw;
+        background-color: white;
+        position: relative;
         .post-wrapper {
-            left: 0;
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -25,8 +23,18 @@
             flex-direction: row;
             justify-content: center;
             align-items: flex-start;
+            width: 100%;
+            padding: 0 20px;
+            &-side {
+                margin-left: 30px;
+                margin-top: 10px;
+                width: 300px;
+                font-weight: 700;
+                font-size: 13px;
+            }
         }
         &-nav {
+            z-index: 10000;
             display: flex;
             flex-direction: row;
             justify-content: center;
@@ -34,6 +42,7 @@
             padding: 10px;
             position: sticky;
             top: 55px;
+            width: 100%;
             background-color: white;
             &-link {
                 margin: 0 10px;
@@ -48,8 +57,10 @@
             }
         }
         &-div {
+            width: 100%;
             position: sticky;
-            top: 40px;
+            z-index: 10000;
+            top: -295px;
             background-color: white;
             &-bg {
                 object-fit: cover;
@@ -64,9 +75,9 @@
         &-avatar {
             position: absolute;
             left: 50%;
-            top: calc(300px + 50px);
             transform: translateX(-50%) translateY(-50%);
             width: 96px;
+            z-index: 10001;
             height: 96px;
             object-fit: cover;
             border: 5px solid white;
@@ -77,11 +88,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 100px;
+            width: 100%;
+            //padding: calc(10vw + 10px);
             padding-top: 48px;
             padding-bottom: 20px;
 
             &-link {
+                width: 100%;
                 text-decoration: none;
                 color: black;
             }
@@ -109,5 +122,24 @@
                 text-align: center;
             }
         }
+    }
+}
+
+.profile-following {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+    .explore-posts {
+        justify-content: center;
+    }
+    .profile-mini {
+        margin: 10px;
+        border: #dddddd solid 2px;
+        border-radius: 4px;
     }
 }

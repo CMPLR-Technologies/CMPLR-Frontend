@@ -5,6 +5,7 @@ export default function FilteringSection() {
     const [filteringTagsVersion1, setFilteringTagsVersion1] = useState(true);
     const [filteringContentVersion1, setFilteringContentVersion1] =
         useState(true);
+
     return (
         <>
             <div className="email" id="section">

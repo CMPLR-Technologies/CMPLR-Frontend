@@ -13,63 +13,7 @@ export default function BiggestFans() {
                     shape="cirle"
                 />
                 <BiggestFansItem
-                    key="1"
-                    blogName="gaser"
-                    blogId="1"
-                    photo="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"
-                    shape="cirle"
-                />
-                <BiggestFansItem
-                    key="1"
-                    blogName="gaser"
-                    blogId="1"
-                    photo="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"
-                    shape="cirle"
-                />
-                <BiggestFansItem
-                    key="1"
-                    blogName="gaser"
-                    blogId="1"
-                    photo="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"
-                    shape="cirle"
-                />
-                <BiggestFansItem
-                    key="1"
-                    blogName="gaser"
-                    blogId="1"
-                    photo="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"
-                    shape="cirle"
-                />
-                <BiggestFansItem
-                    key="1"
-                    blogName="gaser"
-                    blogId="1"
-                    photo="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"
-                    shape="cirle"
-                />
-                <BiggestFansItem
-                    key="1"
-                    blogName="gaser"
-                    blogId="1"
-                    photo="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"
-                    shape="cirle"
-                />
-                <BiggestFansItem
-                    key="1"
-                    blogName="gaser"
-                    blogId="1"
-                    photo="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"
-                    shape="cirle"
-                />
-                <BiggestFansItem
-                    key="1"
-                    blogName="gaser"
-                    blogId="1"
-                    photo="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"
-                    shape="cirle"
-                />
-                <BiggestFansItem
-                    key="1"
+                    key="2"
                     blogName="gaser"
                     blogId="1"
                     photo="https://assets.tumblr.com/images/default_avatar/cube_open_64.png"

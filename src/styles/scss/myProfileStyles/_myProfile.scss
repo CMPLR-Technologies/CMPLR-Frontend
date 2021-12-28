@@ -254,3 +254,12 @@
     width: 540px;
     margin-left: 85px;
 }
+
+// mobile screen
+@media screen and (max-width: 960px) {
+    .dashboard-profile {
+        .posts-region {
+            width: 100%;
+        }
+    }
+}

@@ -1,17 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
     themes,
     ThemeContext
 } from '../../../contexts/themeContext/ThemeContext';
+import { followAccount } from '../../followingComponent/Service';
 
 export default function BlogInfo({ blogName, blogDesc, blogIcon }) {
     const theme = useContext(ThemeContext)[0];
+    const [followMsg, setFollowMsg] = useState('');
+    const user = JSON.parse(localStorage.getItem('user'));
 
     return (
         <div className="dashboard-blogInfo" style={{ position: 'relative' }}>
-            <a href="/">
-                <div className="blogInfo-row">
+            <div className="blogInfo-row">
+                <button className="full-width-btn">
                     <img src={blogIcon} alt="" />
                     <div className="blogInfo-column">
                         <p
@@ -29,17 +32,23 @@ export default function BlogInfo({ blogName, blogDesc, blogIcon }) {
                             {blogDesc}
                         </p>
                     </div>
-                    <button
-                        style={{
-                            color: `rgb(${themes[theme].accent})`
-                        }}
-                        className="to-end init-btn follow-btn"
-                        href="/"
-                    >
-                        Follow
-                    </button>
-                </div>
-            </a>
+                </button>
+
+                <button
+                    style={{
+                        color: `rgb(${themes[theme].accent})`
+                    }}
+                    className="to-end init-btn follow-btn"
+                    onClick={() => {
+                        user &&
+                            followAccount(user.token, blogName, setFollowMsg);
+                    }}
+                >
+                    {followMsg && followMsg.includes('successfully')
+                        ? ''
+                        : 'Following'}
+                </button>
+            </div>
             <button className="init-btn remove-btn">
                 <svg
                     width="10"
@@ -50,6 +59,17 @@ export default function BlogInfo({ blogName, blogDesc, blogIcon }) {
                     <path d="M14 2.8L11.2 0 7 4.2 2.8 0 0 2.8 4.2 7 0 11.2 2.8 14 7 9.8l4.2 4.2 2.8-2.8L9.8 7 14 2.8z"></path>
                 </svg>
             </button>
+
+            {followMsg && (
+                <div
+                    style={{
+                        color: `rgba(${themes[theme].whiteOnDark}, 0.65)`,
+                        marginTop: '10px'
+                    }}
+                >
+                    {followMsg}
+                </div>
+            )}
         </div>
     );
 }

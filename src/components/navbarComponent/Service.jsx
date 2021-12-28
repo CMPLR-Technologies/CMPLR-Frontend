@@ -8,7 +8,6 @@ const getSearchRes = async (searchWord, setSearchResults, setLoading) => {
         setSearchResults(res.data.response);
         setLoading(false);
     } catch (error) {
-        console.log(error);
         return null;
     }
 };

@@ -4,6 +4,7 @@ import ChatMessages from './ChatMessages';
 import ChatOption from './ChatOption';
 import useInfiniteScrollingChat from '../../../hooks/useInfinteScrollingChat';
 import { apiBaseUrl } from '../../../config.json';
+import Pusher from 'pusher-js';
 
 /**
  * ChatPopUp Component
@@ -25,7 +26,8 @@ export default function ChatPopUp() {
         sendMessage,
         pageNumber,
         setConversationMsg,
-        conversationMsg
+        conversationMsg,
+        currBlog
     } = useContext(ChatContext);
 
     let {
@@ -42,7 +44,7 @@ export default function ChatPopUp() {
         data: msgs,
         isPending,
         hasMore,
-        blogData,
+        //blogData,
         loadingFirstPage
     } = useInfiniteScrollingChat(
         `${apiBaseUrl}/messaging/conversation/${senderId}/${receiverId}?page=${pageNumber}`
@@ -67,18 +69,32 @@ export default function ChatPopUp() {
     const messagesEndRef = useRef(null);
     const messagesEndRef10 = useRef(null);
     const scrollToBottom = () => {
-        messagesEndRef?.current?.scrollIntoView({
-            behavior: 'auto',
-            block: 'end',
-            inline: 'nearest'
-        });
+        //for production use
+        if (
+            messagesEndRef &&
+            messagesEndRef.current &&
+            messagesEndRef.current.scrollIntoView
+        ) {
+            messagesEndRef.current.scrollIntoView({
+                behavior: 'auto',
+                block: 'end',
+                inline: 'nearest'
+            });
+        }
     };
     const scrollToBottom10 = () => {
-        messagesEndRef10?.current?.scrollIntoView({
-            behavior: 'auto',
-            block: 'end',
-            inline: 'nearest'
-        });
+        //for production use
+        if (
+            messagesEndRef10 &&
+            messagesEndRef10.current &&
+            messagesEndRef10.current.scrollIntoView
+        ) {
+            messagesEndRef10.current.scrollIntoView({
+                behavior: 'auto',
+                block: 'end',
+                inline: 'nearest'
+            });
+        }
     };
     // const scrollToBottom = useScrollToBottom();
     useEffect(() => {
@@ -123,6 +139,69 @@ export default function ChatPopUp() {
     const partialClose = () => {
         paritialCloseChatPopup();
     };
+
+    //pusher work
+    useEffect(() => {
+        //const PUSHER_APP_ID = 1315145;
+        const PUSHER_APP_KEY = 'fda8bb30758c845460d8';
+        //const PUSHER_APP_SECRET = '57f7486c5a4270ce92d8';
+        const PUSHER_APP_CLUSTER = 'eu';
+        Pusher.logToConsole = true;
+        let token = JSON.parse(localStorage.getItem('user'));
+        const pusher = new Pusher(PUSHER_APP_KEY, {
+            cluster: PUSHER_APP_CLUSTER,
+            authEndpoint: '/broadcasting/auth',
+            auth: {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }
+        });
+        //private-chat-10
+        let com = '';
+        if (currPopUpOpenChat.receiverId > senderId) {
+            com = senderId + '-' + currPopUpOpenChat.receiverId;
+        } else {
+            com = currPopUpOpenChat.receiverId + '-' + senderId;
+        }
+        let keyC = 'chat-' + com;
+        const channel = pusher.subscribe(keyC);
+
+        // eslint-disable-next-line no-useless-escape
+        channel.bind('App\\Events\\MessageSent', data => {
+            //console.log('d5l');
+            let newMsg = {
+                // eslint-disable-next-line camelcase
+                from_blog_id: data?.sender_id,
+                // eslint-disable-next-line camelcase
+                to_blog_id: data?.rec_id,
+                content: data?.message?.content,
+                // eslint-disable-next-line camelcase
+                is_read: false,
+                // eslint-disable-next-line camelcase
+                created_at: new Date()
+            };
+            // not me 
+            if (newMsg.from_blog_id !== senderId) {
+                //console.log('d5lrec');
+
+                if (conversationMsg) {
+                    setConversationMsg(prevData => {
+                        return [...prevData, newMsg];
+                    });
+                } else {
+                    let arr = [];
+                    arr.push(newMsg);
+                    setConversationMsg(arr);
+                }
+            }
+        });
+    }, []);
+    /* useEffect(()=>{
+        console.log(conversationMsg);
+    },[conversationMsg]);*/
     return (
         <div
             className={`chat-popup-container ${
@@ -143,9 +222,9 @@ export default function ChatPopUp() {
                     )}
 
                     <div className="names">
-                        <a href={senderName}>{senderName}</a>
+                        <a href={`blog/view/${senderName}/${senderId}/posts`}>{senderName}</a>
                         {' + '}
-                        <a href={receiverName}>{receiverName}</a>
+                        <a href={`blog/view/${receiverName}/${receiverId}/posts`}>{receiverName}</a>
                     </div>
                     <div className="btns">
                         <button onClick={openOption}>
@@ -175,9 +254,7 @@ export default function ChatPopUp() {
                     loadingFirstPage={loadingFirstPage}
                     receiverPhoto={receiverPhoto}
                     receiverShape={receiverShape}
-                    senderPhoto={
-                        'https://assets.tumblr.com/images/default_avatar/sphere_open_64.png'
-                    }
+                    senderPhoto={currBlog?.senderPhoto}
                     senderShape={'circle'}
                 />
 

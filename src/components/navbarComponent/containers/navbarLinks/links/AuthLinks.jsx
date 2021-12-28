@@ -101,7 +101,6 @@ export default function AuthLinks() {
     }, []);
 
     /*  const clickOpenPopup = () => {
-    console.log("closeg");
     setOpenPopup(!openPopup);
   };*/
     return (
@@ -189,11 +188,13 @@ export default function AuthLinks() {
                     {openAccountPopup && <AccountPopup />}
                 </div>
             </ClickAwayListener>
-            <Link to="/new">
-                <li className="link-icon pen">
+
+            <li className="link-icon pen">
+                <Link to="/new">
                     <i className="fas fa-pen"></i>
-                </li>
-            </Link>
+                </Link>
+            </li>
+
             {/* <Route
         path="/new"
         children={({ match }) => (

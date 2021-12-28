@@ -9,6 +9,8 @@ import { getBlogPosts, getFollowersList } from './Service';
 import ActivityPage from '../activityPageComponent/ActivityPage';
 import { chaneMobileView } from '../partials/postComponent/Controller';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
+//import { getFollowingList } from '../followingComponent/Service';
+
 export default function MyProfile() {
     const location = useLocation();
     const { blogUrlIdf } = useParams();

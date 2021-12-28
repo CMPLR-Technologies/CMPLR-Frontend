@@ -52,6 +52,7 @@
         flex-direction: column;
         align-items: center;
         max-width: 625px;
+        width: 100%;
     }
 }
 
@@ -277,6 +278,11 @@
 
     .explore-nav {
         justify-content: center;
+        &-links {
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
     }
 
     .explore-nav-icons {

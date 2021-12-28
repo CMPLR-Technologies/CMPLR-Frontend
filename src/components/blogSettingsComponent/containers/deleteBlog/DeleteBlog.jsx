@@ -14,9 +14,9 @@ import { useParams } from 'react-router-dom';
  * @returns {component} the component of DeleteBlog
  */
 
-export default function DeleteBlogCard({ setWithNav }) {
+export default function DeleteBlog({ setWithNav }) {
     const user = JSON.parse(localStorage.getItem('user'));
-    const { blogName } = useParams();
+    const { blogName, blogId } = useParams();
     const history = useNavigate();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -24,6 +24,10 @@ export default function DeleteBlogCard({ setWithNav }) {
     useEffect(() => {
         setWithNav(false);
     }, []);
+    window.addEventListener('popstate', function (event) {
+        setWithNav(true);
+    });
+
     return (
         <div
             data-testid="delete-account-container"
@@ -89,7 +93,11 @@ export default function DeleteBlogCard({ setWithNav }) {
                                 blogName,
                                 setErrorMsg,
                                 history,
-                                user?.token
+                                user?.token,
+                                parseInt(blogId) ===
+                                    user?.userData?.primary_blog_id
+                                    ? true
+                                    : false
                             )
                         }
                         dataTestid="button-reset-password"
@@ -108,7 +116,7 @@ export default function DeleteBlogCard({ setWithNav }) {
         </div>
     );
 }
-DeleteBlogCard.propTypes = {
+DeleteBlog.propTypes = {
     blogName: PropsTypes.string.isRequired,
     setWithNav: PropsTypes.func.isRequired
 };

@@ -88,6 +88,7 @@ export default function Navbar() {
             color: rgba(${themes[theme].whiteOnDark});
         }
 
+
         .link-icon.pen{
             background-color: rgb(${themes[theme].accent});
         }
@@ -205,6 +206,12 @@ export default function Navbar() {
             }
             .log-out-overlay{
                 background: rgb(${themes[theme].navy});
+            }
+            .log-out-overlay-text{
+                color: rgb(${themes[theme].whiteOnDark});
+            }
+            .log-out-overlay .AuthBtn {
+                color: rgb(${themes[theme].navy});
             }
             .popup-newmessage{
                 background: rgb(${themes[theme].white});

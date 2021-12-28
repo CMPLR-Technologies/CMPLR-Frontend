@@ -113,9 +113,9 @@ export function getPostNotes(blogIdentifier, setNotes, setCounts, postId) {
         .then(res => {
             setNotes(res.data.notes);
             let count = {
-                totalLikes: res.data['total_likes'],
-                totalReblogs: res.data['total_reblogs'],
-                totalReplys: res.data['total_replys']
+                totalLikes: res.data.total_likes,
+                totalReblogs: res.data.total_reblogs,
+                totalReplys: res.data.total_replys
             };
             setCounts(count);
         })

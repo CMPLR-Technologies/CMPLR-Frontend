@@ -6,14 +6,14 @@ import { apiBaseUrl } from '../../../config.json';
 export default function Sidebar() {
     const {
         error: blogsError,
-        data: blogs,
+        data,
         isPending: blogsIsPending
-    } = useFetch(`${apiBaseUrl}/recommended-blogs`);
+    } = useFetch(`${apiBaseUrl}/recommended/blogs?page=1`);
     return (
         <div className="dashboard-sidebar">
             <RecommendBlogs
                 blogsError={blogsError}
-                blogs={blogs}
+                blogs={data?.blogs}
                 blogsIsPending={false}
                 showExplore={blogsIsPending}
             />

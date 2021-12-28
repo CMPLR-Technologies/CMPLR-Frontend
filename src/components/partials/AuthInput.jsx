@@ -39,6 +39,7 @@ export default function AuthInput(props) {
                 readOnly={readonly}
                 data-testid={dataTestid}
                 onFocus={onFocus}
+                autoComplete="off"
             />
             {label && (
                 <label style={{ marginRight: '70px' }} htmlFor={id}>

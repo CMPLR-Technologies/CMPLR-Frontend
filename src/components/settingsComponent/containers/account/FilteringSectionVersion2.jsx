@@ -5,13 +5,18 @@ import AuthInput from '../../../partials/AuthInput';
 import PropTypes from 'prop-types';
 import { addFilteredTag } from '../../Service';
 import { deleteFilteredTag } from '../../Service';
+import {
+    ThemeContext,
+    themes
+} from '../../../../contexts/themeContext/ThemeContext';
 
 export default function FilteringSectionVersion2({
     setFilteringTagsVersion1,
     setFilteringContentVersion1,
     filteringType
 }) {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const theme = useContext(ThemeContext)[0];
+
     const { filteredTags } = useContext(SettingsContext);
     const { filteredContent } = useContext(SettingsContext);
     let functionTouse;
@@ -48,7 +53,7 @@ export default function FilteringSectionVersion2({
             <div className="add-tag-buttons">
                 <AuthBtn
                     text="Add"
-                    color="#00b8ff"
+                    color={`rgb(${themes[theme].accent})`}
                     handleClick={() => {
                         addFilteredTag(
                             //TODO check this attribute
@@ -57,15 +62,14 @@ export default function FilteringSectionVersion2({
                             tag,
                             setErrMsg,
                             url,
-                            filteringType,
-                            user?.token
+                            filteringType
                         );
                     }}
                     id="add-tag"
                 ></AuthBtn>
                 <AuthBtn
+                    color={`rgb(${themes[theme].black})`}
                     text="Back"
-                    color="#999999"
                     id="back-tag"
                     handleClick={() => functionTouse(true)}
                 ></AuthBtn>
@@ -77,7 +81,6 @@ export default function FilteringSectionVersion2({
                             <span>{tag}</span>
                             <AuthBtn
                                 text="Remove"
-                                color="#ffffff"
                                 id="delete-tag"
                                 className="delete-tag"
                                 handleClick={() => {
@@ -90,10 +93,10 @@ export default function FilteringSectionVersion2({
                                         tag,
                                         setErrMsg,
                                         url,
-                                        filteringType,
-                                        user?.token
+                                        filteringType
                                     );
                                 }}
+                                color={`rgb(${themes[theme].accent})`}
                             ></AuthBtn>
                         </li>
                     ))}

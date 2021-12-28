@@ -40,14 +40,14 @@ export default function ChatContextProvider(props) {
 
     const setUserBlog = userData => {
         let currBlogObject = null;
-        console.log(userData);
+       // console.log(userData);
         currBlogObject = {
             senderName: userData?.blog_name,
             senderId: userData?.primary_blog_id,
             senderPhoto: userData?.avatar,
             senderShape: userData?.avatar_shape
         };
-        console.log('s', currBlogObject, userData);
+        //console.log('s', currBlogObject, userData);
 
         setCurrBlog(currBlogObject);
     };
@@ -64,12 +64,17 @@ export default function ChatContextProvider(props) {
         let blogId = currBlog?.senderId; //user.userData.id;
         Axios.get(`${apiBaseUrl}/blog/messaging/${blogId}`, config)
             .then(res => {
+                //for production use
                 if (!res.error) {
                     setChats(res?.data);
-                    res?.data.forEach(chat => {
-                        if (!chat?.is_read && blogId !== chat?.from_blog_id)
+                    for (let i = 0; i < res?.data?.length; i++) {
+                        if (
+                            blogId !== res?.data[i]?.from_blog_id &&
+                            res?.data[i]?.is_read === false
+                        ) {
                             count++;
-                    });
+                        }
+                    }
                     setUnReadMsgs(count);
                 } else {
                     throw Error(res?.error);
@@ -80,7 +85,7 @@ export default function ChatContextProvider(props) {
             });
     };
     //this function load chats in navbavr dropdown list
-    const loadChats = async () => {
+    async function loadChats() {
         // to DO load real chat by axios request,, Doing it!
         const abortCont = new AbortController();
         const config = { signal: abortCont.signal };
@@ -93,7 +98,6 @@ export default function ChatContextProvider(props) {
         let blogId = currBlog?.senderId; //user.userData.id;
         setLoadingChats(true);
         //console.log(user);
-
         Axios.get(`${apiBaseUrl}/blog/messaging/${blogId}`, config)
             .then(res => {
                 if (!res.error) {
@@ -113,7 +117,7 @@ export default function ChatContextProvider(props) {
             });
         //setChats(charArr);
         //setLoadingChats(false);
-    };
+    }
 
     // this function open the chat popup when use click it from the navbar drop down list
     const openChatPopup = (
@@ -198,7 +202,7 @@ export default function ChatContextProvider(props) {
         )
             .then(res => {
                 if (!res.error) {
-                    console.log('send message succfully!');
+                   // console.log('send message succfully!');
                     let newMsg = {
                         // eslint-disable-next-line camelcase
                         from_blog_id: senderId,
@@ -239,7 +243,7 @@ export default function ChatContextProvider(props) {
         )
             .then(res => {
                 if (!res.error) {
-                    console.log('deleted chat succfully!');
+                    //console.log('deleted chat succfully!');
                     setConversationMsg([]);
                     closeChatPopup();
                     // to do delete it form chats
@@ -283,16 +287,12 @@ export default function ChatContextProvider(props) {
                 loadChats,
                 paritialCloseChatPopup,
                 sendMessage,
-
                 setErrLoadingChat,
                 errLoadingChat,
-
                 pageNumber,
                 setPageNumber,
-
                 conversationMsg,
                 setConversationMsg,
-
                 deleteChat,
                 clear,
                 setUserBlog,

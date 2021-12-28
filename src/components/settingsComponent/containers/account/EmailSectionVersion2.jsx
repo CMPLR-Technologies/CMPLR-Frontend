@@ -4,7 +4,14 @@ import AuthInput from '../../../partials/AuthInput';
 import AuthBtn from '../../../partials/AuthBtn';
 import { SettingsContext } from '../../../../contexts/settingsContext/SettingsContext';
 import PropTypes from 'prop-types';
+import {
+    ThemeContext,
+    themes
+} from '../../../../contexts/themeContext/ThemeContext';
+
 export default function EmailSectionVersion2({ setVersionOne }) {
+    const theme = useContext(ThemeContext)[0];
+
     const user = JSON.parse(localStorage.getItem('user'));
     const { email, updateProperty } = useContext(SettingsContext);
     const [newEmail, setNewEmail] = useState(email);
@@ -47,13 +54,13 @@ export default function EmailSectionVersion2({ setVersionOne }) {
                 <div className="update-email-btns">
                     <AuthBtn
                         text="Cancel"
-                        color="#999999"
+                        color={`rgb(${themes[theme].black})`}
                         id="update-email-btn-cancel"
                         handleClick={() => setVersionOne(true)}
                     ></AuthBtn>
                     <AuthBtn
                         text="Save"
-                        color="#00b8ff"
+                        color={`rgb(${themes[theme].accent})`}
                         handleClick={() => {
                             updateEmailInDb(
                                 newEmail,

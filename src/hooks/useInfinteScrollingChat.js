@@ -26,7 +26,6 @@ const useInfiniteScrollingChat = url => {
         Axios.get(url, config)
             .then(res => {
                 if (!res.error) {
-                    // console.log(res.data);
                     // load first page
                     if (!loadingFirstPage) {
                         setBlogData(res.data.blog_data);
@@ -42,14 +41,12 @@ const useInfiniteScrollingChat = url => {
                     setHasMore(res?.data?.next_url);
                     setError(null);
                 } else {
-                    //console.log("gaaaaa");
                     throw Error(res?.error);
                 }
             })
             .catch(err => {
                 if (err.name !== 'AbortError') {
                     setIsPending(false);
-                    console.log('here', err);
                     setError(err?.message);
                 }
             });

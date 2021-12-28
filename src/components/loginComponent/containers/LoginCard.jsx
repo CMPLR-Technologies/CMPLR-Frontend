@@ -105,7 +105,13 @@ export default function LoginCard() {
                 }
                 buttonText="Continue with Google"
                 onSuccess={res =>
-                    responseGoogleSuccess(res, navigate, setIsPending, setUser)
+                    responseGoogleSuccess(
+                        res,
+                        navigate,
+                        setIsPending,
+                        setUser,
+                        setUserBlog
+                    )
                 }
                 onFailure={res => responseGoogleFailure(res, setError)}
                 cookiePolicy={'single_host_origin'}

@@ -4,6 +4,7 @@ import PostComponent from '../../partials/postComponent/containers/PostComponent
 import { LinearProgress } from '@mui/material';
 import NoXAvailable from './NoXAvailable';
 import propTypes from 'prop-types';
+import { useMediaQuery } from 'react-responsive';
 PostsPage.propTypes = {
     response: propTypes.object,
     hasMore: propTypes.bool,
@@ -15,6 +16,9 @@ PostsPage.propTypes = {
 export default function PostsPage(props) {
     const { posts, isPending } = props.response;
     const { draft, mobileView } = props;
+    const isBigScreen = useMediaQuery({
+        query: '(min-device-width: 960px )'
+    });
     const user = JSON.parse(localStorage.getItem('user'));
     return (
         <>
@@ -32,6 +36,7 @@ export default function PostsPage(props) {
                             userBlogName={user?.blogName}
                             draft={draft}
                             isFollowed={draft}
+                            radar={!isBigScreen}
                         />
                     );
                 })}

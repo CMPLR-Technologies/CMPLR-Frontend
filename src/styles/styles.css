@@ -2597,12 +2597,10 @@ input:checked + .slider:before {
   }
   .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu .create-new-post {
     background: none;
-    color: inherit;
     border: none;
     padding: 0;
     font: inherit;
     outline: inherit;
-    background-color: #00b8ff;
     align-items: center;
     border-radius: 6px;
     line-height: 1.333;
@@ -3330,47 +3328,38 @@ body #reset-pass-logo {
   margin-top: 14px;
 }
 
-body .settings {
+body .settings .settings {
   box-sizing: border-box;
   display: flex;
-  margin: 50px auto 0;
+  margin: 100px auto 0;
   max-width: 990px;
   padding: 0 8px;
-  width: 100%;
 }
-body .settings .container1 {
+body .settings .settings .container1 {
   position: relative;
-  width: 100%;
-  background-color: white;
 }
-body .settings .container1 .subcontainer {
-  width: 100%;
+body .settings .settings .container1 .subcontainer {
   padding: 20px 24px;
 }
-body .settings .container1 .subcontainer .title {
-  border-bottom: 2px solid black;
-  color: black;
+body .settings .settings .container1 .subcontainer .title {
   font-family: "Favorit", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-size: 24px;
   font-weight: 400;
   line-height: 1.3;
   padding-bottom: 28px;
 }
-body .settings .container1 .subcontainer .delete {
+body .settings .settings .container1 .subcontainer .delete {
   display: flex;
   justify-content: flex-end;
 }
-body .settings .container1 .subcontainer .delete #delete-account {
+body .settings .settings .container1 .subcontainer .delete #delete-account {
   width: 112px;
   height: 29px;
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 2px;
   clear: both;
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
-  color: rgba(0, 0, 0, 0.4);
   font-size: 13px;
   font-weight: 700;
   line-height: 28px;
@@ -3378,14 +3367,14 @@ body .settings .container1 .subcontainer .delete #delete-account {
   padding: 0 10px;
   text-decoration: none;
 }
-body .settings .container1 .subcontainer #section {
+body .settings .settings .container1 .subcontainer #section {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: row;
   padding: 20px 0;
   width: 100%;
 }
-body .settings .container1 .subcontainer #section .wrapper {
+body .settings .settings .container1 .subcontainer #section .wrapper {
   flex-grow: 1;
   max-width: 500px;
   padding: 0 10px;
@@ -3394,19 +3383,18 @@ body .settings .container1 .subcontainer #section .wrapper {
   justify-content: space-between;
   flex-wrap: wrap;
 }
-body .settings .container1 .subcontainer #section .sub-section-left {
+body .settings .settings .container1 .subcontainer #section .sub-section-left {
   flex: 0 1 145px;
   min-width: 145px;
   padding: 0 10px;
 }
-body .settings .container1 .subcontainer #section .sub-section-left conversational-notifications {
-  color: black;
+body .settings .settings .container1 .subcontainer #section .sub-section-left conversational-notifications {
   white-space: nowrap;
 }
-body .settings .container1 .subcontainer #section #sub-section-right-filtering {
+body .settings .settings .container1 .subcontainer #section #sub-section-right-filtering {
   margin-left: 15px;
 }
-body .settings .container1 .subcontainer #section .sub-section-right {
+body .settings .settings .container1 .subcontainer #section .sub-section-right {
   flex-grow: 1;
   max-width: 500px;
   padding: 0 10px;
@@ -3415,57 +3403,51 @@ body .settings .container1 .subcontainer #section .sub-section-right {
   justify-content: space-between;
   flex-wrap: wrap;
 }
-body .settings .container1 .subcontainer #section .sub-section-right #update-email-email {
-  border: 1.25px solid #ececec !important;
+body .settings .settings .container1 .subcontainer #section .sub-section-right #update-email-email {
   width: 349px;
 }
-body .settings .container1 .subcontainer #section .sub-section-right #update-email-password {
-  border: 1.25px solid #ececec !important;
+body .settings .settings .container1 .subcontainer #section .sub-section-right #update-email-password {
   width: 349px;
 }
-body .settings .container1 .subcontainer #section .sub-section-right .update-email-btns {
+body .settings .settings .container1 .subcontainer #section .sub-section-right .update-email-btns {
   display: flex;
   justify-content: flex-start;
 }
-body .settings .container1 .subcontainer #section .sub-section-right .update-email-btns #update-email-btn-cancel {
+body .settings .settings .container1 .subcontainer #section .sub-section-right .update-email-btns #update-email-btn-cancel {
   box-sizing: border-box;
   text-decoration: none;
   width: 81px;
   height: 36px;
   margin-right: 10px;
 }
-body .settings .container1 .subcontainer #section .sub-section-right .update-email-btns #update-email-btn-save {
+body .settings .settings .container1 .subcontainer #section .sub-section-right .update-email-btns #update-email-btn-save {
   box-sizing: border-box;
   width: 66px;
   height: 36px;
 }
-body .settings .container1 .subcontainer #section .sub-section-right .update-email-btns #update-password-btn-cancel {
+body .settings .settings .container1 .subcontainer #section .sub-section-right .update-email-btns #update-password-btn-cancel {
   box-sizing: border-box;
   text-decoration: none;
   width: 81px;
   height: 36px;
   margin-right: 10px;
 }
-body .settings .container1 .subcontainer #section .sub-section-right .update-email-btns #update-password-btn-save {
+body .settings .settings .container1 .subcontainer #section .sub-section-right .update-email-btns #update-password-btn-save {
   box-sizing: border-box;
   white-space: nowrap;
   text-decoration: none;
   width: 160px;
   height: 36px;
 }
-body .settings .container1 .subcontainer #section .sub-section-right #update-email-error {
+body .settings .settings .container1 .subcontainer #section .sub-section-right #update-email-error {
   margin-top: 10px;
   text-align: "center";
   font-size: "14px";
   padding: "0";
-  background-color: red;
   margin-right: 20px;
   width: 350px;
 }
-body .settings .container1 .subcontainer #section .sub-section-right .email {
-  color: black;
-}
-body .settings .container1 .subcontainer #section .sub-section-right .edit {
+body .settings .settings .container1 .subcontainer #section .sub-section-right .edit {
   margin-left: 0.75em;
   background-color: transparent;
   background-repeat: no-repeat;
@@ -3474,37 +3456,33 @@ body .settings .container1 .subcontainer #section .sub-section-right .edit {
   overflow: hidden;
   outline: none;
 }
-body .settings .container1 .subcontainer #section .sub-section-right .password-dots {
-  color: black;
+body .settings .settings .container1 .subcontainer #section .sub-section-right .password-dots {
   font-weight: 900;
 }
-body .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up {
+body .settings .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up {
   display: flex;
   width: 100%;
   align-items: flex-start;
   justify-content: flex-start;
   margin: 0 0 10px;
 }
-body .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up .text {
+body .settings .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up .text {
   flex-direction: column;
   margin-left: 30px;
   width: 380px;
 }
-body .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up .text .bold-text {
-  color: black;
+body .settings .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up .text .bold-text {
   flex-basis: 100%;
   font-size: 1em;
   width: 100%;
 }
-body .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up .text .un-bold-text {
+body .settings .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up .text .un-bold-text {
   margin-top: 10px;
-  color: black;
   font-size: 0.9em;
   margin-bottom: 0.75em;
   opacity: 0.5;
 }
-body .settings .container1 .subcontainer #section .sub-section-right .filtering-item-one {
-  background-color: #05b9ff;
+body .settings .settings .container1 .subcontainer #section .sub-section-right .filtering-item-one {
   border-radius: 40px;
   box-sizing: border-box;
   cursor: pointer;
@@ -3517,7 +3495,7 @@ body .settings .container1 .subcontainer #section .sub-section-right .filtering-
   text-decoration: none;
   transition: width 0.6s ease-in-out;
 }
-body .settings .container1 .subcontainer #section .sub-section-right .filtering-item-one button {
+body .settings .settings .container1 .subcontainer #section .sub-section-right .filtering-item-one button {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -3525,16 +3503,32 @@ body .settings .container1 .subcontainer #section .sub-section-right .filtering-
   padding: 0;
   max-width: 50px;
 }
-body .settings .container1 .subcontainer #section .sub-section-right #enter-tag {
+body .settings .settings .container1 .subcontainer #section .sub-section-right .filtering-item-one-img {
+  border-radius: 40px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  list-style: none;
+  margin-right: 5px;
+  padding: 3px 10px;
+}
+body .settings .settings .container1 .subcontainer #section .sub-section-right .filtering-item-one-img button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  max-width: 50px;
+}
+body .settings .settings .container1 .subcontainer #section .sub-section-right #enter-tag {
   flex-basis: 100%;
   flex-grow: 1;
   margin-right: 15px;
   width: auto;
-  border: 1.25px solid #ececec !important;
   max-width: 293px;
   max-height: 34px;
 }
-body .settings .container1 .subcontainer #section .sub-section-right .add-tag-buttons #add-tag {
+body .settings .settings .container1 .subcontainer #section .sub-section-right .add-tag-buttons #add-tag {
   background-color: transparent;
   border: none;
   max-width: 70px !important;
@@ -3547,7 +3541,7 @@ body .settings .container1 .subcontainer #section .sub-section-right .add-tag-bu
   user-select: none;
   margin-bottom: 10px;
 }
-body .settings .container1 .subcontainer #section .sub-section-right .add-tag-buttons #back-tag {
+body .settings .settings .container1 .subcontainer #section .sub-section-right .add-tag-buttons #back-tag {
   background-color: transparent;
   border: none;
   max-width: 70px !important;
@@ -3559,35 +3553,32 @@ body .settings .container1 .subcontainer #section .sub-section-right .add-tag-bu
   -moz-user-select: none;
   user-select: none;
 }
-body .settings .container1 .subcontainer #section .filtering-list-two {
+body .settings .settings .container1 .subcontainer #section .filtering-list-two {
   list-style: none;
   margin: 0;
   padding: 0;
   width: 100%;
 }
-body .settings .container1 .subcontainer #section .filtering-list-two .filtering-item-two {
-  border-top: 1px solid #999999;
+body .settings .settings .container1 .subcontainer #section .filtering-list-two .filtering-item-two {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
 }
-body .settings .container1 .subcontainer #section .filtering-list-two .filtering-item-two span {
-  color: black;
+body .settings .settings .container1 .subcontainer #section .filtering-list-two .filtering-item-two span {
   font-size: 0.9em;
   margin-bottom: 0.75em;
   opacity: 0.5;
 }
-body .settings .container1 .subcontainer #section .filtering-list-two .filtering-item-two #delete-tag {
+body .settings .settings .container1 .subcontainer #section .filtering-list-two .filtering-item-two #delete-tag {
   margin: 6px 0 0;
-  background-color: #999999 !important;
   width: 98px;
   height: 33px;
 }
-body .settings .container1 .subcontainer #section .one-section {
+body .settings .settings .container1 .subcontainer #section .one-section {
   display: flex;
   justify-content: space-between;
 }
-body .settings .container1 .subcontainer #section .one-section .text-and-btns {
+body .settings .settings .container1 .subcontainer #section .one-section .text-and-btns {
   display: flex;
   flex-wrap: wrap;
   width: 172px;
@@ -3595,44 +3586,44 @@ body .settings .container1 .subcontainer #section .one-section .text-and-btns {
   margin-top: 30px;
   padding: 15px 15px 15px 15px;
 }
-body .settings .container1 .subcontainer #section .one-section .text-and-btns .text {
+body .settings .settings .container1 .subcontainer #section .one-section .text-and-btns .text {
   font-size: 15px;
   width: 100%;
   height: 59px;
   margin-bottom: 15px;
 }
-body .settings .container1 .subcontainer #section .one-section .text-and-btns .anchor1 {
+body .settings .settings .container1 .subcontainer #section .one-section .text-and-btns .anchor1 {
   margin-bottom: 15px;
   width: 75%;
   height: 30px;
 }
-body .settings .container1 .subcontainer #section .one-section .text-and-btns .anchor1 #app_iphone {
+body .settings .settings .container1 .subcontainer #section .one-section .text-and-btns .anchor1 #app_iphone {
   width: 100%;
   height: 100%;
   background-color: #00b8ff;
   color: white;
 }
-body .settings .container1 .subcontainer #section .one-section .text-and-btns .anchor2 {
+body .settings .settings .container1 .subcontainer #section .one-section .text-and-btns .anchor2 {
   width: 75%;
   height: 30px;
 }
-body .settings .container1 .subcontainer #section .one-section .text-and-btns .anchor2 #app_android {
+body .settings .settings .container1 .subcontainer #section .one-section .text-and-btns .anchor2 #app_android {
   width: 100%;
   height: 100%;
   background-color: #00cf35;
   color: white;
 }
-body .container2 {
+body .settings .container2 {
   display: flex;
   flex-direction: column;
   margin-left: 30px;
   width: 320px;
 }
-body .container2 .wrapper {
+body .settings .container2 .wrapper {
   margin-bottom: 38px;
   width: 100%;
 }
-body .container2 .wrapper .list {
+body .settings .container2 .wrapper .list {
   font-size: 1.125rem;
   font-weight: 400;
   line-height: 1.333;
@@ -3642,71 +3633,68 @@ body .container2 .wrapper .list {
   margin: 0;
   margin-bottom: 38px;
 }
-body .container2 .wrapper .list .list-item {
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+body .settings .container2 .wrapper .list .list-item {
   padding: 8px 12px;
 }
-body .container2 .wrapper .list .list-item .list-item-anchor {
+body .settings .container2 .wrapper .list .list-item .list-item-anchor {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-decoration: none;
 }
-body .container2 .wrapper .list .list-item .list-item-anchor-small {
+body .settings .container2 .wrapper .list .list-item .list-item-anchor-small {
   font-size: 13px;
   font-weight: 400;
 }
-body .container2 .blog {
+body .settings .container2 .blog {
   margin-bottom: 0;
 }
-body .container2 .blog .blog-h1 {
-  color: white;
+body .settings .container2 .blog .blog-h1 {
   padding-bottom: 5px;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
 }
-body .container2 .blog .list-item {
+body .settings .container2 .blog .list-item {
   padding: 0;
 }
-body .container2 .blog .list-item .temp {
+body .settings .container2 .blog .list-item .temp {
   display: flex;
   justify-content: space-between;
   position: relative;
   width: 100%;
 }
-body .container2 .blog .list-item .temp .blog-item-anchor {
+body .settings .container2 .blog .list-item .temp .blog-item-anchor {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-body .container2 .blog .list-item .temp .blog-item-anchor .icon-text {
+body .settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text {
   align-items: center;
   display: flex;
   justify-content: space-between;
 }
-body .container2 .blog .list-item .temp .blog-item-anchor .icon-text .icon {
+body .settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text .icon {
   margin-right: 11px;
   position: relative;
 }
-body .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text {
+body .settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text {
   position: relative;
   text-align: left;
   word-break: break-word;
 }
-body .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text-up {
+body .settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text-up {
   align-items: center;
   display: flex;
   font-size: 0.875rem;
   font-weight: 700;
   line-height: 1.5;
 }
-body .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text-up .text-up-span {
+body .settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text-up .text-up-span {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-body .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text-down {
+body .settings .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text-down {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   display: -webkit-box;
@@ -3717,7 +3705,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .icon-text .text .text
   overflow: hidden;
   text-overflow: ellipsis;
 }
-body .container2 .blog .list-item .temp .blog-item-anchor .star {
+body .settings .container2 .blog .list-item .temp .blog-item-anchor .star {
   align-items: center;
   display: flex;
   padding-right: 14px;
@@ -3725,7 +3713,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star {
   text-align: right;
   margin-left: 40px;
 }
-body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
+body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   text-align: right;
 }
 
@@ -3739,6 +3727,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   background-color: white;
   align-items: center;
   width: 280px;
+  position: relative;
 }
 .profile-mini-body {
   display: flex;
@@ -3802,6 +3791,15 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   cursor: pointer;
 }
 
+.profile-side-outter .overlay-container {
+  display: flex !important;
+}
+
+@media (max-width: 988px) {
+  .profile-side-outter .overlay-container {
+    display: flex !important;
+  }
+}
 .profile-side {
   display: flex;
   flex-direction: column;
@@ -3821,6 +3819,20 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.profile-side-header-blocked {
+  background-color: #222222;
+  height: 100%;
+  width: 100%;
+  color: #ff5757;
+  line-height: 2;
+  position: absolute;
+  text-align: center;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  justify-content: center;
 }
 .profile-side-header .post-wrapper {
   left: 0;
@@ -3896,22 +3908,20 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   text-align: center;
 }
 
-.profile-full {
+.profile-full-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   color: black;
   height: 100vh;
   margin: auto;
-  overflow-x: hidden;
   overflow-y: auto;
   overscroll-behavior-y: auto;
-  width: 100%;
-  position: relative;
+  width: 100vw;
   background-color: white;
+  position: relative;
 }
 .profile-full-header .post-wrapper {
-  left: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -3922,8 +3932,18 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
+  width: 100%;
+  padding: 0 20px;
+}
+.profile-full-header-content-side {
+  margin-left: 30px;
+  margin-top: 10px;
+  width: 300px;
+  font-weight: 700;
+  font-size: 13px;
 }
 .profile-full-header-nav {
+  z-index: 10000;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -3931,6 +3951,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   padding: 10px;
   position: sticky;
   top: 55px;
+  width: 100%;
   background-color: white;
 }
 .profile-full-header-nav-link {
@@ -3945,8 +3966,10 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   border-bottom: 2px solid;
 }
 .profile-full-header-div {
+  width: 100%;
   position: sticky;
-  top: 40px;
+  z-index: 10000;
+  top: -295px;
   background-color: white;
 }
 .profile-full-header-div-bg {
@@ -3960,9 +3983,9 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
 .profile-full-header-avatar {
   position: absolute;
   left: 50%;
-  top: 350px;
   transform: translateX(-50%) translateY(-50%);
   width: 96px;
+  z-index: 10001;
   height: 96px;
   object-fit: cover;
   border: 5px solid white;
@@ -3973,11 +3996,12 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px;
+  width: 100%;
   padding-top: 48px;
   padding-bottom: 20px;
 }
 .profile-full-header-text-link {
+  width: 100%;
   text-decoration: none;
   color: black;
 }
@@ -4003,6 +4027,25 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   text-align: center;
+}
+
+.profile-following {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+.profile-following .explore-posts {
+  justify-content: center;
+}
+.profile-following .profile-mini {
+  margin: 10px;
+  border: #dddddd solid 2px;
+  border-radius: 4px;
 }
 
 .help-center {
@@ -4861,11 +4904,11 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
 
 .navbar2MainView {
   background-color: transparent;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 99;
+  z-index: 1000000;
   height: 54px;
 }
 .navbar2MainView .container {
@@ -4893,6 +4936,9 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   padding-right: 18px;
   font-size: 0.9rem;
 }
+.navbar2MainView .section1 .logo .fa-downcase-t::before {
+  color: white;
+}
 .navbar2MainView .section1 .search {
   transition: all 0.3s ease-in-out;
   display: flex;
@@ -4912,6 +4958,9 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   color: white;
   font-size: 19px;
   border-radius: 3px 0 0 3px;
+}
+.navbar2MainView .section1 .search-icon .fa-search {
+  color: white;
 }
 .navbar2MainView .section1 .search-input {
   width: 450px;
@@ -4971,6 +5020,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   line-height: 18px;
   color: black;
   font-weight: bold;
+  border-radius: 3px;
 }
 .navbar2MainView .section2 .log,
 .navbar2MainView .section2 .sign {
@@ -5001,12 +5051,14 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
 }
 
 .Navbar2SideView {
-  max-width: 500px;
+  max-width: 600px;
+  width: 100%;
   border-radius: 3px;
   display: flex;
   flex-direction: column;
   height: 50px;
-  position: relative;
+  position: fixed;
+  z-index: 100000;
 }
 .Navbar2SideView .container {
   display: flex;
@@ -5015,7 +5067,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   align-items: center;
   box-sizing: border-box;
   height: 50px;
-  padding: 10px;
+  padding: 10px 20px 10px 10px;
   position: absolute;
   top: 0;
   width: 100%;
@@ -5039,6 +5091,9 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   align-items: center;
   color: white;
   font-size: 19px;
+}
+.Navbar2SideView .container .search-icon .fa-search {
+  color: white;
 }
 .Navbar2SideView .container .search-input {
   background: transparent;
@@ -5088,7 +5143,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   height: 24px;
   display: flex;
   align-items: center;
-  margin-left: 12px;
+  margin-left: 16px;
   cursor: pointer;
 }
 .Navbar2SideView .container .icon i {
@@ -5103,10 +5158,10 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   list-style: none;
   background: white;
   position: absolute;
-  width: 200px;
+  width: 140px;
   height: auto;
   top: 0px;
-  left: -123px;
+  left: -83px;
   z-index: 100;
   transform: translate3d(22px, 38px, 0px);
   border-radius: 3px;
@@ -5126,9 +5181,10 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   color: black;
   cursor: pointer;
   font-size: 14px;
-  padding: 10px;
+  padding: 15px;
   width: 100%;
   font-weight: bold;
+  line-height: 1.2;
 }
 .Navbar2SideView .container .sideViewProfileOption .chat-popup-header-option li:hover {
   background: #e5e7ea;
@@ -5145,6 +5201,8 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   background-color: white;
   cursor: pointer;
   padding: 10px;
+  line-height: 1.2;
+  border-radius: 3px;
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -5331,13 +5389,28 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
 .blogInfo-row {
   display: flex;
   width: 100%;
+  justify-content: space-between;
+}
+.blogInfo-row button {
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+.full-width-btn {
+  width: 100%;
 }
 
 .blogInfo-column {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   width: 100%;
+  font-size: 1rem;
 }
 
 .init-btn {
@@ -5447,7 +5520,6 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   font-weight: 400;
   line-height: 1.333;
   margin-bottom: 8px;
-  margin-left: 85px;
 }
 
 @media screen and (max-width: 950px) {
@@ -5461,9 +5533,18 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
   flex-direction: column;
   margin-bottom: 50px;
 }
+.activity-home .Lhead {
+  font-size: 1.125rem;
+  font-weight: 400;
+  justify-content: space-between;
+  line-height: 1.333;
+  margin: 0 15px 10px 0;
+  display: block;
+}
 .activity-home .graph .gra {
   width: 625px;
   height: 250px;
+  overflow: hidden;
 }
 .activity-home .btns {
   display: flex;
@@ -5580,6 +5661,7 @@ body .container2 .blog .list-item .temp .blog-item-anchor .star .star-svg {
     width: 100%;
     height: 60vw;
     margin: 70px 0px 0 0px;
+    overflow: hidden;
   }
   .activity-home .btns {
     display: flex;
@@ -6045,19 +6127,33 @@ body #reset-pass-logo {
   flex-wrap: wrap;
 }
 
-body .settings .container1 .subcontainer .errors-box {
+body .settings2 {
+  box-sizing: border-box;
+  display: flex;
+  margin: 50px auto 0;
+  max-width: 990px;
+  padding: 0 8px;
   width: 100%;
-  background-color: #f5e1dc;
-  color: #c14241;
-  height: fit-content;
-  border: 2px solid #c14241;
-  border-radius: 5px;
-  margin-bottom: 20px;
 }
-body .settings .container1 .subcontainer .errors-box .error-msg {
-  padding: 10px;
+body .settings2 .container2 {
+  position: relative;
+  width: 100%;
+  background-color: white;
 }
-body .settings .container1 .subcontainer #section-create-blog {
+body .settings2 .container2 .subcontainer2 {
+  width: 100%;
+  padding: 20px 24px;
+}
+body .settings2 .container2 .subcontainer2 .title2 {
+  border-bottom: 2px solid black;
+  color: black;
+  font-family: "Favorit", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+  padding-bottom: 28px;
+}
+body .settings2 .container2 .subcontainer2 #section-create-blog {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   display: flex;
   width: 100%;
@@ -6065,19 +6161,77 @@ body .settings .container1 .subcontainer #section-create-blog {
   max-height: 140px;
   flex-wrap: wrap;
 }
-body .settings .container1 .subcontainer #section-create-blog .text-section {
+body .settings2 .container2 .subcontainer2 #section-create-blog .text-section {
   margin-top: 20px;
   margin-bottom: 20px;
   height: 90px;
 }
-body .settings .container1 .subcontainer #section-create-blog .delete {
+body .settings2 .container2 .subcontainer2 #section-create-blog .sub-section-left-create-blog {
+  flex: 0 1 145px;
+  min-width: 145px;
+  align-self: stretch;
+  background-color: #f5f5f5;
+}
+body .settings2 .container2 .subcontainer2 #section-create-blog .sub-section-left-create-blog .sub-section-left-text {
+  margin-top: 15px;
+  color: black;
+  white-space: nowrap;
+  font-size: 20px;
+}
+body .settings2 .container2 .subcontainer2 #section-create-blog .sub-section-right-create-blog {
+  flex-grow: 1;
+  min-width: 670px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin: 0 0 10px;
+}
+body .settings2 .container2 .subcontainer2 #section-create-blog .sub-section-right-create-blog #title-create-blog,
+body .settings2 .container2 .subcontainer2 #section-create-blog .sub-section-right-create-blog #url-create-blog,
+body .settings2 .container2 .subcontainer2 #section-create-blog .sub-section-right-create-blog #privacy-create-blog {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  max-width: 400px;
+  height: 33px;
+  margin-right: 20px;
+}
+body .settings2 .container2 .subcontainer2 #section-create-blog .sub-section-right-create-blog .text {
+  opacity: 0.5;
+  font-size: 10px;
+  text-align: justify;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-right: 25px;
+}
+body .settings2 .container2 .subcontainer2 #section-create-blog-btns {
+  display: flex;
+  width: 100%;
+  margin-top: 15px;
+  align-items: stretch;
+  max-height: 140px;
+  flex-wrap: wrap;
+}
+body .settings2 .container2 .subcontainer2 #section-create-blog-btns #section {
+  width: 100%;
+}
+body .settings2 .container2 .subcontainer2 #section-create-blog-btns .delete {
   display: flex;
   justify-content: space-between;
 }
-body .settings .container1 .subcontainer #section-create-blog .delete .button {
+body .settings2 .container2 .subcontainer2 #section-create-blog-btns .delete #create-blog {
+  background-color: #00b8ff;
+  width: -moz-fit-content;
   width: fit-content;
+}
+body .settings2 .container2 .subcontainer2 #section-create-blog-btns .delete #cancel-btn {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+body .settings2 .container2 .subcontainer2 #section-create-blog-btns .delete .button {
   height: 29px;
   background: white;
+  background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 2px;
   clear: both;
@@ -6092,57 +6246,11 @@ body .settings .container1 .subcontainer #section-create-blog .delete .button {
   padding: 0 10px;
   text-decoration: none;
 }
-body .settings .container1 .subcontainer #section-create-blog .delete #create-blog {
-  background-color: #00b8ff;
-  width: fit-content;
-}
-body .settings .container1 .subcontainer #section-create-blog .sub-section-left-create-blog {
-  flex: 0 1 145px;
-  min-width: 145px;
-  align-self: stretch;
-  background-color: #f5f5f5;
-}
-body .settings .container1 .subcontainer #section-create-blog .sub-section-left-create-blog .sub-section-left-text {
-  margin-top: 15px;
-  color: black;
-  white-space: nowrap;
-  font-size: 20px;
-}
-body .settings .container1 .subcontainer #section-create-blog .sub-section-right-create-blog {
-  flex-grow: 1;
-  min-width: 670px;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin: 0 0 10px;
-}
-body .settings .container1 .subcontainer #section-create-blog .sub-section-right-create-blog #privacy-create-blog {
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  width: 400px;
-  height: 33px;
-}
-body .settings .container1 .subcontainer #section-create-blog .sub-section-right-create-blog #url-create-blog {
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  width: 400px;
-  height: 33px;
-}
-body .settings .container1 .subcontainer #section-create-blog .sub-section-right-create-blog #title-create-blog {
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  width: 400px;
-  height: 33px;
-}
-body .settings .container1 .subcontainer #section-create-blog .sub-section-right-create-blog .text {
-  opacity: 0.5;
-  font-size: 10px;
-  text-align: justify;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin-right: 25px;
-}
-body .settings .container1 .subcontainer #section-create-blog .sub-section-right-create-blog .text-and-checkbox #check-password {
-  margin-right: 5px;
+
+.avatarOfABlockedAcc123 {
+  width: 30px;
+  height: 30px;
+  filter: blur(2px);
 }
 
 .dashboard-profile {
@@ -6398,6 +6506,11 @@ body .settings .container1 .subcontainer #section-create-blog .sub-section-right
   margin-left: 85px;
 }
 
+@media screen and (max-width: 960px) {
+  .dashboard-profile .posts-region {
+    width: 100%;
+  }
+}
 .lSyOz {
   align-items: flex-end;
   display: flex;
@@ -7241,6 +7354,37 @@ body .settings .container1 .subcontainer #section-create-blog .sub-section-right
   text-align: center;
 }
 
+body .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up .sub-section-right-up-allowAsk {
+  flex-grow: 1;
+  max-width: 500px;
+  padding: 0 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+body .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up .sub-section-right-up-allowAsk .Ask-page-title-label {
+  width: 100%;
+  opacity: 0.5;
+}
+body .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up .sub-section-right-up-allowAsk #update-ask-title {
+  border: 1.25px solid #ececec !important;
+  width: 100%;
+  height: 35px;
+}
+body .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up .sub-section-right-up-allowAsk .update-ask-title-btns {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+body .settings .container1 .subcontainer #section .sub-section-right .sub-section-right-up .sub-section-right-up-allowAsk .update-ask-title-btns #update-ask-title-btn-save {
+  box-sizing: border-box;
+  text-decoration: none;
+  width: 66px;
+  height: 30px;
+  margin-right: 10px;
+}
+
 .explore {
   display: flex;
   margin: 79px auto 0;
@@ -7286,6 +7430,7 @@ body .settings .container1 .subcontainer #section-create-blog .sub-section-right
   flex-direction: column;
   align-items: center;
   max-width: 625px;
+  width: 100%;
 }
 
 .arrow-icon {
@@ -7492,6 +7637,11 @@ body .settings .container1 .subcontainer #section-create-blog .sub-section-right
 
   .explore-nav {
     justify-content: center;
+  }
+  .explore-nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
   }
 
   .explore-nav-icons {

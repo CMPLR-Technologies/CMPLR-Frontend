@@ -60,7 +60,8 @@ export const handleStepTwo = (
     setErrorMessage,
     setUser,
     navigate,
-    setIsPending
+    setIsPending,
+    setUserBlog
 ) => {
     const errorMsg = validateStepTwo(bodyData.age);
     setIsPending(true);
@@ -88,6 +89,7 @@ export const handleStepTwo = (
                 };
                 setUser(user);
                 localStorage.setItem('user', JSON.stringify(user));
+                setUserBlog(user.userData);
                 navigate('/dashboard');
                 setIsPending(false);
                 sendDesktopNotifyToken();
@@ -114,7 +116,8 @@ export const handleGoogleAuth = (
     setErrorMessage,
     setUser,
     navigate,
-    setIsPending
+    setIsPending,
+    setUserBlog
 ) => {
     const errorMsg = validateGoogle(bodyData?.blogName, bodyData?.age);
     if (errorMsg !== '') {
@@ -141,13 +144,13 @@ export const handleGoogleAuth = (
                 };
                 setUser(user);
                 localStorage.setItem('user', JSON.stringify(user));
+                setUserBlog(user.userData);
                 navigate('/dashboard');
                 setIsPending(false);
                 sendDesktopNotifyToken();
             })
             .catch(err => {
                 const errorArr = getServiceErrors(err);
-                console.log(err, errorArr);
                 if (err.response)
                     setErrorMessage(
                         errorArr?.length !== 0
