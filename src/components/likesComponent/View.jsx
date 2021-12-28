@@ -4,6 +4,7 @@ import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
 import VerticalPostsView from '../partials/VerticalPostsView';
 import { apiBaseUrl } from '../../config.json';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
+import { useMediaQuery } from 'react-responsive';
 
 export default function LikedBlogs() {
     const theme = useContext(ThemeContext)[0];
@@ -15,6 +16,9 @@ export default function LikedBlogs() {
         hasMore,
         total
     } = useInfiniteScrolling(`${apiBaseUrl}/user/likes?page=${pageNumber}`);
+    const isBigScreen = useMediaQuery({
+        query: '(min-device-width: 960px )'
+    });
 
     return (
         <div className="dashboard">
@@ -22,7 +26,11 @@ export default function LikedBlogs() {
                 {!error && !isPending && (
                     <div
                         className="total-likes"
-                        style={{ color: `rgb(${themes[theme].whiteOnDark})` }}
+                        style={{
+                            color: `rgb(${themes[theme].whiteOnDark})`,
+                            textAlign: isBigScreen ? 'start' : 'center',
+                            marginLeft: isBigScreen ? '85px' : '0px'
+                        }}
                     >
                         {total} likes
                     </div>
@@ -33,7 +41,7 @@ export default function LikedBlogs() {
                     isPending={isPending}
                     hasMore={hasMore}
                     setPageNumber={setPageNumber}
-                    isRadar={false}
+                    isRadar={!isBigScreen}
                     isRef={true}
                 />
             </div>
