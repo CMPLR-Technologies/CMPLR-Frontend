@@ -42,7 +42,7 @@ export default function RecommendBlogs(props) {
                     className="explore-link"
                     href="/explore/recommended-for-you"
                 >
-                    Explore all of Tumblr
+                    Explore all of CMPlr
                 </a>
             )}
         </div>

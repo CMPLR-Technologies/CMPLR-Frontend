@@ -21,16 +21,19 @@ import {
     handleUploadImage,
     handleCreateLink,
     handleColor,
-    handleUploadVideo
+    handleUploadVideo,
+    shortcutController
 } from './Controller';
 import PostComponent from '../partials/postComponent/containers/PostComponent';
 const Input = styled('input')({
     display: 'none'
 });
+
 export default function HandMadeTextEditor(props) {
     // eslint-disable-next-line no-unused-vars
     const { setContent, reblog, post, setSpinner, editContent } = props;
     const user = JSON.parse(localStorage.getItem('user'));
+
     return (
         <>
             {reblog && post?.post && (
@@ -42,7 +45,10 @@ export default function HandMadeTextEditor(props) {
                     post={post}
                 />
             )}
-            <div className="main-richeditor">
+            <div
+                className="main-richeditor"
+                onKeyDown={e => shortcutController(e, setContent)}
+            >
                 <div
                     className="content"
                     contentEditable="true"

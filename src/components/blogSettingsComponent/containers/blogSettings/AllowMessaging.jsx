@@ -40,10 +40,10 @@ export default function AllowMessaging() {
                     </div>
                     <div className="text">
                         <p className="bold-text">
-                            Only allow messages from Tumblrs you follow
+                            Only allow messages from CMPlrs you follow
                         </p>
                         <p className="un-bold-text">
-                            Tumblrs you don't follow won't be able to start
+                            CMPlrs you don't follow won't be able to start
                             conversations with you.
                         </p>
                     </div>

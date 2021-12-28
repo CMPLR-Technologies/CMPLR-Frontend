@@ -51,3 +51,14 @@ export const handleChanges = setContent => {
     document.execCommand('hiliteColor', false, '#ffffff');
     setContent(document.getElementById('editable-content').innerHTML);
 };
+export const shortcutController = (e, setContent) => {
+    if (e.altKey && e.code === 'KeyB') {
+        handleActionWithoutArg('to-bold-words', setContent);
+    } else if (e.altKey && e.code === 'KeyS') {
+        handleActionWithoutArg('to-strike-words', setContent);
+    } else if (e.altKey && e.code === 'KeyU') {
+        handleActionWithoutArg('to-underline-words', setContent);
+    } else if (e.altKey && e.code === 'KeyI') {
+        handleActionWithoutArg('to-italic-words', setContent);
+    }
+};
