@@ -7,7 +7,7 @@ export default function Navbar2MainViewLinks(props) {
     return (
         <ul className="section2">
             {isAuth ? (
-                <Navbar2MainViewAuthLinks />
+                <Navbar2MainViewAuthLinks {...props} />
             ) : (
                 <Navbar2MainViewUnAuthLinks />
             )}

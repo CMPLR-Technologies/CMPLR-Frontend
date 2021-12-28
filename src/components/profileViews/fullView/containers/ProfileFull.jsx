@@ -16,6 +16,9 @@ export default function ProfileFull(props) {
     const headerScrollAnimation = el => {
         setScrollTop(el.target.scrollTop);
     };
+    const isFollowed = false;
+    const isBlocked = false;
+
     const response = useFetch(`${apiBaseUrl}/MiniProfileView/${blogID}`);
     const navArray = [
         {
@@ -71,7 +74,12 @@ export default function ProfileFull(props) {
                     className="profile-full-header"
                     onScroll={headerScrollAnimation}
                 >
-                    <Navbar2MainView />
+                    <Navbar2MainView
+                        blogName={blogName}
+                        blogID={blogID}
+                        isFollowed={isFollowed}
+                        isBlocked={isBlocked}
+                    />
                     <NavLink
                         to={`/blog/view/${blogName}/${blogID}/posts`}
                         className="profile-full-header-div"

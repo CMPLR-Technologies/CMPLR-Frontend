@@ -45,7 +45,7 @@ export default function ProfileContent(props) {
                         <div className="no-data-error">{"Couldn't load"}</div>
                     ) : isPending ? (
                         <LinearProgress />
-                    ) : posts ? (
+                    ) : posts && posts.length > 0 ? (
                         <PostComponent
                             post={{
                                 blog: posts.post[0].blog,

@@ -279,7 +279,7 @@
             height: 24px;
             display: flex;
             align-items: center;
-            margin-left: 12px;
+            margin-left: 16px;
             cursor: pointer;
             i {
                 font-size: 23px;
@@ -295,10 +295,10 @@
                 list-style: none;
                 background: white;
                 position: absolute;
-                width: 200px;
+                width: 140px;
                 height: auto;
                 top: 0px;
-                left: -123px;
+                left: -83px;
                 z-index: 100;
                 transform: translate3d(22px, 38px, 0px);
                 border-radius: 3px;
@@ -317,9 +317,10 @@
                     color: black;
                     cursor: pointer;
                     font-size: 14px;
-                    padding: 20px;
+                    padding: 15px;
                     width: 100%;
                     font-weight: bold;
+                    line-height: 1.2;
                     &:hover {
                         background: #e5e7ea;
                     }

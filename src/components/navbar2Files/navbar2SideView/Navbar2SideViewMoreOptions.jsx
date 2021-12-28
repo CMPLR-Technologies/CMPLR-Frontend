@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 export default function Navbar2SideViewMoreOptions(props) {
-    const openBlockModel = () => {};
-    const report = () => {};
+    const { blogID, blogName, isBlocked, isSelf, setShowSideBlog } = props;
+    const openBlockModel = () => {
+        //isBlocked = true
+        //isFollowed = false
+    };
     const closeOption = () => {
         props.close();
     };
@@ -13,20 +16,27 @@ export default function Navbar2SideViewMoreOptions(props) {
         <div className="sideViewProfileOption">
             <ClickAwayListener onClickAway={closeOption}>
                 <ul className="chat-popup-header-option">
-                    <Link to="/following">
+                    <Link
+                        onClick={() => setShowSideBlog(false)}
+                        to={`/blog/view/${blogName}/${blogID}/following`}
+                    >
                         <li>
                             <span>Following</span>
                         </li>
                     </Link>
-                    <li>
-                        <span>Get notifications</span>
-                    </li>
-                    <li className="red" onClick={report}>
-                        Report
-                    </li>
-                    <li className="red" onClick={openBlockModel}>
-                        Block
-                    </li>
+                    <Link
+                        onClick={() => setShowSideBlog(false)}
+                        to={`/blog/view/${blogName}/${blogID}/likes`}
+                    >
+                        <li>
+                            <span>Likes</span>
+                        </li>
+                    </Link>
+                    {!isBlocked && !isSelf && (
+                        <li className="red" onClick={openBlockModel}>
+                            Block
+                        </li>
+                    )}
                     <li onClick={closeOption}>Close</li>
                 </ul>
             </ClickAwayListener>
@@ -34,5 +44,10 @@ export default function Navbar2SideViewMoreOptions(props) {
     );
 }
 Navbar2SideViewMoreOptions.propTypes = {
-    close: PropTypes.func.isRequired
+    close: PropTypes.func.isRequired,
+    blogName: PropTypes.string.isRequired,
+    blogID: PropTypes.string.isRequired,
+    setShowSideBlog: PropTypes.func.isRequired,
+    isBlocked: PropTypes.bool,
+    isSelf: PropTypes.bool
 };

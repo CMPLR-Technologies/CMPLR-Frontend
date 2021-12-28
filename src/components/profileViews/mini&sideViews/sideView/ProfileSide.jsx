@@ -25,6 +25,9 @@ export default function ProfileSide(props) {
         blog_name: blogName
     } = body;
 
+    const isFollowed = false;
+    const isBlocked = false;
+
     const [scrollTop, setScrollTop] = useState(0);
     const headerScrollAnimation = el => {
         setScrollTop(el.target.scrollTop);
@@ -58,55 +61,70 @@ export default function ProfileSide(props) {
     return (
         <div className="profile-side" onScroll={headerScrollAnimation}>
             <div className="profile-side-header">
-                <Navbar2SideView />
-                {/*scrollTop > 216 && (
-                <img
-                    className="profile-side-header-fixed"
-                    src={body.bg}
-                    alt="couldn't load bg"
+                <Navbar2SideView
+                    setShowSideBlog={setShowSideBlog}
+                    blogName={blogName}
+                    blogID={blogID}
+                    isFollowed={isFollowed}
+                    isBlocked={isBlocked}
                 />
-            )*/}
-                <NavLink
-                    to={`/blog/view/${blogName}/${blogID}/posts`}
-                    className="profile-side-header-div"
-                >
-                    <img
-                        className="profile-side-header-div-bg"
-                        src={headerImage}
-                        alt="couldn't load bg"
-                    />
-                </NavLink>
-                <NavLink to={`/blog/view/${blogName}/${blogID}/posts`}>
-                    <img
-                        className="profile-side-header-avatar"
-                        src={avatar}
-                        alt="couldn't load avatar"
-                    />
-                </NavLink>
+                {isBlocked && (
+                    <div className="profile-side-header-blocked">
+                        <div>
+                            This blog is Blocked, you can unblock it to view its
+                            content
+                        </div>
+                    </div>
+                )}
 
-                <div className="profile-side-header-text">
-                    <div className="profile-side-header-text-title">
-                        {title}
-                    </div>
-                    <div className="profile-side-header-text-desc">
-                        {desciption}
-                    </div>
-                </div>
-                <div className="profile-side-header-post-container">
-                    {sidePostID ? (
-                        <ProfileSideOnePost
-                            blogName={blogName}
-                            blogID={blogID}
-                            sidePostID={sidePostID}
-                            noTheme={false}
+                {!isBlocked && (
+                    <NavLink
+                        to={`/blog/view/${blogName}/${blogID}/posts`}
+                        className="profile-side-header-div"
+                    >
+                        <img
+                            className="profile-side-header-div-bg"
+                            src={headerImage}
+                            alt="couldn't load bg"
                         />
-                    ) : (
-                        <ProfileSideAllPosts
-                            blogName={blogName}
-                            noTheme={false}
+                    </NavLink>
+                )}
+                {!isBlocked && (
+                    <NavLink to={`/blog/view/${blogName}/${blogID}/posts`}>
+                        <img
+                            className="profile-side-header-avatar"
+                            src={avatar}
+                            alt="couldn't load avatar"
                         />
-                    )}
-                </div>
+                    </NavLink>
+                )}
+                {!isBlocked && (
+                    <div className="profile-side-header-text">
+                        <div className="profile-side-header-text-title">
+                            {title}
+                        </div>
+                        <div className="profile-side-header-text-desc">
+                            {desciption}
+                        </div>
+                    </div>
+                )}
+                {!isBlocked && (
+                    <div className="profile-side-header-post-container">
+                        {sidePostID ? (
+                            <ProfileSideOnePost
+                                blogName={blogName}
+                                blogID={blogID}
+                                sidePostID={sidePostID}
+                                noTheme={false}
+                            />
+                        ) : (
+                            <ProfileSideAllPosts
+                                blogName={blogName}
+                                noTheme={false}
+                            />
+                        )}
+                    </div>
+                )}
                 <style>{css}</style>
             </div>
         </div>
