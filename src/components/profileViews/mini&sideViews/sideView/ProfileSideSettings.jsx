@@ -100,7 +100,6 @@ export default function ProfileSideSettings(props) {
                                         width: '20px',
                                         height: '20px',
                                         position: 'relative',
-                                        zIndex: 7000,
                                         marginBottom: '-35px',
                                         cursor: 'pointer'
                                     }}

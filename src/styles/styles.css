@@ -3885,15 +3885,8 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
     display: flex !important;
   }
 }
-.profile-settings .profile-side {
-  max-width: unset;
-  height: unset;
-  background-color: unset;
-}
-
 .ri-image-edit-fill {
   position: absolute;
-  z-index: 70000;
   fill: #dddddd;
   left: 50%;
   top: 50%;
@@ -4013,6 +4006,18 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   text-align: center;
+}
+
+.profile-settings .profile-side {
+  max-width: unset;
+  height: unset;
+  background-color: #ff5757;
+}
+.profile-settings .profile-side-header-div {
+  z-index: 0 !important;
+}
+.profile-settings .profile-side-header-avatar {
+  z-index: 0 !important;
 }
 
 .profile-full-header {
