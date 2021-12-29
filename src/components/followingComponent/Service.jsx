@@ -69,6 +69,34 @@ export const followAccount = (userToken, searchedName, setResponseMsg) => {
         });
 };
 
+export const followAccountWithResponse = (
+    userToken,
+    searchedName,
+    setResponseMsg
+) => {
+    Axios({
+        method: 'POST',
+        url: `${apiBaseUrl}/user/follow`,
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${userToken}`
+        },
+        data: {
+            blogName: searchedName
+        }
+    })
+        .then(() => {
+            setResponseMsg(`you're now following ${searchedName} successfully`);
+            return true;
+        })
+        .catch(err => {
+            let errMsg = err?.response?.data?.error;
+            setResponseMsg(errMsg);
+            return false;
+        });
+};
+
 export const unfollowAccount = (
     userToken,
     unfollowAcc,

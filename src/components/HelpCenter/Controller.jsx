@@ -27,32 +27,22 @@ export const articleTree = {
         color: '#FF492F',
         articles: [
             'Information For Post Supporters',
-            'Information For Post Creators',
-            'Post Overview & FAQ'
+            'Information For Post Creators'
         ]
     },
     CustomizingYourCMPlr: {
         categoryTitle: 'Customizing Your CMPlr',
         color: '#00CF35',
         articles: [
-            'Color Scheme Settings',
             'Theme Basics',
             'Blog Pages',
             'Custom Html',
-            'Google Analytics',
-            'Premium theme refunds'
+            'Google Analytics'
         ]
     },
     Posting: {
         categoryTitle: 'Posting',
         color: '#6641DD',
-        articles: [
-            'Color Scheme Settings',
-            'Theme Basics',
-            'Blog Pages',
-            'Custom Html',
-            'Google Analytics',
-            'Premium theme refunds'
-        ]
+        articles: ['Making A Post', 'Reblogs', 'Pinned Posts']
     }
 };

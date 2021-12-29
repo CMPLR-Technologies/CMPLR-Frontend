@@ -172,7 +172,7 @@ export default function InformationForPostCreators() {
                                     Not seeing these Post+ settings?
                                 </strong>{' '}
                                 You'll need to make sure you meet our{' '}
-                                <a href="/hc/articles/4402757539607#eligible-creators">
+                                <a href="https://tumblr.zendesk.com/hc/articles/4402757539607#eligible-creators">
                                     current creator criteria
                                 </a>
                                 .
@@ -252,7 +252,7 @@ export default function InformationForPostCreators() {
                             have to use your legal name on Stripe. Your
                             supporters cannot see it. If your legal name changes
                             in the future, you can{' '}
-                            <a href="/hc/articles/4402764366615#updating-details">
+                            <a href="https://tumblr.zendesk.com/hc/articles/4402764366615#updating-details">
                                 update it from your account tab on Stripe
                             </a>
                             .
@@ -374,7 +374,10 @@ export default function InformationForPostCreators() {
                             <strong>Note:</strong> These prices reflect the cost
                             to your supporters, not your payout. You can learn
                             more about fees and creator payout{' '}
-                            <a href="/hc/articles/4402764366615#fees">here</a>.
+                            <a href="https://tumblr.zendesk.com/hc/articles/4402764366615#fees">
+                                here
+                            </a>
+                            .
                         </p>
                         <p>
                             Use the slider to select the price level you'd like
@@ -450,7 +453,7 @@ export default function InformationForPostCreators() {
                         </h3>
                         <p>
                             When setting up your creator profile, you'll{' '}
-                            <a href="/hc/articles/4402764366615#perks">
+                            <a href="https://tumblr.zendesk.com/hc/articles/4402764366615#perks">
                                 select some perks
                             </a>{' '}
                             that your supporters can expect to receive in
@@ -582,7 +585,7 @@ export default function InformationForPostCreators() {
                             any other blog. Blocking a supporter will prevent
                             them from accessing your paywalled content in
                             addition to all other actions associated with{' '}
-                            <a href="/hc/articles/231877648-Blocking-users">
+                            <a href="https://tumblr.zendesk.com/hc/articles/231877648-Blocking-users">
                                 blocking a blog
                             </a>
                             .
@@ -618,7 +621,7 @@ export default function InformationForPostCreators() {
                         </p>
                         <p>
                             One thing to note: +Posts must use the{' '}
-                            <a href="/hc/articles/360010901913">
+                            <a href="https://tumblr.zendesk.com/hc/articles/360010901913">
                                 Neue Post Format (NPF)
                             </a>
                             .
@@ -627,7 +630,7 @@ export default function InformationForPostCreators() {
                         <p>
                             To make a +Post, open a new post and make sure that
                             you've{' '}
-                            <a href="/hc/articles/360010901913#webnpf">
+                            <a href="https://tumblr.zendesk.com/hc/articles/360010901913#webnpf">
                                 enabled the beta post editor
                             </a>
                             .
@@ -758,7 +761,7 @@ export default function InformationForPostCreators() {
                             </li>
                             <li>
                                 Paywalls can only be added to{' '}
-                                <a href="/hc/articles/360010901913">
+                                <a href="https://tumblr.zendesk.com/hc/articles/360010901913">
                                     NPF posts
                                 </a>
                                 , not legacy posts.

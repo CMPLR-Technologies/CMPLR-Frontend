@@ -23,6 +23,7 @@ export default function BottomMainControllers(props) {
                                 onClick={handleCloseModal}
                                 className="tx-button"
                                 data-testid="cancel-postBtn"
+                                dataTestid="closepop_btn_createPost"
                             >
                                 Close
                             </button>

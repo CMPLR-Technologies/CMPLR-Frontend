@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Close from './Close.svg';
-import ConversationSubscribe from './ConversationSubscribe.svg';
-import ViewTagsBtn from './ViewTagsBtn.svg';
 import PropsTypes from 'prop-types';
 import ReblogReact from './ReblogReact.svg';
 import LoveReact from './LoveReact.svg';

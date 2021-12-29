@@ -2,8 +2,15 @@ import React from 'react';
 import RecommendBlogs from '../../dashboardComponent/containers/RecommendBlogs';
 import HashtagView from './Hashtag';
 import PropTypes from 'prop-types';
+import useFetch from '../../../hooks/useFetch';
+import { apiBaseUrl } from '../../../config.json';
 
 export default function SidebarTag(props) {
+    const {
+        error: blogsError,
+        data,
+        isPending: blogsIsPending
+    } = useFetch(`${apiBaseUrl}/recommended/blogs?page=1`);
     const {
         loading,
         totalPosts,
@@ -12,7 +19,8 @@ export default function SidebarTag(props) {
         tagName,
         recommendedTags,
         handleFollowHashtag,
-        isPendingFollow
+        isPendingFollow,
+        errorFollow
     } = props;
     return (
         <div className="dashboard-sidebar">
@@ -25,8 +33,14 @@ export default function SidebarTag(props) {
                 recommendedTags={recommendedTags}
                 handleFollowHashtag={handleFollowHashtag}
                 isPendingFollow={isPendingFollow}
+                errorFollow={errorFollow}
             />
-            <RecommendBlogs />
+            <RecommendBlogs
+                blogsError={blogsError}
+                blogs={data?.blogs}
+                blogsIsPending={false}
+                showExplore={blogsIsPending}
+            />
         </div>
     );
 }
@@ -39,5 +53,6 @@ SidebarTag.propTypes = {
     tagName: PropTypes.string,
     recommendedTags: PropTypes.any,
     handleFollowHashtag: PropTypes.func,
-    isPendingFollow: PropTypes.bool
+    isPendingFollow: PropTypes.bool,
+    errorFollow: PropTypes.string
 };

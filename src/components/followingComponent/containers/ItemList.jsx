@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DropDownPostListFollow from './DropDownListFollow';
 import { Popover } from '@mui/material';
-import PopupBlock from './PopupBlock';
 import ProfileMiniHoverWrapper from '../../profileViews/mini&sideViews/View';
 
 export default function ItemList(props) {
@@ -16,7 +15,8 @@ export default function ItemList(props) {
         openPopup,
         handleBlock,
         myBlogName,
-        blogId
+        blogId,
+        setProfileNamePop
     } = props;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -25,6 +25,7 @@ export default function ItemList(props) {
         setAnchorEl(null);
     };
     const handleClick = event => {
+        console.log('clicked for ', profileName);
         setAnchorEl(event.currentTarget);
     };
     const openPost = Boolean(anchorEl);
@@ -37,7 +38,6 @@ export default function ItemList(props) {
                     <div className="yElCb">
                         <ProfileMiniHoverWrapper
                             blogID={blogId?.toString()}
-                            // blogID={user?.userData?.primary_blog_id.toString()}
                             blogName={profileName}
                         >
                             <div className="qgKw0">
@@ -74,12 +74,17 @@ export default function ItemList(props) {
                         <button
                             className="TRX6J"
                             onClick={() => handleUnfollow(profileName)}
+                            dataTestid="unfollowprofile_btn_following"
                         >
                             <span className="f68ED">Unfollow</span>
                         </button>
                         <span className="BPf9u">
                             <span className="BPf9u">
-                                <button className="TRX6J" onClick={handleClick}>
+                                <button
+                                    className="TRX6J"
+                                    onClick={handleClick}
+                                    dataTestid="popupblockdrop_btn_following"
+                                >
                                     <span className="EvhBA">
                                         <span className="JS4zW">
                                             <svg
@@ -106,16 +111,14 @@ export default function ItemList(props) {
                                         vertical: 'top',
                                         horizontal: 'center'
                                     }}
-                                    // eslint-disable-next-line react/jsx-no-duplicate-props
-                                    anchorOrigin={{
-                                        vertical: 'bottom',
-                                        horizontal: 'center'
-                                    }}
+                                    key={profileName}
                                     open={openPost}
                                     anchorEl={anchorEl}
                                     onClose={handleClose}
                                 >
                                     <DropDownPostListFollow
+                                        key={profileName}
+                                        setProfileNamePop={setProfileNamePop}
                                         setOpen={handleClose}
                                         setOpenBlock={setOpenBlock}
                                         openPopup={openPopup}
@@ -129,13 +132,6 @@ export default function ItemList(props) {
                     </div>
                 </div>
             </div>
-            <PopupBlock
-                open={openPopup}
-                setOpen={setOpenBlock}
-                handleBlock={handleBlock}
-                profileName={profileName}
-                myBlogName={myBlogName}
-            />
         </>
     );
 }
@@ -150,5 +146,6 @@ ItemList.propTypes = {
     handleBlock: PropTypes.func,
     openPopup: PropTypes.bool,
     myBlogName: PropTypes.string,
-    blogId: PropTypes.any
+    blogId: PropTypes.any,
+    setProfileNamePop: PropTypes.func
 };

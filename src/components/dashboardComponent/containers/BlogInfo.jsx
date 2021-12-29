@@ -20,7 +20,11 @@ export default function BlogInfo({ blogName, blogDesc, blogIcon, blogId }) {
                     blogName={blogName}
                 >
                     <button className="full-width-btn">
-                        <img src={blogIcon} alt="" />
+                        <img
+                            className="blogInfo-row-img"
+                            src={blogIcon}
+                            alt=""
+                        />
                         <div className="blogInfo-column">
                             <p
                                 style={{
@@ -52,7 +56,7 @@ export default function BlogInfo({ blogName, blogDesc, blogIcon, blogId }) {
                 >
                     {followMsg && followMsg.includes('successfully')
                         ? ''
-                        : 'Following'}
+                        : 'Follow'}
                 </button>
             </div>
             <button className="init-btn remove-btn">

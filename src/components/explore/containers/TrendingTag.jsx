@@ -8,7 +8,8 @@ import PropTypes from 'prop-types';
 export default function TrendingTag({ color, tag, img, order }) {
     const theme = useContext(ThemeContext)[0];
     return (
-        <div
+        <a
+            href={`/tagged/${tag.tag_name}`}
             className="trending-tag"
             style={{
                 background: `rgba(${color}, 0.25)`
@@ -29,18 +30,18 @@ export default function TrendingTag({ color, tag, img, order }) {
                 >
                     {order}
                 </div>{' '}
-                {tag}
+                {tag.tag_name}
             </div>
             <div className="tag-img">
-                <img src={img} />
+                <img src={tag?.posts_views[0]?.link} />
             </div>
-        </div>
+        </a>
     );
 }
 
 TrendingTag.propTypes = {
     color: PropTypes.string,
     img: PropTypes.string,
-    tag: PropTypes.string,
-    order: PropTypes.string
+    tag: PropTypes.any,
+    order: PropTypes.any
 };

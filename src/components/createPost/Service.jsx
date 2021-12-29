@@ -5,7 +5,6 @@ import { apiBaseUrl } from '../../config.json';
 
 export const handlePosting = (bodyData, handleClose, token, setSpinnerPost) => {
     let errors = validatePosting(bodyData?.title, bodyData?.content);
-    console.log('body to be send', bodyData);
     if (errors?.length > 0) {
         return { status: false, err: errors };
     } else {
@@ -100,3 +99,31 @@ export function reblogPost(post, comment, navigate, token) {
         })
         .catch(() => {});
 }
+
+export const getAllBlogNames = (
+    token,
+    setBlogNames,
+    setIsPendingBlogs,
+    setError
+) => {
+    Axios({
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        url: `${apiBaseUrl}/user/info`
+    })
+        .then(response => {
+            if (response?.data?.response?.blogs?.length > 0) {
+                setBlogNames(response?.data?.response?.blogs);
+            }
+            setIsPendingBlogs(false);
+            setError('');
+        })
+        .catch(() => {
+            setIsPendingBlogs(false);
+            setError("couldn't load");
+        });
+};

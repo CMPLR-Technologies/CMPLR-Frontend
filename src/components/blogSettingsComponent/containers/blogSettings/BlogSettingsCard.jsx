@@ -10,10 +10,12 @@ import DeleteSection from './DeleteSection';
 import { BlogSettingsContext } from '../../../../contexts/blogSettingsContext/BlogSettingsContext';
 import { getBlogSettings, getBlocksOfBlog } from '../../Service';
 import { useParams } from 'react-router-dom';
+import ProfileSideSettings from '../../../profileViews/mini&sideViews/sideView/ProfileSideSettings';
 export default function BlogSettingsCard() {
     const user = JSON.parse(localStorage.getItem('user'));
     const { blogName } = useParams();
-    const { setBlogs, updateProperty } = useContext(BlogSettingsContext);
+    const { setBlogs, updateProperty, blogId } =
+        useContext(BlogSettingsContext);
     const [errMsg, setErrMsg] = useState('');
     useEffect(() => {
         getBlogSettings(setBlogs, user?.token, blogName);
@@ -22,21 +24,24 @@ export default function BlogSettingsCard() {
             alert(errMsg);
         }
     }, []);
+
+    //useEffect(() => {}, []);
+
     return (
         <div className="settings" data-testid="settings">
-            <div className="container1" data-testid="container1">
-                <div className="subcontainer" data-testid="subcontainer">
-                    <h2 className="title" data-testid="title">
-                        Account
-                    </h2>
-                    <div>
-                        <UserNameSection />
-                        <RepliesSection />
-                        <AllowAskSection />
-                        <AllowMessaging />
-                        <VisibilitySection />
-                        <BlockSection />
-                        <DeleteSection blogName={blogName} />
+            <div>
+                <ProfileSideSettings blogId={blogId} />
+                <div className="container1" data-testid="container1">
+                    <div className="subcontainer" data-testid="subcontainer">
+                        <div>
+                            <UserNameSection />
+                            <RepliesSection />
+                            <AllowAskSection />
+                            <AllowMessaging />
+                            <VisibilitySection />
+                            <BlockSection />
+                            <DeleteSection blogName={blogName} />
+                        </div>
                     </div>
                 </div>
             </div>

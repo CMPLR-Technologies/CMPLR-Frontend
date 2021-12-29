@@ -36,7 +36,7 @@ $border-radius-primary: 3px;
     // navber class
     background-color: transparent;
     //border-bottom: 0.5px solid rgba(255, 255, 255, 0.15);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -853,8 +853,12 @@ $border-radius-primary: 3px;
                     .account-popup-blog-link-row:hover {
                         background-color: inherit;
                     }
+                    .newPostA {
+                        text-decoration: none;
+                        color: inherit;
+                    }
                     .create-new-post {
-                        background: none;
+                        //background: none;
                         // color: inherit;
                         border: none;
                         padding: 0;

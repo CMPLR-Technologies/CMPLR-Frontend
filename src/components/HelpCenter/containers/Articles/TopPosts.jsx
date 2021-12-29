@@ -25,7 +25,7 @@ export default function TopPosts() {
                                 Anyone on Tumblr can see your top posts when
                                 they view your blog (unless you’ve{' '}
                             </span>
-                            <a href="/hc/en-us/articles/115011611747-Privacy-options">
+                            <a href="https://tumblr.zendesk.com/hc/en-us/articles/115011611747-Privacy-options">
                                 <span style={{ fontWeight: 400 }}>
                                     hidden your blog
                                 </span>
@@ -58,7 +58,7 @@ export default function TopPosts() {
                                 at least one note in the past two months for us
                                 to pick out the popular ones. And make sure you{' '}
                             </span>
-                            <a href="/hc/en-us/articles/226161387-Tagging-your-posts">
+                            <a href="https://tumblr.zendesk.com/hc/en-us/articles/226161387-Tagging-your-posts">
                                 <span style={{ fontWeight: 400 }}>
                                     tag your posts
                                 </span>

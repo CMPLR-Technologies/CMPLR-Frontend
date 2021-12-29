@@ -62,7 +62,7 @@ export default function DashboardPreferences() {
                             With the "Include posts from your followed tags"
                             setting enabled, you will see results from your{' '}
                             <a
-                                href="/hc/en-us/articles/226259728"
+                                href="https://tumblr.zendesk.com/hc/en-us/articles/226259728"
                                 target="_self"
                             >
                                 followed tags

@@ -42,14 +42,13 @@ export default function PostButton(props) {
                         className="to-post-button"
                         data-testid="post-postBtn"
                         onClick={handlePost}
-                        disabled={content === '' || titlePost === ''}
+                        disabled={content === ''}
+                        dataTestid="postcontent_btn_createPost"
                     >
                         {titlePost === null
                             ? 'Reblog'
                             : postType === 'Post now'
                             ? 'Post'
-                            : postType === 'Save as draft'
-                            ? 'Save draft'
                             : 'Post privately'}
                     </button>
                     <div
@@ -72,11 +71,6 @@ export default function PostButton(props) {
                         open={openPost}
                         anchorEl={anchorEl}
                         onClose={handleClose}
-                        // eslint-disable-next-line react/jsx-no-duplicate-props
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'left'
-                        }}
                     >
                         <DropDownPostList
                             postType={postType}

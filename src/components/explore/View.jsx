@@ -39,8 +39,8 @@ export default function Explore() {
         <div className="explore">
             <div className={`explore-main ${!grid ? 'mid-size' : ''} `}>
                 <Nav grid={grid} setGrid={setGrid} />
-                {type !== 'trending' && <HashtagsList />}
-                {type === 'trending' && <TrendingTags />}
+                {type !== 'trending' && type && <HashtagsList />}
+                {type === 'trending' && type && <TrendingTags />}
                 {grid && isBigScreen ? (
                     <GridPostsView
                         posts={posts}

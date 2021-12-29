@@ -16,7 +16,7 @@ export default function ProfileFull(props) {
     const headerScrollAnimation = el => {
         setScrollTop(el.target.scrollTop);
     };
-    const isFollowed = false;
+    //const isFollowed = false;
     const isBlocked = false;
 
     const response = useFetch(`${apiBaseUrl}/MiniProfileView/${blogID}`);
@@ -67,7 +67,14 @@ export default function ProfileFull(props) {
 
     return (
         <div>
-            {error && <div className="no-data-error">{"Couldn't load"}</div>}
+            {error && (
+                <div className="profile-full-header">
+                    <br />
+                    <br />
+                    <br />
+                    <div className="no-data-error">{"Couldn't load"}</div>
+                </div>
+            )}
             {isPending && <LinearProgress />}
             {data && (
                 <div
@@ -77,7 +84,7 @@ export default function ProfileFull(props) {
                     <Navbar2MainView
                         blogName={blogName}
                         blogID={blogID}
-                        isFollowed={isFollowed}
+                        isFollowed={data?.is_followed}
                         isBlocked={isBlocked}
                     />
                     <NavLink
@@ -104,7 +111,9 @@ export default function ProfileFull(props) {
                             to={`/blog/view/${blogName}/${blogID}/posts`}
                         >
                             <div className="profile-full-header-text-title">
-                                {data.blog.title}
+                                {data.blog.title === 'untitled'
+                                    ? blogName
+                                    : data.blog.title}
                             </div>
                         </NavLink>
                         <div className="profile-full-header-text-desc">
