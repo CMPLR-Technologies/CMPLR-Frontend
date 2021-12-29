@@ -3,8 +3,6 @@ import Sidebar from './container/SideBar';
 import { useLocation, useParams } from 'react-router-dom';
 import FollowersPage from './container/FollowersPage';
 import PostsPage from './container/PostsPage';
-import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
-import { apiBaseUrl } from '../../config.json';
 import { getBlogPosts, getFollowersList } from './Service';
 import ActivityPage from '../activityPageComponent/ActivityPage';
 import { chaneMobileView } from '../partials/postComponent/Controller';
@@ -147,10 +145,9 @@ export default function MyProfile() {
                     ) : (
                         <PostsPage
                             mobileView={mobileView}
+                            // {/*TODO filter null type posts */}
                             response={{
-                                posts: posts.filter(
-                                    post => post?.post?.type !== null
-                                ),
+                                posts: posts,
                                 isPending
                             }}
                             draft={false}
