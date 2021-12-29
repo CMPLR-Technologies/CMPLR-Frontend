@@ -21,7 +21,7 @@ export default function ResetPasswordCard() {
     const { token } = useParams();
     const [email, setEmail] = React.useState();
     useEffect(() => {
-        getEmail(token, setEmail);
+        getEmail(token, setEmail, setErrorMsg);
     }, []);
 
     return (

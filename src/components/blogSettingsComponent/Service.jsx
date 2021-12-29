@@ -111,11 +111,7 @@ export function getBlogSettings(setBlogs, token, blogName) {
     })
         .then(res => {
             if (res?.data?.meta?.status_code === 200) {
-<<<<<<< HEAD
-                setBlogs(res?.data?.response[0][0]);
-=======
                 setBlogs(res?.data?.response?.settings);
->>>>>>> ac29b8feeab03a1ef548de72d76ed60ceb0a4025
             }
         })
         .catch(() => {});
