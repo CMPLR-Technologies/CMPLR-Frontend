@@ -22,13 +22,22 @@ export default function ListItem(props) {
         <li
             onClick={() => setClicked(index + 1)}
             className={`list-item ${clicked ? 'clicked' : ''}`}
+            data-testid="list-item-myprofile"
         >
             <Link
                 className={`list-item-anchor ${prof ? 'prof' : ''} `}
+                data-testid="list-item-anchor"
                 to={link}
             >
-                <span className="list-item-span">{primary}</span>
-                <small className="list-item-anchor-small">{secondary}</small>
+                <span className="list-item-span" data-testid="list-item-span">
+                    {primary}
+                </span>
+                <small
+                    className="list-item-anchor-small"
+                    data-testid="list-item-anchor-small"
+                >
+                    {secondary}
+                </small>
             </Link>
         </li>
     );

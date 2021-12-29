@@ -22,7 +22,6 @@ export default function Sidebar(props) {
     const listItems = [
         {
             primary: blogUrlIdf,
-            secondary: 'khaldon',
             prof: false,
             link: `/blog/${blogUrlIdf}`
         },
@@ -45,10 +44,13 @@ export default function Sidebar(props) {
         }
     ];
     return (
-        <div className="settings">
-            <div className="container2">
-                <div className="wrapper">
-                    <ul className="list">
+        <div className="settings" data-testid="settings-sidebar">
+            <div
+                className="container2"
+                data-testid="settings-sidebar-container2"
+            >
+                <div className="wrapper" data-testid="settings-sidebar-wrapper">
+                    <ul className="list" data-testid="settings-sidebar-list">
                         {listItems.map((item, index) => (
                             <ListItem
                                 key={index}

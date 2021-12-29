@@ -14,7 +14,11 @@ import { followAccount } from '../../../followingComponent/Service';
 import axios from 'axios';
 import { apiBaseUrl } from '../../../../config.json';
 NotfBody.propTypes = {
-    notf: PropTypes.object
+    notf: PropTypes.object,
+    setUnseenNotf: PropTypes.func,
+    setSideBlogId: PropTypes.func,
+    setSideBlogName: PropTypes.func,
+    setShowSideBlog: PropTypes.func
 };
 
 export default function NotfBody(props) {
@@ -72,10 +76,17 @@ export default function NotfBody(props) {
                     handleClickNotificationBody(notf['notification_id']);
                 }}
                 className="notf-body"
+                data-testid="notf-body"
             >
-                <div className="relative">
-                    <div className="notes-summary-avatars-react">
-                        <div className="noter-avatar">
+                <div className="relative" data-testid="notf-body-relative">
+                    <div
+                        className="notes-summary-avatars-react"
+                        data-testid="notf-body-notes-summary-avatars-react"
+                    >
+                        <div
+                            className="noter-avatar"
+                            data-testid="notf-body-noter-avatar"
+                        >
                             <img
                                 className="noter-avatar-img"
                                 src={notf && notf['from_blog_avatar']}
@@ -103,7 +114,10 @@ export default function NotfBody(props) {
                             ) : null}
                         </div>
                     </div>
-                    <div className="notf-content">
+                    <div
+                        className="notf-content"
+                        data-testid="notf-body-notf-content"
+                    >
                         <strong>
                             {notf && notf['from_blog_name']}{' '}
                             <span style={{ marginRight: '5px' }}> </span>
@@ -131,6 +145,7 @@ export default function NotfBody(props) {
                         {notf && notf['post_ask_answer_content'] ? (
                             <span
                                 className="post-ask-answer-content"
+                                data-testid="notf-body-post-ask-answer-content"
                                 style={{ marginLeft: '5px' }}
                                 dangerouslySetInnerHTML={{
                                     __html: `${
@@ -140,7 +155,7 @@ export default function NotfBody(props) {
                             ></span>
                         ) : null}
                     </div>
-                    <div className="type">
+                    <div className="type" data-testid="notf-body-type">
                         {notf && notf['type'] === 'like' ? (
                             <Link className="post-link" to="*">
                                 <PostIcon />
@@ -159,6 +174,7 @@ export default function NotfBody(props) {
                                     );
                                 }}
                                 className="follow-btn btn"
+                                data-testid="notf-body-follow-btn"
                             >
                                 {following ? '' : 'Follow'}
                             </button>

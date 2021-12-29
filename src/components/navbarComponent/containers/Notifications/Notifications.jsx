@@ -4,12 +4,17 @@ import NotfBody from './NotfBody';
 import NotfHeader from './NotfHeader';
 import propTypes from 'prop-types';
 import TimeAgo from 'timeago-react';
+
 Notifications.propTypes = {
     userBlogName: propTypes.string,
     userAvatar: propTypes.string,
     notfArray: propTypes.object,
     setNotfArray: propTypes.func,
-    activity: propTypes.bool
+    activity: propTypes.bool,
+    setUnseenNotf: propTypes.func,
+    setSideBlogId: propTypes.func,
+    setSideBlogName: propTypes.func,
+    setShowSideBlog: propTypes.func
 };
 export default function Notifications(props) {
     const {
@@ -17,8 +22,8 @@ export default function Notifications(props) {
         userAvatar,
         notfArray,
         setNotfArray,
-        setUnseenNotf,
         activity,
+        setUnseenNotf,
         setSideBlogId,
         setSideBlogName,
         setShowSideBlog
@@ -68,12 +73,22 @@ export default function Notifications(props) {
                             return (
                                 <>
                                     {notf && notf[date] && (
-                                        <div className="notf-date">
-                                            <div className="duration">
+                                        <div
+                                            className="notf-date"
+                                            data-test-id="notf-date"
+                                        >
+                                            <div
+                                                className="duration"
+                                                data-test-id="notf-date-duration"
+                                            >
                                                 <TimeAgo datetime={date} />
                                             </div>{' '}
-                                            {/*TODO calc duration depends on BE response format*/}
-                                            <div className="date">{date}</div>
+                                            <div
+                                                className="date"
+                                                data-test-id="notf-date-date"
+                                            >
+                                                {date}
+                                            </div>
                                         </div>
                                     )}
                                     {notf &&
@@ -86,6 +101,7 @@ export default function Notifications(props) {
                                                     color: 'black'
                                                 }}
                                                 key={index}
+                                                data-test-id="notf-body"
                                             >
                                                 <NotfBody
                                                     notf={notf && notf}
@@ -110,9 +126,15 @@ export default function Notifications(props) {
                         })}
                 </div>
                 {!activity && (
-                    <div className="see-everything-btn">
+                    <div
+                        className="see-everything-btn"
+                        data-test-id="see-everything"
+                    >
                         <Link to={`/blog/${userBlogName}/activity`}>
-                            <button className="btn see-everything">
+                            <button
+                                className="btn see-everything"
+                                data-test-id="see-everything-btn"
+                            >
                                 See Everything
                             </button>
                         </Link>
