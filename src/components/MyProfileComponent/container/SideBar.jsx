@@ -22,7 +22,6 @@ export default function Sidebar(props) {
     const listItems = [
         {
             primary: blogUrlIdf,
-            secondary: 'khaldon',
             prof: false,
             link: `/blog/${blogUrlIdf}`
         },
