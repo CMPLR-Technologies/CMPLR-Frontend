@@ -13,6 +13,13 @@ import TopPosts from './Articles/TopPosts';
 import DashboardPreferences from './Articles/DashboardPreferences';
 import InformationForPostCreators from './Articles/InformationForPostCreators';
 import InformationForPostSupporters from './Articles/InformationForPostSupporters';
+import ThemeBasics from './Articles/ThemeBasics';
+import GoogleAnalytics from './Articles/GoogleAnalytics';
+import CustomHtml from './Articles/CustomHtml';
+import Reblogs from './Articles/Reblogs';
+import MakingAPost from './Articles/MakingAPost';
+import PinnedPosts from './Articles/PinnedPosts';
+import BlogPages from './Articles/BlogPages';
 
 export default function Article() {
     const { article } = useParams();
@@ -26,7 +33,6 @@ export default function Article() {
                 {article === 'ManagingTimeZones' && <ManagingTimeZones />}
                 {article === 'ConnectingToTwitter' && <ConnectingToTwitter />}
                 {article === 'BugBountyProgram' && <BugBountyProgram />}
-
                 {article === 'ChangingYourUsernameOrUrl' && (
                     <ChangingYourUsernameOrUrl />
                 )}
@@ -46,6 +52,13 @@ export default function Article() {
                 {article === 'InformationForPostCreators' && (
                     <InformationForPostCreators />
                 )}
+                {article === 'ThemeBasics' && <ThemeBasics />}{' '}
+                {article === 'GoogleAnalytics' && <GoogleAnalytics />}{' '}
+                {article === 'CustomHtml' && <CustomHtml />}{' '}
+                {article === 'Reblogs' && <Reblogs />}{' '}
+                {article === 'MakingAPost' && <MakingAPost />}{' '}
+                {article === 'PinnedPosts' && <PinnedPosts />}{' '}
+                {article === 'BlogPages' && <BlogPages />}
             </div>
         </div>
     );

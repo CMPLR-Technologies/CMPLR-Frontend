@@ -4,10 +4,13 @@ import React from 'react';
 export default function SearchAndFilteringBasics() {
     return (
         <div>
-            <h1 title="Search and Filtering Basics" className="article-title">
-                Search and Filtering Basics
-            </h1>
             <section className="article-info">
+                <h1
+                    title="Search and Filtering Basics"
+                    className="article-title"
+                >
+                    Search and Filtering Basics
+                </h1>
                 <div className="article-content">
                     <div className="article-body">
                         {/*article title: Search and Filtering Basics*/}
@@ -54,7 +57,7 @@ export default function SearchAndFilteringBasics() {
                                 out{' '}
                                 <a
                                     style={{ color: '#ffffff' }}
-                                    href="/hc/articles/223857628-Appearing-In-Search-Results"
+                                    href="https://tumblr.zendesk.com/hc/articles/223857628-Appearing-In-Search-Results"
                                 >
                                     this article
                                 </a>
@@ -75,7 +78,7 @@ export default function SearchAndFilteringBasics() {
                         <p>
                             Doing so will reveal a dropdown with your followed
                             tags. Check out our article about following tags{' '}
-                            <a href="/hc/articles/226259728-Followed-Tags">
+                            <a href="https://tumblr.zendesk.com/hc/articles/226259728-Followed-Tags">
                                 here
                             </a>
                             .
@@ -128,8 +131,7 @@ export default function SearchAndFilteringBasics() {
                             <div style={{ textAlign: 'center' }}>
                                 <a
                                     style={{ color: '#00b8ff' }}
-                                    href="/hc/articles/4409392091927"
-                                    target="_blank"
+                                    href="https://tumblr.zendesk.com/hc/articles/4409392091927"
                                     rel="noopener"
                                 >
                                     Image description
@@ -147,7 +149,7 @@ export default function SearchAndFilteringBasics() {
                                     followed tags{' '}
                                     <a
                                         style={{ color: '#00b8ff' }}
-                                        href="/hc/articles/226259728-Followed-Tags"
+                                        href="https://tumblr.zendesk.com/hc/articles/226259728-Followed-Tags"
                                     >
                                         here
                                     </a>
@@ -234,8 +236,7 @@ export default function SearchAndFilteringBasics() {
                             <div style={{ textAlign: 'center' }}>
                                 <a
                                     style={{ color: '#00b8ff' }}
-                                    href="/hc/articles/4409392077719"
-                                    target="_blank"
+                                    href="https://tumblr.zendesk.com/hc/articles/4409392077719"
                                     rel="noopener"
                                 >
                                     Image description
@@ -251,7 +252,7 @@ export default function SearchAndFilteringBasics() {
                                     followed tags{' '}
                                     <a
                                         style={{ color: '#00b8ff' }}
-                                        href="/hc/articles/226259728-Followed-Tags"
+                                        href="https://tumblr.zendesk.com/hc/articles/226259728-Followed-Tags"
                                     >
                                         here
                                     </a>
@@ -412,8 +413,7 @@ export default function SearchAndFilteringBasics() {
                             <div style={{ textAlign: 'center' }}>
                                 <a
                                     style={{ color: '#00b8ff' }}
-                                    href="/hc/articles/4409392102935"
-                                    target="_blank"
+                                    href="https://tumblr.zendesk.com/hc/articles/4409392102935"
                                     rel="noopener"
                                 >
                                     Image description
@@ -429,7 +429,7 @@ export default function SearchAndFilteringBasics() {
                                     followed tags{' '}
                                     <a
                                         style={{ color: '#00b8ff' }}
-                                        href="/hc/articles/226259728-Followed-Tags"
+                                        href="https://tumblr.zendesk.com/hc/articles/226259728-Followed-Tags"
                                     >
                                         here
                                     </a>
@@ -528,8 +528,7 @@ export default function SearchAndFilteringBasics() {
                             <div style={{ textAlign: 'center' }}>
                                 <a
                                     style={{ color: '#00b8ff' }}
-                                    href="/hc/articles/4409391998487"
-                                    target="_blank"
+                                    href="https://tumblr.zendesk.com/hc/articles/4409391998487"
                                     rel="noopener"
                                 >
                                     Image description
@@ -567,7 +566,7 @@ export default function SearchAndFilteringBasics() {
                                     followed tags{' '}
                                     <a
                                         style={{ color: '#00b8ff' }}
-                                        href="/hc/articles/226259728-Followed-Tags"
+                                        href="https://tumblr.zendesk.com/hc/articles/226259728-Followed-Tags"
                                     >
                                         here
                                     </a>
