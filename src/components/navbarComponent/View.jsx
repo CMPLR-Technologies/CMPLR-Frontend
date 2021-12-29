@@ -178,8 +178,8 @@ export default function Navbar() {
                 background-color:rgb(${themes[theme].navy});
             }
             .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu .create-new-post  {
-               
-                color:rgb(${themes[theme].navy});
+                color:rgb(${themes[theme].white});
+                background: rgb(${themes[theme].accent});
             }
            
             .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu ul li a{
@@ -191,9 +191,13 @@ export default function Navbar() {
             .nav .section1 .search{
                 background-color: rgb(${themes[theme].white});
             }
-            .nav .section1 .search search-input::placeholder{
-                background-color: $primiry-color;
+            .search-input{
+                color: rgba(${themes[theme].black}, 0.65);
             }
+            .search-input::placeholder{
+                color: rgba(${themes[theme].black}, 0.65);
+            }
+
                 
             .messagepage-mobile .receiver{
                 color: rgb(${themes[theme].black});

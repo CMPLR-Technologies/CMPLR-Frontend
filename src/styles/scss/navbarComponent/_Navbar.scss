@@ -853,8 +853,12 @@ $border-radius-primary: 3px;
                     .account-popup-blog-link-row:hover {
                         background-color: inherit;
                     }
+                    .newPostA{
+                        text-decoration: none;
+                        color:inherit
+                    }
                     .create-new-post {
-                        background: none;
+                        //background: none;
                         // color: inherit;
                         border: none;
                         padding: 0;
