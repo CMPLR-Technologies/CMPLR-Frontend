@@ -855,12 +855,12 @@ $border-radius-primary: 3px;
                     }
                     .create-new-post {
                         background: none;
-                       // color: inherit;
+                        // color: inherit;
                         border: none;
                         padding: 0;
                         font: inherit;
                         outline: inherit;
-                       // background-color: $button-color;
+                        // background-color: $button-color;
                         align-items: center;
                         border-radius: 6px;
                         line-height: 1.333;
@@ -1059,6 +1059,9 @@ $border-radius-primary: 3px;
 .notf-body {
     max-height: 500px;
     background-color: white;
+    &:hover {
+        cursor: pointer;
+    }
     .relative {
         display: flex;
         font-size: 0.875rem;

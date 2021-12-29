@@ -20,6 +20,7 @@ import { apiBaseUrl } from '../../../../config.json';
 import { handlePosting } from '../../../createPost/Service';
 import { useNavigate } from 'react-router-dom';
 import ProfileMiniHoverWrapper from '../../../profileViews/mini&sideViews/View';
+import AskPost from './postTypesComponents/AskPost';
 /**
  * @function PostComponent
  * @description Base Unit Component for all post compoennt types
@@ -53,7 +54,8 @@ export default function PostComponent(props) {
         padding,
         blogPage,
         themeDeactivate,
-        draft
+        draft,
+        ask
     } = props;
     let theme = useContext(ThemeContext)[0];
     if (themeDeactivate) theme = 'trueBlue';
@@ -472,7 +474,7 @@ export default function PostComponent(props) {
                         </div>
                     </header>
                 )}
-                {
+                {!ask ? (
                     <>
                         <TextPost
                             title={title && title}
@@ -480,7 +482,9 @@ export default function PostComponent(props) {
                         />
                         <Divider />
                     </>
-                }
+                ) : (
+                    <AskPost content={content && content} />
+                )}
                 {!reblog && (
                     <div
                         data-testid="post-footer-cont-ts"
@@ -503,6 +507,7 @@ export default function PostComponent(props) {
                             draft={draft}
                             postSubmit={postSubmit}
                             setIsLiked={setIsLiked}
+                            ask={ask}
                         />
                     </div>
                 )}
