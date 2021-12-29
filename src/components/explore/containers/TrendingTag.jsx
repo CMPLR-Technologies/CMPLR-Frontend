@@ -33,7 +33,7 @@ export default function TrendingTag({ color, tag, img, order }) {
                 {tag.tag_name}
             </div>
             <div className="tag-img">
-                <img src={img} />
+                <img src={tag?.posts_views[0]?.link} />
             </div>
         </a>
     );
@@ -42,6 +42,6 @@ export default function TrendingTag({ color, tag, img, order }) {
 TrendingTag.propTypes = {
     color: PropTypes.string,
     img: PropTypes.string,
-    tag: PropTypes.string,
-    order: PropTypes.string
+    tag: PropTypes.any,
+    order: PropTypes.any
 };
