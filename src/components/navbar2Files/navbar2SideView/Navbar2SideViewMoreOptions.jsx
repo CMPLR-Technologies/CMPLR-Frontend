@@ -2,13 +2,21 @@ import React from 'react';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { block } from '../Controller';
 
 export default function Navbar2SideViewMoreOptions(props) {
-    const { blogID, blogName, isBlocked, isSelf, setShowSideBlog } = props;
-    const openBlockModel = () => {
-        //isBlocked = true
-        //isFollowed = false
-    };
+    const {
+        blogID,
+        blogName,
+        isBlocked,
+        isSelf,
+        setShowSideBlog,
+        setIsFollowed,
+        setBlocked
+    } = props;
+    //isBlocked = true
+    //isFollowed = false
+
     const closeOption = () => {
         props.close();
     };
@@ -33,7 +41,12 @@ export default function Navbar2SideViewMoreOptions(props) {
                         </li>
                     </Link>
                     {!isBlocked && !isSelf && (
-                        <li className="red" onClick={openBlockModel}>
+                        <li
+                            className="red"
+                            onClick={() =>
+                                block(blogName, setBlocked, setIsFollowed)
+                            }
+                        >
                             Block
                         </li>
                     )}
@@ -48,6 +61,8 @@ Navbar2SideViewMoreOptions.propTypes = {
     blogName: PropTypes.string.isRequired,
     blogID: PropTypes.string.isRequired,
     setShowSideBlog: PropTypes.func.isRequired,
+    setIsFollowed: PropTypes.func.isRequired,
+    setBlocked: PropTypes.func.isRequired,
     isBlocked: PropTypes.bool,
     isSelf: PropTypes.bool
 };
