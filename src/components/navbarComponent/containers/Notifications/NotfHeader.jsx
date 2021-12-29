@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { apiBaseUrl } from '../../../../config.json';
 import axios from 'axios';
 import { RiArrowDropDownLine } from 'react-icons/ri';
-import { NavLink } from 'react-router-dom';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import propTypes from 'prop-types';
 import {
@@ -14,7 +13,9 @@ import { getNotifications } from '../../Service';
 NotfHeader.propTypes = {
     userBlogName: propTypes.string,
     userAvatar: propTypes.string,
-    filterNotf: propTypes.func
+    filterNotf: propTypes.func,
+    setNotfArray: propTypes.func,
+    setUnseenNotf: propTypes.func
 };
 export default function NotfHeader(props) {
     const theme = useContext(ThemeContext)[0];
@@ -45,8 +46,11 @@ export default function NotfHeader(props) {
             .catch(() => {});
     }, []);
     return (
-        <div className="header">
-            <div className="control-left">
+        <div className="header" data-testid="notf-header">
+            <div
+                className="control-left"
+                data-testid="notf-header-control-left"
+            >
                 <div>
                     <div>
                         <ClickAwayListener
@@ -56,17 +60,27 @@ export default function NotfHeader(props) {
                                 <div
                                     onClick={() => setBlogsView(prev => !prev)}
                                     className="header-flex-cont"
+                                    data-testid="notf-header-blog-name"
                                 >
                                     <img
                                         data-testid="avatar-img-ts"
                                         src={userAvatar}
                                         className="avatar-img-mob"
                                     />
-                                    <button className="btn-control">
-                                        <span className="caption">
+                                    <button
+                                        className="btn-control"
+                                        data-testid="notf-header-blog-name-btn"
+                                    >
+                                        <span
+                                            className="caption"
+                                            data-testid="notf-header-blog-name-caption"
+                                        >
                                             {userBlogName}
                                         </span>
-                                        <span className="icon_arrow_carrot_down">
+                                        <span
+                                            className="icon_arrow_carrot_down"
+                                            data-testid="notf-header-blog-name-icon"
+                                        >
                                             <RiArrowDropDownLine
                                                 style={{
                                                     fill: `rgb(${themes[theme].black})`
@@ -94,6 +108,7 @@ export default function NotfHeader(props) {
                                                 >
                                                     <div
                                                         className="account-popup-blog-head-img"
+                                                        data-testid="AccountPopupBlogHeadImg"
                                                     >
                                                         <img
                                                             src={blog?.avatar}
@@ -102,6 +117,7 @@ export default function NotfHeader(props) {
                                                     </div>
                                                     <div
                                                         className="account-popup-blog-head-text"
+                                                        data-testid="AccountPopupBlogHeadText"
                                                     >
                                                         <h1>
                                                             {blog?.blog_name}
@@ -124,6 +140,7 @@ export default function NotfHeader(props) {
                         filterNotf('all');
                     }}
                     className={`all ${selected === 1 ? 'selected' : ''}`}
+                    data-testid="notf-header-all"
                 >
                     All
                 </div>
@@ -133,6 +150,7 @@ export default function NotfHeader(props) {
                         filterNotf('reblog');
                     }}
                     className={`reblogs ${selected === 2 ? 'selected' : ''}`}
+                    data-testid="notf-header-reblogs"
                 >
                     Reblogs
                 </div>
@@ -142,6 +160,7 @@ export default function NotfHeader(props) {
                         filterNotf('reply');
                     }}
                     className={`replies ${selected === 3 ? 'selected' : ''}`}
+                    data-testid="notf-header-replies"
                 >
                     Replies
                 </div>

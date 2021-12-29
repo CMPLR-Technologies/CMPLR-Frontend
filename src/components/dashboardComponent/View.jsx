@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CreatePost from '../createPost/View';
-import VerifyEmail from '../VerifyEmail/View';
+import VerifyEmail from '../verifyEmail/View';
 import VerticalPostsView from '../partials/VerticalPostsView';
 import { apiBaseUrl } from '../../config.json';
 import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
@@ -22,7 +22,6 @@ export default function Dashboard() {
     const isBigScreen = useMediaQuery({
         query: '(min-device-width: 960px )'
     });
-
     return (
         <div className="dashboard">
             <div className="posts-region">

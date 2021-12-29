@@ -51,7 +51,7 @@ export default function Nav(props) {
                     For You <FavoriteIcon className="emoji" />
                 </Link>
                 <Link
-                    to="/explore/trending "
+                    to="/explore/trending"
                     style={linkStyles}
                     className={type === 'trending' ? 'mainLink' : 'otherLinks'}
                 >

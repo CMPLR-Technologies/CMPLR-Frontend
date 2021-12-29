@@ -23,13 +23,12 @@ export function newPassword(
             }
         })
             .then(res => {
-                if (res.data.meta.status_code === 200) {
+                if (res?.data?.meta?.status_code === 200) {
                     const user = {
-                        token: res.data.response.token,
-                        userData: res.data.response.user,
-                        blogName: res.data.response.blog_name
+                        token: res?.data?.response?.token,
+                        userData: res?.data?.response?.user,
+                        blogName: res?.data?.response?.blog_name
                     };
-                    console.log(user);
                     setUser(user);
                     localStorage.setItem('user', JSON.stringify(user));
                 } else {
@@ -48,8 +47,8 @@ export function getEmail(token, setEmail) {
         url: `${apiBaseUrl}/reset_password/${token}`
     })
         .then(res => {
-            if (res.data.meta.status_code === 200) {
-                setEmail(res.data.response.email);
+            if (res?.data?.meta?.status_code === 200) {
+                setEmail(res?.data?.response?.email);
             }
         })
         .catch(() => {});

@@ -25,6 +25,7 @@ export default function DropDownPostList(props) {
                                 onClick={() => {
                                     setPostType('Post now');
                                 }}
+                                dataTestid="option0_btn_createPost"
                             >
                                 <ListItemIcon style={{ minWidth: '30px' }}>
                                     {postType === 'Post now' && (
@@ -39,6 +40,7 @@ export default function DropDownPostList(props) {
                                 onClick={() => {
                                     setPostType('Post privately');
                                 }}
+                                dataTestid="option1_btn_createPost"
                             >
                                 <ListItemIcon style={{ minWidth: '30px' }}>
                                     {postType === 'Post privately' && (

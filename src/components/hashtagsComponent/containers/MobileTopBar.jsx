@@ -15,7 +15,8 @@ export default function MobileHashtagBar(props) {
         tagName,
         recommendedTags,
         handleFollowHashtag,
-        isPendingFollow
+        isPendingFollow,
+        errorFollow
     } = props;
     return (
         <>
@@ -59,6 +60,7 @@ export default function MobileHashtagBar(props) {
                                                 );
                                             }
                                         }}
+                                        dataTestid="follow_btn_hashtag"
                                     >
                                         <span className="WdYx4">
                                             {isPendingFollow && (
@@ -82,6 +84,7 @@ export default function MobileHashtagBar(props) {
                                             onClick={() => {
                                                 navigate('/new/post');
                                             }}
+                                            dataTestid="newpost_btn_hashtag"
                                         >
                                             <span className="WdYx4">
                                                 New post
@@ -89,7 +92,16 @@ export default function MobileHashtagBar(props) {
                                         </button>
                                     )}
                                 </div>
-                                <a className="kckjF" href="/#">
+                                {errorFollow !== '' && (
+                                    <p className="errorAlertInFollow">
+                                        {errorFollow}
+                                    </p>
+                                )}
+                                <a
+                                    className="kckjF"
+                                    href="#"
+                                    onClick={e => e.preventDefault()}
+                                >
                                     <div className="CrU4O">
                                         <span>Posted by</span>
                                     </div>
@@ -135,5 +147,6 @@ MobileHashtagBar.propTypes = {
     tagName: PropTypes.string,
     recommendedTags: PropTypes.any,
     handleFollowHashtag: PropTypes.func,
-    isPendingFollow: PropTypes.bool
+    isPendingFollow: PropTypes.bool,
+    errorFollow: PropTypes.string
 };

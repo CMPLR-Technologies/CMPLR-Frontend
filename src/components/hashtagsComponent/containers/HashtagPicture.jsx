@@ -9,11 +9,19 @@ export default function HashtagPicture(props) {
         <>
             <div className="iGLU3">
                 {/*-------------TODO add the url of hashtag--------- */}
-                <Link to={'/tagged/' + tagName} className="BSUG4">
+                <Link
+                    to={'/tagged/' + tagName}
+                    className="BSUG4"
+                    dataTestid="profLink0_btn_hashtag"
+                >
                     <div className="qJeyT"></div>
                 </Link>
                 <div className="ZV6oZ">
-                    <Link to={'/tagged/' + tagName} className="kckjF">
+                    <Link
+                        to={'/tagged/' + tagName}
+                        className="kckjF"
+                        dataTestid="profLink_btn_hashtag"
+                    >
                         <div className="CrU4O">
                             <span>
                                 Posted by <strong></strong>

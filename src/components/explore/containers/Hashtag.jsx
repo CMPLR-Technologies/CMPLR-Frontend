@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { followHashtag, getIsFollowed, unfollowHashtag } from '../Service';
+import { followHashtag, unfollowHashtag } from '../Service';
 import { UserContext } from '../../../contexts/userContext/UserContext';
 
 export default function Hashtag(props) {
@@ -9,10 +9,6 @@ export default function Hashtag(props) {
     const [toFollow, setToFollow] = useState(true);
 
     const { user } = useContext(UserContext);
-
-    useEffect(() => {
-        getIsFollowed(name, user?.token, setToFollow);
-    }, []);
     return (
         <div
             className="explore-hashtag"

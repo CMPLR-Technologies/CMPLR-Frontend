@@ -22,8 +22,7 @@ import {
     handleUploadImage,
     handleCreateLink,
     handleColor,
-    handleUploadVideo,
-    shortcutController
+    handleUploadVideo
 } from './Controller';
 import Input from '@mui/material/Input';
 import PostComponent from '../partials/postComponent/containers/PostComponent';
@@ -33,7 +32,15 @@ const InputCam = styled('input')({
 
 export default function HandMadeTextEditor(props) {
     // eslint-disable-next-line no-unused-vars
-    const { setContent, reblog, post, setSpinner, editContent } = props;
+    const {
+        setContent,
+        reblog,
+        askFetch,
+        post,
+        setSpinner,
+        editContent,
+        senderName
+    } = props;
     const user = JSON.parse(localStorage.getItem('user'));
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [link, setLink] = React.useState('https://');
@@ -64,10 +71,18 @@ export default function HandMadeTextEditor(props) {
                     post={post}
                 />
             )}
-            <div
-                className="main-richeditor"
-                onKeyDown={e => shortcutController(e, setContent)}
-            >
+            {askFetch && !reblog && post?.post && (
+                <PostComponent
+                    radar={true}
+                    askFetch={askFetch}
+                    senderName={senderName}
+                    ask={true}
+                    padding="20px"
+                    left="-20px"
+                    post={post}
+                />
+            )}
+            <div className="main-richeditor">
                 <div
                     className="content"
                     contentEditable="true"
@@ -83,6 +98,7 @@ export default function HandMadeTextEditor(props) {
                             handleHeading('formatBlock', setContent);
                         }}
                         id="headSelector"
+                        dataTestid="selectHeading_btn_texteditor"
                     >
                         <option value="none">Heading</option>
                         <option value="H1">H1</option>
@@ -101,6 +117,7 @@ export default function HandMadeTextEditor(props) {
                         type="button"
                         id="to-bold-words"
                         className="btn"
+                        dataTestid="bold_btn_texteditor"
                     >
                         <AiOutlineBold />
                     </button>
@@ -116,6 +133,7 @@ export default function HandMadeTextEditor(props) {
                         type="button"
                         id="to-italic-words"
                         className="btn"
+                        dataTestid="italic_btn_texteditor"
                     >
                         <AiOutlineItalic />
                     </button>
@@ -131,6 +149,7 @@ export default function HandMadeTextEditor(props) {
                         type="button"
                         id="to-underline-words"
                         className="btn"
+                        dataTestid="underline_btn_texteditor"
                     >
                         <AiOutlineUnderline />
                     </button>
@@ -149,6 +168,7 @@ export default function HandMadeTextEditor(props) {
                             data-element="insertImage"
                             id="to-image-words"
                             type="file"
+                            dataTestid="image_btn_texteditor"
                         />
 
                         <AiFillCamera className="fileEffect" />
@@ -166,6 +186,7 @@ export default function HandMadeTextEditor(props) {
                             }
                             id="to-video-words"
                             type="file"
+                            dataTestid="video_btn_texteditor"
                         />
 
                         <AiFillVideoCamera className="fileEffect" />
@@ -182,6 +203,7 @@ export default function HandMadeTextEditor(props) {
                         type="button"
                         id="to-unorder-words"
                         className="btn"
+                        dataTestid="unorder_btn_texteditor"
                     >
                         <AiOutlineUnorderedList />
                     </button>
@@ -193,6 +215,7 @@ export default function HandMadeTextEditor(props) {
                         type="button"
                         id="to-order-words"
                         className="btn"
+                        dataTestid="order_btn_texteditor"
                     >
                         <AiOutlineOrderedList />
                     </button>
@@ -207,6 +230,7 @@ export default function HandMadeTextEditor(props) {
                         type="button"
                         id="to-strike-words"
                         className="btn"
+                        dataTestid="strike_btn_texteditor"
                     >
                         <AiOutlineStrikethrough />
                     </button>
@@ -218,6 +242,7 @@ export default function HandMadeTextEditor(props) {
                         type="button"
                         id="to-link-words"
                         className="btn"
+                        dataTestid="link_btn_texteditor"
                     >
                         <AiOutlineLink />
                     </button>
@@ -244,6 +269,7 @@ export default function HandMadeTextEditor(props) {
                             placeholder="enter url"
                             size="small"
                             style={{ padding: '0 5px' }}
+                            dataTestid="inlink_btn_texteditor"
                         />
                     </Popover>
 
@@ -262,6 +288,7 @@ export default function HandMadeTextEditor(props) {
                                 style={{ cursor: 'pointer' }}
                                 id="to-hilitecolor-words"
                                 className="colorStyle"
+                                dataTestid="backcolor_btn_texteditor"
                             />
                         </span>
                         <span style={{ marginLeft: '10px' }}>
@@ -278,6 +305,7 @@ export default function HandMadeTextEditor(props) {
                                 style={{ cursor: 'pointer' }}
                                 id="to-forecolor-words"
                                 className="colorStyle"
+                                dataTestid="forecolor_btn_texteditor"
                             />
                         </span>
                     </span>
@@ -292,5 +320,7 @@ HandMadeTextEditor.propTypes = {
     setSpinner: PropTypes.func.isRequired,
     reblog: PropTypes.bool,
     post: PropTypes.object,
-    editContent: PropTypes.string
+    editContent: PropTypes.string,
+    askFetch: PropTypes.any,
+    senderName: PropTypes.any
 };

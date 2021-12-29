@@ -28,7 +28,10 @@ import Article from '../HelpCenter/containers/Article';
 import ArticleCategoryIndividual from '../HelpCenter/containers/ArticleCategoryIndividual';
 import LikedBlogs from '../likesComponent/View';
 import ProfileFullContainer from '../profileViews/fullView/View';
+import Inbox from '../inboxComponent/View';
 import { UserContext } from '../../contexts/userContext/UserContext';
+import VerifyEmailWelcome from '../verifyEmail/VerifyEmailWelcome';
+import NotFound from '../notfoundComponent/NotFound';
 
 export default function MainRoutes() {
     const [theme, changeTheme] = useContext(ThemeContext);
@@ -57,7 +60,9 @@ export default function MainRoutes() {
         <div tabIndex="0" id="global-div" onKeyDown={shortcutController}>
             <Router>
                 {withNav && <Navbar />}
+
                 <Routes>
+                    <Route path="*" element={<NotFound />} />
                     <Route path="/tagged/:tag" element={<Hashtag />} />
                     <Route path="/help" element={<HelpCenter />} />
                     <Route
@@ -85,6 +90,10 @@ export default function MainRoutes() {
                     </Route>
 
                     <Route element={<RequireAuth />}>
+                        <Route
+                            path="/verify-email/:userId/:hash"
+                            element={<VerifyEmailWelcome />}
+                        />
                         <Route
                             path="/blog/:blogName/delete/:blogId"
                             element={<DeleteBlog setWithNav={setWithNav} />} //WITHOUTNAV
@@ -138,7 +147,6 @@ export default function MainRoutes() {
                         />
                         <Route path="/new/post" element={<CreateModal />} />
                         <Route path="/new" element={<NewPostPopup />} />
-
                         <Route
                             path="/blog/view/:blogName/:blogID/:content/:postID"
                             element={<ProfileFullContainer />}
@@ -147,17 +155,20 @@ export default function MainRoutes() {
                             path="/blog/view/:blogName/:blogID/:content"
                             element={<ProfileFullContainer />}
                         />
-
                         <Route
                             path="/blog/:blogUrlIdf/*"
                             element={<MyProfile />}
                         />
-
                         <Route path="/explore/:type" element={<Explore />} />
                         <Route
                             path="/messaging"
                             element={<MessagesPageMobile />}
                         />
+                        <Route
+                            path="/inbox/:postId/:senderName"
+                            element={<CreateModal askFetch={true} />}
+                        />
+                        <Route path="/inbox" element={<Inbox />} />
                     </Route>
                 </Routes>
                 <style>{css}</style>
