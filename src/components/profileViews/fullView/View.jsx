@@ -4,7 +4,11 @@ import ProfileFull from './containers/ProfileFull';
 
 export default function ProfileFullContainer() {
     const { blogName, blogID, content } = useParams();
-
+    const css = `
+    .nav, .nav * {
+            display: none;
+        }
+    `;
     return (
         <div className="profile-full">
             <ProfileFull
@@ -12,6 +16,7 @@ export default function ProfileFullContainer() {
                 blogID={blogID}
                 content={content}
             />
+            <style>{css}</style>
         </div>
     );
 }

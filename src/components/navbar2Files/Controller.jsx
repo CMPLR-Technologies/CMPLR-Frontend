@@ -48,9 +48,7 @@ export const block = (blogName, setBlocked, setIsFollowed) => {
             setBlocked(true);
             setIsFollowed(false);
         })
-        .catch(err => {
-            console.log(err);
-        });
+        .catch(err => {});
 };
 
 export const unBlock = (blogName, setBlocked) => {

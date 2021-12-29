@@ -28,7 +28,6 @@ export default function ProfileSide(props) {
     } = body;
     const [followed, setIsFollowed] = useState(isFollowed);
     const [blocked, setBlocked] = useState(isBlocked);
-    console.log(blocked);
 
     const [scrollTop, setScrollTop] = useState(0);
     const headerScrollAnimation = el => {
