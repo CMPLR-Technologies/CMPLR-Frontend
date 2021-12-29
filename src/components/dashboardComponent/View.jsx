@@ -22,7 +22,6 @@ export default function Dashboard() {
     const isBigScreen = useMediaQuery({
         query: '(min-device-width: 960px )'
     });
-    console.log(posts && posts);
     return (
         <div className="dashboard">
             <div className="posts-region">
