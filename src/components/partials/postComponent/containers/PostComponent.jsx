@@ -483,7 +483,7 @@ export default function PostComponent(props) {
                         <Divider />
                     </>
                 ) : (
-                    <AskPost />
+                    <AskPost content={content && content} />
                 )}
                 {!reblog && (
                     <div

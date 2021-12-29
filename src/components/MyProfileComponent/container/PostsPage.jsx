@@ -37,6 +37,7 @@ export default function PostsPage(props) {
                             draft={draft}
                             isFollowed={draft}
                             radar={!isBigScreen}
+                            ask={post?.post?.type === null}
                         />
                     );
                 })}
