@@ -30,6 +30,7 @@ import LikedBlogs from '../likesComponent/View';
 import ProfileFullContainer from '../profileViews/fullView/View';
 import Inbox from '../inboxComponent/View';
 import { UserContext } from '../../contexts/userContext/UserContext';
+import VerifyEmailWelcome from '../verifyEmail/VerifyEmailWelcome';
 
 export default function MainRoutes() {
     const [theme, changeTheme] = useContext(ThemeContext);
@@ -86,6 +87,10 @@ export default function MainRoutes() {
                     </Route>
 
                     <Route element={<RequireAuth />}>
+                        <Route
+                            path="/verify-email/:userId/:hash"
+                            element={<VerifyEmailWelcome />}
+                        />
                         <Route
                             path="/blog/:blogName/delete/:blogId"
                             element={<DeleteBlog setWithNav={setWithNav} />} //WITHOUTNAV

@@ -34,7 +34,7 @@ $border-radius-primary: 3px;
 }
 .nav {
     // navber class
-    background-color: transparent;
+    background-color: transparent !important;
     //border-bottom: 0.5px solid rgba(255, 255, 255, 0.15);
     position: fixed;
     top: 0;
@@ -853,9 +853,9 @@ $border-radius-primary: 3px;
                     .account-popup-blog-link-row:hover {
                         background-color: inherit;
                     }
-                    .newPostA{
+                    .newPostA {
                         text-decoration: none;
-                        color:inherit
+                        color: inherit;
                     }
                     .create-new-post {
                         //background: none;

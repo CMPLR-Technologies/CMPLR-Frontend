@@ -14,9 +14,9 @@ import { UserContext } from '../../contexts/userContext/UserContext';
 export default function Navbar() {
     const theme = useContext(ThemeContext)[0];
     const { user } = useContext(UserContext);
-    let bg='transparent';
-    if(user){
-        bg=`rgb(${themes[theme].navy})`;
+    let bg = 'transparent';
+    if (user) {
+        bg = `rgb(${themes[theme].navy})`;
     }
     const css = `
         .nav {
@@ -323,13 +323,7 @@ export default function Navbar() {
     }, []);
     window.addEventListener('resize', chaneMobileView);
     let nav = (
-        <div
-            className="nav"
-            style={{
-                position: 'fixed',
-                backgroundColor: 'rgb(' + themes[theme]?.navy + ')'
-            }}
-        >
+        <div className="nav">
             <div className="nav-container">
                 <ChatView />
                 {/*section 1 contains logo and search bar*/}

@@ -18,3 +18,19 @@ export const resendEmailVerification = (token, setState, setIsPending) => {
             setIsPending(false);
         });
 };
+
+export const verifyEmailConfirm = (user, userID, hash, navigate) => {
+    if (user?.userData?.id === userID) {
+        Axios({
+            method: 'GET',
+            url: `${apiBaseUrl}/verify-email/${userID}/${hash}`,
+            headers: {
+                Authorization: `Bearer ${user?.token}`
+            }
+        })
+            .then(() => {
+                navigate('/');
+            })
+            .catch(() => {});
+    }
+};
