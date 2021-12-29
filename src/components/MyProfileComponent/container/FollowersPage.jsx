@@ -135,7 +135,7 @@ export default function FollowersPage(props) {
                                     </span>
                                 </div>
                                 <div className="left-control-group">
-                                    {!follower?.isFollowed && (
+                                    {!follower?.is_followed && (
                                         <button
                                             onClick={() =>
                                                 followAccount(

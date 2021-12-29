@@ -30,7 +30,9 @@ export default function Dashboard() {
                 <VerifyEmail />
                 <div className="dashboard-container-grid">
                     <VerticalPostsView
-                        posts={posts}
+                        posts={posts.filter(
+                            post => post?.post?.state === 'publish'
+                        )}
                         error={error}
                         isPending={isPending}
                         hasMore={hasMore}

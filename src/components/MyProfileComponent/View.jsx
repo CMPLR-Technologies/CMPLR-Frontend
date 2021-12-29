@@ -148,7 +148,9 @@ export default function MyProfile() {
                         <PostsPage
                             mobileView={mobileView}
                             response={{
-                                posts: posts,
+                                posts: posts.filter(
+                                    post => post?.post?.type !== null
+                                ),
                                 isPending
                             }}
                             draft={false}
@@ -157,7 +159,10 @@ export default function MyProfile() {
                 </div>
                 {!mobileView && (
                     <Sidebar
-                        postLength={posts?.length}
+                        postLength={
+                            posts.filter(post => post?.post?.type !== null)
+                                ?.length
+                        }
                         followersLength={totalFollowing}
                         activeSide={activeSide && activeSide}
                     />

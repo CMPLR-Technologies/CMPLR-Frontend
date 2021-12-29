@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import NotfBody from './NotfBody';
 import NotfHeader from './NotfHeader';
 import propTypes from 'prop-types';
-
 Notifications.propTypes = {
     userBlogName: propTypes.string,
     userAvatar: propTypes.string,
@@ -18,12 +17,16 @@ export default function Notifications(props) {
         notfArray,
         setNotfArray,
         setUnseenNotf,
-        activity
+        activity,
+        setSideBlogId,
+        setSideBlogName,
+        setShowSideBlog
     } = props;
     const [notfDates, setNotfDates] = useState(
         notfArray ? Object.keys(notfArray) : null
     );
     const [notf, setNotf] = useState(notfArray);
+
     useEffect(() => {
         if (notfArray !== null) setNotfDates(Object.keys(notfArray));
         setNotf(notfArray);
@@ -47,69 +50,74 @@ export default function Notifications(props) {
         setNotf(tempNotf);
     };
     return (
-        <div className={!activity ? `notifications-container` : ''}>
-            {!activity && (
-                <NotfHeader
-                    filterNotf={filterNotf}
-                    userBlogName={userBlogName}
-                    userAvatar={userAvatar}
-                    setNotfArray={setNotfArray}
-                    setUnseenNotf={setUnseenNotf}
-                />
-            )}{' '}
-            <div className={!activity ? `notf-body-cont` : ''}>
-                {notfDates &&
-                    notfDates.map(date => {
-                        return (
-                            <>
-                                {notf && notf[date] && (
-                                    <div className="notf-date">
-                                        <div className="duration">
-                                            2 days ago
-                                        </div>{' '}
-                                        {/*TODO calc duration depends on BE response format*/}
-                                        <div className="date">{date}</div>
-                                    </div>
-                                )}
-                                {notf &&
-                                    notf[date] &&
-                                    notf &&
-                                    notf[date].map((notf, index) => (
-                                        <Link
-                                            style={{
-                                                textDecoration: 'none',
-                                                color: 'black'
-                                            }}
-                                            to={`/blog/view/${
-                                                notf && notf['from_blog_name']
-                                            }/${notf && notf['from_blog_id']}${
-                                                notf['post_ask_answer_id']
-                                                    ? notf &&
-                                                      notf['post_ask_answer_id']
-                                                    : ''
-                                            }`}
-                                            key={index}
-                                        >
-                                            <NotfBody
-                                                notf={notf && notf}
+        <>
+            <div className={!activity ? `notifications-container` : ''}>
+                {!activity && (
+                    <NotfHeader
+                        filterNotf={filterNotf}
+                        userBlogName={userBlogName}
+                        userAvatar={userAvatar}
+                        setNotfArray={setNotfArray}
+                        setUnseenNotf={setUnseenNotf}
+                    />
+                )}{' '}
+                <div className={!activity ? `notf-body-cont` : ''}>
+                    {notfDates &&
+                        notfDates.map(date => {
+                            return (
+                                <>
+                                    {notf && notf[date] && (
+                                        <div className="notf-date">
+                                            <div className="duration">
+                                                2 days ago
+                                            </div>{' '}
+                                            {/*TODO calc duration depends on BE response format*/}
+                                            <div className="date">{date}</div>
+                                        </div>
+                                    )}
+                                    {notf &&
+                                        notf[date] &&
+                                        notf &&
+                                        notf[date].map((notf, index) => (
+                                            <div
+                                                style={{
+                                                    textDecoration: 'none',
+                                                    color: 'black'
+                                                }}
                                                 key={index}
-                                                setUnseenNotf={setUnseenNotf}
-                                            />
-                                        </Link>
-                                    ))}
-                            </>
-                        );
-                    })}
-            </div>
-            {!activity && (
-                <div className="see-everything-btn">
-                    <Link to={`/blog/${userBlogName}/activity`}>
-                        <button className="btn see-everything">
-                            See Everything
-                        </button>
-                    </Link>
+                                            >
+                                                <NotfBody
+                                                    notf={notf && notf}
+                                                    key={index}
+                                                    setUnseenNotf={
+                                                        setUnseenNotf
+                                                    }
+                                                    setSideBlogId={
+                                                        setSideBlogId
+                                                    }
+                                                    setSideBlogName={
+                                                        setSideBlogName
+                                                    }
+                                                    setShowSideBlog={
+                                                        setShowSideBlog
+                                                    }
+                                                />
+                                            </div>
+                                        ))}
+                                </>
+                            );
+                        })}
                 </div>
-            )}
-        </div>
+                {!activity && (
+                    <div className="see-everything-btn">
+                        <Link to={`/blog/${userBlogName}/activity`}>
+                            <button className="btn see-everything">
+                                See Everything
+                            </button>
+                        </Link>
+                    </div>
+                )}
+            </div>
+        </>
     );
 }
