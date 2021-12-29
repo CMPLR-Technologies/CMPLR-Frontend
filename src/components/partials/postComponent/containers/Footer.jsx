@@ -64,7 +64,8 @@ export default function Footer(props) {
         draft,
         postSubmit,
         setIsLiked,
-        ask
+        ask,
+        notesCount
     } = props;
     const [liked, setLiked] = useState(isLiked);
     const [isShareListOpen, setIsShareListOpen] = useState(false);
@@ -76,7 +77,8 @@ export default function Footer(props) {
     const [noteType, setNoteType] = useState('');
     const [notes, setNotes] = useState([]);
     const [counts, setCounts] = useState({});
-    const [numberNotes, setNumberNotes] = useState(0);
+    const [numberNotes, setNumberNotes] = useState(notesCount);
+    const [firstLoad, setFirstLoad] = useState(true);
     const { user } = useContext(UserContext);
     //TODO BlogIdentifier1
     const blogIdentifier = 'yahia.tumblr.com';
@@ -92,13 +94,15 @@ export default function Footer(props) {
     };
 
     useEffect(() => {
-        getPostNotes(blogIdentifier, setNotes, setCounts, postId);
+        if (firstLoad) {
+            setFirstLoad(false);
+        } else getPostNotes(blogIdentifier, setNotes, setCounts, postId);
     }, [loveFillColor]);
 
     useEffect(() => {
-        setNumberNotes(
-            counts?.totalLikes + counts?.totalReblogs + counts?.totalReplys
-        );
+        const total =
+            counts?.totalLikes + counts?.totalReblogs + counts?.totalReplys;
+        setNumberNotes(total ? total : notesCount);
     }, [counts]);
 
     return (
@@ -143,6 +147,12 @@ export default function Footer(props) {
                             onClick={() => {
                                 setNotesView(!notesView);
                                 setNoteType('comment');
+                                getPostNotes(
+                                    blogIdentifier,
+                                    setNotes,
+                                    setCounts,
+                                    postId
+                                );
                             }}
                             data-testid={`notes-count-text-ts`}
                         >

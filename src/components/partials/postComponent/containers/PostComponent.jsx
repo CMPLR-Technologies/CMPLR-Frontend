@@ -16,7 +16,6 @@ import {
     ThemeContext,
     themes
 } from '../../../../contexts/themeContext/ThemeContext';
-import { apiBaseUrl } from '../../../../config.json';
 import { handlePosting } from '../../../createPost/Service';
 import { useNavigate } from 'react-router-dom';
 import ProfileMiniHoverWrapper from '../../../profileViews/mini&sideViews/View';
@@ -508,6 +507,7 @@ export default function PostComponent(props) {
                             postSubmit={postSubmit}
                             setIsLiked={setIsLiked}
                             ask={ask}
+                            notesCount={postData.notes_count}
                         />
                     </div>
                 )}
