@@ -2033,7 +2033,7 @@ input:checked + .slider:before {
 }
 
 .nav {
-  background-color: transparent !important;
+  background-color: transparent;
   position: fixed;
   top: 0;
   left: 0;
