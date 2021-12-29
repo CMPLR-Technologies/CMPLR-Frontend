@@ -24,11 +24,14 @@ export default function BlogSettingsCard() {
             alert(errMsg);
         }
     }, []);
+
+    console.log(blogId);
+
     return (
         <div className="settings" data-testid="settings">
             <div className="container1" data-testid="container1">
                 <div className="subcontainer" data-testid="subcontainer">
-                    {/* <ProfileSideSettings blogId={blogId} /> */}
+                    <ProfileSideSettings blogId={blogId} />
                     <div>
                         <UserNameSection />
                         <RepliesSection />
