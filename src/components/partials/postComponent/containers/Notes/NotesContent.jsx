@@ -72,7 +72,7 @@ export default function NotesContent(props) {
             <div data-testid={`input-form-note-ts`} className="input-area">
                 <input
                     className="note-reply"
-                    style={{ color: 'rgb(' + themes[theme]?.whiteOnDark + ')' }}
+                    style={{ color: 'rgb(' + themes[theme]?.black + ')' }}
                     placeholder="type your replay here"
                     value={reply}
                     onChange={e => setReply(e.target.value)}
