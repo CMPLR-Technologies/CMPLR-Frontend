@@ -118,6 +118,7 @@ export default function Notifications(props) {
                                                     setShowSideBlog={
                                                         setShowSideBlog
                                                     }
+                                                    activity={true}
                                                 />
                                             </div>
                                         ))}
