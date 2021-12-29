@@ -104,7 +104,9 @@ export default function ProfileFull(props) {
                             to={`/blog/view/${blogName}/${blogID}/posts`}
                         >
                             <div className="profile-full-header-text-title">
-                                {data.blog.title}
+                                {data.blog.title === 'untitled'
+                                    ? blogName
+                                    : data.blog.title}
                             </div>
                         </NavLink>
                         <div className="profile-full-header-text-desc">

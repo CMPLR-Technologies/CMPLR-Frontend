@@ -96,7 +96,7 @@ export const themes = {
     },
     manga: {
         black: `15, 70, 8`,
-        white: `250, 255, 225`,
+        white: `255, 245, 175`,
         whiteOnDark: `254, 227, 170`,
         navy: `20, 46, 10`,
         accent: `240, 110, 23`,

@@ -101,7 +101,7 @@ export default function ProfileSide(props) {
                 {!isBlocked && (
                     <div className="profile-side-header-text">
                         <div className="profile-side-header-text-title">
-                            {title}
+                            {title === 'untitled' ? blogName : title}
                         </div>
                         <div className="profile-side-header-text-desc">
                             {desciption}
