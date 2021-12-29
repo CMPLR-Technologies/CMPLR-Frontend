@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import '../../styles/styles.css';
 import NavbarLinks from './containers/navbarLinks/NavbarLinks';
 import NavbarSection1 from './containers/section1/NavbarSection1';
-import { UserContext } from '../../contexts/userContext/UserContext';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 import ChatView from '../chatComponent/View';
+import { UserContext } from '../../contexts/userContext/UserContext';
 /**
  * Navbar Main Component
  * @function Navbar
@@ -13,9 +13,15 @@ import ChatView from '../chatComponent/View';
  */
 export default function Navbar() {
     const theme = useContext(ThemeContext)[0];
+    const { user } = useContext(UserContext);
+    let bg='transparent';
+    if(user){
+        bg=`rgb(${themes[theme].navy})`;
+    }
     const css = `
         .nav {
             border-bottom: 0.5px solid rgba(${themes[theme].whiteOnDark}, 0.15);
+            background-color: ${bg};
         }
         .search{
             background-color: rgba(${themes[theme].whiteOnDark}, 0.15);
@@ -172,8 +178,8 @@ export default function Navbar() {
                 background-color:rgb(${themes[theme].navy});
             }
             .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu .create-new-post  {
-               
-                color:rgb(${themes[theme].navy});
+                color:rgb(${themes[theme].white});
+                background: rgb(${themes[theme].accent});
             }
            
             .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu ul li a{
@@ -185,9 +191,13 @@ export default function Navbar() {
             .nav .section1 .search{
                 background-color: rgb(${themes[theme].white});
             }
-            .nav .section1 .search search-input::placeholder{
-                background-color: $primiry-color;
+            .search-input{
+                color: rgba(${themes[theme].black}, 0.65);
             }
+            .search-input::placeholder{
+                color: rgba(${themes[theme].black}, 0.65);
+            }
+
                 
             .messagepage-mobile .receiver{
                 color: rgb(${themes[theme].black});
@@ -300,7 +310,6 @@ export default function Navbar() {
     `;
 
     const [mobileView, setMobileView] = useState(false);
-    const { user } = useContext(UserContext);
     const chaneMobileView = () => {
         if (window.innerWidth > 960) {
             setMobileView(false);

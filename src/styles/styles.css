@@ -1228,6 +1228,7 @@ input:checked + .slider:before {
   color: black;
 }
 .chat-popup-chat .msg {
+  white-space: pre-wrap;
   line-height: 20px;
   font-weight: 400;
   color: black;
@@ -1276,6 +1277,11 @@ input:checked + .slider:before {
   margin-left: 10px;
   margin-top: 12px;
   font-size: 14px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+}
+.chat-popup-chat-messages .message .text .msg {
+  white-space: pre-wrap;
 }
 .chat-popup-chat-messages .message .text .date {
   font-size: 0.7rem;
@@ -2028,7 +2034,7 @@ input:checked + .slider:before {
 
 .nav {
   background-color: transparent;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -2668,8 +2674,11 @@ input:checked + .slider:before {
 .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu .account-popup-blog-link-row:hover {
     background-color: inherit;
   }
+  .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu .newPostA {
+    text-decoration: none;
+    color: inherit;
+  }
   .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu .create-new-post {
-    background: none;
     border: none;
     padding: 0;
     font: inherit;
