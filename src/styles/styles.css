@@ -3982,6 +3982,10 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
   background-color: white;
   position: relative;
 }
+.profile-full-header .container-grid {
+  width: 100%;
+  max-width: 600px;
+}
 .profile-full-header .post-wrapper {
   position: static;
   width: 100%;
@@ -3999,7 +4003,6 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
   padding: 0 20px;
 }
 .profile-full-header-content-side {
-  margin-left: 30px;
   width: 300px;
   font-weight: 700;
   font-size: 13px;
