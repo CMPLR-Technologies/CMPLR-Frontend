@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import useFetch from '../../../../hooks/useFetch';
-import apiBaseUrl from '../../../../config.json';
+import { apiBaseUrl } from '../../../../config.json';
 import { LinearProgress } from '@mui/material';
+import {
+    ThemeContext,
+    themes
+} from '../../../../contexts/themeContext/ThemeContext';
+import { AiFillCamera } from 'react-icons/ai';
+import { styled } from '@mui/material/styles';
+import { uploadSelectedImageProfile } from '../Service';
+import { UserContext } from '../../../../contexts/userContext/UserContext';
+const InputCam = styled('input')({
+    display: 'none'
+});
 
 export default function ProfileSideSettings(props) {
     const {
@@ -15,8 +26,20 @@ export default function ProfileSideSettings(props) {
         error,
         data: body,
         isPending
-    } = useFetch(`${apiBaseUrl}/MiniProfileView/10`);
-    console.log(blogId, error, body, isPending);
+    } = useFetch(`${apiBaseUrl}/MiniProfileView/${blogId}`);
+    const { user } = useContext(UserContext);
+    const theme = useContext(ThemeContext)[0];
+    const css = `
+    .profile-settings .profile-side
+            {
+                background-color:rgb(${themes[theme].white});
+            }
+    .profile-settings-link{
+        text-decoration: none;
+        color: rgb(${themes[theme].black});   
+    }
+            `;
+    //console.log(blogId, error, body, isPending);
     // const body = {
     //     username: 'huh',
     //     avatar: 'https://pbs.twimg.com/profile_images/1026496068555612160/Klg8BS8p_400x400.jpg',
@@ -33,11 +56,26 @@ export default function ProfileSideSettings(props) {
                 <div className="profile-side">
                     <div className="profile-side-header">
                         <div className="profile-side-header-div">
-                            <img
-                                className="profile-side-header-div-bg"
-                                src={body.blog.header_image}
-                                alt="couldn't load bg"
-                            />
+                            <label htmlFor="to-image-words">
+                                <InputCam
+                                    onChange={e =>
+                                        uploadSelectedImageProfile(
+                                            e.target.files[0],
+                                            user?.token
+                                        )
+                                    }
+                                    accept="image/*"
+                                    data-element="insertImage"
+                                    id="to-image-words"
+                                    type="file"
+                                />
+                                <img
+                                    className="profile-side-header-div-bg"
+                                    src={body.blog.header_image}
+                                    alt="couldn't load bg"
+                                />
+                                <AiFillCamera className="ri-image-edit-fill" />
+                            </label>
                         </div>
                         <img
                             className="profile-side-header-avatar"
@@ -46,6 +84,7 @@ export default function ProfileSideSettings(props) {
                         />
                         <div className="profile-side-header-text">
                             <NavLink
+                                className="profile-settings-link"
                                 to={`/blog/view/${body.blog.blog_name}/${blogId}/posts`}
                             >
                                 <div className="profile-side-header-text-title">
@@ -61,6 +100,7 @@ export default function ProfileSideSettings(props) {
                     </div>
                 </div>
             )}
+            <style>{css}</style>
         </div>
     );
 }

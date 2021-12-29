@@ -3839,6 +3839,24 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
     display: flex !important;
   }
 }
+.profile-settings .profile-side {
+  max-width: unset;
+  height: unset;
+  background-color: unset;
+}
+
+.ri-image-edit-fill {
+  position: absolute;
+  z-index: 70000;
+  fill: #dddddd;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+
 .profile-side {
   display: flex;
   flex-direction: column;
@@ -5510,7 +5528,7 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
 .dashboard-blogInfo {
   padding: 16px;
 }
-.dashboard-blogInfo img {
+.dashboard-blogInfo .blogInfo-row-img {
   width: 37px;
   height: 37px;
   border-radius: 3px;

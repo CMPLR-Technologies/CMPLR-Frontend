@@ -25,21 +25,23 @@ export default function BlogSettingsCard() {
         }
     }, []);
 
-    console.log(blogId);
+    //useEffect(() => {}, []);
 
     return (
         <div className="settings" data-testid="settings">
-            <div className="container1" data-testid="container1">
-                <div className="subcontainer" data-testid="subcontainer">
-                    <ProfileSideSettings blogId={blogId} />
-                    <div>
-                        <UserNameSection />
-                        <RepliesSection />
-                        <AllowAskSection />
-                        <AllowMessaging />
-                        <VisibilitySection />
-                        <BlockSection />
-                        <DeleteSection blogName={blogName} />
+            <div>
+                <ProfileSideSettings blogId={blogId} />
+                <div className="container1" data-testid="container1">
+                    <div className="subcontainer" data-testid="subcontainer">
+                        <div>
+                            <UserNameSection />
+                            <RepliesSection />
+                            <AllowAskSection />
+                            <AllowMessaging />
+                            <VisibilitySection />
+                            <BlockSection />
+                            <DeleteSection blogName={blogName} />
+                        </div>
                     </div>
                 </div>
             </div>
