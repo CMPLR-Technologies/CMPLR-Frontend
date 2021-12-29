@@ -14,7 +14,8 @@ export default function HashtagView(props) {
         tagName,
         recommendedTags,
         handleFollowHashtag,
-        isPendingFollow
+        isPendingFollow,
+        errorFollow
     } = props;
     return (
         <>
@@ -72,6 +73,9 @@ export default function HashtagView(props) {
                             <span className="WdYx4">New Post</span>
                         </button>
                     </div>
+                    {errorFollow !== '' && (
+                        <p className="errorAlertInFollow">{errorFollow}</p>
+                    )}
                     <div className="XVkC9">
                         {/*loop here and pass data to the span */}
                         {recommendedTags?.map((h, i) => {
@@ -99,5 +103,6 @@ HashtagView.propTypes = {
     tagName: PropTypes.string,
     recommendedTags: PropTypes.any,
     handleFollowHashtag: PropTypes.func,
-    isPendingFollow: PropTypes.bool
+    isPendingFollow: PropTypes.bool,
+    errorFollow: PropTypes.string
 };

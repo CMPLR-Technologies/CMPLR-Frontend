@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { AskQuestion } from '../Service';
 // import { BlogSettingsContext } from '../../../contexts/blogSettingsContext/BlogSettingsContext';
 import { useParams } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 export default function Ask() {
     const user = JSON.parse(localStorage.getItem('user'));
     const [content, setContent] = useState('');
     // const { blogName: userBlogName } = useContext(BlogSettingsContext);
     const [response, setResponse] = useState(-1);
+    const [isPendingAsk, setIsPendingAsk] = useState(false);
     const { blogName } = useParams();
     let firstMsg = [
         ' Thank you!',
@@ -66,11 +68,8 @@ export default function Ask() {
                                                     id="ask_button"
                                                     onClick={e => {
                                                         e.preventDefault();
-                                                        console.log(
-                                                            blogName,
-                                                            content,
-                                                            user.token
-                                                        );
+                                                        setIsPendingAsk(true);
+
                                                         AskQuestion(
                                                             blogName,
                                                             content,
@@ -80,11 +79,26 @@ export default function Ask() {
                                                                 setResponse(
                                                                     res
                                                                 );
+                                                                setIsPendingAsk(
+                                                                    false
+                                                                );
                                                                 setContent('');
                                                             })
                                                             .catch(() => {});
                                                     }}
                                                 >
+                                                    {isPendingAsk && (
+                                                        <CircularProgress
+                                                            style={{
+                                                                width: '20px',
+                                                                height: '20px',
+                                                                color: 'white',
+                                                                marginLeft:
+                                                                    '2px',
+                                                                cursor: 'wait'
+                                                            }}
+                                                        />
+                                                    )}
                                                     Ask
                                                 </button>
                                             </div>

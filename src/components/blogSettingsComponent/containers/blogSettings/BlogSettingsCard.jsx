@@ -10,12 +10,11 @@ import DeleteSection from './DeleteSection';
 import { BlogSettingsContext } from '../../../../contexts/blogSettingsContext/BlogSettingsContext';
 import { getBlogSettings, getBlocksOfBlog } from '../../Service';
 import { useParams } from 'react-router-dom';
-import ProfileSideSettings from '../../../profileViews/mini&sideViews/sideView/ProfileSideSettings';
+//import ProfileSideSettings from '../../../profileViews/mini&sideViews/sideView/ProfileSideSettings';
 export default function BlogSettingsCard() {
     const user = JSON.parse(localStorage.getItem('user'));
     const { blogName } = useParams();
-    const { setBlogs, updateProperty, blogId } =
-        useContext(BlogSettingsContext);
+    const { setBlogs, updateProperty } = useContext(BlogSettingsContext);
     const [errMsg, setErrMsg] = useState('');
     useEffect(() => {
         getBlogSettings(setBlogs, user?.token, blogName);

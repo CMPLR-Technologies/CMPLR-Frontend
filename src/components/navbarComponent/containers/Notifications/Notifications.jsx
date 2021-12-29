@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import NotfBody from './NotfBody';
 import NotfHeader from './NotfHeader';
 import propTypes from 'prop-types';
+import TimeAgo from 'timeago-react';
 Notifications.propTypes = {
     userBlogName: propTypes.string,
     userAvatar: propTypes.string,
@@ -69,7 +70,7 @@ export default function Notifications(props) {
                                     {notf && notf[date] && (
                                         <div className="notf-date">
                                             <div className="duration">
-                                                2 days ago
+                                                <TimeAgo datetime={date} />
                                             </div>{' '}
                                             {/*TODO calc duration depends on BE response format*/}
                                             <div className="date">{date}</div>

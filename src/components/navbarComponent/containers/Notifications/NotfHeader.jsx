@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { apiBaseUrl } from '../../../../config.json';
 import axios from 'axios';
 import { RiArrowDropDownLine } from 'react-icons/ri';
-import { NavLink } from 'react-router-dom';
+//import { NavLink } from 'react-router-dom';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import propTypes from 'prop-types';
 import {
@@ -14,7 +14,9 @@ import { getNotifications } from '../../Service';
 NotfHeader.propTypes = {
     userBlogName: propTypes.string,
     userAvatar: propTypes.string,
-    filterNotf: propTypes.func
+    filterNotf: propTypes.func,
+    setNotfArray: propTypes.any,
+    setUnseenNotf: propTypes.any
 };
 export default function NotfHeader(props) {
     const theme = useContext(ThemeContext)[0];
@@ -92,17 +94,13 @@ export default function NotfHeader(props) {
                                                     className="account-popup-blogs-container"
                                                     key={index}
                                                 >
-                                                    <div
-                                                        className="account-popup-blog-head-img"
-                                                    >
+                                                    <div className="account-popup-blog-head-img">
                                                         <img
                                                             src={blog?.avatar}
                                                             alt="ava"
                                                         />
                                                     </div>
-                                                    <div
-                                                        className="account-popup-blog-head-text"
-                                                    >
+                                                    <div className="account-popup-blog-head-text">
                                                         <h1>
                                                             {blog?.blog_name}
                                                         </h1>

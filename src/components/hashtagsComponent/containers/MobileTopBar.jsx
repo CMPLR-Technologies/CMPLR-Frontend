@@ -15,7 +15,8 @@ export default function MobileHashtagBar(props) {
         tagName,
         recommendedTags,
         handleFollowHashtag,
-        isPendingFollow
+        isPendingFollow,
+        errorFollow
     } = props;
     return (
         <>
@@ -89,6 +90,11 @@ export default function MobileHashtagBar(props) {
                                         </button>
                                     )}
                                 </div>
+                                {errorFollow !== '' && (
+                                    <p className="errorAlertInFollow">
+                                        {errorFollow}
+                                    </p>
+                                )}
                                 <a className="kckjF" href="/#">
                                     <div className="CrU4O">
                                         <span>Posted by</span>
@@ -135,5 +141,6 @@ MobileHashtagBar.propTypes = {
     tagName: PropTypes.string,
     recommendedTags: PropTypes.any,
     handleFollowHashtag: PropTypes.func,
-    isPendingFollow: PropTypes.bool
+    isPendingFollow: PropTypes.bool,
+    errorFollow: PropTypes.string
 };

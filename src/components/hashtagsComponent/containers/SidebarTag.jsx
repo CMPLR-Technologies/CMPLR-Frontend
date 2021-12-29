@@ -19,7 +19,8 @@ export default function SidebarTag(props) {
         tagName,
         recommendedTags,
         handleFollowHashtag,
-        isPendingFollow
+        isPendingFollow,
+        errorFollow
     } = props;
     return (
         <div className="dashboard-sidebar">
@@ -32,6 +33,7 @@ export default function SidebarTag(props) {
                 recommendedTags={recommendedTags}
                 handleFollowHashtag={handleFollowHashtag}
                 isPendingFollow={isPendingFollow}
+                errorFollow={errorFollow}
             />
             <RecommendBlogs
                 blogsError={blogsError}
@@ -51,5 +53,6 @@ SidebarTag.propTypes = {
     tagName: PropTypes.string,
     recommendedTags: PropTypes.any,
     handleFollowHashtag: PropTypes.func,
-    isPendingFollow: PropTypes.bool
+    isPendingFollow: PropTypes.bool,
+    errorFollow: PropTypes.string
 };
