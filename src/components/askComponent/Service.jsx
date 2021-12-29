@@ -13,7 +13,7 @@ export function AskQuestion(blogNameToAsk, question, token) {
         data: {
             content: question,
             mobile: 0,
-            is_anonymous: 1
+            is_anonymous: 0
         }
     })
         .then(res => {
