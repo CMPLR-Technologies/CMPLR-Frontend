@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 export const BlogSettingsContext = createContext();
 class BlogSettingsContextProvider extends Component {
     state = {
-        blogId: 1,
+        blogId: null,
         blogName: '',
         blogTitle: '',
         avatar: '',
