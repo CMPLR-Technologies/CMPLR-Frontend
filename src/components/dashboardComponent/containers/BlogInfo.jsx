@@ -5,8 +5,9 @@ import {
     ThemeContext
 } from '../../../contexts/themeContext/ThemeContext';
 import { followAccount } from '../../followingComponent/Service';
+import ProfileMiniHoverWrapper from '../../profileViews/mini&sideViews/View';
 
-export default function BlogInfo({ blogName, blogDesc, blogIcon }) {
+export default function BlogInfo({ blogName, blogDesc, blogIcon, blogId }) {
     const theme = useContext(ThemeContext)[0];
     const [followMsg, setFollowMsg] = useState('');
     const user = JSON.parse(localStorage.getItem('user'));
@@ -14,25 +15,30 @@ export default function BlogInfo({ blogName, blogDesc, blogIcon }) {
     return (
         <div className="dashboard-blogInfo" style={{ position: 'relative' }}>
             <div className="blogInfo-row">
-                <button className="full-width-btn">
-                    <img src={blogIcon} alt="" />
-                    <div className="blogInfo-column">
-                        <p
-                            style={{
-                                color: `rgb(${themes[theme].whiteOnDark})`
-                            }}
-                        >
-                            {blogName}
-                        </p>
-                        <p
-                            style={{
-                                color: `rgba(${themes[theme].whiteOnDark}, 0.65)`
-                            }}
-                        >
-                            {blogDesc}
-                        </p>
-                    </div>
-                </button>
+                <ProfileMiniHoverWrapper
+                    blogID={blogId?.toString()}
+                    blogName={blogName}
+                >
+                    <button className="full-width-btn">
+                        <img src={blogIcon} alt="" />
+                        <div className="blogInfo-column">
+                            <p
+                                style={{
+                                    color: `rgb(${themes[theme].whiteOnDark})`
+                                }}
+                            >
+                                {blogName}
+                            </p>
+                            <p
+                                style={{
+                                    color: `rgba(${themes[theme].whiteOnDark}, 0.65)`
+                                }}
+                            >
+                                {blogDesc}
+                            </p>
+                        </div>
+                    </button>
+                </ProfileMiniHoverWrapper>
 
                 <button
                     style={{
@@ -46,7 +52,7 @@ export default function BlogInfo({ blogName, blogDesc, blogIcon }) {
                 >
                     {followMsg && followMsg.includes('successfully')
                         ? ''
-                        : 'Following'}
+                        : 'Follow'}
                 </button>
             </div>
             <button className="init-btn remove-btn">
@@ -76,5 +82,6 @@ export default function BlogInfo({ blogName, blogDesc, blogIcon }) {
 BlogInfo.propTypes = {
     blogName: PropTypes.string,
     blogDesc: PropTypes.string,
-    blogIcon: PropTypes.string
+    blogIcon: PropTypes.string,
+    blogId: PropTypes.any
 };

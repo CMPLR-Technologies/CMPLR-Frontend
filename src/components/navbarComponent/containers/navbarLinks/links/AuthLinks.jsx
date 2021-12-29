@@ -9,8 +9,9 @@ import { UserContext } from '../../../../../contexts/userContext/UserContext';
 import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
 import Notifications from '../../Notifications/Notifications';
 import Badge from './Badge';
-import Axios from 'axios';
-import { apiBaseUrl } from '../../../../../config.json';
+import { getNotifications } from '../../../Service';
+import ProfilsSideContainer from '../../../../profileViews/mini&sideViews/sideView/ProfilsSideContainer';
+
 /**
  * Navbar AuthLinks: includes all links dashboard and inbox and expolre ...
  * @function NavbarAuthLinks
@@ -35,7 +36,11 @@ export default function AuthLinks() {
     // when the navbar run go loadChat and count the unreadMsgs
     let { getUnReadMsgsCount } = useContext(ChatContext);
     const [unReadMsgs, setUnReadMsgs] = useState(0);
-
+    const [unseenNotf, setUnseenNotf] = useState(0);
+    const [showSideBlog, setShowSideBlog] = useState(false);
+    const [sidePostID, setSidePostID] = useState('');
+    const [sideBlogName, setSideBlogName] = useState('');
+    const [sideBlogId, setSideBlogId] = useState(0);
     useEffect(() => {
         // and show will not change to true
         getUnReadMsgsCount(setUnReadMsgs);
@@ -48,11 +53,9 @@ export default function AuthLinks() {
     //close dropdown message list
     const closeMessagePopup = () => {
         setOpenMessagePopup(false);
-        //console.log("colse");
     };
     const closeAccountPopup = () => {
         setOpenAccountPopup(false);
-        //console.log("colse");
     };
     const clickMessagePopup = () => {
         // if i open it
@@ -69,6 +72,12 @@ export default function AuthLinks() {
             //close other popup
             setOpenMessagePopup(false);
             setOpenAccountPopup(false);
+            getNotifications(
+                user?.blogName,
+                user?.token,
+                setNotfArray,
+                setUnseenNotf
+            );
         }
         setOpenNotificationsPopup(!openNotificationsPopup);
     };
@@ -84,19 +93,12 @@ export default function AuthLinks() {
 
     useEffect(() => {
         user?.blogName !== undefined &&
-            Axios({
-                method: 'GET',
-                url: `${apiBaseUrl}/blog/${user?.blogName}/notifications`,
-                headers: {
-                    'content-type': 'application/json',
-                    Authorization: `Bearer ${user?.token}`
-                }
-            })
-                .then(res => {
-                    if (res.data.meta.status_code === 200)
-                        setNotfArray(res.data.response);
-                })
-                .catch(() => {});
+            getNotifications(
+                user?.blogName,
+                user?.token,
+                setNotfArray,
+                setUnseenNotf
+            );
     }, []);
 
     /*  const clickOpenPopup = () => {
@@ -150,25 +152,42 @@ export default function AuthLinks() {
                     )}
                 </div>
             </ClickAwayListener>
-            <div className="notifications-btn">
-                <li
-                    onClick={clickNotificationsPopup}
-                    className={`link-icon  ${
-                        openNotificationsPopup ? 'active' : ''
-                    }`}
-                >
-                    <i className="fas fa-bolt"></i>
-                </li>
-                {notfArray?.unseen && <Badge num={notfArray?.unseen} />}
-                {openNotificationsPopup && (
-                    <Notifications
-                        userBlogName={user?.blogName}
-                        userAvatar={user?.userData?.avatar}
-                        notfArray={notfArray && notfArray}
-                        setNotfArray={setNotfArray}
-                    />
-                )}
-            </div>
+            <ClickAwayListener
+                onClickAway={() => setOpenNotificationsPopup(false)}
+            >
+                <div className="notifications-btn">
+                    {showSideBlog && (
+                        <ProfilsSideContainer
+                            blogID={sideBlogId}
+                            blogName={sideBlogName}
+                            setShowSideBlog={setShowSideBlog}
+                            sidePostID={sidePostID}
+                            setSidePostID={setSidePostID}
+                        />
+                    )}
+                    <li
+                        onClick={clickNotificationsPopup}
+                        className={`link-icon  ${
+                            openNotificationsPopup ? 'active' : ''
+                        }`}
+                    >
+                        <i className="fas fa-bolt"></i>
+                    </li>
+                    {unseenNotf !== 0 && <Badge num={unseenNotf} />}
+                    {openNotificationsPopup && (
+                        <Notifications
+                            userBlogName={user?.blogName}
+                            userAvatar={user?.userData?.avatar}
+                            notfArray={notfArray && notfArray}
+                            setNotfArray={setNotfArray}
+                            setUnseenNotf={setUnseenNotf}
+                            setSideBlogId={setSideBlogId}
+                            setSideBlogName={setSideBlogName}
+                            setShowSideBlog={setShowSideBlog}
+                        />
+                    )}
+                </div>
+            </ClickAwayListener>
             <ClickAwayListener onClickAway={closeAccountPopup}>
                 <div className="link-popup">
                     <li

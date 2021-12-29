@@ -10,7 +10,7 @@ export default function ProfilsSideContainer(props) {
         props;
     const response = useFetch(`${apiBaseUrl}/MiniProfileView/${blogID}`);
     const { data, isPending } = response;
-
+    console.log(data);
     return (
         <div
             className="overlay-container"

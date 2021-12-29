@@ -74,7 +74,7 @@ VerticalPostsView.propTypes = {
     posts: PropTypes.array,
     error: PropTypes.string,
     isPending: PropTypes.bool,
-    hasMore: PropTypes.bool,
+    hasMore: PropTypes.any,
     setPageNumber: PropTypes.func,
     isRadar: PropTypes.bool,
     isRef: PropTypes.bool,

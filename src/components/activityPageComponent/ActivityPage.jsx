@@ -6,6 +6,7 @@ import Notification from '../navbarComponent/containers/Notifications/Notificati
 import { useEffect } from 'react';
 import { apiBaseUrl } from '../../config.json';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 export default function ActivityPage() {
     const theme = useContext(ThemeContext)[0];
     const user = JSON.parse(localStorage.getItem('user'));
@@ -18,11 +19,12 @@ export default function ActivityPage() {
     const [nFCount, setNFCount] = useState(0);
     const [tFCount, setTFCount] = useState(0);
     const [loading, setLoading] = useState(false);
+    const { blogUrlIdf } = useParams();
     useEffect(() => {
         user?.blogName !== undefined &&
             axios({
                 method: 'GET',
-                url: `${apiBaseUrl}/blog/${user?.blogName}/notifications`,
+                url: `${apiBaseUrl}/blog/${blogUrlIdf}/notifications`,
                 headers: {
                     'content-type': 'application/json',
                     Authorization: `Bearer ${user?.token}`
@@ -40,7 +42,7 @@ export default function ActivityPage() {
         user?.blogName !== undefined &&
             axios({
                 method: 'GET',
-                url: `${apiBaseUrl}/blog/${user?.blogName}/last-ndays-activity?lastNdays=7`,
+                url: `${apiBaseUrl}/blog/${blogUrlIdf}/last-ndays-activity?lastNdays=7`,
                 headers: {
                     'content-type': 'application/json',
                     Authorization: `Bearer ${user?.token}`

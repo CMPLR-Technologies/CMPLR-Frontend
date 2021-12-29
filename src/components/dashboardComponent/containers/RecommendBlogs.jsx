@@ -33,6 +33,7 @@ export default function RecommendBlogs(props) {
                             blogName={blog.blog_name}
                             blogDesc={blog.description}
                             blogIcon={blog.avatar}
+                            blogId={blog.blog_id}
                         />
                     </div>
                 ))}

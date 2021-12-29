@@ -20,6 +20,7 @@ import { apiBaseUrl } from '../../../../config.json';
 import { handlePosting } from '../../../createPost/Service';
 import { useNavigate } from 'react-router-dom';
 import ProfileMiniHoverWrapper from '../../../profileViews/mini&sideViews/View';
+import AskPost from './postTypesComponents/AskPost';
 /**
  * @function PostComponent
  * @description Base Unit Component for all post compoennt types
@@ -53,7 +54,8 @@ export default function PostComponent(props) {
         padding,
         blogPage,
         themeDeactivate,
-        draft
+        draft,
+        ask
     } = props;
     let theme = useContext(ThemeContext)[0];
     if (themeDeactivate) theme = 'trueBlue';
@@ -233,7 +235,7 @@ export default function PostComponent(props) {
     }
 
     .msg-heading, .msg-description{
-        color:rgb(${themes[theme].whiteOnDark});
+        color:rgb(${themes[theme].whiteOnDark},.65);
     }
     .notes-view-container {
         background-color:rgb(${themes[theme].white});
@@ -455,7 +457,7 @@ export default function PostComponent(props) {
                                             postTime={postTime}
                                             userBlogName={userBlogName}
                                             blogName={blogName}
-                                            postLink={`${apiBaseUrl}/blog/view/${blogName}/${blogId}/posts/${postId}`}
+                                            postLink={`${window.location.host}/blog/view/${blogName}/${blogId}/posts/${postId}`}
                                             postId={postId}
                                             following={following}
                                             blogUrl={blogUrl}
@@ -472,7 +474,7 @@ export default function PostComponent(props) {
                         </div>
                     </header>
                 )}
-                {
+                {!ask ? (
                     <>
                         <TextPost
                             title={title && title}
@@ -480,7 +482,9 @@ export default function PostComponent(props) {
                         />
                         <Divider />
                     </>
-                }
+                ) : (
+                    <AskPost content={content && content} />
+                )}
                 {!reblog && (
                     <div
                         data-testid="post-footer-cont-ts"
@@ -489,7 +493,7 @@ export default function PostComponent(props) {
                         <Tags tagsArray={tags} />
                         <Footer
                             isAuthor={userBlogName === blogName}
-                            postLink={`${apiBaseUrl}/blog/view/${blogName}/${blogId}/posts/${postId}`}
+                            postLink={`${window.location.host}/blog/view/${blogName}/${blogId}/posts/${postId}`}
                             numberNotes={numberNotes}
                             reblogKey={reblogKey}
                             postId={postId}
@@ -503,6 +507,7 @@ export default function PostComponent(props) {
                             draft={draft}
                             postSubmit={postSubmit}
                             setIsLiked={setIsLiked}
+                            ask={ask}
                         />
                     </div>
                 )}

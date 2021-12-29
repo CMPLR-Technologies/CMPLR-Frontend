@@ -1,9 +1,13 @@
 import { uploadSelectedImage, uploadSelectedVideo } from './Service';
 
 export const handleActionWithoutArg = (elementId, setContent) => {
+    const titleDiv = document.getElementById('content-title-cpost');
+    titleDiv.contentEditable = false;
+
     const element = document.getElementById(elementId);
     document.execCommand(element.dataset['element'], false, null);
     setContent(document.getElementById('editable-content').innerHTML);
+    titleDiv.contentEditable = true;
 };
 
 export const handleUploadImage = async (
@@ -27,22 +31,41 @@ export const handleUploadVideo = async (
 };
 
 export const handleHeading = (cmd, setContent) => {
+    const titleDiv = document.getElementById('content-title-cpost');
+    titleDiv.contentEditable = false;
+
     let size = document.getElementById('headSelector').value;
     document.execCommand(cmd, false, size);
     setContent(document.getElementById('editable-content').innerHTML);
     document.getElementById('headSelector').value = 'none';
+
+    titleDiv.contentEditable = true;
 };
 
-export const handleCreateLink = setContent => {
-    let command = document.getElementById('to-link-words').dataset['element'];
-    document.execCommand(command, false, 'www.google.com');
+export const handleCreateLink = (link, setLink, handleClose, setContent) => {
+    // let newLink = document.createElement('a');
+    // newLink.href = link;
+    // newLink.value = link;
+
+    document.getElementById(
+        'editable-content'
+    ).innerHTML += `<a href=${link}>${link}</a>`;
+
+    //document.getElementById('editable-content').appendChild(newLink);
     setContent(document.getElementById('editable-content').innerHTML);
+    setLink('https://');
+    handleClose();
 };
 
 export const handleColor = (elementId, setContent) => {
+    const titleDiv = document.getElementById('content-title-cpost');
+    titleDiv.contentEditable = false;
+
     const element = document.getElementById(elementId);
     document.execCommand(element.dataset['element'], false, element.value);
     setContent(document.getElementById('editable-content').innerHTML);
+
+    titleDiv.contentEditable = true;
 };
 
 export const handleChanges = setContent => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CreatePost from '../createPost/View';
-import VerifyEmail from '../VerifyEmail/View';
+import VerifyEmail from '../verifyEmail/View';
 import VerticalPostsView from '../partials/VerticalPostsView';
 import { apiBaseUrl } from '../../config.json';
 import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
@@ -30,7 +30,9 @@ export default function Dashboard() {
                 <VerifyEmail />
                 <div className="dashboard-container-grid">
                     <VerticalPostsView
-                        posts={posts}
+                        posts={posts.filter(
+                            post => post?.post?.state === 'publish'
+                        )}
                         error={error}
                         isPending={isPending}
                         hasMore={hasMore}
