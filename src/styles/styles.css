@@ -1991,7 +1991,7 @@ input:checked + .slider:before {
 
 .nav {
   background-color: transparent;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -4013,7 +4013,7 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
 }
 .profile-full-header-div-bg {
   object-fit: cover;
-  height: 350px;
+  height: calc(300px + 50px);
   width: 100%;
   -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);

@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import '../../styles/styles.css';
 import NavbarLinks from './containers/navbarLinks/NavbarLinks';
 import NavbarSection1 from './containers/section1/NavbarSection1';
-import { UserContext } from '../../contexts/userContext/UserContext';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 import ChatView from '../chatComponent/View';
+import { UserContext } from '../../contexts/userContext/UserContext';
 /**
  * Navbar Main Component
  * @function Navbar
@@ -13,9 +13,15 @@ import ChatView from '../chatComponent/View';
  */
 export default function Navbar() {
     const theme = useContext(ThemeContext)[0];
+    const { user } = useContext(UserContext);
+    let bg='transparent';
+    if(user){
+        bg=`rgb(${themes[theme].navy})`;
+    }
     const css = `
         .nav {
             border-bottom: 0.5px solid rgba(${themes[theme].whiteOnDark}, 0.15);
+            background-color: ${bg};
         }
         .search{
             background-color: rgba(${themes[theme].whiteOnDark}, 0.15);
@@ -300,7 +306,6 @@ export default function Navbar() {
     `;
 
     const [mobileView, setMobileView] = useState(false);
-    const { user } = useContext(UserContext);
     const chaneMobileView = () => {
         if (window.innerWidth > 960) {
             setMobileView(false);
