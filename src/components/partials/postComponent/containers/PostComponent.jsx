@@ -290,6 +290,11 @@ export default function PostComponent(props) {
     .post-heading svg{
         fill:rgba(${themes[theme].black}, 0.65)
     }
+
+    .note-reply{
+        color:rgb(${themes[theme].black})
+    }
+
     `;
 
     return (

@@ -21,7 +21,9 @@ export function handleLikePost(setLoveFillColor, setIsLiked, postId, token) {
                 setIsLiked(true);
             }
         })
-        .catch(() => {});
+        .catch(err => {
+            if (err.response.status) return err;
+        });
 }
 
 export function handleUnlikePost(setLoveFillColor, setIsLiked, postId, token) {
