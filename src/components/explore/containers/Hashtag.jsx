@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { followHashtag, getIsFollowed, unfollowHashtag } from '../Service';
+import { UserContext } from '../../../contexts/userContext/UserContext';
 
 export default function Hashtag(props) {
     const { name, firstImg, secondImg, link, color, background, border } =
         props;
+    const [toFollow, setToFollow] = useState(true);
+
+    const { user } = useContext(UserContext);
+
+    useEffect(() => {
+        getIsFollowed(name, user?.token, setToFollow);
+    }, []);
     return (
         <div
             className="explore-hashtag"
@@ -16,8 +25,15 @@ export default function Hashtag(props) {
                     <img src={secondImg} />
                 </div>
             </a>
-            <button style={{ color: background, background: color }}>
-                Follow
+            <button
+                style={{ color: background, background: color }}
+                onClick={() => {
+                    toFollow
+                        ? followHashtag(name, user?.token, setToFollow)
+                        : unfollowHashtag(name, user?.token, setToFollow);
+                }}
+            >
+                {toFollow ? 'Follow' : 'UnFollow'}
             </button>
         </div>
     );

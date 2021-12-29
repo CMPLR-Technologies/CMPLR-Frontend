@@ -8,7 +8,8 @@ import PropTypes from 'prop-types';
 export default function TrendingTag({ color, tag, img, order }) {
     const theme = useContext(ThemeContext)[0];
     return (
-        <div
+        <a
+            href={`/tagged/${tag.tag_name}`}
             className="trending-tag"
             style={{
                 background: `rgba(${color}, 0.25)`
@@ -29,12 +30,12 @@ export default function TrendingTag({ color, tag, img, order }) {
                 >
                     {order}
                 </div>{' '}
-                {tag}
+                {tag.tag_name}
             </div>
             <div className="tag-img">
                 <img src={img} />
             </div>
-        </div>
+        </a>
     );
 }
 

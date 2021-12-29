@@ -38,11 +38,12 @@
             position: relative;
             width: 100%;
             .hide {
-                display: none;
+                width: 0px;
+                //display: none;
             }
 
             .show {
-                display: block;
+                //display: block;
             }
         }
     }
@@ -223,6 +224,7 @@
     display: flex;
     justify-content: space-between;
     border-radius: 3px;
+    cursor: pointer;
 
     .tag-info {
         margin: 12px 20px;
