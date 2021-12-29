@@ -4394,6 +4394,7 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
   position: absolute;
   top: 0;
   display: block;
+  object-fit: cover;
 }
 .create1div .create_main .create_container ul {
   display: flex;

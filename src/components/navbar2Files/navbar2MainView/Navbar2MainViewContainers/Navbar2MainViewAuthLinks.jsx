@@ -14,9 +14,6 @@ export default function Navbar2MainViewAuthLinks(props) {
     const [blocked, setBlocked] = useState(isBlocked);
     const [actionRespMessage, setActionRespMessage] = useState('');
 
-    console.log(isBlocked);
-    console.log(isFollowed);
-
     const isSelf =
         JSON.parse(localStorage.getItem('user')).blogName === blogName;
 

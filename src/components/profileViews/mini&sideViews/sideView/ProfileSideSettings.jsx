@@ -70,15 +70,14 @@ export default function ProfileSideSettings(props) {
                         </div>
 
                         <div>
-                            <img
-                                className="profile-side-header-avatar"
-                                src={user?.userData?.avatar}
-                                alt="couldn't load avatar"
-                                onMouseOver={() => setEditProfile(true)}
-                                onMouseLeave={() => setEditProfile(false)}
-                            />
-
                             <label htmlFor="to-image-words">
+                                <img
+                                    className="profile-side-header-avatar"
+                                    src={user?.userData?.avatar}
+                                    alt="couldn't load avatar"
+                                    onMouseOver={() => setEditProfile(true)}
+                                    onMouseLeave={() => setEditProfile(false)}
+                                />
                                 <InputCam
                                     onChange={e =>
                                         uploadSelectedImageProfile(
