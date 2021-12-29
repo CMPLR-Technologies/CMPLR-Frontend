@@ -7817,6 +7817,7 @@ body .settings .container1 .subcontainer #section .sub-section-right .sub-sectio
 }
 .tag-img img {
   width: 100%;
+  height: 64px;
   border-radius: 3px;
 }
 

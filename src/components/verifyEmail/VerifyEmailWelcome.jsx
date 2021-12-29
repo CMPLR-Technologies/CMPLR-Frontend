@@ -7,9 +7,7 @@ export default function VerifyEmailWelcome() {
     const user = JSON.parse(localStorage.getItem('user'));
     const { userId, hash } = useParams();
     useEffect(() => {
-        console.log('recieved blogId', userId);
         if (user?.userData?.id !== userId) {
-            console.log('entered');
             verifyEmailConfirm(user, userId, hash, navigate);
         }
     }, []);
