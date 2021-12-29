@@ -17,7 +17,6 @@ export default function ProfileFull(props) {
         setScrollTop(el.target.scrollTop);
     };
     //const isFollowed = false;
-    const isBlocked = false;
 
     const response = useFetch(`${apiBaseUrl}/MiniProfileView/${blogID}`);
     const navArray = [
@@ -84,8 +83,8 @@ export default function ProfileFull(props) {
                     <Navbar2MainView
                         blogName={blogName}
                         blogID={blogID}
-                        isFollowed={data?.is_followed}
-                        isBlocked={isBlocked}
+                        isFollowed={data?.blog.is_followed}
+                        isBlocked={data?.blog.is_blocked}
                     />
                     <NavLink
                         to={`/blog/view/${blogName}/${blogID}/posts`}

@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Navbar2SideViewMoreOptions from './Navbar2SideViewMoreOptions';
-import {
-    followAccountWithResponse,
-    unfollowAccount,
-    blockAccount
-} from '../../followingComponent/Service';
+import { follow, unFollow, unBlock } from '../Controller';
 
 export default function Navbar2SideView(props) {
-    const { setShowSideBlog, blogName, blogID, isFollowed, isBlocked } = props;
+    const {
+        setShowSideBlog,
+        blogName,
+        blogID,
+        isFollowed,
+        isBlocked,
+        setBlocked,
+        setIsFollowed
+    } = props;
     const [openMoreOptions, setOpenMoreOptions] = useState(false);
     const [actionRespMessage, setActionRespMessage] = useState('');
-    const [followed, setIsFollowed] = useState(isFollowed);
-    const [blocked, setBlocked] = useState(isBlocked);
 
     const isSelf =
         JSON.parse(localStorage.getItem('user')).blogName === blogName;
@@ -30,41 +32,6 @@ export default function Navbar2SideView(props) {
         setShowSideBlog(false);
     };
 
-    const unFollow = () => {
-        setIsFollowed(
-            unfollowAccount(
-                JSON.parse(localStorage.getItem('user'))?.token,
-                blogName,
-                setActionRespMessage,
-                true
-            )
-        );
-        //isFollowed = false
-    };
-    const unBlock = () => {
-        //isBlocked = false
-        setBlocked(
-            unfollowAccount(
-                JSON.parse(localStorage.getItem('user'))?.token,
-                blogName,
-                setActionRespMessage,
-                true
-            )
-        );
-    };
-    const follow = () => {
-        setIsFollowed(
-            !followAccountWithResponse(
-                JSON.parse(localStorage.getItem('user'))?.token,
-                blogName,
-                setActionRespMessage
-            )
-        );
-
-        //isBlocked = false
-        //isFollowed = true
-    };
-
     return (
         <div className="Navbar2SideView">
             <div className="container">
@@ -80,28 +47,51 @@ export default function Navbar2SideView(props) {
                             <i className="fas fa-ellipsis-h"></i>
                             {openMoreOptions && (
                                 <Navbar2SideViewMoreOptions
+                                    setBlocked={setBlocked}
+                                    setIsFollowed={setIsFollowed}
                                     blogID={blogID}
                                     blogName={blogName}
                                     close={closOption}
                                     setShowSideBlog={setShowSideBlog}
-                                    isFollowed={followed}
-                                    isBlocked={blocked}
+                                    isFollowed={isFollowed}
+                                    isBlocked={isBlocked}
                                     isSelf={isSelf}
                                 />
                             )}
                         </div>
                     )}
                     {!isSelf &&
-                        (blocked ? (
-                            <div className="follow" onClick={unBlock}>
+                        (isBlocked ? (
+                            <div
+                                className="follow"
+                                onClick={() => unBlock(blogName, setBlocked)}
+                            >
                                 Unblock
                             </div>
-                        ) : followed ? (
-                            <div className="follow" onClick={unFollow}>
+                        ) : isFollowed ? (
+                            <div
+                                className="follow"
+                                onClick={() =>
+                                    unFollow(
+                                        setIsFollowed,
+                                        blogName,
+                                        setActionRespMessage
+                                    )
+                                }
+                            >
                                 Unfollow
                             </div>
                         ) : (
-                            <div className="follow" onClick={follow}>
+                            <div
+                                className="follow"
+                                onClick={() =>
+                                    follow(
+                                        setIsFollowed,
+                                        blogName,
+                                        setActionRespMessage
+                                    )
+                                }
+                            >
                                 Follow
                             </div>
                         ))}
@@ -115,6 +105,8 @@ Navbar2SideView.propTypes = {
     setShowSideBlog: PropTypes.func.isRequired,
     blogName: PropTypes.string.isRequired,
     blogID: PropTypes.string.isRequired,
+    setIsFollowed: PropTypes.func.isRequired,
+    setBlocked: PropTypes.func.isRequired,
     isBlocked: PropTypes.bool,
     isFollowed: PropTypes.bool
 };

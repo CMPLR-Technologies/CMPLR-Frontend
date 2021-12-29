@@ -26,7 +26,9 @@ export default function ProfileSide(props) {
         is_followed: isFollowed,
         is_blocked: isBlocked
     } = body;
-    console.log(isBlocked);
+    const [followed, setIsFollowed] = useState(isFollowed);
+    const [blocked, setBlocked] = useState(isBlocked);
+    console.log(blocked);
 
     const [scrollTop, setScrollTop] = useState(0);
     const headerScrollAnimation = el => {
@@ -65,10 +67,12 @@ export default function ProfileSide(props) {
                     setShowSideBlog={setShowSideBlog}
                     blogName={blogName}
                     blogID={blogID}
-                    isFollowed={isFollowed}
-                    isBlocked={isBlocked}
+                    isFollowed={followed}
+                    isBlocked={blocked}
+                    setIsFollowed={setIsFollowed}
+                    setBlocked={setBlocked}
                 />
-                {isBlocked && (
+                {blocked && (
                     <div className="profile-side-header-blocked">
                         <div>
                             This blog is Blocked, you can unblock it to view its
@@ -77,7 +81,7 @@ export default function ProfileSide(props) {
                     </div>
                 )}
 
-                {!isBlocked && (
+                {!blocked && (
                     <NavLink
                         to={`/blog/view/${blogName}/${blogID}/posts`}
                         className="profile-side-header-div"
@@ -89,7 +93,7 @@ export default function ProfileSide(props) {
                         />
                     </NavLink>
                 )}
-                {!isBlocked && (
+                {!blocked && (
                     <NavLink to={`/blog/view/${blogName}/${blogID}/posts`}>
                         <img
                             className="profile-side-header-avatar"
@@ -98,7 +102,7 @@ export default function ProfileSide(props) {
                         />
                     </NavLink>
                 )}
-                {!isBlocked && (
+                {!blocked && (
                     <div className="profile-side-header-text">
                         <div className="profile-side-header-text-title">
                             {title === 'untitled' ? blogName : title}
@@ -108,7 +112,7 @@ export default function ProfileSide(props) {
                         </div>
                     </div>
                 )}
-                {!isBlocked && (
+                {!blocked && (
                     <div className="profile-side-header-post-container">
                         {sidePostID ? (
                             <ProfileSideOnePost
