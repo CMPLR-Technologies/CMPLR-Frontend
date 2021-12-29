@@ -53,9 +53,9 @@ export default function GridPostsView(props) {
 
 GridPostsView.propTypes = {
     posts: PropTypes.array,
-    error: PropTypes.bool,
+    error: PropTypes.any,
     isPending: PropTypes.bool,
-    hasMore: PropTypes.bool,
+    hasMore: PropTypes.any,
     blogPage: PropTypes.bool,
     noTheme: PropTypes.bool,
     setPageNumber: PropTypes.func

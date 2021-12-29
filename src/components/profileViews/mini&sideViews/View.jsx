@@ -40,6 +40,6 @@ export default function ProfileMiniHoverWrapper(props) {
 
 ProfileMiniHoverWrapper.propTypes = {
     children: PropTypes.object.isRequired,
-    blogID: PropTypes.string.isRequired,
+    blogID: PropTypes.any.isRequired,
     blogName: PropTypes.string.isRequired
 };

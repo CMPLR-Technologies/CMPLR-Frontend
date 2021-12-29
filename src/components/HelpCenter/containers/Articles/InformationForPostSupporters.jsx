@@ -333,7 +333,7 @@ export default function InformationForPostSupporters() {
                             We do not offer refunds for subscriptions. If you're
                             not satisfied with the content a creator is
                             providing, you can{' '}
-                            <a href="/hc/articles/4402757569431#canceling-a-subscription">
+                            <a href="https://tumblr.zendesk.com/hc/articles/4402757569431#canceling-a-subscription">
                                 cancel your subscription
                             </a>
                             .
@@ -411,7 +411,7 @@ export default function InformationForPostSupporters() {
                                 "Cancel subscription" ends your subscription to
                                 that creator blog. Read more about canceling
                                 your subscription{' '}
-                                <a href="/hc/articles/4402757569431#canceling-a-subscription">
+                                <a href="https://tumblr.zendesk.com/hc/articles/4402757569431#canceling-a-subscription">
                                     here
                                 </a>
                                 .

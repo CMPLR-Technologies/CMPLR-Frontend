@@ -60,7 +60,7 @@ export default function AppearingInSearchResults() {
                                 visibility.
                             </li>
                             <li>
-                                <a href="/hc/articles/231476507-Private-posts">
+                                <a href="https://tumblr.zendesk.com/hc/articles/231476507-Private-posts">
                                     Private posts
                                 </a>{' '}
                                 will not appear in search results.
@@ -80,7 +80,7 @@ export default function AppearingInSearchResults() {
                                 appear in search results. If you believe your
                                 blog was miscategorized, you can appeal this
                                 decision by following{' '}
-                                <a href="/hc/articles/360011657153-Reviewing-and-appealing-content-flagged-as-adult">
+                                <a href="https://tumblr.zendesk.com/hc/articles/360011657153-Reviewing-and-appealing-content-flagged-as-adult">
                                     these instructions.
                                 </a>
                             </li>
@@ -124,7 +124,7 @@ export default function AppearingInSearchResults() {
                         </ul>
                         <p>
                             Please see our{' '}
-                            <a href="/hc/articles/115011611747">
+                            <a href="https://tumblr.zendesk.com/hc/articles/115011611747">
                                 Privacy Options
                             </a>{' '}
                             for more information.

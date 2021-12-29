@@ -314,7 +314,13 @@ export default function Navbar() {
     }, []);
     window.addEventListener('resize', chaneMobileView);
     let nav = (
-        <div className="nav">
+        <div
+            className="nav"
+            style={{
+                position: 'fixed',
+                backgroundColor: 'rgb(' + themes[theme]?.navy + ')'
+            }}
+        >
             <div className="nav-container">
                 <ChatView />
                 {/*section 1 contains logo and search bar*/}

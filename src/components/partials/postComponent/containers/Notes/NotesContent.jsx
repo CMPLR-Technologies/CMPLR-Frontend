@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import NotePost from './NotePost';
 import PropTypes from 'prop-types';
 import { submitNote } from '../../Services';
+import {
+    ThemeContext,
+    themes
+} from '../../../../../contexts/themeContext/ThemeContext';
 
 NotesContent.propTypes = {
     postAuthor: PropTypes.string.isRequired,
@@ -12,11 +16,11 @@ NotesContent.propTypes = {
     setCounts: PropTypes.func,
     setIsModalOpen: PropTypes.func,
     setNotesView: PropTypes.func,
-    postId: PropTypes.number,
-
+    postId: PropTypes.number
 };
 
 export default function NotesContent(props) {
+    const theme = useContext(ThemeContext)[0];
     const user = JSON.parse(localStorage.getItem('user'));
     const {
         postAuthor,
@@ -68,6 +72,7 @@ export default function NotesContent(props) {
             <div data-testid={`input-form-note-ts`} className="input-area">
                 <input
                     className="note-reply"
+                    style={{ color: 'rgb(' + themes[theme]?.whiteOnDark + ')' }}
                     placeholder="type your replay here"
                     value={reply}
                     onChange={e => setReply(e.target.value)}

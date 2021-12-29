@@ -62,7 +62,7 @@ export default function Recommendations() {
                             <li>
                                 Sometimes folks mistake results from their{' '}
                                 <a
-                                    href="/hc/en-us/articles/226259728"
+                                    href="https://tumblr.zendesk.com/hc/en-us/articles/226259728"
                                     target="_self"
                                     rel="undefined"
                                 >
@@ -77,7 +77,7 @@ export default function Recommendations() {
                                 your dashboard preferences. More information can
                                 be found{' '}
                                 <a
-                                    href="/hc/en-us/articles/115013590547"
+                                    href="https://tumblr.zendesk.com/hc/en-us/articles/115013590547"
                                     target="_self"
                                 >
                                     here
@@ -89,7 +89,7 @@ export default function Recommendations() {
                                 recommendations. You can read about managing
                                 your dashboard preferences{' '}
                                 <a
-                                    href="/hc/en-us/articles/115013590547"
+                                    href="https://tumblr.zendesk.com/hc/en-us/articles/115013590547"
                                     target="_self"
                                 >
                                     here
@@ -113,7 +113,7 @@ export default function Recommendations() {
                             please report it. You can learn how to report
                             content{' '}
                             <a
-                                href="/hc/en-us/articles/226270628"
+                                href="https://tumblr.zendesk.com/hc/en-us/articles/226270628"
                                 target="_self"
                             >
                                 here

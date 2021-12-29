@@ -10,14 +10,16 @@ export const getHashtagData = (
     setPage,
     page,
     setHasMore,
-    posts
+    posts,
+    token
 ) => {
     Axios({
         method: 'GET',
         url: `${apiBaseUrl}/post/tagged?tag=${tagName}&page=${page}`,
         headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json'
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
         }
     })
         .then(res => {

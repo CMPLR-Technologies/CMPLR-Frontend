@@ -80,7 +80,7 @@ export default function ProfileMiniHoverInnerWrapper(props) {
 
 ProfileMiniHoverInnerWrapper.propTypes = {
     children: PropTypes.object.isRequired,
-    blogID: PropTypes.string.isRequired,
+    blogID: PropTypes.any.isRequired,
     blogName: PropTypes.string.isRequired,
     setShowSideBlog: PropTypes.func.isRequired,
     setSidePostID: PropTypes.func.isRequired

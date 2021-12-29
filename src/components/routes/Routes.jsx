@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import LoginView from '../loginComponent/View';
 import Register from '../registerComponent/View';
 import HomePage from '../homeComponent/View';
@@ -28,22 +28,34 @@ import Article from '../HelpCenter/containers/Article';
 import ArticleCategoryIndividual from '../HelpCenter/containers/ArticleCategoryIndividual';
 import LikedBlogs from '../likesComponent/View';
 import ProfileFullContainer from '../profileViews/fullView/View';
-import PostComponent from '../partials/postComponent/containers/PostComponent';
 import Inbox from '../inboxComponent/View';
+import { UserContext } from '../../contexts/userContext/UserContext';
 
 export default function MainRoutes() {
-    const theme = useContext(ThemeContext)[0];
+    const [theme, changeTheme] = useContext(ThemeContext);
     const [withNav, setWithNav] = useState(true);
     const css = `
+        #global-div:focus{
+            outline: none;
+        }
         body{
             background-color: rgb(${
                 theme ? themes[theme].navy : themes['trueBlue'].navy
             });
         }
     `;
+    const { user } = useContext(UserContext);
 
+    useEffect(() => {
+        document.getElementById('global-div').focus();
+    }, []);
+    const shortcutController = e => {
+        if (user && e.altKey && e.code === 'KeyP') {
+            changeTheme();
+        }
+    };
     return (
-        <>
+        <div tabIndex="0" id="global-div" onKeyDown={shortcutController}>
             <Router>
                 {withNav && <Navbar />}
                 <Routes>
@@ -153,6 +165,6 @@ export default function MainRoutes() {
                 </Routes>
                 <style>{css}</style>
             </Router>
-        </>
+        </div>
     );
 }

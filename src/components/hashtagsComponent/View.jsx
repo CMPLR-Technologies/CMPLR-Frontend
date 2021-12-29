@@ -83,7 +83,8 @@ export default function Hashtag() {
                 setPage,
                 page,
                 setHasMore,
-                posts
+                posts,
+                user?.token
             );
         }
     };
