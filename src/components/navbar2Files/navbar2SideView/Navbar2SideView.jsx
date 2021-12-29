@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Navbar2SideViewMoreOptions from './Navbar2SideViewMoreOptions';
+import {
+    followAccountWithResponse,
+    unfollowAccount
+} from '../../followingComponent/Service';
+
 export default function Navbar2SideView(props) {
     const { setShowSideBlog, blogName, blogID, isFollowed, isBlocked } = props;
     const [openMoreOptions, setOpenMoreOptions] = useState(false);
+    const [actionRespMessage, setActionRespMessage] = useState('');
+    const [followed, setIsFollowed] = useState(isFollowed);
+    const [blocked, setBlocked] = useState(isBlocked);
+
     const isSelf =
         JSON.parse(localStorage.getItem('user')).blogName === blogName;
     //options which shown when click 3 dots
@@ -21,12 +30,28 @@ export default function Navbar2SideView(props) {
     };
 
     const unFollow = () => {
+        setIsFollowed(
+            unfollowAccount(
+                JSON.parse(localStorage.getItem('user'))?.token,
+                blogName,
+                setActionRespMessage,
+                true
+            )
+        );
         //isFollowed = false
     };
     const unBlock = () => {
         //isBlocked = false
     };
     const follow = () => {
+        setIsFollowed(
+            !followAccountWithResponse(
+                JSON.parse(localStorage.getItem('user'))?.token,
+                blogName,
+                setActionRespMessage
+            )
+        );
+
         //isBlocked = false
         //isFollowed = true
     };
@@ -50,19 +75,19 @@ export default function Navbar2SideView(props) {
                                     blogName={blogName}
                                     close={closOption}
                                     setShowSideBlog={setShowSideBlog}
-                                    isFollowed={isFollowed}
-                                    isBlocked={isBlocked}
+                                    isFollowed={followed}
+                                    isBlocked={blocked}
                                     isSelf={isSelf}
                                 />
                             )}
                         </div>
                     )}
                     {!isSelf &&
-                        (isBlocked ? (
+                        (blocked ? (
                             <div className="follow" onClick={unBlock}>
                                 Unblock
                             </div>
-                        ) : isFollowed ? (
+                        ) : followed ? (
                             <div className="follow" onClick={unFollow}>
                                 Unfollow
                             </div>
