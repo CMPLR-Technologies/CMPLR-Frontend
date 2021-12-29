@@ -60,6 +60,7 @@ export default function MobileHashtagBar(props) {
                                                 );
                                             }
                                         }}
+                                        dataTestid="follow_btn_hashtag"
                                     >
                                         <span className="WdYx4">
                                             {isPendingFollow && (
@@ -83,6 +84,7 @@ export default function MobileHashtagBar(props) {
                                             onClick={() => {
                                                 navigate('/new/post');
                                             }}
+                                            dataTestid="newpost_btn_hashtag"
                                         >
                                             <span className="WdYx4">
                                                 New post
@@ -95,7 +97,11 @@ export default function MobileHashtagBar(props) {
                                         {errorFollow}
                                     </p>
                                 )}
-                                <a className="kckjF" href="/#">
+                                <a
+                                    className="kckjF"
+                                    href="#"
+                                    onClick={e => e.preventDefault()}
+                                >
                                     <div className="CrU4O">
                                         <span>Posted by</span>
                                     </div>

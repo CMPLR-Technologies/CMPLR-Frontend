@@ -31,6 +31,7 @@ export default function HeaderCreatePost(props) {
                             <button
                                 className="btn-control"
                                 onClick={handleBlogsPopover}
+                                dataTestid="blogspop_btn_createPost"
                             >
                                 <span className="caption">
                                     {postBlogName

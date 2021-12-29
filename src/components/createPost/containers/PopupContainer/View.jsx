@@ -117,7 +117,7 @@ export default function CreateModal(props) {
                                 aria-details="this is the content box"
                             >
                                 <div className="post-form">
-                                    <ProfilePic />
+                                    <ProfilePic user={user} />
                                     <div className="post-container">
                                         <div className="post-container-inner">
                                             <HeaderCreatePost

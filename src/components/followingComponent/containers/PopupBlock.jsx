@@ -36,6 +36,7 @@ export default function PopupBlock(props) {
                                     onClick={handleClose}
                                     style={{ backgroundColor: '#ABB3BC' }}
                                     className="B5hil"
+                                    dataTestid="closepopup_btn_following"
                                 >
                                     <span
                                         style={{ color: '#001935' }}
@@ -48,6 +49,7 @@ export default function PopupBlock(props) {
                                     onClick={() => handleBlock(profileName)}
                                     style={{ backgroundColor: '#FF4930' }}
                                     className="B5hil"
+                                    dataTestid="block_btn_following"
                                 >
                                     <span
                                         style={{ color: '#001935' }}

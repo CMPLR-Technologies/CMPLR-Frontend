@@ -74,12 +74,17 @@ export default function ItemList(props) {
                         <button
                             className="TRX6J"
                             onClick={() => handleUnfollow(profileName)}
+                            dataTestid="unfollowprofile_btn_following"
                         >
                             <span className="f68ED">Unfollow</span>
                         </button>
                         <span className="BPf9u">
                             <span className="BPf9u">
-                                <button className="TRX6J" onClick={handleClick}>
+                                <button
+                                    className="TRX6J"
+                                    onClick={handleClick}
+                                    dataTestid="popupblockdrop_btn_following"
+                                >
                                     <span className="EvhBA">
                                         <span className="JS4zW">
                                             <svg

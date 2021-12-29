@@ -49,6 +49,7 @@ export default function VerifyEmail() {
                                     className="bdzlZ"
                                     to="/settings/account/email"
                                     aria-label="Update Email"
+                                    dataTestid="updateemail_btn_verifyEmail"
                                 >
                                     Update Email
                                 </Link>
@@ -63,6 +64,7 @@ export default function VerifyEmail() {
                                     }}
                                     className="TRX6J"
                                     disabled={isPending}
+                                    dataTestid="resend_btn_verifyEmail"
                                 >
                                     <span className="CFBrV">
                                         {!isPending ? (

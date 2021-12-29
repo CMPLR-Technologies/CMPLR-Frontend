@@ -149,14 +149,7 @@ export default function Hashtag() {
                         next={handleScroll}
                         hasMore={hasMore}
                         loader={<LinearProgress />}
-                        endMessage={
-                            <p
-                                className="endOftheposts"
-                                style={{ textAlign: 'center' }}
-                            >
-                                no posts found
-                            </p>
-                        }
+                        endMessage={<p></p>}
                         style={{ overflow: 'hidden' }}
                     >
                         {posts &&

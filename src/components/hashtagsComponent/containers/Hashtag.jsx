@@ -47,6 +47,7 @@ export default function HashtagView(props) {
                                 }
                             }}
                             className="EVsUa"
+                            dataTestid="follow0_btn_hashtag"
                         >
                             <span className="WdYx4">
                                 {isPendingFollow && (
@@ -69,6 +70,7 @@ export default function HashtagView(props) {
                             }}
                             className="EVsUa"
                             style={{ marginLeft: '5px' }}
+                            dataTestid="newpost0_btn_hashtag"
                         >
                             <span className="WdYx4">New Post</span>
                         </button>

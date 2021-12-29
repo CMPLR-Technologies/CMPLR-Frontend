@@ -28,6 +28,7 @@ export default function TitleField(props) {
                             id="content-title-cpost"
                             onInput={handleChangeTitle}
                             data-placeholder="Title"
+                            dataTestid="titledivv_btn_createPost"
                         >
                             {editTitlePost}
                         </div>
