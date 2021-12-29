@@ -13,8 +13,7 @@ import { useParams } from 'react-router-dom';
 export default function BlogSettingsCard() {
     const user = JSON.parse(localStorage.getItem('user'));
     const { blogName } = useParams();
-    const { setBlogs, updateProperty, blogId } =
-        useContext(BlogSettingsContext);
+    const { setBlogs, updateProperty } = useContext(BlogSettingsContext);
     const [errMsg, setErrMsg] = useState('');
     useEffect(() => {
         getBlogSettings(setBlogs, user?.token, blogName);

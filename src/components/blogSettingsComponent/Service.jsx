@@ -110,7 +110,7 @@ export function getBlogSettings(setBlogs, token, blogName) {
         url: `${apiBaseUrl}/blog/${blogName}/settings`
     })
         .then(res => {
-            if (res?.data?.meta?.status === 200) {
+            if (res?.data?.meta?.status_code === 200) {
                 setBlogs(res?.data?.response[0][0]);
             }
         })
