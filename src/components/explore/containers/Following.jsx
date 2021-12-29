@@ -35,26 +35,36 @@ export default function Following() {
         >
             <div className="explore-following-head" style={headStyles}>
                 <span>Following</span>
-                <span>Edit</span>
             </div>
             <div className="explore-following-main">
                 {isPending && <LinearProgress />}
+                {error && (
+                    <div className="no-data-error">{"Couldn't load"}</div>
+                )}
                 {data &&
                     data.slice(start, end).map((hashtag, index) => {
                         return (
-                            <a key={index} href={`/tagged/${hashtag.name}`}>
+                            <a key={index} href={`/tagged/${hashtag?.name}`}>
                                 <div className="following-hashtag">
-                                    <img src="https://64.media.tumblr.com/avatar_88dad111d576_128.pnj" />
+                                    <img
+                                        src={
+                                            hashtag && hashtag.cover_image
+                                                ? hashtag.cover_image.link
+                                                : 'https://64.media.tumblr.com/avatar_88dad111d576_128.pnj'
+                                        }
+                                    />
                                     <div
                                         className="following-hashtag-info"
                                         style={{
                                             color: `rgb(${themes[theme].whiteOnDark})`
                                         }}
                                     >
-                                        <span>{hashtag.name}</span>
+                                        <span>{hashtag?.name}</span>
                                         <span>
-                                            {hashtag.posts ? 69 : 69} recent
-                                            posts
+                                            {hashtag
+                                                ? hashtag?.posts_count
+                                                : 69}{' '}
+                                            recent posts
                                         </span>
                                     </div>
                                 </div>
@@ -72,7 +82,6 @@ export default function Following() {
             >
                 Show more tags
             </button>
-            {error && <div className="no-data-error">{"Couldn't load"}</div>}
             <style>{styles}</style>
         </div>
     );
