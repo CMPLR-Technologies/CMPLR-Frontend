@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProfilsSideContainer from '../../../profileViews/mini&sideViews/sideView/ProfilsSideContainer';
 import PropTypes from 'prop-types';
+import { unfollowAccount } from '../../../followingComponent/Service';
+import { followAccountWithResponse } from '../../../followingComponent/Service';
 
 export default function Navbar2MainViewAuthLinks(props) {
     const [openGetNot, setOpenGetNot] = useState(false);
@@ -9,14 +11,44 @@ export default function Navbar2MainViewAuthLinks(props) {
     const [showSideBlog, setShowSideBlog] = useState(false);
     const [sidePostID, setSidePostID] = useState('');
     const { blogName, blogID, isFollowed, isBlocked } = props;
+    const [followed, setIsFollowed] = useState(isFollowed);
+    const [blocked, setBlocked] = useState(isBlocked);
+    const [actionRespMessage, setActionRespMessage] = useState('');
+
+    const isSelf =
+        JSON.parse(localStorage.getItem('user')).blogName === blogName;
+
     const toggleNot = () => {
         setOpenGetNot(!openGetNot);
     };
     const toggleMoreOption = () => {
         setOpenMoreOption(!openMoreOption);
     };
-    const followUser = () => {};
-    const blockUser = () => {};
+    const block = () => {};
+    const unFollow = () => {
+        setIsFollowed(
+            unfollowAccount(
+                JSON.parse(localStorage.getItem('user'))?.token,
+                blogName,
+                setActionRespMessage,
+                true
+            )
+        );
+        //isFollowed = false
+    };
+    const unBlock = () => {
+        //isBlocked = false
+    };
+    const follow = () => {
+        setIsFollowed(
+            !followAccountWithResponse(
+                JSON.parse(localStorage.getItem('user'))?.token,
+                blogName,
+                setActionRespMessage
+            )
+        );
+    };
+
     const [mobileView, setMobileView] = useState(false);
     const chaneMobileView = () => {
         if (window.innerWidth > 960) {
@@ -58,23 +90,33 @@ export default function Navbar2MainViewAuthLinks(props) {
                         <i className="fas fa-comment-medical"></i>
                     </Link>
                 </li> */}
-
-                {openMoreOption && (
+                {!isSelf && openMoreOption && (
                     <>
-                        <li className="link-icon more" onClick={followUser}>
-                            <span>Follow</span>
-                        </li>
-                        <li className="link-icon more" onClick={blockUser}>
-                            <span>Block</span>
-                        </li>
+                        {followed ? (
+                            <li className="link-icon more" onClick={unFollow}>
+                                <span>Unfollow</span>
+                            </li>
+                        ) : (
+                            <li className="link-icon more" onClick={follow}>
+                                <span>Follow</span>
+                            </li>
+                        )}
+                        {blocked ? (
+                            <li className="link-icon more" onClick={unBlock}>
+                                <span>Unblock</span>
+                            </li>
+                        ) : (
+                            <li className="link-icon more" onClick={block}>
+                                <span>Block</span>
+                            </li>
+                        )}
                     </>
                 )}
-                <li className="link-icon" onClick={toggleMoreOption}>
-                    <i className="fas fa-user"></i>
-                </li>
-                <li className="link-icon get" onClick={toggleNot}>
-                    Get notification
-                </li>
+                {!isSelf && (
+                    <li className="link-icon" onClick={toggleMoreOption}>
+                        <i className="fas fa-user"></i>
+                    </li>
+                )}
             </>
         );
     else

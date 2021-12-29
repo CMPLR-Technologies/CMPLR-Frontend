@@ -22,10 +22,10 @@ export default function ProfileSide(props) {
         header_image: headerImage,
         title,
         desciption,
-        blog_name: blogName
+        blog_name: blogName,
+        is_followed: isFollowed
     } = body;
 
-    const isFollowed = false;
     const isBlocked = false;
 
     const [scrollTop, setScrollTop] = useState(0);
@@ -101,7 +101,7 @@ export default function ProfileSide(props) {
                 {!isBlocked && (
                     <div className="profile-side-header-text">
                         <div className="profile-side-header-text-title">
-                            {title}
+                            {title === 'untitled' ? blogName : title}
                         </div>
                         <div className="profile-side-header-text-desc">
                             {desciption}

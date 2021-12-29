@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function ProfileMiniBody(props) {
-    const { avatar, header_image: headerImage, title, desciption } = props.body;
+    const {
+        avatar,
+        header_image: headerImage,
+        blog_name: blogName,
+        title,
+        desciption
+    } = props.body;
     const setShowSideBlog = props.setShowSideBlog;
     const setSidePostID = props.setSidePostID;
 
@@ -27,7 +33,9 @@ export default function ProfileMiniBody(props) {
                 alt="couldn't load avatar"
             />
             <div className="profile-mini-body-text">
-                <div className="profile-mini-body-text-title">{title}</div>
+                <div className="profile-mini-body-text-title">
+                    {title === 'untitled' ? blogName : title}
+                </div>
                 <div className="profile-mini-body-text-desc">{desciption}</div>
             </div>
         </div>

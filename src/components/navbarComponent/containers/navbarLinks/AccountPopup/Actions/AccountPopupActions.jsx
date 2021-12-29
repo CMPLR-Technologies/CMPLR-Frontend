@@ -31,6 +31,12 @@ export default function AccountPopupActions(props) {
     const { likes_count: likesCount, following_count: followingCount } =
         props.userInfo ? props.userInfo : { likesCount: 0, followingCount: 0 };
 
+    const css = `
+    body{
+        ${shortcutOverlay && 'overflow-y: hidden;'}            
+    }
+    `;
+
     const toggleTheme = () => {
         setPaletteChanged(true);
         changeTheme();
@@ -106,6 +112,7 @@ export default function AccountPopupActions(props) {
                     }`}
                 />
             </div>
+            <style>{css}</style>
         </div>
     );
 }

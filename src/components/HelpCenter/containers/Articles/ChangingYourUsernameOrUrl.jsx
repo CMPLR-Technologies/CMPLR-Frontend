@@ -29,7 +29,7 @@ export default function ChangingYourUsernameOrUrl() {
                         If you have trouble saving a name, it may already be
                         taken by another blog. We can't manually release taken
                         or inactive URLs. See{' '}
-                        <a href="/hc/articles/230894108-Unavailable-inactive-URLs">
+                        <a href="https://tumblr.zendesk.com/hc/articles/230894108-Unavailable-inactive-URLs">
                             this article
                         </a>{' '}
                         for more information.
