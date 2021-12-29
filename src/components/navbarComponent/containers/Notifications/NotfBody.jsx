@@ -27,7 +27,8 @@ export default function NotfBody(props) {
         setUnseenNotf,
         setSideBlogId,
         setSideBlogName,
-        setShowSideBlog
+        setShowSideBlog,
+        activity
     } = props;
     const user = JSON.parse(localStorage.getItem('user'));
     const [following, setFollowing] = useState(
@@ -68,7 +69,7 @@ export default function NotfBody(props) {
         <>
             <div
                 onClick={() => {
-                    if (notf['type'] !== 'follow') {
+                    if (notf['type'] !== 'follow' && !activity) {
                         setSideBlogId(notf['from_blog_id']);
                         setSideBlogName(notf['from_blog_name']);
                         setShowSideBlog(true);
