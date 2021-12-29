@@ -25,7 +25,6 @@ export default function LogOutOverlay(props) {
     const navigate = useNavigate();
 
     const logOut = () => {
-        console.log(user.token);
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
         Axios.post(`${apiBaseUrl}/logout`, {}, config)
             .then(() => {
@@ -35,7 +34,14 @@ export default function LogOutOverlay(props) {
                 clear();
                 navigate('/');
             })
-            .catch(() => {});
+            .catch(err => {
+                console.log('error of logout ', err.data);
+                // setUser(null);
+                // changeTheme('trueBlue');
+                // localStorage.removeItem('user');
+                // clear();
+                // navigate('/');
+            });
     };
 
     const { hideOverlay } = props;
