@@ -20,7 +20,6 @@ export default function PostsPage(props) {
         query: '(min-device-width: 960px )'
     });
     const user = JSON.parse(localStorage.getItem('user'));
-    console.log(posts);
 
     return (
         <>
