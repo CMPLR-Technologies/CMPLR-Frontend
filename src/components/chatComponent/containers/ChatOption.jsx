@@ -35,9 +35,9 @@ export default function ChatOption(props) {
         setisOpenDeleteModel(false);
     };
     //open block model popup
-    const openBlockModel = () => {
+   /* const openBlockModel = () => {
         setisOpenBlockModel(true);
-    };
+    };*/
     //close block model popup
     const closeBlockModel = () => {
         setisOpenBlockModel(false);
@@ -113,7 +113,7 @@ export default function ChatOption(props) {
                         </li>
                     </Link>
                     <li onClick={openDeleteModel}>Delete conversation</li>
-                    <li onClick={openBlockModel}>Block {name}</li>
+                   {/* <li onClick={openBlockModel}>Block {name}</li>*/}
                 </ul>
             </ClickAwayListener>
         </>

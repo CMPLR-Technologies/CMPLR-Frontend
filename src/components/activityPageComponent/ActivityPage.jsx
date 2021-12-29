@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 import HeaderGraph from './containers/HeaderGraph';
-import BiggestFans from './containers/BiggestFans';
+//import BiggestFans from './containers/BiggestFans';
 import Notification from '../navbarComponent/containers/Notifications/Notifications';
 import { useEffect } from 'react';
 import { apiBaseUrl } from '../../config.json';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 export default function ActivityPage() {
     const theme = useContext(ThemeContext)[0];
     const user = JSON.parse(localStorage.getItem('user'));
@@ -18,11 +19,12 @@ export default function ActivityPage() {
     const [nFCount, setNFCount] = useState(0);
     const [tFCount, setTFCount] = useState(0);
     const [loading, setLoading] = useState(false);
+    const { blogUrlIdf } = useParams();
     useEffect(() => {
         user?.blogName !== undefined &&
             axios({
                 method: 'GET',
-                url: `${apiBaseUrl}/blog/${user?.blogName}/notifications`,
+                url: `${apiBaseUrl}/blog/${blogUrlIdf}/notifications`,
                 headers: {
                     'content-type': 'application/json',
                     Authorization: `Bearer ${user?.token}`
@@ -40,7 +42,7 @@ export default function ActivityPage() {
         user?.blogName !== undefined &&
             axios({
                 method: 'GET',
-                url: `${apiBaseUrl}/blog/${user?.blogName}/last-ndays-activity?lastNdays=7`,
+                url: `${apiBaseUrl}/blog/${blogUrlIdf}/last-ndays-activity?lastNdays=7`,
                 headers: {
                     'content-type': 'application/json',
                     Authorization: `Bearer ${user?.token}`
@@ -55,7 +57,7 @@ export default function ActivityPage() {
                         let notesC = 0;
                         let nFC = 0;
                         let tFC = 0;
-                        console.log(res.data.response.data);
+                        //console.log(res.data.response.data);
                         res.data.response.data.forEach(element => {
                             //notes: 0, new followers: 0, total followers: 0, date: '23-12-2021'
                             arrNotes.push(element.notes);
@@ -78,9 +80,7 @@ export default function ActivityPage() {
                         //console.log(res.data.response);
                     }
                 })
-                .catch(err => {
-                    console.log(err?.message);
-                });
+                .catch(() => {});
     }, []);
     const css = `
     .btns .box{
@@ -112,8 +112,8 @@ export default function ActivityPage() {
                     tFCount={tFCount}
                     loading={loading}
                 />
-                <BiggestFans />
-                <div className='Lhead'>Latest Notes</div>
+                {/*<BiggestFans />*/}
+                <div className="Lhead">Latest Notes</div>
                 <Notification
                     activity={true}
                     notfArray={notfArray && notfArray}

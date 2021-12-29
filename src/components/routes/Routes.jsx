@@ -14,15 +14,14 @@ import CreateModal from '../createPost/containers/PopupContainer/View';
 import Dashboard from '../dashboardComponent/View';
 import DeleteAccount from '../deleteAccountComponent/View';
 import BlogSettings from '../blogSettingsComponent/View';
-import DeleteBlogCard from '../blogSettingsComponent/containers/deleteBlog/DeleteBlog';
 import MyProfile from '../MyProfileComponent/View';
-
+import DeleteBlog from '../blogSettingsComponent/containers/deleteBlog/DeleteBlog';
+import CreateBlog from '../blogSettingsComponent/containers/createBlog/CreateBlog';
 import FollowingPage from '../followingComponent/View';
 import RequireAuth from '../../contexts/userContext/ProtectedRoutes';
 import RequireUnAuth from '../../contexts/userContext/UnProtectedRoutes';
 import Hashtag from '../hashtagsComponent/View';
 import GoogleCard from '../registerComponent/GoogleCard';
-//import ActivityPage from '../activityPageComponent/ActivityPage';
 import Explore from '../explore/View';
 import HelpCenter from '../HelpCenter/View';
 import Article from '../HelpCenter/containers/Article';
@@ -74,8 +73,8 @@ export default function MainRoutes() {
 
                     <Route element={<RequireAuth />}>
                         <Route
-                            path="/blog/:blogName/delete"
-                            element={<DeleteBlogCard setWithNav={setWithNav} />} //WITHOUTNAV
+                            path="/blog/:blogName/delete/:blogId"
+                            element={<DeleteBlog setWithNav={setWithNav} />} //WITHOUTNAV
                         />
                         <Route
                             path="/settings"
@@ -98,17 +97,16 @@ export default function MainRoutes() {
                             element={<Settings page={'apps'} />}
                         />
                         <Route
-                            path="/account/delete"
+                            path="/account/delete/:blogName"
                             element={<DeleteAccount setWithNav={setWithNav} />} //WITHOUTNAV
                         />
                         <Route
                             path="/blog/new"
-                            element={
-                                <BlogSettings
-                                    page={'create'}
-                                    setWithNav={setWithNav}
-                                />
-                            } //WITHOUTNAV
+                            element={<CreateBlog setWithNav={setWithNav} />} //WITHOUTNAV
+                        />
+                        <Route
+                            path="/blog/:blogName/settings"
+                            element={<BlogSettings />}
                         />
                         <Route path="/following" element={<FollowingPage />} />
                         <Route path="/likes" element={<LikedBlogs />} />
@@ -142,10 +140,7 @@ export default function MainRoutes() {
                             element={<MyProfile />}
                         />
 
-                        <Route
-                            path="/explore/recommended-for-you"
-                            element={<Explore />}
-                        />
+                        <Route path="/explore/:type" element={<Explore />} />
                         <Route
                             path="/messaging"
                             element={<MessagesPageMobile />}

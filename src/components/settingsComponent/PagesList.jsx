@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { getUserBlogs } from './Service';
 export default function PagesList() {
-    
+    const user = JSON.parse(localStorage.getItem('user'));
+    const [blogs, setBlogs] = useState([]);
+    useEffect(() => {
+        getUserBlogs(setBlogs, user?.token);
+    }, []);
     const endPoints = [
         '/settings/account',
         '/settings/dashboard',
@@ -40,49 +45,69 @@ export default function PagesList() {
                 <div className="blog">
                     <h1 className="blog-h1">Blog</h1>
                     <ul className="list">
+                        {blogs.length !== 0 &&
+                            blogs.map((blog, i) => {
+                                return (
+                                    <li className="list-item blog-item" key={i}>
+                                        <div className="temp">
+                                            <a
+                                                className="blog-item-anchor"
+                                                href={`/blog/${blog.blog_name}/settings`}
+                                            >
+                                                <div className="icon-text">
+                                                    <div className="icon">
+                                                        <img
+                                                            className="nLowv"
+                                                            src={blog.avatar}
+                                                            sizes="37px"
+                                                            alt="Avatar"
+                                                            style={{
+                                                                width: '37px',
+                                                                height: '37px'
+                                                            }}
+                                                            loading="eager"
+                                                        />
+                                                    </div>
+                                                    <div className="text">
+                                                        <div className="text-up">
+                                                            <span className="text-up-span">
+                                                                {blog.blog_name}
+                                                            </span>
+                                                        </div>
+                                                        <div className="text-down">
+                                                            {blog.title}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {i === 0 && (
+                                                    <div className="star">
+                                                        <svg
+                                                            viewBox="0 0 12 12"
+                                                            width="12"
+                                                            height="12"
+                                                            fill="white"
+                                                            className="star-svg"
+                                                        >
+                                                            <path d="M2.3 11.4L6 0l3.7 11.4L0 4.3h12"></path>
+                                                        </svg>
+                                                    </div>
+                                                )}
+                                            </a>
+                                        </div>
+                                    </li>
+                                );
+                            })}
                         <li className="list-item blog-item">
                             <div className="temp">
-                                <a
-                                    className="blog-item-anchor"
-                                    href="/settings/blog/hazemabdo22"
+                                <Link
+                                    to={'/blog/new'}
+                                    style={{
+                                        textDecoration: 'none'
+                                    }}
+                                    className="blog-item-anchor-create-new-blog"
                                 >
-                                    <div className="icon-text">
-                                        <div className="icon">
-                                            <img
-                                                className="nLowv"
-                                                srcSet="https://assets.tumblr.com/images/default_avatar/cube_open_64.png 64w, https://assets.tumblr.com/images/default_avatar/cube_open_96.png 96w, https://assets.tumblr.com/images/default_avatar/cube_open_128.png 128w, https://assets.tumblr.com/images/default_avatar/cube_open_512.png 512w"
-                                                sizes="37px"
-                                                alt="Avatar"
-                                                style={{
-                                                    width: '37px',
-                                                    height: '37px'
-                                                }}
-                                                loading="eager"
-                                            />
-                                        </div>
-                                        <div className="text">
-                                            <div className="text-up">
-                                                <span className="text-up-span">
-                                                    Hazem Abdo
-                                                </span>
-                                            </div>
-                                            <div className="text-down">
-                                                Untitiled
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="star">
-                                        <svg
-                                            viewBox="0 0 12 12"
-                                            width="12"
-                                            height="12"
-                                            fill="white"
-                                            className="star-svg"
-                                        >
-                                            <path d="M2.3 11.4L6 0l3.7 11.4L0 4.3h12"></path>
-                                        </svg>
-                                    </div>
-                                </a>
+                                    create a new blog
+                                </Link>
                             </div>
                         </li>
                     </ul>

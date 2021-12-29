@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import '../../styles/styles.css';
 import NavbarLinks from './containers/navbarLinks/NavbarLinks';
 import NavbarSection1 from './containers/section1/NavbarSection1';
-import { UserContext } from '../../contexts/userContext/UserContext';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 import ChatView from '../chatComponent/View';
+import { UserContext } from '../../contexts/userContext/UserContext';
 /**
  * Navbar Main Component
  * @function Navbar
@@ -13,9 +13,15 @@ import ChatView from '../chatComponent/View';
  */
 export default function Navbar() {
     const theme = useContext(ThemeContext)[0];
+    const { user } = useContext(UserContext);
+    let bg='transparent';
+    if(user){
+        bg=`rgb(${themes[theme].navy})`;
+    }
     const css = `
         .nav {
             border-bottom: 0.5px solid rgba(${themes[theme].whiteOnDark}, 0.15);
+            background-color: ${bg};
         }
         .search{
             background-color: rgba(${themes[theme].whiteOnDark}, 0.15);
@@ -88,6 +94,7 @@ export default function Navbar() {
             color: rgba(${themes[theme].whiteOnDark});
         }
 
+
         .link-icon.pen{
             background-color: rgb(${themes[theme].accent});
         }
@@ -149,22 +156,6 @@ export default function Navbar() {
         .new-post-popup-box-text{
             color: rgb(${themes[theme].whiteOnDark});
         }
-        .badge{
-            background-color:rgb(${themes[theme].accent});
-            color:rgb(${themes[theme].navy});
-            border:2px solid rgb(${themes[theme].navy});
-        }
-        .notf-date{
-            color: rgba(${themes[theme].black} ,0.65);
-            background-color: rgba(${themes[theme].black} ,0.07);
-        }
-        .notifications-container {
-            scrollbar-color: rgba(${themes[theme].black}, 0.4) rgba(${
-        themes[theme].white
-    }, 0.1);
-            background-color: rgb(${themes[theme].white});
-        }
-
         @media screen and (max-width: 960px) {
 
             .nav {
@@ -187,8 +178,8 @@ export default function Navbar() {
                 background-color:rgb(${themes[theme].navy});
             }
             .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu .create-new-post  {
-               
-                color:rgb(${themes[theme].navy});
+                color:rgb(${themes[theme].white});
+                background: rgb(${themes[theme].accent});
             }
            
             .nav .section1 .navbar-menu-mobile .navbar-menu-mobile-menu ul li a{
@@ -200,9 +191,13 @@ export default function Navbar() {
             .nav .section1 .search{
                 background-color: rgb(${themes[theme].white});
             }
-            .nav .section1 .search search-input::placeholder{
-                background-color: $primiry-color;
+            .search-input{
+                color: rgba(${themes[theme].black}, 0.65);
             }
+            .search-input::placeholder{
+                color: rgba(${themes[theme].black}, 0.65);
+            }
+
                 
             .messagepage-mobile .receiver{
                 color: rgb(${themes[theme].black});
@@ -222,6 +217,12 @@ export default function Navbar() {
             .log-out-overlay{
                 background: rgb(${themes[theme].navy});
             }
+            .log-out-overlay-text{
+                color: rgb(${themes[theme].whiteOnDark});
+            }
+            .log-out-overlay .AuthBtn {
+                color: rgb(${themes[theme].navy});
+            }
             .popup-newmessage{
                 background: rgb(${themes[theme].white});
             }
@@ -236,50 +237,79 @@ export default function Navbar() {
             .navbar-menu-mobile-footer footer{
                 color: rgba(${themes[theme].whiteOnDark});
             }
-        .notf-types{
-            color: rgba(${themes[theme].black}, 0.65);
-        }
-        .selected{
-            color: rgb(${themes[theme].accent});
-            border-bottom: 1px solid rgb(${themes[theme].accent});
-        }
-        .btn-control .caption{
-            color: rgba(${themes[theme].black}, 0.65);
-        }
-        .hi-link{
-            background-color: rgb(${themes[theme].accent});
-        }
-        .post-link{
-            background-color: rgb(${themes[theme].black});
-        }
-        .ask-i-svg{
-            fill:rgb(${themes[theme].white});
-        }
-        .ask-r-svg{
-            fill:rgb(${themes[theme].black});
-        }
-        .follow-r-svg{
-            fill:rgb(${themes[theme].black});
-        }
-        .hi-i-svg{
-            fill:rgb(${themes[theme].white})
-        }
-        .post-i-svg{
-            fill:rgb(${themes[theme].white});
-        }
-        .notf-content{
-            color:rgb(${themes[theme].black})
-        }
         .navbar-menu-mobile-menu  .account-popup-blog-head h1,.navbar-menu-mobile-menu .account-popup-blog-head div{
             color: rgba(${themes[theme].whiteOnDark});
         }
         .navbar-menu-mobile-menu  .account-popup-blog-links .account-popup-blog-link-row .link-row-title{
             color: rgba(${themes[theme].whiteOnDark});
         }
+    }
+    .badge{
+        background-color:rgb(${themes[theme].accent});
+        color:rgb(${themes[theme].navy});
+        border:2px solid rgb(${themes[theme].navy});
+    }
+    .notf-date{
+        color: rgba(${themes[theme].black} ,0.65);
+        background-color: rgba(${themes[theme].black} ,0.07);
+    }
+    .notifications-container,.blogs-list,.control-left .blogs-list .account-popup-blogs-container {
+        scrollbar-color: rgba(${themes[theme].black}, 0.4) rgba(${
+        themes[theme].white
+    }, 0.1);
+        background-color: rgb(${themes[theme].white});
+    }
+
+    .notf-types{
+        color: rgba(${themes[theme].black}, 0.65);
+    }
+    .selected{
+        color: rgb(${themes[theme].accent});
+        border-bottom: 1px solid rgb(${themes[theme].accent});
+    }
+    .btn-control .caption{
+        color: rgba(${themes[theme].black}, 0.65);
+    }
+    .hi-link{
+        background-color: rgb(${themes[theme].accent});
+    }
+    .post-link{
+        background-color: rgb(${themes[theme].black});
+    }
+    .ask-i-svg{
+        fill:rgb(${themes[theme].white});
+    }
+    .ask-r-svg{
+        fill:rgb(${themes[theme].black});
+    }
+    .follow-r-svg{
+        fill:rgb(${themes[theme].black});
+    }
+    .hi-i-svg{
+        fill:rgb(${themes[theme].white})
+    }
+    .post-i-svg{
+        fill:rgb(${themes[theme].white});
+    }
+    .notf-content{
+        color:rgb(${themes[theme].black})
+    }
+    .see-everything{
+        background-color: rgba(${themes[theme].black}, 0.07);
+        color:rgb(${themes[theme].black})
+    }
+
+    .account-popup-blog-head-text h1,.account-popup-blog-head-text div{
+        color: rgba(${themes[theme].black}, 0.65);
+    }
+
+    .notf-body ,.notf-body-cont,.notf-body-cont *{
+        background-color: rgb(${themes[theme].white});
+    }
+
     `;
 
     const [mobileView, setMobileView] = useState(false);
-    const { user } = useContext(UserContext);
     const chaneMobileView = () => {
         if (window.innerWidth > 960) {
             setMobileView(false);

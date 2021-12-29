@@ -3,6 +3,8 @@ import AuthInput from '../../partials/AuthInput';
 import AuthBtn from '../../partials/AuthBtn';
 import { deleteAccount } from '../Service';
 import { useNavigate } from 'react-router-dom';
+import propsTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 /**
  * @function DeleteAccount
  * @description this is the stateful component of the delete account page
@@ -11,11 +13,13 @@ import { useNavigate } from 'react-router-dom';
  * @returns {component} the component of DeleteAccount
  */
 
-export default function DeleteAccountCard() {
+export default function DeleteAccountCard({ setWithNav }) {
     const history = useNavigate();
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
+    const user = JSON.parse(localStorage.getItem('user'));
+    const { blogName } = useParams();
     return (
         <div className="LoginCard" id="delete-account-card">
             <div className="LoginCard__logo-container" id="reset-pass-logo">
@@ -74,7 +78,16 @@ export default function DeleteAccountCard() {
                     text="Delete Everything"
                     color="red"
                     handleClick={() =>
-                        deleteAccount(password, email, setErrorMsg, history)
+                        deleteAccount(
+                            password,
+                            email,
+                            blogName,
+                            setErrorMsg,
+                            history,
+                            user?.token,
+                            true,
+                            setWithNav
+                        )
                     }
                     dataTestid="button-reset-password"
                 ></AuthBtn>
@@ -83,6 +96,7 @@ export default function DeleteAccountCard() {
                     text="Nevermind"
                     color="#001935"
                     handleClick={() => {
+                        setWithNav(true);
                         history('/settings');
                     }}
                     dataTestid="button-reset-password"
@@ -91,3 +105,6 @@ export default function DeleteAccountCard() {
         </div>
     );
 }
+DeleteAccountCard.propTypes = {
+    setWithNav: propsTypes.func
+};

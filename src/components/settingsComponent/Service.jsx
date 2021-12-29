@@ -44,7 +44,6 @@ export function updateEmailInDb(
 ) {
     if (checkUpdateEmail(newEmail, password, setErrorMsg)) {
         axios({
-            //TODO change to put
             method: 'put',
             headers: {
                 'Content-Type': 'application/json',
@@ -92,7 +91,6 @@ export function updatePasswordInDb(
         )
     ) {
         axios({
-            //TODO change to put
             method: 'put',
             url: `${apiBaseUrl}/settings/change_password`,
             headers: {
@@ -121,9 +119,7 @@ export function updatePasswordInDb(
 
 export function toggleProperty(property, value, updateProperty, token) {
     axios({
-        //TODO change to put and update endpoint
         method: 'put',
-        //TODO change it to settings
         url: `${apiBaseUrl}/user/settings`,
         headers: {
             'Content-Type': 'application/json',
@@ -153,7 +149,6 @@ export function addFilteredTag(
 ) {
     if (checkAddTag(filteredTags, tag, setErrMsg, filteringType)) {
         axios({
-            //TODO change to put
             method: 'put',
             headers: {
                 'Content-Type': 'application/json',
@@ -188,16 +183,13 @@ export function deleteFilteredTag(
     filteringType,
     token
 ) {
-    console.log(tags);
     axios({
-        //TODO change to put
         method: 'put',
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
             Authorization: `Bearer ${token}`
         },
-        //TODO change it to /user/filtered_tags/${tag}
         url: `${apiBaseUrl}/user/filtered_tags/${tag}`
     })
         .then(res => {
@@ -210,4 +202,24 @@ export function deleteFilteredTag(
         .catch(() => {
             setErrMsg('Error deleting tag');
         });
+}
+
+export function getUserBlogs(setBlogs, token) {
+    axios({
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        url: `${apiBaseUrl}/user/info`
+    })
+        .then(res => {
+            if (res.data.meta.status_code === 200) {
+                setBlogs(res.data.response.blogs);
+            } else {
+                setBlogs([]);
+            }
+        })
+        .catch(() => {});
 }

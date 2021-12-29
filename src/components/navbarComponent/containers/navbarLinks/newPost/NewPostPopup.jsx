@@ -51,10 +51,8 @@ export default function NewPostPopup() {
         }
     };
     useEffect(() => {
-        console.log(mobileView);
         chaneMobileView();
         if (mobileView) {
-            console.log('gaser1');
             navigate('../new/post');
         }
     }, [mobileView]);

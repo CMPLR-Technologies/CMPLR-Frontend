@@ -4,7 +4,14 @@ import AuthBtn from '../../../partials/AuthBtn';
 import AuthInput from '../../../partials/AuthInput';
 import { SettingsContext } from '../../../../contexts/settingsContext/SettingsContext';
 import PropTypes from 'prop-types';
+import {
+    ThemeContext,
+    themes
+} from '../../../../contexts/themeContext/ThemeContext';
+
 export default function PasswordSectionVersion2({ setVersionOne }) {
+    const theme = useContext(ThemeContext)[0];
+
     const user = JSON.parse(localStorage.getItem('user'));
     const [currPassword, setCurrPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -59,13 +66,13 @@ export default function PasswordSectionVersion2({ setVersionOne }) {
                 <div className="update-email-btns">
                     <AuthBtn
                         text="Cancle"
-                        color="#999999"
+                        color={`rgb(${themes[theme].black})`}
                         id="update-password-btn-cancel"
                         handleClick={() => setVersionOne(true)}
                     ></AuthBtn>
                     <AuthBtn
                         text="Change Password"
-                        color="#00b8ff"
+                        color={`rgb(${themes[theme].accent})`}
                         handleClick={() => {
                             updatePasswordInDb(
                                 currPassword,

@@ -63,7 +63,8 @@ export default function Footer(props) {
         radar,
         draft,
         postSubmit,
-        setIsLiked
+        setIsLiked,
+        ask
     } = props;
     const [liked, setLiked] = useState(isLiked);
     const [isShareListOpen, setIsShareListOpen] = useState(false);
@@ -221,7 +222,7 @@ export default function Footer(props) {
                         data-testid={`footer-icons-ts`}
                         className="footer-icons"
                     >
-                        {!blogPage && (
+                        {!blogPage && !ask && (
                             <button
                                 onClick={() => copyLink(postLink, postId, true)}
                                 className="icon copy-link-cont"
@@ -235,7 +236,7 @@ export default function Footer(props) {
                                 ></div>
                             </button>
                         )}
-                        {!blogPage && !radar && (
+                        {!blogPage && !radar && !ask && (
                             <>
                                 {!draft && (
                                     <button
@@ -248,18 +249,9 @@ export default function Footer(props) {
                                         <Note />
                                     </button>
                                 )}
-                                {draft && (
-                                    <button
-                                        data-testid={`edit-footer-icon-ts${postId}`}
-                                        className="icon post-icon"
-                                        onClick={postSubmit}
-                                    >
-                                        Post
-                                    </button>
-                                )}
                             </>
                         )}
-                        {!draft && (
+                        {!ask && (
                             <>
                                 <button
                                     onClick={() => {
@@ -296,7 +288,7 @@ export default function Footer(props) {
                                 </button>
                             </>
                         )}
-                        {isAuthor && !draft && (
+                        {isAuthor && !ask && (
                             <>
                                 <button
                                     onClick={() => setIsModalOpen(true)}
@@ -313,6 +305,24 @@ export default function Footer(props) {
                                     }
                                 >
                                     <EditBtn />
+                                </button>
+                            </>
+                        )}
+                        {ask && (
+                            <>
+                                <button
+                                    onClick={() => setIsModalOpen(true)}
+                                    className="icon"
+                                    data-testid={`delete-footer-icon-ts${postId}`}
+                                >
+                                    <DeleteBtn />
+                                </button>
+                                <button
+                                    data-testid={`edit-footer-icon-ts${postId}`}
+                                    className="icon post-icon"
+                                    onClick={() => navigate('/new/post')}
+                                >
+                                    Answer
                                 </button>
                             </>
                         )}

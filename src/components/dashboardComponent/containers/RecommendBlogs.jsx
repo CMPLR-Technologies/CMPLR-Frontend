@@ -30,9 +30,10 @@ export default function RecommendBlogs(props) {
                 blogs.map((blog, index) => (
                     <div key={index}>
                         <BlogInfo
-                            blogName={blog.blogName}
-                            blogDesc={blog.blogDesc}
-                            blogIcon={blog.blogIcon}
+                            blogName={blog.blog_name}
+                            blogDesc={blog.description}
+                            blogIcon={blog.avatar}
+                            blogId={blog.blog_id}
                         />
                     </div>
                 ))}

@@ -150,12 +150,11 @@ export default function ChatPopUp() {
         let token = JSON.parse(localStorage.getItem('user'));
         const pusher = new Pusher(PUSHER_APP_KEY, {
             cluster: PUSHER_APP_CLUSTER,
-            authEndpoint:
-                'http://6ef0-156-223-164-236.ngrok.io/broadcasting/auth',
+            authEndpoint: '/broadcasting/auth',
             auth: {
                 headers: {
-                    'Authorization': 'Bearer ' + token,
-                    'Accept': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                    Accept: 'application/json',
                     'Content-Type': 'application/json'
                 }
             }
@@ -163,16 +162,16 @@ export default function ChatPopUp() {
         //private-chat-10
         let com = '';
         if (currPopUpOpenChat.receiverId > senderId) {
-            com = senderId + '+' + currPopUpOpenChat.receiverId;
+            com = senderId + '-' + currPopUpOpenChat.receiverId;
         } else {
-            com = currPopUpOpenChat.receiverId + '+' + senderId;
+            com = currPopUpOpenChat.receiverId + '-' + senderId;
         }
-        let keyC = 'chat-' + currPopUpOpenChat.receiverId;
+        let keyC = 'chat-' + com;
         const channel = pusher.subscribe(keyC);
 
         // eslint-disable-next-line no-useless-escape
         channel.bind('App\\Events\\MessageSent', data => {
-            console.log(data);
+            //console.log('d5l');
             let newMsg = {
                 // eslint-disable-next-line camelcase
                 from_blog_id: data?.sender_id,
@@ -184,17 +183,20 @@ export default function ChatPopUp() {
                 // eslint-disable-next-line camelcase
                 created_at: new Date()
             };
-            if (conversationMsg) {
-                setConversationMsg(prevData => {
-                    return [...prevData, newMsg];
-                });
-            } else {
-                let arr = [];
-                arr.push(newMsg);
-                setConversationMsg(arr);
+            // not me 
+            if (newMsg.from_blog_id !== senderId) {
+                //console.log('d5lrec');
+
+                if (conversationMsg) {
+                    setConversationMsg(prevData => {
+                        return [...prevData, newMsg];
+                    });
+                } else {
+                    let arr = [];
+                    arr.push(newMsg);
+                    setConversationMsg(arr);
+                }
             }
-            //console.log(newMsg.created_at);
-            //setConversationMsg([...conversationMsg, newMsg]);
         });
     }, []);
     /* useEffect(()=>{
@@ -220,9 +222,9 @@ export default function ChatPopUp() {
                     )}
 
                     <div className="names">
-                        <a href={senderName}>{senderName}</a>
+                        <a href={`blog/view/${senderName}/${senderId}/posts`}>{senderName}</a>
                         {' + '}
-                        <a href={receiverName}>{receiverName}</a>
+                        <a href={`blog/view/${receiverName}/${receiverId}/posts`}>{receiverName}</a>
                     </div>
                     <div className="btns">
                         <button onClick={openOption}>

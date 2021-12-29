@@ -41,7 +41,13 @@ const logUser = (
         });
 };
 
-const responseGoogleSuccess = (respond, navigate, setIsPending, setUser) => {
+const responseGoogleSuccess = (
+    respond,
+    navigate,
+    setIsPending,
+    setUser,
+    setUserBlog
+) => {
     const token = respond?.accessToken;
     setIsPending(true);
     Axios.post(`${apiBaseUrl}/google/login`, {
@@ -55,6 +61,7 @@ const responseGoogleSuccess = (respond, navigate, setIsPending, setUser) => {
             };
             setUser(user);
             localStorage.setItem('user', JSON.stringify(user));
+            setUserBlog(user.userData);
             navigate('/dashboard');
             setIsPending(false);
             sendDesktopNotifyToken();
@@ -65,7 +72,7 @@ const responseGoogleSuccess = (respond, navigate, setIsPending, setUser) => {
         });
 };
 const responseGoogleFailure = (res, setError) => {
-    setError(res.error);
+    if (res.error !== 'idpiframe_initialization_failed') setError(res.error);
 };
 
 export { logUser, responseGoogleSuccess, responseGoogleFailure };

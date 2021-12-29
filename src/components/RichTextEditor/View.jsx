@@ -14,6 +14,7 @@ import { FaPencilAlt } from 'react-icons/fa';
 import { RiPaintFill } from 'react-icons/ri';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
+import { Popover } from '@mui/material';
 import {
     handleChanges,
     handleHeading,
@@ -23,14 +24,34 @@ import {
     handleColor,
     handleUploadVideo
 } from './Controller';
+import Input from '@mui/material/Input';
 import PostComponent from '../partials/postComponent/containers/PostComponent';
-const Input = styled('input')({
+const InputCam = styled('input')({
     display: 'none'
 });
+
 export default function HandMadeTextEditor(props) {
     // eslint-disable-next-line no-unused-vars
     const { setContent, reblog, post, setSpinner, editContent } = props;
     const user = JSON.parse(localStorage.getItem('user'));
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [link, setLink] = React.useState('https://');
+    const handleOpenLinkInput = event => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const openPost = Boolean(anchorEl);
+
+    const handleEnterKey = e => {
+        //13 is keyCode of Enter
+        if (e.keyCode === 13 && link?.length > 0) {
+            handleCreateLink(link, setLink, handleClose, setContent);
+        }
+    };
+
     return (
         <>
             {reblog && post?.post && (
@@ -111,7 +132,7 @@ export default function HandMadeTextEditor(props) {
                     </button>
 
                     <label htmlFor="to-image-words">
-                        <Input
+                        <InputCam
                             onChange={e =>
                                 handleUploadImage(
                                     e.target.files[0],
@@ -130,7 +151,7 @@ export default function HandMadeTextEditor(props) {
                     </label>
 
                     <label htmlFor="to-video-words">
-                        <Input
+                        <InputCam
                             onChange={e =>
                                 handleUploadVideo(
                                     e.target.files[0],
@@ -187,7 +208,8 @@ export default function HandMadeTextEditor(props) {
                     </button>
 
                     <button
-                        onClick={() => handleCreateLink(setContent)}
+                        onClick={handleOpenLinkInput}
+                        //handleCreateLink(setContent)
                         data-element="createLink"
                         type="button"
                         id="to-link-words"
@@ -195,6 +217,31 @@ export default function HandMadeTextEditor(props) {
                     >
                         <AiOutlineLink />
                     </button>
+                    <Popover
+                        id={'popover_post'}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'center'
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'center'
+                        }}
+                        open={openPost}
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                    >
+                        <Input
+                            value={link}
+                            onKeyDown={handleEnterKey}
+                            onChange={e => {
+                                setLink(e.target.value);
+                            }}
+                            placeholder="enter url"
+                            size="small"
+                            style={{ padding: '0 5px' }}
+                        />
+                    </Popover>
 
                     <span style={{ float: 'right' }}>
                         <span>

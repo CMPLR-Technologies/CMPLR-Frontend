@@ -37,20 +37,6 @@ export default function DropDownPostList(props) {
                         <ListItem disablePadding>
                             <ListItemButton
                                 onClick={() => {
-                                    setPostType('Save as draft');
-                                }}
-                            >
-                                <ListItemIcon style={{ minWidth: '30px' }}>
-                                    {postType === 'Save as draft' && (
-                                        <GrFormCheckmark />
-                                    )}
-                                </ListItemIcon>
-                                <ListItemText primary="Save as draft" />
-                            </ListItemButton>
-                        </ListItem>
-                        <ListItem disablePadding>
-                            <ListItemButton
-                                onClick={() => {
                                     setPostType('Post privately');
                                 }}
                             >

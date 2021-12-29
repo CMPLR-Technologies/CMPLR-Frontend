@@ -10,6 +10,7 @@ import { handleGoogleAuth } from './Service';
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/userContext/UserContext';
 import { getRandomImage } from '../loginComponent/Controller';
+import { ChatContext } from '../../contexts/chatContext/chatContext';
 
 /**
  * @function GoogleCard
@@ -17,6 +18,7 @@ import { getRandomImage } from '../loginComponent/Controller';
  * @returns {Component} age & blogName inputs
  */
 export default function GoogleCard() {
+    const { setUserBlog } = useContext(ChatContext);
     const { state } = useLocation();
     const [openError, setOpenError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
@@ -36,7 +38,6 @@ export default function GoogleCard() {
             blog_name: blogName,
             age: age
         };
-        console.log('passed data', bodyData);
 
         setIsPending(true);
         handleGoogleAuth(
@@ -45,7 +46,8 @@ export default function GoogleCard() {
             setErrorMessage,
             setUser,
             navigate,
-            setIsPending
+            setIsPending,
+            setUserBlog
         );
     };
 

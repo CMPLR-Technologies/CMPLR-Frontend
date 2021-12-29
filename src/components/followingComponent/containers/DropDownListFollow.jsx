@@ -1,17 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
-import PopupBlock from './PopupBlock';
 
 export default function DropDownPostListFollow(props) {
-    const {
-        setOpen,
-        setOpenBlock,
-        openPopup,
-        handleBlock,
-        profileName,
-        myBlogName
-    } = props;
+    const { setOpen, setOpenBlock, setProfileNamePop, profileName } = props;
 
     return (
         <>
@@ -24,7 +16,8 @@ export default function DropDownPostListFollow(props) {
                 <div className="iaJAj">
                     <button
                         onClick={() => {
-                            setOpen(); //close the dropdown bar
+                            setProfileNamePop(profileName);
+                            setOpen(false); //close the dropdown bar
                             setOpenBlock(true); //opens the popup
                         }}
                         className="XLZRW"
@@ -40,13 +33,6 @@ export default function DropDownPostListFollow(props) {
                     </button>
                 </div>
             </Box>
-            <PopupBlock
-                open={openPopup}
-                setOpen={setOpenBlock}
-                handleBlock={handleBlock}
-                profileName={profileName}
-                myBlogName={myBlogName}
-            />
         </>
     );
 }
@@ -54,8 +40,6 @@ export default function DropDownPostListFollow(props) {
 DropDownPostListFollow.propTypes = {
     setOpen: PropTypes.func.isRequired,
     setOpenBlock: PropTypes.func.isRequired,
-    openPopup: PropTypes.bool,
-    handleBlock: PropTypes.func,
-    myBlogName: PropTypes.string,
+    setProfileNamePop: PropTypes.func,
     profileName: PropTypes.string
 };

@@ -19,7 +19,7 @@ export default function ProfileSide(props) {
                 <div className="no-data-error">{"Couldn't load"}</div>
             ) : isPending ? (
                 <LinearProgress />
-            ) : post ? (
+            ) : post && post.blog.blog_name === blogName ? (
                 <PostComponent
                     post={{ blog: post.blog, post: post.post }}
                     blogPage={true}
@@ -27,7 +27,9 @@ export default function ProfileSide(props) {
                     themeDeactivate={noTheme}
                 />
             ) : (
-                <div></div>
+                <div className="no-data-error">
+                    404: mismatching post and post-owning blog
+                </div>
             )}
         </div>
     );

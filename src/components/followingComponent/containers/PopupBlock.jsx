@@ -27,7 +27,7 @@ export default function PopupBlock(props) {
                                     They {"won't"} be able to follow{' '}
                                     {myBlogName}, send {myBlogName} messages,
                                     see {myBlogName} in search results, or
-                                    interact with any of {myBlogName}
+                                    interact with any of {myBlogName + ' '}{' '}
                                     posts.
                                 </div>
                             </div>

@@ -26,6 +26,7 @@ export default function ProfileSideAllPosts(props) {
             isRef={true}
             userBlogName={blogName}
             noTheme={noTheme}
+            isRadar={true}
         />
     );
 }

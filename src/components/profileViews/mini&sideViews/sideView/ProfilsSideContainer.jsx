@@ -10,9 +10,13 @@ export default function ProfilsSideContainer(props) {
         props;
     const response = useFetch(`${apiBaseUrl}/MiniProfileView/${blogID}`);
     const { data, isPending } = response;
-
+    console.log(data);
     return (
-        <div className="overlay-container" data-testid="OverlayContainer">
+        <div
+            className="overlay-container"
+            data-testid="OverlayContainer"
+            style={{ display: 'flex !important' }}
+        >
             <div
                 className="overlay-div overlay-no-theme"
                 onClick={() => setShowSideBlog(false)}

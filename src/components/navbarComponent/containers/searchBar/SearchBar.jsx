@@ -29,7 +29,11 @@ export default function SearchBar(props) {
     };
     useEffect(() => {
         //TO DO : send req to backend and get the users
-        if (searchWord.length > 0 && searchWord.trim() !== '') {
+        if (
+            placeHolder === undefined &&
+            searchWord.length > 0 &&
+            searchWord.trim() !== ''
+        ) {
             getSearchRes(searchWord, setSearchResults, setLoading);
             setOpenSearch(true);
         } else setOpenSearch(false);

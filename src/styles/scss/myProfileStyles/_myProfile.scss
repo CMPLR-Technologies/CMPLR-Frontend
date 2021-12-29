@@ -70,7 +70,7 @@
     }
 }
 
-.settings {
+.dashboard-profile .settings {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -243,7 +243,6 @@
 .not-available {
     align-items: center;
     border-radius: 3px;
-    color: rgba(255, 255, 255, 0.65);
     display: flex;
     flex-direction: column;
     font-size: 1.3125rem;
@@ -259,7 +258,7 @@
 // mobile screen
 @media screen and (max-width: 960px) {
     .dashboard-profile {
-        .posts-region{
+        .posts-region {
             width: 100%;
         }
     }

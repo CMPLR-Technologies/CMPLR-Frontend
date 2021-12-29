@@ -15,11 +15,14 @@ export default function CreateBlog({ setWithNav }) {
     const [title, setTitle] = useState('');
     const [url, setUrl] = useState('');
     const [password, setPassword] = useState('');
+    window.addEventListener('popstate', function (event) {
+        setWithNav(true);
+    });
     return (
-        <div className="settings">
-            <div className="container1">
-                <div className="subcontainer">
-                    <h2 className="title">Create a new blog</h2>
+        <div className="settings2">
+            <div className="container2">
+                <div className="subcontainer2">
+                    <h2 className="title2">Create a new blog</h2>
                     <div>
                         <TextSection />
                         {errorMsg.length > 0 && (
@@ -46,6 +49,7 @@ export default function CreateBlog({ setWithNav }) {
                             password={password}
                             errorMsg={errorMsg}
                             setErrorMsg={setErrorMsg}
+                            setWithNav={setWithNav}
                         />
                     </div>
                 </div>

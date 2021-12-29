@@ -154,6 +154,7 @@
             color: black;
         }
         .msg {
+            white-space: pre-wrap;
             line-height: 20px;
             font-weight: 400;
             color: black;
@@ -200,6 +201,11 @@
                     margin-left: 10px;
                     margin-top: 12px;
                     font-size: 14px;
+                    overflow: hidden;
+                    overflow-wrap: break-word;
+                    .msg{
+                        white-space: pre-wrap;
+                    }
                     .date {
                         font-size: 0.7rem;
                         font-weight: 400;

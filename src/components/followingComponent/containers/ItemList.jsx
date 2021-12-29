@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DropDownPostListFollow from './DropDownListFollow';
 import { Popover } from '@mui/material';
+import ProfileMiniHoverWrapper from '../../profileViews/mini&sideViews/View';
 
 export default function ItemList(props) {
     const {
@@ -13,7 +14,9 @@ export default function ItemList(props) {
         setOpenBlock,
         openPopup,
         handleBlock,
-        myBlogName
+        myBlogName,
+        blogId,
+        setProfileNamePop
     } = props;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -22,6 +25,7 @@ export default function ItemList(props) {
         setAnchorEl(null);
     };
     const handleClick = event => {
+        console.log('clicked for ', profileName);
         setAnchorEl(event.currentTarget);
     };
     const openPost = Boolean(anchorEl);
@@ -32,26 +36,31 @@ export default function ItemList(props) {
                 <a href="#" className="Ro4PU"></a>
                 <div className="wmRou">
                     <div className="yElCb">
-                        <div className="qgKw0">
-                            <div className="nZ9l5">
-                                <span className="BPf9u">
+                        <ProfileMiniHoverWrapper
+                            blogID={blogId?.toString()}
+                            blogName={profileName}
+                        >
+                            <div className="qgKw0">
+                                <div className="nZ9l5">
                                     <span className="BPf9u">
-                                        <div className="ppcontainer">
-                                            <div className="ntiBu">
-                                                <div className="_0MuRn">
-                                                    <img
-                                                        src={avatar}
-                                                        alt="profile_pic"
-                                                        loading="eager"
-                                                        className="ppimg"
-                                                    />
+                                        <span className="BPf9u">
+                                            <div className="ppcontainer">
+                                                <div className="ntiBu">
+                                                    <div className="_0MuRn">
+                                                        <img
+                                                            src={avatar}
+                                                            alt="profile_pic"
+                                                            loading="eager"
+                                                            className="ppimg"
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </span>
                                     </span>
-                                </span>
+                                </div>
                             </div>
-                        </div>
+                        </ProfileMiniHoverWrapper>
                         <a href="#" className="BSUG4">
                             <div className="gLEkw">
                                 <span className="UulOO">{profileName}</span>
@@ -97,16 +106,14 @@ export default function ItemList(props) {
                                         vertical: 'top',
                                         horizontal: 'center'
                                     }}
-                                    // eslint-disable-next-line react/jsx-no-duplicate-props
-                                    anchorOrigin={{
-                                        vertical: 'bottom',
-                                        horizontal: 'center'
-                                    }}
+                                    key={profileName}
                                     open={openPost}
                                     anchorEl={anchorEl}
                                     onClose={handleClose}
                                 >
                                     <DropDownPostListFollow
+                                        key={profileName}
+                                        setProfileNamePop={setProfileNamePop}
                                         setOpen={handleClose}
                                         setOpenBlock={setOpenBlock}
                                         openPopup={openPopup}
@@ -133,5 +140,7 @@ ItemList.propTypes = {
     avatar: PropTypes.string.isRequired,
     handleBlock: PropTypes.func,
     openPopup: PropTypes.bool,
-    myBlogName: PropTypes.string
+    myBlogName: PropTypes.string,
+    blogId: PropTypes.any,
+    setProfileNamePop: PropTypes.func
 };

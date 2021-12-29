@@ -8,22 +8,15 @@ const changeView = (setGrid, toGrid) => {
     else setGrid(false);
 };
 
-const showTags = (end, setStart, setEnd) => {
-    if (end === 6) {
+const showTags = (setStart, setEnd, end, len) => {
+    if (end >= len) {
         setStart(0);
         setEnd(4);
-    } else if (end + 4 > 6) {
-        setStart(start => {
-            return start + 4;
-        });
-        setEnd(6);
     } else {
-        setStart(start => {
-            return start + 4;
+        setStart(prevStart => {
+            return prevStart + 4;
         });
-        setEnd(end => {
-            return end + 4;
-        });
+        setEnd(end + 4);
     }
 };
 
