@@ -86,7 +86,8 @@ export default function ResetPasswordCard() {
                             email,
                             setErrorMsg,
                             token,
-                            setUser
+                            setUser,
+                            navigate
                         )
                     }
                     dataTestid="button-reset-password"

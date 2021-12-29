@@ -2,7 +2,6 @@
 import axios from 'axios';
 import { apiBaseUrl } from '../../config.json';
 import { handleNewPassword } from './Controller';
-import { useNavigate } from 'react-router-dom';
 
 export function newPassword(
     firstPassword,
