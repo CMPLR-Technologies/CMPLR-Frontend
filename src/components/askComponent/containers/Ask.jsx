@@ -31,25 +31,10 @@ export default function Ask() {
                     <div className="body-text">
                         <div className="l-container">
                             {response === -1 ? (
-                                <form
-                                    action=""
-                                    className="ask-form"
-                                    onSubmit={e => {
-                                        e.preventDefault();
-                                        AskQuestion(
-                                            blogName,
-                                            content,
-                                            user.token
-                                        )
-                                            .then(res => {
-                                                setResponse(res);
-                                                setContent('');
-                                            })
-                                            .catch(() => {});
-                                    }}
-                                >
+                                <div className="ask-form">
                                     <div className="question-wrapper">
                                         <textarea
+                                            className="textAreaWithoutStylingAsk"
                                             id="question"
                                             maxLength={500}
                                             onChange={e =>
@@ -79,14 +64,33 @@ export default function Ask() {
                                                 <button
                                                     type="submit"
                                                     id="ask_button"
-                                                    disabled=""
+                                                    onClick={e => {
+                                                        e.preventDefault();
+                                                        console.log(
+                                                            blogName,
+                                                            content,
+                                                            user.token
+                                                        );
+                                                        AskQuestion(
+                                                            blogName,
+                                                            content,
+                                                            user.token
+                                                        )
+                                                            .then(res => {
+                                                                setResponse(
+                                                                    res
+                                                                );
+                                                                setContent('');
+                                                            })
+                                                            .catch(() => {});
+                                                    }}
                                                 >
                                                     Ask
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                             ) : (
                                 <>
                                     <div className="message-part1">

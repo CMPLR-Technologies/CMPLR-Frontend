@@ -6580,6 +6580,11 @@ body .settings2 .container2 .subcontainer2 #section-create-blog-btns .delete .bu
     width: 100%;
   }
 }
+.textAreaWithoutStylingAsk {
+  outline: none;
+  border: none;
+}
+
 .ask-div {
   padding: 0;
   position: relative;
