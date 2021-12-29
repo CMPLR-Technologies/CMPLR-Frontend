@@ -3,8 +3,6 @@ import Sidebar from './container/SideBar';
 import { useLocation, useParams } from 'react-router-dom';
 import FollowersPage from './container/FollowersPage';
 import PostsPage from './container/PostsPage';
-import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
-import { apiBaseUrl } from '../../config.json';
 import { getBlogPosts, getFollowersList } from './Service';
 import ActivityPage from '../activityPageComponent/ActivityPage';
 import { chaneMobileView } from '../partials/postComponent/Controller';

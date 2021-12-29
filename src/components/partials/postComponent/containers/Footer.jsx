@@ -64,7 +64,8 @@ export default function Footer(props) {
         draft,
         postSubmit,
         setIsLiked,
-        ask
+        ask,
+        senderName
     } = props;
     const [liked, setLiked] = useState(isLiked);
     const [isShareListOpen, setIsShareListOpen] = useState(false);
@@ -320,7 +321,11 @@ export default function Footer(props) {
                                 <button
                                     data-testid={`edit-footer-icon-ts${postId}`}
                                     className="icon post-icon"
-                                    onClick={() => navigate('/new/post')}
+                                    onClick={() =>
+                                        navigate(
+                                            `/inbox/${postId}/${senderName}`
+                                        )
+                                    }
                                 >
                                     Answer
                                 </button>

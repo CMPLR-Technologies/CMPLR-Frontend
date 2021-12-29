@@ -11,6 +11,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { fetchPost } from '../../Service';
 import PropTypes from 'prop-types';
 import TagsInput from './Bottom/TagsInput';
+import { AnswerQuestion } from '../../../askComponent/Service';
 
 export default function CreateModal(props) {
     const [spinner, setSpinner] = useState(false);
@@ -25,8 +26,8 @@ export default function CreateModal(props) {
     const [postType, setPostType] = useState('Post now');
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('user'));
-    const { postId } = useParams();
-    const { reblog, edit } = props;
+    const { postId, senderName } = useParams();
+    const { reblog, edit, askFetch } = props;
     const blogName = JSON.parse(localStorage.getItem('user'))?.blogName;
     //for the blogNames dropdown
     const [postBlogName, setPostBlogName] = useState(user?.blogName);
@@ -52,6 +53,19 @@ export default function CreateModal(props) {
 
     const handleReblog = post => {
         reblogPost(post, content, navigate);
+    };
+
+    const handleAnswerQues = () => {
+        AnswerQuestion(
+            postId,
+            `Question: ${post?.post?.content}\n Answer:${content}`,
+            user?.token,
+            'publish'
+        )
+            .then(res => {
+                if (res === 1) navigate('/dashboard');
+            })
+            .catch(() => {});
     };
 
     const handleEdit = () => {
@@ -158,6 +172,12 @@ export default function CreateModal(props) {
                                                                     post?.post &&
                                                                     post
                                                                 }
+                                                                askFetch={
+                                                                    askFetch
+                                                                }
+                                                                senderName={
+                                                                    senderName
+                                                                }
                                                             />
                                                         </div>
                                                     </div>
@@ -171,9 +191,9 @@ export default function CreateModal(props) {
                                             <BottomMainControllers
                                                 handleCloseModal={handleClose}
                                                 handlePost={
-                                                    reblog
+                                                    askFetch
                                                         ? () =>
-                                                              handleReblog(post)
+                                                              handleAnswerQues()
                                                         : edit
                                                         ? handleEdit
                                                         : handlePost

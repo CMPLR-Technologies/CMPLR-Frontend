@@ -975,6 +975,43 @@
   align-items: center;
 }
 
+.ask-body {
+  background-color: rgba(0, 0, 0, 0.07);
+  margin: 20px;
+  min-height: 80px;
+  max-height: fit-content;
+}
+.ask-body .ask-body-cont {
+  width: 100%;
+  min-height: 80px;
+  max-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ask-body .ask-body-cont .ask-content-sender {
+  display: flex;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+}
+.ask-body .ask-body-cont .ask-content {
+  line-height: 1.33;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  word-break: break-word;
+}
+
 .switch {
   position: relative;
   display: inline-block;
@@ -6543,6 +6580,110 @@ body .settings2 .container2 .subcontainer2 #section-create-blog-btns .delete .bu
     width: 100%;
   }
 }
+.ask-div {
+  padding: 0;
+  position: relative;
+  word-wrap: break-word;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.ask-div .ash-inner-div {
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.ask-div .ash-inner-div .ask-title {
+  font: 26px;
+}
+.ask-div .ash-inner-div .body-text {
+  margin-top: 1em;
+}
+.ask-div .ash-inner-div .body-text .l-container {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+  padding: 10px;
+  height: 100%;
+  min-height: 168px;
+  box-sizing: border-box;
+}
+.ask-div .ash-inner-div .body-text .l-container .ask-form {
+  outline: 0;
+  outline-style: none;
+  outline-width: 0px;
+}
+.ask-div .ash-inner-div .body-text .l-container .ask-form .question-wrapper {
+  height: 216px;
+  padding: 0 40px 0 5px;
+  position: relative;
+}
+.ask-div .ash-inner-div .body-text .l-container .ask-form .question-wrapper #question {
+  width: 100%;
+  height: 50%;
+  resize: none;
+}
+.ask-div .ash-inner-div .body-text .l-container .message-part1 {
+  color: #444;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 0.5em;
+}
+.ask-div .ash-inner-div .body-text .l-container .message-part2 {
+  font-size: 14px;
+  color: #aaa;
+  text-align: center;
+}
+.ask-div .ash-inner-div .body-text .footer {
+  margin: 0 -10px;
+  padding: 15px 10px 0 15px;
+  border-top: 1px solid #e0e0e0;
+  position: relative;
+  height: 50px;
+}
+.ask-div .ash-inner-div .body-text .footer #user_info {
+  color: #aaa;
+  font-size: 12px;
+  font-weight: bold;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.ask-div .ash-inner-div .body-text .footer #user_info .avatar-name {
+  float: left;
+  display: flex;
+  align-items: center;
+}
+.ask-div .ash-inner-div .body-text .footer #user_info .avatar-name .avatar {
+  border-radius: 2px;
+  overflow: hidden;
+  height: 24px;
+  width: 24px;
+  display: block;
+}
+.ask-div .ash-inner-div .body-text .footer #user_info .avatar-name .avatar img {
+  width: 100%;
+  height: 100%;
+}
+.ask-div .ash-inner-div .body-text .footer #user_info .sender {
+  color: #aaa;
+  font-size: 15px;
+  font-weight: bold;
+  flex: 1;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+.ask-div .ash-inner-div .body-text .footer #user_info .buttons-wrapper {
+  float: right;
+}
+.ask-div .ash-inner-div .body-text .footer #user_info .buttons-wrapper #ask_button {
+  float: right;
+  margin-top: -3px;
+  width: 65px;
+  height: 30px;
+  background-color: #0cbbff;
+  color: white;
+}
+
 .lSyOz {
   align-items: flex-end;
   display: flex;

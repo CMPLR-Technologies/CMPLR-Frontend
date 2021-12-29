@@ -55,7 +55,9 @@ export default function PostComponent(props) {
         blogPage,
         themeDeactivate,
         draft,
-        ask
+        ask,
+        askFetch,
+        senderName
     } = props;
     let theme = useContext(ThemeContext)[0];
     if (themeDeactivate) theme = 'trueBlue';
@@ -363,7 +365,7 @@ export default function PostComponent(props) {
                         style={{ padding: padding }}
                         className="post-header"
                     >
-                        {(mobileView || radar) && (
+                        {(mobileView || radar) && !askFetch && (
                             <ProfileMiniHoverWrapper
                                 blogName={userBlogName}
                                 blogID={blogIdentifier}
@@ -399,7 +401,7 @@ export default function PostComponent(props) {
                                         >
                                             {blogName}
                                         </span>
-                                    ) : (
+                                    ) : !ask ? (
                                         <span
                                             data-testid="post-heading-ts"
                                             className="post-heading"
@@ -414,11 +416,11 @@ export default function PostComponent(props) {
                                             </svg>
                                             private
                                         </span>
-                                    )}
+                                    ) : null}
                                 </ProfileMiniHoverWrapper>
 
                                 {!following &&
-                                    !reblog &&
+                                    !ask &&
                                     userBlogName !== blogName && (
                                         <button
                                             onClick={() =>
@@ -439,7 +441,7 @@ export default function PostComponent(props) {
                                 onClickAway={() => setIsOptionListOpen(false)}
                             >
                                 <div className="options-btn">
-                                    {!reblog && (
+                                    {!ask && (
                                         <button
                                             onClick={() => {
                                                 setIsOptionListOpen(
@@ -483,9 +485,12 @@ export default function PostComponent(props) {
                         <Divider />
                     </>
                 ) : (
-                    <AskPost content={content && content} />
+                    <AskPost
+                        senderName={senderName}
+                        content={content && content}
+                    />
                 )}
-                {!reblog && (
+                {!askFetch && (
                     <div
                         data-testid="post-footer-cont-ts"
                         className="post-footer"
@@ -508,6 +513,7 @@ export default function PostComponent(props) {
                             postSubmit={postSubmit}
                             setIsLiked={setIsLiked}
                             ask={ask}
+                            senderName={senderName}
                         />
                     </div>
                 )}

@@ -28,6 +28,8 @@ import Article from '../HelpCenter/containers/Article';
 import ArticleCategoryIndividual from '../HelpCenter/containers/ArticleCategoryIndividual';
 import LikedBlogs from '../likesComponent/View';
 import ProfileFullContainer from '../profileViews/fullView/View';
+import PostComponent from '../partials/postComponent/containers/PostComponent';
+import Inbox from '../inboxComponent/View';
 
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
@@ -125,7 +127,6 @@ export default function MainRoutes() {
                         />
                         <Route path="/new/post" element={<CreateModal />} />
                         <Route path="/new" element={<NewPostPopup />} />
-
                         <Route
                             path="/blog/view/:blogName/:blogID/:content/:postID"
                             element={<ProfileFullContainer />}
@@ -134,17 +135,20 @@ export default function MainRoutes() {
                             path="/blog/view/:blogName/:blogID/:content"
                             element={<ProfileFullContainer />}
                         />
-
                         <Route
                             path="/blog/:blogUrlIdf/*"
                             element={<MyProfile />}
                         />
-
                         <Route path="/explore/:type" element={<Explore />} />
                         <Route
                             path="/messaging"
                             element={<MessagesPageMobile />}
                         />
+                        <Route
+                            path="/inbox/:postId/:senderName"
+                            element={<CreateModal askFetch={true} />}
+                        />
+                        <Route path="/inbox" element={<Inbox />} />
                     </Route>
                 </Routes>
                 <style>{css}</style>

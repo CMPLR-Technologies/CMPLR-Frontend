@@ -32,7 +32,15 @@ const InputCam = styled('input')({
 
 export default function HandMadeTextEditor(props) {
     // eslint-disable-next-line no-unused-vars
-    const { setContent, reblog, post, setSpinner, editContent } = props;
+    const {
+        setContent,
+        reblog,
+        askFetch,
+        post,
+        setSpinner,
+        editContent,
+        senderName
+    } = props;
     const user = JSON.parse(localStorage.getItem('user'));
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [link, setLink] = React.useState('https://');
@@ -58,6 +66,17 @@ export default function HandMadeTextEditor(props) {
                 <PostComponent
                     radar={true}
                     reblog={true}
+                    padding="20px"
+                    left="-20px"
+                    post={post}
+                />
+            )}
+            {askFetch && !reblog && post?.post && (
+                <PostComponent
+                    radar={true}
+                    askFetch={askFetch}
+                    senderName={senderName}
+                    ask={true}
                     padding="20px"
                     left="-20px"
                     post={post}
@@ -288,5 +307,7 @@ HandMadeTextEditor.propTypes = {
     setSpinner: PropTypes.func.isRequired,
     reblog: PropTypes.bool,
     post: PropTypes.object,
-    editContent: PropTypes.string
+    editContent: PropTypes.string,
+    askFetch: PropTypes.any,
+    senderName: PropTypes.any
 };
