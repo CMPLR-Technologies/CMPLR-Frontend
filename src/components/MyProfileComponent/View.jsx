@@ -128,8 +128,14 @@ export default function MyProfile() {
 
     return (
         <>
-            <div className="dashboard-profile">
-                <div className="posts-region">
+            <div
+                className="dashboard-profile"
+                data-testid="dashboard-profile-myprofile"
+            >
+                <div
+                    className="posts-region"
+                    data-testid="posts-region-myprofile"
+                >
                     {location.pathname.includes('/followers') ? (
                         <FollowersPage
                             response={{
@@ -147,7 +153,9 @@ export default function MyProfile() {
                             mobileView={mobileView}
                             // {/*TODO filter null type posts */}
                             response={{
-                                posts: posts,
+                                posts: posts.filter(
+                                    post => post?.post?.type !== null
+                                )?.length,
                                 isPending
                             }}
                             draft={false}
