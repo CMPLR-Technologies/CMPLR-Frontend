@@ -10,9 +10,9 @@ export function newPassword(
     email,
     setErrorMsg,
     token,
-    setUser
+    setUser,
+    navigate
 ) {
-    const navigate = useNavigate();
     if (
         handleNewPassword(firstPassword, secondPassword, setErrorMsg) === true
     ) {

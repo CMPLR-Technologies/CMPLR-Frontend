@@ -47,5 +47,6 @@ export default function BlogSettingsCard() {
             </div>
             <PagesList />
         </div>
+        
     );
 }
