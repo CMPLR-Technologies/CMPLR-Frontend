@@ -29,7 +29,8 @@ const Input = styled('input')({
 });
 export default function HandMadeTextEditor(props) {
     // eslint-disable-next-line no-unused-vars
-    const { setContent, reblog, post, setSpinner, editContent } = props;
+    const { setContent, reblog, askFetch, post, setSpinner, editContent,senderName } =
+        props;
     const user = JSON.parse(localStorage.getItem('user'));
     return (
         <>
@@ -37,6 +38,17 @@ export default function HandMadeTextEditor(props) {
                 <PostComponent
                     radar={true}
                     reblog={true}
+                    padding="20px"
+                    left="-20px"
+                    post={post}
+                />
+            )}
+            {askFetch && !reblog && post?.post && (
+                <PostComponent
+                    radar={true}
+                    askFetch={askFetch}
+                    senderName={senderName}
+                    ask={true}
                     padding="20px"
                     left="-20px"
                     post={post}

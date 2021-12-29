@@ -29,6 +29,7 @@ import ArticleCategoryIndividual from '../HelpCenter/containers/ArticleCategoryI
 import LikedBlogs from '../likesComponent/View';
 import ProfileFullContainer from '../profileViews/fullView/View';
 import PostComponent from '../partials/postComponent/containers/PostComponent';
+import Inbox from '../inboxComponent/View';
 
 export default function MainRoutes() {
     const theme = useContext(ThemeContext)[0];
@@ -143,6 +144,11 @@ export default function MainRoutes() {
                             path="/messaging"
                             element={<MessagesPageMobile />}
                         />
+                        <Route
+                            path="/inbox/:postId/:senderName"
+                            element={<CreateModal askFetch={true} />}
+                        />
+                        <Route path="/inbox" element={<Inbox />} />
                     </Route>
                 </Routes>
                 <style>{css}</style>
