@@ -37,8 +37,7 @@ export const verifyEmailConfirm = (
         .then(res => {
             console.log('this is the response of ', res.data);
             let userNew = user;
-            userNew.userData.email_verified_at =
-                res?.data?.response?.email_verified_at;
+            userNew.userData.email_verified_at = res?.data?.email_verified_at;
             setUser(userNew);
             localStorage.setItem('user', JSON.stringify(userNew));
             setUserBlog(userNew.userData);
