@@ -6,6 +6,26 @@
         display: flex !important;
     }
 }
+.profile-settings {
+    .profile-side {
+        max-width: unset;
+        height: unset;
+        background-color: unset;
+    }
+}
+
+.ri-image-edit-fill {
+    position: absolute;
+    z-index: 70000;
+    fill: #dddddd;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
 .profile-side {
     display: flex;
     flex-direction: column;

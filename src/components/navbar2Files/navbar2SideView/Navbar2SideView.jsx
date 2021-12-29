@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Navbar2SideViewMoreOptions from './Navbar2SideViewMoreOptions';
 import {
     followAccountWithResponse,
-    unfollowAccount
+    unfollowAccount,
+    blockAccount
 } from '../../followingComponent/Service';
 
 export default function Navbar2SideView(props) {
@@ -42,6 +43,14 @@ export default function Navbar2SideView(props) {
     };
     const unBlock = () => {
         //isBlocked = false
+        setBlocked(
+            unfollowAccount(
+                JSON.parse(localStorage.getItem('user'))?.token,
+                blogName,
+                setActionRespMessage,
+                true
+            )
+        );
     };
     const follow = () => {
         setIsFollowed(

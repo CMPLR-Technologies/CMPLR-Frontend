@@ -14,7 +14,7 @@ export default function AccountPopupSeperator() {
             className={`account-popup-header`}
         >
             <div>Tumblrs</div>
-            <NavLink to="/new/blog" className={`clickable`}>
+            <NavLink to="/blog/new" className={`clickable`}>
                 + New
             </NavLink>
         </div>

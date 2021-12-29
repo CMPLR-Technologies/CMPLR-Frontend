@@ -23,10 +23,10 @@ export default function ProfileSide(props) {
         title,
         desciption,
         blog_name: blogName,
-        is_followed: isFollowed
+        is_followed: isFollowed,
+        is_blocked: isBlocked
     } = body;
-
-    const isBlocked = false;
+    console.log(isBlocked);
 
     const [scrollTop, setScrollTop] = useState(0);
     const headerScrollAnimation = el => {
