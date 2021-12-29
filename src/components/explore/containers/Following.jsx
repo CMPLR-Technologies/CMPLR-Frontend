@@ -4,9 +4,13 @@ import {
     themes,
     ThemeContext
 } from '../../../contexts/themeContext/ThemeContext';
-import { followingHashtags } from '../Data';
 import { showTags } from '../Controller';
+import useFetch from '../../../hooks/useFetch';
+import { apiBaseUrl } from '../../../config.json';
+import { LinearProgress } from '@material-ui/core';
+
 export default function Following() {
+    const { error, data, isPending } = useFetch(`${apiBaseUrl}/following/tags`);
     const theme = useContext(ThemeContext)[0];
     const [start, setStart] = useState(0);
     const [end, setEnd] = useState(4);
@@ -34,34 +38,41 @@ export default function Following() {
                 <span>Edit</span>
             </div>
             <div className="explore-following-main">
-                {followingHashtags.slice(start, end).map((hashtag, index) => {
-                    return (
-                        <a key={index} href={hashtag.link}>
-                            <div className="following-hashtag">
-                                <img src={hashtag.image} />
-                                <div
-                                    className="following-hashtag-info"
-                                    style={{
-                                        color: `rgb(${themes[theme].whiteOnDark})`
-                                    }}
-                                >
-                                    <span>{hashtag.name}</span>
-                                    <span>{hashtag.posts} recent posts</span>
+                {isPending && <LinearProgress />}
+                {data &&
+                    data.slice(start, end).map((hashtag, index) => {
+                        return (
+                            <a key={index} href={`/tagged/${hashtag.name}`}>
+                                <div className="following-hashtag">
+                                    <img src="https://64.media.tumblr.com/avatar_88dad111d576_128.pnj" />
+                                    <div
+                                        className="following-hashtag-info"
+                                        style={{
+                                            color: `rgb(${themes[theme].whiteOnDark})`
+                                        }}
+                                    >
+                                        <span>{hashtag.name}</span>
+                                        <span>
+                                            {hashtag.posts ? 69 : 69} recent
+                                            posts
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    );
-                })}
+                            </a>
+                        );
+                    })}
             </div>
             <button
                 className="moreTags"
                 style={btnStyles}
                 onClick={() => {
-                    showTags(end, setStart, setEnd);
+                    showTags(setStart, setEnd, end, data?.length);
                 }}
+                disabled={data && data.length <= 4}
             >
                 Show more tags
             </button>
+            {error && <div className="no-data-error">{"Couldn't load"}</div>}
             <style>{styles}</style>
         </div>
     );
