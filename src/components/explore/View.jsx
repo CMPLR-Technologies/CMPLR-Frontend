@@ -28,6 +28,7 @@ export default function Explore() {
     );
     const { type } = useParams();
     useEffect(() => {
+        console.log('called');
         if (type === 'trending' && postsType === 'recommended') setData([]);
         if (type === 'recommended-for-you' && postsType === 'trending')
             setData([]);

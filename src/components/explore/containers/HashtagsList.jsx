@@ -24,6 +24,7 @@ export default function HashtagsList() {
             if (observer.current) observer.current.disconnect();
             observer.current = new IntersectionObserver(entries => {
                 if (entries[0].isIntersecting && hasMore) {
+                    console.log('time to');
                     setPageNumber(prevPageNumber => prevPageNumber + 1);
                 }
             });
