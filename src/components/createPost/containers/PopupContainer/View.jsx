@@ -28,6 +28,8 @@ export default function CreateModal(props) {
     const { postId } = useParams();
     const { reblog, edit } = props;
     const blogName = JSON.parse(localStorage.getItem('user'))?.blogName;
+    //for the blogNames dropdown
+    const [postBlogName, setPostBlogName] = useState(user?.blogName);
 
     const handleClose = () => {
         navigate('/dashboard');
@@ -38,15 +40,10 @@ export default function CreateModal(props) {
         const dataBody = {
             title: titlePost,
             content: content,
-            state:
-                postType === 'Post privately'
-                    ? 'private'
-                    : postType === 'Save as draft'
-                    ? 'draft'
-                    : 'publish',
+            state: postType === 'Post privately' ? 'private' : 'publish',
             type: 'text',
             // eslint-disable-next-line camelcase
-            blog_name: user?.blogName,
+            blog_name: postBlogName,
             tags: tags
         };
 
@@ -109,7 +106,6 @@ export default function CreateModal(props) {
                                     <ProfilePic />
                                     <div className="post-container">
                                         <div className="post-container-inner">
-                                            {/**---------------------First hazemkak */}
                                             <HeaderCreatePost
                                                 reblog={reblog}
                                                 parentBlogAuthor={
@@ -117,6 +113,10 @@ export default function CreateModal(props) {
                                                     post.blog['blog_name']
                                                 }
                                                 spinner={spinner}
+                                                postBlogName={postBlogName}
+                                                setPostBlogName={
+                                                    setPostBlogName
+                                                }
                                             />
                                             <div className="post-form--form">
                                                 {!reblog && (

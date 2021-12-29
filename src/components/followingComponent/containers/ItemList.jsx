@@ -3,7 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DropDownPostListFollow from './DropDownListFollow';
 import { Popover } from '@mui/material';
-import PopupBlock from './PopupBlock';
 import ProfileMiniHoverWrapper from '../../profileViews/mini&sideViews/View';
 
 export default function ItemList(props) {
@@ -108,11 +107,6 @@ export default function ItemList(props) {
                                         horizontal: 'center'
                                     }}
                                     key={profileName}
-                                    // eslint-disable-next-line react/jsx-no-duplicate-props
-                                    anchorOrigin={{
-                                        vertical: 'bottom',
-                                        horizontal: 'center'
-                                    }}
                                     open={openPost}
                                     anchorEl={anchorEl}
                                     onClose={handleClose}
