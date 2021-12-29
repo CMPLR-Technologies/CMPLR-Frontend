@@ -20,15 +20,16 @@ export default function PostsPage(props) {
         query: '(min-device-width: 960px )'
     });
     const user = JSON.parse(localStorage.getItem('user'));
+    console.log(posts);
+
     return (
         <>
             {!mobileView && <CreatePost />}
             {!posts?.length && !isPending && (
                 <NoXAvailable x={draft ? 'drafts' : 'posts'} />
             )}
-
             {posts?.length !== 0 &&
-                posts.map((post, index) => {
+                posts?.map((post, index) => {
                     return (
                         <PostComponent
                             key={index}

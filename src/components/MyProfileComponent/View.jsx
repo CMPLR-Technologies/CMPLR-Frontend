@@ -155,7 +155,7 @@ export default function MyProfile() {
                             response={{
                                 posts: posts.filter(
                                     post => post?.post?.type !== null
-                                )?.length,
+                                ),
                                 isPending
                             }}
                             draft={false}
