@@ -31,6 +31,7 @@ import ProfileFullContainer from '../profileViews/fullView/View';
 import Inbox from '../inboxComponent/View';
 import { UserContext } from '../../contexts/userContext/UserContext';
 import VerifyEmailWelcome from '../verifyEmail/VerifyEmailWelcome';
+import NotFound from '../notfoundComponent/NotFound';
 
 export default function MainRoutes() {
     const [theme, changeTheme] = useContext(ThemeContext);
@@ -59,7 +60,9 @@ export default function MainRoutes() {
         <div tabIndex="0" id="global-div" onKeyDown={shortcutController}>
             <Router>
                 {withNav && <Navbar />}
+
                 <Routes>
+                    <Route path="*" element={<NotFound />} />
                     <Route path="/tagged/:tag" element={<Hashtag />} />
                     <Route path="/help" element={<HelpCenter />} />
                     <Route
