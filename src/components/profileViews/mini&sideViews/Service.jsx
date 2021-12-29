@@ -9,6 +9,7 @@ export const uploadSelectedImageProfile = (
 ) => {
     let formData = new FormData();
     formData.append('image', file);
+    console.log('called with img ', formData);
     Axios({
         method: 'POST',
         url: `${apiBaseUrl}/image_upload`,
@@ -20,6 +21,7 @@ export const uploadSelectedImageProfile = (
     })
         .then(res => {
             const avatarLink = res?.data?.response?.url;
+            console.log('image uploaded link ', avatarLink);
             updateProfile(avatarLink, user, setUser, setUserBlog);
         })
         .catch(() => {});

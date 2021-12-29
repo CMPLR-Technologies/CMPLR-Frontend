@@ -82,11 +82,30 @@ export default function ProfileSideSettings(props) {
                                 <AiFillCamera className="ri-image-edit-fill" />
                             </label>
                         </div>
-                        <img
-                            className="profile-side-header-avatar"
-                            src={body.blog.avatar}
-                            alt="couldn't load avatar"
-                        />
+                        <div>
+                            <img
+                                className="profile-side-header-avatar"
+                                src={body.blog.avatar}
+                                alt="couldn't load avatar"
+                            />
+                            <label htmlFor="to-image-words">
+                                <InputCam
+                                    onChange={e =>
+                                        uploadSelectedImageProfile(
+                                            e.target.files[0],
+                                            user?.token,
+                                            setUser,
+                                            setUserBlog
+                                        )
+                                    }
+                                    accept="image/*"
+                                    data-element="insertImage"
+                                    id="to-image-words"
+                                    type="file"
+                                />
+                                <AiFillCamera className="ri-image-edit-fill" />
+                            </label>
+                        </div>
                         <div className="profile-side-header-text">
                             <NavLink
                                 className="profile-settings-link"
