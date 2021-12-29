@@ -145,9 +145,10 @@ export default function MyProfile() {
                     ) : (
                         <PostsPage
                             mobileView={mobileView}
-                            // {/*TODO filter null type posts */}
                             response={{
-                                posts: posts,
+                                posts: posts.filter(
+                                    post => post?.post?.type !== null
+                                ),
                                 isPending
                             }}
                             draft={false}
