@@ -67,7 +67,7 @@ export default function FollowingPage() {
             color:rgb(${themes[theme]?.whiteOnDark},0.65);
         }
         .UulOO{
-            color:rgb(${themes[theme]?.whiteOnDark});
+            color:rgb(${themes[theme]?.black});
         }
         .fTJAC{
             color:rgb(${themes[theme]?.black},0.65);

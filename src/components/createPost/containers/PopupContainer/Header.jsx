@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { Popover } from '@mui/material';
-import { IoIosSettings } from 'react-icons/io';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import ReblogSIgn from '../../../partials/postComponent/containers/Notes/ReblogSign.svg';
 import PropTypes from 'prop-types';
@@ -79,17 +78,6 @@ export default function HeaderCreatePost(props) {
                                 style={{ width: '20px', height: '20px' }}
                             />
                         )}
-                        <div className="post-form--post-settings-button">
-                            <div className="post-settings">
-                                <span className="settings-icon">
-                                    <IoIosSettings
-                                        style={{
-                                            fill: 'black'
-                                        }}
-                                    />
-                                </span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
