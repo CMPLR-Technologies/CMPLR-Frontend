@@ -1,6 +1,7 @@
 import Axios from 'axios';
-import { validateStepOne, validateStepTwo } from './Controller';
+import { validateGoogle, validateStepOne, validateStepTwo } from './Controller';
 import { apiBaseUrl } from '../../config.json';
+import { sendDesktopNotifyToken } from '../desktopNotifications/Service';
 
 export const handleStepOne = (
     bodyData,
@@ -38,13 +39,17 @@ export const handleStepOne = (
                 setIsPending(false);
             })
             .catch(err => {
-                let errors = [];
-                errors = getServiceErrors(err);
-
-                if (err.response) setErrorMessage(errors);
-                else setErrorMessage(["Couldn't Sign Up"]);
+                const errorArr = getServiceErrors(err);
+                if (err.response)
+                    setErrorMessage(
+                        errorArr?.length !== 0
+                            ? errorArr[0]
+                            : "Couldn't Sign Up"
+                    );
+                else setErrorMessage("Couldn't Sign Up");
                 setOpenError(true);
                 setIsPending(false);
+                return null;
             });
     }
 };
@@ -55,7 +60,8 @@ export const handleStepTwo = (
     setErrorMessage,
     setUser,
     navigate,
-    setIsPending
+    setIsPending,
+    setUserBlog
 ) => {
     const errorMsg = validateStepTwo(bodyData.age);
     setIsPending(true);
@@ -83,12 +89,20 @@ export const handleStepTwo = (
                 };
                 setUser(user);
                 localStorage.setItem('user', JSON.stringify(user));
+                setUserBlog(user.userData);
                 navigate('/dashboard');
                 setIsPending(false);
+                sendDesktopNotifyToken();
             })
             .catch(err => {
-                if (err.response) setErrorMessage(err.response.data.error);
-                else setErrorMessage(["Couldn't Sign Up"]);
+                const errorArr = getServiceErrors(err);
+                if (err.response)
+                    setErrorMessage(
+                        errorArr?.length !== 0
+                            ? errorArr[0]
+                            : "Couldn't Sign Up"
+                    );
+                else setErrorMessage("Couldn't Sign Up");
                 setOpenError(true);
                 setIsPending(false);
                 return null;
@@ -96,6 +110,62 @@ export const handleStepTwo = (
     }
 };
 
+export const handleGoogleAuth = (
+    bodyData,
+    setOpenError,
+    setErrorMessage,
+    setUser,
+    navigate,
+    setIsPending,
+    setUserBlog
+) => {
+    const errorMsg = validateGoogle(bodyData?.blogName, bodyData?.age);
+    if (errorMsg !== '') {
+        setErrorMessage(errorMsg);
+        setOpenError(true);
+        setIsPending(false);
+        return;
+    } else {
+        Axios({
+            method: 'POST',
+            url: `${apiBaseUrl}/google/signup`,
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            },
+            data: bodyData
+        })
+            .then(res => {
+                setOpenError(false);
+                const user = {
+                    token: res.data.response.token,
+                    userData: res.data.response.user,
+                    blogName: res.data.response.blog_name
+                };
+                setUser(user);
+                localStorage.setItem('user', JSON.stringify(user));
+                setUserBlog(user.userData);
+                navigate('/dashboard');
+                setIsPending(false);
+                sendDesktopNotifyToken();
+            })
+            .catch(err => {
+                const errorArr = getServiceErrors(err);
+                if (err.response)
+                    setErrorMessage(
+                        errorArr?.length !== 0
+                            ? errorArr[0]
+                            : "Couldn't Sign Up"
+                    );
+                else setErrorMessage("Couldn't Sign Up");
+                setOpenError(true);
+                setIsPending(false);
+                return null;
+            });
+    }
+};
+
+// to check on all possible errors from backend
 export const getServiceErrors = err => {
     let errors = [];
 
@@ -113,8 +183,8 @@ export const getServiceErrors = err => {
         }
     }
 
-    if (err.response.data.error?.password) {
-        let len = err.response.data.error?.password?.length;
+    if (err.response?.data?.error?.password) {
+        let len = err.response.data?.error?.password?.length;
         for (let i = 0; i < len; i++) {
             errors.push(err.response.data.error?.password[i]);
         }

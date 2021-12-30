@@ -21,6 +21,6 @@ export default function AuthAlert(props) {
 }
 
 AuthAlert.propTypes = {
-    errorMessage: PropTypes.string.isRequired,
+    errorMessage: PropTypes.any.isRequired,
     openError: PropTypes.bool.isRequired
 };

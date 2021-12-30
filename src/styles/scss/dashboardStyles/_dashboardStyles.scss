@@ -2,13 +2,29 @@
 .blogInfo-row {
     display: flex;
     width: 100%;
-    align-items: center;
+    justify-content: space-between;
+
+    button {
+        text-decoration: none;
+        background: transparent;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+}
+
+.full-width-btn {
+    width: 100%;
 }
 
 .blogInfo-column {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     width: 100%;
+    font-size: 1rem;
 }
 
 .init-btn {
@@ -23,8 +39,8 @@
 }
 
 .no-data-error {
-    padding-left: 10px;
-    padding-top: 10px;
+    padding-left: 15px;
+    padding-top: 15px;
     color: brown;
 }
 
@@ -48,11 +64,6 @@
         font-weight: 700;
     }
 
-    .dashboard-recommend-blogs {
-        padding: 10px 0;
-        margin-bottom: 30px;
-    }
-
     .explore-link {
         display: block;
         margin-top: 30px;
@@ -61,13 +72,18 @@
     }
 }
 
+.dashboard-recommend-blogs {
+    min-height: 350px;
+}
+
 .dashboard-blogInfo {
-    padding: 8px 10px;
-    img {
+    padding: 16px;
+    .blogInfo-row-img {
         width: 37px;
         height: 37px;
         border-radius: 3px;
         margin-right: 11px;
+        object-fit: cover;
     }
 
     a {
@@ -115,6 +131,18 @@
     display: flex;
     width: 100%;
     justify-content: center;
+}
+
+.posts-region {
+    width: 625px;
+}
+
+// like styles
+.total-likes {
+    font-size: 1.13rem;
+    font-weight: 400;
+    line-height: 1.333;
+    margin-bottom: 8px;
 }
 
 @media screen and (max-width: 950px) {

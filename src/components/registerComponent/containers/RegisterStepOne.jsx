@@ -6,6 +6,15 @@ import PlaystoreApplestore from '../../partials/PlaystoreApplestore';
 import AuthAlert from '../../partials/AuthAlert';
 import PropTypes from 'prop-types';
 import { CircularProgress } from '@mui/material';
+import {
+    responseGoogleFailure,
+    responseGoogleSuccess
+} from '../../loginComponent/Service';
+import GoogleLogin from 'react-google-login';
+import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../../../contexts/userContext/UserContext';
+import { useState } from 'react';
 /**
  * Register Step1: includes the email/password/blog_name inputs for registeration process
  * @function RegisterStepOne
@@ -32,10 +41,14 @@ export default function RegisterStepOne(props) {
         handleStepOne,
         openError,
         errorMessage,
-        isPending
+        isPending,
+        setIsPending
     } = props;
-    const logoUrl =
-        'https://upload.wikimedia.org/wikipedia/commons/archive/5/53/20210618182605%21Google_%22G%22_Logo.svg';
+
+    const [error, setError] = useState('');
+
+    const navigate = useNavigate();
+    const { setUser } = useContext(UserContext);
 
     return (
         <div className="LoginCard">
@@ -44,18 +57,18 @@ export default function RegisterStepOne(props) {
             </div>
 
             <div className="login-form">
-                {openError &&
-                    errorMessage &&
-                    errorMessage?.length !== 0 &&
-                    errorMessage?.map((errorMsg, index) => {
-                        return (
-                            <AuthAlert
-                                key={index}
-                                openError={openError}
-                                errorMessage={errorMsg}
-                            />
-                        );
-                    })}
+                {openError && errorMessage && errorMessage?.length !== 0 && (
+                    <AuthAlert
+                        openError={openError}
+                        errorMessage={errorMessage}
+                    />
+                )}
+                {error && error !== '' && (
+                    <AuthAlert
+                        openError={error.length !== 0}
+                        errorMessage={error}
+                    />
+                )}
                 <AuthInput
                     value={email}
                     setValue={setEmail}
@@ -90,6 +103,7 @@ export default function RegisterStepOne(props) {
                     dataTestid="register_step1"
                     text="Sign up"
                     color="#00b8ff"
+                    isPending={isPending}
                 />
             </div>
             {isPending && (
@@ -99,12 +113,21 @@ export default function RegisterStepOne(props) {
             )}
 
             <OrBar></OrBar>
-            <AuthBtn
-                text="Continue with Google"
-                color="white"
-                logo={logoUrl}
-                handleClick={() => {}} // @ToDo
+
+            <GoogleLogin
+                className="AuthBtnGoogle"
+                clientId={
+                    '897018969322-knobrd9ontkafr46u2ukkv3rnjc5qej8.apps.googleusercontent.com'
+                }
+                buttonText="Continue with Google"
+                onSuccess={res =>
+                    responseGoogleSuccess(res, navigate, setIsPending, setUser)
+                }
+                onFailure={res => responseGoogleFailure(res, setError)}
+                cookiePolicy={'single_host_origin'}
+                disabled={isPending}
             />
+
             <p className="LoginCard__a ">
                 <a
                     href="/explore"
@@ -137,5 +160,6 @@ RegisterStepOne.propTypes = {
     handleStepOne: PropTypes.func.isRequired,
     openError: PropTypes.bool.isRequired,
     errorMessage: PropTypes.array.isRequired,
-    isPending: PropTypes.bool.isRequired
+    isPending: PropTypes.bool.isRequired,
+    setIsPending: PropTypes.func
 };

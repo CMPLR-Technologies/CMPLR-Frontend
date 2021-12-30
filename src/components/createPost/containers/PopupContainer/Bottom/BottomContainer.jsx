@@ -9,7 +9,8 @@ export default function BottomMainControllers(props) {
         content,
         titlePost,
         postType,
-        setPostType
+        setPostType,
+        spinnerPost
     } = props;
 
     return (
@@ -22,6 +23,7 @@ export default function BottomMainControllers(props) {
                                 onClick={handleCloseModal}
                                 className="tx-button"
                                 data-testid="cancel-postBtn"
+                                dataTestid="closepop_btn_createPost"
                             >
                                 Close
                             </button>
@@ -42,6 +44,7 @@ export default function BottomMainControllers(props) {
                                 handlePost={handlePost}
                                 postType={postType}
                                 setPostType={setPostType}
+                                spinnerPost={spinnerPost}
                             />
                         </div>
                     </div>
@@ -57,5 +60,6 @@ BottomMainControllers.propTypes = {
     postType: PropTypes.string.isRequired,
     setPostType: PropTypes.func.isRequired,
     content: PropTypes.any.isRequired,
-    titlePost: PropTypes.string.isRequired
+    titlePost: PropTypes.string.isRequired,
+    spinnerPost: PropTypes.bool.isRequired
 };

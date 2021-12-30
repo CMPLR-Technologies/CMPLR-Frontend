@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import '../../../../../styles/styles.css';
 import MessagesPopUp from '../MessagesPopup/MessagesPopUp';
 import AccountPopup from '../AccountPopup/AccountPopup';
 import { Link, NavLink } from 'react-router-dom';
+import UnReadMsg from './UnReadMsg';
+import { UserContext } from '../../../../../contexts/userContext/UserContext';
+import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
+import Notifications from '../../Notifications/Notifications';
+import Badge from './Badge';
+import { getNotifications } from '../../../Service';
+import ProfilsSideContainer from '../../../../profileViews/mini&sideViews/sideView/ProfilsSideContainer';
+
 /**
  * Navbar AuthLinks: includes all links dashboard and inbox and expolre ...
  * @function NavbarAuthLinks
@@ -17,20 +25,37 @@ import { Link, NavLink } from 'react-router-dom';
  */
 export default function AuthLinks() {
     //dropdown lists
+    const { user } = useContext(UserContext);
     const [openMessagePopup, setOpenMessagePopup] = useState(false);
     const [openNotificationsPopup, setOpenNotificationsPopup] = useState(false);
     const [openAccountPopup, setOpenAccountPopup] = useState(false);
+    const [notfArray, setNotfArray] = useState(null);
 
     //const [openPopup, setOpenPopup] = useState(false);
+
+    // when the navbar run go loadChat and count the unreadMsgs
+    let { getUnReadMsgsCount } = useContext(ChatContext);
+    const [unReadMsgs, setUnReadMsgs] = useState(0);
+    const [unseenNotf, setUnseenNotf] = useState(0);
+    const [showSideBlog, setShowSideBlog] = useState(false);
+    const [sidePostID, setSidePostID] = useState('');
+    const [sideBlogName, setSideBlogName] = useState('');
+    const [sideBlogId, setSideBlogId] = useState(0);
+    useEffect(() => {
+        // and show will not change to true
+        getUnReadMsgsCount(setUnReadMsgs);
+    }, []);
+    useEffect(() => {
+        // and show will not change to true
+        getUnReadMsgsCount(setUnReadMsgs);
+    }, [user, user?.userData]);
 
     //close dropdown message list
     const closeMessagePopup = () => {
         setOpenMessagePopup(false);
-        //console.log("colse");
     };
     const closeAccountPopup = () => {
         setOpenAccountPopup(false);
-        //console.log("colse");
     };
     const clickMessagePopup = () => {
         // if i open it
@@ -47,6 +72,12 @@ export default function AuthLinks() {
             //close other popup
             setOpenMessagePopup(false);
             setOpenAccountPopup(false);
+            getNotifications(
+                user?.blogName,
+                user?.token,
+                setNotfArray,
+                setUnseenNotf
+            );
         }
         setOpenNotificationsPopup(!openNotificationsPopup);
     };
@@ -60,8 +91,17 @@ export default function AuthLinks() {
         setOpenAccountPopup(!openAccountPopup);
     };
 
+    useEffect(() => {
+        user?.blogName !== undefined &&
+            getNotifications(
+                user?.blogName,
+                user?.token,
+                setNotfArray,
+                setUnseenNotf
+            );
+    }, []);
+
     /*  const clickOpenPopup = () => {
-    console.log("closeg");
     setOpenPopup(!openPopup);
   };*/
     return (
@@ -79,7 +119,7 @@ export default function AuthLinks() {
             <li className="link-icon">
                 <NavLink
                     className={navData => (navData.isActive ? 'active' : '')}
-                    to="/recommended-for-you"
+                    to="/explore/recommended-for-you"
                 >
                     <i className="far fa-compass"></i>
                 </NavLink>
@@ -103,19 +143,51 @@ export default function AuthLinks() {
                         }`}
                     >
                         <i className="fas fa-comment-dots"></i>
+                        {unReadMsgs !== 0 && (
+                            <UnReadMsg unReadMsgs={unReadMsgs} />
+                        )}
                     </li>
-                    {openMessagePopup && <MessagesPopUp />}
+                    {openMessagePopup && (
+                        <MessagesPopUp clickMessagePopup={clickMessagePopup} />
+                    )}
                 </div>
             </ClickAwayListener>
-
-            <li
-                onClick={clickNotificationsPopup}
-                className={`link-icon  ${
-                    openNotificationsPopup ? 'active' : ''
-                }`}
+            <ClickAwayListener
+                onClickAway={() => setOpenNotificationsPopup(false)}
             >
-                <i className="fas fa-bolt"></i>
-            </li>
+                <div className="notifications-btn">
+                    {showSideBlog && (
+                        <ProfilsSideContainer
+                            blogID={sideBlogId}
+                            blogName={sideBlogName}
+                            setShowSideBlog={setShowSideBlog}
+                            sidePostID={sidePostID}
+                            setSidePostID={setSidePostID}
+                        />
+                    )}
+                    <li
+                        onClick={clickNotificationsPopup}
+                        className={`link-icon  ${
+                            openNotificationsPopup ? 'active' : ''
+                        }`}
+                    >
+                        <i className="fas fa-bolt"></i>
+                    </li>
+                    {unseenNotf !== 0 && <Badge num={unseenNotf} />}
+                    {openNotificationsPopup && (
+                        <Notifications
+                            userBlogName={user?.blogName}
+                            userAvatar={user?.userData?.avatar}
+                            notfArray={notfArray && notfArray}
+                            setNotfArray={setNotfArray}
+                            setUnseenNotf={setUnseenNotf}
+                            setSideBlogId={setSideBlogId}
+                            setSideBlogName={setSideBlogName}
+                            setShowSideBlog={setShowSideBlog}
+                        />
+                    )}
+                </div>
+            </ClickAwayListener>
             <ClickAwayListener onClickAway={closeAccountPopup}>
                 <div className="link-popup">
                     <li
@@ -129,11 +201,13 @@ export default function AuthLinks() {
                     {openAccountPopup && <AccountPopup />}
                 </div>
             </ClickAwayListener>
+
             <li className="link-icon pen">
                 <Link to="/new">
                     <i className="fas fa-pen"></i>
                 </Link>
             </li>
+
             {/* <Route
         path="/new"
         children={({ match }) => (

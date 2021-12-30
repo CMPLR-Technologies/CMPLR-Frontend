@@ -3,24 +3,17 @@ import AuthInput from '../../partials/AuthInput';
 import AuthBtn from '../../partials/AuthBtn';
 import { useNavigate } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
-import axios from 'axios';
-import { apiBaseUrl } from '../../../config.json';
+
+import { emailInDataBase } from '../Service';
 
 /**
  * @function ForgetPassword
- * @description this is the statful component of the forget password page
+ * @description this is the stateful component of the forget password page
  * @param {email} email - the email of the user
  * @returns {Component} the Component of the forget password page
  */
 
 export default function ForgetPasswordCard() {
-    //to check if the email is valid or not
-    function validateEmail(email) {
-        const re =
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
-    }
-
     const [email, setEmail] = React.useState('');
     const history = useNavigate();
 
@@ -47,56 +40,6 @@ export default function ForgetPasswordCard() {
         setReCAPTCHAFlag(true);
     };
 
-    const handleResetPassword = () => {
-        //empty email is true so we will show error message
-        if (email.length === 0) {
-            setEmptyEmail(true);
-            setReCAPTCHAIsClicked(false);
-            setEmailEnteredIsTrue(false);
-            return false;
-        }
-        //Recaptcha is not clicked so we will show error message
-        else if (!reCAPTCHAFlag) {
-            setReCAPTCHAIsClicked(true);
-            setEmailEnteredIsTrue(false);
-            setEmptyEmail(false);
-            return false;
-        }
-        //enter email is false so we will show error message or not in database
-        else if (validateEmail(email) === false) {
-            setEmailEnteredIsTrue(true);
-            setEmptyEmail(false);
-            setReCAPTCHAIsClicked(false);
-            return false;
-        }
-        return true;
-    };
-
-    const emailInDtaBase = email => {
-        if (handleResetPassword() === true) {
-            axios({
-                method: 'post',
-                url: `${apiBaseUrl}/forget-password`,
-                data: {
-                    email: email
-                }
-            })
-                .then(res => {
-                    if (res.status === 201) {
-                        setEmailEnteredIsTrue(true);
-                        setWeAreInForgetPassPage(false);
-                        setReCAPTCHAIsClicked(false);
-                        setReCAPTCHAFlag(false);
-                        setEmptyEmail(false);
-                    } else {
-                        setEmailEnteredIsTrue(false);
-                    }
-                })
-                .catch(() => {
-                    setEmailEnteredIsTrue(false);
-                });
-        }
-    };
     return (
         <div className="LoginCard">
             <div className="LoginCard__logo-container">
@@ -126,7 +69,7 @@ export default function ForgetPasswordCard() {
                                 padding: '0'
                             }}
                         >
-                            please enter your email address
+                            Please enter your email address
                         </p>
                     </div>
                 )}
@@ -209,7 +152,16 @@ export default function ForgetPasswordCard() {
                             id="reset-password"
                             text="Reset Password"
                             color="#FF0000"
-                            handleClick={() => emailInDtaBase(email)}
+                            handleClick={() =>
+                                emailInDataBase(
+                                    email,
+                                    reCAPTCHAFlag,
+                                    setEmptyEmail,
+                                    setReCAPTCHAIsClicked,
+                                    setEmailEnteredIsTrue,
+                                    setWeAreInForgetPassPage
+                                )
+                            }
                             dataTestid="reset-password-btn"
                         ></AuthBtn>
                     </div>

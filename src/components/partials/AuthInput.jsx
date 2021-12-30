@@ -21,21 +21,32 @@ export default function AuthInput(props) {
         setValue,
         id,
         readonly,
-        dataTestid
+        dataTestid,
+        label,
+        onFocus
     } = props;
 
     return (
-        <input
-            onChange={e => setValue(e.target.value)}
-            className="AuthInput"
-            value={value}
-            type={type}
-            name={name}
-            id={id}
-            placeholder={placeholder}
-            readOnly={readonly}
-            data-testid={dataTestid}
-        />
+        <>
+            <input
+                onChange={e => setValue(e.target.value)}
+                className="AuthInput"
+                value={value}
+                type={type}
+                name={name}
+                id={id}
+                placeholder={placeholder}
+                readOnly={readonly}
+                data-testid={dataTestid}
+                onFocus={onFocus}
+                autoComplete="off"
+            />
+            {label && (
+                <label style={{ marginRight: '70px' }} htmlFor={id}>
+                    {label}
+                </label>
+            )}
+        </>
     );
 }
 
@@ -47,5 +58,7 @@ AuthInput.propTypes = {
     setValue: PropTypes.func.isRequired,
     id: PropTypes.string,
     readonly: PropTypes.bool,
-    dataTestid: PropTypes.string
+    dataTestid: PropTypes.string,
+    label: PropTypes.string,
+    onFocus: PropTypes.func
 };

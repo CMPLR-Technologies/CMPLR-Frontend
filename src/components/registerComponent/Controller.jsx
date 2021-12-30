@@ -17,9 +17,21 @@ export const validateStepOne = (email, password, blog) => {
 export const validateStepTwo = age => {
     let errors = [];
 
-    if (age < 16 || age > 120) {
-        errors.push('Age must be between 16-120');
+    if (isNaN(age)) {
+        errors.push('Your age must be a valid number');
+    } else if (age < 18 || age > 80) {
+        errors.push('Age must be between 18-80');
     }
 
     return errors;
+};
+
+export const validateGoogle = (blogName, age) => {
+    if (age < 18 || age > 80) {
+        return 'Age must be between 18-80';
+    }
+    if (blogName && blogName?.length < 2 && blogName?.length > 64) {
+        return 'Blog name must contain between 2-64 characters';
+    }
+    return '';
 };

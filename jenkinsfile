@@ -1,16 +1,16 @@
 pipeline {
     agent {
-        label "azure"
+        label "beta"
     
     }
     environment{
-        LOGIN_SERVER = "cmplr.azurecr.io"
+        LOGIN_SERVER = "beta"
     }
     stages {
         stage("fetch"){
             steps{
                 echo "========Executing Fetch========"
-                git branch: "prod", url: "https://CMPLR-Technologies@dev.azure.com/CMPLR-Technologies/CMPLR-Technologies.Frontend/_git/CMPLR-Technologies.Frontend"
+                git branch: "dev", url: "https://CMPLR-Technologies@dev.azure.com/CMPLR-Technologies/CMPLR-Technologies.Frontend/_git/CMPLR-Technologies.Frontend"
             }
             post{
                 success{
@@ -48,29 +48,5 @@ pipeline {
         }
         
         
-        stage('push image') {
-            steps {
-                echo "======== Pushing image to registry ========="
-                
-                withCredentials([usernamePassword(credentialsId: 'ACR', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) 
-                {
-                    sh """
-                docker login ${LOGIN_SERVER} -u ${USERNAME}  -p ${PASSWORD}
-                docker push ${LOGIN_SERVER}/frontend:latest
-                """
-                }
-            }
-            post {
-                success {
-                    echo "======== Pushing image to registry was successful ========="
-                    //slackSend (color:"#00FF00", message: "Master: pushing image success")
-                }
-                failure {
-                    echo "======== Failed to Pushing image to registry ========="
-                    //slackSend (color:"#FF0000", message: "Master: pushing image failure")
-                }
-           }
-        }
-
     }
 }

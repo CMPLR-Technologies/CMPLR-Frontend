@@ -1,22 +1,78 @@
 import { apiBaseUrl } from '../../config.json';
 import Axios from 'axios';
 import { getServiceErrors } from '../registerComponent/Service';
+import { sendDesktopNotifyToken } from '../desktopNotifications/Service';
 
-const logUser = (email, password, setUser, setError, setIsPending) => {
+const logUser = (
+    email,
+    password,
+    setUser,
+    setError,
+    setIsPending,
+    navigate,
+    setUserBlog
+) => {
     Axios.post(`${apiBaseUrl}/login`, {
         email,
         password
     })
         .then(res => {
-            const user = { token: res.data.token, userData: res.data.user };
+            const user = {
+                token: res?.data?.response?.token,
+                userData: res.data?.response?.user,
+                blogName: res.data?.response?.blog_name
+            };
             setUser(user);
             localStorage.setItem('user', JSON.stringify(user));
             setIsPending(false);
+            setUserBlog(user.userData);
+            sendDesktopNotifyToken();
+            navigate('/dashboard');
         })
         .catch(err => {
-            if (err.response) setError(getServiceErrors(err));
-            else setError(["Couldn't Log In"]);
+            const errorArr = getServiceErrors(err);
+
+            if (err.response)
+                setError(
+                    errorArr?.length !== 0 ? errorArr[0] : "Couldn't Log In"
+                );
+            else setError("Couldn't Log In");
             setIsPending(false);
         });
 };
-export { logUser };
+
+const responseGoogleSuccess = (
+    respond,
+    navigate,
+    setIsPending,
+    setUser,
+    setUserBlog
+) => {
+    const token = respond?.accessToken;
+    setIsPending(true);
+    Axios.post(`${apiBaseUrl}/google/login`, {
+        token
+    })
+        .then(res => {
+            const user = {
+                token: res.data.response.token,
+                userData: res.data.response.user,
+                blogName: res.data?.response?.blog_name
+            };
+            setUser(user);
+            localStorage.setItem('user', JSON.stringify(user));
+            setUserBlog(user.userData);
+            navigate('/dashboard');
+            setIsPending(false);
+            sendDesktopNotifyToken();
+        })
+        .catch(() => {
+            setIsPending(false);
+            navigate('/onboarding', { state: { token: token } });
+        });
+};
+const responseGoogleFailure = (res, setError) => {
+    if (res.error !== 'idpiframe_initialization_failed') setError(res.error);
+};
+
+export { logUser, responseGoogleSuccess, responseGoogleFailure };

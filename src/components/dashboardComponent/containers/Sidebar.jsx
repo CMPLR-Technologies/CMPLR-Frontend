@@ -1,23 +1,22 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import RecommendBlogs from './RecommendBlogs';
 import Radar from '../../partials/Radar';
-import {
-    themes,
-    ThemeContext
-} from '../../../contexts/themeContext/ThemeContext';
-
+import useFetch from '../../../hooks/useFetch';
+import { apiBaseUrl } from '../../../config.json';
 export default function Sidebar() {
-    const theme = useContext(ThemeContext)[0];
+    const {
+        error: blogsError,
+        data,
+        isPending: blogsIsPending
+    } = useFetch(`${apiBaseUrl}/recommended/blogs?page=1`);
     return (
         <div className="dashboard-sidebar">
-            <h3
-                style={{
-                    color: `rgb(${themes[theme].whiteOnDark})`
-                }}
-            >
-                Check out these blogs
-            </h3>
-            <RecommendBlogs />
+            <RecommendBlogs
+                blogsError={blogsError}
+                blogs={data?.blogs}
+                blogsIsPending={false}
+                showExplore={blogsIsPending}
+            />
             <Radar />
         </div>
     );

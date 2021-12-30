@@ -1,23 +1,31 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PostComponent from './containers/PostComponent';
-import { apiBaseUrl } from '../../../config.json';
+import PropTypes from 'prop-types';
+
+/**
+ * @function PostsComponentView
+ * @description View Posts Component
+ * @param {array} posts - object containg post data response received from server
+ * @param {boolean} isFollowed - boolean used to determine if user is following the post author
+ * @param {string} userBlogName - blog name of the user who is logged in
+ * @param {boolean} radar - boolean used to determine if the post viewed in radar section or not
+ * @returns {Component} PostsComponentView
+ */
+
+View.propTypes = {
+    posts: PropTypes.array.isRequired,
+    userBlogName: PropTypes.string.isRequired,
+    isFollowed: PropTypes.bool,
+    radar: PropTypes.bool
+};
 
 export default function View(props) {
     const { userBlogName, posts, isFollowed, radar } = props;
-    const [response, setResponse] = useState([]);
-    useEffect(() => {
-        axios({
-            method: 'GET',
-            url: `${apiBaseUrl}/post`
-        }).then(res => {
-            setResponse(res.data);
-        });
-    }, []);
+
     return (
         <>
-            {response &&
-                response.map((item, index) => (
+            {posts &&
+                posts.map((item, index) => (
                     <PostComponent
                         key={index}
                         userBlogName={userBlogName}

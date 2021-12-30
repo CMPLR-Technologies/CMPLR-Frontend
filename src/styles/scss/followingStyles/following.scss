@@ -1,0 +1,370 @@
+.lSyOz {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    max-width: 625px;
+    width: 100%;
+    .rmkqO {
+        margin-bottom: 40px;
+        max-width: 540px;
+        width: 100%;
+        display: block;
+        .IiZ2z {
+            font-weight: 400;
+            font-size: 1.125rem;
+            line-height: 1.333;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+        .Il4T7 {
+            display: flex;
+            margin: 10px 0;
+            .dyc2r {
+                border: none;
+                border-radius: 3px;
+                box-sizing: border-box;
+
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                padding: 8px 10px;
+                display: inline-block;
+                transition: background-color 0.25s ease;
+                width: 100%;
+                &:placeholder-shown {
+                    text-overflow: ellipsis;
+                }
+            }
+            .TRX6J {
+                color: inherit;
+                font: inherit;
+                background-color: transparent;
+                border: 1px solid #405368;
+                margin: 0;
+                padding: 0;
+                user-select: none;
+                margin-left: 10px;
+                &:disabled {
+                    cursor: inherit;
+                    border: 1px solid #405368;
+                }
+                .Tb7Ey {
+                    background: none;
+                    border-radius: 3px;
+                    font-size: 1rem;
+                    font-weight: 700;
+                    line-height: 1.5;
+                    padding: 6px 10px;
+                }
+            }
+        }
+        .NedHV {
+            margin-top: 15px;
+            display: block;
+            .eXQ6G {
+                display: flex;
+                justify-content: center;
+                position: relative;
+                width: 100%;
+                &:last-of-type {
+                    border-radius: 0 0 6px 6px;
+                }
+                &:first-of-type {
+                    border-radius: 6px 6px 0 0;
+                }
+                .Ro4PU {
+                    width: 100%;
+                    display: block;
+                    height: 100%;
+                    position: absolute;
+                    cursor: pointer;
+                    text-decoration: none;
+                    color: inherit;
+                }
+                .wmRou {
+                    word-wrap: break-word;
+                    align-items: center;
+                    display: flex;
+                    flex-grow: 1;
+                    hyphens: auto;
+                    line-height: 1.2;
+                    min-height: 43px;
+                    outline: none;
+                    overflow-wrap: break-word;
+                    padding: 8px 10px;
+                    text-decoration: none;
+                    vertical-align: middle;
+                    .yElCb {
+                        align-items: center;
+                        display: flex;
+                        .qgKw0 {
+                            margin-right: 11px;
+                            position: relative;
+                            display: block;
+                            .nZ9l5 {
+                                position: relative;
+                                .BPf9u {
+                                    vertical-align: top;
+                                    width: inherit;
+                                    display: block;
+                                    .ppcontainer {
+                                        width: 37px;
+                                        height: 37px;
+                                        position: relative;
+                                        .ntiBu {
+                                            border-radius: 3px;
+                                            height: 100%;
+                                            overflow: hidden;
+                                            width: 100%;
+                                            ._0MuRn {
+                                                line-height: 0;
+                                                position: relative;
+                                                width: 100%;
+                                                padding-bottom: 100%;
+                                                .ppimg {
+                                                    width: 37px;
+                                                    height: 37px;
+                                                    display: block;
+                                                    left: 0;
+                                                    position: absolute;
+                                                    top: 0;
+                                                    object-fit: cover;
+                                                    cursor: default;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .BSUG4 {
+                            cursor: pointer;
+                            text-decoration: none;
+                            position: relative;
+                            .gLEkw {
+                                align-items: center;
+                                display: flex;
+                                text-align: left;
+                                word-break: break-word;
+
+                                cursor: pointer;
+                                font-size: 0.875rem;
+                                font-weight: 700;
+                                line-height: 1.5;
+                                .UulOO {
+                                    -webkit-box-orient: vertical;
+                                    -webkit-line-clamp: 1;
+                                    display: -webkit-box;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    text-align: left;
+                                    word-break: break-word;
+                                }
+                            }
+                            .fTJAC {
+                                font-size: 0.875rem;
+                                font-weight: 400;
+                                line-height: 1.5;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                -webkit-box-orient: vertical;
+                                -webkit-line-clamp: 1;
+                                display: -webkit-box;
+                                text-align: left;
+                                word-break: break-word;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+                .SbeG8 {
+                    align-items: center;
+                    display: flex;
+                    padding-right: 14px;
+                    position: relative;
+                    text-align: right;
+                    cursor: default;
+                    .xWjHY {
+                        align-items: center;
+                        display: flex;
+                        justify-content: center;
+                        text-align: right;
+                        cursor: default;
+                        .TRX6J {
+                            &:hover {
+                                text-decoration: underline;
+                                text-decoration-color: #00b8ff;
+                            }
+                            color: inherit;
+                            font: inherit;
+                            background-color: transparent;
+                            border: none;
+                            color: inherit;
+                            cursor: pointer;
+                            margin: 0;
+                            padding: 0;
+                            user-select: none;
+                            .f68ED {
+                                font-size: 0.875rem;
+                                font-weight: 700;
+                                line-height: 1.5;
+                                text-decoration: none;
+                                display: block;
+                                font: inherit;
+                            }
+                        }
+                        .BPf9u {
+                            vertical-align: top;
+                            width: inherit;
+                            display: inline-block;
+                            text-align: right;
+                            .TRX6J {
+                                color: inherit;
+                                font: inherit;
+                                background-color: transparent;
+                                border: none;
+                                color: inherit;
+                                cursor: pointer;
+                                margin: 0;
+                                padding: 0;
+                                user-select: none;
+                                .EvhBA {
+                                    color: inherit;
+                                    font: inherit;
+                                    display: block;
+                                    .JS4zW {
+                                        margin-right: -10px;
+                                        padding: 0 10px;
+                                        color: inherit;
+                                        cursor: pointer;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.iaJAj {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: black;
+    .X1uIE {
+        box-sizing: border-box;
+        justify-content: center;
+        width: 100%;
+        color: red;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.5;
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+        text-decoration: none;
+        border: none;
+        font: inherit;
+    }
+    .XLZRW {
+        color: red;
+        box-sizing: border-box;
+        width: 100%;
+        justify-content: center;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.5;
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+        text-decoration: none;
+        background-color: transparent;
+        border: none;
+        user-select: none;
+        &:hover {
+            background-color: #e5e7ea;
+        }
+    }
+}
+
+.QiSmE {
+    box-sizing: border-box;
+    color: white;
+    line-height: 1.4;
+    max-width: 540px;
+    padding: 0 2em;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    width: 100%;
+    //h3
+    .B3EfW {
+        font-size: 1.625rem;
+        font-weight: bolder;
+        line-height: 1.3077;
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        text-align: center;
+    }
+    //div
+    .rDKIp {
+        font-size: 1.125rem;
+        font-weight: 400;
+        line-height: 1.333;
+        padding-bottom: 10px;
+        padding-top: 20px;
+        color: white;
+        text-align: center;
+    }
+}
+
+.Qluee {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 10px;
+    .B5hil {
+        margin: 15px 8px 0;
+        border-radius: 3px;
+        align-items: center;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        .IMvK3 {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.5;
+            padding: 6px 15px;
+            align-items: center;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
+}
+
+.span_error_styles_following {
+    color: white;
+    font-weight: 400;
+    margin-left: 10px;
+    font-size: 1rem;
+    line-height: 1.5;
+}

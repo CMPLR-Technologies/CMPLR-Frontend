@@ -41,11 +41,7 @@ export default function ShortcutsPageOverlay(props) {
     // });
 
     return (
-        <div
-            className="overlay-container"
-            data-testid="OverlayContainer"
-            Style="color: black !important;"
-        >
+        <div className="overlay-container" data-testid="OverlayContainer">
             <div
                 className="overlay-div"
                 onClick={unOverlay}

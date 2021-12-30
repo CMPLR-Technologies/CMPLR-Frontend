@@ -16,13 +16,31 @@ const inputCheck = (email, password) => {
     return null;
 };
 
-const handleLogin = (email, password, setError, setUser, setIsPending) => {
+const handleLogin = (
+    email,
+    password,
+    setError,
+    setUser,
+    setIsPending,
+    navigate,
+    setUserBlog
+) => {
     const err = inputCheck(email, password);
     setIsPending(true);
     if (err) {
         setError([err]);
         setIsPending(false);
-    } else logUser(email, password, setUser, setError, setIsPending);
+    } else {
+        logUser(
+            email,
+            password,
+            setUser,
+            setError,
+            setIsPending,
+            navigate,
+            setUserBlog
+        );
+    }
 };
 
 export { getRandomImage, handleLogin };

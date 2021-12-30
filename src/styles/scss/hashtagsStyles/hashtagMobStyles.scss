@@ -1,0 +1,196 @@
+.viewMobController {
+    @media screen and (min-width: 950px) {
+        display: none;
+    }
+    .iGLU3 {
+        height: 300px;
+        min-height: 300px;
+        padding: 16px;
+        position: relative;
+        background: linear-gradient(0.25turn, #214e61, #ebf8e1, #976127);
+        width: 100%;
+        .BSUG4 {
+            cursor: pointer;
+            text-decoration: none;
+            .qJeyT {
+                background-position: 50%;
+                background-size: cover;
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        .ZV6oZ {
+            height: 100%;
+            pointer-events: none;
+            position: relative;
+            width: 100%;
+            .YOf31 {
+                align-items: flex-start;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                justify-content: flex-end;
+                margin: auto;
+                pointer-events: none;
+                position: relative;
+                @media screen and (max-width: 950px) {
+                    color: #fff;
+                }
+                .NmAj2 {
+                    font-family: var(--font-family);
+                    font-size: 0.875rem;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    margin-bottom: 2px;
+                    pointer-events: all;
+                }
+                .Wo4gS {
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    display: -webkit-box;
+                    font-size: 2rem;
+                    font-weight: 400;
+                    line-height: 1.25;
+                    max-height: 2.5em;
+                    overflow: hidden;
+                    pointer-events: all;
+                    text-overflow: ellipsis;
+                    word-break: break-word;
+                    text-decoration: none;
+                }
+                .S3HC8 {
+                    align-items: flex-start;
+                    display: flex;
+                    margin-bottom: 20px;
+                    margin-top: 4px;
+                    pointer-events: all;
+                }
+                .mainDivHash {
+                    display: flex;
+                    width: 100%;
+                    .emvA3 {
+                        display: flex;
+                        width: 100%;
+                        pointer-events: all;
+                        .sNQra {
+                            align-items: center;
+                            display: flex;
+                            justify-content: center;
+                            background-color: transparent;
+                            border: none;
+                            cursor: pointer;
+                            margin: 0;
+                            padding: 0;
+                            .WdYx4 {
+                                border-radius: 3px;
+                                font-size: 1rem;
+                                font-weight: 700;
+                                line-height: 1.5;
+                                display: block;
+                                display: block;
+                                padding: 8px 20.5px;
+                            }
+                        }
+                    }
+                }
+                .kckjF {
+                    align-items: center;
+                    display: flex;
+                    justify-content: flex-end;
+                    text-decoration: none;
+                    cursor: pointer;
+                    .CrU4O {
+                        font-size: 0.875rem;
+                        font-weight: 400;
+                        line-height: 1.5;
+                        margin-right: 10px;
+                        text-align: end;
+                    }
+                    .nZ9l5 {
+                        position: relative;
+                        .samllPic {
+                            width: 24px;
+                            height: 24px;
+                            position: relative;
+                            .ESMam {
+                                height: 100%;
+                                overflow: hidden;
+                                width: 100%;
+                                border-radius: 3px;
+                                ._0MuRn {
+                                    line-height: 0;
+                                    position: relative;
+                                    width: 100%;
+                                    padding-bottom: 100%;
+                                    img {
+                                        width: 24px;
+                                        height: 24px;
+                                        left: 0;
+                                        position: absolute;
+                                        top: 0;
+                                        display: block;
+                                        object-fit: cover;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .XVkC9 {
+        align-items: flex-start;
+        display: flex;
+        margin: 16px 0 0;
+        overflow-x: scroll;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        .theScrollhandler {
+            .spanTaghandler {
+                background-color: transparent;
+                border: 2px solid rgb(74, 121, 150, 0.25);
+                cursor: pointer !important;
+                font-weight: 400;
+                margin-bottom: 10px;
+                margin-right: 10px;
+                font-size: 1rem;
+                line-height: 1.5;
+                border-radius: 30px;
+                padding: 2px 13px;
+                &:first-child {
+                    margin-left: 16px;
+                }
+                // &:hover {
+                //     background-color: #0d4d72 !important;
+                //     color: #00b8ff !important;
+                // }
+                @media screen and (min-width: 950px) {
+                    cursor: pointer !important;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    word-break: break-all;
+                }
+                a {
+                    outline: none;
+                    text-decoration: none;
+                    color: inherit;
+                    cursor: pointer;
+                    @media screen and (min-width: 950px) {
+                        word-break: break-all;
+                    }
+                }
+            }
+        }
+    }
+}

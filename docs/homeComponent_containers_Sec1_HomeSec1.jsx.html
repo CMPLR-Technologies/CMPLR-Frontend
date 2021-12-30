@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: homeComponent/containers/Sec1/HomeSec1.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: homeComponent/containers/Sec1/HomeSec1.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import { Link } from 'react-router-dom';
+import Button from './Button';
+import ExploreBtn from './ExploreBtn.svg';
+import Footer from './Footer';
+import GoogleButton from './GoogleButton.svg';
+import PropTypes from 'prop-types';
+import PlaystoreApplestore from '../../../partials/PlaystoreApplestore';
+
+HomeSec1.propTypes = {
+    heading: PropTypes.string.isRequired,
+    paragraph: PropTypes.string.isRequired,
+    last: PropTypes.bool.isRequired
+};
+
+/**
+ * @function HomeSectionOne
+ * @description Section Two Component of HomePage
+ * @param {string} heading - main heading in section one
+ * @param {string} paragraph - subHeading of section one
+ * @param {bool} last - boolean to detect if it is the last section
+ * @returns {Component} the Component of the Button
+ */
+
+const images = ['1.jpg', '2.jpg', '3.png', '4.jpg', '5.jpg'];
+const imageNum = Math.floor(Math.random() * 5);
+
+export default function HomeSec1(props) {
+    const { heading, paragraph, last } = props;
+    return (
+        &lt;>
+            &lt;section
+                id={`${
+                    !last
+                        ? 'Get started'
+                        : 'Okay, it’s not actually hard to explain.'
+                }`}
+                className="first-page"
+                style={{
+                    backgroundImage: `url(${require(`../../../../assets/images/bg${images[imageNum]}`)})`
+                }}
+                data-testid={`${!last ? 'home-sec1' : 'home-sec6'}`}
+            >
+                &lt;div data-testid="sec1-content" className="first-page-content">
+                    &lt;div
+                        data-testid="sec1-logo-container"
+                        className="logo-container"
+                    >
+                        {!last ? (
+                            &lt;>
+                                &lt;p data-testid="sec1-heading" className="logo">
+                                    {heading}
+                                &lt;/p>
+                                &lt;p data-testid="sec1-paragraph">{paragraph}&lt;/p>
+                            &lt;/>
+                        ) : (
+                            &lt;>
+                                &lt;h1
+                                    data-testid="sec1-heading"
+                                    className="sixth-page-heading"
+                                >
+                                    {heading}
+                                &lt;/h1>
+                                &lt;p
+                                    data-testid="sec1-paragraph"
+                                    className="sixth-page-paragraph"
+                                >
+                                    {paragraph}
+                                &lt;/p>
+                            &lt;/>
+                        )}
+                    &lt;/div>
+
+                    &lt;Button
+                        dataTestid="signup-btn"
+                        href="/register"
+                        className="sign-btn"
+                        title="Sign up"
+                    />
+                    &lt;Button
+                        dataTestid="login-btn"
+                        href="/login"
+                        className="login-btn"
+                        title="Log in"
+                    />
+
+                    &lt;div className="or-container">
+                        &lt;div className="left-bar">&lt;/div>
+                        &lt;div>or&lt;/div>
+                        &lt;div className="right-bar">&lt;/div>
+                    &lt;/div>
+
+                    &lt;p className="first-page-terms">
+                        {
+                            ' By continuing with the options below, you agree to Tumblr’s'
+                        }
+                        &lt;Link to="/terms">Terms of Service&lt;/Link> and have read
+                        the &lt;Link to="/privacy">Privacy Policy&lt;/Link>
+                    &lt;/p>
+
+                    &lt;Button href="/auth/google" className="google-btn" title="">
+                        &lt;GoogleButton />
+                        &lt;div className="btn-text">Continue with Google&lt;/div>
+                    &lt;/Button>
+                    {last &amp;&amp; &lt;PlaystoreApplestore />}
+                    {!last &amp;&amp; (
+                        &lt;Button href="" className="explore-btn" title="">
+                            &lt;ExploreBtn />
+                            &lt;span className="explore-text">
+                                {' '}
+                                {"Here's what's trending"}
+                            &lt;/span>
+                        &lt;/Button>
+                    )}
+                &lt;/div>
+                &lt;Footer imageNum={imageNum} last={last} />
+            &lt;/section>
+        &lt;/>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+<<<<<<< HEAD
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#ThemeToggle">ThemeToggle</a></li></ul>
+=======
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+>>>>>>> dev
+</nav>
+
+<br class="clear">
+
+<footer>
+<<<<<<< HEAD
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 09 2021 15:17:05 GMT+0200 (Eastern European Standard Time)
+=======
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 10 2021 22:55:07 GMT+0200 (Eastern European Standard Time)
+>>>>>>> dev
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

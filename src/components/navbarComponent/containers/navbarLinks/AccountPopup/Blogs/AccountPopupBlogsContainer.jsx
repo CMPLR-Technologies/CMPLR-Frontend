@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { apiBaseUrl } from '../../../../../../config.json';
+import React from 'react';
 import AccountPopupBlog from './AccountPopupBlog';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
 /**
  * @function AccountPopupBlogsContainer
@@ -11,26 +10,26 @@ import axios from 'axios';
  * @returns {Component}
  */
 
-export default function AccountPopupBlogsContainer() {
-    const [blogs, setBlogs] = useState([]);
-    useEffect(() => {
-        axios
-            .get(`${apiBaseUrl}/blogs`)
-            .then(response => {
-                setBlogs(response.data);
-            })
-            .catch(err=>{});
-    }, []);
+export default function AccountPopupBlogsContainer(props) {
+    //const [blogs, setBlogs] = useState([]);
 
+    const { blogs, closeMenu } = props;
     return (
-        <div
-            data-testid="AccountPopupBlogsContainer"
-            className="account-popup-blogs-container"
-        >
-            {blogs &&
-                blogs.map((blog, index) => (
-                    <AccountPopupBlog blog={blog} key={index} />
-                ))}
+        <div>
+            {blogs && (
+                <div
+                    data-testid="AccountPopupBlogsContainer"
+                    className="account-popup-blogs-container"
+                >
+                    {blogs.map((blog, index) => (
+                        <AccountPopupBlog blog={blog} key={index} closeMenu={closeMenu} />
+                    ))}
+                </div>
+            )}
         </div>
     );
 }
+AccountPopupBlogsContainer.propTypes = {
+    blogs: PropTypes.array,
+    closeMenu: PropTypes.func
+};

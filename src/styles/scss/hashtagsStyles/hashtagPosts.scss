@@ -1,0 +1,50 @@
+.lSyOz {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    max-width: 625px;
+    width: 100%;
+    .p4DiZ {
+        align-items: center;
+        // border-bottom: 1px solid white;
+        display: flex;
+        margin-bottom: 20px;
+        width: 100%;
+        .uM3pd {
+            @media screen and (min-width: 950px) {
+                justify-content: flex-start;
+                overflow-x: auto;
+                white-space: nowrap;
+                max-width: 940px;
+            }
+            @media screen and (min-width: 950px) and (min-width: 640px) {
+                max-width: 620 px;
+            }
+            align-items: flex-end;
+            // color: RGB(var(--white-on-dark));
+            display: flex;
+            font-size: 1.125rem;
+            font-weight: 700;
+            justify-content: space-evenly;
+            line-height: 1.333;
+            margin: auto;
+            overflow: hidden;
+            width: 100%;
+            .wl0Ka {
+                margin-bottom: -1px;
+                padding: 14px 16px;
+                text-align: center;
+                text-decoration: none;
+                background-color: transparent;
+                border: none;
+                color: inherit;
+                cursor: pointer;
+                margin: 0;
+                .EvhBA {
+                    display: block;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

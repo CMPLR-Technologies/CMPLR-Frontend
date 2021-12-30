@@ -52,6 +52,7 @@
                     left: 0;
                     width: 100%;
                     height: 100%;
+                    object-fit: cover;
                 }
             }
             .avatar-link {
@@ -85,8 +86,8 @@
     .post-container {
         min-height: 99px;
         opacity: 1;
-        color: black;
-        background-color: #fff;
+        //color: black;
+        //background-color: #fff;
         border-radius: 3px;
         margin: auto;
         width: 100%;
@@ -98,9 +99,9 @@
             position: relative;
             font-size: 14px;
             box-sizing: border-box;
-            color: black;
+            //color: black;
             .post-form--header {
-                color: rgba(0, 0, 0, 0.65);
+                //color: rgba(0, 0, 0, 0.65);
                 box-sizing: border-box;
                 zoom: 1;
                 .controls-container {
@@ -126,12 +127,12 @@
                                     Helvetica, Arial, sans-serif;
                                 font-size: 13px;
                                 font-weight: 700;
-                                color: #000;
+                                //color: #000;
                             }
                             .icon_arrow_carrot_down {
                                 font-size: 12px;
                                 line-height: 14px;
-                                color: #000;
+                                //color: #000;
                             }
                         }
                     }
@@ -207,13 +208,13 @@
                                 padding: 0;
                                 z-index: 2;
                                 position: static;
-                                color: #000;
+                                //color: #000;
                                 background: hsla(0, 0%, 100%, 0.01);
                                 box-sizing: border-box;
                                 cursor: auto;
                                 &:empty::before {
                                     content: attr(data-placeholder);
-                                    color: #595959;
+                                    //color: #595959;
                                 }
                                 &:active {
                                     outline: 0;
@@ -236,7 +237,7 @@
                                     left: 0;
                                     padding: 0;
                                     z-index: 1;
-                                    color: rgba(0, 0, 0, 0.65);
+                                    //color: rgba(0, 0, 0, 0.65);
                                     pointer-events: none;
                                     box-sizing: border-box;
                                     cursor: default;
@@ -256,6 +257,57 @@
                     display: block;
                     .editor-slot {
                         position: relative;
+                    }
+                }
+            }
+            .post-form--footer {
+                box-sizing: border-box;
+                .post-form--tag-editor {
+                    box-sizing: border-box;
+                    margin-top: 5px;
+                    padding: 5px 20px 10px 15px;
+                    overflow: hidden;
+                    word-break: break-all;
+                    cursor: text;
+                    .tag-input-wrapper {
+                        position: relative;
+                        display: inline-block;
+                        width: 100%;
+                        font-size: 13px;
+                        margin-bottom: 1px;
+                        line-height: 15px;
+                        padding: 5px;
+                        .elementInside {
+                            position: relative;
+                            .editor-slot {
+                                position: relative;
+                                width: 100%;
+                                //background: #fff;
+                                display: inline-block;
+                                .editorDiv {
+                                    min-height: 15px;
+                                    font-weight: 400;
+                                    border: none;
+                                    font-size: 13px;
+                                    line-height: 15px;
+                                    min-width: 50px;
+                                    margin-bottom: 7px;
+                                    //color: #000;
+                                    //background: hsla(0, 0%, 100%, 0.01);
+                                    width: 100%;
+                                    padding: 0;
+                                    z-index: 2;
+                                    position: static;
+                                    word-break: break-all;
+                                    text-align: left;
+                                    outline: none;
+                                    &:empty::before {
+                                        content: attr(data-placeholder);
+                                        //color: #8e8e8e;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -286,8 +338,8 @@
                                 line-height: 1.4;
                                 text-decoration: none;
                                 border: 1px solid #9da6af;
-                                background-color: #9da6af;
-                                color: #fff;
+                                //background-color: #9da6af;
+                                //color: #fff;
                                 margin: 0;
                             }
                         }
@@ -310,8 +362,8 @@
                                     font-weight: 700;
                                     line-height: 1.4;
                                     text-decoration: none;
-                                    background-color: #00b8ff;
-                                    color: #fff;
+                                    //background-color: #00b8ff;
+                                    //color: #fff;
                                     justify-content: space-between;
                                     padding: 0;
                                     border: 0;
@@ -319,9 +371,9 @@
                                     display: inline-flex;
                                     align-items: center;
                                     .to-post-button {
-                                        border-color: #00b8ff;
-                                        background-color: #00b8ff;
-                                        color: white;
+                                        border: none;
+                                        //background-color: #00b8ff;
+                                        //color: white;
                                         cursor: default;
                                         border-radius: 2px 0 0 2px;
                                         padding-left: 10px;
@@ -331,7 +383,7 @@
                                         font-size: 13px;
                                         font-weight: 700;
                                         &:disabled {
-                                            color: #80dcff;
+                                            //color: #80dcff;
                                         }
                                     }
                                     .dropdown-area {
@@ -346,9 +398,9 @@
                                         font-size: 12px;
                                         line-height: 1.4;
                                         text-align: center;
-                                        border-color: #00b8ff;
-                                        background-color: #00b8ff;
-                                        color: #fff;
+                                        //border-color: #00b8ff;
+                                        //background-color: #00b8ff;
+                                        //color: #fff;
                                         padding-top: 5px;
                                         padding-bottom: 5px;
                                         box-sizing: border-box;
@@ -387,4 +439,23 @@
 
 .dropdown_postbox {
     width: 192px;
+}
+
+.containerofchip {
+    width: 100%;
+    display: relative;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    .chipStyled {
+        //background-color: white;
+        outline: none;
+        border: none !important;
+        &:hover {
+            //color: #14bdfe;
+            //background-color: #e0eef6;
+        }
+    }
 }

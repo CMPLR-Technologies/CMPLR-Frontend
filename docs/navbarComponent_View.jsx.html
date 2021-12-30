@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: navbarComponent/View.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: navbarComponent/View.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect, useContext } from 'react';
+import '../../styles/styles.css';
+import NavbarLinks from './containers/navbarLinks/NavbarLinks';
+import NavbarSection1 from './containers/section1/NavbarSection1';
+import { UserContext } from '../../contexts/userContext/UserContext';
+import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
+import ChatView from '../chatComponent/View';
+/**
+ * Navbar Main Component
+ * @function Navbar
+ * @description this is the main Component of navbar contains in it's body all the navbar components
+ * @returns {Component} navbar_section1_logo&amp;searchbar &amp; navbar-links
+ */
+export default function Navbar() {
+    const theme = useContext(ThemeContext)[0];
+    const css = `
+        .nav {
+            border-bottom: 0.5px solid rgba(${themes[theme].whiteOnDark}, 0.15);
+        }
+        .search{
+            background-color: rgba(${themes[theme].whiteOnDark}, 0.15);
+        }
+        .search-icon{
+            color: rgba(${themes[theme].whiteOnDark}, 0.65);
+        }
+        .search-icon i{
+            color: rgba(${themes[theme].whiteOnDark}, 0.65);
+        }
+        .search-input{
+            color: rgba(${themes[theme].whiteOnDark}, 0.65);
+        }
+        .search-input::placeholder{
+            color: rgba(${themes[theme].whiteOnDark}, 0.65);
+        }
+
+        .search-result{
+            background-color: rgb(${themes[theme].white});
+            box-shadow: 0 0 15px 0 rgb(0 0 0 / 50%);
+            color: rgb(${themes[theme].black});
+        }
+
+        .search-result ul li{
+            color: rgb(${themes[theme].black});
+        }
+
+        .search-result ul li:hover, .search-result-dis{
+            background-color: rgb(${themes[theme].secondaryAccent});
+        }
+
+        .search-result ul li i{
+            color: rgb(${themes[theme].black});
+        }
+
+        .fa-downcase-t:before{
+            color: rgb(${themes[theme].whiteOnDark});
+        }
+        
+        .nav .section1 .search .search-result ul span.color{
+            color: rgb(${themes[theme].accent});
+        }
+        .nav .section1 .search .search-result ul .search-result-blog-section1-text h3, h3.search-result-dis{
+            color: rgb(${themes[theme].black});
+        }
+        .nav .section1 .search .search-result ul .search-result-blog-section1-text h4{
+            color: rgba(${themes[theme].black}, 0.65);
+        }
+        .nav .section1 .search .search-result ul .search-result-blog-button button{
+            color: rgb(${themes[theme].accent});
+        }
+
+        .search.focus {
+            background-color:  rgb(${themes[theme].white});
+        }
+        .search.focus .search-input {
+            color:  rgb(${themes[theme].black});
+        }
+        .search.focus .search-icon i {
+            color:  rgb(${themes[theme].black});
+        }
+
+        .section2 .link-icon a i, .section2 .link-icon i{
+            color: rgba(${themes[theme].whiteOnDark}, 0.65);
+        }
+        .section2 .link-icon a.active i, .section2 .link-icon.active i{
+            color: rgba(${themes[theme].whiteOnDark});
+        }
+
+        .link-icon.pen{
+            background-color: rgb(${themes[theme].accent});
+        }
+        .nav .section2 .link-icon.pen i{
+            color: rgb(${themes[theme].navy});
+        }
+
+        .popup{
+            background-color: rgb(${themes[theme].white});
+            color: rgb(${themes[theme].black});
+            box-shadow: 0 0 15px 0 rgb(0 0 0 / 50%);
+        }
+        
+        .popup-header, .popup-messages-message{
+            background-color: rgb(${themes[theme].white});
+            border-bottom: 0.5px solid rgba(${themes[theme].black}, 0.13);
+        }
+        .popup-header h3{
+            color: rgb(${themes[theme].black});
+        }
+        .popup-header button{
+            color: rgb(${themes[theme].accent});
+        }
+        .popup-header .never{
+            color: rgba(var(${themes[theme].black}),.4);
+        }
+        .popup-messages-message:hover {
+            background-color: rgb(${themes[theme].secondaryAccent});
+        }
+        .popup-messages .receiver, .popup-messages-message .receiver{
+            color: rgb(${themes[theme].black});
+        }
+
+        .popup-newmessage-header input, .popup-newmessage-header span, .popup-messages .message,.popup-messages-message .message, .popup-messages .sender {
+            color: rgba(${themes[theme].black},0.65);
+        }
+
+        .messagepage-mobile .popup-messages{
+            background-color: rgb(${themes[theme].navy});
+        }
+        .messagepage-mobile .popup-header{
+            background-color: rgb(${themes[theme].navy});
+        }
+        .messagepage-mobile .popup-header h3{
+            color: rgb(${themes[theme].whiteOnDark});
+        }
+        .messagepage-mobile .popup-header span i{
+            color: rgba(${themes[theme].whiteOnDark}, .65);
+        }
+        .new-post-popup{
+            background-color: rgba(${themes[theme].navy},.95);
+        }
+        .new-post-popup-box-icon i{
+            color: rgb(${themes[theme].navy});
+        }
+    .new-post-popup-box-icon1 { ${/*remove important later*/ ''}
+            background-color: rgb(${themes[theme].whiteOnDark}) !important;
+        }
+        .new-post-popup-box-text{
+            color: rgb(${themes[theme].whiteOnDark});
+        }
+
+
+    `;
+
+    const [mobileView, setMobileView] = useState(false);
+    const { user } = useContext(UserContext);
+    const chaneMobileView = () => {
+        if (window.innerWidth > 960) {
+            setMobileView(false);
+        } else {
+            setMobileView(true);
+        }
+    };
+
+    useEffect(() => {
+        chaneMobileView();
+    }, []);
+    window.addEventListener('resize', chaneMobileView);
+    let nav = (
+        &lt;div className="nav">
+            &lt;div className="nav-container">
+                &lt;ChatView />
+                {/*section 1 contains logo and search bar*/}
+                &lt;NavbarSection1 />
+                {/*section 2 contains links*/}
+                {/*&lt;NavbarLinks isAuth={user ? true : false} />*/}
+                &lt;NavbarLinks isAuth={true}/>
+            &lt;/div>
+            &lt;style>{css}&lt;/style>
+        &lt;/div>
+    );
+
+    // if not user auth and mobile view hide navbar
+    if (mobileView &amp;&amp; (user ? false : true)) nav = null;
+    return nav;
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+<<<<<<< HEAD
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#ThemeToggle">ThemeToggle</a></li></ul>
+=======
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+>>>>>>> dev
+</nav>
+
+<br class="clear">
+
+<footer>
+<<<<<<< HEAD
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 09 2021 15:17:05 GMT+0200 (Eastern European Standard Time)
+=======
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 10 2021 22:55:07 GMT+0200 (Eastern European Standard Time)
+>>>>>>> dev
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

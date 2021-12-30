@@ -1,6 +1,6 @@
-import React from 'react';
-import useRedirect from '../../hooks/useRedirect';
+import React, { useState } from 'react';
 import '../../styles/styles.css';
+import { getRandomImage } from '../loginComponent/Controller';
 import AuthFooter from '../partials/AuthFooter';
 import RegisterCard from './containers/RegisterCard';
 
@@ -12,9 +12,10 @@ import RegisterCard from './containers/RegisterCard';
  */
 
 export default function Register() {
-    useRedirect();
+    // eslint-disable-next-line no-unused-vars
+    const [b, setB] = useState(getRandomImage());
     return (
-        <div className="LoginView">
+        <div className="LoginView" style={{ backgroundImage: `url(${b})` }}>
             <RegisterCard />
             <AuthFooter />
         </div>
