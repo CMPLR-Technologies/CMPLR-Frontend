@@ -1245,6 +1245,16 @@ $border-radius-primary: 3px;
                 font-size: 14px !important;
                 display: inline !important;
             }
+            img {
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                right: 5px;
+                object-fit: cover;
+            }
+            strong {
+                word-break: break-word;
+            }
         }
     }
 }
