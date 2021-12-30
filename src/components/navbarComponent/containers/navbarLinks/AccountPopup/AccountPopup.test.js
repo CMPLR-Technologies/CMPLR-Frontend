@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import { ThemeContextProvider } from '../../../../../contexts/themeContext/ThemeContext';
 import UserContextProvider from '../../../../../contexts/userContext/UserContext';
+import ChatContextProvider from '../../../../../contexts/chatContext/chatContext';
 import AccountPopupHeader from './Seperators/AccountPopupHeader';
 import AccountPopupActions from './Actions/AccountPopupActions';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -12,9 +13,11 @@ describe('test Shortcut Overlay', () => {
         render(
             <UserContextProvider>
                 <ThemeContextProvider>
-                    <Router>
-                        <AccountPopupHeader />
-                    </Router>
+                    <ChatContextProvider>
+                        <Router>
+                            <AccountPopupHeader />
+                        </Router>
+                    </ChatContextProvider>
                 </ThemeContextProvider>
             </UserContextProvider>
         );
@@ -27,9 +30,11 @@ describe('test Shortcut Overlay', () => {
         render(
             <UserContextProvider>
                 <ThemeContextProvider>
-                    <Router>
-                        <AccountPopupActions />
-                    </Router>
+                    <ChatContextProvider>
+                        <Router>
+                            <AccountPopupActions />
+                        </Router>
+                    </ChatContextProvider>
                 </ThemeContextProvider>
             </UserContextProvider>
         );
@@ -44,9 +49,11 @@ describe('test Shortcut Overlay', () => {
         render(
             <UserContextProvider>
                 <ThemeContextProvider>
-                    <Router>
-                        <AccountPopupActions />
-                    </Router>
+                    <ChatContextProvider>
+                        <Router>
+                            <AccountPopupActions />
+                        </Router>
+                    </ChatContextProvider>
                 </ThemeContextProvider>
             </UserContextProvider>
         );
