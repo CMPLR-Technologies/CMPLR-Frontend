@@ -18,7 +18,6 @@ NotesContent.propTypes = {
     setNotesView: PropTypes.func,
     postId: PropTypes.number
 };
-
 export default function NotesContent(props) {
     const theme = useContext(ThemeContext)[0];
     const user = JSON.parse(localStorage.getItem('user'));
@@ -32,6 +31,7 @@ export default function NotesContent(props) {
         setIsModalOpen,
         setNotesView
     } = props;
+    console.log('notes', notes);
     const [reply, setReply] = useState('');
     //TODO BlogIdentifier2
     const blogIdentifier = 'yahia.tumblr.com';
