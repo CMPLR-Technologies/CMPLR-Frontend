@@ -33,10 +33,14 @@ export default function ChatPopUp() {
     let {
         senderId,
         receiverId,
-        senderName,
-        receiverName,
+        // eslint-disable-next-line no-unused-vars
+        senderPhoto,
+        // eslint-disable-next-line no-unused-vars
+        senderShape,
         receiverPhoto,
-        receiverShape
+        receiverShape,
+        senderName,
+        receiverName
     } = currPopUpOpenChat || {};
     //let { fromId, toId } = props;
     const {
@@ -48,8 +52,8 @@ export default function ChatPopUp() {
         loadingFirstPage
     } = useInfiniteScrollingChat(
         `${apiBaseUrl}/messaging/conversation/${senderId}/${receiverId}?page=${pageNumber}`
-    );
-    useEffect(() => {
+    ,pageNumber);
+    useEffect(() => {    
         setConversationMsg(msgs);
     }, [msgs]);
     /* useEffect(() => {
@@ -183,7 +187,7 @@ export default function ChatPopUp() {
                 // eslint-disable-next-line camelcase
                 created_at: new Date()
             };
-            // not me 
+            // not me
             if (newMsg.from_blog_id !== senderId) {
                 //console.log('d5lrec');
 
@@ -222,9 +226,15 @@ export default function ChatPopUp() {
                     )}
 
                     <div className="names">
-                        <a href={`blog/view/${senderName}/${senderId}/posts`}>{senderName}</a>
+                        <a href={`blog/view/${senderName}/${senderId}/posts`}>
+                            {senderName}
+                        </a>
                         {' + '}
-                        <a href={`blog/view/${receiverName}/${receiverId}/posts`}>{receiverName}</a>
+                        <a
+                            href={`blog/view/${receiverName}/${receiverId}/posts`}
+                        >
+                            {receiverName}
+                        </a>
                     </div>
                     <div className="btns">
                         <button onClick={openOption}>

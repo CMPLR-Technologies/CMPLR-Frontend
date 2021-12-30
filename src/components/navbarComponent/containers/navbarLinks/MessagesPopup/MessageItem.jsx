@@ -16,7 +16,6 @@ export default function MessageItem(props) {
         message,
         photo,
         clickMessagePopup,
-        //mobile,
         shape,
         isRead,
         lastOneSend

@@ -42,14 +42,7 @@ export default function View() {
     `;
     return (
         <div className="chat-container">
-            {currPopUpOpenChat && (
-                <ChatPopUp
-                    sender="gaser"
-                    senderLink="#"
-                    receiver="omda"
-                    receiverLink="#"
-                />
-            )}
+            {currPopUpOpenChat && <ChatPopUp />}
             <ChatSideIcons />
             <style>{css}</style>
         </div>
