@@ -34,6 +34,7 @@ class BlogSettingsContextProvider extends Component {
         });
     };
     updateProperty = (property, value) => {
+        console.log(property, value);
         this.setState({ ...this.state, [property]: value });
     };
     render() {

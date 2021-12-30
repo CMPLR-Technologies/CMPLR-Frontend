@@ -24,7 +24,6 @@ export default function BlogSettingsCard() {
             alert(errMsg);
         }
     }, []);
-
     //useEffect(() => {}, []);
 
     return (
@@ -47,6 +46,5 @@ export default function BlogSettingsCard() {
             </div>
             <PagesList />
         </div>
-        
     );
 }
