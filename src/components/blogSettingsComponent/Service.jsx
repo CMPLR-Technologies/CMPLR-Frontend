@@ -153,6 +153,8 @@ export function updatePropertyInDb(
                             blogName: propertyValue
                         })
                     );
+
+              
                 }
             }
         })
