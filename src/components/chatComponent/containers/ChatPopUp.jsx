@@ -191,7 +191,7 @@ export default function ChatPopUp() {
                 created_at: new Date()
             };
             // not me
-            console.log(newMsg.from_blog_id,senderId);
+           // console.log(newMsg.from_blog_id,senderId);
 
             // eslint-disable-next-line eqeqeq
             if (newMsg.from_blog_id != senderId) {
