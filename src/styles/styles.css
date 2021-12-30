@@ -168,7 +168,7 @@
 }
 .author-avatar .sticky-avatar {
   position: sticky;
-  top: 10px;
+  top: 60px;
 }
 .author-avatar .sticky-avatar .avatar-img {
   border-radius: 3px;
@@ -3041,6 +3041,16 @@ input:checked + .slider:before {
   font-size: 14px !important;
   display: inline !important;
 }
+.notf-body .notf-content .post-ask-answer-content img {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: 5px;
+  object-fit: cover;
+}
+.notf-body .notf-content .post-ask-answer-content strong {
+  word-break: break-word;
+}
 
 .notifications-container {
   scrollbar-width: thin;
@@ -3885,15 +3895,8 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
     display: flex !important;
   }
 }
-.profile-settings .profile-side {
-  max-width: unset;
-  height: unset;
-  background-color: unset;
-}
-
 .ri-image-edit-fill {
   position: absolute;
-  z-index: 70000;
   fill: #dddddd;
   left: 50%;
   top: 50%;
@@ -4015,6 +4018,18 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
   text-align: center;
 }
 
+.profile-settings .profile-side {
+  max-width: unset;
+  height: unset;
+  background-color: #ff5757;
+}
+.profile-settings .profile-side-header-div {
+  z-index: 0 !important;
+}
+.profile-settings .profile-side-header-avatar {
+  z-index: 0 !important;
+}
+
 .profile-full-header {
   display: flex;
   flex-direction: column;
@@ -4027,6 +4042,10 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
   width: 100vw;
   background-color: white;
   position: relative;
+}
+.profile-full-header .container-grid {
+  width: 100%;
+  max-width: 600px;
 }
 .profile-full-header .post-wrapper {
   position: static;
@@ -4045,7 +4064,6 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
   padding: 0 20px;
 }
 .profile-full-header-content-side {
-  margin-left: 30px;
   width: 300px;
   font-weight: 700;
   font-size: 13px;
@@ -4391,6 +4409,7 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
   position: absolute;
   top: 0;
   display: block;
+  object-fit: cover;
 }
 .create1div .create_main .create_container ul {
   display: flex;
@@ -5579,6 +5598,7 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
   height: 37px;
   border-radius: 3px;
   margin-right: 11px;
+  object-fit: cover;
 }
 .dashboard-blogInfo a {
   text-decoration: none;
@@ -7817,6 +7837,7 @@ body .settings .container1 .subcontainer #section .sub-section-right .sub-sectio
 }
 .tag-img img {
   width: 100%;
+  height: 64px;
   border-radius: 3px;
 }
 

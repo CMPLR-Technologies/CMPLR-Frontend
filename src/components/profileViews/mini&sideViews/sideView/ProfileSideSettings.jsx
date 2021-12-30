@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import useFetch from '../../../../hooks/useFetch';
 import { apiBaseUrl } from '../../../../config.json';
 import { LinearProgress } from '@mui/material';
+import Badge from '@mui/material/Badge';
+import IconButton from '@mui/material/IconButton';
 import {
     ThemeContext,
     themes
@@ -20,6 +22,7 @@ const InputCam = styled('input')({
 export default function ProfileSideSettings(props) {
     const { setUser } = useContext(UserContext);
     const { setUserBlog } = useContext(ChatContext);
+    const [editProfile, setEditProfile] = useState(false);
     const {
         blogId
         /*blogName,*/
@@ -59,43 +62,30 @@ export default function ProfileSideSettings(props) {
                 <div className="profile-side">
                     <div className="profile-side-header">
                         <div className="profile-side-header-div">
-                            <label htmlFor="to-image-words">
-                                <InputCam
-                                    onChange={e =>
-                                        uploadSelectedImageProfile(
-                                            e.target.files[0],
-                                            user?.token,
-                                            setUser,
-                                            setUserBlog
-                                        )
-                                    }
-                                    accept="image/*"
-                                    data-element="insertImage"
-                                    id="to-image-words"
-                                    type="file"
-                                />
-                                <img
-                                    className="profile-side-header-div-bg"
-                                    src={body.blog.header_image}
-                                    alt="couldn't load bg"
-                                />
-                                <AiFillCamera className="ri-image-edit-fill" />
-                            </label>
-                        </div>
-                        <div>
                             <img
-                                className="profile-side-header-avatar"
-                                src={body.blog.avatar}
-                                alt="couldn't load avatar"
+                                className="profile-side-header-div-bg"
+                                src={body.blog.header_image}
+                                alt="couldn't load bg"
                             />
+                        </div>
+
+                        <div>
                             <label htmlFor="to-image-words">
+                                <img
+                                    className="profile-side-header-avatar"
+                                    src={user?.userData?.avatar}
+                                    alt="couldn't load avatar"
+                                    onMouseOver={() => setEditProfile(true)}
+                                    onMouseLeave={() => setEditProfile(false)}
+                                />
                                 <InputCam
                                     onChange={e =>
                                         uploadSelectedImageProfile(
                                             e.target.files[0],
-                                            user?.token,
+                                            user,
                                             setUser,
-                                            setUserBlog
+                                            setUserBlog,
+                                            'image'
                                         )
                                     }
                                     accept="image/*"
@@ -103,7 +93,17 @@ export default function ProfileSideSettings(props) {
                                     id="to-image-words"
                                     type="file"
                                 />
-                                <AiFillCamera className="ri-image-edit-fill" />
+                                <AiFillCamera
+                                    style={{
+                                        backgroundColor: 'white',
+                                        fill: 'black',
+                                        width: '20px',
+                                        height: '20px',
+                                        position: 'relative',
+                                        marginBottom: '-35px',
+                                        cursor: 'pointer'
+                                    }}
+                                />
                             </label>
                         </div>
                         <div className="profile-side-header-text">

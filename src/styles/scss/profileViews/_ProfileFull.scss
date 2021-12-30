@@ -12,6 +12,10 @@
         width: 100vw;
         background-color: white;
         position: relative;
+        .container-grid {
+            width: 100%;
+            max-width: 600px;
+        }
         .post-wrapper {
             position: static;
             width: 100%;
@@ -28,7 +32,6 @@
             width: 100%;
             padding: 0 20px;
             &-side {
-                margin-left: 30px;
                 width: 300px;
                 font-weight: 700;
                 font-size: 13px;

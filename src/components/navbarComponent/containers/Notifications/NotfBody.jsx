@@ -27,7 +27,8 @@ export default function NotfBody(props) {
         setUnseenNotf,
         setSideBlogId,
         setSideBlogName,
-        setShowSideBlog
+        setShowSideBlog,
+        activity
     } = props;
     const user = JSON.parse(localStorage.getItem('user'));
     const [following, setFollowing] = useState(
@@ -155,35 +156,37 @@ export default function NotfBody(props) {
                             ></span>
                         ) : null}
                     </div>
-                    <div className="type" data-testid="notf-body-type">
-                        {notf && notf['type'] === 'like' ? (
-                            <Link className="post-link" to="*">
-                                <PostIcon />
-                            </Link>
-                        ) : notf && notf['type'] === 'ask' ? (
-                            <Link className="post-link" to="*">
-                                <AskIcon />
-                            </Link>
-                        ) : notf && notf['type'] === 'follow' ? (
-                            <button
-                                onClick={() => {
-                                    followAccount(
-                                        user?.token,
-                                        notf && notf['from_blog_name'],
-                                        setFollowing
-                                    );
-                                }}
-                                className="follow-btn btn"
-                                data-testid="notf-body-follow-btn"
-                            >
-                                {following ? '' : 'Follow'}
-                            </button>
-                        ) : (
-                            <Link className="hi-link" to="*">
-                                <HiIcon />
-                            </Link>
-                        )}
-                    </div>
+                    {activity ? null : (
+                        <div className="type" data-testid="notf-body-type">
+                            {notf && notf['type'] === 'like' ? (
+                                <Link className="post-link" to="">
+                                    <PostIcon />
+                                </Link>
+                            ) : notf && notf['type'] === 'ask' ? (
+                                <Link className="post-link" to="">
+                                    <AskIcon />
+                                </Link>
+                            ) : notf && notf['type'] === 'follow' ? (
+                                <button
+                                    onClick={() => {
+                                        followAccount(
+                                            user?.token,
+                                            notf && notf['from_blog_name'],
+                                            setFollowing
+                                        );
+                                    }}
+                                    className="follow-btn btn"
+                                    data-testid="notf-body-follow-btn"
+                                >
+                                    {following ? '' : 'Follow'}
+                                </button>
+                            ) : (
+                                <Link className="hi-link" to="*">
+                                    <HiIcon />
+                                </Link>
+                            )}
+                        </div>
+                    )}
                 </div>
             </div>
         </>

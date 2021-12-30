@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ProfilsSideContainer from '../../../profileViews/mini&sideViews/sideView/ProfilsSideContainer';
 import PropTypes from 'prop-types';
-import { unfollowAccount } from '../../../followingComponent/Service';
-import { followAccountWithResponse } from '../../../followingComponent/Service';
+import { follow, unFollow, unBlock, block } from '../../Controller';
 
 export default function Navbar2MainViewAuthLinks(props) {
     const [openGetNot, setOpenGetNot] = useState(false);
@@ -23,30 +22,6 @@ export default function Navbar2MainViewAuthLinks(props) {
     };
     const toggleMoreOption = () => {
         setOpenMoreOption(!openMoreOption);
-    };
-    const block = () => {};
-    const unFollow = () => {
-        setIsFollowed(
-            unfollowAccount(
-                JSON.parse(localStorage.getItem('user'))?.token,
-                blogName,
-                setActionRespMessage,
-                true
-            )
-        );
-        //isFollowed = false
-    };
-    const unBlock = () => {
-        //isBlocked = false
-    };
-    const follow = () => {
-        setIsFollowed(
-            !followAccountWithResponse(
-                JSON.parse(localStorage.getItem('user'))?.token,
-                blogName,
-                setActionRespMessage
-            )
-        );
     };
 
     const [mobileView, setMobileView] = useState(false);
@@ -93,20 +68,46 @@ export default function Navbar2MainViewAuthLinks(props) {
                 {!isSelf && openMoreOption && (
                     <>
                         {followed ? (
-                            <li className="link-icon more" onClick={unFollow}>
+                            <li
+                                className="link-icon more"
+                                onClick={() =>
+                                    unFollow(
+                                        setIsFollowed,
+                                        blogName,
+                                        setActionRespMessage
+                                    )
+                                }
+                            >
                                 <span>Unfollow</span>
                             </li>
                         ) : (
-                            <li className="link-icon more" onClick={follow}>
+                            <li
+                                className="link-icon more"
+                                onClick={() =>
+                                    follow(
+                                        setIsFollowed,
+                                        blogName,
+                                        setActionRespMessage
+                                    )
+                                }
+                            >
                                 <span>Follow</span>
                             </li>
                         )}
                         {blocked ? (
-                            <li className="link-icon more" onClick={unBlock}>
+                            <li
+                                className="link-icon more"
+                                onClick={() => unBlock(blogName, setBlocked)}
+                            >
                                 <span>Unblock</span>
                             </li>
                         ) : (
-                            <li className="link-icon more" onClick={block}>
+                            <li
+                                className="link-icon more"
+                                onClick={() =>
+                                    block(blogName, setBlocked, setIsFollowed)
+                                }
+                            >
                                 <span>Block</span>
                             </li>
                         )}

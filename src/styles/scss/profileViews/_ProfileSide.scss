@@ -6,17 +6,9 @@
         display: flex !important;
     }
 }
-.profile-settings {
-    .profile-side {
-        max-width: unset;
-        height: unset;
-        background-color: unset;
-    }
-}
 
 .ri-image-edit-fill {
     position: absolute;
-    z-index: 70000;
     fill: #dddddd;
     left: 50%;
     top: 50%;
@@ -140,6 +132,22 @@
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
                 text-align: center;
+            }
+        }
+    }
+}
+
+.profile-settings {
+    .profile-side {
+        max-width: unset;
+        height: unset;
+        background-color: #ff5757;
+        &-header {
+            &-div {
+                z-index: 0 !important;
+            }
+            &-avatar {
+                z-index: 0 !important;
             }
         }
     }

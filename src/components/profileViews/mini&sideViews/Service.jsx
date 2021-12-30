@@ -9,19 +9,17 @@ export const uploadSelectedImageProfile = (
 ) => {
     let formData = new FormData();
     formData.append('image', file);
-    console.log('called with img ', formData);
     Axios({
         method: 'POST',
         url: `${apiBaseUrl}/image_upload`,
         headers: {
             'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${user}`
+            Authorization: `Bearer ${user?.token}`
         },
         data: formData
     })
         .then(res => {
             const avatarLink = res?.data?.response?.url;
-            console.log('image uploaded link ', avatarLink);
             updateProfile(avatarLink, user, setUser, setUserBlog);
         })
         .catch(() => {});
@@ -29,11 +27,11 @@ export const uploadSelectedImageProfile = (
 
 const updateProfile = (avatarLink, user, setUser, setUserBlog) => {
     Axios({
-        method: 'POST',
-        url: `${apiBaseUrl}/blogs/${user?.blogName}/settings/save`,
+        method: 'PUT',
+        url: `${apiBaseUrl}/blog/${user?.blogName}/settings/save`,
         headers: {
             'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${user}`
+            Authorization: `Bearer ${user?.token}`
         },
         data: { avatar: avatarLink }
     })
