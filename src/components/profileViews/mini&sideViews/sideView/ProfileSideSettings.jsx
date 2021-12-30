@@ -19,6 +19,14 @@ const InputCam = styled('input')({
     display: 'none'
 });
 
+/**
+ * @function ProfileSideSettings
+ * @description Profile view used in Blog settings, supports changing BG, avatar and routes to main blog view
+ * @property {string} blogID
+ * @property {string} blogName
+ * @returns {Component}
+ */
+
 export default function ProfileSideSettings(props) {
     const { setUser } = useContext(UserContext);
     const { setUserBlog } = useContext(ChatContext);

@@ -3,6 +3,14 @@ import ProfileMiniHoverInnerWrapper from './miniView/ProfileMiniHoverInnerWrappe
 import PropTypes from 'prop-types';
 import ProfilsSideContainer from './sideView/ProfilsSideContainer';
 
+/**
+ * @function ProfileMiniHoverWrapper
+ * @description Wrapper around any ref to blog to show mini view on hover and side view on click
+ * @property {string} blogID
+ * @property {string} blogName
+ * @returns {Component}
+ */
+
 export default function ProfileMiniHoverWrapper(props) {
     const { blogID, blogName, children } = props;
     const [showSideBlog, setShowSideBlog] = useState(false);

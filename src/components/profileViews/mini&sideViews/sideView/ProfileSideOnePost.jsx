@@ -5,7 +5,17 @@ import useFetch from '../../../../hooks/useFetch';
 import { LinearProgress } from '@mui/material';
 import PostComponent from '../../../partials/postComponent/containers/PostComponent';
 
-export default function ProfileSide(props) {
+/**
+ * @function ProfileSideOnePost
+ * @description Loads a certain post of a certain blog (using sidePostID)
+ * @property {string} blogID
+ * @property {string} blogName
+ * @property {string} sidePostID - is '' when showing all posts (default behavior), else on click on image in mini hover view: is set to postID of the post of image
+ * @property {bool} noTheme - deactivates theme
+ * @returns {Component}
+ */
+
+export default function ProfileSideOnePost(props) {
     const { blogName, sidePostID, noTheme } = props;
     const {
         error,
@@ -35,9 +45,9 @@ export default function ProfileSide(props) {
     );
 }
 
-ProfileSide.propTypes = {
+ProfileSideOnePost.propTypes = {
     blogID: PropTypes.string,
-    blogName: PropTypes.string.isRequired,
+    blogName: PropTypes.string,
     sidePostID: PropTypes.string,
     noTheme: PropTypes.bool
 };

@@ -5,6 +5,14 @@ import useFetch from '../../../../../hooks/useFetch';
 import { LinearProgress } from '@mui/material';
 import InProfileMiniView from './InProfileMiniView';
 
+/**
+ * @function ProfileFollowing
+ * @description
+ * @property {string} blogID
+ * @property {string} blogName
+ * @returns {Component}
+ */
+
 export default function ProfileFollowing(props) {
     const { blogName } = props;
     const response = useFetch(`${apiBaseUrl}/profile/following/${blogName}`);

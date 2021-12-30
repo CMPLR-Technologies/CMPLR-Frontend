@@ -5,12 +5,22 @@ import ProfileSide from './ProfileSide';
 import { apiBaseUrl } from '../../../../config.json';
 import useFetch from '../../../../hooks/useFetch';
 
+/**
+ * @function ProfilsSideContainer
+ * @description Wrapper around any ref to blog to show mini view on hover and side view on click
+ * @property {string} blogID
+ * @property {string} blogName
+ * @property {function} setShowSideBlog
+ * @property {function} setSidePostID
+ * @property {string} sidePostID is '' when showing all posts (default behavior), else on click on image in mini hover view: is set to postID of the post of image
+ * @returns {Component}
+ */
+
 export default function ProfilsSideContainer(props) {
     const { blogID, blogName, setShowSideBlog, setSidePostID, sidePostID } =
         props;
     const response = useFetch(`${apiBaseUrl}/MiniProfileView/${blogID}`);
     const { data, isPending } = response;
-    console.log(data);
     return (
         <div
             className="overlay-container"

@@ -4,6 +4,14 @@ import { apiBaseUrl } from '../../../../config.json';
 import useInfiniteScrolling from '../../../../hooks/useInfiniteScrolling';
 import VerticalPostsView from '../../../partials/VerticalPostsView';
 
+/**
+ * @function ProfileSideAllPosts
+ * @description Loads all posts of a certain blog
+ * @property {string} blogName
+ * @property {bool} noTheme
+ * @returns {Component}
+ */
+
 export default function ProfileSideAllPosts(props) {
     const { blogName, noTheme } = props;
     const [pageNumber, setPageNumber] = useState(1);

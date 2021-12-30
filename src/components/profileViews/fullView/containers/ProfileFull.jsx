@@ -9,6 +9,15 @@ import ProfileFollowing from './content/ProfileFollowing';
 import ProfileLikes from './content/ProfileLikes';
 import Navbar2MainView from '../../../navbar2Files/navbar2MainView/Navbar2MainView';
 
+/**
+ * @function ProfileFull
+ * @description Full Blog View main Component
+ * @property {string} blogID
+ * @property {string} blogName
+ * @property {string} content - a string gotten from url params, used to specify the type of content in Blog view (likes, following, posts ..etc)
+ * @returns {Component}
+ */
+
 export default function ProfileFull(props) {
     const { postID } = useParams();
     const { blogName, blogID, content } = props;

@@ -4,6 +4,13 @@ import { apiBaseUrl } from '../../../../../config.json';
 import useInfiniteScrolling from '../../../../../hooks/useInfiniteScrolling';
 import GridPostsView from '../../../../partials/GridPostsView';
 
+/**
+ * @function ProfileLikes
+ * @description
+ * @property {string} blogName
+ * @returns {Component}
+ */
+
 export default function ProfileLikes(props) {
     const { blogName } = props;
     const [pageNumber, setPageNumber] = useState(1);
@@ -36,6 +43,5 @@ export default function ProfileLikes(props) {
 }
 
 ProfileLikes.propTypes = {
-    blogName: PropTypes.string.isRequired,
-    blogID: PropTypes.string
+    blogName: PropTypes.string.isRequired
 };

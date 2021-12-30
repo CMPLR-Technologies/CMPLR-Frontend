@@ -9,6 +9,16 @@ import { changeMobileView } from '../../Controller';
 import { LinearProgress } from '@mui/material';
 import AskComponent from '../../../../askComponent/View';
 
+/**
+ * @function ProfileContent
+ * @description
+ * @property {string} blogID
+ * @property {string} blogName
+ * @property {string} postID - is '' when showing all posts (default behavior), else on click on image in mini hover view: is set to postID of the post of image
+ * @property {string} content - a string gotten from url params, used to specify the type of content in Blog view (likes, following, posts ..etc)
+ * @returns {Component}
+ */
+
 export default function ProfileContent(props) {
     const { blogName, blogID, content, postID } = props;
     const [mobile, setMobile] = useState(false);

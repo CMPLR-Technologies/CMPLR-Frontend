@@ -1,6 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * @function ProfileMiniBody
+ * @description A component that renders the upper part of the Profile Mini View (without images)
+ * @property {function} setShowSideBlog
+ * @property {function} setSidePostID
+ * @property {object} body - has all needed data for rendering the page
+ * @returns {Component}
+ */
+
 export default function ProfileMiniBody(props) {
     const {
         avatar,

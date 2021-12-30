@@ -1,5 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+/**
+ * @function ProfileMiniImages
+ * @description A component that renders the lower part of the Profile Mini View (images)
+ * @property {function} setShowSideBlog
+ * @property {function} setSidePostID
+ * @property {array} imgs - array of 3 imgs to be shown in the lower view
+ * @returns {Component}
+ */
+
 export default function ProfileMiniImages(props) {
     const { imgs, setShowSideBlog, setSidePostID } = props;
     return (

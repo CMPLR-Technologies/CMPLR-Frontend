@@ -4,6 +4,16 @@ import { Popover } from '@mui/material';
 import ProfileMini from './ProfileMini';
 import PropTypes from 'prop-types';
 
+/**
+ * @function ProfileMiniHoverInnerWrapper
+ * @description
+ * @property {string} blogID
+ * @property {string} blogName
+ * @property {function} setShowSideBlog
+ * @property {function} setSidePostID
+ * @returns {Component}
+ */
+
 export default function ProfileMiniHoverInnerWrapper(props) {
     const { blogID, blogName, children, setShowSideBlog, setSidePostID } =
         props;

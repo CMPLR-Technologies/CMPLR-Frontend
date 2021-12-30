@@ -2,6 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
+/**
+ * @function InProfileMiniView
+ * @description similar to MiniBlog view (hover), used in the following tab
+ * @property {object} body - has all needed data for rendering the miniView
+ * @returns {Component}
+ */
+
 export default function InProfileMiniView(props) {
     const {
         avatar,
