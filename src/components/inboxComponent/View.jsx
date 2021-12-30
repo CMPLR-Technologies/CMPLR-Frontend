@@ -1,11 +1,14 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { apiBaseUrl } from '../../config.json';
 import PostComponent from '../partials/postComponent/containers/PostComponent';
+import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 
 export default function Inbox() {
     const user = JSON.parse(localStorage.getItem('user'));
     const [messages, setMessages] = useState([]);
+    let theme = useContext(ThemeContext)[0];
+
     useEffect(() => {
         axios({
             method: 'get',
@@ -27,6 +30,9 @@ export default function Inbox() {
         display:flex;
         flex-direction:column;
         margin-top:80px;
+    }
+    .ask-container-inbox-page *{
+        color:rgb(${themes[theme].black}) !important;
     }
     `;
     return (

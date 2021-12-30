@@ -22,7 +22,8 @@ import {
     handleUploadImage,
     handleCreateLink,
     handleColor,
-    handleUploadVideo
+    handleUploadVideo,
+    shortcutController
 } from './Controller';
 import Input from '@mui/material/Input';
 import PostComponent from '../partials/postComponent/containers/PostComponent';
@@ -80,9 +81,13 @@ export default function HandMadeTextEditor(props) {
                     padding="20px"
                     left="-20px"
                     post={post}
+                    blogPage={true}
                 />
             )}
-            <div className="main-richeditor">
+            <div
+                className="main-richeditor"
+                onKeyDown={e => shortcutController(e, setContent)}
+            >
                 <div
                     className="content"
                     contentEditable="true"
