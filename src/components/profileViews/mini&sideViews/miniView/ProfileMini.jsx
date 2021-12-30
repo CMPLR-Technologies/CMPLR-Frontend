@@ -8,7 +8,6 @@ import useFetch from '../../../../hooks/useFetch';
 
 /**
  * @function ProfileMini
- * @description
  * @property {string} blogID
  * @property {function} setShowSideBlog
  * @property {function} setSidePostID

@@ -26,12 +26,19 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react';
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect, useContext } from 'react';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import '../../../../../styles/styles.css';
 import MessagesPopUp from '../MessagesPopup/MessagesPopUp';
 import AccountPopup from '../AccountPopup/AccountPopup';
 import { Link, NavLink } from 'react-router-dom';
+import UnReadMsg from './UnReadMsg';
+import { UserContext } from '../../../../../contexts/userContext/UserContext';
+import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
+import Notifications from '../../Notifications/Notifications';
+import Badge from './Badge';
+import { getNotifications } from '../../../Service';
+import ProfilsSideContainer from '../../../../profileViews/mini&amp;sideViews/sideView/ProfilsSideContainer';
 
 /**
  * Navbar AuthLinks: includes all links dashboard and inbox and expolre ...
@@ -46,20 +53,37 @@ import { Link, NavLink } from 'react-router-dom';
  */
 export default function AuthLinks() {
     //dropdown lists
+    const { user } = useContext(UserContext);
     const [openMessagePopup, setOpenMessagePopup] = useState(false);
     const [openNotificationsPopup, setOpenNotificationsPopup] = useState(false);
     const [openAccountPopup, setOpenAccountPopup] = useState(false);
+    const [notfArray, setNotfArray] = useState(null);
 
     //const [openPopup, setOpenPopup] = useState(false);
+
+    // when the navbar run go loadChat and count the unreadMsgs
+    let { getUnReadMsgsCount } = useContext(ChatContext);
+    const [unReadMsgs, setUnReadMsgs] = useState(0);
+    const [unseenNotf, setUnseenNotf] = useState(0);
+    const [showSideBlog, setShowSideBlog] = useState(false);
+    const [sidePostID, setSidePostID] = useState('');
+    const [sideBlogName, setSideBlogName] = useState('');
+    const [sideBlogId, setSideBlogId] = useState(0);
+    useEffect(() => {
+        // and show will not change to true
+        getUnReadMsgsCount(setUnReadMsgs);
+    }, []);
+    useEffect(() => {
+        // and show will not change to true
+        getUnReadMsgsCount(setUnReadMsgs);
+    }, [user, user?.userData]);
 
     //close dropdown message list
     const closeMessagePopup = () => {
         setOpenMessagePopup(false);
-        //console.log("colse");
     };
     const closeAccountPopup = () => {
         setOpenAccountPopup(false);
-        //console.log("colse");
     };
     const clickMessagePopup = () => {
         // if i open it
@@ -76,6 +100,12 @@ export default function AuthLinks() {
             //close other popup
             setOpenMessagePopup(false);
             setOpenAccountPopup(false);
+            getNotifications(
+                user?.blogName,
+                user?.token,
+                setNotfArray,
+                setUnseenNotf
+            );
         }
         setOpenNotificationsPopup(!openNotificationsPopup);
     };
@@ -89,8 +119,17 @@ export default function AuthLinks() {
         setOpenAccountPopup(!openAccountPopup);
     };
 
+    useEffect(() => {
+        user?.blogName !== undefined &amp;&amp;
+            getNotifications(
+                user?.blogName,
+                user?.token,
+                setNotfArray,
+                setUnseenNotf
+            );
+    }, []);
+
     /*  const clickOpenPopup = () => {
-    console.log("closeg");
     setOpenPopup(!openPopup);
   };*/
     return (
@@ -108,7 +147,7 @@ export default function AuthLinks() {
             &lt;li className="link-icon">
                 &lt;NavLink
                     className={navData => (navData.isActive ? 'active' : '')}
-                    to="/recommended-for-you"
+                    to="/explore/recommended-for-you"
                 >
                     &lt;i className="far fa-compass">&lt;/i>
                 &lt;/NavLink>
@@ -132,19 +171,51 @@ export default function AuthLinks() {
                         }`}
                     >
                         &lt;i className="fas fa-comment-dots">&lt;/i>
+                        {unReadMsgs !== 0 &amp;&amp; (
+                            &lt;UnReadMsg unReadMsgs={unReadMsgs} />
+                        )}
                     &lt;/li>
-                    {openMessagePopup &amp;&amp; &lt;MessagesPopUp clickMessagePopup={clickMessagePopup} />}
+                    {openMessagePopup &amp;&amp; (
+                        &lt;MessagesPopUp clickMessagePopup={clickMessagePopup} />
+                    )}
                 &lt;/div>
             &lt;/ClickAwayListener>
-
-            &lt;li
-                onClick={clickNotificationsPopup}
-                className={`link-icon  ${
-                    openNotificationsPopup ? 'active' : ''
-                }`}
+            &lt;ClickAwayListener
+                onClickAway={() => setOpenNotificationsPopup(false)}
             >
-                &lt;i className="fas fa-bolt">&lt;/i>
-            &lt;/li>
+                &lt;div className="notifications-btn">
+                    {showSideBlog &amp;&amp; (
+                        &lt;ProfilsSideContainer
+                            blogID={sideBlogId}
+                            blogName={sideBlogName}
+                            setShowSideBlog={setShowSideBlog}
+                            sidePostID={sidePostID}
+                            setSidePostID={setSidePostID}
+                        />
+                    )}
+                    &lt;li
+                        onClick={clickNotificationsPopup}
+                        className={`link-icon  ${
+                            openNotificationsPopup ? 'active' : ''
+                        }`}
+                    >
+                        &lt;i className="fas fa-bolt">&lt;/i>
+                    &lt;/li>
+                    {unseenNotf !== 0 &amp;&amp; &lt;Badge num={unseenNotf} />}
+                    {openNotificationsPopup &amp;&amp; (
+                        &lt;Notifications
+                            userBlogName={user?.blogName}
+                            userAvatar={user?.userData?.avatar}
+                            notfArray={notfArray &amp;&amp; notfArray}
+                            setNotfArray={setNotfArray}
+                            setUnseenNotf={setUnseenNotf}
+                            setSideBlogId={setSideBlogId}
+                            setSideBlogName={setSideBlogName}
+                            setShowSideBlog={setShowSideBlog}
+                        />
+                    )}
+                &lt;/div>
+            &lt;/ClickAwayListener>
             &lt;ClickAwayListener onClickAway={closeAccountPopup}>
                 &lt;div className="link-popup">
                     &lt;li
@@ -158,11 +229,13 @@ export default function AuthLinks() {
                     {openAccountPopup &amp;&amp; &lt;AccountPopup />}
                 &lt;/div>
             &lt;/ClickAwayListener>
+
             &lt;li className="link-icon pen">
                 &lt;Link to="/new">
                     &lt;i className="fas fa-pen">&lt;/i>
                 &lt;/Link>
             &lt;/li>
+
             {/* &lt;Route
         path="/new"
         children={({ match }) => (
@@ -182,21 +255,13 @@ export default function AuthLinks() {
 </div>
 
 <nav>
-<<<<<<< HEAD
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#ThemeToggle">ThemeToggle</a></li></ul>
-=======
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
->>>>>>> dev
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#InProfileMiniView">InProfileMiniView</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#ProfileContent">ProfileContent</a></li><li><a href="global.html#ProfileFollowing">ProfileFollowing</a></li><li><a href="global.html#ProfileFull">ProfileFull</a></li><li><a href="global.html#ProfileLikes">ProfileLikes</a></li><li><a href="global.html#ProfileMini">ProfileMini</a></li><li><a href="global.html#ProfileMiniBody">ProfileMiniBody</a></li><li><a href="global.html#ProfileMiniHoverInnerWrapper">ProfileMiniHoverInnerWrapper</a></li><li><a href="global.html#ProfileMiniHoverWrapper">ProfileMiniHoverWrapper</a></li><li><a href="global.html#ProfileMiniImages">ProfileMiniImages</a></li><li><a href="global.html#ProfileSide">ProfileSide</a></li><li><a href="global.html#ProfileSideAllPosts">ProfileSideAllPosts</a></li><li><a href="global.html#ProfileSideOnePost">ProfileSideOnePost</a></li><li><a href="global.html#ProfileSideSettings">ProfileSideSettings</a></li><li><a href="global.html#ProfilsSideContainer">ProfilsSideContainer</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-<<<<<<< HEAD
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 09 2021 15:17:05 GMT+0200 (Eastern European Standard Time)
-=======
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 10 2021 22:55:07 GMT+0200 (Eastern European Standard Time)
->>>>>>> dev
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 30 2021 20:05:11 GMT+0200 (Eastern European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

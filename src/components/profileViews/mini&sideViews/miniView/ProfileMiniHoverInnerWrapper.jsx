@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 
 /**
  * @function ProfileMiniHoverInnerWrapper
- * @description
  * @property {string} blogID
  * @property {string} blogName
  * @property {function} setShowSideBlog

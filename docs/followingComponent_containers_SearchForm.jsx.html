@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: followingComponent/containers/SearchForm.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: followingComponent/containers/SearchForm.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import PropTypes from 'prop-types';
+
+/**
+ * Search Bar OF Following Page Component
+ * @function SearchForm
+ * @description this is the search bar of the following page
+ * @returns {Component} the view directly
+ */
+
+export default function SearchForm(props) {
+    const { search, setSearch, handleSearchFollow } = props;
+    return (
+        &lt;form className="Il4T7">
+            &lt;input
+                className="dyc2r"
+                type="text"
+                autoComplete="off"
+                placeholder="Enter a username, URL, or email address to follow"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+            />
+            &lt;button
+                className="TRX6J"
+                onClick={e => {
+                    e.preventDefault();
+                    handleSearchFollow();
+                }}
+                disabled={search?.length &lt; 2}
+                style={{
+                    backgroundColor:
+                        search?.length &lt; 2 ? 'transparent' : '#00B8FF',
+                    border: search?.length &lt; 2 ? '1px solid #405368' : 'none'
+                }}
+                dataTestid="search_btn_following"
+            >
+                &lt;span
+                    style={{
+                        color: search?.length &lt; 2 ? '#a6afb0' : '#001935'
+                    }}
+                    className="Tb7Ey"
+                >
+                    Follow
+                &lt;/span>
+            &lt;/button>
+        &lt;/form>
+    );
+}
+
+SearchForm.propTypes = {
+    search: PropTypes.string.isRequired,
+    setSearch: PropTypes.func.isRequired,
+    handleSearchFollow: PropTypes.func.isRequired
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#InProfileMiniView">InProfileMiniView</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#ProfileContent">ProfileContent</a></li><li><a href="global.html#ProfileFollowing">ProfileFollowing</a></li><li><a href="global.html#ProfileFull">ProfileFull</a></li><li><a href="global.html#ProfileLikes">ProfileLikes</a></li><li><a href="global.html#ProfileMini">ProfileMini</a></li><li><a href="global.html#ProfileMiniBody">ProfileMiniBody</a></li><li><a href="global.html#ProfileMiniHoverInnerWrapper">ProfileMiniHoverInnerWrapper</a></li><li><a href="global.html#ProfileMiniHoverWrapper">ProfileMiniHoverWrapper</a></li><li><a href="global.html#ProfileMiniImages">ProfileMiniImages</a></li><li><a href="global.html#ProfileSide">ProfileSide</a></li><li><a href="global.html#ProfileSideAllPosts">ProfileSideAllPosts</a></li><li><a href="global.html#ProfileSideOnePost">ProfileSideOnePost</a></li><li><a href="global.html#ProfileSideSettings">ProfileSideSettings</a></li><li><a href="global.html#ProfilsSideContainer">ProfilsSideContainer</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 30 2021 20:05:11 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

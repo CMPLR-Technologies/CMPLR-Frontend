@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: profileViews/fullView/containers/ProfileFull.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: profileViews/fullView/containers/ProfileFull.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { NavLink, useParams } from 'react-router-dom';
+import { apiBaseUrl } from '../../../../config.json';
+import useFetch from '../../../../hooks/useFetch';
+import { LinearProgress } from '@mui/material';
+import ProfileContent from './content/ProfileContent';
+import ProfileFollowing from './content/ProfileFollowing';
+import ProfileLikes from './content/ProfileLikes';
+import Navbar2MainView from '../../../navbar2Files/navbar2MainView/Navbar2MainView';
+
+/**
+ * @function ProfileFull
+ * @description Full Blog View main Component
+ * @property {string} blogID
+ * @property {string} blogName
+ * @property {string} content - a string gotten from url params, used to specify the type of content in Blog view (likes, following, posts ..etc)
+ * @returns {Component}
+ */
+
+export default function ProfileFull(props) {
+    const { postID } = useParams();
+    const { blogName, blogID, content } = props;
+    const [scrollTop, setScrollTop] = useState(0);
+    const headerScrollAnimation = el => {
+        setScrollTop(el.target.scrollTop);
+    };
+    //const isFollowed = false;
+
+    const response = useFetch(`${apiBaseUrl}/MiniProfileView/${blogID}`);
+    const navArray = [
+        {
+            title: 'POSTS',
+            link: 'posts'
+        },
+        {
+            title: 'LIKES',
+            link: 'likes'
+        },
+        {
+            title: 'FOLLOWING',
+            link: 'following'
+        },
+        {
+            title: 'ASK ME ANYTHING',
+            link: 'ask'
+        }
+    ];
+    const { error, data, isPending } = response;
+    const css = `
+    .post-container{
+        box-shadow: 0 0 0 1px rgba(0,0,0,.07);
+    }
+    .profile-full-header-avatar {
+        opacity: ${Math.min(Math.max((150 - scrollTop) / 150, 0), 1)};
+        ${scrollTop > 108 &amp;&amp; 'display: none'}            
+    }
+    .profile-full-header-div-bg{
+        filter: blur(${Math.min(scrollTop, 300) / 40}px);
+        object-position: 0 ${Math.min(scrollTop / 2, 150)}px;
+    }
+`;
+
+    // const body = {
+    //     username: 'huh',
+    //     avatar: 'https://pbs.twimg.com/profile_images/1026496068555612160/Klg8BS8p_400x400.jpg',
+    //     bg: 'https://i.ytimg.com/vi/6Vhp65bgKOo/maxresdefault.jpg',
+    //     title: 'Heey man',
+    //     description: 'wa wafbuaw uwbwakf'
+    // };
+
+    return (
+        &lt;div>
+            {error &amp;&amp; (
+                &lt;div className="profile-full-header">
+                    &lt;br />
+                    &lt;br />
+                    &lt;br />
+                    &lt;div className="no-data-error">{"Couldn't load"}&lt;/div>
+                &lt;/div>
+            )}
+            {isPending &amp;&amp; &lt;LinearProgress />}
+            {data &amp;&amp; (
+                &lt;div
+                    className="profile-full-header"
+                    onScroll={headerScrollAnimation}
+                >
+                    &lt;Navbar2MainView
+                        blogName={blogName}
+                        blogID={blogID}
+                        isFollowed={data?.blog.is_followed}
+                        isBlocked={data?.blog.is_blocked}
+                    />
+                    &lt;NavLink
+                        to={`/blog/view/${blogName}/${blogID}/posts`}
+                        className="profile-full-header-div"
+                    >
+                        &lt;img
+                            className="profile-full-header-div-bg"
+                            src={data.blog.header_image}
+                            alt="couldn't load bg"
+                        />
+                    &lt;/NavLink>
+                    &lt;NavLink to={`/blog/view/${blogName}/${blogID}/posts`}>
+                        &lt;img
+                            className="profile-full-header-avatar"
+                            src={data.blog.avatar}
+                            alt="couldn't load avatar"
+                        />
+                    &lt;/NavLink>
+
+                    &lt;div className="profile-full-header-text">
+                        &lt;NavLink
+                            className="profile-full-header-text-link"
+                            to={`/blog/view/${blogName}/${blogID}/posts`}
+                        >
+                            &lt;div className="profile-full-header-text-title">
+                                {data.blog.title === 'untitled'
+                                    ? blogName
+                                    : data.blog.title}
+                            &lt;/div>
+                        &lt;/NavLink>
+                        &lt;div className="profile-full-header-text-desc">
+                            {data.blog.desciption}
+                        &lt;/div>
+                    &lt;/div>
+                    &lt;div className="profile-full-header-nav">
+                        {navArray.map(
+                            (category, index) =>
+                                (data.blog.is_primary ||
+                                    category.link === 'posts' ||
+                                    category.link === 'ask') &amp;&amp; (
+                                    &lt;NavLink
+                                        className={`profile-full-header-nav-link ${
+                                            category.link === content &amp;&amp;
+                                            'underline'
+                                        }`}
+                                        to={`/blog/view/${blogName}/${blogID}/${category.link}`}
+                                        key={index}
+                                    >
+                                        {category.title}
+                                    &lt;/NavLink>
+                                )
+                        )}
+                    &lt;/div>
+                    {(content === 'posts' || content === 'ask') &amp;&amp; (
+                        &lt;ProfileContent
+                            blogName={blogName}
+                            blogID={blogID}
+                            content={content}
+                            postID={postID}
+                        />
+                    )}
+                    {content === 'following' &amp;&amp;
+                        (data.blog.is_primary ? (
+                            &lt;ProfileFollowing
+                                blogName={blogName}
+                                blogID={blogID}
+                            />
+                        ) : (
+                            &lt;div className="no-data-error">
+                                Not a primary Blog
+                            &lt;/div>
+                        ))}
+                    {content === 'likes' &amp;&amp;
+                        (data.blog.is_primary ? (
+                            &lt;ProfileLikes blogName={blogName} blogID={blogID} />
+                        ) : (
+                            &lt;div className="no-data-error">
+                                Not a primary Blog
+                            &lt;/div>
+                        ))}
+                &lt;/div>
+            )}
+            &lt;style>{css}&lt;/style>
+        &lt;/div>
+    );
+}
+
+ProfileFull.propTypes = {
+    blogName: PropTypes.string.isRequired,
+    blogID: PropTypes.string.isRequired,
+    content: PropTypes.string
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#InProfileMiniView">InProfileMiniView</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#ProfileContent">ProfileContent</a></li><li><a href="global.html#ProfileFollowing">ProfileFollowing</a></li><li><a href="global.html#ProfileFull">ProfileFull</a></li><li><a href="global.html#ProfileLikes">ProfileLikes</a></li><li><a href="global.html#ProfileMini">ProfileMini</a></li><li><a href="global.html#ProfileMiniBody">ProfileMiniBody</a></li><li><a href="global.html#ProfileMiniHoverInnerWrapper">ProfileMiniHoverInnerWrapper</a></li><li><a href="global.html#ProfileMiniHoverWrapper">ProfileMiniHoverWrapper</a></li><li><a href="global.html#ProfileMiniImages">ProfileMiniImages</a></li><li><a href="global.html#ProfileSide">ProfileSide</a></li><li><a href="global.html#ProfileSideAllPosts">ProfileSideAllPosts</a></li><li><a href="global.html#ProfileSideOnePost">ProfileSideOnePost</a></li><li><a href="global.html#ProfileSideSettings">ProfileSideSettings</a></li><li><a href="global.html#ProfilsSideContainer">ProfilsSideContainer</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 30 2021 20:05:11 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

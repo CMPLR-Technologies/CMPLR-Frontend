@@ -7,7 +7,6 @@ import InProfileMiniView from './InProfileMiniView';
 
 /**
  * @function ProfileFollowing
- * @description
  * @property {string} blogID
  * @property {string} blogName
  * @returns {Component}

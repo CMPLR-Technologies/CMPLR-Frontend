@@ -11,13 +11,12 @@ import Navbar2SideView from '../../../navbar2Files/navbar2SideView/Navbar2SideVi
 
 /**
  * @function ProfileSide
- * @description
  * @property {string} blogID
  * @property {string} blogName
  * @property {function} setShowSideBlog
  * @property {function} setSidePostID
  * @property {string} sidePostID - is '' when showing all posts (default behavior), else on click on image in mini hover view: is set to postID of the post of image
- * @property {object} body - has all data for rendering the page
+ * @property {object} body - has all needed data for rendering the page
  * @returns {Component}
  */
 

@@ -11,7 +11,6 @@ import AskComponent from '../../../../askComponent/View';
 
 /**
  * @function ProfileContent
- * @description
  * @property {string} blogID
  * @property {string} blogName
  * @property {string} postID - is '' when showing all posts (default behavior), else on click on image in mini hover view: is set to postID of the post of image

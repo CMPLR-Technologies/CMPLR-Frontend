@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: profileViews/mini&sideViews/sideView/ProfileSide.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: profileViews/mini&sideViews/sideView/ProfileSide.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
+import {
+    ThemeContext,
+    themes
+} from '../../../../contexts/themeContext/ThemeContext';
+import ProfileSideOnePost from './ProfileSideOnePost';
+import ProfileSideAllPosts from './ProfileSideAllPosts';
+import Navbar2SideView from '../../../navbar2Files/navbar2SideView/Navbar2SideView';
+
+/**
+ * @function ProfileSide
+ * @property {string} blogID
+ * @property {string} blogName
+ * @property {function} setShowSideBlog
+ * @property {function} setSidePostID
+ * @property {string} sidePostID - is '' when showing all posts (default behavior), else on click on image in mini hover view: is set to postID of the post of image
+ * @property {object} body - has all needed data for rendering the page
+ * @returns {Component}
+ */
+
+export default function ProfileSide(props) {
+    const {
+        blogID,
+        /*blogName,*/
+        /*setSidePostID,*/ setShowSideBlog,
+        sidePostID,
+        body
+    } = props;
+    const {
+        avatar,
+        header_image: headerImage,
+        title,
+        desciption,
+        blog_name: blogName,
+        is_followed: isFollowed,
+        is_blocked: isBlocked
+    } = body;
+    const [followed, setIsFollowed] = useState(isFollowed);
+    const [blocked, setBlocked] = useState(isBlocked);
+
+    const [scrollTop, setScrollTop] = useState(0);
+    const headerScrollAnimation = el => {
+        setScrollTop(el.target.scrollTop);
+    };
+    const theme = useContext(ThemeContext)[0];
+
+    const css = `
+        .post-container{
+            box-shadow: 0 0 0 1px rgba(${themes[theme].black},.07);
+        }
+        .overlay-no-theme {
+            background-color: rgb(${themes[theme].navy});
+        }
+        .profile-side-header-avatar {
+            opacity: ${Math.min(Math.max((108 - scrollTop) / 108, 0), 1)};
+            ${scrollTop > 108 &amp;&amp; 'display: none'}            
+        }
+        .profile-side-header-div-bg{
+            filter: blur(${Math.min(scrollTop, 260) / 40}px);
+            object-position: 0 ${Math.min(scrollTop / 2, 108)}px;
+        }
+    `;
+    // const body = {
+    //     username: 'huh',
+    //     avatar: 'https://pbs.twimg.com/profile_images/1026496068555612160/Klg8BS8p_400x400.jpg',
+    //     bg: 'https://i.ytimg.com/vi/6Vhp65bgKOo/maxresdefault.jpg',
+    //     title: 'Heey man',
+    //     description: 'wa wafbuaw uwbwakf'
+    // };
+
+    return (
+        &lt;div className="profile-side" onScroll={headerScrollAnimation}>
+            &lt;div className="profile-side-header">
+                &lt;Navbar2SideView
+                    setShowSideBlog={setShowSideBlog}
+                    blogName={blogName}
+                    blogID={blogID}
+                    isFollowed={followed}
+                    isBlocked={blocked}
+                    setIsFollowed={setIsFollowed}
+                    setBlocked={setBlocked}
+                />
+                {blocked &amp;&amp; (
+                    &lt;div className="profile-side-header-blocked">
+                        &lt;div>
+                            This blog is Blocked, you can unblock it to view its
+                            content
+                        &lt;/div>
+                    &lt;/div>
+                )}
+
+                {!blocked &amp;&amp; (
+                    &lt;NavLink
+                        to={`/blog/view/${blogName}/${blogID}/posts`}
+                        className="profile-side-header-div"
+                    >
+                        &lt;img
+                            className="profile-side-header-div-bg"
+                            src={headerImage}
+                            alt="couldn't load bg"
+                        />
+                    &lt;/NavLink>
+                )}
+                {!blocked &amp;&amp; (
+                    &lt;NavLink to={`/blog/view/${blogName}/${blogID}/posts`}>
+                        &lt;img
+                            className="profile-side-header-avatar"
+                            src={avatar}
+                            alt="couldn't load avatar"
+                        />
+                    &lt;/NavLink>
+                )}
+                {!blocked &amp;&amp; (
+                    &lt;div className="profile-side-header-text">
+                        &lt;div className="profile-side-header-text-title">
+                            {title === 'untitled' ? blogName : title}
+                        &lt;/div>
+                        &lt;div className="profile-side-header-text-desc">
+                            {desciption}
+                        &lt;/div>
+                    &lt;/div>
+                )}
+                {!blocked &amp;&amp; (
+                    &lt;div className="profile-side-header-post-container">
+                        {sidePostID ? (
+                            &lt;ProfileSideOnePost
+                                blogName={blogName}
+                                blogID={blogID}
+                                sidePostID={sidePostID}
+                                noTheme={false}
+                            />
+                        ) : (
+                            &lt;ProfileSideAllPosts
+                                blogName={blogName}
+                                noTheme={false}
+                            />
+                        )}
+                    &lt;/div>
+                )}
+                &lt;style>{css}&lt;/style>
+            &lt;/div>
+        &lt;/div>
+    );
+}
+
+ProfileSide.propTypes = {
+    blogID: PropTypes.string.isRequired,
+    blogName: PropTypes.string.isRequired,
+    setShowSideBlog: PropTypes.func,
+    setSidePostID: PropTypes.func,
+    body: PropTypes.object.isRequired,
+    sidePostID: PropTypes.string
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#InProfileMiniView">InProfileMiniView</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#ProfileContent">ProfileContent</a></li><li><a href="global.html#ProfileFollowing">ProfileFollowing</a></li><li><a href="global.html#ProfileFull">ProfileFull</a></li><li><a href="global.html#ProfileLikes">ProfileLikes</a></li><li><a href="global.html#ProfileMini">ProfileMini</a></li><li><a href="global.html#ProfileMiniBody">ProfileMiniBody</a></li><li><a href="global.html#ProfileMiniHoverInnerWrapper">ProfileMiniHoverInnerWrapper</a></li><li><a href="global.html#ProfileMiniHoverWrapper">ProfileMiniHoverWrapper</a></li><li><a href="global.html#ProfileMiniImages">ProfileMiniImages</a></li><li><a href="global.html#ProfileSide">ProfileSide</a></li><li><a href="global.html#ProfileSideAllPosts">ProfileSideAllPosts</a></li><li><a href="global.html#ProfileSideOnePost">ProfileSideOnePost</a></li><li><a href="global.html#ProfileSideSettings">ProfileSideSettings</a></li><li><a href="global.html#ProfilsSideContainer">ProfilsSideContainer</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 30 2021 20:05:11 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

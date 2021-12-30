@@ -6,7 +6,6 @@ import GridPostsView from '../../../../partials/GridPostsView';
 
 /**
  * @function ProfileLikes
- * @description
  * @property {string} blogName
  * @returns {Component}
  */

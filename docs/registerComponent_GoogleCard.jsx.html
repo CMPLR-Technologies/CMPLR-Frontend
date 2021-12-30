@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: registerComponent/GoogleCard.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: registerComponent/GoogleCard.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from 'react';
+import AuthInput from '../partials/AuthInput';
+import AuthBtn from '../partials/AuthBtn';
+import AuthAlert from '../partials/AuthAlert';
+// import PropTypes from 'prop-types';
+import PlaystoreApplestore from '../partials/PlaystoreApplestore';
+import { CircularProgress } from '@mui/material';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { handleGoogleAuth } from './Service';
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/userContext/UserContext';
+import { getRandomImage } from '../loginComponent/Controller';
+import { ChatContext } from '../../contexts/chatContext/chatContext';
+
+/**
+ * @function GoogleCard
+ * @description this is a view where we get the blogName &amp; age of user who is registering with google
+ * @returns {Component} age &amp; blogName inputs
+ */
+export default function GoogleCard() {
+    const { setUserBlog } = useContext(ChatContext);
+    const { state } = useLocation();
+    const [openError, setOpenError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [age, setAge] = useState();
+    const [blogName, setBlogName] = useState('');
+    const [isPending, setIsPending] = useState(false);
+    const { setUser } = useContext(UserContext);
+    const navigate = useNavigate();
+    // eslint-disable-next-line no-unused-vars
+    const [b, setB] = useState(getRandomImage());
+    const [token, setToken] = useState();
+
+    const handleGoogleRegister = () => {
+        const bodyData = {
+            token: token,
+            // eslint-disable-next-line camelcase
+            blog_name: blogName,
+            age: age
+        };
+
+        setIsPending(true);
+        handleGoogleAuth(
+            bodyData,
+            setOpenError,
+            setErrorMessage,
+            setUser,
+            navigate,
+            setIsPending,
+            setUserBlog
+        );
+    };
+
+    useEffect(() => {
+        if (!state) {
+            navigate('/');
+        } else {
+            setToken(state?.token);
+        }
+    }, []);
+
+    return (
+        &lt;div className="LoginView" style={{ backgroundImage: `url(${b})` }}>
+            &lt;div className="LoginCard">
+                &lt;div className="LoginCard__logo-container">
+                    &lt;p className="LoginCard__logo">cmplr&lt;/p>
+                &lt;/div>
+
+                &lt;div className="login-form">
+                    {openError &amp;&amp;
+                        errorMessage &amp;&amp;
+                        errorMessage?.length !== 0 &amp;&amp; (
+                            &lt;AuthAlert
+                                openError={openError}
+                                errorMessage={errorMessage}
+                            />
+                        )}
+                    &lt;AuthInput
+                        value={age || ''}
+                        setValue={setAge}
+                        name="register_age_google"
+                        type="number"
+                        placeholder="How old are you?"
+                        dataTestid="register_age"
+                    />
+                    &lt;AuthInput
+                        value={blogName || ''}
+                        setValue={setBlogName}
+                        name="register_blog_name_google"
+                        type="text"
+                        placeholder="Blog name"
+                        dataTestid="register_age"
+                    />
+                    &lt;AuthBtn
+                        handleClick={handleGoogleRegister}
+                        text="Next"
+                        color="#00b8ff"
+                        dataTestid="register_step2"
+                    />
+                    {isPending &amp;&amp; (
+                        &lt;div className="load-circle">
+                            &lt;CircularProgress />
+                        &lt;/div>
+                    )}
+                &lt;/div>
+                &lt;p className="LoginCard__a">
+                    &lt;Link to="/explore" className="register_explore_anchor">
+                        &lt;svg
+                            viewBox="0 0 21.8 21.8"
+                            width="22"
+                            height="24"
+                            fill="#ffffff"
+                        >
+                            &lt;path d="M10.9 21.8C4.9 21.8 0 16.9 0 10.9S4.9 0 10.9 0s10.9 4.9 10.9 10.9-4.9 10.9-10.9 10.9zM12 2.1c-.5-.1-1.8-.1-2 0-4.1.4-7.5 3.7-8 7.8-.1.5-.1 1.8 0 2 .4 4.2 3.8 7.6 8 8h2c4.1-.5 7.4-3.8 7.8-8v-2C19.2 5.8 16 2.6 12 2.1zm1.7 11.3c-.1.2-.2.3-.4.4l-6.7 2.5c-.5.2-1.1-.3-.9-.9l2.5-6.7c.1-.2.2-.3.4-.4l6.7-2.5c.5-.2 1.1.3.9.9l-2.5 6.7zm-1.9-3.3c-.5-.5-1.3-.5-1.7 0-.5.5-.5 1.3 0 1.7.5.5 1.3.5 1.7 0 .4-.4.4-1.2 0-1.7z">&lt;/path>
+                        &lt;/svg>
+                        {"Here's what's trending"}
+                    &lt;/Link>
+                &lt;/p>
+
+                &lt;PlaystoreApplestore />
+            &lt;/div>
+        &lt;/div>
+    );
+}
+
+// GoogleCard.propTypes = {
+//     token: PropTypes.string.isRequired
+// };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#InProfileMiniView">InProfileMiniView</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#ProfileContent">ProfileContent</a></li><li><a href="global.html#ProfileFollowing">ProfileFollowing</a></li><li><a href="global.html#ProfileFull">ProfileFull</a></li><li><a href="global.html#ProfileLikes">ProfileLikes</a></li><li><a href="global.html#ProfileMini">ProfileMini</a></li><li><a href="global.html#ProfileMiniBody">ProfileMiniBody</a></li><li><a href="global.html#ProfileMiniHoverInnerWrapper">ProfileMiniHoverInnerWrapper</a></li><li><a href="global.html#ProfileMiniHoverWrapper">ProfileMiniHoverWrapper</a></li><li><a href="global.html#ProfileMiniImages">ProfileMiniImages</a></li><li><a href="global.html#ProfileSide">ProfileSide</a></li><li><a href="global.html#ProfileSideAllPosts">ProfileSideAllPosts</a></li><li><a href="global.html#ProfileSideOnePost">ProfileSideOnePost</a></li><li><a href="global.html#ProfileSideSettings">ProfileSideSettings</a></li><li><a href="global.html#ProfilsSideContainer">ProfilsSideContainer</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 30 2021 20:05:11 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
