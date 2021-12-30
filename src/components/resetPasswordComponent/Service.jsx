@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import axios from 'axios';
 import { apiBaseUrl } from '../../config.json';
-import { handleNewPssword } from './Controller';
+import { handleNewPassword } from './Controller';
 
 export function newPassword(
     firstPassword,
@@ -9,9 +9,12 @@ export function newPassword(
     email,
     setErrorMsg,
     token,
-    setUser
+    setUser,
+    navigate
 ) {
-    if (handleNewPssword(firstPassword, secondPassword, setErrorMsg) === true) {
+    if (
+        handleNewPassword(firstPassword, secondPassword, setErrorMsg) === true
+    ) {
         axios({
             method: 'post',
             url: `${apiBaseUrl}/reset_password`,
@@ -31,6 +34,8 @@ export function newPassword(
                     };
                     setUser(user);
                     localStorage.setItem('user', JSON.stringify(user));
+                    setErrorMsg([]);
+                    navigate('/dashboard');
                 } else {
                     setErrorMsg('Invalid password please try again');
                 }
@@ -41,7 +46,7 @@ export function newPassword(
     }
 }
 
-export function getEmail(token, setEmail) {
+export function getEmail(token, setEmail, setErrorMsg) {
     axios({
         method: 'get',
         url: `${apiBaseUrl}/reset_password/${token}`
@@ -51,5 +56,7 @@ export function getEmail(token, setEmail) {
                 setEmail(res?.data?.response?.email);
             }
         })
-        .catch(() => {});
+        .catch(() => {
+            setErrorMsg('Could not get the email please try again');
+        });
 }

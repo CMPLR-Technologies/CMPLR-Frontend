@@ -112,7 +112,7 @@ export default function AllowAskSection() {
                                 </div>
                             </div>
                         </div>
-                        <div
+                        {/* <div
                             className="sub-section-right-up"
                             data-testid="sub-section-right-up"
                         >
@@ -146,7 +146,7 @@ export default function AllowAskSection() {
                                     Allow anonymous questions
                                 </p>
                             </div>
-                        </div>
+                        </div> */}
                     </>
                 )}
             </div>

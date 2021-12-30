@@ -71,7 +71,7 @@ export default function GridPostsView(props) {
                         hasMore={hasMore}
                         setPageNumber={setPageNumber}
                         isRadar={true}
-                        isRef={posts.length === 2}
+                        isRef={posts.length !== 1}
                         blogPage={blogPage}
                         noTheme={noTheme}
                     />

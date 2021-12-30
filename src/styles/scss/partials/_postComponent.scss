@@ -49,6 +49,7 @@
             border-radius: 3px;
             width: 64px;
             height: 64px;
+            object-fit: cover;
         }
     }
 }
@@ -271,11 +272,13 @@
         margin-bottom: 0.75rem;
     }
     img {
-        max-width: 100%;
+        margin-left: -20px;
+        width: calc(100% + 40px);
     }
 
     video {
-        max-width: 100%;
+        margin-left: -20px;
+        width: calc(100% + 40px);
     }
 
     .text-title {

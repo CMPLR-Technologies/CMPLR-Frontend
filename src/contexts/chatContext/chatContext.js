@@ -80,8 +80,8 @@ export default function ChatContextProvider(props) {
                     throw Error(res?.error);
                 }
             })
-            .catch(err => {
-                console.log(err);
+            .catch(() => {
+        
             });
     };
     //this function load chats in navbavr dropdown list
@@ -222,8 +222,8 @@ export default function ChatContextProvider(props) {
             })
             .catch(err => {
                 if (err.name !== 'AbortError') {
-                    console.log('faild send message!');
-                    console.log(err.message);
+                    // console.log('faild send message!');
+                    // console.log(err.message);
                 }
             });
     };
@@ -253,8 +253,8 @@ export default function ChatContextProvider(props) {
             })
             .catch(err => {
                 if (err.name !== 'AbortError') {
-                    console.log('faild delete chat!');
-                    console.log(err.message);
+                    // console.log('faild delete chat!');
+                    // console.log(err.message);
                 }
             });
     };

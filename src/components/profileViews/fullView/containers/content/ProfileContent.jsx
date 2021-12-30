@@ -28,7 +28,7 @@ export default function ProfileContent(props) {
             {content === 'ask' && (
                 <div className="posts-region">
                     <section className="normal-layout">
-                        <AskComponent  />
+                        <AskComponent />
                     </section>
                 </div>
             )}
