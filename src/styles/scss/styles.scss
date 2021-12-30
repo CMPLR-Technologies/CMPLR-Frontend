@@ -6,8 +6,11 @@
 @import './partials/AuthFooter.scss';
 @import './partials/_postComponent';
 @import './partials/_onOffSwitch.scss';
-@import url(//db.onlinewebfonts.com/c/d73d37902ec72250867b578d3763ee38?family=Favorit);
 
+@font-face {
+    font-family: 'Favorit';
+    src: url('./fonts/Favorit.ttf');
+}
 @import './chatStyles/chatStyles';
 
 @import './homeStyles/_homeStyles.scss';
@@ -39,13 +42,14 @@
 @import './deleteAccountStyles/_deleteAccountStyles.scss';
 @import './blogSettingsStyles/_createBlogStyles.scss';
 @import './myProfileStyles/_myProfile';
-
+@import 'askStyles/_askStyles.scss';
 @import './followingStyles/following.scss';
 @import './hashtagsStyles/hashtagsStyles.scss';
 @import './hashtagsStyles/hashtagMobStyles.scss';
 @import './hashtagsStyles/hashtagPosts.scss';
 @import './blogSettingsStyles/_blogSettingsStyles.scss';
 @import './exploreStyles/expolre';
+@import './notfoundStyles/notfound.scss';
 * {
     margin: 0;
     padding: 0;

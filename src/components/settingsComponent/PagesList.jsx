@@ -48,7 +48,31 @@ export default function PagesList() {
                         {blogs.length !== 0 &&
                             blogs.map((blog, i) => {
                                 return (
-                                    <li className="list-item blog-item" key={i}>
+                                    <li
+                                        className="list-item blog-item"
+                                        key={i}
+                                        onClick={() => {
+                                            localStorage.setItem(
+                                                'user',
+                                                JSON.stringify({
+                                                    ...JSON.parse(
+                                                        localStorage.getItem(
+                                                            'user'
+                                                        )
+                                                    ),
+                                                    blogName: blog?.blog_name,
+                                                    userData: {
+                                                        ...JSON.parse(
+                                                            localStorage.getItem(
+                                                                'user'
+                                                            )
+                                                        ).userData,
+                                                        avatar: blog?.avatar
+                                                    }
+                                                })
+                                            );
+                                        }}
+                                    >
                                         <div className="temp">
                                             <a
                                                 className="blog-item-anchor"

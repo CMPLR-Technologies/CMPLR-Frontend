@@ -7,6 +7,7 @@ import ProfileSideOnePost from '../../../mini&sideViews/sideView/ProfileSideOneP
 import PostComponent from '../../../../partials/postComponent/containers/PostComponent';
 import { changeMobileView } from '../../Controller';
 import { LinearProgress } from '@mui/material';
+import AskComponent from '../../../../askComponent/View';
 
 export default function ProfileContent(props) {
     const { blogName, blogID, content, postID } = props;
@@ -23,6 +24,15 @@ export default function ProfileContent(props) {
     window.addEventListener('resize', () => changeMobileView(setMobile));
     return (
         <div className="profile-full-header-content">
+            {/* //TODO Add ask component */}
+            {content === 'ask' && (
+                <div className="posts-region">
+                    <section className="normal-layout">
+                        <AskComponent />
+                    </section>
+                </div>
+            )}
+
             {content === 'posts' &&
                 (postID ? (
                     <div className="posts-region">
@@ -40,7 +50,7 @@ export default function ProfileContent(props) {
                 ))}
             {!mobile && (
                 <div className="profile-full-header-content-side">
-                    RECENTLY LIKED
+                    <p>RECENTLY LIKED</p>
                     {error ? (
                         <div className="no-data-error">{"Couldn't load"}</div>
                     ) : isPending ? (

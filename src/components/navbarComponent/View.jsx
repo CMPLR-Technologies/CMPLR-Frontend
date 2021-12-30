@@ -24,6 +24,7 @@ export default function Navbar() {
         }
     },[user,theme]);
 
+
     const css = `
         .nav {
             border-bottom: 0.5px solid rgba(${themes[theme].whiteOnDark}, 0.15);

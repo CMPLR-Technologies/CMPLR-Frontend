@@ -43,6 +43,7 @@ export default function PostButton(props) {
                         data-testid="post-postBtn"
                         onClick={handlePost}
                         disabled={content === ''}
+                        dataTestid="postcontent_btn_createPost"
                     >
                         {titlePost === null
                             ? 'Reblog'

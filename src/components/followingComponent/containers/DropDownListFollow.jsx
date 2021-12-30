@@ -21,6 +21,7 @@ export default function DropDownPostListFollow(props) {
                             setOpenBlock(true); //opens the popup
                         }}
                         className="XLZRW"
+                        dataTestid="blockdrop_btn_following"
                     >
                         Block
                     </button>
@@ -28,6 +29,7 @@ export default function DropDownPostListFollow(props) {
                         onClick={setOpen}
                         style={{ color: '#4C4D4E' }}
                         className="XLZRW"
+                        dataTestid="closedrop_btn_following"
                     >
                         Close
                     </button>

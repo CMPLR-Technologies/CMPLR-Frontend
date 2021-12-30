@@ -1,7 +1,0 @@
-FROM baseImage
-#npm i -g sass
-#npm install -g json-server
-#npm install json-server --save-dev
-#npm install react-router-dom@5.2.0
-#yarn add react-router-dom
-#yarn add @mui/material @emotion/react @emotion/styled

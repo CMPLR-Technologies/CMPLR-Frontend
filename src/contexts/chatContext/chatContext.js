@@ -40,7 +40,7 @@ export default function ChatContextProvider(props) {
 
     const setUserBlog = userData => {
         let currBlogObject = null;
-       // console.log(userData);
+        // console.log(userData);
         currBlogObject = {
             senderName: userData?.blog_name,
             senderId: userData?.primary_blog_id,
@@ -80,9 +80,7 @@ export default function ChatContextProvider(props) {
                     throw Error(res?.error);
                 }
             })
-            .catch(err => {
-                console.log(err);
-            });
+            .catch(() => {});
     };
     //this function load chats in navbavr dropdown list
     async function loadChats() {
@@ -132,6 +130,7 @@ export default function ChatContextProvider(props) {
     ) => {
         // console.log(user);
         // if the current is the one i opened
+
         if (
             currPopUpOpenChat &&
             senderId === currPopUpOpenChat.senderId &&
@@ -139,20 +138,11 @@ export default function ChatContextProvider(props) {
         ) {
             return;
         }
+        setConversationMsg([]);
 
-        setSideIconOpenChat(
-            sideIconOpenChat.filter(
-                chat =>
-                    chat.senderId !== senderId || chat.receiverId !== receiverId
-            )
-        );
 
         // if other chat opend close it first
-        if (currPopUpOpenChat) {
-            paritialCloseChatPopup();
-        }
-
-        // TO DO make the lastMsg seen
+        paritialCloseChatPopup();
         setCurrPopUpOpenChat({
             senderId,
             receiverId,
@@ -163,25 +153,60 @@ export default function ChatContextProvider(props) {
             senderName,
             receiverName
         });
+        let nSide = [];
+        for (let i = 0; i < sideIconOpenChat?.length; i++) {
+            if (
+                !(
+                    sideIconOpenChat[i]?.senderId === senderId &&
+                    sideIconOpenChat[i]?.receiverId === receiverId
+                )
+            ) {
+                nSide.push(sideIconOpenChat[i]);
+            }
+        }
+        setSideIconOpenChat(nSide);
     };
 
     // this function close the chat popup when use click it x button
     const closeChatPopup = () => {
         setPageNumber(1);
+        setConversationMsg([]);
         setCurrPopUpOpenChat(null);
     };
 
     // this function pairtial close the chat popup when use click it > button, it will be in sideIcon
     const paritialCloseChatPopup = () => {
+        if (!currPopUpOpenChat) return;
         // make 6 at most
-        if (sideIconOpenChat.length === 6) {
+
+        if (sideIconOpenChat?.length === 6) {
+            closeChatPopup();
             return;
-            //sideIconOpenChat.pop();
         }
-        setSideIconOpenChat([...sideIconOpenChat, currPopUpOpenChat]);
+        let found = false;
+        for (let i = 0; i < sideIconOpenChat?.length; i++) {
+            if (
+                sideIconOpenChat[i]?.senderId === currPopUpOpenChat?.senderId &&
+                sideIconOpenChat[i]?.receiverId ===
+                    currPopUpOpenChat?.receiverId
+            ) {
+                found = true;
+            }
+        }
+        console.log(found);
+        if (found === false) {
+            console.log(currPopUpOpenChat);
+            if (!sideIconOpenChat || sideIconOpenChat?.length === 0) {
+                let nSide = [];
+                nSide.push(currPopUpOpenChat);
+                setSideIconOpenChat(nSide);
+            } else
+                setSideIconOpenChat([...sideIconOpenChat, currPopUpOpenChat]);
+            console.log(sideIconOpenChat);
+        }
         closeChatPopup();
     };
-
+    console.log(sideIconOpenChat);
     // send message
     const sendMessage = (message, senderId, receiverId) => {
         const abortCont = new AbortController();
@@ -202,7 +227,7 @@ export default function ChatContextProvider(props) {
         )
             .then(res => {
                 if (!res.error) {
-                   // console.log('send message succfully!');
+                    // console.log('send message succfully!');
                     let newMsg = {
                         // eslint-disable-next-line camelcase
                         from_blog_id: senderId,
@@ -222,8 +247,8 @@ export default function ChatContextProvider(props) {
             })
             .catch(err => {
                 if (err.name !== 'AbortError') {
-                    console.log('faild send message!');
-                    console.log(err.message);
+                    // console.log('faild send message!');
+                    // console.log(err.message);
                 }
             });
     };
@@ -253,10 +278,15 @@ export default function ChatContextProvider(props) {
             })
             .catch(err => {
                 if (err.name !== 'AbortError') {
-                    console.log('faild delete chat!');
-                    console.log(err.message);
+                    // console.log('faild delete chat!');
+                    // console.log(err.message);
                 }
             });
+    };
+    const clearToOpenNewChat = () => {
+        if (currPopUpOpenChat) paritialCloseChatPopup();
+        setConversationMsg([]);
+        setPageNumber(1);
     };
     const clear = () => {
         setCurrBlog(null);
@@ -296,7 +326,8 @@ export default function ChatContextProvider(props) {
                 deleteChat,
                 clear,
                 setUserBlog,
-                getUnReadMsgsCount
+                getUnReadMsgsCount,
+                clearToOpenNewChat
             }}
         >
             {props.children}

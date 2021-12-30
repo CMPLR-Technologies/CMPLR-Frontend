@@ -5,6 +5,7 @@ import { newPassword } from '../Service';
 import { getEmail } from '../Service';
 import { useParams } from 'react-router-dom';
 import { UserContext } from '../../../contexts/userContext/UserContext';
+import { useNavigate } from 'react-router-dom';
 /**
  * @function ResetPassword
  * @description this is the statful component of the reset password page
@@ -21,9 +22,9 @@ export default function ResetPasswordCard() {
     const { token } = useParams();
     const [email, setEmail] = React.useState();
     useEffect(() => {
-        getEmail(token, setEmail);
+        getEmail(token, setEmail, setErrorMsg);
     }, []);
-
+    const navigate = useNavigate();
     return (
         <div className="LoginCard">
             <div className="LoginCard__logo-container" id="reset-pass-logo">
@@ -85,7 +86,8 @@ export default function ResetPasswordCard() {
                             email,
                             setErrorMsg,
                             token,
-                            setUser
+                            setUser,
+                            navigate
                         )
                     }
                     dataTestid="button-reset-password"

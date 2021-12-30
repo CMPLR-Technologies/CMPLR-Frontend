@@ -853,9 +853,9 @@ $border-radius-primary: 3px;
                     .account-popup-blog-link-row:hover {
                         background-color: inherit;
                     }
-                    .newPostA{
+                    .newPostA {
                         text-decoration: none;
-                        color:inherit
+                        color: inherit;
                     }
                     .create-new-post {
                         //background: none;
@@ -1240,10 +1240,23 @@ $border-radius-primary: 3px;
         display: flex;
         overflow: hidden;
         flex-wrap: wrap;
+        strong {
+            word-break: break-word;
+        }
         .post-ask-answer-content {
             * {
                 font-size: 14px !important;
                 display: inline !important;
+            }
+            img {
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                right: 5px;
+                object-fit: cover;
+            }
+            strong {
+                word-break: break-word;
             }
         }
     }
@@ -1270,20 +1283,25 @@ $border-radius-primary: 3px;
         position: absolute;
         width: 24px;
         height: 30px;
+        object-fit: cover;
+
         .noter-avatar-img {
             width: 24px;
             height: 24px;
+            object-fit: cover;
         }
     }
     .notes-summary-avatars-react {
         margin-right: 10px;
         width: 24px;
         height: 24px;
+        object-fit: cover;
     }
     .summary-avatar {
         border-radius: 50%;
         width: 24px;
         height: 24px;
+        object-fit: cover;
     }
     .avatar-react {
         bottom: 13px;
@@ -1292,6 +1310,7 @@ $border-radius-primary: 3px;
         position: absolute;
         left: 24px;
         width: 14px;
+        object-fit: cover;
     }
     .header {
         position: unset !important;
@@ -1332,6 +1351,7 @@ $border-radius-primary: 3px;
             display: flex;
             .avatar-img-mob {
                 margin: 0 !important;
+                object-fit: cover;
             }
         }
         .blogs-list {

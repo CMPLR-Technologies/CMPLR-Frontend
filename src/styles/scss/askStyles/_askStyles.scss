@@ -1,0 +1,110 @@
+.textAreaWithoutStylingAsk {
+    outline: none;
+    border: none;
+}
+
+.ask-div {
+    padding: 0;
+    position: relative;
+    word-wrap: break-word;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    .ash-inner-div {
+        padding: 20px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        .ask-title {
+            font: 26px;
+        }
+        .body-text {
+            margin-top: 1em;
+            .l-container {
+                background: #fff;
+                border: 1px solid rgba(0, 0, 0, 0.12);
+                border-radius: 3px;
+                padding: 10px;
+                height: 100%;
+                min-height: 168px;
+                box-sizing: border-box;
+                .ask-form {
+                    outline: 0;
+                    outline-style: none;
+                    outline-width: 0px;
+                    .question-wrapper {
+                        height: 216px;
+                        padding: 0 40px 0 5px;
+                        position: relative;
+                        #question {
+                            width: 100%;
+                            height: 50%;
+                            resize: none;
+                        }
+                    }
+                }
+                .message-part1 {
+                    color: #444;
+                    text-align: center;
+                    font-size: 24px;
+                    font-weight: bold;
+                    margin: 0 0 0.5em;
+                }
+                .message-part2 {
+                    font-size: 14px;
+                    color: #aaa;
+                    text-align: center;
+                }
+            }
+
+            .footer {
+                margin: 0 -10px;
+                padding: 15px 10px 0 15px;
+                border-top: 1px solid #e0e0e0;
+                position: relative;
+                height: 50px;
+                #user_info {
+                    color: #aaa;
+                    font-size: 12px;
+                    font-weight: bold;
+                    height: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    .avatar-name {
+                        float: left;
+                        display: flex;
+                        align-items: center;
+
+                        .avatar {
+                            border-radius: 2px;
+                            overflow: hidden;
+                            height: 24px;
+                            width: 24px;
+                            display: block;
+                            img {
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                    }
+                    .sender {
+                        color: #aaa;
+                        font-size: 15px;
+                        font-weight: bold;
+                        flex: 1;
+                        margin-left: 15px;
+                        margin-top: 10px;
+                    }
+                    .buttons-wrapper {
+                        float: right;
+                        #ask_button {
+                            float: right;
+                            margin-top: -3px;
+                            width: 65px;
+                            height: 30px;
+                            background-color: #0cbbff;
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

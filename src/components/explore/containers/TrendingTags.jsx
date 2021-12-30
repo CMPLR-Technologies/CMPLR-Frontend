@@ -21,7 +21,6 @@ export default function TrendingTags() {
                             order={index + 1}
                             tag={tag}
                             color={trendingColors[index]}
-                            img={tag.img}
                         />
                     ))}
             {error && <div className="no-data-error">{"Couldn't load"}</div>}

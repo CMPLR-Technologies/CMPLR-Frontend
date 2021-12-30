@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 export default function TitleField(props) {
     const { setTitlePost, editTitlePost } = props;
     const handleChangeTitle = () => {
-        setTitlePost(document.getElementById('content-title-cpost').innerHTML);
+        setTitlePost(document.getElementById('content-title-cpost').innerText);
     };
     useEffect(() => {
         if (document.getElementById('content-title-cpost')) {
@@ -22,8 +22,9 @@ export default function TitleField(props) {
                             contentEditable="true"
                             data-testid="title-postInput"
                             id="content-title-cpost"
-                            onChange={handleChangeTitle}
+                            onInput={handleChangeTitle}
                             data-placeholder="Title"
+                            dataTestid="titledivv_btn_createPost"
                         >
                             {editTitlePost}
                         </div>

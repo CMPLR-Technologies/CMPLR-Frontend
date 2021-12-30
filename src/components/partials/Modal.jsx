@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 
 /**
  * @function Modal
@@ -16,9 +17,28 @@ Modal.propTypes = {
     children: PropTypes.node
 };
 export default function Modal(props) {
+    const theme = useContext(ThemeContext)[0];
+    const css = `
+    .modal .msg-heading {
+        color:rgb(${themes[theme].whiteOnDark}) !important;
+    }
+    .modal .msg-desc {
+        color:rgb(${themes[theme].whiteOnDark}) !important;
+    }
+    .modal{
+        background-color: rgba(${themes[theme].navy},.95) !important;
+    }
+    .AuthBtn{
+        color: rgb(${themes[theme].navy});
+    }
+    .log-out-overlay-text{
+        color: rgb(${themes[theme].whiteOnDark});
+    }
+    `;
     const { messageHeading, messageDesc, children } = props;
     return (
         <div data-testid={`modal-ts`} className="modal">
+            <style>{css}</style>
             <div data-testid={`modal-container-ts`} className="modal-container">
                 <div
                     data-testid={`modal-message-heading-ts`}

@@ -18,7 +18,7 @@ export default function SettingsAccount() {
                 <div className="subcontainer">
                     <h2 className="title">Notifications</h2>
                     <div>
-                        <TumblrNewsSection />
+                        {/* <TumblrNewsSection /> */}
                         <ConversationalNotificationsSection />
                     </div>
                 </div>

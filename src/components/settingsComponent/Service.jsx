@@ -22,14 +22,15 @@ export function getUserAccount(setSettings, token) {
         url: `${apiBaseUrl}/user/settings`
     })
         .then(res => {
-            if (res.data.meta.status_code === 200) {
-                setSettings(res.data.response);
+            if (res?.data?.meta?.status_code === 200) {
+                setSettings(res?.data?.response);
                 return true;
             } else {
                 return false;
             }
         })
         .catch(() => {
+            alert('Could not get user account settings please try again later');
             return false;
         });
 }
@@ -57,8 +58,8 @@ export function updateEmailInDb(
             }
         })
             .then(res => {
-                if (res.data.meta.status_code === 200) {
-                    updateProperty('email', res.data.response.email);
+                if (res?.data?.meta?.status_code === 200) {
+                    updateProperty('email', res?.data?.response?.email);
                     setVersionOne(true);
                 }
             })
@@ -105,12 +106,12 @@ export function updatePasswordInDb(
             }
         })
             .then(res => {
-                if (res.data.meta.status_code === 200) {
+                if (res?.data?.meta?.status_code === 200) {
                     setVersionOne(true);
                 }
             })
             .catch(err => {
-                if (err.response.status === 400) {
+                if (err?.response?.status === 400) {
                     setErrorMsg('Current password is not valid');
                 } else setErrorMsg('Error updating password');
             });
@@ -131,11 +132,13 @@ export function toggleProperty(property, value, updateProperty, token) {
         }
     })
         .then(res => {
-            if (res.data.meta.status_code === 200) {
+            if (res?.data?.meta?.status_code === 200) {
                 updateProperty(property, value);
             }
         })
-        .catch(() => {});
+        .catch(() => {
+            alert('Error updating property');
+        });
 }
 
 export function addFilteredTag(
@@ -161,7 +164,7 @@ export function addFilteredTag(
             }
         })
             .then(res => {
-                if (res.data.meta.status_code === 200) {
+                if (res?.data?.meta?.status_code === 200) {
                     updateProperty(filteringType, filteredTags);
                     setErrMsg('');
                 } else {
@@ -193,7 +196,7 @@ export function deleteFilteredTag(
         url: `${apiBaseUrl}/user/filtered_tags/${tag}`
     })
         .then(res => {
-            if (res.data.meta.status_code === 200) {
+            if (res?.data?.meta?.status_code === 200) {
                 updateProperty(filteringType, tags);
             } else {
                 setErrMsg('Error deleting tag');
@@ -215,11 +218,13 @@ export function getUserBlogs(setBlogs, token) {
         url: `${apiBaseUrl}/user/info`
     })
         .then(res => {
-            if (res.data.meta.status_code === 200) {
-                setBlogs(res.data.response.blogs);
+            if (res?.data?.meta?.status_code === 200) {
+                setBlogs(res?.data?.response?.blogs);
             } else {
                 setBlogs([]);
             }
         })
-        .catch(() => {});
+        .catch(() => {
+            alert('Could not get user blogs please try again later');
+        });
 }

@@ -30,7 +30,7 @@ export const getToken = async setTokenFound => {
         }
     } catch (error) {
         // eslint-disable-next-line no-console
-        console.log('An error occurred while retrieving token. ', error);
+        //console.log('An error occurred while retrieving token. ', error);
     }
 
     return currentToken;
