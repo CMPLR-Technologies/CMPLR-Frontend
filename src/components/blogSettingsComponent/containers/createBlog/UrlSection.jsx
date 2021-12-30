@@ -6,7 +6,7 @@ export default function UrlSection({ url, setUrl }) {
     return (
         <div className="security" id="section-create-blog">
             <div className="sub-section-left-create-blog">
-                <h3 className="sub-section-left-text">Title</h3>
+                <h3 className="sub-section-left-text">Blog Title</h3>
             </div>
             <div className="sub-section-right-create-blog">
                 <AuthInput

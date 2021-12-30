@@ -21,7 +21,7 @@ export default function App() {
             });
         })
         // eslint-disable-next-line no-console
-        .catch(err => console.log('we catch error of desktop notify ', err));
+        .catch(() => {});
 
     return (
         <UserContextProvider>

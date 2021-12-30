@@ -24,7 +24,6 @@ export default function BlogSettingsCard() {
             alert(errMsg);
         }
     }, []);
-
     //useEffect(() => {}, []);
 
     return (

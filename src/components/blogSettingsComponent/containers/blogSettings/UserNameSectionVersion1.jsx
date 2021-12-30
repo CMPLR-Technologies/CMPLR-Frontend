@@ -12,7 +12,7 @@ export default function UserNameSectionVersion1({ setVersionOne }) {
     return (
         <div className="email" id="section" data-testid="email">
             <div className="sub-section-left" data-testid="sub-section-left">
-                <h3>Username</h3>
+                <h3>Blog name</h3>
             </div>
             <div className="sub-section-right" data-testid="sub-section-right">
                 <p className="email" data-testid="email">

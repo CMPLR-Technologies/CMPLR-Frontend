@@ -19,6 +19,12 @@ export default function ActivityPage() {
     const [nFCount, setNFCount] = useState(0);
     const [tFCount, setTFCount] = useState(0);
     const [loading, setLoading] = useState(false);
+    // eslint-disable-next-line no-unused-vars
+    const [showSideBlog, setShowSideBlog] = useState(false);
+    // eslint-disable-next-line no-unused-vars
+    const [sidePostID, setSidePostID] = useState('');
+    const [sideBlogName, setSideBlogName] = useState('');
+    const [sideBlogId, setSideBlogId] = useState(0);
     const { blogUrlIdf } = useParams();
     useEffect(() => {
         user?.blogName !== undefined &&
@@ -57,7 +63,7 @@ export default function ActivityPage() {
                         let notesC = 0;
                         let nFC = 0;
                         let tFC = 0;
-                        //console.log(res.data.response.data);
+
                         res.data.response.data.forEach(element => {
                             //notes: 0, new followers: 0, total followers: 0, date: '23-12-2021'
                             arrNotes.push(element.notes);
@@ -76,8 +82,6 @@ export default function ActivityPage() {
                         setNFCount(nFC);
                         setTFCount(tFC);
                         setLoading(false);
-
-                        //console.log(res.data.response);
                     }
                 })
                 .catch(() => {});
@@ -117,6 +121,11 @@ export default function ActivityPage() {
                 <Notification
                     activity={true}
                     notfArray={notfArray && notfArray}
+                    setShowSideBlog={setShowSideBlog}
+                    sideBlogId={sideBlogId}
+                    setSideBlogId={setSideBlogId}
+                    sideBlogName={sideBlogName}
+                    setSideBlogName={setSideBlogName}
                 />
             </div>
             <style>{css}</style>
