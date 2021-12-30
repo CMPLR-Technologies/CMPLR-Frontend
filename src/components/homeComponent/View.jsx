@@ -73,6 +73,8 @@ export default function HomePage() {
                 heading="cmplr"
                 paragraph="Make stuff, look at stuff, talk about stuff, find your people."
                 last={!isBrowserSize}
+                logo={true}
+                isMobile={!isBrowserSize}
             />
 
             {isBrowserSize && (
@@ -85,6 +87,8 @@ export default function HomePage() {
                         heading="Okay, it’s not actually hard to explain."
                         paragraph="We lied. But now you understand this thing. So come on in."
                         last={true}
+                        logo={false}
+                        isMobile={!isBrowserSize}
                     />
                     <SideNav activeSection={activeSection} />
                 </>

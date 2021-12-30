@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url(https://db.onlinewebfonts.com/c/d73d37902ec72250867b578d3763ee38?family=Favorit);
 .register_explore_anchor {
   align-items: center;
   color: #fff;
@@ -1075,6 +1074,10 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+@font-face {
+  font-family: "Favorit";
+  src: url("./fonts/Favorit.ttf");
+}
 .chat-container {
   position: absolute;
   z-index: 100;
