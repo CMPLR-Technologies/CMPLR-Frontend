@@ -161,7 +161,7 @@ export default function AuthLinks() {
               blogName={sideBlogName}
               setShowSideBlog={setShowSideBlog}
               sidePostID={sidePostID}
-              setSidePostID={setSidePostID}
+              setSidePostID={setSidePostID} 
             />
           )}
           <li

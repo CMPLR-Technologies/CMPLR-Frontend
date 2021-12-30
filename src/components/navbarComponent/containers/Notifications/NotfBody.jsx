@@ -69,7 +69,7 @@ export default function NotfBody(props) {
         <>
             <div
                 onClick={() => {
-                    if (notf['type'] !== 'follow' && !activity) {
+                    if (notf['type'] !== 'follow') {
                         setSideBlogId(notf['from_blog_id']);
                         setSideBlogName(notf['from_blog_name']);
                         setShowSideBlog(true);
@@ -90,7 +90,11 @@ export default function NotfBody(props) {
                         >
                             <img
                                 className="noter-avatar-img"
-                                src={notf && notf['from_blog_avatar']}
+                                src={
+                                    notf && notf['from_blog_avatar']
+                                        ? notf['from_blog_avatar']
+                                        : 'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png'
+                                }
                                 sizes="24px"
                                 alt="Avatar"
                                 loading="eager"
@@ -120,7 +124,9 @@ export default function NotfBody(props) {
                         data-testid="notf-body-notf-content"
                     >
                         <strong>
-                            {notf && notf['from_blog_name']}{' '}
+                            {notf && notf['from_blog_name']
+                                ? notf['from_blog_name']
+                                : 'Cmplr User'}{' '}
                             <span style={{ marginRight: '5px' }}> </span>
                         </strong>
                         <span
@@ -156,35 +162,37 @@ export default function NotfBody(props) {
                             ></span>
                         ) : null}
                     </div>
-                    <div className="type" data-testid="notf-body-type">
-                        {notf && notf['type'] === 'like' ? (
-                            <Link className="post-link" to="*">
-                                <PostIcon />
-                            </Link>
-                        ) : notf && notf['type'] === 'ask' ? (
-                            <Link className="post-link" to="*">
-                                <AskIcon />
-                            </Link>
-                        ) : notf && notf['type'] === 'follow' ? (
-                            <button
-                                onClick={() => {
-                                    followAccount(
-                                        user?.token,
-                                        notf && notf['from_blog_name'],
-                                        setFollowing
-                                    );
-                                }}
-                                className="follow-btn btn"
-                                data-testid="notf-body-follow-btn"
-                            >
-                                {following ? '' : 'Follow'}
-                            </button>
-                        ) : (
-                            <Link className="hi-link" to="*">
-                                <HiIcon />
-                            </Link>
-                        )}
-                    </div>
+                    {activity ? null : (
+                        <div className="type" data-testid="notf-body-type">
+                            {notf && notf['type'] === 'like' ? (
+                                <Link className="post-link" to="*">
+                                    <PostIcon />
+                                </Link>
+                            ) : notf && notf['type'] === 'ask' ? (
+                                <Link className="post-link" to="*">
+                                    <AskIcon />
+                                </Link>
+                            ) : notf && notf['type'] === 'follow' ? (
+                                <button
+                                    onClick={() => {
+                                        followAccount(
+                                            user?.token,
+                                            notf && notf['from_blog_name'],
+                                            setFollowing
+                                        );
+                                    }}
+                                    className="follow-btn btn"
+                                    data-testid="notf-body-follow-btn"
+                                >
+                                    {following ? '' : 'Follow'}
+                                </button>
+                            ) : (
+                                <Link className="hi-link" to="*">
+                                    <HiIcon />
+                                </Link>
+                            )}
+                        </div>
+                    )}
                 </div>
             </div>
         </>
