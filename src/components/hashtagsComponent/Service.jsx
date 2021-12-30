@@ -22,7 +22,6 @@ export const getHashtagData = (
     })
         .then(res => {
             setIsPending(false);
-            console.log('retrieved posts ', res?.data?.post);
             let newArr = [];
             if (res?.data?.post?.length !== 0) {
                 newArr = res?.data?.post;
@@ -100,14 +99,12 @@ export const followHashtag = (
             }
         })
             .then(() => {
-                console.log('followed has');
                 setIsPending(false);
                 setIsFollower(true);
                 setError(false);
             })
             .catch(err => {
                 setIsPending(false);
-                console.log('error has', err);
                 setError(err?.data?.error ? err?.data?.error : "couldn't load");
             });
     }
