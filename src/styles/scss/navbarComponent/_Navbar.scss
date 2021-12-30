@@ -1270,20 +1270,25 @@ $border-radius-primary: 3px;
         position: absolute;
         width: 24px;
         height: 30px;
+        object-fit: cover;
+
         .noter-avatar-img {
             width: 24px;
             height: 24px;
+            object-fit: cover;
         }
     }
     .notes-summary-avatars-react {
         margin-right: 10px;
         width: 24px;
         height: 24px;
+        object-fit: cover;
     }
     .summary-avatar {
         border-radius: 50%;
         width: 24px;
         height: 24px;
+        object-fit: cover;
     }
     .avatar-react {
         bottom: 13px;
@@ -1292,6 +1297,7 @@ $border-radius-primary: 3px;
         position: absolute;
         left: 24px;
         width: 14px;
+        object-fit: cover;
     }
     .header {
         position: unset !important;
@@ -1332,6 +1338,7 @@ $border-radius-primary: 3px;
             display: flex;
             .avatar-img-mob {
                 margin: 0 !important;
+                object-fit: cover;
             }
         }
         .blogs-list {
