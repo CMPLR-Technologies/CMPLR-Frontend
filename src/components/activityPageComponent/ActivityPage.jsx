@@ -63,7 +63,7 @@ export default function ActivityPage() {
                         let notesC = 0;
                         let nFC = 0;
                         let tFC = 0;
-                        //console.log(res.data.response.data);
+
                         res.data.response.data.forEach(element => {
                             //notes: 0, new followers: 0, total followers: 0, date: '23-12-2021'
                             arrNotes.push(element.notes);
@@ -82,8 +82,6 @@ export default function ActivityPage() {
                         setNFCount(nFC);
                         setTFCount(tFC);
                         setLoading(false);
-
-                        //console.log(res.data.response);
                     }
                 })
                 .catch(() => {});

@@ -15,7 +15,7 @@ export default function Navbar2MainViewAuthLinks(props) {
     const [actionRespMessage, setActionRespMessage] = useState('');
 
     const isSelf =
-        JSON.parse(localStorage.getItem('user')).blogName === blogName;
+        JSON.parse(localStorage.getItem('user'))?.blogName === blogName;
 
     const toggleNot = () => {
         setOpenGetNot(!openGetNot);

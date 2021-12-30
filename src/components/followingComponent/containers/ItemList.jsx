@@ -25,7 +25,6 @@ export default function ItemList(props) {
         setAnchorEl(null);
     };
     const handleClick = event => {
-        console.log('clicked for ', profileName);
         setAnchorEl(event.currentTarget);
     };
     const openPost = Boolean(anchorEl);

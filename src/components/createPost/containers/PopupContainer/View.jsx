@@ -119,7 +119,6 @@ export default function CreateModal(props) {
             blog_name: postBlogName,
             tags: tags
         };
-        console.log('handle body ', dataBody);
 
         handlePosting(dataBody, handleClose, user?.token, setSpinnerPost);
     };

@@ -31,7 +31,6 @@ export default function NotesContent(props) {
         setIsModalOpen,
         setNotesView
     } = props;
-    console.log('notes', notes);
     const [reply, setReply] = useState('');
     //TODO BlogIdentifier2
     const blogIdentifier = 'yahia.tumblr.com';

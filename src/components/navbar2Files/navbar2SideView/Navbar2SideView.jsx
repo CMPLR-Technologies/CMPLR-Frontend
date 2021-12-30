@@ -17,7 +17,7 @@ export default function Navbar2SideView(props) {
     const [actionRespMessage, setActionRespMessage] = useState('');
 
     const isSelf =
-        JSON.parse(localStorage.getItem('user')).blogName === blogName;
+        JSON.parse(localStorage.getItem('user'))?.blogName === blogName;
     //options which shown when click 3 dots
     const openOption = () => {
         if (openMoreOptions) return;

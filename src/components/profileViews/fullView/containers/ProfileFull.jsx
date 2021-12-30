@@ -35,10 +35,6 @@ export default function ProfileFull(props) {
         {
             title: 'ASK ME ANYTHING',
             link: 'ask'
-        },
-        {
-            title: 'SUBMIT A POST',
-            link: 'submit'
         }
     ];
     const { error, data, isPending } = response;
@@ -124,8 +120,7 @@ export default function ProfileFull(props) {
                             (category, index) =>
                                 (data.blog.is_primary ||
                                     category.link === 'posts' ||
-                                    category.link === 'ask' ||
-                                    category.link === 'submit') && (
+                                    category.link === 'ask') && (
                                     <NavLink
                                         className={`profile-full-header-nav-link ${
                                             category.link === content &&
@@ -139,9 +134,7 @@ export default function ProfileFull(props) {
                                 )
                         )}
                     </div>
-                    {(content === 'posts' ||
-                        content === 'ask' ||
-                        content === 'submit') && (
+                    {(content === 'posts' || content === 'ask') && (
                         <ProfileContent
                             blogName={blogName}
                             blogID={blogID}

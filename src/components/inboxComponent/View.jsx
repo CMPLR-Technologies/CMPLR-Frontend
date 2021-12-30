@@ -1,8 +1,9 @@
 import { LinearProgress } from '@material-ui/core';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { apiBaseUrl } from '../../config.json';
 import PostComponent from '../partials/postComponent/containers/PostComponent';
+import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Inbox() {
@@ -11,6 +12,7 @@ export default function Inbox() {
     const [page, setPage] = useState(1);
     // eslint-disable-next-line no-unused-vars
     const [error, setError] = useState(false);
+    let theme = useContext(ThemeContext)[0];
     const [hasMore, setHasMore] = useState(true);
     const getInboxMsgs = () => {
         axios({
@@ -53,6 +55,9 @@ export default function Inbox() {
         display:flex;
         flex-direction:column;
         margin-top:80px;
+    }
+    .ask-container-inbox-page *{
+        color:rgb(${themes[theme].black}) !important;
     }
     `;
     return (
