@@ -11,6 +11,7 @@ import {
     blockAccount
 } from './Service';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
+import PopupBlock from './containers/PopupBlock';
 /**
  * Following Page Component
  * @function FollowingPage
@@ -29,6 +30,7 @@ export default function FollowingPage() {
     const [followingList, setFollowingList] = useState([]);
     const [totalFollowing, setTotalFollowing] = useState(0);
     const [page, setPage] = useState(1);
+    const [profileNamePop, setProfileNamePop] = useState('');
 
     const theme = useContext(ThemeContext)[0];
     const css = `
@@ -49,6 +51,9 @@ export default function FollowingPage() {
         .eXQ6G{
             background:rgb(${themes[theme]?.white});
         }
+        .eXQ6G:hover{
+            background:rgb(${themes[theme]?.secondaryAccent});
+        }
         .gLEkw{
             color:rgb(${themes[theme]?.black});
         }
@@ -59,7 +64,13 @@ export default function FollowingPage() {
             color: rgb(${themes[theme]?.whiteOnDark},0.65);
         }
         .span_error_styles_following{
-            color:rgb(${themes[theme]?.whiteOnDark},0.65)
+            color:rgb(${themes[theme]?.whiteOnDark},0.65);
+        }
+        .UulOO{
+            color:rgb(${themes[theme]?.black});
+        }
+        .fTJAC{
+            color:rgb(${themes[theme]?.black},0.65);
         }
     `;
 
@@ -103,6 +114,13 @@ export default function FollowingPage() {
 
     return (
         <>
+            <PopupBlock
+                open={openPopup}
+                setOpen={setOpenPopup}
+                handleBlock={handleBlock}
+                profileName={profileNamePop}
+                myBlogName={user?.blogName}
+            />
             <style>{css}</style>
             <div className="dashboard">
                 <div className="lSyOz">
@@ -148,6 +166,9 @@ export default function FollowingPage() {
                                                 openPopup={openPopup}
                                                 handleBlock={handleBlock}
                                                 myBlogName={user?.blogName}
+                                                setProfileNamePop={
+                                                    setProfileNamePop
+                                                }
                                             />
                                         );
                                     })}

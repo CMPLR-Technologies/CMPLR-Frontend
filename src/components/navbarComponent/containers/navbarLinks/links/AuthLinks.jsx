@@ -9,8 +9,6 @@ import { UserContext } from '../../../../../contexts/userContext/UserContext';
 import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
 import Notifications from '../../Notifications/Notifications';
 import Badge from './Badge';
-import Axios from 'axios';
-import { apiBaseUrl } from '../../../../../config.json';
 import { getNotifications } from '../../../Service';
 import ProfilsSideContainer from '../../../../profileViews/mini&sideViews/sideView/ProfilsSideContainer';
 
@@ -55,11 +53,9 @@ export default function AuthLinks() {
     //close dropdown message list
     const closeMessagePopup = () => {
         setOpenMessagePopup(false);
-        //console.log("colse");
     };
     const closeAccountPopup = () => {
         setOpenAccountPopup(false);
-        //console.log("colse");
     };
     const clickMessagePopup = () => {
         // if i open it

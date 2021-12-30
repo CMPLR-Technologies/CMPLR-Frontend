@@ -151,7 +151,6 @@ export default function MyProfile() {
                     ) : (
                         <PostsPage
                             mobileView={mobileView}
-                            // {/*TODO filter null type posts */}
                             response={{
                                 posts: posts.filter(
                                     post => post?.post?.type !== null

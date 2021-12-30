@@ -10,49 +10,12 @@ import React from 'react';
 
 export default function ShortcutsContainer() {
     const shortcuts = {
-        dashboard: {
-            name: 'Dashboard',
+        general: {
+            name: 'General',
             list: [
                 {
-                    name: 'New post',
-                    keys: ['alt', 'C']
-                },
-                {
-                    name: 'Move forward',
-                    keys: ['tab']
-                },
-                {
-                    name: 'Move backward',
-                    keys: ['shift', 'tab']
-                },
-                {
-                    name: 'Scroll down',
-                    keys: ['J']
-                },
-                {
-                    name: 'Scroll up',
-                    keys: ['K']
-                },
-                {
-                    name: 'Back to the top',
-                    keys: ['.']
-                },
-                {
-                    name: 'Like a post',
-                    keys: ['L']
-                },
-                {
-                    name: 'Search Tumblr',
-                    keys: ['?']
-                }
-            ]
-        },
-        lightbox: {
-            name: 'Lightbox',
-            list: [
-                {
-                    name: 'Close',
-                    keys: ['esc']
+                    name: 'Change Palette',
+                    keys: ['alt', 'P']
                 }
             ]
         },
@@ -61,15 +24,19 @@ export default function ShortcutsContainer() {
             list: [
                 {
                     name: 'Bold',
-                    keys: ['ctrl', 'B']
+                    keys: ['alt', 'B']
                 },
                 {
                     name: 'Italic',
-                    keys: ['ctrl', 'I']
+                    keys: ['alt', 'I']
                 },
                 {
-                    name: 'Insert a photo',
-                    keys: ['ctrl', 'shift', 'P']
+                    name: 'Underline',
+                    keys: ['alt', 'U']
+                },
+                {
+                    name: 'Strike',
+                    keys: ['alt', 'S']
                 }
             ]
         }
@@ -78,8 +45,7 @@ export default function ShortcutsContainer() {
     return (
         <div className="shortcut-container" data-testid="ShortcutsContainer">
             <h1>Keyboard shortcuts</h1>
-            <ShortcutGroup data={shortcuts.dashboard} />
-            <ShortcutGroup data={shortcuts.lightbox} />
+            <ShortcutGroup data={shortcuts.general} />
             <ShortcutGroup data={shortcuts.composing} />
         </div>
     );

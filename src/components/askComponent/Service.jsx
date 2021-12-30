@@ -31,14 +31,14 @@ export function AskQuestion(blogNameToAsk, question, token) {
 }
 
 export function AnswerQuestion(askId, answerAndQuestion, token, state) {
-    axios({
+    return axios({
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
             Authorization: `Bearer ${token}`
         },
-        url: `${apiBaseUrl}/ask/${askId}}`,
+        url: `${apiBaseUrl}/ask/${askId}`,
         data: {
             content: answerAndQuestion,
             mobile: 0,

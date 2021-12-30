@@ -16,8 +16,7 @@ export default function ProfileFull(props) {
     const headerScrollAnimation = el => {
         setScrollTop(el.target.scrollTop);
     };
-    const isFollowed = false;
-    const isBlocked = false;
+    //const isFollowed = false;
 
     const response = useFetch(`${apiBaseUrl}/MiniProfileView/${blogID}`);
     const navArray = [
@@ -36,10 +35,6 @@ export default function ProfileFull(props) {
         {
             title: 'ASK ME ANYTHING',
             link: 'ask'
-        },
-        {
-            title: 'SUBMIT A POST',
-            link: 'submit'
         }
     ];
     const { error, data, isPending } = response;
@@ -67,7 +62,14 @@ export default function ProfileFull(props) {
 
     return (
         <div>
-            {error && <div className="no-data-error">{"Couldn't load"}</div>}
+            {error && (
+                <div className="profile-full-header">
+                    <br />
+                    <br />
+                    <br />
+                    <div className="no-data-error">{"Couldn't load"}</div>
+                </div>
+            )}
             {isPending && <LinearProgress />}
             {data && (
                 <div
@@ -77,8 +79,8 @@ export default function ProfileFull(props) {
                     <Navbar2MainView
                         blogName={blogName}
                         blogID={blogID}
-                        isFollowed={isFollowed}
-                        isBlocked={isBlocked}
+                        isFollowed={data?.blog.is_followed}
+                        isBlocked={data?.blog.is_blocked}
                     />
                     <NavLink
                         to={`/blog/view/${blogName}/${blogID}/posts`}
@@ -104,7 +106,9 @@ export default function ProfileFull(props) {
                             to={`/blog/view/${blogName}/${blogID}/posts`}
                         >
                             <div className="profile-full-header-text-title">
-                                {data.blog.title}
+                                {data.blog.title === 'untitled'
+                                    ? blogName
+                                    : data.blog.title}
                             </div>
                         </NavLink>
                         <div className="profile-full-header-text-desc">
@@ -116,8 +120,7 @@ export default function ProfileFull(props) {
                             (category, index) =>
                                 (data.blog.is_primary ||
                                     category.link === 'posts' ||
-                                    category.link === 'ask' ||
-                                    category.link === 'submit') && (
+                                    category.link === 'ask') && (
                                     <NavLink
                                         className={`profile-full-header-nav-link ${
                                             category.link === content &&
@@ -131,9 +134,7 @@ export default function ProfileFull(props) {
                                 )
                         )}
                     </div>
-                    {(content === 'posts' ||
-                        content === 'ask' ||
-                        content === 'submit') && (
+                    {(content === 'posts' || content === 'ask') && (
                         <ProfileContent
                             blogName={blogName}
                             blogID={blogID}

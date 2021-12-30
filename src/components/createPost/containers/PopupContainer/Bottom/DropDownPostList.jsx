@@ -25,6 +25,7 @@ export default function DropDownPostList(props) {
                                 onClick={() => {
                                     setPostType('Post now');
                                 }}
+                                dataTestid="option0_btn_createPost"
                             >
                                 <ListItemIcon style={{ minWidth: '30px' }}>
                                     {postType === 'Post now' && (
@@ -37,22 +38,9 @@ export default function DropDownPostList(props) {
                         <ListItem disablePadding>
                             <ListItemButton
                                 onClick={() => {
-                                    setPostType('Save as draft');
-                                }}
-                            >
-                                <ListItemIcon style={{ minWidth: '30px' }}>
-                                    {postType === 'Save as draft' && (
-                                        <GrFormCheckmark />
-                                    )}
-                                </ListItemIcon>
-                                <ListItemText primary="Save as draft" />
-                            </ListItemButton>
-                        </ListItem>
-                        <ListItem disablePadding>
-                            <ListItemButton
-                                onClick={() => {
                                     setPostType('Post privately');
                                 }}
+                                dataTestid="option1_btn_createPost"
                             >
                                 <ListItemIcon style={{ minWidth: '30px' }}>
                                     {postType === 'Post privately' && (

@@ -15,9 +15,9 @@ export const shortcutController = () => {
             //   console.log("Scroll to prev post <-");
             // }
         } else if (e.altKey && e.code === 'KeyQ') {
-            console.log('Queue this post ~');
+            // console.log('Queue this post ~');
         } else if (e.altKey && e.code === 'KeyP') {
-            console.log('Change Theme :3');
+            // console.log('Change Theme :3');
         }
         e.stopImmediatePropagation();
     });

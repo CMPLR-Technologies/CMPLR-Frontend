@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Navbar2SideViewMoreOptions from './Navbar2SideViewMoreOptions';
+import { follow, unFollow, unBlock } from '../Controller';
+
 export default function Navbar2SideView(props) {
-    const { setShowSideBlog, blogName, blogID, isFollowed, isBlocked } = props;
+    const {
+        setShowSideBlog,
+        blogName,
+        blogID,
+        isFollowed,
+        isBlocked,
+        setBlocked,
+        setIsFollowed
+    } = props;
     const [openMoreOptions, setOpenMoreOptions] = useState(false);
+    const [actionRespMessage, setActionRespMessage] = useState('');
+
     const isSelf =
-        JSON.parse(localStorage.getItem('user')).blogName === blogName;
+        JSON.parse(localStorage.getItem('user'))?.blogName === blogName;
     //options which shown when click 3 dots
     const openOption = () => {
         if (openMoreOptions) return;
@@ -18,17 +30,6 @@ export default function Navbar2SideView(props) {
     };
     const closeProfile = () => {
         setShowSideBlog(false);
-    };
-
-    const unFollow = () => {
-        //isFollowed = false
-    };
-    const unBlock = () => {
-        //isBlocked = false
-    };
-    const follow = () => {
-        //isBlocked = false
-        //isFollowed = true
     };
 
     return (
@@ -46,6 +47,8 @@ export default function Navbar2SideView(props) {
                             <i className="fas fa-ellipsis-h"></i>
                             {openMoreOptions && (
                                 <Navbar2SideViewMoreOptions
+                                    setBlocked={setBlocked}
+                                    setIsFollowed={setIsFollowed}
                                     blogID={blogID}
                                     blogName={blogName}
                                     close={closOption}
@@ -59,15 +62,36 @@ export default function Navbar2SideView(props) {
                     )}
                     {!isSelf &&
                         (isBlocked ? (
-                            <div className="follow" onClick={unBlock}>
+                            <div
+                                className="follow"
+                                onClick={() => unBlock(blogName, setBlocked)}
+                            >
                                 Unblock
                             </div>
                         ) : isFollowed ? (
-                            <div className="follow" onClick={unFollow}>
+                            <div
+                                className="follow"
+                                onClick={() =>
+                                    unFollow(
+                                        setIsFollowed,
+                                        blogName,
+                                        setActionRespMessage
+                                    )
+                                }
+                            >
                                 Unfollow
                             </div>
                         ) : (
-                            <div className="follow" onClick={follow}>
+                            <div
+                                className="follow"
+                                onClick={() =>
+                                    follow(
+                                        setIsFollowed,
+                                        blogName,
+                                        setActionRespMessage
+                                    )
+                                }
+                            >
                                 Follow
                             </div>
                         ))}
@@ -81,6 +105,8 @@ Navbar2SideView.propTypes = {
     setShowSideBlog: PropTypes.func.isRequired,
     blogName: PropTypes.string.isRequired,
     blogID: PropTypes.string.isRequired,
+    setIsFollowed: PropTypes.func.isRequired,
+    setBlocked: PropTypes.func.isRequired,
     isBlocked: PropTypes.bool,
     isFollowed: PropTypes.bool
 };

@@ -18,7 +18,8 @@ NotfBody.propTypes = {
     setUnseenNotf: PropTypes.func,
     setSideBlogId: PropTypes.func,
     setSideBlogName: PropTypes.func,
-    setShowSideBlog: PropTypes.func
+    setShowSideBlog: PropTypes.func,
+    activity: PropTypes.any
 };
 
 export default function NotfBody(props) {

@@ -28,7 +28,7 @@ const useFetch = url => {
                     setData(res.data.response);
                     setIsPending(false);
                     setError(null);
-                    } else {
+                } else {
                     throw Error(res.error);
                 }
             })
@@ -44,7 +44,7 @@ const useFetch = url => {
         };
     }, [url]);
 
-    return { error, data, isPending };
+    return { error, data, isPending ,setData};
 };
 
 export default useFetch;

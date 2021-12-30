@@ -30,6 +30,7 @@ export function getUserAccount(setSettings, token) {
             }
         })
         .catch(() => {
+            alert('Could not get user account settings please try again later');
             return false;
         });
 }
@@ -135,7 +136,9 @@ export function toggleProperty(property, value, updateProperty, token) {
                 updateProperty(property, value);
             }
         })
-        .catch(() => {});
+        .catch(() => {
+            alert('Error updating property');
+        });
 }
 
 export function addFilteredTag(
@@ -221,5 +224,7 @@ export function getUserBlogs(setBlogs, token) {
                 setBlogs([]);
             }
         })
-        .catch(() => {});
+        .catch(() => {
+            alert('Could not get user blogs please try again later');
+        });
 }

@@ -28,7 +28,7 @@ export default function ProfileContent(props) {
             {content === 'ask' && (
                 <div className="posts-region">
                     <section className="normal-layout">
-                        <AskComponent  />
+                        <AskComponent />
                     </section>
                 </div>
             )}
@@ -50,7 +50,7 @@ export default function ProfileContent(props) {
                 ))}
             {!mobile && (
                 <div className="profile-full-header-content-side">
-                    RECENTLY LIKED
+                    <p>RECENTLY LIKED</p>
                     {error ? (
                         <div className="no-data-error">{"Couldn't load"}</div>
                     ) : isPending ? (

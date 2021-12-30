@@ -71,6 +71,9 @@ export default function Hashtag() {
         .ZN143{
             background-color:rgb(${themes[theme]?.whiteOnDark},0.07);
         }
+        .errorAlertInFollow{
+            color: rgb(${themes[theme]?.whiteOnDark});
+        }
     `;
 
     const handleScroll = () => {
@@ -83,7 +86,8 @@ export default function Hashtag() {
                 setPage,
                 page,
                 setHasMore,
-                posts
+                posts,
+                user?.token
             );
         }
     };
@@ -136,6 +140,7 @@ export default function Hashtag() {
                 recommendedTags={recommendedTags}
                 handleFollowHashtag={handleFollowHashtag}
                 isPendingFollow={isPendingFollow}
+                errorFollow={errorFollow}
             />
             <div className="dashboard">
                 <div className="posts-region">
@@ -144,14 +149,7 @@ export default function Hashtag() {
                         next={handleScroll}
                         hasMore={hasMore}
                         loader={<LinearProgress />}
-                        endMessage={
-                            <p
-                                className="endOftheposts"
-                                style={{ textAlign: 'center' }}
-                            >
-                                no posts found
-                            </p>
-                        }
+                        endMessage={<p></p>}
                         style={{ overflow: 'hidden' }}
                     >
                         {posts &&
@@ -192,6 +190,7 @@ export default function Hashtag() {
                     recommendedTags={recommendedTags}
                     handleFollowHashtag={handleFollowHashtag}
                     isPendingFollow={isPendingFollow}
+                    errorFollow={errorFollow}
                 />
             </div>
         </>

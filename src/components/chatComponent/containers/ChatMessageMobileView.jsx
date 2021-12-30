@@ -80,7 +80,6 @@ export default function ChatMessageMobileView() {
     // part of view more options
     const [showOption, setShowOption] = useState(false);
     const toggleOption = () => {
-        //console.log('gas');
         if (showOption) setShowOption(false);
         else setShowOption(!showOption);
     };

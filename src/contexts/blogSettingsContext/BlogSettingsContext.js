@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 export const BlogSettingsContext = createContext();
 class BlogSettingsContextProvider extends Component {
     state = {
-        blogId: 1,
-        blogName: '',
+        blogId: JSON.parse(localStorage.getItem('user'))?.userData
+            ?.primary_blog_id,
+        blogName: JSON.parse(localStorage.getItem('user'))?.userData?.blog_name,
         blogTitle: '',
-        avatar: '',
+        avatar: JSON.parse(localStorage.getItem('user'))?.userData?.avatar,
         replies: 'Every can reply',
-        allowAsk: true,
+        allowAsk: false,
         askPageTitle: '',
         allowAnonymousQuestion: false,
         allowMessaging: false,

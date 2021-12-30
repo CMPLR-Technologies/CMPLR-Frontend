@@ -10,14 +10,16 @@ export const getHashtagData = (
     setPage,
     page,
     setHasMore,
-    posts
+    posts,
+    token
 ) => {
     Axios({
         method: 'GET',
         url: `${apiBaseUrl}/post/tagged?tag=${tagName}&page=${page}`,
         headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json'
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
         }
     })
         .then(res => {
@@ -101,7 +103,7 @@ export const followHashtag = (
             .then(() => {
                 setIsPending(false);
                 setIsFollower(true);
-                setError(false);
+                setError('');
             })
             .catch(err => {
                 setIsPending(false);
@@ -137,7 +139,7 @@ export const unfollowHashtag = (
             .then(() => {
                 setIsPending(false);
                 setIsFollower(false);
-                setError(false);
+                setError('');
             })
             .catch(err => {
                 setIsPending(false);

@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { AskQuestion } from '../Service';
 // import { BlogSettingsContext } from '../../../contexts/blogSettingsContext/BlogSettingsContext';
 import { useParams } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 export default function Ask() {
     const user = JSON.parse(localStorage.getItem('user'));
     const [content, setContent] = useState('');
     // const { blogName: userBlogName } = useContext(BlogSettingsContext);
     const [response, setResponse] = useState(-1);
+    const [isPendingAsk, setIsPendingAsk] = useState(false);
     const { blogName } = useParams();
     let firstMsg = [
         ' Thank you!',
@@ -31,25 +33,10 @@ export default function Ask() {
                     <div className="body-text">
                         <div className="l-container">
                             {response === -1 ? (
-                                <form
-                                    action=""
-                                    className="ask-form"
-                                    onSubmit={e => {
-                                        e.preventDefault();
-                                        AskQuestion(
-                                            blogName,
-                                            content,
-                                            user.token
-                                        )
-                                            .then(res => {
-                                                setResponse(res);
-                                                setContent('');
-                                            })
-                                            .catch(() => {});
-                                    }}
-                                >
+                                <div className="ask-form">
                                     <div className="question-wrapper">
                                         <textarea
+                                            className="textAreaWithoutStylingAsk"
                                             id="question"
                                             maxLength={500}
                                             onChange={e =>
@@ -79,14 +66,45 @@ export default function Ask() {
                                                 <button
                                                     type="submit"
                                                     id="ask_button"
-                                                    disabled=""
+                                                    onClick={e => {
+                                                        e.preventDefault();
+                                                        setIsPendingAsk(true);
+
+                                                        AskQuestion(
+                                                            blogName,
+                                                            content,
+                                                            user.token
+                                                        )
+                                                            .then(res => {
+                                                                setResponse(
+                                                                    res
+                                                                );
+                                                                setIsPendingAsk(
+                                                                    false
+                                                                );
+                                                                setContent('');
+                                                            })
+                                                            .catch(() => {});
+                                                    }}
                                                 >
+                                                    {isPendingAsk && (
+                                                        <CircularProgress
+                                                            style={{
+                                                                width: '20px',
+                                                                height: '20px',
+                                                                color: 'white',
+                                                                marginLeft:
+                                                                    '2px',
+                                                                cursor: 'wait'
+                                                            }}
+                                                        />
+                                                    )}
                                                     Ask
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                             ) : (
                                 <>
                                     <div className="message-part1">

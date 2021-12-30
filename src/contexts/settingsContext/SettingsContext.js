@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const SettingsContext = createContext();
 class SettingsContextProvider extends Component {
     state = {
-        id: 15,
+        id: JSON.parse(localStorage.getItem('user')).userData.id,
         email: '',
         loginOptions: null,
         emailActivityCheck: false,
@@ -12,13 +12,13 @@ class SettingsContextProvider extends Component {
         filteredTags: null,
         filteredContent: null,
         tumblrNews: null,
-        conversationalNotification: true,
-        endlessScrolling: true,
-        showBadge: true,
+        conversationalNotification: false,
+        endlessScrolling: false,
+        showBadge: false,
         textEditor: 'rich',
-        msgSound: true,
-        bestStuffFirst: true,
-        includeFollowedTags: true
+        msgSound: false,
+        bestStuffFirst: false,
+        includeFollowedTags: false
     };
     setSettings = settings => {
         this.setState({
@@ -32,7 +32,7 @@ class SettingsContextProvider extends Component {
             tumblrNews: settings.notification.tumblr_news,
             conversationalNotification:
                 settings.notification.conversational_notification,
-                
+
             endlessScrolling: settings.dashboard.endless_scrolling,
             showBadge: settings.dashboard.show_badge,
             textEditor: settings.dashboard.text_editor,

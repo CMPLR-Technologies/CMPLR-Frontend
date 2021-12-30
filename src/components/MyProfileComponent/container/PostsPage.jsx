@@ -38,6 +38,7 @@ export default function PostsPage(props) {
                             isFollowed={draft}
                             radar={!isBigScreen}
                             ask={post?.post?.type === null}
+                            senderName="kak"
                         />
                     );
                 })}

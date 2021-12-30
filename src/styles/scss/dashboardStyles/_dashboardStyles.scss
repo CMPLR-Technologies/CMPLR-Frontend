@@ -64,11 +64,6 @@
         font-weight: 700;
     }
 
-    .dashboard-recommend-blogs {
-        padding: 10px 0;
-        margin-bottom: 30px;
-    }
-
     .explore-link {
         display: block;
         margin-top: 30px;
@@ -77,13 +72,18 @@
     }
 }
 
+.dashboard-recommend-blogs {
+    min-height: 350px;
+}
+
 .dashboard-blogInfo {
     padding: 16px;
-    img {
+    .blogInfo-row-img {
         width: 37px;
         height: 37px;
         border-radius: 3px;
         margin-right: 11px;
+        object-fit: cover;
     }
 
     a {
