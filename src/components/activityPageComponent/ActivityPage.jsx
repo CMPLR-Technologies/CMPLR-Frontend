@@ -19,6 +19,9 @@ export default function ActivityPage() {
     const [nFCount, setNFCount] = useState(0);
     const [tFCount, setTFCount] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [sideBlogName, setSideBlogName] = useState('');
+    const [sideBlogId, setSideBlogId] = useState(0);
+    const [showSideBlog, setShowSideBlog] = useState(false);
     const { blogUrlIdf } = useParams();
     useEffect(() => {
         user?.blogName !== undefined &&
@@ -117,6 +120,11 @@ export default function ActivityPage() {
                 <Notification
                     activity={true}
                     notfArray={notfArray && notfArray}
+                    setShowSideBlog={setShowSideBlog}
+                    sideBlogId={sideBlogId}
+                    setSideBlogId={setSideBlogId}
+                    sideBlogName={sideBlogName}
+                    setSideBlogName={setSideBlogName}
                 />
             </div>
             <style>{css}</style>

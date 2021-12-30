@@ -35,7 +35,6 @@ export const verifyEmailConfirm = (
         }
     })
         .then(res => {
-            console.log('this is the response of ', res.data);
             let userNew = user;
             userNew.userData.email_verified_at = res?.data?.email_verified_at;
             setUser(userNew);

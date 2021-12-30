@@ -168,7 +168,7 @@
 }
 .author-avatar .sticky-avatar {
   position: sticky;
-  top: 10px;
+  top: 60px;
 }
 .author-avatar .sticky-avatar .avatar-img {
   border-radius: 3px;
@@ -3041,6 +3041,16 @@ input:checked + .slider:before {
   font-size: 14px !important;
   display: inline !important;
 }
+.notf-body .notf-content .post-ask-answer-content img {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: 5px;
+  object-fit: cover;
+}
+.notf-body .notf-content .post-ask-answer-content strong {
+  word-break: break-word;
+}
 
 .notifications-container {
   scrollbar-width: thin;
@@ -5588,6 +5598,7 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
   height: 37px;
   border-radius: 3px;
   margin-right: 11px;
+  object-fit: cover;
 }
 .dashboard-blogInfo a {
   text-decoration: none;
