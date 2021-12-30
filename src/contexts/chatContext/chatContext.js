@@ -140,7 +140,6 @@ export default function ChatContextProvider(props) {
         }
         setConversationMsg([]);
 
-
         // if other chat opend close it first
         paritialCloseChatPopup();
         setCurrPopUpOpenChat({
@@ -193,20 +192,20 @@ export default function ChatContextProvider(props) {
                 found = true;
             }
         }
-        console.log(found);
+       // console.log(found);
         if (found === false) {
-            console.log(currPopUpOpenChat);
+           // console.log(currPopUpOpenChat);
             if (!sideIconOpenChat || sideIconOpenChat?.length === 0) {
                 let nSide = [];
                 nSide.push(currPopUpOpenChat);
                 setSideIconOpenChat(nSide);
             } else
                 setSideIconOpenChat([...sideIconOpenChat, currPopUpOpenChat]);
-            console.log(sideIconOpenChat);
+        //    console.log(sideIconOpenChat);
         }
         closeChatPopup();
     };
-    console.log(sideIconOpenChat);
+    //console.log(sideIconOpenChat);
     // send message
     const sendMessage = (message, senderId, receiverId) => {
         const abortCont = new AbortController();
@@ -227,7 +226,7 @@ export default function ChatContextProvider(props) {
         )
             .then(res => {
                 if (!res.error) {
-                    // console.log('send message succfully!');
+                   // console.log('send message succfully!');
                     let newMsg = {
                         // eslint-disable-next-line camelcase
                         from_blog_id: senderId,
@@ -240,7 +239,14 @@ export default function ChatContextProvider(props) {
                         created_at: new Date()
                     };
                     //console.log(newMsg.created_at);
-                    setConversationMsg([...conversationMsg, newMsg]);
+                    if (!conversationMsg || !conversationMsg?.length) {
+                        let nArr=[];
+                        nArr.push(newMsg);
+                        setConversationMsg(nArr);
+                    } else {
+                        setConversationMsg([...conversationMsg, newMsg]);
+                    }
+                   /// console.log('msh', [...conversationMsg, newMsg]);
                 } else {
                     throw Error(res.error);
                 }
