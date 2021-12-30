@@ -388,10 +388,12 @@
   margin-bottom: 0.75rem;
 }
 .post-body img {
-  max-width: 100%;
+  margin-left: -20px;
+  width: calc(100% + 40px);
 }
 .post-body video {
-  max-width: 100%;
+  margin-left: -20px;
+  width: calc(100% + 40px);
 }
 .post-body .text-title {
   word-break: break-word;
