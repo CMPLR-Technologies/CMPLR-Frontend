@@ -19,7 +19,9 @@ export default function ActivityPage() {
     const [nFCount, setNFCount] = useState(0);
     const [tFCount, setTFCount] = useState(0);
     const [loading, setLoading] = useState(false);
+    // eslint-disable-next-line no-unused-vars
     const [showSideBlog, setShowSideBlog] = useState(false);
+    // eslint-disable-next-line no-unused-vars
     const [sidePostID, setSidePostID] = useState('');
     const [sideBlogName, setSideBlogName] = useState('');
     const [sideBlogId, setSideBlogId] = useState(0);

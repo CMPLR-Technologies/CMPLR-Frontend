@@ -9,6 +9,7 @@ export default function Inbox() {
     const user = JSON.parse(localStorage.getItem('user'));
     const [InboxMsgs, setInboxMsgs] = useState([]);
     const [page, setPage] = useState(1);
+    // eslint-disable-next-line no-unused-vars
     const [error, setError] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const getInboxMsgs = () => {
@@ -46,20 +47,6 @@ export default function Inbox() {
 
     useEffect(() => {
         handleScroll();
-        // axios({
-        //     method: 'get',
-        //     url: `${apiBaseUrl}/user/inbox/${user?.blogName}`,
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         Accept: 'application/json',
-        //         Authorization: `Bearer ${user?.token}`
-        //     }
-        // })
-        //     .then(res => {
-        //         if (res?.data?.meta?.status_code === 200)
-        //             setMessages(res?.data?.response?.messages);
-        //     })
-        //     .catch(() => {});
     }, []);
     const css = `
     .ask-container-inbox-page{
@@ -68,7 +55,6 @@ export default function Inbox() {
         margin-top:80px;
     }
     `;
-    console.log(InboxMsgs);
     return (
         <InfiniteScroll
             dataLength={InboxMsgs?.length} //This is important field to render the next data
@@ -76,6 +62,7 @@ export default function Inbox() {
             hasMore={hasMore}
             loader={<LinearProgress />}
             endMessage={<></>}
+            style={{ overflow: 'unset' }}
         >
             <div className="ask-container-inbox-page">
                 {InboxMsgs &&
