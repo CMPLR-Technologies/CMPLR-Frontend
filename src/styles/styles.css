@@ -3923,6 +3923,11 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
   cursor: pointer;
 }
 
+.profile-side-header-post-container .side-view {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
 .profile-side {
   display: flex;
   flex-direction: column;
