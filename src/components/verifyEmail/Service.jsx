@@ -34,14 +34,13 @@ export const verifyEmailConfirm = (
             Authorization: `Bearer ${user?.token}`
         }
     })
-        .then(res => {
-            console.log('this is the response of ', res.data);
+        .then(() => {
             let userNew = user;
-            userNew.userData.email_verified_at = res?.data?.email_verified_at;
+            userNew.userData.email_verified_at = new Date();
             setUser(userNew);
             localStorage.setItem('user', JSON.stringify(userNew));
             setUserBlog(userNew.userData);
-            //navigate('/');
+            navigate('/');
         })
         .catch(() => {});
 };
