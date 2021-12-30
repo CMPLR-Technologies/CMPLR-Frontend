@@ -51,9 +51,10 @@ export default function ChatPopUp() {
         //blogData,
         loadingFirstPage
     } = useInfiniteScrollingChat(
-        `${apiBaseUrl}/messaging/conversation/${senderId}/${receiverId}?page=${pageNumber}`
-    ,pageNumber);
-    useEffect(() => {    
+        `${apiBaseUrl}/messaging/conversation/${senderId}/${receiverId}?page=${pageNumber}`,
+        pageNumber
+    );
+    useEffect(() => {
         setConversationMsg(msgs);
     }, [msgs]);
     /* useEffect(() => {
@@ -103,11 +104,13 @@ export default function ChatPopUp() {
     // const scrollToBottom = useScrollToBottom();
     useEffect(() => {
         scrollToBottom10();
-    }, [conversationMsg[0]]);
+    }, [conversationMsg?.length?conversationMsg[0]:[]]);
     useEffect(() => {
         //  scrollToBottom();
         scrollToBottom();
-    }, [conversationMsg[conversationMsg.length - 1]]);
+    }, [
+        conversationMsg?.length?conversationMsg[conversationMsg.length - 1]:[]
+    ]);
 
     const onChange = e => {
         setMessageToSend(e.target.value);
@@ -188,12 +191,19 @@ export default function ChatPopUp() {
                 created_at: new Date()
             };
             // not me
-            if (newMsg.from_blog_id !== senderId) {
-                //console.log('d5lrec');
+            console.log(newMsg.from_blog_id,senderId);
+
+            // eslint-disable-next-line eqeqeq
+            if (newMsg.from_blog_id != senderId) {
 
                 if (conversationMsg) {
                     setConversationMsg(prevData => {
-                        return [...prevData, newMsg];
+                        if (prevData) return [...prevData, newMsg];
+                        else {
+                            let arr = [];
+                            arr.push(newMsg);
+                            return arr;
+                        }
                     });
                 } else {
                     let arr = [];
