@@ -1240,6 +1240,9 @@ $border-radius-primary: 3px;
         display: flex;
         overflow: hidden;
         flex-wrap: wrap;
+        strong {
+            word-break: break-word;
+        }
         .post-ask-answer-content {
             * {
                 font-size: 14px !important;

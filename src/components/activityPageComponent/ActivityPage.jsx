@@ -19,9 +19,10 @@ export default function ActivityPage() {
     const [nFCount, setNFCount] = useState(0);
     const [tFCount, setTFCount] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [showSideBlog, setShowSideBlog] = useState(false);
+    const [sidePostID, setSidePostID] = useState('');
     const [sideBlogName, setSideBlogName] = useState('');
     const [sideBlogId, setSideBlogId] = useState(0);
-    const [showSideBlog, setShowSideBlog] = useState(false);
     const { blogUrlIdf } = useParams();
     useEffect(() => {
         user?.blogName !== undefined &&

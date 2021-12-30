@@ -3037,6 +3037,9 @@ input:checked + .slider:before {
   overflow: hidden;
   flex-wrap: wrap;
 }
+.notf-body .notf-content strong {
+  word-break: break-word;
+}
 .notf-body .notf-content .post-ask-answer-content * {
   font-size: 14px !important;
   display: inline !important;

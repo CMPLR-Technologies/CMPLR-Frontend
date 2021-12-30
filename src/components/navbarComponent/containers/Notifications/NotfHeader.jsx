@@ -29,6 +29,9 @@ export default function NotfHeader(props) {
     const [selected, setSelected] = useState(1);
     const [blogs, setBlogs] = useState([]);
     const [blogsView, setBlogsView] = useState(false);
+    const [chosenBLogName, setChosenBLogName] = useState(
+        userBlogName ? userBlogName : ''
+    );
     const token = JSON.parse(localStorage.getItem('user'))?.token;
     useEffect(() => {
         axios({
@@ -75,7 +78,7 @@ export default function NotfHeader(props) {
                                             className="caption"
                                             data-testid="notf-header-blog-name-caption"
                                         >
-                                            {userBlogName}
+                                            {chosenBLogName}
                                         </span>
                                         <span
                                             className="icon_arrow_carrot_down"
@@ -94,14 +97,17 @@ export default function NotfHeader(props) {
                                         {blogs &&
                                             blogs.map((blog, index) => (
                                                 <div
-                                                    onClick={() =>
+                                                    onClick={() => {
+                                                        setChosenBLogName(
+                                                            blog?.blog_name
+                                                        );
                                                         getNotifications(
                                                             blog?.blog_name,
                                                             token,
                                                             setNotfArray,
                                                             setUnseenNotf
-                                                        )
-                                                    }
+                                                        );
+                                                    }}
                                                     data-testid="AccountPopupBlogsContainer"
                                                     className="account-popup-blogs-container"
                                                     key={index}
