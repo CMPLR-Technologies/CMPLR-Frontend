@@ -2,7 +2,6 @@ import React from 'react';
 import AuthBtn from '../../../../components/partials/AuthBtn';
 import { createBlog } from '../../Service';
 import PropsTypes from 'prop-types';
-// import useRedirect from '../../../hooks/useRedirect';
 // import { UserContext } from '../../../contexts/userContext/UserContext';
 import { useNavigate } from 'react-router-dom';
 export default function CreateSection({

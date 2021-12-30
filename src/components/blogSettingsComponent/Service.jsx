@@ -32,7 +32,7 @@ export function createBlog(
                 Authorization: `Bearer ${token}`
             },
             data: {
-                title: title,
+                title: url,
                 blogName: title,
                 privacy: privacy,
                 password: password
@@ -41,8 +41,9 @@ export function createBlog(
             .then(res => {
                 if (res?.data?.meta?.status_code === 201) {
                     setWithNav(true);
-                    history(`/blog/${title}`);
                     setErrorMsg([]);
+
+                    history(`/blog/${title}`);
                 }
             })
             .catch(err => {
@@ -122,7 +123,8 @@ export function updatePropertyInDb(
     blogName,
     updateProperty,
     property,
-    propertyValue
+    propertyValue,
+    setVersionOne
 ) {
     axios({
         method: 'put',
@@ -137,8 +139,23 @@ export function updatePropertyInDb(
         }
     })
         .then(res => {
-            if (res?.data?.meta?.status === 200) {
+            if (res?.data?.meta?.status_code === 200) {
                 updateProperty(property, propertyValue);
+                if (setVersionOne !== null) {
+                    setVersionOne(true);
+                }
+                if (property === 'blogName') {
+                    window.location.href = `/blog/${propertyValue}/settings`;
+                    localStorage.setItem(
+                        'user',
+                        JSON.stringify({
+                            ...JSON.parse(localStorage.getItem('user')),
+                            blogName: propertyValue
+                        })
+                    );
+
+              
+                }
             }
         })
         .catch(() => {});

@@ -8,7 +8,7 @@ import {
     themes
 } from '../../../../contexts/themeContext/ThemeContext';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 export default function UserNameSectionVersion2({ setVersionOne }) {
     const { blogName } = useParams();
     const { updateProperty } = useContext(BlogSettingsContext);
@@ -16,6 +16,8 @@ export default function UserNameSectionVersion2({ setVersionOne }) {
     const [errorMsg, setErrorMsg] = useState('');
     const user = JSON.parse(localStorage.getItem('user'));
     const theme = useContext(ThemeContext)[0];
+    const navigate = useNavigate();
+
     return (
         <div className="email" id="section" data-testid="email">
             <div className="sub-section-left" data-testid="sub-section-left">
@@ -56,8 +58,10 @@ export default function UserNameSectionVersion2({ setVersionOne }) {
                                 user?.token,
                                 blogName,
                                 updateProperty,
-                                'user_name',
-                                newUserName
+                                'blogName',
+                                newUserName,
+                                setVersionOne,
+                                navigate
                             );
                         }}
                         id="update-email-btn-save"
