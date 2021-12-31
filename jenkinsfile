@@ -35,6 +35,7 @@ pipeline {
             post {
                 success {
                     echo "========docker build success ========"
+                discordSend description: "Jenkins Pipeline Build", thumbnail: "https://jenkins.io/images/logos/ninja/256.png",footer: "Pipeline executed successfully", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
                 }
                 failure {
                     echo "========docker build failed========"
