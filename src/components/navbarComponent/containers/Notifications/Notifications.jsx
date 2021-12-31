@@ -57,7 +57,10 @@ export default function Notifications(props) {
     };
     return (
         <>
-            <div className={!activity ? `notifications-container` : ''}>
+            <div
+                data-testid="notifications-dropdown-ts"
+                className={!activity ? `notifications-container` : ''}
+            >
                 {!activity && (
                     <NotfHeader
                         filterNotf={filterNotf}
@@ -75,7 +78,7 @@ export default function Notifications(props) {
                                     {notf && notf[date] && (
                                         <div
                                             className="notf-date"
-                                            data-test-id="notf-date"
+                                            data-testid="notf-date"
                                         >
                                             <div
                                                 className="duration"
