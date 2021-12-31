@@ -3,6 +3,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import MockedComponent from '../MockedComponent';
+import NotesContent from './containers/Notes/NotesContent';
 import PostComponent from './containers/PostComponent';
 const postResponse = {
     post: {
@@ -13,7 +14,8 @@ const postResponse = {
         content: '<h1>hello i am ahmed4 </h1>',
         date: 'Friday, 17-Dec-21 23:27:28 UTC',
         source_content: 'google.com',
-        tags: ['summer', 'winter']
+        tags: ['summer', 'winter'],
+        notes_count: 5
     },
     blog: {
         blog_id: 11,
@@ -24,6 +26,29 @@ const postResponse = {
         follower: false
     }
 };
+
+const notesResponse = [
+    {
+        post_id: 3,
+        type: 'like',
+        content: null,
+        timestamp: '2021-12-16T22:36:31.000000Z',
+        blog_name: 'yousif',
+        blog_url: 'http://localhost\\/blogs\\/yousif',
+        avatar: 'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
+        avatar_shape: 'circle'
+    },
+    {
+        post_id: 4,
+        type: 'reply',
+        content: 'hello',
+        timestamp: '2021-12-16T22:36:31.000000Z',
+        blog_name: 'yousif',
+        blog_url: 'http://localhost\\/blogs\\/yousif',
+        avatar: 'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
+        avatar_shape: 'circle'
+    }
+];
 
 describe('Post Component Test', () => {
     it('render post component without crashes', () => {
@@ -407,5 +432,198 @@ describe('Post Component Test', () => {
         const footerIcons = screen.queryByTestId(`footer-icons-ts`);
 
         expect(footerIcons.children.length).toBe(6);
+    });
+});
+describe('Post Notes Component Test', () => {
+    it('renders number of notes as passed in response', () => {
+        render(
+            <MockedComponent
+                component={
+                    <PostComponent
+                        post={postResponse}
+                        isFollowed={true}
+                        userBlogName="ahmed_3"
+                    />
+                }
+            />
+        );
+        const notes = screen.queryByTestId(`notes-count-text-ts`);
+        expect(notes.textContent).toBe(
+            `${postResponse?.post?.notes_count} notes`
+        );
+    });
+    it('show notes display list when clicking on number of notes', () => {
+        render(
+            <MockedComponent
+                component={
+                    <PostComponent
+                        post={postResponse}
+                        isFollowed={true}
+                        userBlogName="ahmed_3"
+                    />
+                }
+            />
+        );
+        const notes = screen.queryByTestId(`notes-count-text-ts`);
+        fireEvent.click(notes);
+        const notesList = screen.queryByTestId(`notes-view-container-ts`);
+        expect(notesList).toBeInTheDocument();
+    });
+
+    it('hide notes display list when clicking on back button', () => {
+        render(
+            <MockedComponent
+                component={
+                    <PostComponent
+                        post={postResponse}
+                        isFollowed={true}
+                        userBlogName="ahmed_3"
+                    />
+                }
+            />
+        );
+        const notes = screen.queryByTestId(`notes-count-text-ts`);
+        fireEvent.click(notes);
+        const notesList = screen.queryByTestId(`notes-view-container-ts`);
+        const backBtn = screen.queryByTestId(`close-note-view-btn-ts`);
+        fireEvent.click(backBtn);
+        expect(notesList).not.toBeInTheDocument();
+    });
+
+    it('show number of notes in header as passed in response', () => {
+        render(
+            <MockedComponent
+                component={
+                    <PostComponent
+                        post={postResponse}
+                        isFollowed={true}
+                        userBlogName="ahmed_3"
+                    />
+                }
+            />
+        );
+        const notes = screen.queryByTestId(`notes-count-text-ts`);
+        fireEvent.click(notes);
+        const notesCount = screen.queryByTestId(`notes-view-count-ts`);
+        expect(notesCount.textContent).toBe(
+            `${postResponse?.post?.notes_count} notes`
+        );
+    });
+
+    it('show post author name in header', () => {
+        render(
+            <MockedComponent
+                component={
+                    <PostComponent
+                        post={postResponse}
+                        isFollowed={true}
+                        userBlogName="ahmed_3"
+                    />
+                }
+            />
+        );
+        const notes = screen.queryByTestId(`notes-count-text-ts`);
+        fireEvent.click(notes);
+        const postAuthor = screen.getByTestId(
+            `post-author-name-note-content-ts`
+        );
+        expect(postAuthor.textContent).toBe(`${postResponse?.blog?.blog_name}`);
+    });
+
+    it('list all post notes  as passed in props', () => {
+        render(
+            <MockedComponent
+                component={
+                    <NotesContent
+                        postAuthor="ahmed"
+                        type="like"
+                        authorAvatar=""
+                        notes={notesResponse}
+                    />
+                }
+            />
+        );
+        const notes = screen.queryAllByTestId(`relative-note-container-ts`);
+        expect(notes.length).toBe(notesResponse.length);
+    });
+
+    it('display avatar of noters as passed in props', () => {
+        render(
+            <MockedComponent
+                component={
+                    <NotesContent
+                        postAuthor="ahmed"
+                        type="like"
+                        authorAvatar="https://assets.tumblr.com/images/default_avatar/cone_closed_128.png"
+                        notes={notesResponse}
+                    />
+                }
+            />
+        );
+        const noteAvatar = screen.queryAllByTestId(`noter-avatar-img-ts`);
+        for (let i = 0; i < noteAvatar.length; i++) {
+            expect(noteAvatar[i].src).toBe(`${notesResponse[i].avatar}`);
+        }
+    });
+
+    it('display note content when type is reply', () => {
+        render(
+            <MockedComponent
+                component={
+                    <NotesContent
+                        postAuthor="ahmed"
+                        type="like"
+                        authorAvatar="https://assets.tumblr.com/images/default_avatar/cone_closed_128.png"
+                        notes={notesResponse}
+                    />
+                }
+            />
+        );
+        const noteBody = screen.queryAllByTestId(`note-body-ts`);
+        for (let i = 0; i < noteBody.length; i++) {
+            expect(noteBody[i].textContent).toBe(
+                notesResponse[i].content ? `${notesResponse[i].content}` : ''
+            );
+        }
+    });
+
+    it('change value in input field while typing in', () => {
+        render(
+            <MockedComponent
+                component={
+                    <NotesContent
+                        postAuthor="ahmed"
+                        type="like"
+                        authorAvatar="https://assets.tumblr.com/images/default_avatar/cone_closed_128.png"
+                        notes={notesResponse}
+                    />
+                }
+            />
+        );
+        const inputField = screen.queryByTestId(`reply-input-field-ts`);
+        fireEvent.change(inputField, { target: { value: 'hello' } });
+        expect(inputField.value).toBe('hello');
+    });
+
+    it('clear input field after submitting note', () => {
+        render(
+            <MockedComponent
+                component={
+                    <NotesContent
+                        postAuthor="ahmed"
+                        type="like"
+                        authorAvatar="https://assets.tumblr.com/images/default_avatar/cone_closed_128.png"
+                        notes={notesResponse}
+                    />
+                }
+            />
+        );
+        const inputField = screen.queryByTestId(`reply-input-field-ts`);
+        fireEvent.change(inputField, { target: { value: 'hello' } });
+        expect(inputField.value).toBe('hello');
+        const addNote = screen.queryByTestId(`reply-btn-note-ts`);
+        fireEvent.click(addNote);
+        const noteAdded = screen.queryByTestId(`reply-input-field-ts`);
+        expect(noteAdded.value).toBe('');
     });
 });

@@ -150,7 +150,7 @@ export default function NotePost(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="note-body">{content}</div>
+                    <div className="note-body" data-testid="note-body-ts" >{content}</div>
                 </div>
             </div>
         </>
