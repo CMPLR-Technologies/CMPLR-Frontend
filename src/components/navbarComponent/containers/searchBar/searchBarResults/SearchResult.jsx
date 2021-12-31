@@ -3,7 +3,14 @@ import SearchResultItemContent from './SearchResultItemContent';
 import SearchResultItemBlog from './SearchResultItemBlog';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
+/**
+ * Navbar SearchResult: includes SearchResult array
+ * @function SearchResult
+ * @property {array} searchResults - blogs and tagged search results array
+ * @property {function} closeOpenSearch - function to hide the search result
+ * @property {string} search - Input value state
+ * @returns {Component} blogs and tagged search results
+ */
 export default function SearchResult(props) {
     let { search, closeOpenSearch, searchResults } = props;
     /*let searchContentArr = ['ahmed', 'ahmed 2', 'ahmedtmp', 'ahmed ahmed'];

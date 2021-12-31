@@ -4,6 +4,20 @@ import ProfilsSideContainer from '../../../profileViews/mini&sideViews/sideView/
 import PropTypes from 'prop-types';
 import { follow, unFollow, unBlock, block } from '../../Controller';
 
+
+/**
+ * Navbar2MainViewAuthLinks: contains the follow,block,following,likes buttons
+ * @function Navbar2MainViewAuthLinks
+ * @property {boolean} openGetNot - boolan to open get notigation
+ * @property {string} blogName - the blog name
+ * @property {string} blogID - the blog id
+ * @property {boolean} isFollowed - if the user follow this blog 
+ * @property {boolean} isBlocked - if the user block this blog 
+ * @property {number} sidePostID - user block this blog 
+ * @property {number} openMoreOptions - open more option menu
+ * @property {boolean} showSideBlog - user follow this blog 
+ * @returns {Component}  includes the contains the follow,block,following,likes buttons
+ */
 export default function Navbar2MainViewAuthLinks(props) {
     const [openGetNot, setOpenGetNot] = useState(false);
     const [openMoreOption, setOpenMoreOption] = useState(false);

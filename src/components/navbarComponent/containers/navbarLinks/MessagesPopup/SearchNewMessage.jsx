@@ -6,6 +6,14 @@ import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
 import Axios from 'axios';
 import { apiBaseUrl } from '../../../../../config.json';
 
+/**
+ * Navbar SearchNewMessage: includes the input field for search for blog to chat with
+ * @function SearchNewMessage
+ * @property {string} search - Input value state
+ * @property {function} setSearch - Input value Setter state
+ * @property {boolean} searchResLoading -loading 
+ * @returns {Component} input field
+ */
 export default function SearchNewMessage(props) {
     const [search, setSearch] = useState('');
     /* let searchedUser = [

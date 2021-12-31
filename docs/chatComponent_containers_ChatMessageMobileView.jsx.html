@@ -27,10 +27,12 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React, { useState, useEffect, useRef, useContext } from 'react';
-import { NavLink } from 'react-router-dom';
-import { ChatContext } from '../../../contexts/chatContext/ChatContext';
+import { NavLink, useParams } from 'react-router-dom';
+import { ChatContext } from '../../../contexts/chatContext/chatContext';
 import ChatMessages from './ChatMessages';
 import ChatOption from './ChatOption';
+import useInfiniteScrollingChat from '../../../hooks/useInfiniteScrollingChat';
+import { apiBaseUrl } from '../../../config.json';
 /**
  * ChatMessageMobileView Component
  * @function ChatMessageMobileView
@@ -43,31 +45,46 @@ import ChatOption from './ChatOption';
  * @returns {Component} chat container in mobile view
  */
 export default function ChatMessageMobileView() {
-    // eslint-disable-next-line react/prop-types
-    //let { sender, receiver } = props.match.params;
+    // get sender id ,reciver id form the url
+    let { sender, receiver } = useParams();
+    let senderId = sender;
+    let receiverId = receiver;
+
+    // import this functions from context
+    let { sendMessage, pageNumber, setConversationMsg, conversationMsg } =
+        useContext(ChatContext);
+    // useInfite scroll chat to fetch the msgs
+    const {
+        error,
+        data: msgs,
+        isPending,
+        hasMore,
+        blogData,
+        loadingFirstPage
+    } = useInfiniteScrollingChat(
+        `${apiBaseUrl}/messaging/conversation/${sender}/${receiver}?page=${pageNumber}`
+    );
+    // when the msgs update then update ConversationMsg
     useEffect(() => {
-        // to do get chat data
+        setConversationMsg(msgs);
+    }, [msgs]);
+
+    // message input the sender must type it
+    const [messageToSend, setMessageToSend] = useState('');
+    useEffect(() => {
+        setMessageToSend('');
     }, []);
+
+    // scroll when any change from the conversationMsg
     const messagesEndRef = useRef(null);
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
-
-    let { currPopUpOpenChat, sendMessage } = useContext(ChatContext);
-    let {
-        sender = 'gaser',
-        senderLink = '#',
-        receiver = 'omda',
-        receiverLink = '#',
-        chatId = 0
-    } = currPopUpOpenChat || {};
-    const [messageToSend, setMessageToSend] = useState('');
-    useEffect(() => {
-        setMessageToSend('');
-    }, [chatId]);
     useEffect(() => {
         scrollToBottom();
-    }, [currPopUpOpenChat]);
+    }, [conversationMsg]);
+
+    // on change the message input
     const onChange = e => {
         setMessageToSend(e.target.value);
     };
@@ -75,7 +92,7 @@ export default function ChatMessageMobileView() {
     // send message on submit
     const sendMessageTo = () => {
         if (messageToSend.length !== 0 &amp;&amp; messageToSend.trim() !== '') {
-            sendMessage(messageToSend);
+            sendMessage(messageToSend, senderId, receiverId);
             setMessageToSend('');
         }
     };
@@ -87,9 +104,10 @@ export default function ChatMessageMobileView() {
             sendMessageTo();
         }
     };
+
+    // part of view more options
     const [showOption, setShowOption] = useState(false);
     const toggleOption = () => {
-        //console.log('gas');
         if (showOption) setShowOption(false);
         else setShowOption(!showOption);
     };
@@ -97,43 +115,73 @@ export default function ChatMessageMobileView() {
         setShowOption(false);
     };
     return (
-        &lt;div className="chat-mobileview">
-            &lt;div className="chat-popup">
-                &lt;div className="chat-popup-header">
-                    {showOption &amp;&amp; (
-                        &lt;ChatOption close={closeOption} name={receiver} />
-                    )}
-                    &lt;NavLink to="/messaging">
-                        &lt;i className="fas fa-angle-left">&lt;/i>
-                    &lt;/NavLink>
-                    &lt;div className="names">
-                        &lt;a href={senderLink}>{sender}&lt;/a>
-                        {' + '}
-                        &lt;a href={receiverLink}>{receiver}&lt;/a>
-                    &lt;/div>
-                    &lt;div className="btns">
-                        &lt;button onClick={toggleOption}>
-                            &lt;i className="fas fa-ellipsis-h">&lt;/i>
-                        &lt;/button>
-                    &lt;/div>
-                &lt;/div>
+        &lt;>
+            {loadingFirstPage &amp;&amp; (
+                &lt;div className="chat-mobileview">
+                    &lt;div className="chat-popup">
+                        &lt;div className="chat-popup-header">
+                            {showOption &amp;&amp; (
+                                &lt;ChatOption
+                                    close={closeOption}
+                                    name={blogData ? blogData.blog_name : ''}
+                                    senderId={senderId}
+                                    receiverId={receiverId}
+                                />
+                            )}
+                            &lt;NavLink to="/messaging">
+                                &lt;i className="fas fa-angle-left">&lt;/i>
+                            &lt;/NavLink>
+                            &lt;div className="names">
+                                &lt;a href={'gaser'}>{'gaser'}&lt;/a>
+                                {' + '}
+                                &lt;a href={blogData ? blogData.blog_name : ''}>
+                                    {blogData ? blogData.blog_name : ''}
+                                &lt;/a>
+                            &lt;/div>
+                            &lt;div className="btns">
+                                &lt;button onClick={toggleOption}>
+                                    &lt;i className="fas fa-ellipsis-h">&lt;/i>
+                                &lt;/button>
+                            &lt;/div>
+                        &lt;/div>
 
-                &lt;ChatMessages messagesEndRef={messagesEndRef} />
-                &lt;div className="chat-popup-footer">
-                    &lt;textarea
-                        autoFocus
-                        type="text"
-                        placeholder="Say something"
-                        onChange={onChange}
-                        value={messageToSend}
-                        onKeyDown={onEnterPress}
-                    />
-                    &lt;div className="send" onClick={sendMessageTo}>
-                        &lt;i className="far fa-paper-plane">&lt;/i>
+                        &lt;ChatMessages
+                            messagesEndRef={messagesEndRef}
+                            msgs={conversationMsg}
+                            isPending={isPending}
+                            error={error}
+                            hasMore={hasMore}
+                            senderId={senderId}
+                            receiverId={receiverId}
+                            senderName={'gaser'}
+                            receiverName={blogData ? blogData.blog_name : ''}
+                            loadingFirstPage={loadingFirstPage}
+                            receiverPhoto={blogData ? blogData.avatar : ''}
+                            receiverShape={
+                                blogData ? blogData.avatar_shape : ''
+                            }
+                            senderPhoto={
+                                'https://assets.tumblr.com/images/default_avatar/sphere_open_64.png'
+                            }
+                            senderShape={'circle'}
+                        />
+                        &lt;div className="chat-popup-footer">
+                            &lt;textarea
+                                autoFocus
+                                type="text"
+                                placeholder="Say something"
+                                onChange={onChange}
+                                value={messageToSend}
+                                onKeyDown={onEnterPress}
+                            />
+                            &lt;div className="send" onClick={sendMessageTo}>
+                                &lt;i className="far fa-paper-plane">&lt;/i>
+                            &lt;/div>
+                        &lt;/div>
                     &lt;/div>
                 &lt;/div>
-            &lt;/div>
-        &lt;/div>
+            )}
+        &lt;/>
     );
 }
 </code></pre>
@@ -146,13 +194,13 @@ export default function ChatMessageMobileView() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#ThemeToggle">ThemeToggle</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#ActivityPage">ActivityPage</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Badge">Badge</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#HeaderGraph">HeaderGraph</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#MessageItem">MessageItem</a></li><li><a href="global.html#MessageItemSearchRes">MessageItemSearchRes</a></li><li><a href="global.html#Messages">Messages</a></li><li><a href="global.html#MessagesContainer">MessagesContainer</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Navbar2MainView">Navbar2MainView</a></li><li><a href="global.html#Navbar2MainViewAuthLinks">Navbar2MainViewAuthLinks</a></li><li><a href="global.html#Navbar2MainViewLinks">Navbar2MainViewLinks</a></li><li><a href="global.html#Navbar2MainViewSection1">Navbar2MainViewSection1</a></li><li><a href="global.html#Navbar2MainViewUnAuthLinks">Navbar2MainViewUnAuthLinks</a></li><li><a href="global.html#Navbar2SideView">Navbar2SideView</a></li><li><a href="global.html#Navbar2SideViewMoreOptions">Navbar2SideViewMoreOptions</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#NewPostPopup">NewPostPopup</a></li><li><a href="global.html#NewPostPopupItem">NewPostPopupItem</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#SearchNewMessage">SearchNewMessage</a></li><li><a href="global.html#SearchResult">SearchResult</a></li><li><a href="global.html#SearchResultItemBlog">SearchResultItemBlog</a></li><li><a href="global.html#SearchResultItemContent">SearchResultItemContent</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 09 2021 15:17:05 GMT+0200 (Eastern European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 31 2021 19:17:18 GMT+0200 (Eastern European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

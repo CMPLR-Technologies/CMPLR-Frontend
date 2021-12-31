@@ -27,9 +27,13 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React, { useState, useContext, useEffect, useRef } from 'react';
-import { ChatContext } from '../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../contexts/chatContext/chatContext';
 import ChatMessages from './ChatMessages';
 import ChatOption from './ChatOption';
+import useInfiniteScrollingChat from '../../../hooks/useInfinteScrollingChat';
+import { apiBaseUrl } from '../../../config.json';
+import Pusher from 'pusher-js';
+
 /**
  * ChatPopUp Component
  * @function ChatPopUp
@@ -42,39 +46,109 @@ import ChatOption from './ChatOption';
  * @returns {Component} ChatPopUp header &amp; ChatPopUp messages &amp; ChatPopUp footer
  */
 export default function ChatPopUp() {
-    const messagesEndRef = useRef(null);
-    const scrollToBottom = () => {
-        console.log('scroll');
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    };
-
     let {
         currPopUpOpenChat,
         closeChatPopup,
         paritialCloseChatPopup,
         sideIconOpenChat,
-        sendMessage
+        sendMessage,
+        pageNumber,
+        setConversationMsg,
+        conversationMsg,
+        currBlog
     } = useContext(ChatContext);
+
     let {
-        sender = 'gaser',
-        senderLink = '#',
-        receiver = 'omda',
-        receiverLink = '#',
-        chatId = 0
+        senderId,
+        receiverId,
+        // eslint-disable-next-line no-unused-vars
+        senderPhoto,
+        // eslint-disable-next-line no-unused-vars
+        senderShape,
+        receiverPhoto,
+        receiverShape,
+        senderName,
+        receiverName
     } = currPopUpOpenChat || {};
+    //let { fromId, toId } = props;
+    const {
+        error,
+        data: msgs,
+        isPending,
+        hasMore,
+        //blogData,
+        loadingFirstPage
+    } = useInfiniteScrollingChat(
+        `${apiBaseUrl}/messaging/conversation/${senderId}/${receiverId}?page=${pageNumber}`,
+        pageNumber
+    );
+    useEffect(() => {
+        setConversationMsg(msgs);
+    }, [msgs]);
+    /* useEffect(() => {
+        //setConversationMsg(msgs);
+        console.log(blogData);
+    }, [blogData]);*/
+
+    // the part for scorll down when you send/receive message
+
+    //message you type it
     const [messageToSend, setMessageToSend] = useState('');
     useEffect(() => {
         setMessageToSend('');
-    }, [chatId]);
+    }, []);
+
+    // scroll when any change from the conversationMsg
+    const messagesEndRef = useRef(null);
+    const messagesEndRef10 = useRef(null);
+    const scrollToBottom = () => {
+        //for production use
+        if (
+            messagesEndRef &amp;&amp;
+            messagesEndRef.current &amp;&amp;
+            messagesEndRef.current.scrollIntoView
+        ) {
+            messagesEndRef.current.scrollIntoView({
+                behavior: 'auto',
+                block: 'end',
+                inline: 'nearest'
+            });
+        }
+    };
+    const scrollToBottom10 = () => {
+        //for production use
+        if (
+            messagesEndRef10 &amp;&amp;
+            messagesEndRef10.current &amp;&amp;
+            messagesEndRef10.current.scrollIntoView
+        ) {
+            messagesEndRef10.current.scrollIntoView({
+                behavior: 'auto',
+                block: 'end',
+                inline: 'nearest'
+            });
+        }
+    };
+    // const scrollToBottom = useScrollToBottom();
     useEffect(() => {
+        scrollToBottom10();
+    }, [conversationMsg?.length?conversationMsg[0]:[]]);
+    useEffect(() => {
+        //  scrollToBottom();
         scrollToBottom();
-    }, [currPopUpOpenChat]);
+    }, [
+        conversationMsg?.length?conversationMsg[conversationMsg.length - 1]:[]
+    ]);
+
     const onChange = e => {
         setMessageToSend(e.target.value);
     };
+
+    // send message when click >
     const sendMessageTo = () => {
+        if (isPending) return;
         if (messageToSend.length !== 0 &amp;&amp; messageToSend.trim() !== '') {
-            sendMessage(messageToSend);
+            sendMessage(messageToSend, senderId, receiverId);
             setMessageToSend('');
         }
     };
@@ -85,9 +159,14 @@ export default function ChatPopUp() {
             sendMessageTo();
         }
     };
+
+    // part of view more options
     const [showOption, setShowOption] = useState(false);
     const toggleOption = () => {
         setShowOption(!showOption);
+    };
+    const openOption = () => {
+        if (!showOption) setShowOption(true);
     };
     const close = () => {
         closeChatPopup();
@@ -95,6 +174,76 @@ export default function ChatPopUp() {
     const partialClose = () => {
         paritialCloseChatPopup();
     };
+
+    //pusher work
+    useEffect(() => {
+        //const PUSHER_APP_ID = 1315145;
+        const PUSHER_APP_KEY = 'fda8bb30758c845460d8';
+        //const PUSHER_APP_SECRET = '57f7486c5a4270ce92d8';
+        const PUSHER_APP_CLUSTER = 'eu';
+        Pusher.logToConsole = true;
+        let token = JSON.parse(localStorage.getItem('user'));
+        const pusher = new Pusher(PUSHER_APP_KEY, {
+            cluster: PUSHER_APP_CLUSTER,
+            authEndpoint: '/broadcasting/auth',
+            auth: {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }
+        });
+        //private-chat-10
+        let com = '';
+        if (currPopUpOpenChat.receiverId > senderId) {
+            com = senderId + '-' + currPopUpOpenChat.receiverId;
+        } else {
+            com = currPopUpOpenChat.receiverId + '-' + senderId;
+        }
+        let keyC = 'chat-' + com;
+        const channel = pusher.subscribe(keyC);
+
+        // eslint-disable-next-line no-useless-escape
+        channel.bind('App\\Events\\MessageSent', data => {
+            //console.log('d5l');
+            let newMsg = {
+                // eslint-disable-next-line camelcase
+                from_blog_id: data?.sender_id,
+                // eslint-disable-next-line camelcase
+                to_blog_id: data?.rec_id,
+                content: data?.message?.content,
+                // eslint-disable-next-line camelcase
+                is_read: false,
+                // eslint-disable-next-line camelcase
+                created_at: new Date()
+            };
+            // not me
+           // console.log(newMsg.from_blog_id,senderId);
+
+            // eslint-disable-next-line eqeqeq
+            if (newMsg.from_blog_id != senderId) {
+
+                if (conversationMsg) {
+                    setConversationMsg(prevData => {
+                        if (prevData) return [...prevData, newMsg];
+                        else {
+                            let arr = [];
+                            arr.push(newMsg);
+                            return arr;
+                        }
+                    });
+                } else {
+                    let arr = [];
+                    arr.push(newMsg);
+                    setConversationMsg(arr);
+                }
+            }
+        });
+    }, []);
+    /* useEffect(()=>{
+        console.log(conversationMsg);
+    },[conversationMsg]);*/
     return (
         &lt;div
             className={`chat-popup-container ${
@@ -102,21 +251,34 @@ export default function ChatPopUp() {
             }`}
         >
             &lt;div className="chat-popup">
+                {/*TO DO hide the header untill no more!!!!!!!!!! */}
+
                 &lt;div className="chat-popup-header">
                     {showOption &amp;&amp; (
-                        &lt;ChatOption close={toggleOption} name={receiver} />
+                        &lt;ChatOption
+                            close={toggleOption}
+                            name={receiverName}
+                            senderId={senderId}
+                            receiverId={receiverId}
+                        />
                     )}
 
                     &lt;div className="names">
-                        &lt;a href={senderLink}>{sender}&lt;/a>
+                        &lt;a href={`blog/view/${senderName}/${senderId}/posts`}>
+                            {senderName}
+                        &lt;/a>
                         {' + '}
-                        &lt;a href={receiverLink}>{receiver}&lt;/a>
+                        &lt;a
+                            href={`blog/view/${receiverName}/${receiverId}/posts`}
+                        >
+                            {receiverName}
+                        &lt;/a>
                     &lt;/div>
                     &lt;div className="btns">
-                        &lt;button onClick={toggleOption}>
+                        &lt;button onClick={openOption}>
                             &lt;i className="fas fa-ellipsis-h">&lt;/i>
                         &lt;/button>
-                        &lt;button onClick={partialClose}>
+                        &lt;button className="parClose" onClick={partialClose}>
                             &lt;i className="fas fa-compress-alt">&lt;/i>
                         &lt;/button>
                         &lt;button onClick={close}>
@@ -125,13 +287,31 @@ export default function ChatPopUp() {
                     &lt;/div>
                 &lt;/div>
 
-                &lt;ChatMessages messagesEndRef={messagesEndRef} />
+                &lt;ChatMessages
+                    messagesEndRef={messagesEndRef}
+                    messagesEndRef10={messagesEndRef10}
+                    msgs={conversationMsg}
+                    isPending={isPending}
+                    error={error}
+                    hasMore={hasMore}
+                    // blogData={blogData}
+                    senderId={senderId}
+                    receiverId={receiverId}
+                    senderName={senderName}
+                    receiverName={receiverName}
+                    loadingFirstPage={loadingFirstPage}
+                    receiverPhoto={receiverPhoto}
+                    receiverShape={receiverShape}
+                    senderPhoto={currBlog?.senderPhoto}
+                    senderShape={'circle'}
+                />
+
                 &lt;div className="chat-popup-footer">
                     &lt;div className="input">
                         &lt;textarea
                             autoFocus
                             type="text"
-                            placeholder="Say something"
+                            placeholder="Say your thing"
                             onChange={onChange}
                             value={messageToSend}
                             onKeyDown={onEnterPress}
@@ -155,13 +335,13 @@ export default function ChatPopUp() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#ThemeToggle">ThemeToggle</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#ActivityPage">ActivityPage</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Badge">Badge</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#HeaderGraph">HeaderGraph</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#MessageItem">MessageItem</a></li><li><a href="global.html#MessageItemSearchRes">MessageItemSearchRes</a></li><li><a href="global.html#Messages">Messages</a></li><li><a href="global.html#MessagesContainer">MessagesContainer</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Navbar2MainView">Navbar2MainView</a></li><li><a href="global.html#Navbar2MainViewAuthLinks">Navbar2MainViewAuthLinks</a></li><li><a href="global.html#Navbar2MainViewLinks">Navbar2MainViewLinks</a></li><li><a href="global.html#Navbar2MainViewSection1">Navbar2MainViewSection1</a></li><li><a href="global.html#Navbar2MainViewUnAuthLinks">Navbar2MainViewUnAuthLinks</a></li><li><a href="global.html#Navbar2SideView">Navbar2SideView</a></li><li><a href="global.html#Navbar2SideViewMoreOptions">Navbar2SideViewMoreOptions</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#NewPostPopup">NewPostPopup</a></li><li><a href="global.html#NewPostPopupItem">NewPostPopupItem</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#SearchNewMessage">SearchNewMessage</a></li><li><a href="global.html#SearchResult">SearchResult</a></li><li><a href="global.html#SearchResultItemBlog">SearchResultItemBlog</a></li><li><a href="global.html#SearchResultItemContent">SearchResultItemContent</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 09 2021 15:17:05 GMT+0200 (Eastern European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 31 2021 19:17:18 GMT+0200 (Eastern European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

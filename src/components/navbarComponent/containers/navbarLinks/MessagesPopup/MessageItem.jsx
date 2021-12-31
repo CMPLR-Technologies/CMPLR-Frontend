@@ -2,7 +2,18 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
 //import { useNavigate } from 'react-router-dom';
-
+/**
+ * Navbar MessageItem: includes MessageItem blog to chat with 
+ * @function MessageItem
+ * @property {string} sender - sender name
+ * @property {string} senderId - sender id
+ * @property {string} receiver - receiver name
+ * @property {string} receiverId - receiver id
+ * @property {string} message - last message
+ * @property {string} isRead - last message is read?
+ * @property {function} clickMessagePopup - close the popup
+ * @returns {Component}  MessageItem blog to chat with 
+ */
 export default function MessageItem(props) {
     {
         /*to do load the real data(photo sender,rec,message*/

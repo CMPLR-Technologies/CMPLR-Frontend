@@ -33,16 +33,18 @@ import EditBtn from './SVG/EditBtn.svg';
 import LoveBtn from './SVG/LoveBtn.svg';
 import Note from './SVG/Note.svg';
 import ReblogBtn from './SVG/ReblogBtn.svg';
-import ShareBtn from './SVG/ShareBtn.svg';
 import Modal from '../../Modal';
 import AuthBtn from '../../AuthBtn';
-import { toggleShareList, copyLink } from '../Controller';
-import { handleLikePost, deletePost, submitNote } from '../Services';
+import { copyLink } from '../Controller';
+import { handleLikePost, handleUnlikePost, deletePost } from '../Services';
 import PropTypes from 'prop-types';
 import NotesHeader from './Notes/NotesHeader';
 import NotesContent from './Notes/NotesContent';
 import { getPostNotes } from '../Services';
 import { useNavigate } from 'react-router';
+import { useContext } from 'react';
+import { UserContext } from '../../../../contexts/userContext/UserContext';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 
 /**
  * @function Footer
@@ -58,20 +60,25 @@ import { useNavigate } from 'react-router';
  */
 
 Footer.propTypes = {
-    numberNotes: PropTypes.number.isRequired,
     isAuthor: PropTypes.bool.isRequired,
     postLink: PropTypes.string.isRequired,
-    reblogKey: PropTypes.string.isRequired,
-    postId: PropTypes.string.isRequired,
+    reblogKey: PropTypes.string,
+    postId: PropTypes.number.isRequired,
     postAuthor: PropTypes.string.isRequired,
     authorAvatar: PropTypes.string.isRequired,
     blogName: PropTypes.string.isRequired,
-    setIsModalOpenN: PropTypes.func
+    setIsModalOpenN: PropTypes.func,
+    blogPage: PropTypes.bool,
+    radar: PropTypes.bool,
+    isLiked: PropTypes.bool,
+    setIsLiked: PropTypes.func,
+    draft: PropTypes.bool,
+    postSubmit: PropTypes.func
 };
 
 export default function Footer(props) {
     const {
-        numberNotes,
+        isLiked,
         isAuthor,
         postLink,
         reblogKey,
@@ -79,203 +86,294 @@ export default function Footer(props) {
         blogName,
         postAuthor,
         authorAvatar,
-        setIsModalOpenN
+        setIsModalOpenN,
+        blogPage,
+        radar,
+        draft,
+        postSubmit,
+        setIsLiked,
+        ask,
+        senderName,
+        notesCount
     } = props;
+    const [liked, setLiked] = useState(isLiked);
     const [isShareListOpen, setIsShareListOpen] = useState(false);
-    const [loveFillColor, setLoveFillColor] = useState('gray');
+    const [loveFillColor, setLoveFillColor] = useState(
+        `${liked ? 'rgb(255,73,47)' : 'gray'}`
+    );
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [notesView, setNotesView] = useState(false);
     const [noteType, setNoteType] = useState('');
     const [notes, setNotes] = useState([]);
     const [counts, setCounts] = useState({});
+    const [numberNotes, setNumberNotes] = useState(notesCount);
+    const [firstLoad, setFirstLoad] = useState(true);
+    const { user } = useContext(UserContext);
+    //TODO BlogIdentifier1
     const blogIdentifier = 'yahia.tumblr.com';
 
     const navigate = useNavigate();
 
+    const handleNote = () => {
+        setNotesView(prev => !prev);
+        if (!notesView) {
+            setNoteType('comment');
+            getPostNotes(blogIdentifier, setNotes, setCounts, postId);
+        }
+    };
+
     useEffect(() => {
-        getPostNotes(blogIdentifier, setNotes, setCounts);
-    }, []);
+        if (firstLoad) {
+            setFirstLoad(false);
+        } else getPostNotes(blogIdentifier, setNotes, setCounts, postId);
+    }, [loveFillColor]);
+
+    useEffect(() => {
+        const total =
+            counts?.totalLikes + counts?.totalReblogs + counts?.totalReplys;
+        setNumberNotes(total ? total : notesCount);
+    }, [counts]);
 
     return (
         &lt;>
-            &lt;footer
-                data-testid="post-footer-icons-ts"
-                className="post-footer-icons"
-            >
-                {isModalOpen &amp;&amp; (
-                    &lt;Modal
-                        messageHeading={` Are you sure you want to delete this post?`}
-                    >
-                        &lt;AuthBtn
-                            id="nevermind-btn"
-                            text="Cancel"
-                            color="rgba(255,255,255,.65)"
-                            handleClick={() => {
-                                setIsModalOpen(false);
-                            }}
-                        />
-                        &lt;AuthBtn
-                            id="block-btn"
-                            text="Ok"
-                            color="rgb(0, 184, 255)"
-                            handleClick={() => {
-                                deletePost(postId, setIsModalOpen);
-                            }}
-                        />
-                    &lt;/Modal>
-                )}
-                &lt;div
-                    data-testid={`notes-count-footer-ts`}
-                    className="notes-count"
+            &lt;ClickAwayListener onClickAway={() => setNotesView(false)}>
+                &lt;footer
+                    data-testid="post-footer-icons-ts"
+                    className="post-footer-icons"
                 >
-                    &lt;span
-                        onClick={() => {
-                            setNotesView(!notesView);
-                            setNoteType('comment');
-                        }}
-                        data-testid={`notes-count-text-ts`}
+                    {isModalOpen &amp;&amp; (
+                        &lt;Modal
+                            messageHeading={` Are you sure you want to delete this post?`}
+                        >
+                            &lt;AuthBtn
+                                id="nevermind-btn"
+                                text="Cancel"
+                                color="rgba(255,255,255,.65)"
+                                handleClick={() => {
+                                    setIsModalOpen(false);
+                                }}
+                            />
+                            &lt;AuthBtn
+                                id="block-btn"
+                                text="Ok"
+                                color="rgb(0, 184, 255)"
+                                handleClick={() => {
+                                    deletePost(
+                                        postId,
+                                        setIsModalOpen,
+                                        user?.token,
+                                        navigate
+                                    );
+                                }}
+                            />
+                        &lt;/Modal>
+                    )}
+                    &lt;div
+                        data-testid={`notes-count-footer-ts`}
+                        className="notes-count"
                     >
-                        {numberNotes > 1
-                            ? `${numberNotes} notes`
-                            : numberNotes === undefined || numberNotes === 0
-                            ? ''
-                            : `${numberNotes} note`}
-                    &lt;/span>
+                        &lt;span
+                            onClick={() => {
+                                setNotesView(!notesView);
+                                if (!notesView) {
+                                    setNoteType('comment');
+                                    getPostNotes(
+                                        blogIdentifier,
+                                        setNotes,
+                                        setCounts,
+                                        postId
+                                    );
+                                }
+                            }}
+                            data-testid={`notes-count-text-ts`}
+                        >
+                            {numberNotes > 1
+                                ? `${numberNotes} notes`
+                                : numberNotes === undefined ||
+                                  numberNotes === 0 ||
+                                  isNaN(numberNotes)
+                                ? ''
+                                : `${numberNotes} note`}
+                        &lt;/span>
 
-                    {notesView &amp;&amp; (
+                        {notesView &amp;&amp; (
+                            &lt;div
+                                data-testid={`notes-view-container-ts`}
+                                className="notes-view-container"
+                            >
+                                &lt;div
+                                    data-testid={`notes-view-flex-ts`}
+                                    className="notes-view-flex"
+                                >
+                                    &lt;NotesHeader
+                                        numberNotes={numberNotes}
+                                        totalLikes={counts?.totalLikes}
+                                        totalReblogs={counts?.totalReblogs}
+                                        totalReplys={counts?.totalReplys}
+                                        setNotesView={setNotesView}
+                                        notes={notes &amp;&amp; notes}
+                                    />
+                                    &lt;NotesContent
+                                        postAuthor={postAuthor}
+                                        authorAvatar={authorAvatar}
+                                        notes={notes &amp;&amp; notes}
+                                        setNotes={setNotes}
+                                        setCounts={setCounts}
+                                        type={noteType}
+                                        setIsModalOpen={setIsModalOpenN}
+                                        setNotesView={setNotesView}
+                                        postId={postId}
+                                    />
+                                &lt;/div>
+                            &lt;/div>
+                        )}
+                    &lt;/div>
+                    {isShareListOpen &amp;&amp; (
                         &lt;div
-                            data-testid={`notes-view-container-ts`}
-                            className="notes-view-container"
+                            data-testid={`share-options-ts`}
+                            className="share-options"
                         >
                             &lt;div
-                                data-testid={`notes-view-flex-ts`}
-                                className="notes-view-flex"
+                                data-testid={`options-footer-ts`}
+                                className="options"
                             >
-                                &lt;NotesHeader
-                                    numberNotes={numberNotes}
-                                    totalLikes={counts.totalLikes}
-                                    totalReblogs={counts.totalReblogs}
-                                    setNotesView={setNotesView}
-                                    notes={notes}
-                                />
-                                &lt;NotesContent
-                                    postAuthor={postAuthor}
-                                    authorAvatar={authorAvatar}
-                                    notes={notes}
-                                    setNotes={setNotes}
-                                    setCounts={setCounts}
-                                    type={noteType}
-                                    setIsModalOpen={setIsModalOpenN}
-                                    setNotesView={setNotesView}
-                                />
+                                &lt;div
+                                    onClick={() => copyLink(postLink, postId)}
+                                    className="list"
+                                    data-testid={`list-footer-ts`}
+                                >
+                                    &lt;div
+                                        data-testid={`circled-border-ts`}
+                                        className="circled-border"
+                                    >
+                                        &lt;CopyLink />
+                                    &lt;/div>
+                                    &lt;div
+                                        className="opt-btn copy-btn btn"
+                                        id={`copy-btn${postId}`}
+                                        data-testid={`copy-btn-footer-ts${postId}`}
+                                    >
+                                        Copy Link
+                                    &lt;/div>
+                                &lt;/div>
                             &lt;/div>
                         &lt;/div>
                     )}
-                &lt;/div>
-                {isShareListOpen &amp;&amp; (
                     &lt;div
-                        data-testid={`share-options-ts`}
-                        className="share-options"
+                        data-testid={`footer-icons-ts`}
+                        className="footer-icons"
                     >
-                        &lt;div
-                            data-testid={`options-footer-ts`}
-                            className="options"
-                        >
-                            &lt;div
-                                onClick={() => copyLink(postLink, postId)}
-                                className="list"
-                                data-testid={`list-footer-ts`}
+                        {!blogPage &amp;&amp; !ask &amp;&amp; (
+                            &lt;button
+                                onClick={() => copyLink(postLink, postId, true)}
+                                className="icon copy-link-cont"
+                                data-testid={`share-icon-footer-ts`}
                             >
+                                &lt;CopyLink />
                                 &lt;div
-                                    data-testid={`circled-border-ts`}
-                                    className="circled-border"
-                                >
-                                    &lt;CopyLink />
-                                &lt;/div>
-                                &lt;div
-                                    className="opt-btn copy-btn btn"
+                                    className="opt-btn copy-btn btn link-copied"
                                     id={`copy-btn${postId}`}
                                     data-testid={`copy-btn-footer-ts${postId}`}
+                                >&lt;/div>
+                            &lt;/button>
+                        )}
+                        {!blogPage &amp;&amp; !radar &amp;&amp; !ask &amp;&amp; (
+                            &lt;>
+                                {!draft &amp;&amp; (
+                                    &lt;button
+                                        onClick={() => {
+                                            handleNote();
+                                        }}
+                                        className="icon"
+                                        data-testid={`note-icon-footer-ts${postId}`}
+                                    >
+                                        &lt;Note />
+                                    &lt;/button>
+                                )}
+                            &lt;/>
+                        )}
+                        {!ask &amp;&amp; (
+                            &lt;>
+                                &lt;button
+                                    onClick={() => {
+                                        setNoteType('reblog');
+                                        navigate(
+                                            `/reblog/${blogName}/${postId}/${reblogKey}`
+                                        );
+                                    }}
+                                    className="icon"
+                                    data-testid={`reblog-icon-footer${postId}`}
                                 >
-                                    Copy Link
-                                &lt;/div>
-                            &lt;/div>
-                        &lt;/div>
+                                    &lt;ReblogBtn />
+                                &lt;/button>
+                                &lt;button
+                                    onClick={() => {
+                                        !isLiked
+                                            ? handleLikePost(
+                                                  setLoveFillColor,
+                                                  setIsLiked,
+                                                  postId,
+                                                  user?.token
+                                              )
+                                            : handleUnlikePost(
+                                                  setLoveFillColor,
+                                                  setIsLiked,
+                                                  postId,
+                                                  user?.token
+                                              );
+                                    }}
+                                    className="icon "
+                                    data-testid={`love-icon-footer${postId}`}
+                                >
+                                    &lt;LoveBtn fillColor={loveFillColor} />
+                                &lt;/button>
+                            &lt;/>
+                        )}
+                        {isAuthor &amp;&amp; !ask &amp;&amp; (
+                            &lt;>
+                                &lt;button
+                                    onClick={() => setIsModalOpen(true)}
+                                    className="icon"
+                                    data-testid={`delete-footer-icon-ts${postId}`}
+                                >
+                                    &lt;DeleteBtn />
+                                &lt;/button>
+                                &lt;button
+                                    data-testid={`edit-footer-icon-ts${postId}`}
+                                    className="icon"
+                                    onClick={() =>
+                                        navigate(`/edit/${blogName}/${postId}`)
+                                    }
+                                >
+                                    &lt;EditBtn />
+                                &lt;/button>
+                            &lt;/>
+                        )}
+                        {ask &amp;&amp; (
+                            &lt;>
+                                &lt;button
+                                    onClick={() => setIsModalOpen(true)}
+                                    className="icon"
+                                    data-testid={`delete-footer-icon-ts${postId}`}
+                                >
+                                    &lt;DeleteBtn />
+                                &lt;/button>
+                                &lt;button
+                                    data-testid={`edit-footer-icon-ts${postId}`}
+                                    className="icon post-icon"
+                                    onClick={() =>
+                                        navigate(
+                                            `/inbox/${postId}/${senderName}`
+                                        )
+                                    }
+                                >
+                                    Answer
+                                &lt;/button>
+                            &lt;/>
+                        )}
                     &lt;/div>
-                )}
-                &lt;div data-testid={`footer-icons-ts`} className="footer-icons">
-                    &lt;button
-                        onClick={() =>
-                            toggleShareList(isShareListOpen, setIsShareListOpen)
-                        }
-                        className="icon"
-                        data-testid={`share-icon-footer-ts`}
-                    >
-                        &lt;ShareBtn />
-                    &lt;/button>
-                    &lt;button
-                        onClick={() => {
-                            setNotesView(true);
-                            setNoteType('comment');
-                        }}
-                        className="icon"
-                        data-testid={`note-icon-footer-ts${postId}`}
-                    >
-                        &lt;Note />
-                    &lt;/button>
-                    &lt;button
-                        onClick={() => {
-                            setNoteType('reblog');
-                            navigate(
-                                `/reblog/${blogName}/${postId}/${reblogKey}`
-                            );
-                        }}
-                        className="icon"
-                        data-testid={`reblog-icon-footer${postId}`}
-                    >
-                        &lt;ReblogBtn />
-                    &lt;/button>
-                    &lt;button
-                        onClick={e => {
-                            submitNote(
-                                e,
-                                'love',
-                                '',
-                                blogIdentifier,
-                                setNotes,
-                                setCounts
-                            );
-                            handleLikePost(
-                                loveFillColor,
-                                setLoveFillColor,
-                                postId,
-                                reblogKey
-                            );
-                        }}
-                        className="icon "
-                        data-testid={`love-icon-footer${postId}`}
-                    >
-                        &lt;LoveBtn fillColor={loveFillColor} />
-                    &lt;/button>
-                    {isAuthor &amp;&amp; (
-                        &lt;>
-                            &lt;button
-                                onClick={() => setIsModalOpen(true)}
-                                className="icon"
-                                data-testid={`delete-footer-icon-ts${postId}`}
-                            >
-                                &lt;DeleteBtn />
-                            &lt;/button>
-                            &lt;button
-                                data-testid={`edit-footer-icon-ts${postId}`}
-                                className="icon"
-                            >
-                                &lt;EditBtn />
-                            &lt;/button>
-                        &lt;/>
-                    )}
-                &lt;/div>
-            &lt;/footer>
+                &lt;/footer>
+            &lt;/ClickAwayListener>
         &lt;/>
     );
 }
@@ -289,13 +387,13 @@ export default function Footer(props) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#ActivityPage">ActivityPage</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Badge">Badge</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#HeaderGraph">HeaderGraph</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#MessageItem">MessageItem</a></li><li><a href="global.html#MessageItemSearchRes">MessageItemSearchRes</a></li><li><a href="global.html#Messages">Messages</a></li><li><a href="global.html#MessagesContainer">MessagesContainer</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Navbar2MainView">Navbar2MainView</a></li><li><a href="global.html#Navbar2MainViewAuthLinks">Navbar2MainViewAuthLinks</a></li><li><a href="global.html#Navbar2MainViewLinks">Navbar2MainViewLinks</a></li><li><a href="global.html#Navbar2MainViewSection1">Navbar2MainViewSection1</a></li><li><a href="global.html#Navbar2MainViewUnAuthLinks">Navbar2MainViewUnAuthLinks</a></li><li><a href="global.html#Navbar2SideView">Navbar2SideView</a></li><li><a href="global.html#Navbar2SideViewMoreOptions">Navbar2SideViewMoreOptions</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#NewPostPopup">NewPostPopup</a></li><li><a href="global.html#NewPostPopupItem">NewPostPopupItem</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#SearchNewMessage">SearchNewMessage</a></li><li><a href="global.html#SearchResult">SearchResult</a></li><li><a href="global.html#SearchResultItemBlog">SearchResultItemBlog</a></li><li><a href="global.html#SearchResultItemContent">SearchResultItemContent</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 10 2021 22:55:07 GMT+0200 (Eastern European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 31 2021 19:17:18 GMT+0200 (Eastern European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

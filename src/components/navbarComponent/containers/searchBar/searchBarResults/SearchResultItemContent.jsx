@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+/**
+ * Navbar SearchResultItemContent: includes SearchResultItemBlog 
+ * @function SearchResultItemContent
+ * @property {string} res - tag name
+ * @property {function} closeOpenSearch - function to hide the search result
+ * @returns {Component} tag item
+ */
 export default function SearchResultItemContent(props) {
     const { res, closeOpenSearch } = props;
     return (

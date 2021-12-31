@@ -23,6 +23,20 @@ ChartJS.register(
     Tooltip,
     Legend
 );
+
+/**
+ * HeaderGraph: includes the graph of activity and three buttons of changeing the acitivty (new following, total following and notes)
+ * @function HeaderGraph
+ * @property {array} dates - array contains dates
+ * @property {function} notes -array contains notes
+ * @property {boolean} nF - array contains new following
+ * @property {function} tF - array contains total following
+ * @property {number} notesCount - number of notesCount
+ * @property {number} tFCount - number of total following
+ * @property {number} nFCount - number of new following
+ * @property {boolean} loading - loading indicates if the page is loading
+ * @returns {Component}  includes the graph of activity and three buttons of changeing the acitivty (new following, total following and nots)
+ */
 export default function HeaderGraph(props) {
     const [activeLink, setActiveLink] = useState(0);
     const colors = ['#00B8FF', '#FF62CE', '#00CF35'];
