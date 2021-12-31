@@ -10,6 +10,17 @@ import {
 } from '../../../../contexts/themeContext/ThemeContext';
 import { getNotifications } from '../../Service';
 
+/**
+ * @function NotfHeader
+ * @description Header of notifications component
+ * @param {string} userBlogName - The name of the blog of the user.
+ * @param {string} userAvatar - The avatar of the user.
+ * @param {object} filterNotf -  function to filter notifications.
+ * @param {function} setNotfArray - function to set the notifications array.
+ * @param {function} setUnseenNotf - function to set the unseen notifications length.
+ * @returns {React.Component} - Returns a component.
+ */
+
 NotfHeader.propTypes = {
     userBlogName: propTypes.string,
     userAvatar: propTypes.string,

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: MyProfileComponent/View.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: MyProfileComponent/View.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useContext, useEffect, useState } from 'react';
+import Sidebar from './container/SideBar';
+import { useLocation, useParams } from 'react-router-dom';
+import FollowersPage from './container/FollowersPage';
+import PostsPage from './container/PostsPage';
+import { getBlogPosts, getFollowersList } from './Service';
+import ActivityPage from '../activityPageComponent/ActivityPage';
+import { chaneMobileView } from '../partials/postComponent/Controller';
+import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
+//import { getFollowingList } from '../followingComponent/Service';
+
+/**
+ * @function MyProfile 
+ * @description component to render the myProfile page of the user.
+ * @returns {React.Component} - Returns a component.
+ */
+
+export default function MyProfile() {
+    const location = useLocation();
+    const { blogUrlIdf } = useParams();
+    const theme = useContext(ThemeContext)[0];
+    const [activeSide, setActiveSide] = useState(null);
+    useEffect(() => {
+        if (location.pathname.includes('/followers')) {
+            setActiveSide(4);
+        } else if (location.pathname.includes('/activity')) {
+            setActiveSide(3);
+        } else {
+            setActiveSide(2);
+        }
+    }, [location.pathname]);
+
+    const [isPendingFollowers, setIsPendingFollowers] = useState(true);
+    const [errorFollowers, setErrorFollowers] = useState(false);
+    const [followers, setFollowers] = useState([]);
+    const [isPending, setIsPending] = useState(true);
+    const [posts, setPosts] = useState([]);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+    const [totalFollowing, setTotalFollowing] = useState(0);
+    const [mobileView, setMobileView] = useState(false);
+
+    useEffect(() => {
+        getFollowersList(
+            setFollowers,
+            followers,
+            user?.token,
+            blogUrlIdf,
+            setIsPendingFollowers,
+            setErrorFollowers,
+            setTotalFollowing,
+            page,
+            setPage,
+            setHasMore
+        );
+        getBlogPosts(blogUrlIdf, user?.token, setPosts, setIsPending);
+        chaneMobileView(setMobileView);
+    }, [blogUrlIdf, activeSide]);
+    window.addEventListener('resize', () => chaneMobileView(setMobileView));
+    const user = JSON.parse(localStorage.getItem('user'));
+    const handleScroll = () => {
+        if (hasMore) {
+            getFollowersList(
+                setFollowers,
+                followers,
+                user?.token,
+                blogUrlIdf,
+                setIsPendingFollowers,
+                setErrorFollowers,
+                setTotalFollowing,
+                page,
+                setPage,
+                setHasMore
+            );
+        }
+    };
+
+    const css = `
+    .follow-search-result {
+        color: rgb(${themes[theme].whiteOnDark});
+    }
+    .followers-num {
+        color: rgb(${themes[theme].whiteOnDark});
+    }
+    .wrapper .list{
+        color: rgb(${themes[theme].whiteOnDark});       
+        background-color:rgba(${themes[theme].whiteOnDark},);
+    }
+    .wrapper .list .list-item{
+        border-bottom: 1px solid rgba(${themes[theme].white}, 0.07);
+    }
+    .wrapper .list .list-item:hover {
+        background-color:rgba(${themes[theme].whiteOnDark},.07);
+        border-bottom: 1px solid rgba(${themes[theme].white}, 0.07);
+    }
+    .wrapper .list  .clicked {
+        background-color:rgba(${themes[theme].whiteOnDark},.07);
+        border-bottom: 1px solid rgba(${themes[theme].white}, 0.07);
+    }
+    .wrapper .list .list-item .list-item-anchor {
+        color: #001935;
+    }
+
+    .wrapper .list .list-item .list-item-anchor .list-item-span {
+        color: rgb(${themes[theme].whiteOnDark},.65);
+    }
+    .list-item-anchor-small {
+        color: rgb(${themes[theme].whiteOnDark},.65);
+    }
+    .primary,.blog-h1 {
+        color: rgb(${themes[theme].whiteOnDark});
+        border-bottom: 1.5px solid rgba(${themes[theme].white}, 0.1);
+    }
+
+    .followers-list {
+        background-color: rgb(${themes[theme].white});
+    }
+    .name .primary{
+        color: rgb(${themes[theme].black})
+    }
+    .name .secondary {
+        color: rgba(${themes[theme].black}, 0.65)
+    }
+
+    .not-available {
+        background-color: rgba(${themes[theme].white}, 0.07);
+         color: rgba(${themes[theme].whiteOnDark},.65);
+    }
+
+    .not-available svg {
+        fill: rgba(${themes[theme].whiteOnDark},.65);
+        }
+    `;
+
+    return (
+        &lt;>
+            &lt;div
+                className="dashboard-profile"
+                data-testid="dashboard-profile-myprofile"
+            >
+                &lt;div
+                    className="posts-region"
+                    data-testid="posts-region-myprofile"
+                >
+                    {location.pathname.includes('/followers') ? (
+                        &lt;FollowersPage
+                            response={{
+                                followers,
+                                errorFollowers,
+                                isPendingFollowers
+                            }}
+                            hasMore={hasMore}
+                            handleScrole={handleScroll}
+                        />
+                    ) : location.pathname.includes('/activity') ? (
+                        &lt;ActivityPage />
+                    ) : (
+                        &lt;PostsPage
+                            mobileView={mobileView}
+                            response={{
+                                posts: posts.filter(
+                                    post => post?.post?.type !== null
+                                ),
+                                isPending
+                            }}
+                            draft={false}
+                        />
+                    )}
+                &lt;/div>
+                {!mobileView &amp;&amp; (
+                    &lt;Sidebar
+                        postLength={
+                            posts.filter(post => post?.post?.type !== null)
+                                ?.length
+                        }
+                        followersLength={totalFollowing}
+                        activeSide={activeSide &amp;&amp; activeSide}
+                    />
+                )}
+            &lt;/div>
+            &lt;style>{css}&lt;/style>
+        &lt;/>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#FollowersPage">FollowersPage</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#ListItem">ListItem</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#MyProfile">MyProfile</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#NotfBody">NotfBody</a></li><li><a href="global.html#NotfHeader">NotfHeader</a></li><li><a href="global.html#Notifications">Notifications</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostsPage">PostsPage</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#SideBar">SideBar</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 31 2021 20:32:12 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

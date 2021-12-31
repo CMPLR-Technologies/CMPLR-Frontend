@@ -13,6 +13,19 @@ import AskIcon from './notificationsTypesSVG/AskIcon';
 import { followAccount } from '../../../followingComponent/Service';
 import axios from 'axios';
 import { apiBaseUrl } from '../../../../config.json';
+
+/**
+ * @function NotfBody
+ * @description This component is responsible for rendering the notifications body.
+ * @param {object} notf -  notifications response from back end.
+ * @param {function} setUnseenNotf - function to set the unseen notifications length.
+ * @param {function} setSideBlogId - function to set the blog id of the side blog to show profile side view.
+ * @param {function} setSideBlogName - function to set the blog name of the side blog to show profile side view.
+ * @param {function} setShowSideBlog - function to set the boolean to show the side blog view.
+ * @param {bool} activity - boolean to check if the user is in activity page or not.
+ * @returns {React.Component} - Returns a component.
+ */
+
 NotfBody.propTypes = {
     notf: PropTypes.object,
     setUnseenNotf: PropTypes.func,

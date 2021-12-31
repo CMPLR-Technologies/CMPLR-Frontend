@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: navbarComponent/containers/navbarLinks/links/UnAuthLinks.jsx</title>
+    <title>JSDoc: Source: MyProfileComponent/container/PostsPage.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: navbarComponent/containers/navbarLinks/links/UnAuthLinks.jsx</h1>
+    <h1 class="page-title">Source: MyProfileComponent/container/PostsPage.jsx</h1>
 
     
 
@@ -27,22 +27,63 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react';
-import '../../../../../styles/styles.css';
-import { Link } from 'react-router-dom';
+import CreatePost from '../../createPost/View';
+import PostComponent from '../../partials/postComponent/containers/PostComponent';
+import { LinearProgress } from '@mui/material';
+import NoXAvailable from './NoXAvailable';
+import propTypes from 'prop-types';
+import { useMediaQuery } from 'react-responsive';
+
 /**
- * Navbar UnAuthLinks: includes two buttons login and sign up
- * @function NavbarUnAuthLinks
- * @returns {Component} two buttons login and sign up
+ * @function PostsPage
+ * @description This component is responsible for rendering the posts page.
+ * @param {object} response - The response from server containg posts array and bool to check if the response is sent or not.
+ * @param {array} response.posts - The posts array.
+ * @param {bool} response.isPending - The bool to check if the response is sent or not.
+ * @param {bool} hasMore - The bool to check if there are more posts to load.
+ * @param {function} handleScroll - function to handle the scroll event to load more posts if exists.
+ * @param {mobileView} mobileView - The bool to check if the screen is mobile or not.
+ * @returns {React.Component} - Returns a component.
  */
-export default function UnAuthLinks() {
+
+PostsPage.propTypes = {
+    response: propTypes.object,
+    hasMore: propTypes.bool,
+    handleScroll: propTypes.func,
+    draft: propTypes.bool,
+    mobileView: propTypes.bool
+};
+
+export default function PostsPage(props) {
+    const { posts, isPending } = props.response;
+    const { draft, mobileView } = props;
+    const isBigScreen = useMediaQuery({
+        query: '(min-device-width: 960px )'
+    });
+    const user = JSON.parse(localStorage.getItem('user'));
+
     return (
         &lt;>
-            &lt;button className="log">
-                &lt;Link to="/login">Log in&lt;/Link>
-            &lt;/button>
-            &lt;button className="sign">
-                &lt;Link to="/register">Sign up&lt;/Link>
-            &lt;/button>
+            {!mobileView &amp;&amp; &lt;CreatePost />}
+            {!posts?.length &amp;&amp; !isPending &amp;&amp; (
+                &lt;NoXAvailable x={draft ? 'drafts' : 'posts'} />
+            )}
+            {posts?.length !== 0 &amp;&amp;
+                posts?.map((post, index) => {
+                    return (
+                        &lt;PostComponent
+                            key={index}
+                            post={post}
+                            userBlogName={user?.blogName}
+                            draft={draft}
+                            isFollowed={draft}
+                            radar={!isBigScreen}
+                            ask={post?.post?.type === null}
+                            senderName="kak"
+                        />
+                    );
+                })}
+            {isPending &amp;&amp; &lt;LinearProgress />}
         &lt;/>
     );
 }

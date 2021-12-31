@@ -1,4 +1,32 @@
-import React, { useState } from 'react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: MyProfileComponent/container/FollowersPage.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: MyProfileComponent/container/FollowersPage.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react';
 import SearchBar from '../../navbarComponent/containers/searchBar/SearchBar';
 import OptionsList from '../../partials/postComponent/containers/OptionsList';
 import Modal from '../../partials/Modal';
@@ -52,12 +80,12 @@ export default function FollowersPage(props) {
     };
 
     return (
-        <>
-            {!followers?.length && !isPending && <NoXAvailable x="followers" />}
+        &lt;>
+            {!followers?.length &amp;&amp; !isPending &amp;&amp; &lt;NoXAvailable x="followers" />}
 
-            {isMsgModalOpen && (
-                <Modal messageHeading={`${blogName} has been blocked`}>
-                    <AuthBtn
+            {isMsgModalOpen &amp;&amp; (
+                &lt;Modal messageHeading={`${blogName} has been blocked`}>
+                    &lt;AuthBtn
                         id="nevermind-btn"
                         text="close"
                         color="rgb(0,184,255)"
@@ -66,10 +94,10 @@ export default function FollowersPage(props) {
                             setIsOptionListOpen(false);
                         }}
                     />
-                </Modal>
+                &lt;/Modal>
             )}
-            {isModalOpen && (
-                <Modal
+            {isModalOpen &amp;&amp; (
+                &lt;Modal
                     messageHeading={` Are you sure you want to block ${blogName} from 
                 ${userBlogName}?`}
                     messageDesc={`They won't be able to follow ${blogName}, send
@@ -77,7 +105,7 @@ export default function FollowersPage(props) {
                         results, or interact with any of ${blogName}'s
                         posts.`}
                 >
-                    <AuthBtn
+                    &lt;AuthBtn
                         id="nevermind-btn"
                         text="Nevermind"
                         color="rgba(255,255,255,.65)"
@@ -86,7 +114,7 @@ export default function FollowersPage(props) {
                             setIsOptionListOpen(false);
                         }}
                     />
-                    <AuthBtn
+                    &lt;AuthBtn
                         id="block-btn"
                         text="Block"
                         color="rgb(255, 73, 47)"
@@ -99,67 +127,67 @@ export default function FollowersPage(props) {
                             );
                         }}
                     />
-                </Modal>
+                &lt;/Modal>
             )}
-            {followers?.length !== 0 && (
-                <>
-                    <div data-testid="search-area-ts" className="search-area">
-                        <span
+            {followers?.length !== 0 &amp;&amp; (
+                &lt;>
+                    &lt;div data-testid="search-area-ts" className="search-area">
+                        &lt;span
                             data-testid="followers-num-ts"
                             className="followers-num"
                         >
                             {`${followers?.length ? followers?.length : '0'} `}
                             Followers
-                        </span>
-                        <SearchBar
+                        &lt;/span>
+                        &lt;SearchBar
                             searchFollower={searchFollower}
                             placeHolder="Search your followers"
                         />
-                    </div>
-                    <div
+                    &lt;/div>
+                    &lt;div
                         className="follow-search-result"
                         data-testid="follow-search-result-ts"
                     >
                         {followResultMessage}
-                    </div>
+                    &lt;/div>
 
-                    <div
+                    &lt;div
                         className="followers-list"
                         data-testid="followers-list-ts"
                     >
                         {followers?.map((follower, index) => (
-                            <div key={index} className="follower">
-                                <div
+                            &lt;div key={index} className="follower">
+                                &lt;div
                                     className="avatar"
                                     data-testid="follower-avatar-ts"
                                 >
-                                    <img
+                                    &lt;img
                                         className="avatar-img"
                                         src={follower?.avatar}
                                         alt="Avatar"
                                         loading="eager"
                                     />
-                                </div>
-                                <div
+                                &lt;/div>
+                                &lt;div
                                     data-test-id="follower-name-ts"
                                     className="name"
                                 >
-                                    <span className="primary">
+                                    &lt;span className="primary">
                                         {follower?.blog_name}
-                                    </span>
-                                    <span
+                                    &lt;/span>
+                                    &lt;span
                                         className="secondary"
                                         data-test-id="follower-title-ts"
                                     >
                                         {follower?.title}
-                                    </span>
-                                </div>
-                                <div
+                                    &lt;/span>
+                                &lt;/div>
+                                &lt;div
                                     className="left-control-group"
                                     data-test-id="follower-left-control-group-ts"
                                 >
-                                    {!follower?.is_followed && (
-                                        <button
+                                    {!follower?.is_followed &amp;&amp; (
+                                        &lt;button
                                             onClick={() =>
                                                 followAccount(
                                                     user?.token,
@@ -171,13 +199,13 @@ export default function FollowersPage(props) {
                                             data-test-id="follow-btn-myprofile-ts"
                                         >
                                             Follow
-                                        </button>
+                                        &lt;/button>
                                     )}
-                                    <div
+                                    &lt;div
                                         className="options-btn"
                                         data-test-id="options-btn-myprofile-ts"
                                     >
-                                        <button
+                                        &lt;button
                                             onClick={() => {
                                                 setIsOptionListOpen(prev =>
                                                     prev === -1 ? index : -1
@@ -186,7 +214,7 @@ export default function FollowersPage(props) {
                                             className="btn"
                                             data-testid="opt-btn-header-ts"
                                         >
-                                            <svg
+                                            &lt;svg
                                                 viewBox="0 0 17.5 3.9"
                                                 style={{
                                                     transform: 'rotate(90deg)'
@@ -195,12 +223,12 @@ export default function FollowersPage(props) {
                                                 height="8"
                                                 fill="rgba(var(--black), 0.65)"
                                             >
-                                                <path d="M17.5 1.9c0 1.1-.9 1.9-1.9 1.9-1.1 0-1.9-.9-1.9-1.9S14.5 0 15.6 0c1 0 1.9.9 1.9 1.9m-6.8 0c0 1.1-.9 1.9-1.9 1.9-1.1.1-2-.8-2-1.9 0-1 .9-1.9 2-1.9s1.9.9 1.9 1.9m-6.8 0c0 1.1-.9 2-2 2-1 0-1.9-.9-1.9-2S.9 0 1.9 0c1.1 0 2 .9 2 1.9"></path>
-                                            </svg>
-                                        </button>
+                                                &lt;path d="M17.5 1.9c0 1.1-.9 1.9-1.9 1.9-1.1 0-1.9-.9-1.9-1.9S14.5 0 15.6 0c1 0 1.9.9 1.9 1.9m-6.8 0c0 1.1-.9 1.9-1.9 1.9-1.1.1-2-.8-2-1.9 0-1 .9-1.9 2-1.9s1.9.9 1.9 1.9m-6.8 0c0 1.1-.9 2-2 2-1 0-1.9-.9-1.9-2S.9 0 1.9 0c1.1 0 2 .9 2 1.9">&lt;/path>
+                                            &lt;/svg>
+                                        &lt;/button>
 
-                                        {isOptionListOpen === index && (
-                                            <OptionsList
+                                        {isOptionListOpen === index &amp;&amp; (
+                                            &lt;OptionsList
                                                 userBlogName={userBlogName}
                                                 blogName={follower?.blog_name}
                                                 followersPage={true}
@@ -211,13 +239,36 @@ export default function FollowersPage(props) {
                                                 setBlogName={setBlogName}
                                             />
                                         )}
-                                    </div>
-                                </div>
-                            </div>
+                                    &lt;/div>
+                                &lt;/div>
+                            &lt;/div>
                         ))}
-                    </div>
-                </>
+                    &lt;/div>
+                &lt;/>
             )}
-        </>
+        &lt;/>
     );
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#FollowersPage">FollowersPage</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#ListItem">ListItem</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#MyProfile">MyProfile</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#NotfBody">NotfBody</a></li><li><a href="global.html#NotfHeader">NotfHeader</a></li><li><a href="global.html#Notifications">Notifications</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostsPage">PostsPage</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#SideBar">SideBar</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 31 2021 20:32:12 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

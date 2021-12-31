@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: navbarComponent/containers/navbarLinks/links/UnAuthLinks.jsx</title>
+    <title>JSDoc: Source: MyProfileComponent/container/ListItem.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: navbarComponent/containers/navbarLinks/links/UnAuthLinks.jsx</h1>
+    <h1 class="page-title">Source: MyProfileComponent/container/ListItem.jsx</h1>
 
     
 
@@ -27,23 +27,59 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react';
-import '../../../../../styles/styles.css';
 import { Link } from 'react-router-dom';
+import propTypes from 'prop-types';
+
+ListItem.propTypes = {
+    notf: propTypes.object,
+    userBlogName: propTypes.string,
+    userAvatar: propTypes.string,
+    index: propTypes.number,
+    primary: propTypes.string,
+    secondary: propTypes.string,
+    prof: propTypes.bool,
+    link: propTypes.string,
+    clicked: propTypes.bool,
+    setClicked: propTypes.func
+};
+
 /**
- * Navbar UnAuthLinks: includes two buttons login and sign up
- * @function NavbarUnAuthLinks
- * @returns {Component} two buttons login and sign up
+ * @function ListItem 
+ * @description This component is responsible for rendering the sidebar list item in myProfile page.
+ * @param {string} primary - The primary text of the list item.
+ * @param {string} secondary - The secondary text of the list item.
+ * @param {string} link - The href link of the list item.
+ * @param {bool} prof - boolean to check if the list item is in myProfile or not.
+ * @param {bool} clicked - boolean to check if the list item is clicked or not.
+ * @param {function} setClicked - function to set the clicked boolean.
+ * @returns {React.Component} - Returns a component.
  */
-export default function UnAuthLinks() {
+
+export default function ListItem(props) {
+    const { primary, secondary, prof, link, clicked, setClicked, index } =
+        props;
     return (
-        &lt;>
-            &lt;button className="log">
-                &lt;Link to="/login">Log in&lt;/Link>
-            &lt;/button>
-            &lt;button className="sign">
-                &lt;Link to="/register">Sign up&lt;/Link>
-            &lt;/button>
-        &lt;/>
+        &lt;li
+            onClick={() => setClicked(index + 1)}
+            className={`list-item ${clicked ? 'clicked' : ''}`}
+            data-testid="list-item-myprofile"
+        >
+            &lt;Link
+                className={`list-item-anchor ${prof ? 'prof' : ''} `}
+                data-testid="list-item-anchor"
+                to={link}
+            >
+                &lt;span className="list-item-span" data-testid="list-item-span">
+                    {primary}
+                &lt;/span>
+                &lt;small
+                    className="list-item-anchor-small"
+                    data-testid="list-item-anchor-small"
+                >
+                    {secondary}
+                &lt;/small>
+            &lt;/Link>
+        &lt;/li>
     );
 }
 </code></pre>
