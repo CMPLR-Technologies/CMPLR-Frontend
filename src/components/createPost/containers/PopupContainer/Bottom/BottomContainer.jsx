@@ -2,6 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PostButton from './PostButton';
 
+/**
+ * Bottom Controller for Create-post
+ * @function BottomMainControllers
+ * @property {function} handleCloseModal
+ * @property {function} handlePost
+ * @property {function} setPostType
+ * @property {string} content
+ * @property {string} titlePost
+ * @property {string} postType
+ * @property {string} spinnerPost
+ * @description handle both cancel/post in the create post popup
+ * @returns {Component}
+ */
 export default function BottomMainControllers(props) {
     const {
         handleCloseModal,

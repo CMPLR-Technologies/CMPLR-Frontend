@@ -2,6 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useNavigate } from 'react-router-dom';
+
+/**
+ * Draw CreatePost Icons
+ * @function OptionIcon
+ * @property {string} typeName
+ * @property {path} draw
+ * @property {string} fill
+ * @description it's used for drawing the Text/Pic/Video etc icons
+ * @returns {Component}
+ */
 export default function OptionIcon(props) {
     const { typeName, draw, fill } = props;
     const navigate = useNavigate();

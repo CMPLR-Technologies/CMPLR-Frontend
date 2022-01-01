@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
     AiOutlineBold,
     AiOutlineItalic,
@@ -27,11 +27,23 @@ import {
 } from './Controller';
 import Input from '@mui/material/Input';
 import PostComponent from '../partials/postComponent/containers/PostComponent';
-import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 const InputCam = styled('input')({
     display: 'none'
 });
 
+/**
+ * TextEditor Component
+ * @function HandMadeTextEditor
+ * @property {function} setContent - state to trigger body changes
+ * @property {bool} reblog - bool to know if we are in reblog or not
+ * @property {bool} askFetch - bool to know if we are in ask or not
+ * @property {function} setSpinner - for ui/ux wait
+ * @property {string} editContent - string to show content
+ * @property {string} senderName - name of the sender
+ * @property {object} post - sends the post details
+ * @description used to resend the email veification or to change user's email
+ * @returns {Component}
+ */
 export default function HandMadeTextEditor(props) {
     // eslint-disable-next-line no-unused-vars
     const {

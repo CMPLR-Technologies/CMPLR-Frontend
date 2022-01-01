@@ -5,6 +5,12 @@ import {
     themes
 } from '../../../../contexts/themeContext/ThemeContext';
 
+/**
+ * Icons Container
+ * @function OptionsCreatePost
+ * @description this is the container where all create-post icons are formed
+ * @returns {Component}
+ */
 export default function OptionsCreatePost() {
     const theme = useContext(ThemeContext)[0];
     return (

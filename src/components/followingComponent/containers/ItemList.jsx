@@ -5,6 +5,22 @@ import DropDownPostListFollow from './DropDownListFollow';
 import { Popover } from '@mui/material';
 import ProfileMiniHoverWrapper from '../../profileViews/mini&sideViews/View';
 
+/**
+ * List of following view
+ * @function ItemList
+ * @property {function} handleUnfollow
+ * @property {string} avatar
+ * @property {string} profileName
+ * @property {string} lastUpdated
+ * @property {string} myBlogName
+ * @property {function} handleBlock
+ * @property {bool} openPopup
+ * @property {function} setOpenBlock
+ * @property {number} blogId
+ * @property {function} setProfileNamePop
+ * @description this is the view where all following user's are displayed
+ * @returns {Component}
+ */
 export default function ItemList(props) {
     const {
         handleUnfollow,

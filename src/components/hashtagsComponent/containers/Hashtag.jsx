@@ -1,9 +1,23 @@
 import React from 'react';
 import HashtagPicture from './HashtagPicture';
 import PropTypes from 'prop-types';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { CircularProgress, LinearProgress } from '@mui/material';
-
+/**
+ * Hashtag Component Includes Posts/Hashtag Bar
+ * @function HashtagView
+ * @property {bool} loading
+ * @property {number} totalPosts
+ * @property {number} totalFollowers
+ * @property {bool} isFollower
+ * @property {string} tagName
+ * @property {function} handleFollowHashtag
+ * @property {bool} isPendingFollow
+ * @property {string} errorFollow
+ * @property {array} recommendedTags
+ * @description inner child of the main hashtag view component
+ * @returns {Component}
+ */
 export default function HashtagView(props) {
     const navigate = useNavigate();
     const {
@@ -23,9 +37,9 @@ export default function HashtagView(props) {
                 <HashtagPicture tagName={tagName} />
                 <div className="YOf31">
                     <div className="NmAj2">Trending now</div>
-                    <Link to={'/tagged/' + tagName} className="Wo4gS">
+                    <a href={'/tagged/' + tagName} className="Wo4gS">
                         {'#' + tagName}
-                    </Link>
+                    </a>
                     <div className="S3HC8">
                         <div>
                             <b>{totalFollowers}</b>
@@ -52,6 +66,7 @@ export default function HashtagView(props) {
                             <span className="WdYx4">
                                 {isPendingFollow && (
                                     <CircularProgress
+                                        data-testid="circular_mui_hashtag"
                                         style={{
                                             width: '20px',
                                             height: '20px',
@@ -90,7 +105,9 @@ export default function HashtagView(props) {
                             );
                         })}
                     </div>
-                    {loading && <LinearProgress />}
+                    {loading && (
+                        <LinearProgress data-testid="loader_mui_hashtag" />
+                    )}
                 </div>
             </div>
         </>

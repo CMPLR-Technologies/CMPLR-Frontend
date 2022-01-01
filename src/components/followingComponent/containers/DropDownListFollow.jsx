@@ -2,6 +2,16 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
 
+/**
+ * Dropdown for blocking
+ * @function DropDownPostListFollow
+ * @property {string} profileName
+ * @property {function} setOpen
+ * @property {function} setOpenBlock
+ * @property {function} setProfileNamePop
+ * @description this drop down is for blocking by showing up the Block popup
+ * @returns {Component}
+ */
 export default function DropDownPostListFollow(props) {
     const { setOpen, setOpenBlock, setProfileNamePop, profileName } = props;
 

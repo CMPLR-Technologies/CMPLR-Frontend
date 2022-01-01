@@ -4,6 +4,13 @@ import { resendEmailVerification } from './Service';
 import { CircularProgress } from '@mui/material';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 
+/**
+ * Verify Email Component
+ * @function VerifyEmail
+ * @description used to resend the email veification or to change user's email
+ * @returns {Component}
+ */
+
 export default function VerifyEmail() {
     const user = JSON.parse(localStorage.getItem('user'));
     const [display, setDisplay] = useState(

@@ -43,15 +43,10 @@ export const handleHeading = (cmd, setContent) => {
 };
 
 export const handleCreateLink = (link, setLink, handleClose, setContent) => {
-    // let newLink = document.createElement('a');
-    // newLink.href = link;
-    // newLink.value = link;
-
     document.getElementById(
         'editable-content'
     ).innerHTML += `<a href=${link}>${link}</a>`;
 
-    //document.getElementById('editable-content').appendChild(newLink);
     setContent(document.getElementById('editable-content').innerHTML);
     setLink('https://');
     handleClose();

@@ -5,18 +5,9 @@ import React  from "react";
 import MockedComponent from '../partials/MockedComponent.jsx';
 import CreateModal from "./containers/PopupContainer/View";
 
-
-const MockCreateModal = () => {
-    return (
-        <MockedComponent component={<CreateModal/>}/>
-    );
-};
-
-const mockedFunction = jest.fn();
-
 describe("testcases for title input post", () => {
     render(
-    <MockCreateModal/>
+      <MockedComponent component={<CreateModal/>}/>
     );
   
     const inputTitle = screen.getByTestId(/title-postInput/i);

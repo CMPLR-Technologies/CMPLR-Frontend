@@ -1,6 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Block Modal
+ * @function PopupBlock
+ * @property {string} profileName
+ * @property {string} myBlogName
+ * @property {function} handleBlock
+ * @property {bool} open
+ * @property {function} setOpen
+ * @description this is the popup of blocking a user
+ * @returns {Component}
+ */
 export default function PopupBlock(props) {
     const handleClose = () => setOpen(false);
     const { profileName, myBlogName, handleBlock, open, setOpen } = props;
@@ -36,7 +47,7 @@ export default function PopupBlock(props) {
                                     onClick={handleClose}
                                     style={{ backgroundColor: '#ABB3BC' }}
                                     className="B5hil"
-                                    dataTestid="closepopup_btn_following"
+                                    data-testid="closepopup_btn_following"
                                 >
                                     <span
                                         style={{ color: '#001935' }}
@@ -49,7 +60,7 @@ export default function PopupBlock(props) {
                                     onClick={() => handleBlock(profileName)}
                                     style={{ backgroundColor: '#FF4930' }}
                                     className="B5hil"
-                                    dataTestid="block_btn_following"
+                                    data-testid="block_btn_following"
                                 >
                                     <span
                                         style={{ color: '#001935' }}

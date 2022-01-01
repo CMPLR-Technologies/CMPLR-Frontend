@@ -8,6 +8,14 @@ import PropTypes from 'prop-types';
 import { GrFormCheckmark } from 'react-icons/gr';
 import { ListItemIcon } from '@mui/material';
 
+/**
+ * Post-type Dropdown
+ * @function DropDownPostList
+ * @property {string} postType
+ * @property {function} setPostType
+ * @description used show the posting type and change it
+ * @returns {Component}
+ */
 export default function DropDownPostList(props) {
     const { postType, setPostType } = props;
     return (

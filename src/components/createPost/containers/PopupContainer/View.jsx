@@ -17,6 +17,15 @@ import {
     themes
 } from '../../../../contexts/themeContext/ThemeContext';
 
+/**
+ * Createpost Popup
+ * @function CreateModal
+ * @property {bool} reblog
+ * @property {bool} askFetch
+ * @property {bool} edit
+ * @description render the create post popup body
+ * @returns {Component}
+ */
 export default function CreateModal(props) {
     const [spinner, setSpinner] = useState(false);
     const [spinnerPost, setSpinnerPost] = useState(false);

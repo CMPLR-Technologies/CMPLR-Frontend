@@ -2,6 +2,12 @@
 import React, { useContext } from 'react';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 
+/**
+ * NotFound Component
+ * @function NotFound
+ * @description used to for handling 404 not found pages
+ * @returns {Component}
+ */
 export default function NotFound() {
     const theme = useContext(ThemeContext)[0];
 

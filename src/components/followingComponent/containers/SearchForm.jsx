@@ -18,6 +18,7 @@ export default function SearchForm(props) {
                 autoComplete="off"
                 placeholder="Enter a username, URL, or email address to follow"
                 value={search}
+                data-testid="inputof_following_search"
                 onChange={e => setSearch(e.target.value)}
             />
             <button
@@ -32,7 +33,7 @@ export default function SearchForm(props) {
                         search?.length < 2 ? 'transparent' : '#00B8FF',
                     border: search?.length < 2 ? '1px solid #405368' : 'none'
                 }}
-                dataTestid="search_btn_following"
+                data-testid="search_btn_following"
             >
                 <span
                     style={{

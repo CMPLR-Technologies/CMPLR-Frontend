@@ -4,6 +4,14 @@ import { useState } from 'react';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 
+/**
+ * Hashtag input
+ * @function TagsInput
+ * @property {function} setTags
+ * @property {array} tags
+ * @description used to input hashtags to the post and handle any changes in hashtags
+ * @returns {Component}
+ */
 export default function TagsInput(props) {
     const { setTags, tags } = props;
     const [content, setContent] = useState('');
@@ -33,7 +41,7 @@ export default function TagsInput(props) {
                                 onKeyDown={handleEnterKey}
                                 onChange={e => setContent(e?.target?.value)}
                                 placeholder="#tags"
-                                dataTestid="addhash_btn_createPost"
+                                data-testid="addhash_btn_createPost"
                             />
                             <div className="containerofchip">
                                 <Stack direction="row" spacing={0}>

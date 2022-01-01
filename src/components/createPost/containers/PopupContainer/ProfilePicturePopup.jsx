@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Profile pic
+ * @function ProfilePic
+ * @property {object} user
+ * @description used to render the user's profile picture
+ * @returns {Component}
+ */
 export function ProfilePic(props) {
     const { user } = props;
     return (

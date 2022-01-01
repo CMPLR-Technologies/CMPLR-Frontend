@@ -4,6 +4,18 @@ import { RiArrowDropDownLine } from 'react-icons/ri';
 import PropTypes from 'prop-types';
 import DropDownPostList from './DropDownPostList';
 
+/**
+ * Button to post
+ * @function PostButton
+ * @property {function} handlePost
+ * @property {string} postType
+ * @property {function} setPostType
+ * @property {string} content
+ * @property {string} titlePost
+ * @property {bool} spinnerPost
+ * @description used to handle when user presses on the post button
+ * @returns {Component}
+ */
 export default function PostButton(props) {
     const {
         handlePost,

@@ -13,7 +13,12 @@ import MobileHashtagBar from './containers/MobileTopBar';
 import { UserContext } from '../../contexts/userContext/UserContext';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
-
+/**
+ * Hashtag main Component
+ * @function Hashtag
+ * @description this is the main component for the hashtags page
+ * @returns {Component}
+ */
 export default function Hashtag() {
     const { tag } = useParams();
     const { user } = useContext(UserContext);
