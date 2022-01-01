@@ -26,9 +26,17 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
-import { Link } from 'react-router-dom';
+            <pre class="prettyprint source linenums"><code>import React, { useState, useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {
+    ThemeContext,
+    themes
+} from '../../../../contexts/themeContext/ThemeContext';
+import LogOutOverlay from '../navbarLinks/AccountPopup/Seperators/LogOutOverlay';
+import { apiBaseUrl } from '../../../../config.json';
+import AccountPopupBlogsContainer from '../navbarLinks/AccountPopup/Blogs/AccountPopupBlogsContainer';
+import useFetch from '../../../../hooks/useFetch';
 
 /**
  * Navbar menu mobile: includes navbar links when mobile view
@@ -36,12 +44,31 @@ import PropTypes from 'prop-types';
  * @property {function} closeMenu - close menu
  * @returns {Component} all links in mobile view
  */
+
 export default function NavbarMenuMobile(props) {
+    const [theme, changeTheme] = useContext(ThemeContext);
+    const [paletteChanged, setPaletteChanged] = useState(false);
+    const { data: userInfo } = useFetch(`${apiBaseUrl}/user/info`);
+    let { isOpenSetting, openSetting, closeMenuPar, active } = props;
+
+    //for logout
+    const [overlay, setOverlay] = useState(false);
+
     const closeMenu = () => {
-        props.closeMenu();
+        closeMenuPar();
+    };
+    const toggleTheme = () => {
+        setPaletteChanged(true);
+        changeTheme();
+    };
+    const openSettingHere = () => {
+        openSetting();
+    };
+    const logout = () => {
+        setOverlay(true);
     };
     return (
-        &lt;div className={`navbar-menu-mobile ${props.active ? 'active' : ''}`}>
+        &lt;div className={`navbar-menu-mobile ${active ? 'active' : ''}`}>
             &lt;button
                 aria-label="Close"
                 className="navbar-menu-mobile-close"
@@ -49,46 +76,226 @@ export default function NavbarMenuMobile(props) {
             >
                 &lt;span>&lt;/span>
             &lt;/button>
-            &lt;div className="navbar-menu-mobile-menu">
-                &lt;button className="create-new-post">
-                    &lt;i className="fas fa-pen">&lt;/i> Create a post
-                &lt;/button>
-                &lt;ul>
-                    &lt;li className="navbar-menu-mobile-menu-item">
-                        &lt;Link to="/dashbord" onClick={closeMenu}>
-                            &lt;i className="fas fa-home">&lt;/i> Dashboard
-                        &lt;/Link>
-                    &lt;/li>
-                    &lt;li className="navbar-menu-mobile-menu-item">
-                        &lt;Link to="/recommended-for-you" onClick={closeMenu}>
-                            &lt;i className="fas fa-compass">&lt;/i> Explore
-                        &lt;/Link>
-                    &lt;/li>
-                    &lt;li className="navbar-menu-mobile-menu-item">
-                        &lt;Link to="/inbox" onClick={closeMenu}>
-                            &lt;i className="fas fa-envelope">&lt;/i> Inbox
-                        &lt;/Link>
-                    &lt;/li>
-                    &lt;li className="navbar-menu-mobile-menu-item">
-                        &lt;Link to="/messaging" onClick={closeMenu}>
-                            &lt;i className="fas fa-comment-dots">&lt;/i> Messaging
-                        &lt;/Link>
-                    &lt;/li>
-                    &lt;li className="navbar-menu-mobile-menu-item">
-                        &lt;Link to="/activity" onClick={closeMenu}>
-                            &lt;i className="fas fa-bolt">&lt;/i> Activity
-                        &lt;/Link>
-                    &lt;/li>
-                    {/*TO DO : add the rest */}
-                &lt;/ul>
-            &lt;/div>
+            {!isOpenSetting ? (
+                &lt;div className="navbar-menu-mobile-menu">
+                    &lt;NavLink
+                        to="/new/post"
+                        onClick={closeMenu}
+                        className="newPostA"
+                    >
+                        &lt;button className="create-new-post">
+                            &lt;i className="fas fa-pen">&lt;/i> Create a post
+                        &lt;/button>
+                    &lt;/NavLink>
+                    &lt;ul>
+                        &lt;NavLink to="/dashboard" onClick={closeMenu}>
+                            &lt;li className="navbar-menu-mobile-menu-item">
+                                &lt;i className="fas fa-home">&lt;/i> Dashboard
+                            &lt;/li>
+                        &lt;/NavLink>
+                        &lt;NavLink
+                            to="/explore/recommended-for-you"
+                            onClick={closeMenu}
+                        >
+                            &lt;li className="navbar-menu-mobile-menu-item">
+                                &lt;i className="fas fa-compass">&lt;/i> Explore
+                            &lt;/li>
+                        &lt;/NavLink>
+                        &lt;NavLink to="/inbox" onClick={closeMenu}>
+                            &lt;li className="navbar-menu-mobile-menu-item">
+                                &lt;i className="fas fa-envelope">&lt;/i> Inbox
+                            &lt;/li>
+                        &lt;/NavLink>
+                        &lt;NavLink to="/messaging" onClick={closeMenu}>
+                            &lt;li className="navbar-menu-mobile-menu-item">
+                                &lt;i className="fas fa-comment-dots">&lt;/i>{' '}
+                                Messaging
+                            &lt;/li>
+                        &lt;/NavLink>
+                        &lt;NavLink
+                            to={`/blog/${
+                                JSON.parse(localStorage.getItem('user'))
+                                    ?.blogName
+                            }/activity`}
+                            onClick={closeMenu}
+                        >
+                            &lt;li className="navbar-menu-mobile-menu-item">
+                                &lt;i className="fas fa-bolt">&lt;/i> Activity
+                            &lt;/li>
+                        &lt;/NavLink>
+                        {/*------------------------------------ account links */}
+                        &lt;NavLink to="/likes" onClick={closeMenu}>
+                            &lt;li className="navbar-menu-mobile-menu-item">
+                                &lt;div className="navbar-menu-mobile-menu-item-text">
+                                    &lt;div>
+                                        &lt;i className="fas fa-heart">&lt;/i> Likes
+                                    &lt;/div>
+                                    &lt;span className="val">
+                                        {userInfo &amp;&amp; userInfo.user.likes_count}
+                                    &lt;/span>
+                                &lt;/div>
+                            &lt;/li>
+                        &lt;/NavLink>
+                        &lt;NavLink to="/following" onClick={closeMenu}>
+                            &lt;li className="navbar-menu-mobile-menu-item">
+                                &lt;div className="navbar-menu-mobile-menu-item-text">
+                                    &lt;div>
+                                        &lt;i className="far fa-address-book">&lt;/i>{' '}
+                                        Following
+                                    &lt;/div>
+                                    &lt;span className="val">
+                                        {userInfo &amp;&amp;
+                                            userInfo.user.following_count}
+                                    &lt;/span>
+                                &lt;/div>
+                            &lt;/li>
+                        &lt;/NavLink>
+                        &lt;a onClick={openSettingHere}>
+                            &lt;li className="navbar-menu-mobile-menu-item">
+                                &lt;div className="navbar-menu-mobile-menu-item-text">
+                                    &lt;div>
+                                        &lt;i className="fas fa-cog">&lt;/i>
+                                        Settings
+                                    &lt;/div>
+                                &lt;/div>
+                            &lt;/li>
+                        &lt;/a>
+                        &lt;NavLink to="/help" onClick={closeMenu}>
+                            &lt;li className="navbar-menu-mobile-menu-item">
+                                &lt;div className="navbar-menu-mobile-menu-item-text">
+                                    &lt;div>
+                                        &lt;i className="fas fa-question-circle">&lt;/i>
+                                        Help
+                                    &lt;/div>
+                                &lt;/div>
+                            &lt;/li>
+                        &lt;/NavLink>
+                        &lt;a>
+                            &lt;li className="navbar-menu-mobile-menu-item">
+                                &lt;div
+                                    className="navbar-menu-mobile-menu-item-text"
+                                    onClick={toggleTheme}
+                                >
+                                    &lt;div>
+                                        &lt;i className="fas fa-palette">&lt;/i>
+                                        {paletteChanged
+                                            ? theme
+                                            : 'Change Palette'}
+                                    &lt;/div>
+                                    &lt;div className="val">
+                                        {`${
+                                            Object.keys(themes).indexOf(theme) +
+                                            1
+                                        }/${Object.keys(themes).length}`}
+                                    &lt;/div>
+                                &lt;/div>
+                            &lt;/li>
+                        &lt;/a>
+                    &lt;/ul>
+                    &lt;div className="blogs">
+                        &lt;h3>Blogs&lt;/h3>
+                        &lt;AccountPopupBlogsContainer
+                            closeMenu={closeMenu}
+                            blogs={userInfo?.blogs}
+                        />
+                    &lt;/div>
+                    &lt;div
+                        data-testid="AccountPopupFooter"
+                        className="navbar-menu-mobile-footer"
+                    >
+                        &lt;footer>
+                            &lt;NavLink to="/about" className={`clickable`}>
+                                About
+                            &lt;/NavLink>
+                            &lt;NavLink to="/apps" className={`clickable`}>
+                                Apps
+                            &lt;/NavLink>
+                            &lt;NavLink
+                                to="/policy/terms-of-service"
+                                className={`clickable`}
+                            >
+                                Legal{' '}
+                            &lt;/NavLink>
+                            &lt;NavLink
+                                to="/policy/privacy"
+                                className={`clickable`}
+                            >
+                                Privacy{' '}
+                            &lt;/NavLink>
+                        &lt;/footer>
+                    &lt;/div>
+                &lt;/div>
+            ) : (
+                &lt;div className="navbar-menu-mobile-menu">
+                    &lt;ul>
+                        &lt;NavLink to="/settings/" onClick={closeMenu}>
+                            &lt;li className="navbar-menu-mobile-menu-item">
+                                Change Password
+                            &lt;/li>
+                        &lt;/NavLink>
+                        &lt;NavLink to="/settings/account" onClick={closeMenu}>
+                            &lt;li className="navbar-menu-mobile-menu-item">
+                                Two Factor Authentication
+                            &lt;/li>
+                        &lt;/NavLink>
+                        &lt;NavLink to="/settings/account" onClick={closeMenu}>
+                            &lt;li className="navbar-menu-mobile-menu-item">
+                                &lt;div className="navbar-menu-mobile-menu-item-text">
+                                    &lt;div>Account&lt;/div>
+                                    &lt;span className="val">
+                                        &lt;i className="fas fa-share-square">&lt;/i>
+                                    &lt;/span>
+                                &lt;/div>
+                            &lt;/li>
+                        &lt;/NavLink>
+
+                        &lt;NavLink
+                            to="/settings/notifications"
+                            onClick={closeMenu}
+                        >
+                            &lt;li className="navbar-menu-mobile-menu-item">
+                                &lt;div className="navbar-menu-mobile-menu-item-text">
+                                    &lt;div>Notifications&lt;/div>
+                                    &lt;span className="val">
+                                        &lt;i className="fas fa-share-square">&lt;/i>
+                                    &lt;/span>
+                                &lt;/div>
+                            &lt;/li>
+                        &lt;/NavLink>
+                        &lt;NavLink to="/settings/apps" onClick={closeMenu}>
+                            &lt;li className="navbar-menu-mobile-menu-item">
+                                &lt;div className="navbar-menu-mobile-menu-item-text">
+                                    &lt;div>apps&lt;/div>
+                                    &lt;span className="val">
+                                        &lt;i className="fas fa-share-square">&lt;/i>
+                                    &lt;/span>
+                                &lt;/div>
+                            &lt;/li>
+                        &lt;/NavLink>
+                        {overlay &amp;&amp; (
+                            &lt;LogOutOverlay
+                                hideOverlay={() => setOverlay(false)}
+                            />
+                        )}
+                        &lt;li className="navbar-menu-mobile-menu-item">
+                            &lt;a onClick={logout}>
+                                &lt;div className="navbar-menu-mobile-menu-item-text">
+                                    &lt;div>Logout&lt;/div>
+                                &lt;/div>
+                            &lt;/a>
+                        &lt;/li>
+                    &lt;/ul>
+                &lt;/div>
+            )}
         &lt;/div>
     );
 }
 
 NavbarMenuMobile.propTypes = {
-    closeMenu: PropTypes.func.isRequired,
-    active: PropTypes.bool.isRequired
+    closeMenuPar: PropTypes.func.isRequired,
+    openSetting: PropTypes.func.isRequired,
+    active: PropTypes.bool.isRequired,
+    isOpenSetting: PropTypes.bool.isRequired
 };
 </code></pre>
         </article>
@@ -100,21 +307,13 @@ NavbarMenuMobile.propTypes = {
 </div>
 
 <nav>
-<<<<<<< HEAD
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#ThemeToggle">ThemeToggle</a></li></ul>
-=======
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
->>>>>>> dev
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#ActivityPage">ActivityPage</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Badge">Badge</a></li><li><a href="global.html#BlogInfo">BlogInfo</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#Explore">Explore</a></li><li><a href="global.html#ExploreSidebar">ExploreSidebar</a></li><li><a href="global.html#FollowersPage">FollowersPage</a></li><li><a href="global.html#Following">Following</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#Hashtag">Hashtag</a></li><li><a href="global.html#HashtagsList">HashtagsList</a></li><li><a href="global.html#HeaderGraph">HeaderGraph</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LikedBlogs">LikedBlogs</a></li><li><a href="global.html#ListItem">ListItem</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#MessageItem">MessageItem</a></li><li><a href="global.html#MessageItemSearchRes">MessageItemSearchRes</a></li><li><a href="global.html#Messages">Messages</a></li><li><a href="global.html#MessagesContainer">MessagesContainer</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#MyProfile">MyProfile</a></li><li><a href="global.html#Nav">Nav</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Navbar2MainView">Navbar2MainView</a></li><li><a href="global.html#Navbar2MainViewAuthLinks">Navbar2MainViewAuthLinks</a></li><li><a href="global.html#Navbar2MainViewLinks">Navbar2MainViewLinks</a></li><li><a href="global.html#Navbar2MainViewSection1">Navbar2MainViewSection1</a></li><li><a href="global.html#Navbar2MainViewUnAuthLinks">Navbar2MainViewUnAuthLinks</a></li><li><a href="global.html#Navbar2SideView">Navbar2SideView</a></li><li><a href="global.html#Navbar2SideViewMoreOptions">Navbar2SideViewMoreOptions</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#NewPostPopup">NewPostPopup</a></li><li><a href="global.html#NewPostPopupItem">NewPostPopupItem</a></li><li><a href="global.html#NotfBody">NotfBody</a></li><li><a href="global.html#NotfHeader">NotfHeader</a></li><li><a href="global.html#Notifications">Notifications</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostsPage">PostsPage</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#RecommendBlogs">RecommendBlogs</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#SearchNewMessage">SearchNewMessage</a></li><li><a href="global.html#SearchResult">SearchResult</a></li><li><a href="global.html#SearchResultItemBlog">SearchResultItemBlog</a></li><li><a href="global.html#SearchResultItemContent">SearchResultItemContent</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#SideBar">SideBar</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#TrendingTag">TrendingTag</a></li><li><a href="global.html#TrendingTags">TrendingTags</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-<<<<<<< HEAD
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 09 2021 15:17:05 GMT+0200 (Eastern European Standard Time)
-=======
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 10 2021 22:55:07 GMT+0200 (Eastern European Standard Time)
->>>>>>> dev
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Jan 01 2022 17:42:38 GMT+0200 (Eastern European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

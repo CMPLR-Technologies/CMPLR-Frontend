@@ -4,6 +4,18 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { block } from '../Controller';
 
+/**
+ * Navbar2SideViewMoreOptions: contains the follow,block,following,likes buttons
+ * @function Navbar2SideViewMoreOptions
+ * @property {string} blogName - the blog name
+ * @property {number} blogID - the blog id
+ * @property {boolean} isFollowed - if the user follow this blog 
+ * @property {boolean} isBlocked - if the user block this blog 
+ * @property {function} setBlocked - user block this blog 
+ * @property {function} setIsFollowed - user follow this blog 
+ * @property {function} setShowSideBlog - close the side icon
+ * @returns {Component}  includes the contains the follow,block,following,likes buttons
+ */
 export default function Navbar2SideViewMoreOptions(props) {
     const {
         blogID,

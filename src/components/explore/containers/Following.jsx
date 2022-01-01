@@ -9,6 +9,13 @@ import useFetch from '../../../hooks/useFetch';
 import { apiBaseUrl } from '../../../config.json';
 import { LinearProgress } from '@material-ui/core';
 
+/**
+ * Following Component
+ * @function Following
+ * @description Your Following Hashtags List
+ * @returns {Component} Component That Contains Your Following Hashtags
+ */
+
 export default function Following() {
     const { error, data, isPending } = useFetch(`${apiBaseUrl}/following/tags`);
     const theme = useContext(ThemeContext)[0];

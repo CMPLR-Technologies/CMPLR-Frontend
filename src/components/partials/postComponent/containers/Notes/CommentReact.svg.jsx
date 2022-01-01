@@ -2,7 +2,13 @@ import React from 'react';
 
 export default function CommentReact() {
     return (
-        <svg viewBox="0 0 16 16" width="14" height="14" fill="#00b8ff">
+        <svg
+            data-testid="reply-react-ts"
+            viewBox="0 0 16 16"
+            width="14"
+            height="14"
+            fill="#00b8ff"
+        >
             <circle cx="8" cy="8" r="8"></circle>
             <path
                 fill="#ffffff"

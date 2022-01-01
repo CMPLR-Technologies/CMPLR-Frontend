@@ -5,21 +5,18 @@ import Axios from 'axios';
 
 export const ChatContext = createContext();
 export default function ChatContextProvider(props) {
-    //const { user } = useContext(UserContext);
     const userR = JSON.parse(localStorage.getItem('user'));
     const user = userR;
     const [pageNumber, setPageNumber] = useState(1);
 
     let currBlogObject = null;
     if (user && user?.userData)
-        //console.log(user?.userData);
         currBlogObject = {
             senderName: user?.userData?.blog_name,
             senderId: user?.userData?.primary_blog_id,
             senderPhoto: user?.userData?.avatar,
             senderShape: user?.userData?.avatar_shape
         };
-    //console.log('f', currBlogObject, user);
     const [currBlog, setCurrBlog] = useState(currBlogObject);
     const [blogs, setBlogs] = useState(null);
 
@@ -27,12 +24,7 @@ export default function ChatContextProvider(props) {
     const [loadingChats, setLoadingChats] = useState(false);
     const [errLoadingChat, setErrLoadingChat] = useState(null);
     const [chats, setChats] = useState(null); //chats in navbar messages dropDown
-    //for the signle conversation
-    /*const [msgs, setMsgs] = useState([]);
-    const [loadingConversation, setLoadingConversation] = useState(false);
-    const [errorLoadingConversation, setErrorLoadingConversation] =
-        useState(null);
-    const [hasMorePages, setHasMorePages] = useState(false);*/
+
 
     const [conversationMsg, setConversationMsg] = useState([]);
     const [currPopUpOpenChat, setCurrPopUpOpenChat] = useState(null);
@@ -40,14 +32,12 @@ export default function ChatContextProvider(props) {
 
     const setUserBlog = userData => {
         let currBlogObject = null;
-        // console.log(userData);
         currBlogObject = {
             senderName: userData?.blog_name,
             senderId: userData?.primary_blog_id,
             senderPhoto: userData?.avatar,
             senderShape: userData?.avatar_shape
         };
-        //console.log('s', currBlogObject, userData);
 
         setCurrBlog(currBlogObject);
     };
@@ -61,7 +51,7 @@ export default function ChatContextProvider(props) {
             };
         } else return;
         let count = 0;
-        let blogId = currBlog?.senderId; //user.userData.id;
+        let blogId = currBlog?.senderId; 
         Axios.get(`${apiBaseUrl}/blog/messaging/${blogId}`, config)
             .then(res => {
                 //for production use
@@ -93,16 +83,14 @@ export default function ChatContextProvider(props) {
                 Accept: 'application/json'
             };
         }
-        let blogId = currBlog?.senderId; //user.userData.id;
+        let blogId = currBlog?.senderId; 
         setLoadingChats(true);
-        //console.log(user);
         Axios.get(`${apiBaseUrl}/blog/messaging/${blogId}`, config)
             .then(res => {
                 if (!res.error) {
                     setChats(res?.data);
                     setLoadingChats(false);
                     setErrLoadingChat(null);
-                    //console.log('ss');
                 } else {
                     throw Error(res?.error);
                 }
@@ -113,8 +101,7 @@ export default function ChatContextProvider(props) {
                     setErrLoadingChat(err?.message);
                 }
             });
-        //setChats(charArr);
-        //setLoadingChats(false);
+
     }
 
     // this function open the chat popup when use click it from the navbar drop down list
@@ -128,7 +115,6 @@ export default function ChatContextProvider(props) {
         senderName,
         receiverName
     ) => {
-        // console.log(user);
         // if the current is the one i opened
 
         if (
@@ -192,20 +178,16 @@ export default function ChatContextProvider(props) {
                 found = true;
             }
         }
-       // console.log(found);
         if (found === false) {
-           // console.log(currPopUpOpenChat);
             if (!sideIconOpenChat || sideIconOpenChat?.length === 0) {
                 let nSide = [];
                 nSide.push(currPopUpOpenChat);
                 setSideIconOpenChat(nSide);
             } else
                 setSideIconOpenChat([...sideIconOpenChat, currPopUpOpenChat]);
-        //    console.log(sideIconOpenChat);
         }
         closeChatPopup();
     };
-    //console.log(sideIconOpenChat);
     // send message
     const sendMessage = (message, senderId, receiverId) => {
         const abortCont = new AbortController();
@@ -216,7 +198,6 @@ export default function ChatContextProvider(props) {
                 Accept: 'application/json'
             };
         }
-        //  console.log(currPopUpOpenChat.senderId, currPopUpOpenChat.receiverId);
         Axios.post(
             `${apiBaseUrl}/messaging/conversation/${senderId}/${receiverId}`,
             {
@@ -226,7 +207,6 @@ export default function ChatContextProvider(props) {
         )
             .then(res => {
                 if (!res.error) {
-                   // console.log('send message succfully!');
                     let newMsg = {
                         // eslint-disable-next-line camelcase
                         from_blog_id: senderId,
@@ -253,13 +233,11 @@ export default function ChatContextProvider(props) {
             })
             .catch(err => {
                 if (err.name !== 'AbortError') {
-                    // console.log('faild send message!');
-                    // console.log(err.message);
+                   ;
                 }
             });
     };
     const deleteChat = (senderId, receiverId) => {
-        // let { senderId, receiverId } = currPopUpOpenChat;
         const abortCont = new AbortController();
         const config = { signal: abortCont.signal };
         if (user) {
@@ -274,18 +252,16 @@ export default function ChatContextProvider(props) {
         )
             .then(res => {
                 if (!res.error) {
-                    //console.log('deleted chat succfully!');
                     setConversationMsg([]);
                     closeChatPopup();
-                    // to do delete it form chats
+                    
                 } else {
                     throw Error(res.error);
                 }
             })
             .catch(err => {
                 if (err.name !== 'AbortError') {
-                    // console.log('faild delete chat!');
-                    // console.log(err.message);
+                    //
                 }
             });
     };

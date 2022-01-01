@@ -27,18 +27,30 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from './Button';
 import ExploreBtn from './ExploreBtn.svg';
 import Footer from './Footer';
-import GoogleButton from './GoogleButton.svg';
+//import GoogleButton from './GoogleButton.svg';
 import PropTypes from 'prop-types';
 import PlaystoreApplestore from '../../../partials/PlaystoreApplestore';
+import GoogleLogin from 'react-google-login';
+import {
+    responseGoogleFailure,
+    responseGoogleSuccess
+} from '../../../loginComponent/Service';
+import { useContext } from 'react';
+import { UserContext } from '../../../../contexts/userContext/UserContext';
+import { useState } from 'react';
+import { CircularProgress } from '@mui/material';
+import AuthAlert from '../../../partials/AuthAlert';
 
 HomeSec1.propTypes = {
     heading: PropTypes.string.isRequired,
     paragraph: PropTypes.string.isRequired,
-    last: PropTypes.bool.isRequired
+    last: PropTypes.bool.isRequired,
+    logo: PropTypes.any,
+    isMobile: PropTypes.any
 };
 
 /**
@@ -54,7 +66,12 @@ const images = ['1.jpg', '2.jpg', '3.png', '4.jpg', '5.jpg'];
 const imageNum = Math.floor(Math.random() * 5);
 
 export default function HomeSec1(props) {
-    const { heading, paragraph, last } = props;
+    const { heading, paragraph, last, logo, isMobile } = props;
+    const navigate = useNavigate();
+    const { setUser } = useContext(UserContext);
+    const [error, setError] = useState();
+    const [isPending, setIsPending] = useState();
+
     return (
         &lt;>
             &lt;section
@@ -74,29 +91,27 @@ export default function HomeSec1(props) {
                         data-testid="sec1-logo-container"
                         className="logo-container"
                     >
-                        {!last ? (
-                            &lt;>
-                                &lt;p data-testid="sec1-heading" className="logo">
-                                    {heading}
-                                &lt;/p>
-                                &lt;p data-testid="sec1-paragraph">{paragraph}&lt;/p>
-                            &lt;/>
-                        ) : (
-                            &lt;>
-                                &lt;h1
-                                    data-testid="sec1-heading"
-                                    className="sixth-page-heading"
-                                >
-                                    {heading}
-                                &lt;/h1>
-                                &lt;p
-                                    data-testid="sec1-paragraph"
-                                    className="sixth-page-paragraph"
-                                >
-                                    {paragraph}
-                                &lt;/p>
-                            &lt;/>
+                        {logo &amp;&amp; (
+                            &lt;p data-testid="sec1-heading" className="logo">
+                                {heading}
+                            &lt;/p>
                         )}
+
+                        {last &amp;&amp; !isMobile &amp;&amp; (
+                            &lt;h1
+                                data-testid="sec1-heading"
+                                className="sixth-page-heading"
+                            >
+                                {heading}
+                            &lt;/h1>
+                        )}
+
+                        &lt;p
+                            data-testid="sec1-paragraph"
+                            className="sixth-page-paragraph"
+                        >
+                            {paragraph}
+                        &lt;/p>
                     &lt;/div>
 
                     &lt;Button
@@ -126,10 +141,40 @@ export default function HomeSec1(props) {
                         the &lt;Link to="/privacy">Privacy Policy&lt;/Link>
                     &lt;/p>
 
-                    &lt;Button href="/auth/google" className="google-btn" title="">
-                        &lt;GoogleButton />
-                        &lt;div className="btn-text">Continue with Google&lt;/div>
-                    &lt;/Button>
+                    {isPending &amp;&amp; (
+                        &lt;div className="load-circle">
+                            &lt;CircularProgress />
+                        &lt;/div>
+                    )}
+
+                    {error &amp;&amp; error !== '' &amp;&amp; (
+                        &lt;AuthAlert
+                            openError={error.length !== 0}
+                            errorMessage={error}
+                        />
+                    )}
+
+                    &lt;div className="goggleStyleBtn">
+                        &lt;GoogleLogin
+                            className="AuthBtnGoogle"
+                            clientId={
+                                '897018969322-knobrd9ontkafr46u2ukkv3rnjc5qej8.apps.googleusercontent.com'
+                            }
+                            buttonText="Continue with Google"
+                            onSuccess={res =>
+                                responseGoogleSuccess(
+                                    res,
+                                    navigate,
+                                    setIsPending,
+                                    setUser
+                                )
+                            }
+                            onFailure={res =>
+                                responseGoogleFailure(res, setError)
+                            }
+                            cookiePolicy={'single_host_origin'}
+                        />
+                    &lt;/div>
                     {last &amp;&amp; &lt;PlaystoreApplestore />}
                     {!last &amp;&amp; (
                         &lt;Button href="" className="explore-btn" title="">
@@ -156,21 +201,13 @@ export default function HomeSec1(props) {
 </div>
 
 <nav>
-<<<<<<< HEAD
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#ThemeToggle">ThemeToggle</a></li></ul>
-=======
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
->>>>>>> dev
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#ActivityPage">ActivityPage</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Badge">Badge</a></li><li><a href="global.html#BlogInfo">BlogInfo</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#Explore">Explore</a></li><li><a href="global.html#ExploreSidebar">ExploreSidebar</a></li><li><a href="global.html#FollowersPage">FollowersPage</a></li><li><a href="global.html#Following">Following</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#Hashtag">Hashtag</a></li><li><a href="global.html#HashtagsList">HashtagsList</a></li><li><a href="global.html#HeaderGraph">HeaderGraph</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LikedBlogs">LikedBlogs</a></li><li><a href="global.html#ListItem">ListItem</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#MessageItem">MessageItem</a></li><li><a href="global.html#MessageItemSearchRes">MessageItemSearchRes</a></li><li><a href="global.html#Messages">Messages</a></li><li><a href="global.html#MessagesContainer">MessagesContainer</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#MyProfile">MyProfile</a></li><li><a href="global.html#Nav">Nav</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Navbar2MainView">Navbar2MainView</a></li><li><a href="global.html#Navbar2MainViewAuthLinks">Navbar2MainViewAuthLinks</a></li><li><a href="global.html#Navbar2MainViewLinks">Navbar2MainViewLinks</a></li><li><a href="global.html#Navbar2MainViewSection1">Navbar2MainViewSection1</a></li><li><a href="global.html#Navbar2MainViewUnAuthLinks">Navbar2MainViewUnAuthLinks</a></li><li><a href="global.html#Navbar2SideView">Navbar2SideView</a></li><li><a href="global.html#Navbar2SideViewMoreOptions">Navbar2SideViewMoreOptions</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#NewPostPopup">NewPostPopup</a></li><li><a href="global.html#NewPostPopupItem">NewPostPopupItem</a></li><li><a href="global.html#NotfBody">NotfBody</a></li><li><a href="global.html#NotfHeader">NotfHeader</a></li><li><a href="global.html#Notifications">Notifications</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostsPage">PostsPage</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#RecommendBlogs">RecommendBlogs</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#SearchNewMessage">SearchNewMessage</a></li><li><a href="global.html#SearchResult">SearchResult</a></li><li><a href="global.html#SearchResultItemBlog">SearchResultItemBlog</a></li><li><a href="global.html#SearchResultItemContent">SearchResultItemContent</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#SideBar">SideBar</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#TrendingTag">TrendingTag</a></li><li><a href="global.html#TrendingTags">TrendingTags</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-<<<<<<< HEAD
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 09 2021 15:17:05 GMT+0200 (Eastern European Standard Time)
-=======
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 10 2021 22:55:07 GMT+0200 (Eastern European Standard Time)
->>>>>>> dev
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Jan 01 2022 17:42:38 GMT+0200 (Eastern European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

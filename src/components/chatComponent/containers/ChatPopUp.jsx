@@ -57,10 +57,7 @@ export default function ChatPopUp() {
     useEffect(() => {
         setConversationMsg(msgs);
     }, [msgs]);
-    /* useEffect(() => {
-        //setConversationMsg(msgs);
-        console.log(blogData);
-    }, [blogData]);*/
+
 
     // the part for scorll down when you send/receive message
 
@@ -213,9 +210,7 @@ export default function ChatPopUp() {
             }
         });
     }, []);
-    /* useEffect(()=>{
-        console.log(conversationMsg);
-    },[conversationMsg]);*/
+
     return (
         <div
             className={`chat-popup-container ${
@@ -223,7 +218,6 @@ export default function ChatPopUp() {
             }`}
         >
             <div className="chat-popup">
-                {/*TO DO hide the header untill no more!!!!!!!!!! */}
 
                 <div className="chat-popup-header">
                     {showOption && (

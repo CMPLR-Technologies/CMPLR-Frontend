@@ -170,6 +170,7 @@ export default function AuthLinks() {
                         className={`link-icon  ${
                             openNotificationsPopup ? 'active' : ''
                         }`}
+                        data-testid="notifications-btn-ts"
                     >
                         <i className="fas fa-bolt"></i>
                     </li>

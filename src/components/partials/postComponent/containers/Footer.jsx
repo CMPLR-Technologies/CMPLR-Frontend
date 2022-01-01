@@ -45,7 +45,9 @@ Footer.propTypes = {
     isLiked: PropTypes.bool,
     setIsLiked: PropTypes.func,
     draft: PropTypes.bool,
-    postSubmit: PropTypes.func
+    ask: PropTypes.bool,
+    senderName: PropTypes.string,
+    notesCount: PropTypes.number
 };
 
 export default function Footer(props) {
@@ -62,7 +64,6 @@ export default function Footer(props) {
         blogPage,
         radar,
         draft,
-        postSubmit,
         setIsLiked,
         ask,
         senderName,

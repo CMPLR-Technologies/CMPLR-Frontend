@@ -3,14 +3,17 @@ import MessageItem from './MessageItem';
 import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
 import PropTypes from 'prop-types';
 import { LinearProgress } from '@mui/material';
-
+/**
+ * Navbar Messages: includes MessageItems blogs to chat with 
+ * @function Messages
+ * @property {array} chats - array of blogs
+ * @returns {Component}  array of blogs you have a previous chat with 
+ */
 export default function Messages(props) {
     let { chats, loadingChats, errLoadingChat, currBlog } =
         useContext(ChatContext);
     let BlogName = currBlog?.senderName;
     let BlogId = currBlog?.senderId;
-    //  let BlogAvatar =
-    //    'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png';
     // eslint-disable-next-line react/prop-types
     let { clickMessagePopup, mobile } = props;
     return (

@@ -5,6 +5,19 @@ import { LinearProgress } from '@mui/material';
 import NoXAvailable from './NoXAvailable';
 import propTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
+
+/**
+ * @function PostsPage
+ * @description This component is responsible for rendering the posts page.
+ * @param {object} response - The response from server containg posts array and bool to check if the response is sent or not.
+ * @param {array} response.posts - The posts array.
+ * @param {bool} response.isPending - The bool to check if the response is sent or not.
+ * @param {bool} hasMore - The bool to check if there are more posts to load.
+ * @param {function} handleScroll - function to handle the scroll event to load more posts if exists.
+ * @param {mobileView} mobileView - The bool to check if the screen is mobile or not.
+ * @returns {React.Component} - Returns a component.
+ */
+
 PostsPage.propTypes = {
     response: propTypes.object,
     hasMore: propTypes.bool,

@@ -46,7 +46,8 @@
         "lint": "eslint ./src --ext .jsx",
         "eject": "react-scripts eject",
         "coverageTest": "react-scripts test --coverage",
-        "doc": "jsdoc -c jsdoc.json"
+        "doc": "jsdoc -c jsdoc.json",
+        "testall": "react-scripts test --watchAll=false"
     },
     "eslintConfig": {
         "extends": [
