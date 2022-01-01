@@ -4,7 +4,12 @@ import SearchNewMessage from './SearchNewMessage';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
-
+/**
+ * Navbar MessagesContainer: Container includes MessageItems blogs to chat with 
+ * @function MessagesContainer
+ * @property {funtion} loadChats - load array of blogs you have a previous chat with 
+ * @returns {Component}  array of blogs you have a previous chat with 
+ */
 export default function MessagesContainer(props) {
     const [openNewMessageButton, setOpenNewMessageButton] = useState(false);
     // eslint-disable-next-line react/prop-types

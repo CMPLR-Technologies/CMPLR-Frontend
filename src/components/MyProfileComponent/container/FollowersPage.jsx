@@ -9,6 +9,15 @@ import Axios from 'axios';
 import { apiBaseUrl } from '../../../config.json';
 import PropTypes from 'prop-types';
 import { followAccount } from '../../followingComponent/Service';
+
+/**
+ * @function FollowersPage 
+ * @description This component is responsible for rendering the followers section in myProfile page.
+ * @param {object} response -  respones object containing followers array and bool to check if response is sent from server or not.
+ * @param {Array} response.followers - followers array.
+ * @param {bool} response.isPending - bool to check if response is sent from server or not.
+ */
+
 FollowersPage.propTypes = {
     response: PropTypes.object
 };

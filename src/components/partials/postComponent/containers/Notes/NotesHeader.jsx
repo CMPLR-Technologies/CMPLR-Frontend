@@ -30,10 +30,14 @@ export default function NotesHeader(props) {
                 <button
                     onClick={() => setNotesView(false)}
                     className="close-note-view btn"
+                    data-testid="close-note-view-btn-ts"
                 >
                     <Close />
                 </button>
-                <span className="notes-view-count">
+                <span
+                    data-testid="notes-view-count-ts"
+                    className="notes-view-count"
+                >
                     {numberNotes > 1
                         ? `${numberNotes} notes`
                         : numberNotes === undefined ||

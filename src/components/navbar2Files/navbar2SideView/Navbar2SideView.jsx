@@ -3,6 +3,19 @@ import PropTypes from 'prop-types';
 import Navbar2SideViewMoreOptions from './Navbar2SideViewMoreOptions';
 import { follow, unFollow, unBlock } from '../Controller';
 
+/**
+ * Navbar2SideView: contains the follow,block,following,likes buttons
+ * @function Navbar2SideView
+ * @property {function} setShowSideBlog - boolan to close the side icon view
+ * @property {function} blogName - the blog name
+ * @property {number} blogID - the blog id
+ * @property {boolean} isFollowed - if the user follow this blog 
+ * @property {boolean} isBlocked - if the user block this blog 
+ * @property {function} setBlocked - user block this blog 
+ * @property {boolean} openMoreOptions - open more option menu
+ * @property {function} setIsFollowed - user follow this blog 
+ * @returns {Component}  includes the contains the follow,block,following,likes buttons
+ */
 export default function Navbar2SideView(props) {
     const {
         setShowSideBlog,

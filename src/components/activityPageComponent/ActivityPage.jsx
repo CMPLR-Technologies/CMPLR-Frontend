@@ -7,6 +7,13 @@ import { useEffect } from 'react';
 import { apiBaseUrl } from '../../config.json';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+
+/**
+ * ActivityPage: ActivityPage is a page include the activity of the user
+ * @function ActivityPage
+ * @description this is the main Component of  ActivityPage includes the activity of the user
+ * @returns {Component} header graph component and notifigation component
+ */
 export default function ActivityPage() {
     const theme = useContext(ThemeContext)[0];
     const user = JSON.parse(localStorage.getItem('user'));

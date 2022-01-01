@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: navbarComponent/containers/navbarLinks/MessagesPopup/MessagesContainer.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: navbarComponent/containers/navbarLinks/MessagesPopup/MessagesContainer.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect, useContext } from 'react';
+import Messages from './Messages';
+import SearchNewMessage from './SearchNewMessage';
+import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
+import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
+/**
+ * Navbar MessagesContainer: Container includes MessageItems blogs to chat with 
+ * @function MessagesContainer
+ * @property {funtion} loadChats - load array of blogs you have a previous chat with 
+ * @returns {Component}  array of blogs you have a previous chat with 
+ */
+export default function MessagesContainer(props) {
+    const [openNewMessageButton, setOpenNewMessageButton] = useState(false);
+    // eslint-disable-next-line react/prop-types
+    let { clickMessagePopup, mobile } = props;
+    const clickNewMessageButton = () => {
+        setOpenNewMessageButton(!openNewMessageButton);
+    };
+    let { loadChats, currBlog,currPopUpOpenChat } = useContext(ChatContext);
+
+    useEffect(() => {
+        loadChats();
+    }, []);
+    return (
+        &lt;>
+            {/*header of message popup contains name and new message button */}
+            {!(mobile &amp;&amp; currPopUpOpenChat) &amp;&amp; (
+                &lt;div className="popup-header">
+                    {/*TODO MAKE IT BY USEr name */}
+                    {/*TODO MAKE loading icon */}
+
+                    {/*TODO implement icon back function */}
+                    &lt;span>
+                        &lt;NavLink to="/dashboard">
+                            &lt;i className="fas fa-angle-left">&lt;/i>
+                        &lt;/NavLink>
+                    &lt;/span>
+                    &lt;h3>{currBlog?.senderName}&lt;/h3>
+                    {!openNewMessageButton ? (
+                        &lt;button onClick={clickNewMessageButton}>
+                            new message
+                        &lt;/button>
+                    ) : (
+                        &lt;button
+                            onClick={clickNewMessageButton}
+                            className="never"
+                        >
+                            nevermind
+                        &lt;/button>
+                    )}
+                    {/*TODO implement new message function */}
+                    &lt;span>
+                        {!openNewMessageButton ? (
+                            &lt;span onClick={clickNewMessageButton}>
+                                {' '}
+                                &lt;i className="fas fa-comment-dots">&lt;/i>
+                            &lt;/span>
+                        ) : (
+                            &lt;span
+                                onClick={clickNewMessageButton}
+                                //className="never"
+                            >
+                                &lt;i className="fas fa-times">&lt;/i>
+                            &lt;/span>
+                        )}
+                    &lt;/span>
+                &lt;/div>
+            )}
+
+            {/*if not click on new message button then show the messages else show the search users*/}
+            {!openNewMessageButton ? (
+                &lt;Messages
+                    clickMessagePopup={clickMessagePopup}
+                    mobile={mobile}
+                />
+            ) : (
+                &lt;SearchNewMessage clickMessagePopup={clickMessagePopup} />
+            )}
+        &lt;/>
+    );
+}
+PropTypes.propTypes = {
+    clickMessagePopup: PropTypes.func.isRequired,
+    mobile: PropTypes.bool
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#ActivityPage">ActivityPage</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Badge">Badge</a></li><li><a href="global.html#BlogInfo">BlogInfo</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#Explore">Explore</a></li><li><a href="global.html#ExploreSidebar">ExploreSidebar</a></li><li><a href="global.html#FollowersPage">FollowersPage</a></li><li><a href="global.html#Following">Following</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#Hashtag">Hashtag</a></li><li><a href="global.html#HashtagsList">HashtagsList</a></li><li><a href="global.html#HeaderGraph">HeaderGraph</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LikedBlogs">LikedBlogs</a></li><li><a href="global.html#ListItem">ListItem</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#MessageItem">MessageItem</a></li><li><a href="global.html#MessageItemSearchRes">MessageItemSearchRes</a></li><li><a href="global.html#Messages">Messages</a></li><li><a href="global.html#MessagesContainer">MessagesContainer</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#MyProfile">MyProfile</a></li><li><a href="global.html#Nav">Nav</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Navbar2MainView">Navbar2MainView</a></li><li><a href="global.html#Navbar2MainViewAuthLinks">Navbar2MainViewAuthLinks</a></li><li><a href="global.html#Navbar2MainViewLinks">Navbar2MainViewLinks</a></li><li><a href="global.html#Navbar2MainViewSection1">Navbar2MainViewSection1</a></li><li><a href="global.html#Navbar2MainViewUnAuthLinks">Navbar2MainViewUnAuthLinks</a></li><li><a href="global.html#Navbar2SideView">Navbar2SideView</a></li><li><a href="global.html#Navbar2SideViewMoreOptions">Navbar2SideViewMoreOptions</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#NewPostPopup">NewPostPopup</a></li><li><a href="global.html#NewPostPopupItem">NewPostPopupItem</a></li><li><a href="global.html#NotfBody">NotfBody</a></li><li><a href="global.html#NotfHeader">NotfHeader</a></li><li><a href="global.html#Notifications">Notifications</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostsPage">PostsPage</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#RecommendBlogs">RecommendBlogs</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#SearchNewMessage">SearchNewMessage</a></li><li><a href="global.html#SearchResult">SearchResult</a></li><li><a href="global.html#SearchResultItemBlog">SearchResultItemBlog</a></li><li><a href="global.html#SearchResultItemContent">SearchResultItemContent</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#SideBar">SideBar</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#TrendingTag">TrendingTag</a></li><li><a href="global.html#TrendingTags">TrendingTags</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Jan 01 2022 17:42:38 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -14,14 +14,17 @@ import { UserContext } from '../../contexts/userContext/UserContext';
 export default function Navbar() {
     const theme = useContext(ThemeContext)[0];
     const { user } = useContext(UserContext);
-    const [bg, setBg] = useState('transparent');
-    useEffect(() => {
-        if (user?.token) {
+
+    const [bg,setBg]=useState('transparent');
+    useEffect(()=>{
+        if(user?.token){
             setBg(`rgb(${themes[theme].navy})`);
-        } else {
+        }else{
             setBg('transparent');
         }
-    }, [user, theme]);
+    },[user,theme]);
+
+
     const css = `
         .nav {
             border-bottom: 0.5px solid rgba(${themes[theme].whiteOnDark}, 0.15);

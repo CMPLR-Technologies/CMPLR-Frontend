@@ -1,9 +1,10 @@
 /* eslint-disable no-undef */
 import { render, screen } from '@testing-library/react';
 import React from 'react';
+import MockedComponent from '../partials/MockedComponent';
 import ChatMessageItem from './containers/ChatMessageItem';
 import ChatOption from './containers/ChatOption';
-import MockedComponent from '../partials/MockedComponent.jsx';
+
 describe('test chatMessageItem', () => {
     it('test chat message name', () => {
         render(

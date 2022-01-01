@@ -17,7 +17,12 @@
     height: 100px;
     cursor: pointer;
 }
-
+.profile-side-header-post-container {
+    .side-view {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
 .profile-side {
     display: flex;
     flex-direction: column;
