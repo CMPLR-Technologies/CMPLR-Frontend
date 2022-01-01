@@ -6,7 +6,7 @@ import ListItem from './ListItem';
 import propTypes from 'prop-types';
 
 /**
- * @function SideBar 
+ * @function SideBar
  * @description This component is responsible for rendering the sidebar.
  * @param {number} activeSide - The active side of the sidebar.
  * @param {number} postLength - The length of the posts.

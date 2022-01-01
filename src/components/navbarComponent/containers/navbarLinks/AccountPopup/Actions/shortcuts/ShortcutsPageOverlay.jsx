@@ -16,30 +16,6 @@ export default function ShortcutsPageOverlay(props) {
         setShortcutOverlay(false);
     };
 
-    // document.addEventListener('keydown', e => {
-    //     if (e.altKey && e.code === 'KeyC') {
-    //         //console.log('lol');
-    //         //history.push('/new');
-    //     } else if (e.shiftKey && e.code === 'Slash') {
-    //         //console.log('Go to SearchBar?');
-    //         //document.querySelector("search-bar").focus();
-    //     } else if (e.code === 'Period') {
-    //         //console.log('Back to the top ^^');
-    //     } else if (e.code === 'KeyL') {
-    //         //console.log('Like This one <3');
-    //         // } else if (e.code === "KeyJ") {
-    //         //   console.log("Scroll to next post ->");
-    //         // } else if (e.code === "KeyK") {
-    //         //   console.log("Scroll to prev post <-");
-    //         // }
-    //     } else if (e.altKey && e.code === 'KeyQ') {
-    //         //console.log('Queue this post ~');
-    //     } else if (e.altKey && e.code === 'KeyP') {
-    //         changeTheme(theme);
-    //     }
-    //     e.stopImmediatePropagation();
-    // });
-
     return (
         <div className="overlay-container" data-testid="OverlayContainer">
             <div

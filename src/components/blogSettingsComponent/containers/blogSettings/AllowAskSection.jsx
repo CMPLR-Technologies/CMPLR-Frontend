@@ -43,7 +43,7 @@ export default function AllowAskSection() {
                                         !allowAsk
                                     );
                                 }}
-                                data-testid="switch-input"
+                                data-testid="switch-input-ts"
                             ></input>
                             <span
                                 className="slider round"

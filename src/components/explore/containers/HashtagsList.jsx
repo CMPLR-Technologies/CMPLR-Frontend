@@ -76,8 +76,16 @@ export default function HashtagsList() {
                                     <Hashtag
                                         key={index}
                                         name={hash.tag_name}
-                                        firstImg="https://64.media.tumblr.com/891192a8d723fe2a1f7e5279da75c9ff/2e1d25e975f9c0eb-0a/s640x960/be31a5f1d7f851872378269aca148a7dee2ec501.jpg"
-                                        secondImg="https://64.media.tumblr.com/39105f36dc93917f319f5b5693aeea0b/1254f2e40ff31f0a-21/s640x960/2fd5c64d6b692a2634834e20651865c55f14990c.jpg"
+                                        firstImg={
+                                            hash?.posts_views[0]?.link
+                                                ? hash?.posts_views[0]?.link
+                                                : 'https://64.media.tumblr.com/891192a8d723fe2a1f7e5279da75c9ff/2e1d25e975f9c0eb-0a/s640x960/be31a5f1d7f851872378269aca148a7dee2ec501.jpg'
+                                        }
+                                        secondImg={
+                                            hash?.posts_views[1]?.link
+                                                ? hash?.posts_views[1]?.link
+                                                : 'https://64.media.tumblr.com/39105f36dc93917f319f5b5693aeea0b/1254f2e40ff31f0a-21/s640x960/2fd5c64d6b692a2634834e20651865c55f14990c.jpg'
+                                        }
                                         link={`/tagged/${hash.tag_name}`}
                                         background={
                                             colors[index % 4].background

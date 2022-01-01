@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getUserBlogs } from './Service';
+
+/**
+ * @function PagesList
+ * @description This function is used to render the list of pages
+ * @returns {React.Component} Page list  component
+ */
+
 export default function PagesList() {
     const user = JSON.parse(localStorage.getItem('user'));
     const [blogs, setBlogs] = useState([]);

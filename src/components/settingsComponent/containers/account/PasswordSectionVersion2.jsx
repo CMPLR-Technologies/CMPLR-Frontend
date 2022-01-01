@@ -18,7 +18,7 @@ export default function PasswordSectionVersion2({ setVersionOne }) {
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
     return (
-        <div className="email" id="section">
+        <div className="email" id="section" data-testid="version2-password">
             <div className="sub-section-left">
                 <h3>Password</h3>
             </div>
