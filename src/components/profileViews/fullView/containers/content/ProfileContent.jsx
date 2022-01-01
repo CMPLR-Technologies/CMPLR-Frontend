@@ -23,8 +23,10 @@ export default function ProfileContent(props) {
 
     window.addEventListener('resize', () => changeMobileView(setMobile));
     return (
-        <div className="profile-full-header-content">
-            {/* //TODO Add ask component */}
+        <div
+            className="profile-full-header-content"
+            data-testid="profile-full-header-content"
+        >
             {content === 'ask' && (
                 <div className="posts-region">
                     <section className="normal-layout">
@@ -49,7 +51,10 @@ export default function ProfileContent(props) {
                     <ProfileSideAllPosts blogName={blogName} noTheme={true} />
                 ))}
             {!mobile && (
-                <div className="profile-full-header-content-side">
+                <div
+                    className="profile-full-header-content-side"
+                    data-testid="profile-full-header-content-side"
+                >
                     <p>RECENTLY LIKED</p>
                     {error ? (
                         <div className="no-data-error">{"Couldn't load"}</div>

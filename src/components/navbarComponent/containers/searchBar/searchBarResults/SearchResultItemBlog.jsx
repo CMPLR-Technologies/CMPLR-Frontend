@@ -1,6 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+/**
+ * Navbar SearchResultItemBlog: includes SearchResultItemBlog 
+ * @function SearchResultItemBlog
+ * @property {string} blogName - blog name
+ * @property {string} blogId - blog id
+ * @property {string} title - blog title
+ * @property {string} img - blog avatar
+ * @property {function} imgShape - blog avatar shape
+ * @property {function} closeOpenSearch - function to hide the search result
+ * @returns {Component} blog item
+ */
 export default function SearchResultItemBlog(props) {
     //to do get the real img
     let { blogName,blogId, title, img, imgShape, closeOpenSearch } = props;
@@ -18,9 +29,6 @@ export default function SearchResultItemBlog(props) {
                         <h4>{title}</h4>
                     </div>
                 </div>
-               {/* <div className="search-result-blog-button">
-                    <button>Follow</button>
-    </div>*/}
             </li>
         </Link>
     );

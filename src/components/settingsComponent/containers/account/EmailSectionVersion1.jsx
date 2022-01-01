@@ -15,7 +15,11 @@ export default function EmailSectionVersion1({ setVersionOne }) {
             </div>
             <div className="sub-section-right">
                 <p className="email">{email}</p>
-                <button className="edit" onClick={() => setVersionOne(false)}>
+                <button
+                    className="edit"
+                    onClick={() => setVersionOne(false)}
+                    data-testid="edit1"
+                >
                     <svg
                         viewBox="0 0 17.6 17.6"
                         width="16"

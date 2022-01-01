@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import NewPostPopupItem from './NewPostPopupItem';
 import { useNavigate } from 'react-router-dom';
-
+/**
+ * Navbar NewPostPopup: includes NewPostPopupItems links 
+ * @function NewPostPopup
+ * @property {array} items - array of links of new post
+ * @returns {Component} icon link to new post
+ */
 export default function NewPostPopup() {
     const navigate = useNavigate();
     let items = [

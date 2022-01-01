@@ -10,6 +10,14 @@ import { LinearProgress, ListItemIcon } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { getAllBlogNames } from '../../Service';
 
+/**
+ * Dropdown blogs list
+ * @function DropDownBlogList
+ * @property {function} setBlogAccount
+ * @property {string} postBlogName
+ * @description used to view all the blogs avaliable for this user
+ * @returns {Component}
+ */
 export default function DropDownBlogList(props) {
     const { postBlogName, setBlogAccount } = props;
     const [blogNames, setBlogNames] = useState([]);

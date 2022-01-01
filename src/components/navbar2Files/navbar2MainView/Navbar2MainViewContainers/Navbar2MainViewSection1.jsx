@@ -1,6 +1,13 @@
 import React from 'react';
 //import isAuth from '../../../../hooks/isAuth';
 import { Link } from 'react-router-dom';
+
+/**
+ * Navbar2MainViewSection1: contains the navbar logo and search
+ * @function Navbar2MainViewSection1
+ * @description this is the main navbar logo 
+ * @returns {Component}  includes the navbar logo and search
+ */
 export default function Navbar2MainViewSection1() {
     // const [mobileView, setMobileView] = useState(false);
     // const chaneMobileView = () => {

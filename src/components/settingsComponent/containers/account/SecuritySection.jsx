@@ -26,6 +26,7 @@ export default function SecuritySection() {
                                         user?.token
                                     );
                                 }}
+                                data-testid="email-activity-check"
                             ></input>
                             <span className="slider round"></span>
                         </label>
@@ -49,6 +50,7 @@ export default function SecuritySection() {
                                 onChange={() => {
                                     toggleProperty('TFA', !TFA, updateProperty, user?.token);
                                 }}
+                                data-testid="tfa-check"
                             ></input>
                             <span className="slider round"></span>
                         </label>

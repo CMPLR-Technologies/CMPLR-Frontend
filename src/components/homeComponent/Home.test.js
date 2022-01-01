@@ -49,9 +49,9 @@ describe('Home Section 1', () => {
             <MockedComponent
                 component={
                     <HomeSec1
-                        heading=""
                         paragraph=""
-                        last={false}
+                        last={true}
+                        isMobile={false}
                         heading="head1"
                     />
                 }

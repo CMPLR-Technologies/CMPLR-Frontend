@@ -48,20 +48,20 @@ export default function ProfileSide(props) {
         }
         .profile-side-header-div-bg{
             filter: blur(${Math.min(scrollTop, 260) / 40}px);
-            object-position: 0 ${Math.min(scrollTop / 2, 108)}px;
+            object-position: 0 calc(50% + ${Math.min(scrollTop / 2, 108)}px);
         }
     `;
-    // const body = {
-    //     username: 'huh',
-    //     avatar: 'https://pbs.twimg.com/profile_images/1026496068555612160/Klg8BS8p_400x400.jpg',
-    //     bg: 'https://i.ytimg.com/vi/6Vhp65bgKOo/maxresdefault.jpg',
-    //     title: 'Heey man',
-    //     description: 'wa wafbuaw uwbwakf'
-    // };
 
     return (
-        <div className="profile-side" onScroll={headerScrollAnimation}>
-            <div className="profile-side-header">
+        <div
+            className="profile-side"
+            data-testid="profile-side"
+            onScroll={headerScrollAnimation}
+        >
+            <div
+                className="profile-side-header"
+                data-testid="profile-side-header"
+            >
                 <Navbar2SideView
                     setShowSideBlog={setShowSideBlog}
                     blogName={blogName}
@@ -72,7 +72,10 @@ export default function ProfileSide(props) {
                     setBlocked={setBlocked}
                 />
                 {blocked && (
-                    <div className="profile-side-header-blocked">
+                    <div
+                        className="profile-side-header-blocked"
+                        data-testid="profile-side-header-blocked"
+                    >
                         <div>
                             This blog is Blocked, you can unblock it to view its
                             content
@@ -102,8 +105,14 @@ export default function ProfileSide(props) {
                     </NavLink>
                 )}
                 {!blocked && (
-                    <div className="profile-side-header-text">
-                        <div className="profile-side-header-text-title">
+                    <div
+                        className="profile-side-header-text"
+                        data-testid="profile-side-header-text"
+                    >
+                        <div
+                            className="profile-side-header-text-title"
+                            data-testid="profile-side-header-text-title"
+                        >
                             {title === 'untitled' ? blogName : title}
                         </div>
                         <div className="profile-side-header-text-desc">

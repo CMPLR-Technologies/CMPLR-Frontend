@@ -11,7 +11,7 @@ export default function ProfileFollowing(props) {
     const { error, data, isPending } = response;
 
     return (
-        <div className="profile-following">
+        <div className="profile-following" data-testid="profile-following">
             {(error || data?.blogs.length === 0) && (
                 <div className="no-data-error">
                     {'This Blog does not follow any other blogs'}

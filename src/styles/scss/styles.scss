@@ -6,8 +6,11 @@
 @import './partials/AuthFooter.scss';
 @import './partials/_postComponent';
 @import './partials/_onOffSwitch.scss';
-@import url(//db.onlinewebfonts.com/c/d73d37902ec72250867b578d3763ee38?family=Favorit);
 
+@font-face {
+    font-family: 'Favorit';
+    src: url('./fonts/Favorit.ttf');
+}
 @import './chatStyles/chatStyles';
 
 @import './homeStyles/_homeStyles.scss';

@@ -160,7 +160,7 @@ export default function Settings(page) {
     `;
     return (
         <SettingsContextProvider>
-            <div className="settings">
+            <div className="settings" test-id="settings-container">
                 {currentPage === 'account' && <SettingsAccount />}
                 {currentPage === 'dashboard' && <SettingsDashboard />}
                 {currentPage === 'notifications' && <SettingsNotifications />}

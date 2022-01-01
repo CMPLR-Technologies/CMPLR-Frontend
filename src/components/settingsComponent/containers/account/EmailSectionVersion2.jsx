@@ -18,7 +18,7 @@ export default function EmailSectionVersion2({ setVersionOne }) {
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
     return (
-        <div className="email" id="section">
+        <div data-testid="version2-email" className="email" id="section">
             <div className="sub-section-left">
                 <h3>Email</h3>
             </div>

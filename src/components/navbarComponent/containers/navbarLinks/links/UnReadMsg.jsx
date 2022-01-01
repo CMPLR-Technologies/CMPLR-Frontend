@@ -4,7 +4,12 @@ import {
     ThemeContext,
     themes
 } from '../../../../../contexts/themeContext/ThemeContext';
-
+/**
+ * UnReadMsg Badge: Badge is a box contain a number of unread messages
+ * @function Badge
+ * @description UnReadMsg is a box contain a number of unread messages
+ * @returns {Component} Badge is a box contain a number of unread messages
+ */
 export default function UnReadMsg(props) {
     let { unReadMsgs } = props;
     const theme = useContext(ThemeContext)[0];

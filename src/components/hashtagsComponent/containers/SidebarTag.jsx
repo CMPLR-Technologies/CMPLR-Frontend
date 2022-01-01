@@ -4,6 +4,20 @@ import HashtagView from './Hashtag';
 import PropTypes from 'prop-types';
 import useFetch from '../../../hooks/useFetch';
 import { apiBaseUrl } from '../../../config.json';
+/**
+ * Sidebar of hashtag Component
+ * @function SidebarTag
+ * @property {bool} loading
+ * @property {number} totalPosts
+ * @property {number} totalFollowers
+ * @property {bool} isFollower
+ * @property {string} tagName
+ * @property {function} handleFollowHashtag
+ * @property {bool} isPendingFollow
+ * @property {string} errorFollow
+ * @description the side bar which shows info on the hashtag and some recommended tags
+ * @returns {Component}
+ */
 
 export default function SidebarTag(props) {
     const {

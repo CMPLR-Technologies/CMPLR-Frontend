@@ -1,5 +1,14 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+
+/**
+ * Title of Create-post Popup
+ * @function TitleField
+ * @property {function} setTitlePost
+ * @property {string} editTitlePost
+ * @description used for entering Title post and handling the changes
+ * @returns {Component}
+ */
 export default function TitleField(props) {
     const { setTitlePost, editTitlePost } = props;
     const handleChangeTitle = () => {

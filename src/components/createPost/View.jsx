@@ -5,6 +5,12 @@ import ProfilePicContainer from './containers/DashboardContainer/ProfilePicConta
 import ProfileMiniHoverWrapper from '../profileViews/mini&sideViews/View';
 import { UserContext } from '../../contexts/userContext/UserContext';
 
+/**
+ * Create-post dashboard component
+ * @function CreatePost
+ * @description it's used in the dashboard view for creating a post
+ * @returns {Component}
+ */
 export default function CreatePost() {
     const { user } = useContext(UserContext);
     const theme = useContext(ThemeContext)[0];

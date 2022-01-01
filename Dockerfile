@@ -10,12 +10,11 @@ RUN yarn install
 COPY . .
 
 RUN yarn build
+
+RUN yarn run testall
+
 FROM nginx
 
 COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
-
-COPY ./nginx/nginx.key /etc/nginx/certs/nginx.key
-
-COPY ./nginx/nginx-certificate.crt /etc/nginx/certs/nginx-certificate.crt
 
 COPY --from=build /app/build /usr/share/nginx/html

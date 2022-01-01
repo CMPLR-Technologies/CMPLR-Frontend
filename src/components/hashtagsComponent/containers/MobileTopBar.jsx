@@ -5,6 +5,20 @@ import LinearProgress from '@mui/material/LinearProgress';
 import { Link, useNavigate } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 
+/**
+ * the bar of hashtag but for mobile Component
+ * @function MobileHashtagBar
+ * @property {bool} loading
+ * @property {number} totalPosts
+ * @property {number} totalFollowers
+ * @property {bool} isFollower
+ * @property {string} tagName
+ * @property {function} handleFollowHashtag
+ * @property {bool} isPendingFollow
+ * @property {string} errorFollow
+ * @description the top bar which shows info on the hashtag and some recommended tags
+ * @returns {Component}
+ */
 export default function MobileHashtagBar(props) {
     const navigate = useNavigate();
     const {
@@ -22,7 +36,9 @@ export default function MobileHashtagBar(props) {
         <>
             <div className="viewMobController">
                 <div className="iGLU3">
-                    {loading && <LinearProgress />}
+                    {loading && (
+                        <LinearProgress data-testid="mobhash_circularProgress" />
+                    )}
                     <Link to={'/tagged/' + tagName} className="BSUG4" href="#">
                         <div className="qJeyT"></div>
                     </Link>
@@ -65,6 +81,7 @@ export default function MobileHashtagBar(props) {
                                         <span className="WdYx4">
                                             {isPendingFollow && (
                                                 <CircularProgress
+                                                    data-testid="circular_mui_hashtag0"
                                                     style={{
                                                         width: '20px',
                                                         height: '20px',

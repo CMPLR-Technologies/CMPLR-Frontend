@@ -19,7 +19,7 @@ export default function UserNameSectionVersion2({ setVersionOne }) {
     const navigate = useNavigate();
 
     return (
-        <div className="email" id="section" data-testid="email">
+        <div className="email" id="section" data-testid="emailts">
             <div className="sub-section-left" data-testid="sub-section-left">
                 <h3>Username</h3>
             </div>

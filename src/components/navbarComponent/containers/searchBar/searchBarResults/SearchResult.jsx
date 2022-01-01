@@ -3,79 +3,20 @@ import SearchResultItemContent from './SearchResultItemContent';
 import SearchResultItemBlog from './SearchResultItemBlog';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
+/**
+ * Navbar SearchResult: includes SearchResult array
+ * @function SearchResult
+ * @property {array} searchResults - blogs and tagged search results array
+ * @property {function} closeOpenSearch - function to hide the search result
+ * @property {string} search - Input value state
+ * @returns {Component} blogs and tagged search results
+ */
 export default function SearchResult(props) {
     let { search, closeOpenSearch, searchResults } = props;
-    /*let searchContentArr = ['ahmed', 'ahmed 2', 'ahmedtmp', 'ahmed ahmed'];
-    let searchBlogArr = [
-        { blogName: 'ahmed123', name: 'ahmed' },
-        { blogName: 'ahmed123', name: 'ahmed' },
-        { blogName: 'ahmed123', name: 'ahmed' },
-        { blogName: 'ahmed123', name: 'ahmed' },
-        { blogName: 'ahmed123', name: 'ahmed' },
-        { blogName: 'ahmed123', name: 'ahmed' }
-    ];*/
-    // let {searchResults}=props;
-    /*let searchResults = {
-        tags: [
-            {
-                name: 'Addison Walker',
-                slug: 'addison-walker'
-            },
-            {
-                name: 'Angelina Beer V',
-                slug: 'angelina-beer-v'
-            },
-            {
-                name: 'Aniya Koch',
-                slug: 'aniya-koch'
-            },
-            {
-                name: 'Bailey Witting',
-                slug: 'bailey-witting'
-            },
-            {
-                name: 'Bobbie Gutmann MD',
-                slug: 'bobbie-gutmann-md'
-            }
-        ],
-        blogs: [
-            {
-                id: 4,
-                blog_name: 'aut',
-                title: 'Dolly Parisian II',
-                settings: {
-                    blog_id: 4,
-                    avatar: 'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
-                    avatar_shape: 'circle'
-                }
-            },
-            {
-                id: 1,
-                blog_name: 'explicabo',
-                title: 'Claudine Volkman',
-                settings: {
-                    blog_id: 1,
-                    avatar: 'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
-                    avatar_shape: 'circle'
-                }
-            },
-            {
-                id: 10,
-                blog_name: 'nam',
-                title: 'Dr. Jeremy Kertzmann I',
-                settings: {
-                    blog_id: 10,
-                    avatar: 'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
-                    avatar_shape: 'circle'
-                }
-            }
-        ]
-    };*/
     return (
         <div className="search-result">
             <ul>
-                <Link to={`taged/${props.search}`} onClick={closeOpenSearch}>
+                <Link to={`tagged/${props.search}`} onClick={closeOpenSearch}>
                     <li className="search-result-go">
                         Go to #<span className="color">{props.search}</span>
                     </li>

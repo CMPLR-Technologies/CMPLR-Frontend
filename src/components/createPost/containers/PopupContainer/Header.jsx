@@ -6,7 +6,16 @@ import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress';
 import { UserContext } from '../../../../contexts/userContext/UserContext';
 import DropDownBlogList from './DropDownBlogList';
-
+/**
+ * Header of Create-post popup
+ * @function HeaderCreatePost
+ * @property {function} setPostBlogName
+ * @property {string} postBlogName
+ * @property {function} parentBlogAuthor
+ * @property {string} reblog
+ * @description used to change the blog which will create the post
+ * @returns {Component}
+ */
 export default function HeaderCreatePost(props) {
     const { user } = useContext(UserContext);
     const { reblog, parentBlogAuthor, postBlogName, setPostBlogName } = props;

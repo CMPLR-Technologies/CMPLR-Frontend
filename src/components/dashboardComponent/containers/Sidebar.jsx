@@ -3,6 +3,14 @@ import RecommendBlogs from './RecommendBlogs';
 import Radar from '../../partials/Radar';
 import useFetch from '../../../hooks/useFetch';
 import { apiBaseUrl } from '../../../config.json';
+
+/**
+ * Dashboard Sidebar Component
+ * @function Sidebar
+ * @description The main container for the Dashboard Sidebar
+ * @returns {Component} Component that contains Recommended blogs and Radar Components
+ */
+
 export default function Sidebar() {
     const {
         error: blogsError,

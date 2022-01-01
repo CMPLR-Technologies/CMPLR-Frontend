@@ -16,9 +16,7 @@ export default function NotePost(props) {
     const {
         type: type,
         blog_name: blogName,
-        blog_url: blogUrl,
         reblog_parent_blog_name: reblogParentBlogName,
-        reblog_parent_blog_url: reblogParentBlogUrl,
         avatar: avatar,
         content: content,
         blog_id: blogId
@@ -150,7 +148,9 @@ export default function NotePost(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="note-body">{content}</div>
+                    <div className="note-body" data-testid="note-body-ts">
+                        {content}
+                    </div>
                 </div>
             </div>
         </>

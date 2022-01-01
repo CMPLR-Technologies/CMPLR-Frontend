@@ -2,13 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import p0 from '../../../assets/images/profile_pic0.png';
 import PropTypes from 'prop-types';
-
+/**
+ * Picture Of Hashtag Component
+ * @function HashtagPicture
+ * @property {string} tagName
+ * @description shows the picture of hashtag in the desktop view
+ * @returns {Component}
+ */
 export default function HashtagPicture(props) {
     const { tagName } = props;
     return (
         <>
             <div className="iGLU3">
-                {/*-------------TODO add the url of hashtag--------- */}
                 <Link
                     to={'/tagged/' + tagName}
                     className="BSUG4"

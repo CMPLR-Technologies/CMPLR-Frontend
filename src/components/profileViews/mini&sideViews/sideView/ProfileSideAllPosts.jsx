@@ -27,6 +27,7 @@ export default function ProfileSideAllPosts(props) {
             userBlogName={blogName}
             noTheme={noTheme}
             isRadar={true}
+            otherClass="side-view"
         />
     );
 }

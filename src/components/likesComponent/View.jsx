@@ -6,6 +6,13 @@ import { apiBaseUrl } from '../../config.json';
 import { themes, ThemeContext } from '../../contexts/themeContext/ThemeContext';
 import { useMediaQuery } from 'react-responsive';
 
+/**
+ * Likes Page Main Component
+ * @function LikedBlogs
+ * @description The page to show the liked posts by a user
+ * @returns {Component} Component that a vertical posts view for liked posts with the main side bar
+ */
+
 export default function LikedBlogs() {
     const theme = useContext(ThemeContext)[0];
     const [pageNumber, setPageNumber] = useState(1);

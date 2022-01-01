@@ -50,7 +50,9 @@ export default function NotesContent(props) {
                         />
                     </span>
                     <div className="author-name">
-                        <strong data-testid={`post-author-note-content-ts`}>
+                        <strong
+                            data-testid={`post-author-name-note-content-ts`}
+                        >
                             {postAuthor}
                         </strong>{' '}
                         posted this

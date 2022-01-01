@@ -158,8 +158,8 @@ export default function BlogSettings() {
         }
     `;
     return (
-        <div className="settings" data-testid="settings">
-            <BlogsContextProvider>
+        <div  className="settings" data-testid="blog-settings">
+            <BlogsContextProvider >
                 <BlogSettingsCard />
             </BlogsContextProvider>
             <style>{css}</style>

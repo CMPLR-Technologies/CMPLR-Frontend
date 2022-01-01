@@ -15,6 +15,18 @@ ListItem.propTypes = {
     setClicked: propTypes.func
 };
 
+/**
+ * @function ListItem 
+ * @description This component is responsible for rendering the sidebar list item in myProfile page.
+ * @param {string} primary - The primary text of the list item.
+ * @param {string} secondary - The secondary text of the list item.
+ * @param {string} link - The href link of the list item.
+ * @param {bool} prof - boolean to check if the list item is in myProfile or not.
+ * @param {bool} clicked - boolean to check if the list item is clicked or not.
+ * @param {function} setClicked - function to set the clicked boolean.
+ * @returns {React.Component} - Returns a component.
+ */
+
 export default function ListItem(props) {
     const { primary, secondary, prof, link, clicked, setClicked, index } =
         props;

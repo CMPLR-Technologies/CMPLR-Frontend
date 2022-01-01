@@ -129,5 +129,6 @@ OptionsList.propTypes = {
     setIsModalOpen: PropTypes.func,
     setIsOptionListOpen: PropTypes.func,
     followersPage: PropTypes.bool,
-    radar: PropTypes.bool
+    radar: PropTypes.bool,
+    setBlogName: PropTypes.func
 };

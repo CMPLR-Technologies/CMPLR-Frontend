@@ -9,6 +9,12 @@ import { chaneMobileView } from '../partials/postComponent/Controller';
 import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 //import { getFollowingList } from '../followingComponent/Service';
 
+/**
+ * @function MyProfile 
+ * @description component to render the myProfile page of the user.
+ * @returns {React.Component} - Returns a component.
+ */
+
 export default function MyProfile() {
     const location = useLocation();
     const { blogUrlIdf } = useParams();
