@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { ThemeContextProvider } from '../../../contexts/themeContext/ThemeContext';
 import UserContextProvider from '../../../contexts/userContext/UserContext';

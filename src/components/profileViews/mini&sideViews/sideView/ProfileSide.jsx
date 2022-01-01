@@ -53,8 +53,15 @@ export default function ProfileSide(props) {
     `;
 
     return (
-        <div className="profile-side" onScroll={headerScrollAnimation}>
-            <div className="profile-side-header">
+        <div
+            className="profile-side"
+            data-testid="profile-side"
+            onScroll={headerScrollAnimation}
+        >
+            <div
+                className="profile-side-header"
+                data-testid="profile-side-header"
+            >
                 <Navbar2SideView
                     setShowSideBlog={setShowSideBlog}
                     blogName={blogName}
@@ -65,7 +72,10 @@ export default function ProfileSide(props) {
                     setBlocked={setBlocked}
                 />
                 {blocked && (
-                    <div className="profile-side-header-blocked">
+                    <div
+                        className="profile-side-header-blocked"
+                        data-testid="profile-side-header-blocked"
+                    >
                         <div>
                             This blog is Blocked, you can unblock it to view its
                             content
@@ -95,8 +105,14 @@ export default function ProfileSide(props) {
                     </NavLink>
                 )}
                 {!blocked && (
-                    <div className="profile-side-header-text">
-                        <div className="profile-side-header-text-title">
+                    <div
+                        className="profile-side-header-text"
+                        data-testid="profile-side-header-text"
+                    >
+                        <div
+                            className="profile-side-header-text-title"
+                            data-testid="profile-side-header-text-title"
+                        >
                             {title === 'untitled' ? blogName : title}
                         </div>
                         <div className="profile-side-header-text-desc">
