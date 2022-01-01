@@ -13,7 +13,7 @@ export default function PasswordSectionVersion1({ setVersionOne }) {
             </div>
             <div className="sub-section-right">
                 <p className="password-dots">••••••••••</p>
-                <button className="edit" onClick={() => setVersionOne(false)}>
+                <button className="edit" onClick={() => setVersionOne(false)} data-testid="edit2">
                     <svg
                         viewBox="0 0 17.6 17.6"
                         width="16"

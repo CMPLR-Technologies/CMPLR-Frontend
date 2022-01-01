@@ -25,6 +25,7 @@ export default function PreferencesSection() {
                                         user?.token
                                     );
                                 }}
+                                data-testid="best-stuff-first-check"
                             ></input>
                             <span className="slider round"></span>
                         </label>
@@ -51,6 +52,7 @@ export default function PreferencesSection() {
                                         user?.token
                                     );
                                 }}
+                                data-testid="include-followed-tags-check"
                             ></input>
                             <span className="slider round"></span>
                         </label>

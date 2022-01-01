@@ -48,7 +48,9 @@ export default function BlockSectionVersion1({ setBlocksVersion1 }) {
                 </ul>
             )}
 
-            <button className="edit" onClick={() => setBlocksVersion1(false)}>
+            <button className="edit"
+        data-testid="edit4"
+            onClick={() => setBlocksVersion1(false)}>
                 <svg
                     viewBox="0 0 17.6 17.6"
                     width="16"

@@ -11,6 +11,11 @@ import { BlogSettingsContext } from '../../../../contexts/blogSettingsContext/Bl
 import { getBlogSettings, getBlocksOfBlog } from '../../Service';
 import { useParams } from 'react-router-dom';
 import ProfileSideSettings from '../../../profileViews/mini&sideViews/sideView/ProfileSideSettings';
+/**
+ * @function BlogSettingsCard
+ * @description This function is used to render the blog settings page
+ * @returns {React.Component} Blog settings page component
+ */
 export default function BlogSettingsCard() {
     const user = JSON.parse(localStorage.getItem('user'));
     const { blogName } = useParams();

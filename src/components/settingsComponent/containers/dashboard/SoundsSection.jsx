@@ -24,6 +24,7 @@ export default function SoundsSection() {
                                         user?.token
                                     );
                                 }}
+                                data-testid="msg-sound-check"
                             ></input>
                             <span className="slider round"></span>
                         </label>
