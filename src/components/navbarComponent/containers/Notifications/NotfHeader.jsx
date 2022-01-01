@@ -34,19 +34,21 @@ export default function NotfHeader(props) {
     );
     const token = JSON.parse(localStorage.getItem('user'))?.token;
     useEffect(() => {
-        axios({
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-                accept: 'application/json',
-                Authorization: `Bearer ${token}`
-            },
-            url: `${apiBaseUrl}/user/info`
-        })
-            .then(response => {
-                setBlogs(response.data.response.blogs);
+        if (token) {
+            axios({
+                method: 'GET',
+                headers: {
+                    'content-type': 'application/json',
+                    accept: 'application/json',
+                    Authorization: `Bearer ${token}`
+                },
+                url: `${apiBaseUrl}/user/info`
             })
-            .catch(() => {});
+                .then(response => {
+                    setBlogs(response.data.response.blogs);
+                })
+                .catch(() => {});
+        }
     }, []);
     return (
         <div className="header" data-testid="notf-header">

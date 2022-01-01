@@ -15,15 +15,11 @@ pipeline {
             post{
                 success{
                     echo "=======fetch executed successfully========"
-                    echo "==========Copy ssl certificate==========="
-                    sh"""
-                    cp ~/nginx/nginx.key ./nginx/nginx.key
-                    cp ~/nginx/nginx-certificate.crt ./nginx/nginx-certificate.crt
-                    """
+
                 }
                 failure{
                     echo "========fetch execution failed========"
-                    //slackSend (color:"#FF0000", message: "Failed to pull code-base from github")
+                    discordSend description: "Jenkins Pipeline Build", thumbnail: "https://jenkins.io/images/logos/ninja/256.png" ,footer: "Fetch execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
                     
                 }
             }
@@ -38,11 +34,10 @@ pipeline {
             post {
                 success {
                     echo "========docker build success ========"
-                    //slackSend (color:"#00FF00", message: "Master: Building Image success")
                 }
                 failure {
                     echo "========docker build failed========"
-                    //slackSend (color:"#FF0000", message: "Master: Building Image failure")
+                    discordSend description: "Jenkins Pipeline Build", thumbnail: "https://jenkins.io/images/logos/ninja/256.png" ,footer: "Docker building Failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
                 }
            }
         }
@@ -63,11 +58,11 @@ pipeline {
             post {
                 success {
                     echo "======== Pushing image to registry was successful ========="
-                    //slackSend (color:"#00FF00", message: "Master: pushing image success")
+                discordSend description: "Jenkins Pipeline Build", thumbnail: "https://jenkins.io/images/logos/ninja/256.png",footer: "Docker built and pushed successfully", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
                 }
                 failure {
                     echo "======== Failed to Pushing image to registry ========="
-                    //slackSend (color:"#FF0000", message: "Master: pushing image failure")
+                    discordSend description: "Jenkins Pipeline Build", thumbnail: "https://jenkins.io/images/logos/ninja/256.png" ,footer: "Pushing image Failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
                 }
            }
         }

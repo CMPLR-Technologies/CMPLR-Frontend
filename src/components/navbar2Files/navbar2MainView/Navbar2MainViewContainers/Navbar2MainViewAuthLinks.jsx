@@ -37,98 +37,87 @@ export default function Navbar2MainViewAuthLinks(props) {
         chaneMobileView();
     }, []);
     window.addEventListener('resize', chaneMobileView);
-    let ret = null;
-    if (!mobileView)
-        ret = (
-            <>
-                {showSideBlog && (
-                    <ProfilsSideContainer
-                        blogID={blogID}
-                        blogName={blogName}
-                        setShowSideBlog={setShowSideBlog}
-                        sidePostID={sidePostID}
-                        setSidePostID={setSidePostID}
-                    />
-                )}
-                <li className="link-icon">
-                    <Link to="/dashboard">
-                        <i className="fas fa-home"></i>
-                    </Link>
-                </li>
+
+    return (
+        <>
+            {showSideBlog && (
+                <ProfilsSideContainer
+                    blogID={blogID}
+                    blogName={blogName}
+                    setShowSideBlog={setShowSideBlog}
+                    sidePostID={sidePostID}
+                    setSidePostID={setSidePostID}
+                />
+            )}
+
+            {!mobileView && (
                 <li className="link-icon">
                     <div onClick={() => setShowSideBlog(true)}>
                         <i className="fas fa-eye"></i>
                     </div>
                 </li>
-                {/* <li className="link-icon">
-                    <Link to="/sideview">
-                        <i className="fas fa-comment-medical"></i>
-                    </Link>
-                </li> */}
-                {!isSelf && openMoreOption && (
-                    <>
-                        {followed ? (
-                            <li
-                                className="link-icon more"
-                                onClick={() =>
-                                    unFollow(
-                                        setIsFollowed,
-                                        blogName,
-                                        setActionRespMessage
-                                    )
-                                }
-                            >
-                                <span>Unfollow</span>
-                            </li>
-                        ) : (
-                            <li
-                                className="link-icon more"
-                                onClick={() =>
-                                    follow(
-                                        setIsFollowed,
-                                        blogName,
-                                        setActionRespMessage
-                                    )
-                                }
-                            >
-                                <span>Follow</span>
-                            </li>
-                        )}
-                        {blocked ? (
-                            <li
-                                className="link-icon more"
-                                onClick={() => unBlock(blogName, setBlocked)}
-                            >
-                                <span>Unblock</span>
-                            </li>
-                        ) : (
-                            <li
-                                className="link-icon more"
-                                onClick={() =>
-                                    block(blogName, setBlocked, setIsFollowed)
-                                }
-                            >
-                                <span>Block</span>
-                            </li>
-                        )}
-                    </>
-                )}
-                {!isSelf && (
-                    <li className="link-icon" onClick={toggleMoreOption}>
-                        <i className="fas fa-user"></i>
-                    </li>
-                )}
-            </>
-        );
-    else
-        ret = (
-            <>
-                <li className="link-icon get" onClick={toggleNot}>
-                    Get notification
+            )}
+
+            {/* <li className="link-icon">
+        <Link to="/sideview">
+            <i className="fas fa-comment-medical"></i>
+        </Link>
+    </li> */}
+            {!isSelf && openMoreOption && (
+                <>
+                    {followed ? (
+                        <li
+                            className="link-icon more"
+                            onClick={() =>
+                                unFollow(
+                                    setIsFollowed,
+                                    blogName,
+                                    setActionRespMessage
+                                )
+                            }
+                        >
+                            <span>Unfollow</span>
+                        </li>
+                    ) : (
+                        <li
+                            className="link-icon more"
+                            onClick={() =>
+                                follow(
+                                    setIsFollowed,
+                                    blogName,
+                                    setActionRespMessage
+                                )
+                            }
+                        >
+                            <span>Follow</span>
+                        </li>
+                    )}
+                    {blocked ? (
+                        <li
+                            className="link-icon more"
+                            onClick={() => unBlock(blogName, setBlocked)}
+                        >
+                            <span>Unblock</span>
+                        </li>
+                    ) : (
+                        <li
+                            className="link-icon more"
+                            onClick={() =>
+                                block(blogName, setBlocked, setIsFollowed)
+                            }
+                        >
+                            <span>Block</span>
+                        </li>
+                    )}
+                </>
+            )}
+            {!isSelf && (
+                <li className="link-icon" onClick={toggleMoreOption}>
+                    <i className="fas fa-user"></i>
                 </li>
-            </>
-        );
-    return ret;
+            )}
+        </>
+    );
 }
 
 Navbar2MainViewAuthLinks.propTypes = {

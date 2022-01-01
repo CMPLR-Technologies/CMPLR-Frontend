@@ -75,7 +75,7 @@ export default function SearchResult(props) {
     return (
         <div className="search-result">
             <ul>
-                <Link to={`taged/${props.search}`} onClick={closeOpenSearch}>
+                <Link to={`tagged/${props.search}`} onClick={closeOpenSearch}>
                     <li className="search-result-go">
                         Go to #<span className="color">{props.search}</span>
                     </li>

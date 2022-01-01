@@ -48,7 +48,7 @@ export default function ProfileSide(props) {
         }
         .profile-side-header-div-bg{
             filter: blur(${Math.min(scrollTop, 260) / 40}px);
-            object-position: 0 ${Math.min(scrollTop / 2, 108)}px;
+            object-position: 0 calc(50% + ${Math.min(scrollTop / 2, 108)}px);
         }
     `;
     // const body = {

@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { UserContext } from '../contexts/userContext/UserContext';
 import Axios from 'axios';
 
-const useInfiniteScrollingChat = url => {
+const useInfiniteScrollingChat = (url,pageNumber) => {
     const { user } = useContext(UserContext);
     const [data, setData] = useState([]);
     const [blogData, setBlogData] = useState(null);
@@ -32,10 +32,19 @@ const useInfiniteScrollingChat = url => {
                         setLoadingFirstPage(true);
                     }
                     let rev = res?.data?.messages?.reverse();
-                    if (rev) {
-                        setData(prevData => {
-                            return [...rev, ...prevData];
-                        });
+                   // console.log(rev);
+                    if (pageNumber === 1) {
+                        setData(rev);
+                    } else {
+                        if (rev) {
+                            if (data && data?.length) {
+                                setData(prevData => {
+                                    return [...rev, ...prevData];
+                                });
+                            } else {
+                                setData(rev);
+                            }
+                        }
                     }
                     setIsPending(false);
                     setHasMore(res?.data?.next_url);
