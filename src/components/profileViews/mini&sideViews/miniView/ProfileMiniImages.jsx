@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 export default function ProfileMiniImages(props) {
     const { imgs, setShowSideBlog, setSidePostID } = props;
     return (
-        <div className="profile-mini-images">
+        <div className="profile-mini-images" data-testid="profile-mini-images">
             {imgs.map((img, index) => {
                 if (img.link.slice(0, 5) === 'https') {
                     return (
                         <img
+                            data-testid={`profile-mini-image-${index}`}
                             src={img.link}
                             key={index}
                             onClick={() => {
@@ -25,6 +26,6 @@ export default function ProfileMiniImages(props) {
 
 ProfileMiniImages.propTypes = {
     imgs: PropTypes.array.isRequired,
-    setShowSideBlog: PropTypes.func.isRequired,
-    setSidePostID: PropTypes.func.isRequired
+    setShowSideBlog: PropTypes.func,
+    setSidePostID: PropTypes.func
 };

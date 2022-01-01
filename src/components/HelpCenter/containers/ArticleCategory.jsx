@@ -5,7 +5,6 @@ import { articleTree } from '../Controller';
 
 export default function ArticleCategory(props) {
     let { category } = props;
-    //  console.log(category);
     const categoryTree = articleTree[category];
     return (
         <div className="help-center-container-category" id={category}>

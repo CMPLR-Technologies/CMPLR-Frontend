@@ -13,11 +13,12 @@ export default function InProfileMiniView(props) {
     } = props.body;
 
     return (
-        <div className="profile-mini">
+        <div className="profile-mini" data-testid="profile-mini">
             <div className="profile-mini-body">
                 <NavLink to={`/blog/view/${blogName}/${blogID}/posts`}>
                     <img
                         className="profile-mini-body-bg"
+                        data-testid="profile-mini-body-bg"
                         src={headerImage}
                         alt="couldn't load bg"
                     />
@@ -25,6 +26,7 @@ export default function InProfileMiniView(props) {
                 <NavLink to={`/blog/view/${blogName}/${blogID}/posts`}>
                     <img
                         className="profile-mini-body-avatar"
+                        data-testid="profile-mini-body-avatar"
                         src={avatar}
                         alt="couldn't load avatar"
                     />

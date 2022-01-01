@@ -33,7 +33,10 @@ export default function ProfileMiniBody(props) {
                 alt="couldn't load avatar"
             />
             <div className="profile-mini-body-text">
-                <div className="profile-mini-body-text-title">
+                <div
+                    className="profile-mini-body-text-title"
+                    data-testid="profile-mini-body-text-title"
+                >
                     {title === 'untitled' ? blogName : title}
                 </div>
                 <div className="profile-mini-body-text-desc">{desciption}</div>
@@ -44,6 +47,6 @@ export default function ProfileMiniBody(props) {
 
 ProfileMiniBody.propTypes = {
     body: PropTypes.object.isRequired,
-    setShowSideBlog: PropTypes.func.isRequired,
-    setSidePostID: PropTypes.func.isRequired
+    setShowSideBlog: PropTypes.func,
+    setSidePostID: PropTypes.func
 };
