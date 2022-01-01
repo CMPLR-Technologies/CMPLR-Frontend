@@ -5,6 +5,8 @@ pipeline {
     }
     environment{
         LOGIN_SERVER = "cmplr.azurecr.io"
+        WEBHOOK_URL = credentials('Master_Discord')
+
     }
     stages {
         stage("fetch"){
@@ -38,7 +40,8 @@ pipeline {
             post {
                 success {
                     echo "========docker build success ========"
-                    //slackSend (color:"#00FF00", message: "Master: Building Image success")
+                discordSend description: "Jenkins Pipeline Build", thumbnail: "https://jenkins.io/images/logos/ninja/256.png",footer: "Docker built successfully, triggering E2E", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
+
                 }
                 failure {
                     echo "========docker build failed========"
@@ -46,31 +49,5 @@ pipeline {
                 }
            }
         }
-        
-        
-        stage('push image') {
-            steps {
-                echo "======== Pushing image to registry ========="
-                
-                withCredentials([usernamePassword(credentialsId: 'ACR', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) 
-                {
-                    sh """
-                docker login ${LOGIN_SERVER} -u ${USERNAME}  -p ${PASSWORD}
-                docker push ${LOGIN_SERVER}/frontend:latest
-                """
-                }
-            }
-            post {
-                success {
-                    echo "======== Pushing image to registry was successful ========="
-                    //slackSend (color:"#00FF00", message: "Master: pushing image success")
-                }
-                failure {
-                    echo "======== Failed to Pushing image to registry ========="
-                    //slackSend (color:"#FF0000", message: "Master: pushing image failure")
-                }
-           }
-        }
-
     }
 }
