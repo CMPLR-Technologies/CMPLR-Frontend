@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: navbar2Files/navbar2MainView/Navbar2MainViewContainers/Navbar2MainViewAuthLinks.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: navbar2Files/navbar2MainView/Navbar2MainViewContainers/Navbar2MainViewAuthLinks.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import ProfilsSideContainer from '../../../profileViews/mini&amp;sideViews/sideView/ProfilsSideContainer';
+import PropTypes from 'prop-types';
+import { follow, unFollow, unBlock, block } from '../../Controller';
+
+
+/**
+ * Navbar2MainViewAuthLinks: contains the follow,block,following,likes buttons
+ * @function Navbar2MainViewAuthLinks
+ * @property {boolean} openGetNot - boolan to open get notigation
+ * @property {string} blogName - the blog name
+ * @property {string} blogID - the blog id
+ * @property {boolean} isFollowed - if the user follow this blog 
+ * @property {boolean} isBlocked - if the user block this blog 
+ * @property {number} sidePostID - user block this blog 
+ * @property {number} openMoreOptions - open more option menu
+ * @property {boolean} showSideBlog - user follow this blog 
+ * @returns {Component}  includes the contains the follow,block,following,likes buttons
+ */
+export default function Navbar2MainViewAuthLinks(props) {
+    const [openGetNot, setOpenGetNot] = useState(false);
+    const [openMoreOption, setOpenMoreOption] = useState(false);
+    const [showSideBlog, setShowSideBlog] = useState(false);
+    const [sidePostID, setSidePostID] = useState('');
+    const { blogName, blogID, isFollowed, isBlocked } = props;
+    const [followed, setIsFollowed] = useState(isFollowed);
+    const [blocked, setBlocked] = useState(isBlocked);
+    const [actionRespMessage, setActionRespMessage] = useState('');
+
+    const isSelf =
+        JSON.parse(localStorage.getItem('user'))?.blogName === blogName;
+
+    const toggleNot = () => {
+        setOpenGetNot(!openGetNot);
+    };
+    const toggleMoreOption = () => {
+        setOpenMoreOption(!openMoreOption);
+    };
+
+    const [mobileView, setMobileView] = useState(false);
+    const chaneMobileView = () => {
+        if (window.innerWidth > 960) {
+            setMobileView(false);
+        } else {
+            setMobileView(true);
+        }
+    };
+
+    useEffect(() => {
+        chaneMobileView();
+    }, []);
+    window.addEventListener('resize', chaneMobileView);
+
+    return (
+        &lt;>
+            {showSideBlog &amp;&amp; (
+                &lt;ProfilsSideContainer
+                    blogID={blogID}
+                    blogName={blogName}
+                    setShowSideBlog={setShowSideBlog}
+                    sidePostID={sidePostID}
+                    setSidePostID={setSidePostID}
+                />
+            )}
+
+            {!mobileView &amp;&amp; (
+                &lt;li className="link-icon">
+                    &lt;div onClick={() => setShowSideBlog(true)}>
+                        &lt;i className="fas fa-eye">&lt;/i>
+                    &lt;/div>
+                &lt;/li>
+            )}
+
+            {/* &lt;li className="link-icon">
+        &lt;Link to="/sideview">
+            &lt;i className="fas fa-comment-medical">&lt;/i>
+        &lt;/Link>
+    &lt;/li> */}
+            {!isSelf &amp;&amp; openMoreOption &amp;&amp; (
+                &lt;>
+                    {followed ? (
+                        &lt;li
+                            className="link-icon more"
+                            onClick={() =>
+                                unFollow(
+                                    setIsFollowed,
+                                    blogName,
+                                    setActionRespMessage
+                                )
+                            }
+                        >
+                            &lt;span>Unfollow&lt;/span>
+                        &lt;/li>
+                    ) : (
+                        &lt;li
+                            className="link-icon more"
+                            onClick={() =>
+                                follow(
+                                    setIsFollowed,
+                                    blogName,
+                                    setActionRespMessage
+                                )
+                            }
+                        >
+                            &lt;span>Follow&lt;/span>
+                        &lt;/li>
+                    )}
+                    {blocked ? (
+                        &lt;li
+                            className="link-icon more"
+                            onClick={() => unBlock(blogName, setBlocked)}
+                        >
+                            &lt;span>Unblock&lt;/span>
+                        &lt;/li>
+                    ) : (
+                        &lt;li
+                            className="link-icon more"
+                            onClick={() =>
+                                block(blogName, setBlocked, setIsFollowed)
+                            }
+                        >
+                            &lt;span>Block&lt;/span>
+                        &lt;/li>
+                    )}
+                &lt;/>
+            )}
+            {!isSelf &amp;&amp; (
+                &lt;li className="link-icon" onClick={toggleMoreOption}>
+                    &lt;i className="fas fa-user">&lt;/i>
+                &lt;/li>
+            )}
+        &lt;/>
+    );
+}
+
+Navbar2MainViewAuthLinks.propTypes = {
+    isBlocked: PropTypes.bool,
+    isFollowed: PropTypes.bool,
+    blogID: PropTypes.bool.isRequired,
+    blogName: PropTypes.bool.isRequired
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#ActivityPage">ActivityPage</a></li><li><a href="global.html#Ask">Ask</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Badge">Badge</a></li><li><a href="global.html#BlogInfo">BlogInfo</a></li><li><a href="global.html#BlogSettingsCard">BlogSettingsCard</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#Explore">Explore</a></li><li><a href="global.html#ExploreSidebar">ExploreSidebar</a></li><li><a href="global.html#FollowersPage">FollowersPage</a></li><li><a href="global.html#Following">Following</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#Hashtag">Hashtag</a></li><li><a href="global.html#HashtagsList">HashtagsList</a></li><li><a href="global.html#HeaderGraph">HeaderGraph</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#Inbox">Inbox</a></li><li><a href="global.html#LikedBlogs">LikedBlogs</a></li><li><a href="global.html#ListItem">ListItem</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#MessageItem">MessageItem</a></li><li><a href="global.html#MessageItemSearchRes">MessageItemSearchRes</a></li><li><a href="global.html#Messages">Messages</a></li><li><a href="global.html#MessagesContainer">MessagesContainer</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#MyProfile">MyProfile</a></li><li><a href="global.html#Nav">Nav</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Navbar2MainView">Navbar2MainView</a></li><li><a href="global.html#Navbar2MainViewAuthLinks">Navbar2MainViewAuthLinks</a></li><li><a href="global.html#Navbar2MainViewLinks">Navbar2MainViewLinks</a></li><li><a href="global.html#Navbar2MainViewSection1">Navbar2MainViewSection1</a></li><li><a href="global.html#Navbar2MainViewUnAuthLinks">Navbar2MainViewUnAuthLinks</a></li><li><a href="global.html#Navbar2SideView">Navbar2SideView</a></li><li><a href="global.html#Navbar2SideViewMoreOptions">Navbar2SideViewMoreOptions</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#NewPostPopup">NewPostPopup</a></li><li><a href="global.html#NewPostPopupItem">NewPostPopupItem</a></li><li><a href="global.html#NotfBody">NotfBody</a></li><li><a href="global.html#NotfHeader">NotfHeader</a></li><li><a href="global.html#Notifications">Notifications</a></li><li><a href="global.html#PagesList">PagesList</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostsPage">PostsPage</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#RecommendBlogs">RecommendBlogs</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#SearchNewMessage">SearchNewMessage</a></li><li><a href="global.html#SearchResult">SearchResult</a></li><li><a href="global.html#SearchResultItemBlog">SearchResultItemBlog</a></li><li><a href="global.html#SearchResultItemContent">SearchResultItemContent</a></li><li><a href="global.html#SettingsAccount">SettingsAccount</a></li><li><a href="global.html#SettingsApps">SettingsApps</a></li><li><a href="global.html#SettingsDashboard">SettingsDashboard</a></li><li><a href="global.html#SettingsNotifications">SettingsNotifications</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#SideBar">SideBar</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#TrendingTag">TrendingTag</a></li><li><a href="global.html#TrendingTags">TrendingTags</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Jan 01 2022 20:36:55 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

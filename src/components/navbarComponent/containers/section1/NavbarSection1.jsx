@@ -94,12 +94,14 @@ export default function NavbarSection1() {
                     className={!searchOpen ? 'fas fa-search' : 'fas fa-times'}
                 ></i>
             </div>
-            <NavbarMenuMobile
-                active={menuOpen}
-                closeMenuPar={closeMenu}
-                openSetting={openSetting}
-                isOpenSetting={isOpenSetting}
-            />
+            {user && (
+                <NavbarMenuMobile
+                    active={menuOpen}
+                    closeMenuPar={closeMenu}
+                    openSetting={openSetting}
+                    isOpenSetting={isOpenSetting}
+                />
+            )}
         </div>
     );
 }

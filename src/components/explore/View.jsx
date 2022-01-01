@@ -10,6 +10,13 @@ import ExploreSidebar from './containers/ExploreSidebar';
 import { useParams } from 'react-router-dom';
 import TrendingTags from './containers/TrendingTags';
 
+/**
+ * Explore Main Component
+ * @function Explore
+ * @description The main container for the Explore page
+ * @returns {Component} Component that contains explore section and explore side bar
+ */
+
 export default function Explore() {
     const [pageNumber, setPageNumber] = useState(1);
     const [postsType, setPostsType] = useState('recommended');

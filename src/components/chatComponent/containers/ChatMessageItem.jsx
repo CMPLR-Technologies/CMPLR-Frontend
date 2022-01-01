@@ -13,7 +13,7 @@ import TimeAgo from 'timeago-react';
  */
 export default function ChatMessageItem(props) {
     let { name, photo, message, link, shape, time } = props;
-    //console.log(time);
+
     return (
         <div className="message">
             <a className={`img ${shape}`} src={link}>

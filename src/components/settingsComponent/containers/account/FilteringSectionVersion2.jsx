@@ -84,7 +84,6 @@ export default function FilteringSectionVersion2({
                                 id="delete-tag"
                                 className="delete-tag"
                                 handleClick={() => {
-                                    console.log('delete tag');
                                     deleteFilteredTag(
                                         property.filter(
                                             filteredTag => filteredTag !== tag

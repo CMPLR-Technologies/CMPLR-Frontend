@@ -15,6 +15,7 @@ import { ChatContext } from '../../../../contexts/chatContext/chatContext';
 import { UserContext } from '../../../../contexts/userContext/UserContext';
 import { styled } from '@mui/material/styles';
 import { uploadSelectedImageProfile } from '../Service';
+import { useEffect } from 'react';
 const InputCam = styled('input')({
     display: 'none'
 });
@@ -22,17 +23,19 @@ const InputCam = styled('input')({
 export default function ProfileSideSettings(props) {
     const { setUser } = useContext(UserContext);
     const { setUserBlog } = useContext(ChatContext);
-    const [editProfile, setEditProfile] = useState(false);
     const {
         blogId
         /*blogName,*/
         /*setSidePostID,*/
     } = props;
-    const {
+
+    let {
         error,
         data: body,
-        isPending
+        isPending,
+        setData
     } = useFetch(`${apiBaseUrl}/MiniProfileView/${blogId}`);
+
     const { user } = useContext(UserContext);
     const theme = useContext(ThemeContext)[0];
     const css = `
@@ -44,15 +47,7 @@ export default function ProfileSideSettings(props) {
         text-decoration: none;
         color: rgb(${themes[theme].black});   
     }
-            `;
-    //console.log(blogId, error, body, isPending);
-    // const body = {
-    //     username: 'huh',
-    //     avatar: 'https://pbs.twimg.com/profile_images/1026496068555612160/Klg8BS8p_400x400.jpg',
-    //     bg: 'https://i.ytimg.com/vi/6Vhp65bgKOo/maxresdefault.jpg',
-    //     title: 'Heey man',
-    //     description: 'wa wafbuaw uwbwakf'
-    // };
+    `;
 
     return (
         <div className="profile-settings">
@@ -62,11 +57,30 @@ export default function ProfileSideSettings(props) {
                 <div className="profile-side">
                     <div className="profile-side-header">
                         <div className="profile-side-header-div">
-                            <img
-                                className="profile-side-header-div-bg"
-                                src={body.blog.header_image}
-                                alt="couldn't load bg"
-                            />
+                            <label htmlFor="to-cover-img">
+                                <InputCam
+                                    onChange={e =>
+                                        uploadSelectedImageProfile(
+                                            e.target.files[0],
+                                            user,
+                                            setUser,
+                                            setUserBlog,
+                                            body?.blog?.blog_name,
+                                            setData,
+                                            body,
+                                            'cover'
+                                        )
+                                    }
+                                    accept="image/*"
+                                    id="to-cover-img"
+                                    type="file"
+                                />
+                                <img
+                                    className="profile-side-header-div-bg"
+                                    src={body.blog.header_image}
+                                    alt="couldn't load bg"
+                                />
+                            </label>
                         </div>
 
                         <div>
@@ -75,8 +89,6 @@ export default function ProfileSideSettings(props) {
                                     className="profile-side-header-avatar"
                                     src={user?.userData?.avatar}
                                     alt="couldn't load avatar"
-                                    onMouseOver={() => setEditProfile(true)}
-                                    onMouseLeave={() => setEditProfile(false)}
                                 />
                                 <InputCam
                                     onChange={e =>
@@ -85,11 +97,13 @@ export default function ProfileSideSettings(props) {
                                             user,
                                             setUser,
                                             setUserBlog,
+                                            body?.blog?.blog_name,
+                                            setData,
+                                            body,
                                             'image'
                                         )
                                     }
                                     accept="image/*"
-                                    data-element="insertImage"
                                     id="to-image-words"
                                     type="file"
                                 />

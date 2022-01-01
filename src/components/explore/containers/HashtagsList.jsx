@@ -5,6 +5,13 @@ import useInfiniteScrolling from '../../../hooks/useInfiniteScrolling';
 import { apiBaseUrl } from '../../../config.json';
 import { LinearProgress } from '@material-ui/core';
 
+/**
+ * HashtagsList Component
+ * @function HashtagsList
+ * @description The Recommended Hashtags List
+ * @returns {Component} Scrollable Component That Contains The Recommended Hashtags
+ */
+
 export default function HashtagsList() {
     const [pageNumber, setPageNumber] = useState(1);
     const {

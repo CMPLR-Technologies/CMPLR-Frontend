@@ -16,11 +16,10 @@ export default function NotePost(props) {
     const {
         type: type,
         blog_name: blogName,
-        blog_url: blogUrl,
         reblog_parent_blog_name: reblogParentBlogName,
-        reblog_parent_blog_url: reblogParentBlogUrl,
         avatar: avatar,
-        content: content
+        content: content,
+        blog_id: blogId
     } = props.note;
     const { setIsModalOpen, setNotesView } = props;
 
@@ -61,7 +60,7 @@ export default function NotePost(props) {
                         <div className="note-heading-flex">
                             <strong>
                                 <Link
-                                    to={`/post/view/${blogName}`}
+                                    to={`/blog/view/${blogName}/${blogId}/posts`}
                                     target="_blank"
                                     role="link"
                                     className="note-author"
@@ -86,7 +85,7 @@ export default function NotePost(props) {
                             </strong>
 
                             <div className="option-list-cont">
-                                <button
+                                {/* <button
                                     onClick={() =>
                                         setIsOptionListOpen(!isOptionListOpen)
                                     }
@@ -99,7 +98,7 @@ export default function NotePost(props) {
                                     >
                                         <path d="M17.5 1.9c0 1.1-.9 1.9-1.9 1.9-1.1 0-1.9-.9-1.9-1.9S14.5 0 15.6 0c1 0 1.9.9 1.9 1.9m-6.8 0c0 1.1-.9 1.9-1.9 1.9-1.1.1-2-.8-2-1.9 0-1 .9-1.9 2-1.9s1.9.9 1.9 1.9m-6.8 0c0 1.1-.9 2-2 2-1 0-1.9-.9-1.9-2S.9 0 1.9 0c1.1 0 2 .9 2 1.9"></path>
                                     </svg>
-                                </button>
+                                </button> */}
                                 {isOptionListOpen && (
                                     <div className="option-list">
                                         {user.blogName !== blogName && (
@@ -149,7 +148,9 @@ export default function NotePost(props) {
                             </div>
                         </div>
                     </div>
-                    <div className="note-body">{content}</div>
+                    <div className="note-body" data-testid="note-body-ts">
+                        {content}
+                    </div>
                 </div>
             </div>
         </>

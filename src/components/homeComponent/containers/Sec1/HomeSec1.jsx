@@ -20,7 +20,9 @@ import AuthAlert from '../../../partials/AuthAlert';
 HomeSec1.propTypes = {
     heading: PropTypes.string.isRequired,
     paragraph: PropTypes.string.isRequired,
-    last: PropTypes.bool.isRequired
+    last: PropTypes.bool.isRequired,
+    logo: PropTypes.any,
+    isMobile: PropTypes.any
 };
 
 /**
@@ -36,7 +38,7 @@ const images = ['1.jpg', '2.jpg', '3.png', '4.jpg', '5.jpg'];
 const imageNum = Math.floor(Math.random() * 5);
 
 export default function HomeSec1(props) {
-    const { heading, paragraph, last } = props;
+    const { heading, paragraph, last, logo, isMobile } = props;
     const navigate = useNavigate();
     const { setUser } = useContext(UserContext);
     const [error, setError] = useState();
@@ -61,29 +63,27 @@ export default function HomeSec1(props) {
                         data-testid="sec1-logo-container"
                         className="logo-container"
                     >
-                        {!last ? (
-                            <>
-                                <p data-testid="sec1-heading" className="logo">
-                                    {heading}
-                                </p>
-                                <p data-testid="sec1-paragraph">{paragraph}</p>
-                            </>
-                        ) : (
-                            <>
-                                <h1
-                                    data-testid="sec1-heading"
-                                    className="sixth-page-heading"
-                                >
-                                    {heading}
-                                </h1>
-                                <p
-                                    data-testid="sec1-paragraph"
-                                    className="sixth-page-paragraph"
-                                >
-                                    {paragraph}
-                                </p>
-                            </>
+                        {logo && (
+                            <p data-testid="sec1-heading" className="logo">
+                                {heading}
+                            </p>
                         )}
+
+                        {last && !isMobile && (
+                            <h1
+                                data-testid="sec1-heading"
+                                className="sixth-page-heading"
+                            >
+                                {heading}
+                            </h1>
+                        )}
+
+                        <p
+                            data-testid="sec1-paragraph"
+                            className="sixth-page-paragraph"
+                        >
+                            {paragraph}
+                        </p>
                     </div>
 
                     <Button

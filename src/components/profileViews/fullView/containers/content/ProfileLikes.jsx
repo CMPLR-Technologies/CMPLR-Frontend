@@ -17,7 +17,7 @@ export default function ProfileLikes(props) {
     );
 
     return (
-        <div className="profile-following">
+        <div className="profile-following" data-testid="profile-likes">
             {posts?.length || isPending ? (
                 <GridPostsView
                     posts={posts}

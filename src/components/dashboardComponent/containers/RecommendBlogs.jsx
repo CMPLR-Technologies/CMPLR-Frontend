@@ -7,6 +7,18 @@ import {
 } from '../../../contexts/themeContext/ThemeContext';
 import { LinearProgress } from '@mui/material';
 
+/**
+ * RecommendBlogs Component
+ * @function RecommendBlogs
+ * @description The Recommended Blogs Section
+ * @property {boolean} blogsError - If there is an error while fetching the data or not
+ * @property {array} blogs - blogs to be recommended
+ * @property {boolean} blogsIsPending - True while fetching the data
+ * @property {boolean} showExplore - show or hide explore button
+ * @property {string} otherClass - add other css class to the main container
+ * @returns {Component} Component that contains 5 Recommended blogs
+ */
+
 export default function RecommendBlogs(props) {
     const { blogsError, blogs, blogsIsPending, showExplore, otherClass } =
         props;
@@ -31,7 +43,7 @@ export default function RecommendBlogs(props) {
                     <div key={index}>
                         <BlogInfo
                             blogName={blog.blog_name}
-                            blogDesc={blog.description}
+                            blogDesc={blog.title}
                             blogIcon={blog.avatar}
                             blogId={blog.blog_id}
                         />

@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 export default function TitleField(props) {
     const { setTitlePost, editTitlePost } = props;
     const handleChangeTitle = () => {
-        console.log(
-            'title content ',
-            document.getElementById('content-title-cpost').innerHTML
-        );
-        setTitlePost(document.getElementById('content-title-cpost').innerHTML);
+        setTitlePost(document.getElementById('content-title-cpost').innerText);
     };
     useEffect(() => {
         if (document.getElementById('content-title-cpost')) {

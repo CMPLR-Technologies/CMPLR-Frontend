@@ -10,6 +10,17 @@ import {
 } from '../../../../contexts/themeContext/ThemeContext';
 import { getNotifications } from '../../Service';
 
+/**
+ * @function NotfHeader
+ * @description Header of notifications component
+ * @param {string} userBlogName - The name of the blog of the user.
+ * @param {string} userAvatar - The avatar of the user.
+ * @param {object} filterNotf -  function to filter notifications.
+ * @param {function} setNotfArray - function to set the notifications array.
+ * @param {function} setUnseenNotf - function to set the unseen notifications length.
+ * @returns {React.Component} - Returns a component.
+ */
+
 NotfHeader.propTypes = {
     userBlogName: propTypes.string,
     userAvatar: propTypes.string,
@@ -29,21 +40,26 @@ export default function NotfHeader(props) {
     const [selected, setSelected] = useState(1);
     const [blogs, setBlogs] = useState([]);
     const [blogsView, setBlogsView] = useState(false);
+    const [chosenBLogName, setChosenBLogName] = useState(
+        userBlogName ? userBlogName : ''
+    );
     const token = JSON.parse(localStorage.getItem('user'))?.token;
     useEffect(() => {
-        axios({
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-                accept: 'application/json',
-                Authorization: `Bearer ${token}`
-            },
-            url: `${apiBaseUrl}/user/info`
-        })
-            .then(response => {
-                setBlogs(response.data.response.blogs);
+        if (token) {
+            axios({
+                method: 'GET',
+                headers: {
+                    'content-type': 'application/json',
+                    accept: 'application/json',
+                    Authorization: `Bearer ${token}`
+                },
+                url: `${apiBaseUrl}/user/info`
             })
-            .catch(() => {});
+                .then(response => {
+                    setBlogs(response.data.response.blogs);
+                })
+                .catch(() => {});
+        }
     }, []);
     return (
         <div className="header" data-testid="notf-header">
@@ -75,7 +91,7 @@ export default function NotfHeader(props) {
                                             className="caption"
                                             data-testid="notf-header-blog-name-caption"
                                         >
-                                            {userBlogName}
+                                            {chosenBLogName}
                                         </span>
                                         <span
                                             className="icon_arrow_carrot_down"
@@ -94,14 +110,17 @@ export default function NotfHeader(props) {
                                         {blogs &&
                                             blogs.map((blog, index) => (
                                                 <div
-                                                    onClick={() =>
+                                                    onClick={() => {
+                                                        setChosenBLogName(
+                                                            blog?.blog_name
+                                                        );
                                                         getNotifications(
                                                             blog?.blog_name,
                                                             token,
                                                             setNotfArray,
                                                             setUnseenNotf
-                                                        )
-                                                    }
+                                                        );
+                                                    }}
                                                     data-testid="AccountPopupBlogsContainer"
                                                     className="account-popup-blogs-container"
                                                     key={index}

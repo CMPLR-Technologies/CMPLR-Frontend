@@ -34,14 +34,7 @@ export default function LogOutOverlay(props) {
                 clear();
                 navigate('/');
             })
-            .catch(err => {
-                console.log('error of logout ', err.data);
-                // setUser(null);
-                // changeTheme('trueBlue');
-                // localStorage.removeItem('user');
-                // clear();
-                // navigate('/');
-            });
+            .catch(() => {});
     };
 
     const { hideOverlay } = props;

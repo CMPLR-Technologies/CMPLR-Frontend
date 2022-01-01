@@ -18,7 +18,6 @@ NotesContent.propTypes = {
     setNotesView: PropTypes.func,
     postId: PropTypes.number
 };
-
 export default function NotesContent(props) {
     const theme = useContext(ThemeContext)[0];
     const user = JSON.parse(localStorage.getItem('user'));
@@ -51,7 +50,9 @@ export default function NotesContent(props) {
                         />
                     </span>
                     <div className="author-name">
-                        <strong data-testid={`post-author-note-content-ts`}>
+                        <strong
+                            data-testid={`post-author-name-note-content-ts`}
+                        >
                             {postAuthor}
                         </strong>{' '}
                         posted this

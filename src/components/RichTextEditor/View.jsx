@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
     AiOutlineBold,
     AiOutlineItalic,
@@ -22,10 +22,12 @@ import {
     handleUploadImage,
     handleCreateLink,
     handleColor,
-    handleUploadVideo
+    handleUploadVideo,
+    shortcutController
 } from './Controller';
 import Input from '@mui/material/Input';
 import PostComponent from '../partials/postComponent/containers/PostComponent';
+import { ThemeContext, themes } from '../../contexts/themeContext/ThemeContext';
 const InputCam = styled('input')({
     display: 'none'
 });
@@ -80,9 +82,13 @@ export default function HandMadeTextEditor(props) {
                     padding="20px"
                     left="-20px"
                     post={post}
+                    blogPage={true}
                 />
             )}
-            <div className="main-richeditor">
+            <div
+                className="main-richeditor"
+                onKeyDown={e => shortcutController(e, setContent)}
+            >
                 <div
                     className="content"
                     contentEditable="true"

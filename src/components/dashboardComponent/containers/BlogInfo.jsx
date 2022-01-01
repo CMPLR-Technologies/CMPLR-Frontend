@@ -7,6 +7,17 @@ import {
 import { followAccount } from '../../followingComponent/Service';
 import ProfileMiniHoverWrapper from '../../profileViews/mini&sideViews/View';
 
+/**
+ * BlogInfo Component
+ * @function BlogInfo
+ * @description The BlogInfo row in Recommended Blogs Section
+ * @property {string} blogName - The name of the blog
+ * @property {string} blogDesc - The title of the blog
+ * @property {string} blogIcon - The usl of the blog avatar
+ * @property {string} blogId - The id of the blog
+ * @returns {Component} Component that contains 1 Recommended blog
+ */
+
 export default function BlogInfo({ blogName, blogDesc, blogIcon, blogId }) {
     const theme = useContext(ThemeContext)[0];
     const [followMsg, setFollowMsg] = useState('');

@@ -37,7 +37,7 @@ export default function ChatMessages(props) {
         messagesEndRef10,
         messagesEndRef
     } = props;
-    //console.log(props);
+
     // paganation part
     const observer = useRef();
     const lastPostElementRef = useCallback(
@@ -82,7 +82,10 @@ export default function ChatMessages(props) {
                         <img src={receiverPhoto} />
                     </div>
                     <div className="receiver-link">
-                        <a href={`blog/view/${receiverName}/${receiverId}/posts`} className="main">
+                        <a
+                            href={`blog/view/${receiverName}/${receiverId}/posts`}
+                            className="main"
+                        >
                             {receiverName}
                         </a>
                     </div>

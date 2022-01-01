@@ -16,6 +16,23 @@ Notifications.propTypes = {
     setSideBlogName: propTypes.func,
     setShowSideBlog: propTypes.func
 };
+
+//Documentation of this component:
+/**
+ * @function Notifications 
+ * @description This component is responsible for rendering the notifications.
+ * @param {string} userBlogName - The name of the blog of the user.
+ * @param {string} userAvatar - The avatar of the user.
+ * @param {object} notfArray -  notifications response from back end.
+ * @param {function} setNotfArray - function to set the notifications array.
+ * @param {bool} activity - boolean to check if the user is in activity page or not.
+ * @param {function} setUnseenNotf - function to set the unseen notifications length.
+ * @param {function} setSideBlogId - function to set the blog id of the side blog to show profile side view.
+ * @param {function} setSideBlogName - function to set the blog name of the side blog to show profile side view.
+ * @param {function} setShowSideBlog - function to set the boolean to show the side blog view.
+ * @returns {React.Component} - Returns a component.
+ */
+
 export default function Notifications(props) {
     const {
         userBlogName,
@@ -57,7 +74,10 @@ export default function Notifications(props) {
     };
     return (
         <>
-            <div className={!activity ? `notifications-container` : ''}>
+            <div
+                data-testid="notifications-dropdown-ts"
+                className={!activity ? `notifications-container` : ''}
+            >
                 {!activity && (
                     <NotfHeader
                         filterNotf={filterNotf}
@@ -75,7 +95,7 @@ export default function Notifications(props) {
                                     {notf && notf[date] && (
                                         <div
                                             className="notf-date"
-                                            data-test-id="notf-date"
+                                            data-testid="notf-date"
                                         >
                                             <div
                                                 className="duration"

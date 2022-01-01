@@ -13,12 +13,26 @@ import AskIcon from './notificationsTypesSVG/AskIcon';
 import { followAccount } from '../../../followingComponent/Service';
 import axios from 'axios';
 import { apiBaseUrl } from '../../../../config.json';
+
+/**
+ * @function NotfBody
+ * @description This component is responsible for rendering the notifications body.
+ * @param {object} notf -  notifications response from back end.
+ * @param {function} setUnseenNotf - function to set the unseen notifications length.
+ * @param {function} setSideBlogId - function to set the blog id of the side blog to show profile side view.
+ * @param {function} setSideBlogName - function to set the blog name of the side blog to show profile side view.
+ * @param {function} setShowSideBlog - function to set the boolean to show the side blog view.
+ * @param {bool} activity - boolean to check if the user is in activity page or not.
+ * @returns {React.Component} - Returns a component.
+ */
+
 NotfBody.propTypes = {
     notf: PropTypes.object,
     setUnseenNotf: PropTypes.func,
     setSideBlogId: PropTypes.func,
     setSideBlogName: PropTypes.func,
-    setShowSideBlog: PropTypes.func
+    setShowSideBlog: PropTypes.func,
+    activity: PropTypes.any
 };
 
 export default function NotfBody(props) {
@@ -90,7 +104,11 @@ export default function NotfBody(props) {
                         >
                             <img
                                 className="noter-avatar-img"
-                                src={notf && notf['from_blog_avatar']}
+                                src={
+                                    notf && notf['from_blog_avatar']
+                                        ? notf['from_blog_avatar']
+                                        : 'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png'
+                                }
                                 sizes="24px"
                                 alt="Avatar"
                                 loading="eager"
@@ -120,7 +138,9 @@ export default function NotfBody(props) {
                         data-testid="notf-body-notf-content"
                     >
                         <strong>
-                            {notf && notf['from_blog_name']}{' '}
+                            {notf && notf['from_blog_name']
+                                ? notf['from_blog_name']
+                                : 'Cmplr User'}{' '}
                             <span style={{ marginRight: '5px' }}> </span>
                         </strong>
                         <span
@@ -159,11 +179,11 @@ export default function NotfBody(props) {
                     {activity ? null : (
                         <div className="type" data-testid="notf-body-type">
                             {notf && notf['type'] === 'like' ? (
-                                <Link className="post-link" to="">
+                                <Link className="post-link" to="*">
                                     <PostIcon />
                                 </Link>
                             ) : notf && notf['type'] === 'ask' ? (
-                                <Link className="post-link" to="">
+                                <Link className="post-link" to="*">
                                     <AskIcon />
                                 </Link>
                             ) : notf && notf['type'] === 'follow' ? (

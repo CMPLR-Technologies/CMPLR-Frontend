@@ -16,7 +16,6 @@ export default function ProfileFull(props) {
     const headerScrollAnimation = el => {
         setScrollTop(el.target.scrollTop);
     };
-    //const isFollowed = false;
 
     const response = useFetch(`${apiBaseUrl}/MiniProfileView/${blogID}`);
     const navArray = [
@@ -35,10 +34,6 @@ export default function ProfileFull(props) {
         {
             title: 'ASK ME ANYTHING',
             link: 'ask'
-        },
-        {
-            title: 'SUBMIT A POST',
-            link: 'submit'
         }
     ];
     const { error, data, isPending } = response;
@@ -52,31 +47,29 @@ export default function ProfileFull(props) {
     }
     .profile-full-header-div-bg{
         filter: blur(${Math.min(scrollTop, 300) / 40}px);
-        object-position: 0 ${Math.min(scrollTop / 2, 150)}px;
+        object-position: 0 calc(50% + ${Math.min(scrollTop / 2, 150)}px);
     }
 `;
 
-    // const body = {
-    //     username: 'huh',
-    //     avatar: 'https://pbs.twimg.com/profile_images/1026496068555612160/Klg8BS8p_400x400.jpg',
-    //     bg: 'https://i.ytimg.com/vi/6Vhp65bgKOo/maxresdefault.jpg',
-    //     title: 'Heey man',
-    //     description: 'wa wafbuaw uwbwakf'
-    // };
-
     return (
-        <div>
+        <div data-testid={`profile-full`}>
             {error && (
                 <div className="profile-full-header">
                     <br />
                     <br />
                     <br />
-                    <div className="no-data-error">{"Couldn't load"}</div>
+                    <div
+                        className="no-data-error"
+                        data-testid={`no-data-error`}
+                    >
+                        {"Couldn't load"}
+                    </div>
                 </div>
             )}
             {isPending && <LinearProgress />}
             {data && (
                 <div
+                    data-testid="profile-full-header"
                     className="profile-full-header"
                     onScroll={headerScrollAnimation}
                 >
@@ -89,6 +82,7 @@ export default function ProfileFull(props) {
                     <NavLink
                         to={`/blog/view/${blogName}/${blogID}/posts`}
                         className="profile-full-header-div"
+                        data-testid="profile-full-header-div"
                     >
                         <img
                             className="profile-full-header-div-bg"
@@ -107,6 +101,7 @@ export default function ProfileFull(props) {
                     <div className="profile-full-header-text">
                         <NavLink
                             className="profile-full-header-text-link"
+                            data-testid="profile-full-header-text-link"
                             to={`/blog/view/${blogName}/${blogID}/posts`}
                         >
                             <div className="profile-full-header-text-title">
@@ -119,18 +114,21 @@ export default function ProfileFull(props) {
                             {data.blog.desciption}
                         </div>
                     </div>
-                    <div className="profile-full-header-nav">
+                    <div
+                        className="profile-full-header-nav"
+                        data-testid="profile-full-header-nav"
+                    >
                         {navArray.map(
                             (category, index) =>
                                 (data.blog.is_primary ||
                                     category.link === 'posts' ||
-                                    category.link === 'ask' ||
-                                    category.link === 'submit') && (
+                                    category.link === 'ask') && (
                                     <NavLink
                                         className={`profile-full-header-nav-link ${
                                             category.link === content &&
                                             'underline'
                                         }`}
+                                        data-testid={`profile-full-header-nav-link-${category.link}`}
                                         to={`/blog/view/${blogName}/${blogID}/${category.link}`}
                                         key={index}
                                     >
@@ -139,9 +137,7 @@ export default function ProfileFull(props) {
                                 )
                         )}
                     </div>
-                    {(content === 'posts' ||
-                        content === 'ask' ||
-                        content === 'submit') && (
+                    {(content === 'posts' || content === 'ask') && (
                         <ProfileContent
                             blogName={blogName}
                             blogID={blogID}

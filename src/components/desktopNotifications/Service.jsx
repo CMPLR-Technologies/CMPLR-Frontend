@@ -17,7 +17,5 @@ export const sendDesktopNotifyToken = () => {
         }
     })
         .then(() => {})
-        .catch(err => {
-            console.log(err);
-        });
+        .catch(() => {});
 };

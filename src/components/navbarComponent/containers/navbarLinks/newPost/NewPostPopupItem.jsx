@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
+/**
+ * Navbar NewPostPopupItem: includes NewPostPopupItem link 
+ * @function NewPostPopupItem
+ * @property {string} link - link of new post
+ * @returns {Component} icon link to new post
+ */
 export default function NewPostPopupItem(props) {
     return (
         <Link to={props.link}>

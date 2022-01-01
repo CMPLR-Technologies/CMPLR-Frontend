@@ -50,7 +50,11 @@ export default function NavbarMenuMobile(props) {
             </button>
             {!isOpenSetting ? (
                 <div className="navbar-menu-mobile-menu">
-                    <NavLink to="/new/post" onClick={closeMenu} className='newPostA'>
+                    <NavLink
+                        to="/new/post"
+                        onClick={closeMenu}
+                        className="newPostA"
+                    >
                         <button className="create-new-post">
                             <i className="fas fa-pen"></i> Create a post
                         </button>
