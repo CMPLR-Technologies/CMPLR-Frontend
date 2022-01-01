@@ -51,13 +51,6 @@ export default function ProfileSide(props) {
             object-position: 0 calc(50% + ${Math.min(scrollTop / 2, 108)}px);
         }
     `;
-    // const body = {
-    //     username: 'huh',
-    //     avatar: 'https://pbs.twimg.com/profile_images/1026496068555612160/Klg8BS8p_400x400.jpg',
-    //     bg: 'https://i.ytimg.com/vi/6Vhp65bgKOo/maxresdefault.jpg',
-    //     title: 'Heey man',
-    //     description: 'wa wafbuaw uwbwakf'
-    // };
 
     return (
         <div className="profile-side" onScroll={headerScrollAnimation}>

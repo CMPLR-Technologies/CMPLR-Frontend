@@ -26,10 +26,6 @@ export default function AccountPopupHeader() {
             >
                 Log out
             </div>
-
-            {/* <NavLink to="/" className={`clickable`}>
-                        <div onClick={() => logOut()}>Log out</div>
-            </NavLink> */}
         </div>
     );
 }

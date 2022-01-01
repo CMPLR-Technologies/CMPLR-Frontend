@@ -10,7 +10,7 @@ export default function ProfileFullContainer() {
         }
     `;
     return (
-        <div className="profile-full">
+        <div className="profile-full" data-testid="profile-full">
             <ProfileFull
                 blogName={blogName}
                 blogID={blogID}
