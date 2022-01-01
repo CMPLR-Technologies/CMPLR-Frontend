@@ -4,12 +4,15 @@ import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
 import LoginCard from './containers/LoginCard';
 import UserContextProvider from '../../contexts/userContext/UserContext';
+import ChatContextProvider from '../../contexts/chatContext/chatContext';
 
 const MockLoginCard = () => {
     return (
         <BrowserRouter>
             <UserContextProvider>
-                <LoginCard />
+                <ChatContextProvider>
+                    <LoginCard />
+                </ChatContextProvider>
             </UserContextProvider>
         </BrowserRouter>
     );

@@ -17,6 +17,7 @@
         "babel-loader": "^8.2.3",
         "chart.js": "^3.7.0",
         "firebase": "^8.8.0",
+        "isstream": "^0.1.2",
         "pusher-js": "^7.0.3",
         "react": "^17.0.2",
         "react-chartjs-2": "^4.0.0",

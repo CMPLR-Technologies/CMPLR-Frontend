@@ -5,42 +5,24 @@ import React from 'react';
 import MockedComponent from '../MockedComponent';
 import PostComponent from './containers/PostComponent';
 const postResponse = {
-    post_state: 'published',
-    post_id: 13212383,
-    blog_id: 123123,
-    blog_name: 'Yahia',
-    post_type: 'text',
-    content: [
-        {
-            type: 'text',
-            title: 'Test Post<br>',
-            content: 'Test Content',
-            user: {
-                name: 'Yahia',
-                blogName: 'Yahia'
-            }
-        }
-    ],
-    reblog_key: '1253',
-    limit: 5,
-    parent_blog_id: 12523,
-    parent_post_id: 1223,
-    post_timestamp: 'December 5th, 7:14 PM',
-    post_date: '01:01:11',
-    format: 'Rich text',
-    blog_avatar:
-        'https://64.media.tumblr.com/34dbb7172ea55d286d686911dff23901/66ab0c35f3053a4a-86/s64x64u_c1/91d3bc478c814e17c299e0893f74959aae7c189e.pnj',
-    blog_url: 'dddddas',
-    blog_email: 'dsadwqda',
-    post_link: 'https://theinsaneapp.tumblr.com/post/669080647503101952',
-    number_notes: 5,
-    layout: [
-        {
-            type: 'rows',
-            display: '[{blocks:[0,1]} , {blocks:[2]}]'
-        }
-    ],
-    tags: ['pain', 'pain-000']
+    post: {
+        post_id: 1,
+        type: 'photos',
+        state: 'publish',
+        title: 'test title',
+        content: '<h1>hello i am ahmed4 </h1>',
+        date: 'Friday, 17-Dec-21 23:27:28 UTC',
+        source_content: 'google.com',
+        tags: ['summer', 'winter']
+    },
+    blog: {
+        blog_id: 11,
+        blog_name: 'ahmed_3',
+        avatar: 'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
+        avatar_shape: 'circle',
+        replies: 'everyone',
+        follower: false
+    }
 };
 
 describe('Post Component Test', () => {
@@ -73,7 +55,7 @@ describe('Post Component Test', () => {
             />
         );
         const authorAvatar = screen.queryByTestId('avatar-img-ts');
-        expect(authorAvatar.src).toBe(postResponse['blog_avatar']);
+        expect(authorAvatar.src).toBe(postResponse?.blog['avatar']);
     });
 
     it('render author blog name passed in post response', () => {
@@ -89,7 +71,7 @@ describe('Post Component Test', () => {
             />
         );
         const blogName = screen.queryByTestId('post-heading-ts');
-        expect(blogName.textContent).toBe(postResponse['blog_name']);
+        expect(blogName.textContent).toBe(postResponse?.blog['blog_name']);
     });
 
     it('render follow button if isFollowed is false', () => {
@@ -125,14 +107,30 @@ describe('Post Component Test', () => {
     });
 
     it('does not render follow button if isFollowed is true', () => {
+        const postResponse2 = {
+            post: {
+                post_id: 1,
+                type: 'photos',
+                state: 'publish',
+                title: 'test title',
+                content: '<h1>hello i am ahmed4 </h1>',
+                date: 'Friday, 17-Dec-21 23:27:28 UTC',
+                source_content: 'google.com',
+                tags: ['summer', 'winter']
+            },
+            blog: {
+                blog_id: 11,
+                blog_name: 'ahmed_3',
+                avatar: 'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
+                avatar_shape: 'circle',
+                replies: 'everyone',
+                follower: true
+            }
+        };
         render(
             <MockedComponent
                 component={
-                    <PostComponent
-                        post={postResponse}
-                        isFollowed={true}
-                        userBlogName="blog1"
-                    />
+                    <PostComponent post={postResponse2} userBlogName="blog1" />
                 }
             />
         );
@@ -192,7 +190,7 @@ describe('Post Component Test', () => {
         expect(optionList.children.length).toBe(4);
     });
 
-    it('render 5 options in the list when post author is not the logged user and does not follow him', () => {
+    it('render 4 options in the list when post author is not the logged user and does not follow him', () => {
         render(
             <MockedComponent
                 component={
@@ -207,15 +205,35 @@ describe('Post Component Test', () => {
         const optionBtn = screen.queryByTestId('opt-btn-header-ts');
         fireEvent.click(optionBtn);
         const optionList = screen.queryByTestId('list-header-ts');
-        expect(optionList.children.length).toBe(5);
+        expect(optionList.children.length).toBe(4);
     });
 
-    it('render 6 options in the list when post author is not the logged user and follows him', () => {
+    it('render 5 options in the list when post author is not the logged user and follows him', () => {
+        const postResponse2 = {
+            post: {
+                post_id: 1,
+                type: 'photos',
+                state: 'publish',
+                title: 'test title',
+                content: '<h1>hello i am ahmed4 </h1>',
+                date: 'Friday, 17-Dec-21 23:27:28 UTC',
+                source_content: 'google.com',
+                tags: ['summer', 'winter']
+            },
+            blog: {
+                blog_id: 11,
+                blog_name: 'ahmed_3',
+                avatar: 'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
+                avatar_shape: 'circle',
+                replies: 'everyone',
+                follower: true
+            }
+        };
         render(
             <MockedComponent
                 component={
                     <PostComponent
-                        post={postResponse}
+                        post={postResponse2}
                         isFollowed={true}
                         userBlogName="Yaia"
                     />
@@ -225,7 +243,7 @@ describe('Post Component Test', () => {
         const optionBtn = screen.queryByTestId('opt-btn-header-ts');
         fireEvent.click(optionBtn);
         const optionList = screen.queryByTestId('list-header-ts');
-        expect(optionList.children.length).toBe(6);
+        expect(optionList.children.length).toBe(5);
     });
 
     it('render post date as passed in props', () => {
@@ -243,10 +261,10 @@ describe('Post Component Test', () => {
         const optionBtn = screen.queryByTestId('opt-btn-header-ts');
         fireEvent.click(optionBtn);
         const postDate = screen.queryByTestId(
-            `post-time-text-ts${postResponse['post_id']}`
+            `post-time-text-ts${postResponse?.post['post_id']}`
         );
         expect(postDate.textContent).toBe(
-            `Posted - ${postResponse['post_timestamp']}`
+            `Posted - ${postResponse?.post['date']}`
         );
     });
 
@@ -264,7 +282,9 @@ describe('Post Component Test', () => {
         );
         const optionBtn = screen.queryByTestId('opt-btn-header-ts');
         fireEvent.click(optionBtn);
-        const blockBtn = screen.queryByTestId(`block-btn-header-ts13212383`);
+        const blockBtn = screen.queryByTestId(
+            `block-btn-header-ts${postResponse?.post['post_id']}`
+        );
         fireEvent.click(blockBtn);
         const modal = screen.queryByTestId('modal-ts');
         expect(modal).toBeInTheDocument();
@@ -285,7 +305,7 @@ describe('Post Component Test', () => {
         const optionBtn = screen.queryByTestId('opt-btn-header-ts');
         fireEvent.click(optionBtn);
         const closeBtn = screen.queryByTestId(
-            `close-btn-header-ts${postResponse['post_id']}`
+            `close-btn-header-ts${postResponse?.post['post_id']}`
         );
         fireEvent.click(closeBtn);
         const optionList = screen.queryByTestId('list-header-ts');
@@ -305,17 +325,15 @@ describe('Post Component Test', () => {
             />
         );
         const textTitle = screen.queryByTestId(
-            `post-text-title-ts-${postResponse.content[0].title}`
+            `post-text-title-ts-${postResponse?.post?.title}`
         );
 
         const bodyContent = screen.queryByTestId(
-            `body-content-ts-${postResponse.content[0].title}`
+            `body-content-ts-${postResponse?.post?.title}`
         );
 
-        expect(textTitle.textContent).toBe(`${postResponse.content[0].title}`);
-        expect(bodyContent).toBeInTheDocument(
-            `${postResponse.content[0].content}`
-        );
+        expect(textTitle.textContent).toBe(`${postResponse?.post?.title}`);
+        expect(bodyContent).toBeInTheDocument(`${postResponse?.post?.content}`);
     });
 
     it('render tags as passed in post response', () => {
@@ -333,35 +351,36 @@ describe('Post Component Test', () => {
         const tags = screen.queryByTestId(`tags-cont-ts`);
 
         expect(tags.children.length).toEqual(
-            parseInt(`${postResponse.tags.length}`)
-        );
-    });
-
-    it('render number notes as passed in post response', () => {
-        render(
-            <MockedComponent
-                component={
-                    <PostComponent
-                        post={postResponse}
-                        isFollowed={true}
-                        userBlogName="blog1"
-                    />
-                }
-            />
-        );
-        const notesCount = screen.queryByTestId(`notes-count-text-ts`);
-
-        expect(notesCount.textContent).toBe(
-            `${postResponse['number_notes']} notes`
+            parseInt(`${postResponse?.post?.tags.length}`)
         );
     });
 
     it('render 4 buttons in the footer when post author is not the logged user', () => {
+        const postResponse2 = {
+            post: {
+                post_id: 1,
+                type: 'photos',
+                state: 'publish',
+                title: 'test title',
+                content: '<h1>hello i am ahmed4 </h1>',
+                date: 'Friday, 17-Dec-21 23:27:28 UTC',
+                source_content: 'google.com',
+                tags: ['summer', 'winter']
+            },
+            blog: {
+                blog_id: 11,
+                blog_name: 'ahmed_3',
+                avatar: 'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png',
+                avatar_shape: 'circle',
+                replies: 'everyone',
+                follower: true
+            }
+        };
         render(
             <MockedComponent
                 component={
                     <PostComponent
-                        post={postResponse}
+                        post={postResponse2}
                         isFollowed={true}
                         userBlogName="blog1"
                     />
@@ -380,7 +399,7 @@ describe('Post Component Test', () => {
                     <PostComponent
                         post={postResponse}
                         isFollowed={true}
-                        userBlogName="Yahia"
+                        userBlogName="ahmed_3"
                     />
                 }
             />
@@ -388,22 +407,5 @@ describe('Post Component Test', () => {
         const footerIcons = screen.queryByTestId(`footer-icons-ts`);
 
         expect(footerIcons.children.length).toBe(6);
-    });
-    it('shows share options list when clicking on share button', () => {
-        render(
-            <MockedComponent
-                component={
-                    <PostComponent
-                        post={postResponse}
-                        isFollowed={true}
-                        userBlogName="Yahia"
-                    />
-                }
-            />
-        );
-        const shareBtn = screen.queryByTestId('share-icon-footer-ts');
-        fireEvent.click(shareBtn);
-        const shareOptions = screen.queryByTestId('share-options-ts');
-        expect(shareOptions).toBeInTheDocument();
     });
 });
