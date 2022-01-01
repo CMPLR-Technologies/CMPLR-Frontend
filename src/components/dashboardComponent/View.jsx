@@ -7,6 +7,12 @@ import useInfiniteScrolling from '../../hooks/useInfiniteScrolling';
 import Sidebar from './containers/Sidebar';
 import { useMediaQuery } from 'react-responsive';
 
+/**
+ * Dashboard Main Component
+ * @function Dashboard
+ * @description The main container for the Dashboard page
+ * @returns {Component} Component that contains create posts component, vertical posts view and a side bar
+ */
 export default function Dashboard() {
     const [pageNumber, setPageNumber] = useState(1);
     // eslint-disable-next-line no-unused-vars

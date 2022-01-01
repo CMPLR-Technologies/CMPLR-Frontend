@@ -8,6 +8,13 @@ import {
 import useFetch from '../../../hooks/useFetch';
 import { apiBaseUrl } from '../../../config.json';
 
+/**
+ * Explore Sidebar Component
+ * @function ExploreSidebar
+ * @description The container for the Explore sidebar
+ * @returns {Component} Component that contains create Following component and Recommended blogs
+ */
+
 export default function ExploreSidebar() {
     const {
         error: blogsError,
