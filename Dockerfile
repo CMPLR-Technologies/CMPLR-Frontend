@@ -10,6 +10,9 @@ RUN yarn install
 COPY . .
 
 RUN yarn build
+
+RUN yarn run testall
+
 FROM nginx
 
 COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
