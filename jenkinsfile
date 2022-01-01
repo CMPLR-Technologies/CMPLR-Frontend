@@ -5,6 +5,8 @@ pipeline {
     }
     environment{
         LOGIN_SERVER = "cmplr.azurecr.io"
+        WEBHOOK_URL = credentials('Master_Discord')
+
     }
     stages {
         stage("fetch"){
