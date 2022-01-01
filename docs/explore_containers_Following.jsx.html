@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: explore/containers/Following.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: explore/containers/Following.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useContext } from 'react';
+import { useState } from 'react';
+import {
+    themes,
+    ThemeContext
+} from '../../../contexts/themeContext/ThemeContext';
+import { showTags } from '../Controller';
+import useFetch from '../../../hooks/useFetch';
+import { apiBaseUrl } from '../../../config.json';
+import { LinearProgress } from '@material-ui/core';
+
+/**
+ * Following Component
+ * @function Following
+ * @description Your Following Hashtags List
+ * @returns {Component} Component That Contains Your Following Hashtags
+ */
+
+export default function Following() {
+    const { error, data, isPending } = useFetch(`${apiBaseUrl}/following/tags`);
+    const theme = useContext(ThemeContext)[0];
+    const [start, setStart] = useState(0);
+    const [end, setEnd] = useState(4);
+
+    const headStyles = {
+        color: `rgb(${themes[theme].whiteOnDark})`,
+        borderBottom: `solid 1px rgba(${themes[theme].whiteOnDark}, 0.13)`
+    };
+    const btnStyles = {
+        color: `rgb(${themes[theme].accent})`,
+        borderTop: `solid 1px rgba(${themes[theme].whiteOnDark}, 0.13)`
+    };
+    const styles = `
+    .following-hashtag:hover{
+        background: rgba(${themes[theme].whiteOnDark}, 0.13);
+    }
+    `;
+    return (
+        &lt;div
+            className="explore-following"
+            style={{ background: `rgba(${themes[theme].whiteOnDark}, 0.07)` }}
+        >
+            &lt;div className="explore-following-head" style={headStyles}>
+                &lt;span>Following&lt;/span>
+            &lt;/div>
+            &lt;div className="explore-following-main">
+                {isPending &amp;&amp; &lt;LinearProgress />}
+                {error &amp;&amp; (
+                    &lt;div className="no-data-error">{"Couldn't load"}&lt;/div>
+                )}
+                {data &amp;&amp;
+                    data.slice(start, end).map((hashtag, index) => {
+                        return (
+                            &lt;a key={index} href={`/tagged/${hashtag?.name}`}>
+                                &lt;div className="following-hashtag">
+                                    &lt;img
+                                        src={
+                                            hashtag &amp;&amp; hashtag.cover_image
+                                                ? hashtag.cover_image.link
+                                                : 'https://64.media.tumblr.com/avatar_88dad111d576_128.pnj'
+                                        }
+                                    />
+                                    &lt;div
+                                        className="following-hashtag-info"
+                                        style={{
+                                            color: `rgb(${themes[theme].whiteOnDark})`
+                                        }}
+                                    >
+                                        &lt;span>{hashtag?.name}&lt;/span>
+                                        &lt;span>
+                                            {hashtag
+                                                ? hashtag?.posts_count
+                                                : 69}{' '}
+                                            recent posts
+                                        &lt;/span>
+                                    &lt;/div>
+                                &lt;/div>
+                            &lt;/a>
+                        );
+                    })}
+            &lt;/div>
+            &lt;button
+                className="moreTags"
+                style={btnStyles}
+                onClick={() => {
+                    showTags(setStart, setEnd, end, data?.length);
+                }}
+                disabled={data &amp;&amp; data.length &lt;= 4}
+            >
+                Show more tags
+            &lt;/button>
+            &lt;style>{styles}&lt;/style>
+        &lt;/div>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#BlogInfo">BlogInfo</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#Explore">Explore</a></li><li><a href="global.html#ExploreSidebar">ExploreSidebar</a></li><li><a href="global.html#Following">Following</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#Hashtag">Hashtag</a></li><li><a href="global.html#HashtagsList">HashtagsList</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LikedBlogs">LikedBlogs</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Nav">Nav</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#RecommendBlogs">RecommendBlogs</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#TrendingTag">TrendingTag</a></li><li><a href="global.html#TrendingTags">TrendingTags</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Jan 01 2022 17:36:51 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

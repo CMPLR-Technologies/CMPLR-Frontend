@@ -3,6 +3,20 @@ import PropTypes from 'prop-types';
 import { followHashtag, unfollowHashtag } from '../Service';
 import { UserContext } from '../../../contexts/userContext/UserContext';
 
+/**
+ * Hashtag Component
+ * @function Hashtag
+ * @description The Hashtag in the Recommended Hashtags List
+ * @property {string} name - hashtag name
+ * @property {string} firstImg - url for an image
+ * @property {string} secondImg - url for an image
+ * @property {string} link - url of the hashtag page
+ * @property {string} color - font color
+ * @property {string} background - background color
+ * @property {string} border - background border
+ * @returns {Component} Component that contains 5 Recommended blogs
+ */
+
 export default function Hashtag(props) {
     const { name, firstImg, secondImg, link, color, background, border } =
         props;

@@ -156,7 +156,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navbarComponent_containers_navbarLinks_AccountPopup_AccountPopup.jsx.html">navbarComponent/containers/navbarLinks/AccountPopup/AccountPopup.jsx</a>, <a href="navbarComponent_containers_navbarLinks_AccountPopup_AccountPopup.jsx.html#line13">line 13</a>
+        <a href="navbarComponent_containers_navbarLinks_AccountPopup_AccountPopup.jsx.html">navbarComponent/containers/navbarLinks/AccountPopup/AccountPopup.jsx</a>, <a href="navbarComponent_containers_navbarLinks_AccountPopup_AccountPopup.jsx.html#line15">line 15</a>
     </li></ul></dd>
     
 
@@ -725,7 +725,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navbarComponent_containers_navbarLinks_AccountPopup_Actions_AccountPopupActions.jsx.html">navbarComponent/containers/navbarLinks/AccountPopup/Actions/AccountPopupActions.jsx</a>, <a href="navbarComponent_containers_navbarLinks_AccountPopup_Actions_AccountPopupActions.jsx.html#line12">line 12</a>
+        <a href="navbarComponent_containers_navbarLinks_AccountPopup_Actions_AccountPopupActions.jsx.html">navbarComponent/containers/navbarLinks/AccountPopup/Actions/AccountPopupActions.jsx</a>, <a href="navbarComponent_containers_navbarLinks_AccountPopup_Actions_AccountPopupActions.jsx.html#line11">line 11</a>
     </li></ul></dd>
     
 
@@ -1294,7 +1294,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navbarComponent_containers_navbarLinks_AccountPopup_Blogs_AccountPopupBlogsContainer.jsx.html">navbarComponent/containers/navbarLinks/AccountPopup/Blogs/AccountPopupBlogsContainer.jsx</a>, <a href="navbarComponent_containers_navbarLinks_AccountPopup_Blogs_AccountPopupBlogsContainer.jsx.html#line6">line 6</a>
+        <a href="navbarComponent_containers_navbarLinks_AccountPopup_Blogs_AccountPopupBlogsContainer.jsx.html">navbarComponent/containers/navbarLinks/AccountPopup/Blogs/AccountPopupBlogsContainer.jsx</a>, <a href="navbarComponent_containers_navbarLinks_AccountPopup_Blogs_AccountPopupBlogsContainer.jsx.html#line5">line 5</a>
     </li></ul></dd>
     
 
@@ -2686,7 +2686,7 @@
     
 
     
-    <h4 class="name" id="CircledSideNavbar"><span class="type-signature"></span>CircledSideNavbar<span class="signature">(activeSection)</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    <h4 class="name" id="BlogInfo"><span class="type-signature"></span>BlogInfo<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
     
 
     
@@ -2694,7 +2694,7 @@
 
 
 <div class="description">
-    <p>side navbar used to navigate through different sections in homepage</p>
+    <p>The BlogInfo row in Recommended Blogs Section</p>
 </div>
 
 
@@ -2705,10 +2705,15 @@
 
 
 
-    <h5>Parameters:</h5>
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
     
 
-<table class="params">
+<table class="props">
     <thead>
     <tr>
         
@@ -2730,13 +2735,13 @@
 
         <tr>
             
-                <td class="name"><code>activeSection</code></td>
+                <td class="name"><code>blogName</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">string</span>
 
 
             
@@ -2746,14 +2751,81 @@
 
             
 
-            <td class="description last"><p>Number of active section to fill its nav with background white</p></td>
+            <td class="description last"><p>The name of the blog</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>blogDesc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The title of the blog</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>blogIcon</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The usl of the blog avatar</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>blogId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The id of the blog</p></td>
         </tr>
 
     
     </tbody>
 </table>
-
-
 
 
 
@@ -2787,7 +2859,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="homeComponent_containers_SideNav_SideNav.jsx.html">homeComponent/containers/SideNav/SideNav.jsx</a>, <a href="homeComponent_containers_SideNav_SideNav.jsx.html#line5">line 5</a>
+        <a href="dashboardComponent_containers_BlogInfo.jsx.html">dashboardComponent/containers/BlogInfo.jsx</a>, <a href="dashboardComponent_containers_BlogInfo.jsx.html#line10">line 10</a>
     </li></ul></dd>
     
 
@@ -2816,7 +2888,7 @@
 
         
 <div class="param-desc">
-    <p>CicledSideNavbar</p>
+    <p>Component that contains 1 Recommended blog</p>
 </div>
 
 
@@ -2845,714 +2917,6 @@
     
 
     
-    <h4 class="name" id="Footer"><span class="type-signature"></span>Footer<span class="signature">(numberNotes, isAuth, postLink, reblogKey, postId, postAuthor, authorAvatar)</span><span class="type-signature"> &rarr; {Component}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Post Component containg icons like love,share,reblog,edit,delete,...etc and notes count</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>numberNotes</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>number of notes relate to post</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>isAuth</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>boolean value to check if the user logged in is the author of viewed post</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>postLink</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>link of the post</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>reblogKey</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the key used to reblog this post</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>postId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>id of the post</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>postAuthor</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the author of the post viewed</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>authorAvatar</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>avatar image of post author</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="partials_postComponent_containers_Footer.jsx.html">partials/postComponent/containers/Footer.jsx</a>, <a href="partials_postComponent_containers_Footer.jsx.html#line19">line 19</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>Footer Component</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Component</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="ForgetPassword"><span class="type-signature"></span>ForgetPassword<span class="signature">(email)</span><span class="type-signature"> &rarr; {Component}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>this is the statful component of the forget password page</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>email</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">email</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the email of the user</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="forgetPasswordComponent_containers_ForgetPassword.jsx.html">forgetPasswordComponent/containers/ForgetPassword.jsx</a>, <a href="forgetPasswordComponent_containers_ForgetPassword.jsx.html#line9">line 9</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>the Component of the forget password page</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Component</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="HomeButtons"><span class="type-signature"></span>HomeButtons<span class="signature">(href, title, children, className, dataTestid)</span><span class="type-signature"> &rarr; {Component}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>this is the base of buttons used in home component</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>href</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>href of the button if any</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>title</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>text body of button</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>children</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>children of component if any</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>className</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>className of button</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>dataTestid</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>test id used in unit testing</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="homeComponent_containers_Sec1_Button.jsx.html">homeComponent/containers/Sec1/Button.jsx</a>, <a href="homeComponent_containers_Sec1_Button.jsx.html#line5">line 5</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>the Component of the Button</p>
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Component</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-<<<<<<< HEAD
     <h4 class="name" id="Chat"><span class="type-signature"></span>Chat<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
     
 
@@ -3836,7 +3200,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="chatComponent_containers_ChatMessageItem.jsx.html">chatComponent/containers/ChatMessageItem.jsx</a>, <a href="chatComponent_containers_ChatMessageItem.jsx.html#line3">line 3</a>
+        <a href="chatComponent_containers_ChatMessageItem.jsx.html">chatComponent/containers/ChatMessageItem.jsx</a>, <a href="chatComponent_containers_ChatMessageItem.jsx.html#line4">line 4</a>
     </li></ul></dd>
     
 
@@ -4090,7 +3454,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="chatComponent_containers_ChatMessageMobileView.jsx.html">chatComponent/containers/ChatMessageMobileView.jsx</a>, <a href="chatComponent_containers_ChatMessageMobileView.jsx.html#line6">line 6</a>
+        <a href="chatComponent_containers_ChatMessageMobileView.jsx.html">chatComponent/containers/ChatMessageMobileView.jsx</a>, <a href="chatComponent_containers_ChatMessageMobileView.jsx.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -4390,7 +3754,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="chatComponent_containers_ChatMessages.jsx.html">chatComponent/containers/ChatMessages.jsx</a>, <a href="chatComponent_containers_ChatMessages.jsx.html#line5">line 5</a>
+        <a href="chatComponent_containers_ChatMessages.jsx.html">chatComponent/containers/ChatMessages.jsx</a>, <a href="chatComponent_containers_ChatMessages.jsx.html#line7">line 7</a>
     </li></ul></dd>
     
 
@@ -4575,7 +3939,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="chatComponent_containers_ChatOption.jsx.html">chatComponent/containers/ChatOption.jsx</a>, <a href="chatComponent_containers_ChatOption.jsx.html#line4">line 4</a>
+        <a href="chatComponent_containers_ChatOption.jsx.html">chatComponent/containers/ChatOption.jsx</a>, <a href="chatComponent_containers_ChatOption.jsx.html#line12">line 12</a>
     </li></ul></dd>
     
 
@@ -4829,7 +4193,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="chatComponent_containers_ChatPopUp.jsx.html">chatComponent/containers/ChatPopUp.jsx</a>, <a href="chatComponent_containers_ChatPopUp.jsx.html#line5">line 5</a>
+        <a href="chatComponent_containers_ChatPopUp.jsx.html">chatComponent/containers/ChatPopUp.jsx</a>, <a href="chatComponent_containers_ChatPopUp.jsx.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -5258,9 +4622,2306 @@
 
     
     <h4 class="name" id="CircledSideNavbar"><span class="type-signature"></span>CircledSideNavbar<span class="signature">(activeSection)</span><span class="type-signature"> &rarr; {Component}</span></h4>
-=======
+    
+
+    
+
+
+
+<div class="description">
+    <p>side navbar used to navigate through different sections in homepage</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>activeSection</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Number of active section to fill its nav with background white</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="homeComponent_containers_SideNav_SideNav.jsx.html">homeComponent/containers/SideNav/SideNav.jsx</a>, <a href="homeComponent_containers_SideNav_SideNav.jsx.html#line5">line 5</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>CicledSideNavbar</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Dashboard"><span class="type-signature"></span>Dashboard<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>The main container for the Dashboard page</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dashboardComponent_View.jsx.html">dashboardComponent/View.jsx</a>, <a href="dashboardComponent_View.jsx.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Component that contains create posts component, vertical posts view and a side bar</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="DeleteAccount"><span class="type-signature"></span>DeleteAccount<span class="signature">(password, email)</span><span class="type-signature"> &rarr; {component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>this is the stateful component of the delete account page</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">password</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the password of the user</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>email</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">email</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the email of the user</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="deleteAccountComponent_containers_DeleteAccountCard.jsx.html">deleteAccountComponent/containers/DeleteAccountCard.jsx</a>, <a href="deleteAccountComponent_containers_DeleteAccountCard.jsx.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the component of DeleteAccount</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="DeleteBlog"><span class="type-signature"></span>DeleteBlog<span class="signature">(password, email)</span><span class="type-signature"> &rarr; {component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>this is the stateful component of the delete account page</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>password</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">password</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the password of the user</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>email</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">email</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the email of the user</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="blogSettingsComponent_containers_deleteBlog_DeleteBlog.jsx.html">blogSettingsComponent/containers/deleteBlog/DeleteBlog.jsx</a>, <a href="blogSettingsComponent_containers_deleteBlog_DeleteBlog.jsx.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the component of DeleteBlog</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Explore"><span class="type-signature"></span>Explore<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>The main container for the Explore page</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="explore_View.jsx.html">explore/View.jsx</a>, <a href="explore_View.jsx.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Component that contains explore section and explore side bar</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="ExploreSidebar"><span class="type-signature"></span>ExploreSidebar<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>The container for the Explore sidebar</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="explore_containers_ExploreSidebar.jsx.html">explore/containers/ExploreSidebar.jsx</a>, <a href="explore_containers_ExploreSidebar.jsx.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Component that contains create Following component and Recommended blogs</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Following"><span class="type-signature"></span>Following<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Your Following Hashtags List</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="explore_containers_Following.jsx.html">explore/containers/Following.jsx</a>, <a href="explore_containers_Following.jsx.html#line12">line 12</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Component That Contains Your Following Hashtags</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="FollowingPage"><span class="type-signature"></span>FollowingPage<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>this is the component which loop on the following list for a given user and get them all to be viewed</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="followingComponent_View.jsx.html">followingComponent/View.jsx</a>, <a href="followingComponent_View.jsx.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the view directly</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Footer"><span class="type-signature"></span>Footer<span class="signature">(numberNotes, isAuth, postLink, reblogKey, postId, postAuthor, authorAvatar)</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Post Component containg icons like love,share,reblog,edit,delete,...etc and notes count</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>numberNotes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>number of notes relate to post</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>isAuth</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>boolean value to check if the user logged in is the author of viewed post</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>postLink</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>link of the post</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>reblogKey</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the key used to reblog this post</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>postId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>id of the post</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>postAuthor</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the author of the post viewed</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>authorAvatar</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>avatar image of post author</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="partials_postComponent_containers_Footer.jsx.html">partials/postComponent/containers/Footer.jsx</a>, <a href="partials_postComponent_containers_Footer.jsx.html#line21">line 21</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Footer Component</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="ForgetPassword"><span class="type-signature"></span>ForgetPassword<span class="signature">(email)</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>this is the stateful component of the forget password page</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>email</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">email</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the email of the user</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="forgetPasswordComponent_containers_ForgetPassword.jsx.html">forgetPasswordComponent/containers/ForgetPassword.jsx</a>, <a href="forgetPasswordComponent_containers_ForgetPassword.jsx.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the Component of the forget password page</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="GoogleCard"><span class="type-signature"></span>GoogleCard<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>this is a view where we get the blogName &amp; age of user who is registering with google</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="registerComponent_GoogleCard.jsx.html">registerComponent/GoogleCard.jsx</a>, <a href="registerComponent_GoogleCard.jsx.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>age &amp; blogName inputs</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Hashtag"><span class="type-signature"></span>Hashtag<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>The Hashtag in the Recommended Hashtags List</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>hashtag name</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>firstImg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>url for an image</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>secondImg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>url for an image</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>link</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>url of the hashtag page</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>color</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>font color</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>background</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>background color</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>border</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>background border</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="explore_containers_Hashtag.jsx.html">explore/containers/Hashtag.jsx</a>, <a href="explore_containers_Hashtag.jsx.html#line6">line 6</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Component that contains 5 Recommended blogs</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="HashtagsList"><span class="type-signature"></span>HashtagsList<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>The Recommended Hashtags List</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="explore_containers_HashtagsList.jsx.html">explore/containers/HashtagsList.jsx</a>, <a href="explore_containers_HashtagsList.jsx.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Scrollable Component That Contains The Recommended Hashtags</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="HomeButtons"><span class="type-signature"></span>HomeButtons<span class="signature">(href, title, children, className, dataTestid)</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>this is the base of buttons used in home component</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>href</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>href of the button if any</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>title</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>text body of button</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>children</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>children of component if any</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>className</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>className of button</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dataTestid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>test id used in unit testing</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="homeComponent_containers_Sec1_Button.jsx.html">homeComponent/containers/Sec1/Button.jsx</a>, <a href="homeComponent_containers_Sec1_Button.jsx.html#line5">line 5</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the Component of the Button</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="HomeFooter"><span class="type-signature"></span>HomeFooter<span class="signature">(imageNum, last)</span><span class="type-signature"> &rarr; {Component}</span></h4>
->>>>>>> dev
     
 
     
@@ -5699,7 +7360,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="homeComponent_containers_Sec1_HomeSec1.jsx.html">homeComponent/containers/Sec1/HomeSec1.jsx</a>, <a href="homeComponent_containers_Sec1_HomeSec1.jsx.html#line16">line 16</a>
+        <a href="homeComponent_containers_Sec1_HomeSec1.jsx.html">homeComponent/containers/Sec1/HomeSec1.jsx</a>, <a href="homeComponent_containers_Sec1_HomeSec1.jsx.html#line26">line 26</a>
     </li></ul></dd>
     
 
@@ -6292,6 +7953,116 @@
     
 
     
+    <h4 class="name" id="LikedBlogs"><span class="type-signature"></span>LikedBlogs<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>The page to show the liked posts by a user</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="likesComponent_View.jsx.html">likesComponent/View.jsx</a>, <a href="likesComponent_View.jsx.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Component that a vertical posts view for liked posts with the main side bar</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="LoginCard"><span class="type-signature"></span>LoginCard<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
     
 
@@ -6344,7 +8115,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="loginComponent_containers_LoginCard.jsx.html">loginComponent/containers/LoginCard.jsx</a>, <a href="loginComponent_containers_LoginCard.jsx.html#line14">line 14</a>
+        <a href="loginComponent_containers_LoginCard.jsx.html">loginComponent/containers/LoginCard.jsx</a>, <a href="loginComponent_containers_LoginCard.jsx.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -6456,7 +8227,7 @@ Apple store and Google play</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="loginComponent_View.jsx.html">loginComponent/View.jsx</a>, <a href="loginComponent_View.jsx.html#line7">line 7</a>
+        <a href="loginComponent_View.jsx.html">loginComponent/View.jsx</a>, <a href="loginComponent_View.jsx.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -6641,7 +8412,7 @@ Apple store and Google play</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navbarComponent_containers_navbarLinks_AccountPopup_Seperators_LogOutOverlay.jsx.html">navbarComponent/containers/navbarLinks/AccountPopup/Seperators/LogOutOverlay.jsx</a>, <a href="navbarComponent_containers_navbarLinks_AccountPopup_Seperators_LogOutOverlay.jsx.html#line13">line 13</a>
+        <a href="navbarComponent_containers_navbarLinks_AccountPopup_Seperators_LogOutOverlay.jsx.html">navbarComponent/containers/navbarLinks/AccountPopup/Seperators/LogOutOverlay.jsx</a>, <a href="navbarComponent_containers_navbarLinks_AccountPopup_Seperators_LogOutOverlay.jsx.html#line14">line 14</a>
     </li></ul></dd>
     
 
@@ -6842,7 +8613,7 @@ Apple store and Google play</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="partials_Modal.jsx.html">partials/Modal.jsx</a>, <a href="partials_Modal.jsx.html#line4">line 4</a>
+        <a href="partials_Modal.jsx.html">partials/Modal.jsx</a>, <a href="partials_Modal.jsx.html#line5">line 5</a>
     </li></ul></dd>
     
 
@@ -6872,6 +8643,191 @@ Apple store and Google play</p>
         
 <div class="param-desc">
     <p>Alert Modal Component</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="Nav"><span class="type-signature"></span>Nav<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>The Navbar For The Explore Page</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>grid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>If the posts in grid view or not</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>setGrid</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>set the view of the posts: grid or vertical</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="explore_containers_Nav.jsx.html">explore/containers/Nav.jsx</a>, <a href="explore_containers_Nav.jsx.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Component that contains 5 Recommended blogs</p>
 </div>
 
 
@@ -7229,7 +9185,7 @@ Apple store and Google play</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navbarComponent_containers_navbarLinks_links_AuthLinks.jsx.html">navbarComponent/containers/navbarLinks/links/AuthLinks.jsx</a>, <a href="navbarComponent_containers_navbarLinks_links_AuthLinks.jsx.html#line7">line 7</a>
+        <a href="navbarComponent_containers_navbarLinks_links_AuthLinks.jsx.html">navbarComponent/containers/navbarLinks/links/AuthLinks.jsx</a>, <a href="navbarComponent_containers_navbarLinks_links_AuthLinks.jsx.html#line15">line 15</a>
     </li></ul></dd>
     
 
@@ -7501,7 +9457,7 @@ Apple store and Google play</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navbarComponent_containers_section1_NavbarMenuMobile.jsx.html">navbarComponent/containers/section1/NavbarMenuMobile.jsx</a>, <a href="navbarComponent_containers_section1_NavbarMenuMobile.jsx.html#line5">line 5</a>
+        <a href="navbarComponent_containers_section1_NavbarMenuMobile.jsx.html">navbarComponent/containers/section1/NavbarMenuMobile.jsx</a>, <a href="navbarComponent_containers_section1_NavbarMenuMobile.jsx.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -7778,7 +9734,7 @@ Apple store and Google play</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="navbarComponent_containers_searchBar_SearchBar.jsx.html">navbarComponent/containers/searchBar/SearchBar.jsx</a>, <a href="navbarComponent_containers_searchBar_SearchBar.jsx.html#line5">line 5</a>
+        <a href="navbarComponent_containers_searchBar_SearchBar.jsx.html">navbarComponent/containers/searchBar/SearchBar.jsx</a>, <a href="navbarComponent_containers_searchBar_SearchBar.jsx.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -8333,6 +10289,234 @@ Apple store and Google play</p>
     
 
     
+    <h4 class="name" id="PostComponent"><span class="type-signature"></span>PostComponent<span class="signature">(post, isFollowed, userBlogName, radar)</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Base Unit Component for all post compoennt types</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>post</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>object containg post data response received from server</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>isFollowed</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>boolean used to determine if user is following the post author</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>userBlogName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>blog name of the user who is logged in</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>radar</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>boolean used to determine if the post viewed in radar section or not</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="partials_postComponent_containers_PostComponent.jsx.html">partials/postComponent/containers/PostComponent.jsx</a>, <a href="partials_postComponent_containers_PostComponent.jsx.html#line23">line 23</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>PostComponent</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="PostsComponentView"><span class="type-signature"></span>PostsComponentView<span class="signature">(posts, isFollowed, userBlogName, radar)</span><span class="type-signature"> &rarr; {Component}</span></h4>
     
 
@@ -8503,7 +10687,7 @@ Apple store and Google play</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="partials_postComponent_View.jsx.html">partials/postComponent/View.jsx</a>, <a href="partials_postComponent_View.jsx.html#line9">line 9</a>
+        <a href="partials_postComponent_View.jsx.html">partials/postComponent/View.jsx</a>, <a href="partials_postComponent_View.jsx.html#line5">line 5</a>
     </li></ul></dd>
     
 
@@ -8766,6 +10950,260 @@ Apple store and Google play</p>
     
 
     
+    <h4 class="name" id="RecommendBlogs"><span class="type-signature"></span>RecommendBlogs<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>The Recommended Blogs Section</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>blogsError</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>If there is an error while fetching the data or not</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>blogs</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>blogs to be recommended</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>blogsIsPending</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>True while fetching the data</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>showExplore</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>show or hide explore button</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>otherClass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>add other css class to the main container</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dashboardComponent_containers_RecommendBlogs.jsx.html">dashboardComponent/containers/RecommendBlogs.jsx</a>, <a href="dashboardComponent_containers_RecommendBlogs.jsx.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Component that contains 5 Recommended blogs</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="Register"><span class="type-signature"></span>Register<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
     
 
@@ -8928,7 +11366,7 @@ Apple store and Google play</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="registerComponent_containers_RegisterCard.jsx.html">registerComponent/containers/RegisterCard.jsx</a>, <a href="registerComponent_containers_RegisterCard.jsx.html#line10">line 10</a>
+        <a href="registerComponent_containers_RegisterCard.jsx.html">registerComponent/containers/RegisterCard.jsx</a>, <a href="registerComponent_containers_RegisterCard.jsx.html#line11">line 11</a>
     </li></ul></dd>
     
 
@@ -9274,7 +11712,7 @@ Apple store and Google play</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="registerComponent_containers_RegisterStepOne.jsx.html">registerComponent/containers/RegisterStepOne.jsx</a>, <a href="registerComponent_containers_RegisterStepOne.jsx.html#line9">line 9</a>
+        <a href="registerComponent_containers_RegisterStepOne.jsx.html">registerComponent/containers/RegisterStepOne.jsx</a>, <a href="registerComponent_containers_RegisterStepOne.jsx.html#line18">line 18</a>
     </li></ul></dd>
     
 
@@ -9687,7 +12125,7 @@ Apple store and Google play</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resetPasswordComponent_containers_ResetPasswordCard.jsx.html">resetPasswordComponent/containers/ResetPasswordCard.jsx</a>, <a href="resetPasswordComponent_containers_ResetPasswordCard.jsx.html#line5">line 5</a>
+        <a href="resetPasswordComponent_containers_ResetPasswordCard.jsx.html">resetPasswordComponent/containers/ResetPasswordCard.jsx</a>, <a href="resetPasswordComponent_containers_ResetPasswordCard.jsx.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -9728,6 +12166,116 @@ Apple store and Google play</p>
     <dd>
         
 <span class="param-type">component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="SearchForm"><span class="type-signature"></span>SearchForm<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>this is the search bar of the following page</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="followingComponent_containers_SearchForm.jsx.html">followingComponent/containers/SearchForm.jsx</a>, <a href="followingComponent_containers_SearchForm.jsx.html#line4">line 4</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>the view directly</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
 
 
     </dd>
@@ -10458,6 +13006,116 @@ Apple store and Google play</p>
     
 
     
+    <h4 class="name" id="Sidebar"><span class="type-signature"></span>Sidebar<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>The main container for the Dashboard Sidebar</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="dashboardComponent_containers_Sidebar.jsx.html">dashboardComponent/containers/Sidebar.jsx</a>, <a href="dashboardComponent_containers_Sidebar.jsx.html#line7">line 7</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Component that contains Recommended blogs and Radar Components</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="TextPost"><span class="type-signature"></span>TextPost<span class="signature">(title, content)</span><span class="type-signature"> &rarr; {Component}</span></h4>
     
 
@@ -10612,6 +13270,324 @@ Apple store and Google play</p>
         
 <div class="param-desc">
     <p>TextPost Component</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="TrendingTag"><span class="type-signature"></span>TrendingTag<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>The Tag in the TrendingTags List</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tag</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>tag name</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>color</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>background color</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>order</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the order of the tag</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="explore_containers_TrendingTag.jsx.html">explore/containers/TrendingTag.jsx</a>, <a href="explore_containers_TrendingTag.jsx.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Component that contains 5 Recommended blogs</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Component</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="TrendingTags"><span class="type-signature"></span>TrendingTags<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>The Tending Hashtags List</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="explore_containers_TrendingTags.jsx.html">explore/containers/TrendingTags.jsx</a>, <a href="explore_containers_TrendingTags.jsx.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Component That Contains The Tending Hashtags</p>
 </div>
 
 
@@ -10832,21 +13808,13 @@ Apple store and Google play</p>
 </div>
 
 <nav>
-<<<<<<< HEAD
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#ThemeToggle">ThemeToggle</a></li></ul>
-=======
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
->>>>>>> dev
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#BlogInfo">BlogInfo</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#Explore">Explore</a></li><li><a href="global.html#ExploreSidebar">ExploreSidebar</a></li><li><a href="global.html#Following">Following</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#Hashtag">Hashtag</a></li><li><a href="global.html#HashtagsList">HashtagsList</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LikedBlogs">LikedBlogs</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Nav">Nav</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#RecommendBlogs">RecommendBlogs</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#TrendingTag">TrendingTag</a></li><li><a href="global.html#TrendingTags">TrendingTags</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-<<<<<<< HEAD
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 09 2021 15:17:05 GMT+0200 (Eastern European Standard Time)
-=======
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Dec 10 2021 22:55:07 GMT+0200 (Eastern European Standard Time)
->>>>>>> dev
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Jan 01 2022 17:36:51 GMT+0200 (Eastern European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

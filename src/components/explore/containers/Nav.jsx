@@ -10,6 +10,15 @@ import PropTypes from 'prop-types';
 import { changeView } from '../Controller';
 import { Link, useParams } from 'react-router-dom';
 
+/**
+ * Explore Nav Component
+ * @function Nav
+ * @description The Navbar For The Explore Page
+ * @property {boolean} grid - If the posts in grid view or not
+ * @property {function} setGrid - set the view of the posts: grid or vertical
+ * @returns {Component} Component that contains 5 Recommended blogs
+ */
+
 export default function Nav(props) {
     const { grid, setGrid } = props;
     const theme = useContext(ThemeContext)[0];

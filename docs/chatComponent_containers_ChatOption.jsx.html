@@ -26,9 +26,17 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react';
+            <pre class="prettyprint source linenums"><code>import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
+import { Link } from 'react-router-dom';
+import AuthBtn from '../../partials/AuthBtn';
+import { ChatContext } from '../../../contexts/chatContext/chatContext';
+
+import {
+    ThemeContext,
+    themes
+} from '../../../contexts/themeContext/ThemeContext';
 /**
  * ChatOption Component
  * @function ChatOption
@@ -38,24 +46,113 @@ import ClickAwayListener from '@mui/base/ClickAwayListener';
  * @returns {Component} list of option
  */
 export default function ChatOption(props) {
-    let name = props.name;
-    let close = props.close;
+    let { deleteChat } = useContext(ChatContext);
+    const theme = useContext(ThemeContext)[0];
+    let name = props.name; //name of the chat reciver
+    let close = props.close; //function to close the option
+    let myBlog = props.myBlog; //curr blog i open
+    let { senderId, receiverId } = props;
+    const [isOpenDeleteModel, setisOpenDeleteModel] = useState(false);
+    const [isOpenBlockModel, setisOpenBlockModel] = useState(false);
+    //open delete model popup
+    const openDeleteModel = () => {
+        setisOpenDeleteModel(true);
+    };
+    //close delete model popup
+    const closeDeleteModel = () => {
+        setisOpenDeleteModel(false);
+    };
+    //open block model popup
+   /* const openBlockModel = () => {
+        setisOpenBlockModel(true);
+    };*/
+    //close block model popup
+    const closeBlockModel = () => {
+        setisOpenBlockModel(false);
+    };
+    //close option
+    const closeOptions = () => {
+        if (!isOpenDeleteModel) close();
+    };
+    const blockUser = () => {};
+    const deleteConversation = () => {
+        deleteChat(senderId, receiverId);
+    };
     return (
-        &lt;ClickAwayListener onClickAway={() => close()}>
-            &lt;ul className="chat-popup-header-option">
-                &lt;li>
-                    &lt;span>Sound setting&lt;/span>
-                    &lt;i className="fas fa-angle-right">&lt;/i>
-                &lt;/li>
-                &lt;li>Delete conversation&lt;/li>
-                &lt;li>Block {name}&lt;/li>
-            &lt;/ul>
-        &lt;/ClickAwayListener>
+        &lt;>
+            {' '}
+            {isOpenDeleteModel ? (
+                &lt;div className="option-model" messageHeading="">
+                    &lt;div className="option-model-text">
+                        Permanently delete this conversation?
+                    &lt;/div>
+                    &lt;div className="option-model-btns">
+                        &lt;AuthBtn
+                            key="1"
+                            color={`rgba(${themes[theme].whiteOnDark} ,.65)`}
+                            text="Nevermind"
+                            handleClick={closeDeleteModel}
+                        />{' '}
+                        &lt;AuthBtn
+                            key="2"
+                            color={`rgba(${themes[theme].accent} ,.65)`}
+                            text="Delete"
+                            handleClick={deleteConversation}
+                        />{' '}
+                    &lt;/div>
+                &lt;/div>
+            ) : isOpenBlockModel ? (
+                &lt;div className="option-model" messageHeading="">
+                    &lt;div className="option-model-text">
+                        &lt;div>
+                            Are you sure you want to block {name} from
+                            {myBlog}?
+                        &lt;/div>
+                        &lt;div>
+                            {`They won't be able to follow ${myBlog}, send ${myBlog}
+                            messages, see ${myBlog} in search results, or
+                            interact with any of ${myBlog}'s posts.`}
+                        &lt;/div>
+                    &lt;/div>
+                    &lt;div className="option-model-btns">
+                        &lt;AuthBtn
+                            key="1"
+                            color={`rgba(${themes[theme].whiteOnDark} ,.65)`}
+                            text="Nevermind"
+                            handleClick={closeBlockModel}
+                        />{' '}
+                        &lt;AuthBtn
+                            key="2"
+                            color={`rgba(${themes[theme].accent} ,.65)`}
+                            text="Block"
+                            handleClick={blockUser}
+                        />{' '}
+                    &lt;/div>
+                &lt;/div>
+            ) : (
+                ''
+            )}
+            &lt;ClickAwayListener onClickAway={closeOptions}>
+                &lt;ul className="chat-popup-header-option">
+                    &lt;Link to="/settings/dashboard">
+                        &lt;li>
+                            &lt;span>Sound setting&lt;/span>
+                            &lt;i className="fas fa-angle-right">&lt;/i>
+                        &lt;/li>
+                    &lt;/Link>
+                    &lt;li onClick={openDeleteModel}>Delete conversation&lt;/li>
+                   {/* &lt;li onClick={openBlockModel}>Block {name}&lt;/li>*/}
+                &lt;/ul>
+            &lt;/ClickAwayListener>
+        &lt;/>
     );
 }
 ChatOption.propTypes = {
     name: PropTypes.string.isRequired,
-    close: PropTypes.func.isRequired
+    myBlog: PropTypes.string.isRequired,
+    close: PropTypes.func.isRequired,
+    senderId: PropTypes.string.isRequired,
+    receiverId: PropTypes.string.isRequired
 };
 </code></pre>
         </article>
@@ -67,13 +164,13 @@ ChatOption.propTypes = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#ThemeToggle">ThemeToggle</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#BlogInfo">BlogInfo</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#Explore">Explore</a></li><li><a href="global.html#ExploreSidebar">ExploreSidebar</a></li><li><a href="global.html#Following">Following</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#Hashtag">Hashtag</a></li><li><a href="global.html#HashtagsList">HashtagsList</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LikedBlogs">LikedBlogs</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Nav">Nav</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#RecommendBlogs">RecommendBlogs</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#TrendingTag">TrendingTag</a></li><li><a href="global.html#TrendingTags">TrendingTags</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 09 2021 15:17:05 GMT+0200 (Eastern European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Jan 01 2022 17:36:51 GMT+0200 (Eastern European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

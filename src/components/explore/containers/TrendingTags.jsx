@@ -5,6 +5,13 @@ import useFetch from '../../../hooks/useFetch';
 import { apiBaseUrl } from '../../../config.json';
 import { LinearProgress } from '@material-ui/core';
 
+/**
+ * TrendingTags Component
+ * @function TrendingTags
+ * @description The Tending Hashtags List
+ * @returns {Component} Component That Contains The Tending Hashtags
+ */
+
 export default function TrendingTags() {
     const { error, data, isPending } = useFetch(
         `${apiBaseUrl}/trending/tags?page=1`
