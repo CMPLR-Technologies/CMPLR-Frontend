@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: RichTextEditor/View.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: RichTextEditor/View.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import {
+    AiOutlineBold,
+    AiOutlineItalic,
+    AiOutlineUnderline,
+    AiFillCamera,
+    AiOutlineUnorderedList,
+    AiOutlineOrderedList,
+    AiOutlineStrikethrough,
+    AiOutlineLink,
+    AiFillVideoCamera
+} from 'react-icons/ai';
+import { FaPencilAlt } from 'react-icons/fa';
+import { RiPaintFill } from 'react-icons/ri';
+import PropTypes from 'prop-types';
+import { styled } from '@mui/material/styles';
+import { Popover } from '@mui/material';
+import {
+    handleChanges,
+    handleHeading,
+    handleActionWithoutArg,
+    handleUploadImage,
+    handleCreateLink,
+    handleColor,
+    handleUploadVideo,
+    shortcutController
+} from './Controller';
+import Input from '@mui/material/Input';
+import PostComponent from '../partials/postComponent/containers/PostComponent';
+const InputCam = styled('input')({
+    display: 'none'
+});
+
+/**
+ * TextEditor Component
+ * @function HandMadeTextEditor
+ * @property {function} setContent - state to trigger body changes
+ * @property {bool} reblog - bool to know if we are in reblog or not
+ * @property {bool} askFetch - bool to know if we are in ask or not
+ * @property {function} setSpinner - for ui/ux wait
+ * @property {string} editContent - string to show content
+ * @property {string} senderName - name of the sender
+ * @property {object} post - sends the post details
+ * @description used to resend the email veification or to change user's email
+ * @returns {Component}
+ */
+export default function HandMadeTextEditor(props) {
+    // eslint-disable-next-line no-unused-vars
+    const {
+        setContent,
+        reblog,
+        askFetch,
+        post,
+        setSpinner,
+        editContent,
+        senderName
+    } = props;
+    const user = JSON.parse(localStorage.getItem('user'));
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [link, setLink] = React.useState('https://');
+    const handleOpenLinkInput = event => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+    const openPost = Boolean(anchorEl);
+
+    const handleEnterKey = e => {
+        //13 is keyCode of Enter
+        if (e.keyCode === 13 &amp;&amp; link?.length > 0) {
+            handleCreateLink(link, setLink, handleClose, setContent);
+        }
+    };
+
+    return (
+        &lt;>
+            {reblog &amp;&amp; post?.post &amp;&amp; (
+                &lt;PostComponent
+                    radar={true}
+                    reblog={true}
+                    padding="20px"
+                    left="-20px"
+                    post={post}
+                />
+            )}
+            {askFetch &amp;&amp; !reblog &amp;&amp; post?.post &amp;&amp; (
+                &lt;PostComponent
+                    radar={true}
+                    askFetch={askFetch}
+                    senderName={senderName}
+                    ask={true}
+                    padding="20px"
+                    left="-20px"
+                    post={post}
+                    blogPage={true}
+                />
+            )}
+            &lt;div
+                className="main-richeditor"
+                onKeyDown={e => shortcutController(e, setContent)}
+            >
+                &lt;div
+                    className="content"
+                    contentEditable="true"
+                    id="editable-content"
+                    data-testid="content-postInput"
+                    onInput={() => handleChanges(setContent)}
+                    data-placeholder="Your text here"
+                    dangerouslySetInnerHTML={{ __html: editContent }}
+                >&lt;/div>
+                &lt;div className="text-editor-header">
+                    &lt;select
+                        onChange={() => {
+                            handleHeading('formatBlock', setContent);
+                        }}
+                        id="headSelector"
+                        dataTestid="selectHeading_btn_texteditor"
+                    >
+                        &lt;option value="none">Heading&lt;/option>
+                        &lt;option value="H1">H1&lt;/option>
+                        &lt;option value="H2">H2&lt;/option>
+                        &lt;option value="H3">H3&lt;/option>
+                        &lt;option value="H4">H4&lt;/option>
+                        &lt;option value="H5">H5&lt;/option>
+                        &lt;option value="H6">H6&lt;/option>
+                    &lt;/select>
+
+                    &lt;button
+                        onClick={() =>
+                            handleActionWithoutArg('to-bold-words', setContent)
+                        }
+                        data-element="bold"
+                        type="button"
+                        id="to-bold-words"
+                        className="btn"
+                        dataTestid="bold_btn_texteditor"
+                    >
+                        &lt;AiOutlineBold />
+                    &lt;/button>
+
+                    &lt;button
+                        onClick={() =>
+                            handleActionWithoutArg(
+                                'to-italic-words',
+                                setContent
+                            )
+                        }
+                        data-element="italic"
+                        type="button"
+                        id="to-italic-words"
+                        className="btn"
+                        dataTestid="italic_btn_texteditor"
+                    >
+                        &lt;AiOutlineItalic />
+                    &lt;/button>
+
+                    &lt;button
+                        onClick={() =>
+                            handleActionWithoutArg(
+                                'to-underline-words',
+                                setContent
+                            )
+                        }
+                        data-element="underline"
+                        type="button"
+                        id="to-underline-words"
+                        className="btn"
+                        dataTestid="underline_btn_texteditor"
+                    >
+                        &lt;AiOutlineUnderline />
+                    &lt;/button>
+
+                    &lt;label htmlFor="to-image-words">
+                        &lt;InputCam
+                            onChange={e =>
+                                handleUploadImage(
+                                    e.target.files[0],
+                                    setContent,
+                                    setSpinner,
+                                    user?.token
+                                )
+                            }
+                            accept="image/*"
+                            data-element="insertImage"
+                            id="to-image-words"
+                            type="file"
+                            dataTestid="image_btn_texteditor"
+                        />
+
+                        &lt;AiFillCamera className="fileEffect" />
+                    &lt;/label>
+
+                    &lt;label htmlFor="to-video-words">
+                        &lt;InputCam
+                            onChange={e =>
+                                handleUploadVideo(
+                                    e.target.files[0],
+                                    setContent,
+                                    setSpinner,
+                                    user?.token
+                                )
+                            }
+                            id="to-video-words"
+                            type="file"
+                            dataTestid="video_btn_texteditor"
+                        />
+
+                        &lt;AiFillVideoCamera className="fileEffect" />
+                    &lt;/label>
+
+                    &lt;button
+                        onClick={() =>
+                            handleActionWithoutArg(
+                                'to-unorder-words',
+                                setContent
+                            )
+                        }
+                        data-element="insertUnorderedList"
+                        type="button"
+                        id="to-unorder-words"
+                        className="btn"
+                        dataTestid="unorder_btn_texteditor"
+                    >
+                        &lt;AiOutlineUnorderedList />
+                    &lt;/button>
+                    &lt;button
+                        onClick={() =>
+                            handleActionWithoutArg('to-order-words', setContent)
+                        }
+                        data-element="insertOrderedList"
+                        type="button"
+                        id="to-order-words"
+                        className="btn"
+                        dataTestid="order_btn_texteditor"
+                    >
+                        &lt;AiOutlineOrderedList />
+                    &lt;/button>
+                    &lt;button
+                        onClick={() =>
+                            handleActionWithoutArg(
+                                'to-strike-words',
+                                setContent
+                            )
+                        }
+                        data-element="strikeThrough"
+                        type="button"
+                        id="to-strike-words"
+                        className="btn"
+                        dataTestid="strike_btn_texteditor"
+                    >
+                        &lt;AiOutlineStrikethrough />
+                    &lt;/button>
+
+                    &lt;button
+                        onClick={handleOpenLinkInput}
+                        //handleCreateLink(setContent)
+                        data-element="createLink"
+                        type="button"
+                        id="to-link-words"
+                        className="btn"
+                        dataTestid="link_btn_texteditor"
+                    >
+                        &lt;AiOutlineLink />
+                    &lt;/button>
+                    &lt;Popover
+                        id={'popover_post'}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'center'
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'center'
+                        }}
+                        open={openPost}
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                    >
+                        &lt;Input
+                            value={link}
+                            onKeyDown={handleEnterKey}
+                            onChange={e => {
+                                setLink(e.target.value);
+                            }}
+                            placeholder="enter url"
+                            size="small"
+                            style={{ padding: '0 5px' }}
+                            dataTestid="inlink_btn_texteditor"
+                        />
+                    &lt;/Popover>
+
+                    &lt;span style={{ float: 'right' }}>
+                        &lt;span>
+                            &lt;RiPaintFill className="printable_btn" />
+                            &lt;input
+                                type="color"
+                                data-element="hiliteColor"
+                                onChange={() =>
+                                    handleColor(
+                                        'to-hilitecolor-words',
+                                        setContent
+                                    )
+                                }
+                                style={{ cursor: 'pointer' }}
+                                id="to-hilitecolor-words"
+                                className="colorStyle"
+                                dataTestid="backcolor_btn_texteditor"
+                            />
+                        &lt;/span>
+                        &lt;span style={{ marginLeft: '10px' }}>
+                            &lt;FaPencilAlt className="foreColor_btn" />
+                            &lt;input
+                                type="color"
+                                data-element="foreColor"
+                                onChange={() =>
+                                    handleColor(
+                                        'to-forecolor-words',
+                                        setContent
+                                    )
+                                }
+                                style={{ cursor: 'pointer' }}
+                                id="to-forecolor-words"
+                                className="colorStyle"
+                                dataTestid="forecolor_btn_texteditor"
+                            />
+                        &lt;/span>
+                    &lt;/span>
+                &lt;/div>
+            &lt;/div>
+        &lt;/>
+    );
+}
+
+HandMadeTextEditor.propTypes = {
+    setContent: PropTypes.func.isRequired,
+    setSpinner: PropTypes.func.isRequired,
+    reblog: PropTypes.bool,
+    post: PropTypes.object,
+    editContent: PropTypes.string,
+    askFetch: PropTypes.any,
+    senderName: PropTypes.any
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#ActivityPage">ActivityPage</a></li><li><a href="global.html#Ask">Ask</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Badge">Badge</a></li><li><a href="global.html#BlogInfo">BlogInfo</a></li><li><a href="global.html#BlogSettingsCard">BlogSettingsCard</a></li><li><a href="global.html#BottomMainControllers">BottomMainControllers</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#CreateModal">CreateModal</a></li><li><a href="global.html#CreatePost">CreatePost</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#DropDownBlogList">DropDownBlogList</a></li><li><a href="global.html#DropDownPostList">DropDownPostList</a></li><li><a href="global.html#DropDownPostListFollow">DropDownPostListFollow</a></li><li><a href="global.html#Explore">Explore</a></li><li><a href="global.html#ExploreSidebar">ExploreSidebar</a></li><li><a href="global.html#FollowersPage">FollowersPage</a></li><li><a href="global.html#Following">Following</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#HandMadeTextEditor">HandMadeTextEditor</a></li><li><a href="global.html#Hashtag">Hashtag</a></li><li><a href="global.html#HashtagPicture">HashtagPicture</a></li><li><a href="global.html#HashtagsList">HashtagsList</a></li><li><a href="global.html#HashtagView">HashtagView</a></li><li><a href="global.html#HeaderCreatePost">HeaderCreatePost</a></li><li><a href="global.html#HeaderGraph">HeaderGraph</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#Inbox">Inbox</a></li><li><a href="global.html#ItemList">ItemList</a></li><li><a href="global.html#LikedBlogs">LikedBlogs</a></li><li><a href="global.html#ListItem">ListItem</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#MessageItem">MessageItem</a></li><li><a href="global.html#MessageItemSearchRes">MessageItemSearchRes</a></li><li><a href="global.html#Messages">Messages</a></li><li><a href="global.html#MessagesContainer">MessagesContainer</a></li><li><a href="global.html#MobileHashtagBar">MobileHashtagBar</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#MyProfile">MyProfile</a></li><li><a href="global.html#Nav">Nav</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Navbar2MainView">Navbar2MainView</a></li><li><a href="global.html#Navbar2MainViewAuthLinks">Navbar2MainViewAuthLinks</a></li><li><a href="global.html#Navbar2MainViewLinks">Navbar2MainViewLinks</a></li><li><a href="global.html#Navbar2MainViewSection1">Navbar2MainViewSection1</a></li><li><a href="global.html#Navbar2MainViewUnAuthLinks">Navbar2MainViewUnAuthLinks</a></li><li><a href="global.html#Navbar2SideView">Navbar2SideView</a></li><li><a href="global.html#Navbar2SideViewMoreOptions">Navbar2SideViewMoreOptions</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#NewPostPopup">NewPostPopup</a></li><li><a href="global.html#NewPostPopupItem">NewPostPopupItem</a></li><li><a href="global.html#NotfBody">NotfBody</a></li><li><a href="global.html#NotfHeader">NotfHeader</a></li><li><a href="global.html#NotFound">NotFound</a></li><li><a href="global.html#Notifications">Notifications</a></li><li><a href="global.html#OptionIcon">OptionIcon</a></li><li><a href="global.html#OptionsCreatePost">OptionsCreatePost</a></li><li><a href="global.html#PagesList">PagesList</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PopupBlock">PopupBlock</a></li><li><a href="global.html#PostButton">PostButton</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostsPage">PostsPage</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#ProfilePic">ProfilePic</a></li><li><a href="global.html#ProfilePicContainer">ProfilePicContainer</a></li><li><a href="global.html#RecommendBlogs">RecommendBlogs</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#SearchNewMessage">SearchNewMessage</a></li><li><a href="global.html#SearchResult">SearchResult</a></li><li><a href="global.html#SearchResultItemBlog">SearchResultItemBlog</a></li><li><a href="global.html#SearchResultItemContent">SearchResultItemContent</a></li><li><a href="global.html#SettingsAccount">SettingsAccount</a></li><li><a href="global.html#SettingsApps">SettingsApps</a></li><li><a href="global.html#SettingsDashboard">SettingsDashboard</a></li><li><a href="global.html#SettingsNotifications">SettingsNotifications</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#SideBar">SideBar</a></li><li><a href="global.html#SidebarTag">SidebarTag</a></li><li><a href="global.html#TagsInput">TagsInput</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#TitleField">TitleField</a></li><li><a href="global.html#TrendingTag">TrendingTag</a></li><li><a href="global.html#TrendingTags">TrendingTags</a></li><li><a href="global.html#VerifyEmail">VerifyEmail</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Jan 01 2022 21:00:58 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
