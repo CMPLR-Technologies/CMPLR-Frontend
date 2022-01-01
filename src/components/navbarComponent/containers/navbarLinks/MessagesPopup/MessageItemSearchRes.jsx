@@ -15,10 +15,6 @@ import { ChatContext } from '../../../../../contexts/chatContext/chatContext';
  * @returns {Component}  MessageItemSearchRes blog to chat with 
  */
 export default function MessageItemSearchRes(props) {
-    {
-        /*to do load the real data(photo sender,rec,message*/
-    }
-
     let {
         sender,
         senderId,
@@ -27,11 +23,9 @@ export default function MessageItemSearchRes(props) {
         shortParagrah,
         photo,
         clickMessagePopup,
-        //mobile,
         shape
     } = props;
     let { openChatPopup, currBlog } = useContext(ChatContext);
-    // const navigate = useNavigate();
 
     const openChat = () => {
         let receiverPhoto = photo;

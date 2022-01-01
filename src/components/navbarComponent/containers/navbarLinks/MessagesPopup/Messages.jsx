@@ -14,8 +14,6 @@ export default function Messages(props) {
         useContext(ChatContext);
     let BlogName = currBlog?.senderName;
     let BlogId = currBlog?.senderId;
-    //  let BlogAvatar =
-    //    'https://assets.tumblr.com/images/default_avatar/cone_closed_128.png';
     // eslint-disable-next-line react/prop-types
     let { clickMessagePopup, mobile } = props;
     return (

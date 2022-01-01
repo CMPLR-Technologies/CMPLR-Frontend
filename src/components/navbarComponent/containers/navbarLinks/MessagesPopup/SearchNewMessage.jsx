@@ -16,20 +16,13 @@ import { apiBaseUrl } from '../../../../../config.json';
  */
 export default function SearchNewMessage(props) {
     const [search, setSearch] = useState('');
-    /* let searchedUser = [
-        { id: 1, receiver: 'twix3', shortParagrah: 'hi', chat: false },
-        { id: 2, receiver: 'twix1', shortParagrah: 'hi', chat: false },
-        { id: 3, receiver: 'twix2', shortParagrah: 'hi', chat: false }
-    ];*/
     let { clickMessagePopup } = props;
     let [searchRes, setSearchRes] = useState([]);
     let [searchResLoading, setSearchResLoading] = useState(false);
     const onChange = e => {
         setSearch(e.target.value);
-        //TO DO : send req to backend and get the users
     };
     useEffect(async () => {
-        //TO DO : send req to backend and get the users
         if (search.length > 0 && search.trim() !== '') {
             try {
                 setSearchResLoading(true);
