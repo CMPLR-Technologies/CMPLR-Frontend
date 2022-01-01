@@ -5,6 +5,12 @@ import { apiBaseUrl } from '../../config.json';
 import PostComponent from '../partials/postComponent/containers/PostComponent';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
+/**
+ * @function Inbox
+ * @description This function is used to render the inbox page
+ * @returns {React.Component} Inbox page component
+ */
+
 export default function Inbox() {
     const user = JSON.parse(localStorage.getItem('user'));
     const [InboxMsgs, setInboxMsgs] = useState([]);

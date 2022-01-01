@@ -31,7 +31,7 @@ export default function VisibilitySection() {
                                         !dashboardHide
                                     );
                                 }}
-                                data-testid="switch-input"
+                                data-testid="switch-input-vs-ts"
                             ></input>
                             <span
                                 className="slider round"

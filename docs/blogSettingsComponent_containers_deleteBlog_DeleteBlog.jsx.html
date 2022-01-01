@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: blogSettingsComponent/containers/deleteBlog/DeleteBlog.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: blogSettingsComponent/containers/deleteBlog/DeleteBlog.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from 'react';
+import AuthBtn from '../../../partials/AuthBtn';
+import AuthInput from '../../../partials/AuthInput';
+
+import { deleteBlog } from '../../Service';
+import { useNavigate } from 'react-router-dom';
+import PropsTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
+/**
+ * @function DeleteBlog
+ * @description this is the stateful component of the delete account page
+ * @param {password} password - the password of the user
+ * @param {email} email - the email of the user
+ * @returns {component} the component of DeleteBlog
+ */
+
+export default function DeleteBlog({ setWithNav }) {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const { blogName, blogId } = useParams();
+    const history = useNavigate();
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
+    useEffect(() => {
+        setWithNav(false);
+    }, []);
+    window.addEventListener('popstate', function (event) {
+        setWithNav(true);
+    });
+
+    return (
+        &lt;div
+            data-testid="delete-account-container"
+            id="forget-password"
+            className="LoginView"
+        >
+            &lt;div className="LoginCard" id="delete-account-card">
+                &lt;div className="LoginCard__logo-container" id="reset-pass-logo">
+                    &lt;p className="LoginCard__logo logo-delete-account">
+                        Hey. Whoa.
+                    &lt;/p>
+                &lt;/div>
+                &lt;p className="form-msg-delete-account">
+                    Are you sure you want to delete your blog? You’ll lose the
+                    username {blogName} and everything you’ve posted will be
+                    gone forever.
+                &lt;/p>
+                &lt;p className="form-msg-delete-account">
+                    If you’re sure, confirm by logging in below.
+                &lt;/p>
+                &lt;div className="login-form" id="delete-account-form">
+                    &lt;AuthInput
+                        id="reset-auth-input"
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                        className="text-field"
+                        value={email}
+                        setValue={setEmail}
+                        dataTestid="input-labels"
+                    >&lt;/AuthInput>
+                    &lt;AuthInput
+                        id="reset-auth-input"
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        className="text-field"
+                        value={password}
+                        setValue={setPassword}
+                        dataTestid="input-labels"
+                    >&lt;/AuthInput>
+                    {errorMsg.length !== 0 &amp;&amp; (
+                        &lt;div data-testid="message-error" className="form-msg">
+                            &lt;p
+                                style={{
+                                    textAlign: 'center',
+                                    fontSize: '14px',
+                                    padding: '0'
+                                }}
+                            >
+                                {errorMsg}
+                            &lt;/p>
+                        &lt;/div>
+                    )}
+                    &lt;AuthBtn
+                        id="reset-password-btn"
+                        text={`Delete ${blogName}`}
+                        color="red"
+                        handleClick={() =>
+                            deleteBlog(
+                                password,
+                                email,
+                                blogName,
+                                setErrorMsg,
+                                history,
+                                user?.token,
+                                parseInt(blogId) ===
+                                    user?.userData?.primary_blog_id
+                                    ? true
+                                    : false
+                            )
+                        }
+                        dataTestid="button-reset-password"
+                    >&lt;/AuthBtn>
+                    &lt;AuthBtn
+                        id="reset-password-btn"
+                        text="Nevermind"
+                        color="#001935"
+                        handleClick={() => {
+                            history(`/settings/blog/${blogName}`);
+                        }}
+                        dataTestid="button-reset-password"
+                    >&lt;/AuthBtn>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    );
+}
+DeleteBlog.propTypes = {
+    blogName: PropsTypes.string.isRequired,
+    setWithNav: PropsTypes.func.isRequired
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#Ask">Ask</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#BlogSettingsCard">BlogSettingsCard</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PagesList">PagesList</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#SettingsAccount">SettingsAccount</a></li><li><a href="global.html#SettingsApps">SettingsApps</a></li><li><a href="global.html#SettingsDashboard">SettingsDashboard</a></li><li><a href="global.html#SettingsNotifications">SettingsNotifications</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Jan 01 2022 20:32:09 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

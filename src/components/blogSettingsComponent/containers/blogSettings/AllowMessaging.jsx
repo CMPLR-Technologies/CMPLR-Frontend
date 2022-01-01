@@ -30,7 +30,7 @@ export default function AllowMessaging() {
                                         !allowMessaging
                                     );
                                 }}
-                                data-testid="switch-input"
+                                data-testid="switch-input-msg-ts"
                             ></input>
                             <span
                                 className="slider round"

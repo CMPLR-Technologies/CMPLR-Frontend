@@ -26,10 +26,12 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React, { useContext } from 'react';
+            <pre class="prettyprint source linenums"><code>import React, { useContext, useCallback, useRef } from 'react';
 import ChatMessageItem from './ChatMessageItem';
-import { ChatContext } from '../../../contexts/chatContext/ChatContext';
+import { ChatContext } from '../../../contexts/chatContext/chatContext';
+import { LinearProgress } from '@mui/material';
 import PropTypes from 'prop-types';
+
 /**
  * ChatMessages Component
  * @function ChatMessages
@@ -44,54 +46,170 @@ import PropTypes from 'prop-types';
  * @returns {Component} array of ChatMessageItem
  */
 export default function ChatMessages(props) {
-    let { currPopUpOpenChat } = useContext(ChatContext);
-    let { messagesEndRef } = props;
+    let { setPageNumber } = useContext(ChatContext);
     let {
-        sender = 'gaser',
-        senderPhoto = 'gaser',
-        senderLink = '#',
-        receiver = 'omda',
-        receiverPhoto = 'gaser',
-        receiverLink = '#',
-        chatMessage = []
-    } = currPopUpOpenChat || {};
+        senderId,
+        senderPhoto,
+        senderShape,
+        senderName,
+        receiverId,
+        receiverPhoto,
+        receiverShape,
+        receiverName,
+        loadingFirstPage,
+        msgs,
+        isPending,
+        error,
+        hasMore,
+        //  blogData,
+        messagesEndRef10,
+        messagesEndRef
+    } = props;
+    //console.log(props);
+    // paganation part
+    const observer = useRef();
+    const lastPostElementRef = useCallback(
+        node => {
+            if (isPending) return;
+            if (observer.current) observer.current.disconnect();
+            observer.current = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting &amp;&amp; hasMore) {
+                    setPageNumber(prevPageNumber => prevPageNumber + 1);
+                }
+            });
+            if (node) observer.current.observe(node);
+        },
+        [isPending, hasMore]
+    );
+    /*
+    let { senderId, senderPhoto, senderShape, senderName } =
+        currPopUpOpenChat || {};
+
+    let receiverName = null;
+    let receiverPhoto = null;
+    let receiverShape = null;
+    if (currPopUpOpenChat.receiverName) {
+        receiverName = currPopUpOpenChat.receiverName;
+        receiverPhoto = currPopUpOpenChat.receiverPhoto;
+        receiverShape = currPopUpOpenChat.receiverShape;
+    } else {
+        receiverName = blogData.blog_name;
+        receiverPhoto = blogData.avatar;
+        receiverShape = blogData.avatar_shape;
+    }
+    let receiverId = null;
+    // eslint-disable-next-line react/prop-types
+    if (props.receiverId) receiverId = props.receiverId;
+    else receiverId = currPopUpOpenChat.receiverId;*/
 
     return (
         &lt;div className="chat-popup-chat">
-            &lt;div className="chat-popup-chat-header">
-                &lt;div className="img">
-                    &lt;img src={receiverPhoto} />
+            {!hasMore &amp;&amp; loadingFirstPage &amp;&amp; (
+                &lt;div className="chat-popup-chat-header">
+                    &lt;div className="img">
+                        &lt;img src={receiverPhoto} />
+                    &lt;/div>
+                    &lt;div className="receiver-link">
+                        &lt;a href={`blog/view/${receiverName}/${receiverId}/posts`} className="main">
+                            {receiverName}
+                        &lt;/a>
+                    &lt;/div>
                 &lt;/div>
-                &lt;div className="receiver-link">
-                    &lt;a href={receiverLink} className="main">
-                        {receiver}
-                    &lt;/a>
-                &lt;/div>
-            &lt;/div>
+            )}
+
             &lt;div className="chat-popup-chat-messages">
-                {currPopUpOpenChat &amp;&amp;
-                    chatMessage.map(message => (
-                        &lt;ChatMessageItem
-                            key={message.id}
-                            name={message.type === 's' ? sender : receiver}
-                            link={
-                                message.type === 's' ? senderLink : receiverLink
-                            }
-                            photo={
-                                message.type === 's'
-                                    ? senderPhoto
-                                    : receiverPhoto
-                            }
-                            message={message.message}
-                        />
-                    ))}
+                {error &amp;&amp; (
+                    &lt;div className="no-data-error">{"Couldn't load"}&lt;/div>
+                )}
+                {isPending &amp;&amp; &lt;LinearProgress />}
+
+                {msgs?.map((message, index) => {
+                    if (index === 0) {
+                        return (
+                            &lt;div ref={lastPostElementRef} key={index}>
+                                &lt;ChatMessageItem
+                                    name={
+                                        message?.from_blog_id === senderId
+                                            ? senderName
+                                            : receiverName
+                                    }
+                                    link={
+                                        message?.from_blog_id === senderId
+                                            ? senderName
+                                            : receiverName
+                                    }
+                                    photo={
+                                        message?.from_blog_id === senderId
+                                            ? senderPhoto
+                                            : receiverPhoto
+                                    }
+                                    shape={
+                                        message?.from_blog_id === senderId
+                                            ? senderShape
+                                            : receiverShape
+                                    }
+                                    time={message?.created_at}
+                                    message={message?.content}
+                                />
+                            &lt;/div>
+                        );
+                    } else {
+                        return (
+                            &lt;>
+                                {index === 9 &amp;&amp; (
+                                    &lt;div ref={messagesEndRef10}>&lt;/div>
+                                )}
+                                &lt;ChatMessageItem
+                                    name={
+                                        message?.from_blog_id === senderId
+                                            ? senderName
+                                            : receiverName
+                                    }
+                                    link={
+                                        message?.from_blog_id === senderId
+                                            ? senderName
+                                            : receiverName
+                                    }
+                                    photo={
+                                        message?.from_blog_id === senderId
+                                            ? senderPhoto
+                                            : receiverPhoto
+                                    }
+                                    shape={
+                                        message?.from_blog_id === senderId
+                                            ? senderShape
+                                            : receiverShape
+                                    }
+                                    time={message?.created_at}
+                                    message={message?.content}
+                                />
+                            &lt;/>
+                        );
+                    }
+                })}
             &lt;/div>
+
             &lt;div ref={messagesEndRef}>&lt;/div>
         &lt;/div>
     );
 }
 ChatMessages.propTypes = {
-    messagesEndRef: PropTypes.object.isRequired
+    messagesEndRef: PropTypes.object.isRequired,
+    messagesEndRef10: PropTypes.object.isRequired,
+    hasMore: PropTypes.object.isRequired,
+    msgs: PropTypes.array.isRequired,
+    error: PropTypes.string.isRequired,
+    isPending: PropTypes.bool.isRequired,
+    blogData: PropTypes.object.isRequired,
+    senderId: PropTypes.string.isRequired,
+    receiverId: PropTypes.string.isRequired,
+    receiverName: PropTypes.string.isRequired,
+    senderName: PropTypes.string.isRequired,
+    receiverPhoto: PropTypes.string.isRequired,
+    receiverShape: PropTypes.string.isRequired,
+    senderPhoto: PropTypes.string.isRequired,
+    senderShape: PropTypes.string.isRequired,
+    loadingFirstPage: PropTypes.bool.isRequired
 };
 </code></pre>
         </article>
@@ -103,13 +221,13 @@ ChatMessages.propTypes = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#ThemeToggle">ThemeToggle</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#Ask">Ask</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#BlogSettingsCard">BlogSettingsCard</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PagesList">PagesList</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#SettingsAccount">SettingsAccount</a></li><li><a href="global.html#SettingsApps">SettingsApps</a></li><li><a href="global.html#SettingsDashboard">SettingsDashboard</a></li><li><a href="global.html#SettingsNotifications">SettingsNotifications</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Thu Dec 09 2021 15:17:05 GMT+0200 (Eastern European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Jan 01 2022 20:32:09 GMT+0200 (Eastern European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

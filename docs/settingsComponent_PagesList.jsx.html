@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: settingsComponent/PagesList.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: settingsComponent/PagesList.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { getUserBlogs } from './Service';
+
+/**
+ * @function PagesList
+ * @description This function is used to render the list of pages
+ * @returns {React.Component} Page list  component
+ */
+
+export default function PagesList() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const [blogs, setBlogs] = useState([]);
+    useEffect(() => {
+        getUserBlogs(setBlogs, user?.token);
+    }, []);
+    const endPoints = [
+        '/settings/account',
+        '/settings/dashboard',
+        '/settings/notifications',
+        '/settings/apps'
+    ];
+    const pageName = ['Account', 'Dashboard', 'Notifications', 'Apps'];
+    const pageDescription = [
+        'The essentials',
+        ' Appearance options, text editor',
+        'Via email &amp; mobile',
+        " Things you've connected"
+    ];
+    return (
+        &lt;div className="container2">
+            &lt;div className="wrapper">
+                &lt;ul className="list">
+                    {endPoints.map((endPoint, i) => {
+                        return (
+                            &lt;li key={i} className="list-item">
+                                &lt;Link
+                                    className="list-item-anchor"
+                                    to={endPoint}
+                                >
+                                    &lt;span className="list-item-span">
+                                        {pageName[i]}
+                                    &lt;/span>
+                                    &lt;small className="list-item-anchor-small">
+                                        {pageDescription[i]}
+                                    &lt;/small>
+                                &lt;/Link>
+                            &lt;/li>
+                        );
+                    })}
+                &lt;/ul>
+                &lt;div className="blog">
+                    &lt;h1 className="blog-h1">Blog&lt;/h1>
+                    &lt;ul className="list">
+                        {blogs.length !== 0 &amp;&amp;
+                            blogs.map((blog, i) => {
+                                return (
+                                    &lt;li
+                                        className="list-item blog-item"
+                                        key={i}
+                                        onClick={() => {
+                                            localStorage.setItem(
+                                                'user',
+                                                JSON.stringify({
+                                                    ...JSON.parse(
+                                                        localStorage.getItem(
+                                                            'user'
+                                                        )
+                                                    ),
+                                                    blogName: blog?.blog_name,
+                                                    userData: {
+                                                        ...JSON.parse(
+                                                            localStorage.getItem(
+                                                                'user'
+                                                            )
+                                                        ).userData,
+                                                        avatar: blog?.avatar
+                                                    }
+                                                })
+                                            );
+                                        }}
+                                    >
+                                        &lt;div className="temp">
+                                            &lt;a
+                                                className="blog-item-anchor"
+                                                href={`/blog/${blog.blog_name}/settings`}
+                                            >
+                                                &lt;div className="icon-text">
+                                                    &lt;div className="icon">
+                                                        &lt;img
+                                                            className="nLowv"
+                                                            src={blog.avatar}
+                                                            sizes="37px"
+                                                            alt="Avatar"
+                                                            style={{
+                                                                width: '37px',
+                                                                height: '37px'
+                                                            }}
+                                                            loading="eager"
+                                                        />
+                                                    &lt;/div>
+                                                    &lt;div className="text">
+                                                        &lt;div className="text-up">
+                                                            &lt;span className="text-up-span">
+                                                                {blog.blog_name}
+                                                            &lt;/span>
+                                                        &lt;/div>
+                                                        &lt;div className="text-down">
+                                                            {blog.title}
+                                                        &lt;/div>
+                                                    &lt;/div>
+                                                &lt;/div>
+                                                {i === 0 &amp;&amp; (
+                                                    &lt;div className="star">
+                                                        &lt;svg
+                                                            viewBox="0 0 12 12"
+                                                            width="12"
+                                                            height="12"
+                                                            fill="white"
+                                                            className="star-svg"
+                                                        >
+                                                            &lt;path d="M2.3 11.4L6 0l3.7 11.4L0 4.3h12">&lt;/path>
+                                                        &lt;/svg>
+                                                    &lt;/div>
+                                                )}
+                                            &lt;/a>
+                                        &lt;/div>
+                                    &lt;/li>
+                                );
+                            })}
+                        &lt;li className="list-item blog-item">
+                            &lt;div className="temp">
+                                &lt;Link
+                                    to={'/blog/new'}
+                                    style={{
+                                        textDecoration: 'none'
+                                    }}
+                                    className="blog-item-anchor-create-new-blog"
+                                >
+                                    create a new blog
+                                &lt;/Link>
+                            &lt;/div>
+                        &lt;/li>
+                    &lt;/ul>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#Ask">Ask</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#BlogSettingsCard">BlogSettingsCard</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PagesList">PagesList</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#SettingsAccount">SettingsAccount</a></li><li><a href="global.html#SettingsApps">SettingsApps</a></li><li><a href="global.html#SettingsDashboard">SettingsDashboard</a></li><li><a href="global.html#SettingsNotifications">SettingsNotifications</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Jan 01 2022 20:32:09 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

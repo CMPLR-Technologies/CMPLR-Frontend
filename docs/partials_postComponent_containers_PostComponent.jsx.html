@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: partials/postComponent/containers/PostComponent.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: partials/postComponent/containers/PostComponent.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState, useContext } from 'react';
+import OptionsButton from './SVG/OptionsButton.svg';
+import TextPost from './postTypesComponents/TextPost';
+import Tags from './Tags';
+import Footer from './Footer';
+import Divider from './Divider';
+import Modal from '../../Modal';
+import AuthBtn from '../../AuthBtn';
+import { chaneMobileView } from '../Controller';
+import { block } from '../Services';
+import { followAccount } from '../../../followingComponent/Service';
+import PropTypes from 'prop-types';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
+import OptionsList from './OptionsList';
+import {
+    ThemeContext,
+    themes
+} from '../../../../contexts/themeContext/ThemeContext';
+import { handlePosting } from '../../../createPost/Service';
+import { useNavigate } from 'react-router-dom';
+import ProfileMiniHoverWrapper from '../../../profileViews/mini&amp;sideViews/View';
+import AskPost from './postTypesComponents/AskPost';
+/**
+ * @function PostComponent
+ * @description Base Unit Component for all post compoennt types
+ * @param {object} post - object containg post data response received from server
+ * @param {boolean} isFollowed - boolean used to determine if user is following the post author
+ * @param {string} userBlogName - blog name of the user who is logged in
+ * @param {boolean} radar - boolean used to determine if the post viewed in radar section or not
+ * @returns {Component} PostComponent
+ */
+
+PostComponent.propTypes = {
+    post: PropTypes.object.isRequired,
+    userBlogName: PropTypes.string.isRequired,
+    isFollowed: PropTypes.bool,
+    radar: PropTypes.bool,
+    left: PropTypes.string,
+    padding: PropTypes.string,
+    reblog: PropTypes.bool,
+    blogPage: PropTypes.bool,
+    themeDeactivate: PropTypes.bool,
+    draft: PropTypes.bool
+};
+
+export default function PostComponent(props) {
+    const {
+        post,
+        userBlogName,
+        radar,
+        left,
+        reblog,
+        padding,
+        blogPage,
+        themeDeactivate,
+        draft,
+        ask,
+        askFetch,
+        senderName
+    } = props;
+    let theme = useContext(ThemeContext)[0];
+    if (themeDeactivate) theme = 'trueBlue';
+    const [isOptionListOpen, setIsOptionListOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isMsgModalOpen, setIsMsgModalOpen] = useState(false);
+    const [blockResponse, setBlockResponse] = useState('');
+    const [mobileView, setMobileView] = useState(false);
+    const user = JSON.parse(localStorage.getItem('user'));
+    const { blog: blog, post: postData } = post;
+
+    const {
+        date: postTime,
+        tags: tags,
+        title: title,
+        content: content,
+        state: state,
+        post_id: postId,
+        reblog_key: reblogKey,
+        number_notes: numberNotes,
+        is_liked: isLiked
+    } = postData &amp;&amp; postData;
+    const {
+        blog_name: blogName,
+        avatar: avatar,
+        blog_id: blogIdentifier,
+        blog_url: blogUrl,
+        follower: follower
+    } = blog &amp;&amp; blog;
+
+    const navigate = useNavigate();
+
+    const postSubmit = () => {
+        const dataBody = {
+            title: title,
+            content: content,
+            state: 'publish',
+            type: 'text',
+            // eslint-disable-next-line camelcase
+            blog_name: user?.blogName,
+            tags: tags
+        };
+
+        handlePosting(dataBody, navigate, user?.token);
+    };
+
+    const [liked, setIsLiked] = useState(isLiked &amp;&amp; isLiked);
+    const [following, setFollowing] = useState(follower &amp;&amp; follower);
+    const blogId = user?.userData?.primary_blog_id;
+    const handleBlock = () => {
+        block(
+            blogName,
+            userBlogName,
+            setIsOptionListOpen,
+            setIsModalOpen,
+            setIsMsgModalOpen,
+            setBlockResponse,
+            user?.token
+        ).catch(err => {
+            setIsOptionListOpen(false);
+            setIsModalOpen(false);
+            setIsMsgModalOpen(true);
+            if (err.response.status === 409)
+                setBlockResponse(`${blogName} is already blocked.`);
+            else if (err.response.status === 404) {
+                setBlockResponse(`${blogName} is not found.`);
+            } else if (err.response.status === 403) {
+                setBlockResponse(`you can't block ${blogName}`);
+            } else {
+                setBlockResponse(
+                    `Something went wrong while blocking ${blogName}`
+                );
+            }
+        });
+    };
+    useEffect(() => {
+        chaneMobileView(setMobileView);
+    }, []);
+
+    window.addEventListener('resize', () => chaneMobileView(setMobileView));
+    const css = `
+    .post-container, .post-container.list{
+        background-color:rgb(${themes[theme].white});
+        color:rgb(${themes[theme].black})
+    }
+
+    .post-header{
+        background-color:rgb(${themes[theme].white});
+        color:rgb(${themes[theme].black})
+    }
+    .divider, .post-time {
+        border-bottom: 1px solid rgba(${themes[theme].black}, 0.13);
+    }
+    .options-list-btn-svg{
+        fill:rgb(${themes[theme].black});
+    }
+
+    .options-btn .options .list{
+        box-shadow: 0 0 15px 0 rgba(0,0,0, 0.5);
+        background-color:rgb(${themes[theme].white});
+        
+    }
+
+    .share-options .options .list{
+        box-shadow: 0 0 15px 0 rgba(0,0,0, 0.5);
+    }
+    .post-time-text,
+    .opt-btn,
+    .opt-btn .follow-btn,
+    .post-heading,
+    .body-content,
+    .text-title-content,
+    .message span,
+    .message span strong{   
+        color:rgb(${themes[theme].black})
+    }
+
+    .follow-btn:hover{
+        text-decoration:none;
+    }
+
+    .post-time:hover,.options-btn .options .list .opt-btn:hover{
+        background-color:rgb(${themes[theme].secondaryAccent});
+    }
+
+    .report-btn,
+    .block-btn {
+        color:rgb(${themes[theme].red})
+    }
+
+    .follow-btn{
+        color:rgb(${themes[theme].accent});
+    }
+
+    .show-image-modal{
+        background-color:rgba(0,0,0,.8);
+    }
+    
+    .audio-post{
+        background-color:rgb(${themes[theme].purple});
+    }
+
+    .seek-bar{
+        background-color:rgba(${themes[theme].black},.25);
+    }
+
+    .video-post-content{
+        background-color:rgb(0,0,0);
+    }
+
+    .progreesbar .bar{
+        background-color:rgba(${themes[theme].white},.2);
+        filter: drop-shadow(0 0 3px rgb(${themes[theme].black}));
+    }
+    .progreesbar .bar .slider{
+        background-color:rgb(${themes[theme].white});
+        filter: drop-shadow(0 0 3px rgb(${themes[theme].black}));
+    }
+    .play-pause-button, .elapsed-time{
+        filter: drop-shadow(0 0 3px rgb(${themes[theme].black}));
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+    }
+    .circle{
+        background-color:rgb(${themes[theme].white});
+    }
+    .tag, .notes-count{
+        color:rgba(${themes[theme].black},.65);
+    }
+    .share-options .options .list:hover{
+        background-color:rgba(${themes[theme].white},.65);
+    }
+    .circled-border{
+        background-color:rgb(255,255,255)
+    }
+    .modal{
+        background-color:rgba(0,0,0,.95);
+    }
+
+    .msg-heading, .msg-description{
+        color:rgb(${themes[theme].whiteOnDark},.65);
+    }
+    .notes-view-container {
+        background-color:rgb(${themes[theme].white});
+        color:rgb(${themes[theme].black})
+    }
+    .notes-view-header-icons,.notes-summary{
+        border-bottom: 1px solid rgba(${themes[theme].black}, 0.13);
+    }
+    .notes-view-content {
+        background-color:rgba(${themes[theme].black},.07);
+        scrollbar-color: rgba(${themes[theme].black},.4) rgba(${themes[theme].white},.1);
+        scrollbar-width: thin;
+    }
+
+    .notes-summary-count{
+        color:rgb(${themes[theme].black})
+
+    }
+    .notes-view-header-icons .btn svg{
+        fill:rgb(${themes[theme].black})
+    }
+    .notes-list .note-content{
+        background-color:rgb(${themes[theme].white});
+    }
+    .note-author{
+        color:rgb(${themes[theme].black})
+    }
+    .reblog-sign-span{
+        fill:rgba(${themes[theme].black},.65);
+    }
+
+    .reblogger-name{
+        color:rgba(${themes[theme].black},.65);
+    }
+    
+    .input-area{
+        background-color:rgb(${themes[theme].white});
+        border-top:1px solid rgba(${themes[theme].black}, 0.13);
+    }
+
+    .reply-btn{
+        color:rgb(${themes[theme].accent})
+    }
+
+    .reply-btn:disabled{
+        color:rgba(${themes[theme].black},.4)
+    }
+
+    .note-option-btn svg{
+        fill:rgba(${themes[theme].black}, 0.65)
+    }
+    .post-heading svg{
+        fill:rgba(${themes[theme].black}, 0.65)
+    }
+
+    .note-reply{
+        color:rgb(${themes[theme].black})
+    }
+
+    `;
+
+    return (
+        &lt;div
+            data-testid="post-wrapper-ts"
+            style={{ left: left }}
+            className={`post-wrapper ${radar ? 'radar-post-wrapper' : ''}`}
+        >
+            {isMsgModalOpen &amp;&amp; (
+                &lt;Modal messageHeading={blockResponse}>
+                    &lt;AuthBtn
+                        id="nevermind-btn"
+                        text="close"
+                        color="rgb(0,184,255)"
+                        handleClick={() => {
+                            setIsMsgModalOpen(false);
+                            setIsOptionListOpen(false);
+                        }}
+                    />
+                &lt;/Modal>
+            )}
+            {isModalOpen &amp;&amp; (
+                &lt;Modal
+                    messageHeading={` Are you sure you want to block ${blogName} from 
+                ${userBlogName}?`}
+                    messageDesc={`They won't be able to follow ${blogName}, send
+                        ${blogName} messages, see ${blogName} in search
+                        results, or interact with any of ${blogName}'s
+                        posts.`}
+                >
+                    &lt;AuthBtn
+                        id="nevermind-btn"
+                        text="Nevermind"
+                        color="rgba(255,255,255,.65)"
+                        handleClick={() => {
+                            setIsModalOpen(false);
+                            setIsOptionListOpen(false);
+                        }}
+                    />
+                    &lt;AuthBtn
+                        id="block-btn"
+                        text="Block"
+                        color="rgb(255, 73, 47)"
+                        handleClick={() => {
+                            handleBlock();
+                        }}
+                    />
+                &lt;/Modal>
+            )}
+
+            &lt;article data-testid="post-container-ts" className="post-container">
+                {!radar &amp;&amp; !mobileView &amp;&amp; !blogPage &amp;&amp; (
+                    &lt;ProfileMiniHoverWrapper
+                        blogName={userBlogName}
+                        blogID={blogIdentifier}
+                    >
+                        &lt;div className="author-avatar">
+                            &lt;div className="sticky-avatar">
+                                &lt;img
+                                    data-testid="avatar-img-ts"
+                                    src={avatar}
+                                    className="avatar-img"
+                                />
+                            &lt;/div>
+                        &lt;/div>
+                    &lt;/ProfileMiniHoverWrapper>
+                )}
+                {!blogPage &amp;&amp; (
+                    &lt;header
+                        data-testid="post-header-ts"
+                        style={{ padding: padding }}
+                        className="post-header"
+                    >
+                        {(mobileView || radar) &amp;&amp; !askFetch &amp;&amp; (
+                            &lt;ProfileMiniHoverWrapper
+                                blogName={userBlogName}
+                                blogID={blogIdentifier}
+                            >
+                                &lt;div className="author-avatar author-avatar-mob">
+                                    &lt;div className="sticky-avatar sticky-avatar-mob">
+                                        &lt;img
+                                            data-testid="avatar-img-mob-ts"
+                                            src={avatar}
+                                            className="avatar-img avatar-img-mob"
+                                        />
+                                    &lt;/div>
+                                &lt;/div>
+                            &lt;/ProfileMiniHoverWrapper>
+                        )}
+                        &lt;div
+                            data-testid="header-flex-ts"
+                            className="header-flex"
+                        >
+                            &lt;div
+                                data-testid="header-title-ts"
+                                className="header-title"
+                            >
+                                &lt;ProfileMiniHoverWrapper
+                                    blogID={blogIdentifier}
+                                    blogName={userBlogName}
+                                    style={{ textDecoration: 'none' }}
+                                >
+                                    {state === 'publish' ? (
+                                        &lt;span
+                                            data-testid="post-heading-ts"
+                                            className="post-heading"
+                                        >
+                                            {blogName}
+                                        &lt;/span>
+                                    ) : !ask ? (
+                                        &lt;span
+                                            data-testid="post-heading-ts"
+                                            className="post-heading"
+                                        >
+                                            &lt;svg
+                                                viewBox="0 0 24 24"
+                                                width="16"
+                                                height="14"
+                                                fill="rgba(var(--black), 0.65)"
+                                            >
+                                                &lt;path d="M19 11.018V7.88c0-1.914-.601-4.15-1.791-5.434-1.187-1.283-2.744-1.443-4.607-1.442-2.148-.001-3.604-.147-5.075 1.442C5.84 3.725 6 7.066 6 7.88v3.138l-2 .067c-.579.159-1 .523-1 1.003v9.904C3 22.471 3.527 23 4 23h17c.476 0 1-1.04 1-1.04v-9.872c0-1.008-.525-1.07-1-1.07h-2zM9.834 4.736c.65-.794 1.83-1.085 2.768-1.085.936 0 2.062.291 2.712 1.085.647.794.686 2.112.686 3.375v2.885H9V8.11c0-1.263.189-2.578.834-3.375z">&lt;/path>
+                                            &lt;/svg>
+                                            private
+                                        &lt;/span>
+                                    ) : null}
+                                &lt;/ProfileMiniHoverWrapper>
+
+                                {!following &amp;&amp;
+                                    !ask &amp;&amp;
+                                    userBlogName !== blogName &amp;&amp; (
+                                        &lt;button
+                                            onClick={() =>
+                                                followAccount(
+                                                    user?.token,
+                                                    blogName,
+                                                    setFollowing
+                                                )
+                                            }
+                                            className="follow-btn"
+                                            data-testid="follow-btn-header-ts"
+                                        >
+                                            Follow
+                                        &lt;/button>
+                                    )}
+                            &lt;/div>
+                            &lt;ClickAwayListener
+                                onClickAway={() => setIsOptionListOpen(false)}
+                            >
+                                &lt;div className="options-btn">
+                                    {!ask &amp;&amp; (
+                                        &lt;button
+                                            onClick={() => {
+                                                setIsOptionListOpen(
+                                                    !isOptionListOpen
+                                                );
+                                            }}
+                                            className="btn"
+                                            data-testid="opt-btn-header-ts"
+                                        >
+                                            &lt;OptionsButton />
+                                        &lt;/button>
+                                    )}
+                                    {isOptionListOpen &amp;&amp; !blogPage &amp;&amp; (
+                                        &lt;OptionsList
+                                            postTime={postTime}
+                                            userBlogName={userBlogName}
+                                            blogName={blogName}
+                                            postLink={`${window.location.host}/blog/view/${blogName}/${blogId}/posts/${postId}`}
+                                            postId={postId}
+                                            following={following}
+                                            blogUrl={blogUrl}
+                                            setFollowing={setFollowing}
+                                            setIsModalOpen={setIsModalOpen}
+                                            setIsOptionListOpen={
+                                                setIsOptionListOpen
+                                            }
+                                            radar={radar}
+                                        />
+                                    )}
+                                &lt;/div>
+                            &lt;/ClickAwayListener>
+                        &lt;/div>
+                    &lt;/header>
+                )}
+                {!ask ? (
+                    &lt;>
+                        &lt;TextPost
+                            title={title &amp;&amp; title}
+                            content={content &amp;&amp; content}
+                        />
+                        &lt;Divider />
+                    &lt;/>
+                ) : (
+                    &lt;AskPost
+                        senderName={senderName}
+                        content={content &amp;&amp; content}
+                    />
+                )}
+                {!askFetch &amp;&amp; (
+                    &lt;div
+                        data-testid="post-footer-cont-ts"
+                        className="post-footer"
+                    >
+                        &lt;Tags tagsArray={tags} />
+                        &lt;Footer
+                            isAuthor={userBlogName === blogName}
+                            postLink={`${window.location.host}/blog/view/${blogName}/${blogId}/posts/${postId}`}
+                            numberNotes={numberNotes}
+                            reblogKey={reblogKey}
+                            postId={postId}
+                            blogName={blogName}
+                            postAuthor={blogName}
+                            authorAvatar={avatar}
+                            setIsModalOpenN={setIsModalOpen}
+                            blogPage={blogPage}
+                            radar={radar}
+                            isLiked={liked}
+                            draft={draft}
+                            postSubmit={postSubmit}
+                            setIsLiked={setIsLiked}
+                            ask={ask}
+                            senderName={senderName}
+                            notesCount={postData.notes_count}
+                        />
+                    &lt;/div>
+                )}
+            &lt;/article>
+            {&lt;style>{css}&lt;/style>}
+        &lt;/div>
+    );
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AccountPopup">AccountPopup</a></li><li><a href="global.html#AccountPopupActionRow">AccountPopupActionRow</a></li><li><a href="global.html#AccountPopupActions">AccountPopupActions</a></li><li><a href="global.html#AccountPopupBlogsContainer">AccountPopupBlogsContainer</a></li><li><a href="global.html#AccountPopupFooter">AccountPopupFooter</a></li><li><a href="global.html#AccountPopupHeader">AccountPopupHeader</a></li><li><a href="global.html#AccountPopupSeperator">AccountPopupSeperator</a></li><li><a href="global.html#Ask">Ask</a></li><li><a href="global.html#AudioPost">AudioPost</a></li><li><a href="global.html#AuthAlert">AuthAlert</a></li><li><a href="global.html#AuthBtn">AuthBtn</a></li><li><a href="global.html#AuthFooter">AuthFooter</a></li><li><a href="global.html#AuthInput">AuthInput</a></li><li><a href="global.html#BlogSettingsCard">BlogSettingsCard</a></li><li><a href="global.html#Chat">Chat</a></li><li><a href="global.html#ChatMessageItem">ChatMessageItem</a></li><li><a href="global.html#ChatMessageMobileView">ChatMessageMobileView</a></li><li><a href="global.html#ChatMessages">ChatMessages</a></li><li><a href="global.html#ChatOption">ChatOption</a></li><li><a href="global.html#ChatPopUp">ChatPopUp</a></li><li><a href="global.html#ChatSideIconItem">ChatSideIconItem</a></li><li><a href="global.html#chatSideIcons">chatSideIcons</a></li><li><a href="global.html#CircledSideNavbar">CircledSideNavbar</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#DeleteBlog">DeleteBlog</a></li><li><a href="global.html#FollowingPage">FollowingPage</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#ForgetPassword">ForgetPassword</a></li><li><a href="global.html#GoogleCard">GoogleCard</a></li><li><a href="global.html#HomeButtons">HomeButtons</a></li><li><a href="global.html#HomeFooter">HomeFooter</a></li><li><a href="global.html#HomeSectionFive">HomeSectionFive</a></li><li><a href="global.html#HomeSectionOne">HomeSectionOne</a></li><li><a href="global.html#HomeSectionThree">HomeSectionThree</a></li><li><a href="global.html#HomeSectionTwo">HomeSectionTwo</a></li><li><a href="global.html#ImagePost">ImagePost</a></li><li><a href="global.html#LoginCard">LoginCard</a></li><li><a href="global.html#LoginView">LoginView</a></li><li><a href="global.html#LogOutOverlay">LogOutOverlay</a></li><li><a href="global.html#Modal">Modal</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarAuthLinks">NavbarAuthLinks</a></li><li><a href="global.html#NavbarLinks">NavbarLinks</a></li><li><a href="global.html#NavbarMenuMobile">NavbarMenuMobile</a></li><li><a href="global.html#NavbarSearchBar">NavbarSearchBar</a></li><li><a href="global.html#NavbarSection1">NavbarSection1</a></li><li><a href="global.html#NavbarUnAuthLinks">NavbarUnAuthLinks</a></li><li><a href="global.html#PagesList">PagesList</a></li><li><a href="global.html#PlaystoreApplestore">PlaystoreApplestore</a></li><li><a href="global.html#PostComponent">PostComponent</a></li><li><a href="global.html#PostsComponentView">PostsComponentView</a></li><li><a href="global.html#PostTypeComponent">PostTypeComponent</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#RegisterCard">RegisterCard</a></li><li><a href="global.html#RegisterStepOne">RegisterStepOne</a></li><li><a href="global.html#RegisterStepTwo">RegisterStepTwo</a></li><li><a href="global.html#ResetPassword">ResetPassword</a></li><li><a href="global.html#SearchForm">SearchForm</a></li><li><a href="global.html#SettingsAccount">SettingsAccount</a></li><li><a href="global.html#SettingsApps">SettingsApps</a></li><li><a href="global.html#SettingsDashboard">SettingsDashboard</a></li><li><a href="global.html#SettingsNotifications">SettingsNotifications</a></li><li><a href="global.html#Shortcut">Shortcut</a></li><li><a href="global.html#ShortcutGroup">ShortcutGroup</a></li><li><a href="global.html#ShortcutsContainer">ShortcutsContainer</a></li><li><a href="global.html#ShortcutsPageOverlay">ShortcutsPageOverlay</a></li><li><a href="global.html#TextPost">TextPost</a></li><li><a href="global.html#VideoPost">VideoPost</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sat Jan 01 2022 20:32:09 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

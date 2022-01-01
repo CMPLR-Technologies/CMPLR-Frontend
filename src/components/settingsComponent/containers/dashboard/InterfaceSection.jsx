@@ -25,6 +25,7 @@ export default function InterfaceSection() {
                                         user?.token
                                     );
                                 }}
+                                data-testid="endless-scrolling-check"
                             ></input>
                             <span className="slider round"></span>
                         </label>
@@ -53,6 +54,7 @@ export default function InterfaceSection() {
                                         user?.token
                                     );
                                 }}
+                                data-testid="show-badge-check"
                             ></input>
                             <span className="slider round"></span>
                         </label>

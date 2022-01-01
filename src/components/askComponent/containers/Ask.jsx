@@ -19,13 +19,14 @@ export default function Ask() {
 
     return (
         <>
-            <div className="ask-div">
+            <div className="ask-div" data-testid="ask-div">
                 <div className="ash-inner-div">
                     <div className="ask-title">
                         <h2
                             onClick={() => {
                                 setResponse(-1);
                             }}
+                            data-testid="ask-title"
                         >
                             Ask me anything
                         </h2>
@@ -42,6 +43,7 @@ export default function Ask() {
                                             onChange={e =>
                                                 setContent(e?.target?.value)
                                             }
+                                            data-testid="question"
                                         >
                                             {content}
                                         </textarea>
@@ -86,6 +88,7 @@ export default function Ask() {
                                                             })
                                                             .catch(() => {});
                                                     }}
+                                                    data-testid="ask_button"
                                                 >
                                                     {isPendingAsk && (
                                                         <CircularProgress
@@ -107,7 +110,10 @@ export default function Ask() {
                                 </div>
                             ) : (
                                 <>
-                                    <div className="message-part1">
+                                    <div
+                                        className="message-part1"
+                                        data-testid="message1"
+                                    >
                                         {
                                             firstMsg[
                                                 response >= 0 && response <= 3
@@ -117,7 +123,10 @@ export default function Ask() {
                                         }
                                     </div>
                                     {response === 0 && (
-                                        <div className="message-part2">
+                                        <div
+                                            className="message-part2"
+                                            data-testid="message2"
+                                        >
                                             Your question has been received.
                                         </div>
                                     )}
