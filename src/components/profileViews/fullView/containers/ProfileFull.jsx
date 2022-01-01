@@ -48,7 +48,7 @@ export default function ProfileFull(props) {
     }
     .profile-full-header-div-bg{
         filter: blur(${Math.min(scrollTop, 300) / 40}px);
-        object-position: 0 ${Math.min(scrollTop / 2, 150)}px;
+        object-position: 0 calc(50% + ${Math.min(scrollTop / 2, 150)}px);
     }
 `;
 

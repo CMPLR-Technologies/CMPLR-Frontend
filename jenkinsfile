@@ -5,6 +5,7 @@ pipeline {
     }
     environment{
         LOGIN_SERVER = "beta"
+        WEBHOOK_URL = credentials('Beta_Discord')
     }
     stages {
         stage("fetch"){
@@ -15,10 +16,11 @@ pipeline {
             post{
                 success{
                     echo "=======fetch executed successfully========"
+
                 }
                 failure{
                     echo "========fetch execution failed========"
-                    //slackSend (color:"#FF0000", message: "Failed to pull code-base from github")
+                    discordSend description: "Jenkins Pipeline Build", thumbnail: "https://jenkins.io/images/logos/ninja/256.png" ,footer: "Fetch execution failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
                     
                 }
             }
@@ -33,11 +35,11 @@ pipeline {
             post {
                 success {
                     echo "========docker build success ========"
-                    //slackSend (color:"#00FF00", message: "Master: Building Image success")
+                discordSend description: "Jenkins Pipeline Build", thumbnail: "https://jenkins.io/images/logos/ninja/256.png",footer: "Docker built successfully", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
                 }
                 failure {
                     echo "========docker build failed========"
-                    //slackSend (color:"#FF0000", message: "Master: Building Image failure")
+                    discordSend description: "Jenkins Pipeline Build", thumbnail: "https://jenkins.io/images/logos/ninja/256.png" ,footer: "Docker building Failed", result: currentBuild.currentResult, title: JOB_NAME, webhookURL: WEBHOOK_URL
                 }
            }
         }

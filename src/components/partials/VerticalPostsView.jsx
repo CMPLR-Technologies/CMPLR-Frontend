@@ -14,7 +14,8 @@ export default function VerticalPostsView(props) {
         blogPage,
         // eslint-disable-next-line no-unused-vars
         userBlogName,
-        noTheme
+        noTheme,
+        otherClass
     } = props;
     const user = JSON.parse(localStorage.getItem('user'));
 
@@ -33,7 +34,11 @@ export default function VerticalPostsView(props) {
         [isPending, hasMore]
     );
     return (
-        <section className={isRadar ? 'container-grid' : 'normal-layout'}>
+        <section
+            className={` ${otherClass} ${
+                isRadar ? 'container-grid' : 'normal-layout'
+            } `}
+        >
             {posts &&
                 posts.map((post, index) => {
                     if (posts.length === index + 1 && isRef) {
@@ -80,5 +85,6 @@ VerticalPostsView.propTypes = {
     isRef: PropTypes.bool,
     blogPage: PropTypes.bool,
     userBlogName: PropTypes.string,
-    noTheme: PropTypes.bool
+    noTheme: PropTypes.bool,
+    otherClass: PropTypes.any
 };

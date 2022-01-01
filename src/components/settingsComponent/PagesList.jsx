@@ -87,7 +87,9 @@ export default function PagesList() {
                                                             alt="Avatar"
                                                             style={{
                                                                 width: '37px',
-                                                                height: '37px'
+                                                                height: '37px',
+                                                                objectFit:
+                                                                    'cover'
                                                             }}
                                                             loading="eager"
                                                         />
