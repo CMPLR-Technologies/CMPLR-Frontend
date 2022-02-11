@@ -17,11 +17,6 @@ pipeline {
             post{
                 success{
                     echo "=======fetch executed successfully========"
-                    echo "==========Copy ssl certificate==========="
-                    sh"""
-                    cp ~/nginx/nginx.key ./nginx/nginx.key
-                    cp ~/nginx/nginx-certificate.crt ./nginx/nginx-certificate.crt
-                    """
                 }
                 failure{
                     echo "========fetch execution failed========"
