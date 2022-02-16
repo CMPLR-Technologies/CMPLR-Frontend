@@ -17,7 +17,7 @@ export const getIsFollowed = (tagName, token, setToFollow) => {
         .catch(() => {});
 };
 
-export const followHashtag = (tagName, token) => {
+export const followHashtag = (tagName, token, setToFollow) => {
     Axios({
         method: 'POST',
         url: `${apiBaseUrl}/user/tags/add`,
@@ -31,11 +31,13 @@ export const followHashtag = (tagName, token) => {
             tag_name: tagName
         }
     })
-        .then(() => {})
+        .then(() => {
+            setToFollow(false);
+        })
         .catch(() => {});
 };
 
-export const unfollowHashtag = (tagName, token) => {
+export const unfollowHashtag = (tagName, token, setToFollow) => {
     Axios({
         method: 'DELETE',
         url: `${apiBaseUrl}/user/tags/remove?tag_name=${tagName}`,
@@ -49,6 +51,8 @@ export const unfollowHashtag = (tagName, token) => {
             tag_name: tagName
         }
     })
-        .then(() => {})
+        .then(() => {
+            setToFollow(true);
+        })
         .catch(() => {});
 };
