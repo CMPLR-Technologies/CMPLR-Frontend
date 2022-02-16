@@ -141,7 +141,12 @@ export default function NotfHeader(props) {
                                                         <h1>
                                                             {blog?.blog_name}
                                                         </h1>
-                                                        <div>{blog?.title}</div>
+                                                        <div>
+                                                            {blog.title ===
+                                                            'untitled'
+                                                                ? ''
+                                                                : blog.title}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             ))}

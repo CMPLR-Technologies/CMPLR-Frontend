@@ -103,7 +103,7 @@ export default function AccountPopupBlog(props) {
                     }}
                 >
                     <h1>{url}</h1>
-                    <div>{title === '' ? 'untitled' : title}</div>
+                    <div>{title === 'untitled' ? '' : title}</div>
                 </NavLink>
                 <div
                     className="account-popup-blog-head-button"

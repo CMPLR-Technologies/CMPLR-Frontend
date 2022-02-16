@@ -79,7 +79,7 @@ export default function ActivityPage() {
                             arrDates.push(element.date);
                             notesC += element.notes;
                             nFC += element.new_followers;
-                            tFC += element.total_followers;
+                            tFC = element.total_followers;
                         });
                         setDates(arrDates);
                         setNF(arrNF);
