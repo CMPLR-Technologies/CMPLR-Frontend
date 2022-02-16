@@ -107,7 +107,7 @@ export default function HomeSec1(props) {
 
                     <p className="first-page-terms">
                         {
-                            ' By continuing with the options below, you agree to Tumblr’s'
+                            ' By continuing with the options below, you agree to CMPlr’s'
                         }
                         <Link to="/terms">Terms of Service</Link> and have read
                         the <Link to="/privacy">Privacy Policy</Link>

@@ -29,7 +29,7 @@ export default function HomeSec3() {
                             Turns out that when you make it easy to create
                             interesting things, that’s exactly what people do.
                             All those great, random blogs your friends send you,
-                            those are Tumblr blogs. We’ll help you find and
+                            those are CMPlr blogs. We’ll help you find and
                             follow blogs like that, and we’ll help other people
                             find and follow yours.
                         </p>

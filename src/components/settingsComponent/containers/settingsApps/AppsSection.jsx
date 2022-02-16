@@ -11,7 +11,7 @@ export default function AppsSection() {
                 />
                 <div className="text-and-btns">
                     <h2 className="text">
-                        No one should have to go through life without a Tumblr
+                        No one should have to go through life without a CMPlr
                         app.
                     </h2>
                     <a

@@ -161,7 +161,7 @@ export default function InformationForPostCreators() {
                         <p>
                             <img
                                 src="https://tumblr.zendesk.com/hc/article_attachments/4403903956503/postPlusSettings.png"
-                                alt="A screenshot of the Post+ settings page on web. The background is Tumblr blue. A white rectangle in the center of the screen shows the different settings. Large white text at the top reads: Tumblr Post+. At the very bottom, small gray text reads: Questions or need help? Contact Tumblr Support (this is in blue text and contains a link to the Support form). At the top of the white rectangle, gray text reads: Activating Post+ is simple. Just complete the sections below to get thing started. The first section is: Personal and deposit details. Text below that header reads: View and edit your details over at Stripe. On the right is a blue button that reads: Set up. The next section is Subscription price. Gray text below the header reads: Set your monthly price. On the right is blue text that reads: Set up. The third section is: Post+ profile. Gray text below this header reads: Share your story and add perks. A blue botton on the right reads: Set up. Small gray text at the bottom of the white rectangle reads: By activating Post+ you agree to our Terms of Service (in blue) and that you have read our Privacy Policy (in blue). There's a gray, inactive button to the right that reads: Activate Post+"
+                                alt="A screenshot of the Post+ settings page on web. The background is CMPlr blue. A white rectangle in the center of the screen shows the different settings. Large white text at the top reads: CMPlr Post+. At the very bottom, small gray text reads: Questions or need help? Contact CMPlr Support (this is in blue text and contains a link to the Support form). At the top of the white rectangle, gray text reads: Activating Post+ is simple. Just complete the sections below to get thing started. The first section is: Personal and deposit details. Text below that header reads: View and edit your details over at Stripe. On the right is a blue button that reads: Set up. The next section is Subscription price. Gray text below the header reads: Set your monthly price. On the right is blue text that reads: Set up. The third section is: Post+ profile. Gray text below this header reads: Share your story and add perks. A blue botton on the right reads: Set up. Small gray text at the bottom of the white rectangle reads: By activating Post+ you agree to our Terms of Service (in blue) and that you have read our Privacy Policy (in blue). There's a gray, inactive button to the right that reads: Activate Post+"
                                 width={599}
                                 height={441}
                             />
@@ -192,7 +192,7 @@ export default function InformationForPostCreators() {
                         <p>
                             <img
                                 src="https://tumblr.zendesk.com/hc/article_attachments/4403903968407/postPlusStripeStepOne.png"
-                                alt="A screenshot of Stripe's first step in the sign up process. It's a white background with black text. Text on the left side of the screen reads: Tumblr partners with Stripe for secure payments and financial services. Text at the bottom reads: Powered by Stripe. Contact. English (US), with an arrow to change the language. On the right side of the screen is a form. At the top, large black text reads: Get paid by Tumblr. Smaller text below reads: Fill out a few details so you can start getting paid. The first field is labeled Country. United States is selected. Text below reads: Please select the country where you or your business will legally operate. The next field is Type of entity. The three options listed are: Individual, sole proprietor, or single-member LLC, Company, and Nonprofit Organization. The next field is: Mobile number. The text field reads: US (with the option to change country), followed by a placeholder number: (201) 555-0123. Text below the field reads: We'll text this number to verify your account. The next field is labeled Email. The field has placeholder text that reads: me@example.com. Text below the field reads: We'll email you with important updates. A purple button at the bottom of the form reads: Next with a right-pointing arrow."
+                                alt="A screenshot of Stripe's first step in the sign up process. It's a white background with black text. Text on the left side of the screen reads: CMPlr partners with Stripe for secure payments and financial services. Text at the bottom reads: Powered by Stripe. Contact. English (US), with an arrow to change the language. On the right side of the screen is a form. At the top, large black text reads: Get paid by Tumblr. Smaller text below reads: Fill out a few details so you can start getting paid. The first field is labeled Country. United States is selected. Text below reads: Please select the country where you or your business will legally operate. The next field is Type of entity. The three options listed are: Individual, sole proprietor, or single-member LLC, Company, and Nonprofit Organization. The next field is: Mobile number. The text field reads: US (with the option to change country), followed by a placeholder number: (201) 555-0123. Text below the field reads: We'll text this number to verify your account. The next field is labeled Email. The field has placeholder text that reads: me@example.com. Text below the field reads: We'll email you with important updates. A purple button at the bottom of the form reads: Next with a right-pointing arrow."
                             />
                         </p>
                         <p>
@@ -459,7 +459,7 @@ export default function InformationForPostCreators() {
                             that your supporters can expect to receive in
                             addition to your free posts. In the event that you
                             stop delivering on these perks, or if you stop
-                            posting altogether for whatever reason, Tumblr can't
+                            posting altogether for whatever reason, CMPlr can't
                             hold you responsible or turn off Post+ on your blog
                             (although we{' '}
                             <a href="https://www.tumblr.com/policy/terms-of-service">
@@ -498,7 +498,7 @@ export default function InformationForPostCreators() {
                         </p>
                         <ul>
                             <li>Apple’s fees are $3.99 * 30% = $1.20.</li>
-                            <li>Tumblr fees are $3.99 * 5% = $0.20.</li>
+                            <li>CMPlr fees are $3.99 * 5% = $0.20.</li>
                             <li>
                                 You, the creator, receive $3.99 – $1.20 – $0.20
                                 = $2.59.
@@ -526,7 +526,7 @@ export default function InformationForPostCreators() {
                                 Transaction fees are $3.99 * 2.9% = $0.12 +
                                 $0.30 = $0.42.
                             </li>
-                            <li>Tumblr fees are $3.99 * 5% = $0.20.</li>
+                            <li>CMPlr fees are $3.99 * 5% = $0.20.</li>
                             <li>
                                 You, the creator, receive $3.99 - $0.42 - $0.20
                                 = $3.37.
@@ -538,7 +538,7 @@ export default function InformationForPostCreators() {
                             your supporters use to purchase their subscription.
                             You can expect frequent payouts, especially if a lot
                             of your supporters are subscribing via the web or
-                            the Tumblr Android app.
+                            the CMPlr Android app.
                         </p>
                         <p>
                             For supporters who paid on the{' '}
@@ -551,12 +551,11 @@ export default function InformationForPostCreators() {
                         </p>
                         <p>
                             For supporters who paid on an Apple device in the
-                            Tumblr app using{' '}
-                            <strong>Apple Subscriptions</strong>, a deposit into
-                            your account will occur once a month. Your earnings
-                            are calculated on a monthly basis, with payment
-                            typically occurring within approximately 50 days
-                            after month end.
+                            CMPlr app using <strong>Apple Subscriptions</strong>
+                            , a deposit into your account will occur once a
+                            month. Your earnings are calculated on a monthly
+                            basis, with payment typically occurring within
+                            approximately 50 days after month end.
                         </p>
                         <h2 id="managing-supporters">
                             Managing Your Supporters
@@ -574,7 +573,7 @@ export default function InformationForPostCreators() {
                             (if they purchased their subscription in the iOS
                             app) or{' '}
                             <a href="https://www.tumblr.com/support">
-                                Tumblr Support
+                                CMPlr Support
                             </a>{' '}
                             (if they purchased their subscription in the Android
                             app or on the web).
@@ -696,7 +695,7 @@ export default function InformationForPostCreators() {
                         <p>
                             <img
                                 src="https://tumblr.zendesk.com/hc/article_attachments/4407162409239/postPlusBlogNetwork.gif"
-                                alt="A GIF showing a +Post on silvercoins.tumblr.com in a web browser. silvercoins has a white background with yellow accents and black body text. The first post reads: y'all are going to want to check this one out, then has a link that says Keep reading. The user clicks Keep reading and is redirected to silvercoins's creator profile. The background of this page is Tumblr blue. The posts are in a single center-left column. The first post in the column is the one that the user had clicked. There's now a +Post overlay on the post."
+                                alt="A GIF showing a +Post on silvercoins.tumblr.com in a web browser. silvercoins has a white background with yellow accents and black body text. The first post reads: y'all are going to want to check this one out, then has a link that says Keep reading. The user clicks Keep reading and is redirected to silvercoins's creator profile. The background of this page is CMPlr blue. The posts are in a single center-left column. The first post in the column is the one that the user had clicked. There's now a +Post overlay on the post."
                                 width={696}
                                 height={451}
                             />

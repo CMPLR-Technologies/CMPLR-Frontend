@@ -43,7 +43,9 @@ export default function RecommendBlogs(props) {
                     <div key={index}>
                         <BlogInfo
                             blogName={blog.blog_name}
-                            blogDesc={blog.title}
+                            blogDesc={
+                                blog.title === 'untitled' ? '' : blog.title
+                            }
                             blogIcon={blog.avatar}
                             blogId={blog.blog_id}
                         />

@@ -64,7 +64,7 @@ export default function LoginCard() {
 
                 <p>
                     {'By clicking "log in", or continuing with the other options' +
-                        'below, you agree to Tumblr’s Terms of Service and have read' +
+                        'below, you agree to CMPlr’s Terms of Service and have read' +
                         'the Privacy Policy'}
                 </p>
 

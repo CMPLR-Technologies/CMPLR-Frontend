@@ -76,7 +76,7 @@ export default function MakingAPost() {
                             from the dash or tap the camera icon in the upper
                             left of your dash to access the{' '}
                             <a href="https://tumblr.zendesk.com/hc/articles/360043147134">
-                                Tumblr camera.
+                                CMPlr camera.
                             </a>
                         </p>
                         <p>

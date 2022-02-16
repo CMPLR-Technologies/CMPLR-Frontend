@@ -13,7 +13,7 @@ export default function ConnectingToTwitter() {
                         <p>
                             <strong>
                                 <span className="wysiwyg-font-size-large">
-                                    Connecting your Twitter and Tumblr accounts
+                                    Connecting your Twitter and CMPlr accounts
                                 </span>
                             </strong>
                         </p>
@@ -67,7 +67,7 @@ export default function ConnectingToTwitter() {
                             <li>
                                 To show recent Tweets on your
                                 blog,&nbsp;first&nbsp;make sure your Twitter and
-                                Tumblr accounts are connected by following the
+                                CMPlr accounts are connected by following the
                                 instructions above.&nbsp;Next, you’ll need to
                                 install a theme that supports the Twitter
                                 widget. Finally, configure your theme settings
@@ -107,7 +107,7 @@ export default function ConnectingToTwitter() {
                                 specific post.)
                             </li>
                             <li>
-                                We can't control how Tumblr content looks on
+                                We can't control how CMPlr content looks on
                                 Twitter.&nbsp;A Tweet of a photo post, for
                                 example, may or may not have an image preview
                                 attached, and who even knows how they’ll handle

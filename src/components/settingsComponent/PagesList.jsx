@@ -108,7 +108,10 @@ export default function PagesList() {
                                                             </span>
                                                         </div>
                                                         <div className="text-down">
-                                                            {blog.title}
+                                                            {blog.title ===
+                                                            'untitled'
+                                                                ? ''
+                                                                : blog.title}
                                                         </div>
                                                     </div>
                                                 </div>

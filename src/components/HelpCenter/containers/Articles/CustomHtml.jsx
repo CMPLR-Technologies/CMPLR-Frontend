@@ -41,7 +41,7 @@ export default function CustomHtml() {
                         </ol>
                         <p>
                             We’ve also got a brilliant guide to making custom
-                            Tumblr themes&nbsp;
+                            CMPlr themes&nbsp;
                             <a
                                 href="https://www.tumblr.com/docs/en/custom_themes"
                                 target="_self"
@@ -147,7 +147,7 @@ export default function CustomHtml() {
                             </strong>
                         </p>
                         <p>
-                            To learn more about HTML, CSS, and Tumblr themes,
+                            To learn more about HTML, CSS, and CMPlr themes,
                             check out the resources at&nbsp;
                             <a href="http://www.codecademy.com/">
                                 www.codecademy.com

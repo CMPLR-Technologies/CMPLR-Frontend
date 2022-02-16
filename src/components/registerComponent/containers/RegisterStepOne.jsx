@@ -95,7 +95,7 @@ export default function RegisterStepOne(props) {
                 />
                 <p>
                     {
-                        'By clicking "sign up", or continuing with the other options below, you agree to Tumblr’s Terms of Service and have read the Privacy Policy'
+                        'By clicking "sign up", or continuing with the other options below, you agree to CMPlr’s Terms of Service and have read the Privacy Policy'
                     }
                 </p>
                 <AuthBtn

@@ -32,7 +32,7 @@ export default function HomeSec2() {
                             a blog and put whatever they want on it. Stories,
                             photos, GIFs, TV shows, links, quips, dumb jokes,
                             smart jokes, Spotify tracks, mp3s, videos, fashion,
-                            art, deep stuff. Tumblr is 536 million different
+                            art, deep stuff. CMPlr is 536 million different
                             blogs, filled with literally whatever.
                         </p>
                     </div>

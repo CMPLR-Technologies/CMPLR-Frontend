@@ -20,7 +20,7 @@ export default function ChangingYourUsernameOrUrl() {
                         Before you proceed, know that changing your URL will
                         break any existing links to your blog that you've made
                         (masterlists/masterposts, links in your description, or
-                        any links to your Tumblr you've shared on other
+                        any links to your CMPlr you've shared on other
                         platforms). Your followers won’t be affected, and
                         they’ll still see all your stuff come through their
                         dashboard.
@@ -46,7 +46,7 @@ export default function ChangingYourUsernameOrUrl() {
                         </li>
                         <li>
                             Click the pencil icon in the username section (or
-                            Tumblr URL section on secondary blogs). Enter your
+                            CMPlr URL section on secondary blogs). Enter your
                             new username.
                         </li>
                         <li>Hit “Save.”</li>

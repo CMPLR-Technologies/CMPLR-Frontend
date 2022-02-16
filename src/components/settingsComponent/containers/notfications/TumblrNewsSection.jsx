@@ -7,7 +7,7 @@ export default function TumblrNewsSection() {
     return (
         <div className="security" id="section">
             <div className="sub-section-left">
-                <h3>Tumblr news</h3>
+                <h3>CMPlr news</h3>
             </div>
             <div className="sub-section-right">
                 <div className="sub-section-right-up">

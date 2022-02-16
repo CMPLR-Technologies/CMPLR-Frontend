@@ -352,7 +352,7 @@ export default function SearchAndFilteringBasics() {
                         <p>
                             <img
                                 src="https://tumblr.zendesk.com/hc/article_attachments/4409392677399/iosSearchRecommendations.jpeg"
-                                alt="The search interface in the iOS app. At the top is the search field with a magnifying glass icon and the placeholder text: Search Tumblr. To the right of the search field is a Cancel button. Below is a section labeled Recent. There's one entry: star trek. There's a magnifying glass icon next to this entry. The next section is labeled Recommended, and there are many entries. Each entry has a magnifying glass icon to the left of it. The entries are: obey me, amphibia, dc comics, gaming, stray kids, daredevil, moon, loki, and black lives matter. The rest of the entries are covered by the iPhone keyboard."
+                                alt="The search interface in the iOS app. At the top is the search field with a magnifying glass icon and the placeholder text: Search CMPlr. To the right of the search field is a Cancel button. Below is a section labeled Recent. There's one entry: star trek. There's a magnifying glass icon next to this entry. The next section is labeled Recommended, and there are many entries. Each entry has a magnifying glass icon to the left of it. The entries are: obey me, amphibia, dc comics, gaming, stray kids, daredevil, moon, loki, and black lives matter. The rest of the entries are covered by the iPhone keyboard."
                                 width={337}
                                 height={700}
                             />

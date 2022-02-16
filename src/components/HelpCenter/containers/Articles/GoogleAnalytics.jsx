@@ -11,7 +11,7 @@ export default function GoogleAnalytics() {
                 <div className="article-content">
                     <div className="article-body">
                         <p>
-                            While the Tumblr Activity page is great for checking
+                            While the CMPlr Activity page is great for checking
                             out your notes, we can’t really measure the activity
                             on your blog page itself. That’s where Google
                             Analytics comes in. It’s the best way to track stuff

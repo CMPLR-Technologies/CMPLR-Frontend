@@ -73,7 +73,7 @@ export default function SearchBar(props) {
                         }
                     }}
                     className="search-input"
-                    placeholder={placeHolder ? placeHolder : 'Search Tumblr'}
+                    placeholder={placeHolder ? placeHolder : 'Search CMPlr'}
                 ></input>
                 {loading && (
                     <div className="loading">

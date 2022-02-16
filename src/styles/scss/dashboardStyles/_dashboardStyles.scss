@@ -79,7 +79,8 @@
 .dashboard-blogInfo {
     padding: 16px;
     .blogInfo-row-img {
-        width: 37px;
+        min-width: 37px;
+        max-width: 37px;
         height: 37px;
         border-radius: 3px;
         margin-right: 11px;

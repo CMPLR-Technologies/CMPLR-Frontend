@@ -2024,11 +2024,11 @@ input:checked + .slider:before {
 }
 
 .fa-downcase-t:before {
-  font-family: Arial, sans-serif;
+  font-family: "Bookman Old Style Regular";
   /* your font family here! */
   font-weight: 800;
-  content: "t";
-  font-size: 45px;
+  content: "cmplr";
+  font-size: 26px;
 }
 
 .navbar2MainView .section2 .log,
@@ -5011,11 +5011,11 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
 }
 
 .fa-downcase-t:before {
-  font-family: Arial, sans-serif;
+  font-family: "Bookman Old Style Regular";
   /* your font family here! */
   font-weight: 800;
-  content: "t";
-  font-size: 45px;
+  content: "cmplr";
+  font-size: 26px;
   color: white;
 }
 
@@ -5590,7 +5590,8 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
   padding: 16px;
 }
 .dashboard-blogInfo .blogInfo-row-img {
-  width: 37px;
+  min-width: 37px;
+  max-width: 37px;
   height: 37px;
   border-radius: 3px;
   margin-right: 11px;
@@ -7835,6 +7836,7 @@ body .settings .container1 .subcontainer #section .sub-section-right .sub-sectio
   width: 100%;
   height: 64px;
   border-radius: 3px;
+  object-fit: cover;
 }
 
 .explore-trending-main {

@@ -14,8 +14,8 @@ export default function DashboardPreferences() {
                         <p>
                             The "Best Stuff First" setting gives you an
                             algorithmic dashboard. Your dashboard will show you
-                            the stuff Tumblr thinks you'll like, rather than
-                            just the newest content.
+                            the stuff CMPlr thinks you'll like, rather than just
+                            the newest content.
                         </p>
                         <p>
                             If you’d prefer a chronological dashboard, you can

@@ -12,14 +12,14 @@ import Notifications from './containers/Notifications/Notifications';
 describe('test searchbar', () => {
     it('test type in the searchbar', () => {
         render(<MockedComponent component={<SearchBar />} />);
-        const inputElement = screen.getByPlaceholderText('Search Tumblr');
+        const inputElement = screen.getByPlaceholderText('Search CMPlr');
         fireEvent.change(inputElement, { target: { value: 'gaser' } });
         expect(inputElement.value).toBe('gaser');
     });
 
     it('test search bar to hide results show when no type', () => {
         render(<MockedComponent component={<SearchBar />} />);
-        const inputElement = screen.getByPlaceholderText('Search Tumblr');
+        const inputElement = screen.getByPlaceholderText('Search CMPlr');
         fireEvent.change(inputElement, { target: { value: 'gaser' } });
         fireEvent.change(inputElement, { target: { value: '' } });
         const searchBarResultDev = screen.queryByTestId('search-result');

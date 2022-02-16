@@ -40,7 +40,7 @@ export default function TagsInput(props) {
                                 contentEditable="true"
                                 onKeyDown={handleEnterKey}
                                 onChange={e => setContent(e?.target?.value)}
-                                placeholder="#tags"
+                                placeholder="tags"
                                 data-testid="addhash_btn_createPost"
                             />
                             <div className="containerofchip">
