@@ -41,10 +41,6 @@
                 width: 0px;
                 //display: none;
             }
-
-            .show {
-                //display: block;
-            }
         }
     }
 
@@ -181,7 +177,7 @@
     position: relative;
     width: 100%;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
     .container-grid {
         max-width: 300px;
         width: 300px;

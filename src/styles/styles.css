@@ -46,6 +46,7 @@
 .AuthBtnGoogle {
   opacity: 1 !important;
   width: 300px;
+  max-width: 300px;
   padding: 10px 15px;
   margin-top: 12px;
   display: flex;
@@ -131,6 +132,7 @@
   flex-direction: column;
   width: 100%;
   left: 40px;
+  margin-bottom: 25px;
 }
 @media (max-width: 960px) {
   .post-wrapper {
@@ -152,7 +154,6 @@
   max-width: 540px;
   border-radius: 3px;
   height: fit-content;
-  margin-bottom: 25px;
 }
 
 .author-avatar {
@@ -179,6 +180,7 @@
   left: 0;
   top: 10px;
   width: 100% !important;
+  margin-bottom: 15px;
 }
 
 .author-avatar-mob {
@@ -1611,7 +1613,7 @@ input:checked + .slider:before {
   align-items: center;
   justify-content: center;
   padding-top: 3rem;
-  width: 300px;
+  max-width: 300px;
   height: 88vh;
 }
 
@@ -1729,8 +1731,16 @@ input:checked + .slider:before {
 .first-page-footer a {
   text-decoration: none;
   padding-left: 5px;
+  padding-right: 15px;
 }
 
+@media screen and (max-width: 900px) {
+  .first-page-footer {
+    justify-content: center;
+    font-weight: 500;
+    margin-top: 0 !important;
+  }
+}
 .second-page {
   background-color: #00cf35;
   width: 100%;
@@ -2014,7 +2024,6 @@ input:checked + .slider:before {
 
 .sixth-page-paragraph {
   font-weight: 400;
-  width: 740px;
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -3333,7 +3342,7 @@ input:checked + .slider:before {
 
 @media screen and (max-width: 900px) {
   .LoginCard__stores-logos {
-    width: 300px;
+    max-width: 300px;
     display: flex;
     justify-content: space-between;
     margin: 35px 0;
@@ -3354,7 +3363,6 @@ input:checked + .slider:before {
   background: url("../assets/backgrounds/b1.jpg");
   height: 100%;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   background-position: center;
   background-size: cover;
 }
@@ -4689,7 +4697,7 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
   line-height: 47px;
   min-height: 47px;
   word-wrap: break-word;
-  width: 500px;
+  max-width: 500px;
   padding: 0;
   z-index: 2;
   position: static;
@@ -4716,7 +4724,7 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
   position: absolute;
   min-height: 42px;
   word-wrap: break-word;
-  width: 500px;
+  max-width: 500px;
   top: 0;
   left: 0;
   padding: 0;
@@ -6044,7 +6052,7 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
 
 @media screen and (max-width: 900px) {
   .LoginCard__stores-logos {
-    width: 300px;
+    max-width: 300px;
     display: flex;
     justify-content: space-between;
     margin: 35px 0;
@@ -6065,7 +6073,6 @@ body .settings .container2 .blog .list-item .temp .blog-item-anchor .star .star-
   background: url("../assets/backgrounds/b1.jpg");
   height: 100%;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   background-position: center;
   background-size: cover;
 }
@@ -7768,7 +7775,7 @@ body .settings .container1 .subcontainer #section .sub-section-right .sub-sectio
   position: relative;
   width: 100%;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
 }
 .explore-posts .container-grid {
   max-width: 300px;

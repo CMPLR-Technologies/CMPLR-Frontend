@@ -10,6 +10,7 @@
     flex-direction: column;
     width: 100%;
     left: 40px;
+    margin-bottom: 25px;
 
     @media (max-width: 960px) {
         width: 80%;
@@ -30,7 +31,6 @@
     max-width: 540px;
     border-radius: 3px;
     height: fit-content;
-    margin-bottom: 25px;
 }
 
 .author-avatar {
@@ -58,6 +58,7 @@
     left: 0;
     top: 10px;
     width: 100% !important;
+    margin-bottom: 15px;
 }
 
 .author-avatar-mob {

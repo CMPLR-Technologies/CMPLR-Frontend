@@ -204,7 +204,7 @@
                                 line-height: 47px;
                                 min-height: 47px;
                                 word-wrap: break-word;
-                                width: 500px;
+                                max-width: 500px;
                                 padding: 0;
                                 z-index: 2;
                                 position: static;
@@ -232,7 +232,7 @@
                                     position: absolute;
                                     min-height: 42px;
                                     word-wrap: break-word;
-                                    width: 500px;
+                                    max-width: 500px;
                                     top: 0;
                                     left: 0;
                                     padding: 0;

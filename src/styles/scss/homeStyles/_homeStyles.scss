@@ -152,7 +152,7 @@
     align-items: center;
     justify-content: center;
     padding-top: 3rem;
-    width: 300px;
+    max-width: 300px;
     height: 88vh;
 }
 
@@ -269,6 +269,15 @@
     a {
         text-decoration: none;
         padding-left: 5px;
+        padding-right: 15px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .first-page-footer {
+        justify-content: center;
+        font-weight: 500;
+        margin-top: 0 !important;
     }
 }
 
@@ -554,7 +563,6 @@
 
 .sixth-page-paragraph {
     font-weight: 400;
-    width: 740px;
     font-size: 1rem;
     line-height: 1.5;
 }

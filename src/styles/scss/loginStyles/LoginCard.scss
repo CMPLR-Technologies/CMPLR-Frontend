@@ -59,7 +59,7 @@
 }
 @media screen and (max-width: 900px) {
     .LoginCard__stores-logos {
-        width: 300px;
+        max-width: 300px;
         display: flex;
         justify-content: space-between;
         margin: 35px 0;

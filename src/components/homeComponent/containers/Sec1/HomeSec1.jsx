@@ -158,7 +158,7 @@ export default function HomeSec1(props) {
                         </Button>
                     )}
                 </div>
-                <Footer imageNum={imageNum} last={last} />
+                <Footer imageNum={imageNum} last={last} mobile={isMobile} />
             </section>
         </>
     );

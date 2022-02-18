@@ -13,26 +13,31 @@ import PropTypes from 'prop-types';
 
 Footer.propTypes = {
     imageNum: PropTypes.number,
-    last: PropTypes.bool
+    last: PropTypes.bool,
+    mobile: PropTypes.any
 };
 export default function Footer(props) {
-    const { imageNum, last } = props;
+    const { imageNum, last, mobile } = props;
     return (
         <>
-            <div className="first-page-footer">
+            <div
+                className="first-page-footer"
+                style={{ marginTop: last ? '40px' : '0' }}
+            >
                 <div className="left-footer">
                     <Link to="/terms">Terms</Link>
                     <Link to="/privacy">Privacy</Link>
                     <Link to="/jobs">Jobs</Link>
                     <Link to="/support">Support</Link>
                 </div>
-
-                <div className="right-footer">
-                    Posted by{' '}
-                    <strong data-testid="bg-author">
-                        {backgroundImages[imageNum].author}
-                    </strong>{' '}
-                </div>
+                {!mobile && (
+                    <div className="right-footer">
+                        Posted by{' '}
+                        <strong data-testid="bg-author">
+                            {backgroundImages[imageNum].author}
+                        </strong>{' '}
+                    </div>
+                )}
             </div>
 
             {!last && (
