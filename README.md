@@ -31,7 +31,7 @@ Responsive Frontend which mocks tumbler ui/ux.
 
 # Built With
 
-<div align="center">
+<div align="justify">
 
 <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png" alt="HTML" style="width: 50px">
 
@@ -45,9 +45,9 @@ Responsive Frontend which mocks tumbler ui/ux.
 
 <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/sass/sass.png" alt="Sass" style="width: 50px">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Docker_%28container_engine%29_logo.svg/1280px-Docker_%28container_engine%29_logo.svg.png" alt="docker" style="width: 100px; margin-bottom: 10px;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Docker_%28container_engine%29_logo.svg/1280px-Docker_%28container_engine%29_logo.svg.png" alt="docker" style="width: 100px;">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/1280px-Npm-logo.svg.png" alt="npm" style="width: 50px; margin-bottom: 10px">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/1280px-Npm-logo.svg.png" alt="npm" style="width: 50px;">
 
 </div>
 
