@@ -164,7 +164,7 @@ export default function NotfBody(props) {
                             }}
                         ></span>
                         {notf && notf['post_ask_answer_content'] ? (
-                            <span
+                            <div
                                 className="post-ask-answer-content"
                                 data-testid="notf-body-post-ask-answer-content"
                                 style={{ marginLeft: '5px' }}
@@ -173,7 +173,7 @@ export default function NotfBody(props) {
                                         notf && notf['post_ask_answer_content']
                                     }`
                                 }}
-                            ></span>
+                            ></div>
                         ) : null}
                     </div>
                     {activity ? null : (

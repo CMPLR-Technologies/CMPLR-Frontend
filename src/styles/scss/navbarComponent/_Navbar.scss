@@ -1236,14 +1236,17 @@ $border-radius-primary: 3px;
         }
     }
     .notf-content {
-        flex: 1;
         display: flex;
         overflow: hidden;
         flex-wrap: wrap;
+        width: 100%;
         strong {
             word-break: break-word;
         }
         .post-ask-answer-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: flex-end;
             * {
                 font-size: 14px !important;
                 display: inline !important;
@@ -1251,8 +1254,6 @@ $border-radius-primary: 3px;
             img {
                 width: 50px;
                 height: 50px;
-                position: absolute;
-                right: 5px;
                 object-fit: cover;
             }
             strong {
