@@ -18,3 +18,5 @@
 Responsive Frontend which mocks tumbler ui/ux.
 
 # Snippets
+
+![Home](./Readme GIFs/Home.gif)
