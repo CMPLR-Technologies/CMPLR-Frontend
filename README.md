@@ -1,3 +1,6 @@
+<div align="center">
+<img src="./ReadmeGIFs/Cover.png" style="width:500px;" alt="Cover">
+</div>
 <h1 align="center">
   CMPLR - Frontend
 </h1>
@@ -84,5 +87,14 @@ Responsive Frontend which mocks tumbler ui/ux.
 
 <div align="center">
   <b>Showing 9 different themes, they are changed by Alt + P shortcut (or from account popup in nav)</b>
+</div>
+<br/>
+
+<div align="center">
+<img src="./ReadmeGIFs/MiniSideView.gif" alt="MiniSideView GIF">
+</div>
+
+<div align="center">
+  <b>Blog Mini View on Hover and Blog Side View</b>
 </div>
 <br/>
