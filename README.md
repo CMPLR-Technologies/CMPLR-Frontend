@@ -51,14 +51,24 @@ Responsive Frontend which mocks tumbler ui/ux.
 
 </div>
 
-# Snippets
+# Covered Features
+
+Below are brief descriptions of highlighted features with GIFs showing results.
+
+## Getting Started
+
+---
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem.
+
+Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid.
 
 <div align="center">
 <img src="./ReadmeGIFs/Home.gif" alt="Home GIF">
 </div>
 
 <div align="center">
-  <b>A scroll through the getting started page</b>
+  <b>A scroll through the "getting started" Landing page</b>
 </div>
 <br/>
 
@@ -71,6 +81,14 @@ Responsive Frontend which mocks tumbler ui/ux.
   <b>Sign Up & Login Pages in mobile view</b>
 </div>
 <br/>
+
+## Dashboard & Posts
+
+---
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem.
+
+Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid.
 
 <div align="center">
 <img src="./ReadmeGIFs/Dashboard.gif" alt="Dashboard GIF">
@@ -90,6 +108,12 @@ Responsive Frontend which mocks tumbler ui/ux.
 </div>
 <br/>
 
+## Blog Views
+
+---
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid.
+
 <div align="center">
 <img src="./ReadmeGIFs/MiniSideView.gif" alt="MiniSideView GIF">
 </div>
@@ -98,3 +122,11 @@ Responsive Frontend which mocks tumbler ui/ux.
   <b>Blog Mini View on Hover and Blog Side View</b>
 </div>
 <br/>
+
+## Navbar & Actions
+
+## Explore & Trending
+
+## Mobile Resoponsivity
+
+## Chatting && Notifications
