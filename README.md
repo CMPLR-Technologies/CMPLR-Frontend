@@ -135,16 +135,16 @@ CMPLR-Frontend
 ├─ .prettierrc
 ├─ 🐳Dockerfile
 ├─ jenkinsfile
-├─ jsdoc.json
+├─ 📊jsdoc.json
 ├─ 📁nginx
-├─ package-lock.json
-├─ package.json
+├─ 📊package-lock.json
+├─ 📊package.json
 ├─ 📁public
 │  ├─ 💻firebase-messaging-sw.js
 │  ├─ 🖼️icon.jpg
-│  ├─ index.html
-│  ├─ manifest.json
-│  └─ robots.txt
+│  ├─ 🧱index.html
+│  ├─ 📊manifest.json
+│  └─ 💬robots.txt
 ├─ README.md
 ├─ 📁src
 │  ├─ 💻App.js
@@ -313,7 +313,7 @@ CMPLR-Frontend
 │  │  │  ├─ 🧪Settings.test.js
 │  │  │  └─ ⚛️View.jsx
 │  │  └─ 📁verifyEmail
-│  ├─ config.json
+│  ├─ 📊config.json
 │  ├─ 📁contexts
 │  │  ├─ 📁blogSettingsContext
 │  │  ├─ 📁chatContext
@@ -370,9 +370,9 @@ CMPLR-Frontend
 │  │  │  ├─ 🎨styles.scss
 │  │  │  └─ 📁verifyEmailStyles
 │  │  └─ 🎨styles.css
-│  └─ 🎨__mock_database
-│     ├─ db.json
-│     └─ routes.json
+│  └─ 📁__mock_database
+│     ├─ 📊db.json
+│     └─ 📊routes.json
 └─ yarn.lock
 
 ```
