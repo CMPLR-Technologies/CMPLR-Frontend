@@ -123,13 +123,30 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molest
 
 ## Mobile Resoponsivity
 
-## Chatting && Notifications
+## Chatting & Notifications
 
 ```
 CMPLR-Frontend
+├─ .env
+├─ 💻.eslintrc.js
+├─ .gitignore
+├─ .prettierrc
+├─ 🐳Dockerfile
+├─ jenkinsfile
+├─ jsdoc.json
+├─ nginx
+│  └─ nginx.conf
+├─ package-lock.json
+├─ package.json
+├─ public
+│  ├─ 💻firebase-messaging-sw.js
+│  ├─ 🖼️icon.jpg
+│  ├─ index.html
+│  ├─ manifest.json
+│  └─ robots.txt
+├─ README.md
 ├─ src
-│  ├─ App.js
-│  ├─ 🧪App.testjs
+│  ├─ 💻App.js
 │  ├─ assets
 │  │  ├─ backgrounds
 │  │  │  ├─ 🖼️b1.jpg
@@ -140,16 +157,158 @@ CMPLR-Frontend
 │  │  │  ├─ ...
 │  │  │  ├─ 🖼️bg7.jpg
 │  │  │  ├─ 🖼️blogs.jpeg
+│  │  │  ├─ 🖼️hash.png
 │  │  │  ├─ 🖼️logo.svg
-│  │  │  └─ posts.jpeg
+│  │  │  ├─ 🖼️posts.jpeg
+│  │  │  └─ 🖼️profile_pic0.png
 │  │  └─ js
-│  │     └─ backgroundImages.js
+│  │     └─ 💻backgroundImages.js
 │  ├─ components
+│  │  ├─ activityPageComponent
+│  │  │  ├─ ⚛️ActivityPage.jsx
+│  │  │  └─ containers
+│  │  │     ├─ ⚛️BiggestFans.jsx
+│  │  │     ├─ ⚛️BiggestFansItem.jsx
+│  │  │     └─ ⚛️HeaderGraph.jsx
+│  │  ├─ askComponent
+│  │  │  ├─ 🧪Ask.test.js
+│  │  │  ├─ containers
+│  │  │  │  └─ ⚛️⚛️Ask.jsx
+│  │  │  ├─ ⚛️Controller.jsx
+│  │  │  ├─ ⚛️Service.jsx
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ blogSettingsComponent
+│  │  │  ├─ 🧪BlogSettings.test.js
+│  │  │  ├─ containers
+│  │  │  │  ├─ blogSettings
+│  │  │  │  │  ├─ ⚛️AllowAskSection.jsx
+│  │  │  │  │  ├─ ⚛️AllowMessaging.jsx
+│  │  │  │  │  ├─ ⚛️BlockSection.jsx
+│  │  │  │  │  ├─ ⚛️BlockSectionVersion1.jsx
+│  │  │  │  │  ├─ ⚛️BlockSectionVersion2.jsx
+│  │  │  │  │  ├─ ⚛️BlogSettingsCard.jsx
+│  │  │  │  │  ├─ ⚛️DeleteSection.jsx
+│  │  │  │  │  ├─ ⚛️RepliesSection.jsx
+│  │  │  │  │  ├─ ⚛️UserNameSection.jsx
+│  │  │  │  │  ├─ ⚛️UserNameSectionVersion1.jsx
+│  │  │  │  │  ├─ ⚛️UserNameSectionVersion2.jsx.jsx
+│  │  │  │  │  └─ ⚛️VisibilitySection.jsx
+│  │  │  │  ├─ createBlog
+│  │  │  │  │  ├─ ⚛️CreateBlog.jsx
+│  │  │  │  │  ├─ ⚛️CreateSection.jsx
+│  │  │  │  │  ├─ ⚛️PrivacySection.jsx
+│  │  │  │  │  ├─ ⚛️TextSection.jsx
+│  │  │  │  │  ├─ ⚛️TitleSection.jsx
+│  │  │  │  │  └─ ⚛️UrlSection.jsx
+│  │  │  │  └─ deleteBlog
+│  │  │  │     └─ ⚛️DeleteBlog.jsx
+│  │  │  ├─ ⚛️Controller.jsx
+│  │  │  ├─ ⚛️Service.jsx
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ chatComponent
+│  │  │  ├─ 🧪Chat.test.js
+│  │  │  ├─ containers
+│  │  │  │  ├─ ⚛️ChatMessageItem.jsx
+│  │  │  │  ├─ ⚛️ChatMessageMobileView.jsx
+│  │  │  │  ├─ ⚛️ChatMessages.jsx
+│  │  │  │  ├─ ⚛️ChatOption.jsx
+│  │  │  │  ├─ ⚛️ChatPopUp.jsx
+│  │  │  │  ├─ ⚛️ChatSideIconItem.jsx
+│  │  │  │  └─ ⚛️ChatSideIcons.jsx
+│  │  │  ├─ ⚛️Service.jsx
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ createPost
+│  │  │  ├─ containers
+│  │  │  │  ├─ DashboardContainer
+│  │  │  │  │  ├─ ⚛️CreateContainer.jsx
+│  │  │  │  │  ├─ ⚛️OptionIcon.jsx
+│  │  │  │  │  ├─ ⚛️OptionsCard.jsx
+│  │  │  │  │  └─ ⚛️ProfilePicContainer.jsx
+│  │  │  │  └─ PopupContainer
+│  │  │  │     ├─ Bottom
+│  │  │  │     │  ├─ ⚛️BottomContainer.jsx
+│  │  │  │     │  ├─ ⚛️DropDownPostList.jsx
+│  │  │  │     │  ├─ ⚛️PostButton.jsx
+│  │  │  │     │  └─ ⚛️TagsInput.jsx
+│  │  │  │     ├─ ⚛️DropDownBlogList.jsx
+│  │  │  │     ├─ ⚛️Header.jsx
+│  │  │  │     ├─ ⚛️ProfilePicturePopup.jsx
+│  │  │  │     ├─ ⚛️TitleField.jsx
+│  │  │  │     └─ ⚛️View.jsx
+│  │  │  ├─ ⚛️Controller.jsx
+│  │  │  ├─ 🧪CreatePost.test.js
+│  │  │  ├─ ⚛️Service.jsx
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ dashboardComponent
+│  │  │  ├─ containers
+│  │  │  │  ├─ ⚛️BlogInfo.jsx
+│  │  │  │  ├─ ⚛️RecommendBlogs.jsx
+│  │  │  │  └─ ⚛️Sidebar.jsx
+│  │  │  ├─ ⚛️Controller.jsx
+│  │  │  ├─ 🧪Dashboard.test.js
+│  │  │  ├─ ⚛️Service.jsx
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ deleteAccountComponent
+│  │  │  ├─ containers
+│  │  │  │  └─ ⚛️DeleteAccountCard.jsx
+│  │  │  ├─ ⚛️Controller.jsx
+│  │  │  ├─ ⚛️Service.jsx
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ desktopNotifications
+│  │  │  ├─ ⚛️Service.jsx
+│  │  │  ├─ ⚛️StyledDesktopNotification.jsx
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ explore
+│  │  │  ├─ containers
+│  │  │  │  ├─ ⚛️ExploreSidebar.jsx
+│  │  │  │  ├─ ⚛️Following.jsx
+│  │  │  │  ├─ ⚛️Hashtag.jsx
+│  │  │  │  ├─ ⚛️HashtagsList.jsx
+│  │  │  │  ├─ ⚛️Nav.jsx
+│  │  │  │  ├─ ⚛️TrendingTag.jsx
+│  │  │  │  └─ ⚛️TrendingTags.jsx
+│  │  │  ├─ 💻Controller.js
+│  │  │  ├─ 💻Data.js
+│  │  │  ├─ 🧪Explore.test.js
+│  │  │  ├─ ⚛️Service.jsx
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ followingComponent
+│  │  │  ├─ containers
+│  │  │  │  ├─ ⚛️DropDownListFollow.jsx
+│  │  │  │  ├─ ⚛️ItemList.jsx
+│  │  │  │  ├─ ⚛️PopupBlock.jsx
+│  │  │  │  └─ ⚛️SearchForm.jsx
+│  │  │  ├─ ⚛️Controller.jsx
+│  │  │  ├─ 🧪Folowing.test.js
+│  │  │  ├─ ⚛️Service.jsx
+│  │  │  └─ ⚛️View.jsx
 │  │  ├─ forgetPasswordComponent
 │  │  │  ├─ containers
-│  │  │  │  ├─ ⚛️ForgetPassword.jsx
-│  │  │  │  └─ ⚛️ResetPassword.jsx
+│  │  │  │  └─ ⚛️ForgetPassword.jsx
+│  │  │  ├─ ⚛️Controller.jsx
 │  │  │  ├─ 🧪ForgetPassword.test.js
+│  │  │  ├─ ⚛️Service.jsx
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ hashtagsComponent
+│  │  │  ├─ containers
+│  │  │  │  ├─ ⚛️Hashtag.jsx
+│  │  │  │  ├─ ⚛️HashtagPicture.jsx
+│  │  │  │  ├─ ⚛️MobileTopBar.jsx
+│  │  │  │  └─ ⚛️SidebarTag.jsx
+│  │  │  ├─ ⚛️Controller.jsx
+│  │  │  ├─ 🧪Hashtags.test.js
+│  │  │  ├─ ⚛️Service.jsx
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ HelpCenter
+│  │  │  ├─ containers
+│  │  │  │  ├─ ⚛️Article.jsx
+│  │  │  │  ├─ ⚛️ArticleCategory.jsx
+│  │  │  │  ├─ ⚛️ArticleCategoryIndividual.jsx
+│  │  │  │  └─ Articles
+│  │  │  │     ├─ ⚛️AppearingInSearchResults.jsx
+│  │  │  │     ├─ ...
+│  │  │  │     └─ ⚛️TopPosts.jsx
+│  │  │  ├─ ⚛️Controller.jsx
 │  │  │  └─ ⚛️View.jsx
 │  │  ├─ homeComponent
 │  │  │  ├─ containers
@@ -168,19 +327,17 @@ CMPLR-Frontend
 │  │  │  │  │  └─ ⚛️HomeSec4.jsx
 │  │  │  │  ├─ Sec5
 │  │  │  │  │  ├─ ⚛️Audio.svg.jsx
-│  │  │  │  │  ├─ ⚛️Chat.svg.jsx
-│  │  │  │  │  ├─ ⚛️HomeSec5.jsx
-│  │  │  │  │  ├─ ⚛️Link.svg.jsx
-│  │  │  │  │  ├─ ⚛️Photo.svg.jsx
-│  │  │  │  │  ├─ ⚛️PostType.jsx
-│  │  │  │  │  ├─ ⚛️Quote.svg.jsx
-│  │  │  │  │  ├─ ⚛️Text.svg.jsx
+│  │  │  │  │  ├─ ...
 │  │  │  │  │  └─ ⚛️Video.svg.jsx
 │  │  │  │  └─ SideNav
 │  │  │  │     ├─ ⚛️CircledNavLink.jsx
 │  │  │  │     └─ ⚛️SideNav.jsx
-│  │  │  ├─ Controller.js
+│  │  │  ├─ 💻Controller.js
 │  │  │  ├─ 🧪Home.test.js
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ inboxComponent
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ likesComponent
 │  │  │  └─ ⚛️View.jsx
 │  │  ├─ loginComponent
 │  │  │  ├─ containers
@@ -189,14 +346,62 @@ CMPLR-Frontend
 │  │  │  ├─ 🧪Login.test.js
 │  │  │  ├─ ⚛️Service.jsx
 │  │  │  └─ ⚛️View.jsx
+│  │  ├─ MyProfileComponent
+│  │  │  ├─ container
+│  │  │  │  ├─ ⚛️FollowersPage.jsx
+│  │  │  │  ├─ ⚛️ListItem.jsx
+│  │  │  │  ├─ ⚛️NoXAvailable.jsx
+│  │  │  │  ├─ ⚛️PostsPage.jsx
+│  │  │  │  └─ ⚛️SideBar.jsx
+│  │  │  ├─ ⚛️Controller.jsx
+│  │  │  ├─ 🧪MyProfile.test.js
+│  │  │  ├─ ⚛️Service.jsx
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ navbar2Files
+│  │  │  ├─ ⚛️Controller.jsx
+│  │  │  ├─ 🧪Navbar2.test.js
+│  │  │  ├─ navbar2MainView
+│  │  │  │  ├─ ⚛️Navbar2MainView.jsx
+│  │  │  │  └─ Navbar2MainViewContainers
+│  │  │  │     ├─ ⚛️Navbar2MainViewAuthLinks.jsx
+│  │  │  │     ├─ ⚛️Navbar2MainViewLinks.jsx
+│  │  │  │     ├─ ⚛️Navbar2MainViewSearchBar.jsx
+│  │  │  │     ├─ ⚛️Navbar2MainViewSection1.jsx
+│  │  │  │     └─ ⚛️Navbar2MainViewUnAuthLinks.jsx
+│  │  │  └─ navbar2SideView
+│  │  │     ├─ ⚛️Navbar2SideView.jsx
+│  │  │     └─ ⚛️Navbar2SideViewMoreOptions.jsx
 │  │  ├─ navbarComponent
 │  │  │  ├─ containers
 │  │  │  │  ├─ navbarLinks
+│  │  │  │  │  ├─ AccountPopup
+│  │  │  │  │  │  ├─ ⚛️AccountPopup.jsx
+│  │  │  │  │  │  ├─ 🧪AccountPopup.test.js
+│  │  │  │  │  │  ├─ Actions
+│  │  │  │  │  │  │  ├─ ⚛️AccountPopupActionRow.jsx
+│  │  │  │  │  │  │  ├─ ⚛️AccountPopupActions.jsx
+│  │  │  │  │  │  │  └─ shortcuts
+│  │  │  │  │  │  │     ├─ containers
+│  │  │  │  │  │  │     │  ├─ ⚛️Shortcut.jsx
+│  │  │  │  │  │  │     │  ├─ ⚛️ShortcutGroup.jsx
+│  │  │  │  │  │  │     │  └─ ⚛️ShortcutsContainer.jsx
+│  │  │  │  │  │  │     └─ ⚛️ShortcutsPageOverlay.jsx
+│  │  │  │  │  │  ├─ Blogs
+│  │  │  │  │  │  │  ├─ ⚛️AccountPopupBlog.jsx
+│  │  │  │  │  │  │  └─ ⚛️AccountPopupBlogsContainer.jsx
+│  │  │  │  │  │  └─ Seperators
+│  │  │  │  │  │     ├─ ⚛️AccountPopupFooter.jsx
+│  │  │  │  │  │     ├─ ⚛️AccountPopupHeader.jsx
+│  │  │  │  │  │     ├─ ⚛️AccountPopupSeperator.jsx
+│  │  │  │  │  │     └─ ⚛️LogOutOverlay.jsx
 │  │  │  │  │  ├─ links
 │  │  │  │  │  │  ├─ ⚛️AuthLinks.jsx
-│  │  │  │  │  │  └─ ⚛️UnAuthLinks.jsx
+│  │  │  │  │  │  ├─ ⚛️Badge.jsx
+│  │  │  │  │  │  ├─ ⚛️UnAuthLinks.jsx
+│  │  │  │  │  │  └─ ⚛️UnReadMsg.jsx
 │  │  │  │  │  ├─ MessagesPopup
 │  │  │  │  │  │  ├─ ⚛️MessageItem.jsx
+│  │  │  │  │  │  ├─ ⚛️MessageItemSearchRes.jsx
 │  │  │  │  │  │  ├─ ⚛️Messages.jsx
 │  │  │  │  │  │  ├─ ⚛️MessagesContainer.jsx
 │  │  │  │  │  │  ├─ ⚛️MessagesPageMobile.jsx
@@ -206,6 +411,16 @@ CMPLR-Frontend
 │  │  │  │  │  └─ newPost
 │  │  │  │  │     ├─ ⚛️NewPostPopup.jsx
 │  │  │  │  │     └─ ⚛️NewPostPopupItem.jsx
+│  │  │  │  ├─ Notifications
+│  │  │  │  │  ├─ ⚛️NotfBody.jsx
+│  │  │  │  │  ├─ ⚛️NotfHeader.jsx
+│  │  │  │  │  ├─ ⚛️Notifications.jsx
+│  │  │  │  │  └─ notificationsTypesSVG
+│  │  │  │  │     ├─ ⚛️AskIcon.jsx
+│  │  │  │  │     ├─ ⚛️AskReact.jsx
+│  │  │  │  │     ├─ ⚛️FollowReact.jsx
+│  │  │  │  │     ├─ ⚛️HiIcon.jsx
+│  │  │  │  │     └─ ⚛️PostIcon.jsx
 │  │  │  │  ├─ searchBar
 │  │  │  │  │  ├─ ⚛️SearchBar.jsx
 │  │  │  │  │  └─ searchBarResults
@@ -214,95 +429,234 @@ CMPLR-Frontend
 │  │  │  │  │     └─ ⚛️SearchResultItemContent.jsx
 │  │  │  │  └─ section1
 │  │  │  │     ├─ ⚛️NavbarMenuMobile.jsx
-│  │  │  │     ├─ ⚛️NavbarSection1.jsx
-│  │  │  │     └─ ⚛️Section1.jsx
-│  │  │  ├─ Controller.js
+│  │  │  │     └─ ⚛️NavbarSection1.jsx
+│  │  │  ├─ 💻Controller.js
 │  │  │  ├─ 🧪Navbar.test.js
+│  │  │  ├─ ⚛️Service.jsx
 │  │  │  └─ ⚛️View.jsx
+│  │  ├─ notfoundComponent
+│  │  │  └─ ⚛️NotFound.jsx
 │  │  ├─ partials
 │  │  │  ├─ ⚛️AuthAlert.jsx
 │  │  │  ├─ ⚛️AuthBtn.jsx
 │  │  │  ├─ ⚛️AuthFooter.jsx
 │  │  │  ├─ ⚛️AuthInput.jsx
+│  │  │  ├─ ⚛️GridPostsView.jsx
 │  │  │  ├─ ⚛️MockedComponent.jsx
+│  │  │  ├─ ⚛️Modal.jsx
 │  │  │  ├─ ⚛️OrBar.jsx
-│  │  │  └─ ⚛️PlaystoreApplestore.jsx
+│  │  │  ├─ ⚛️PlaystoreApplestore.jsx
+│  │  │  ├─ postComponent
+│  │  │  │  ├─ containers
+│  │  │  │  │  ├─ ⚛️Divider.jsx
+│  │  │  │  │  ├─ ⚛️Footer.jsx
+│  │  │  │  │  ├─ Notes
+│  │  │  │  │  │  ├─ ⚛️Close.svg.jsx
+│  │  │  │  │  │  ├─ ...
+│  │  │  │  │  │  └─ ⚛️ViewTagsBtn.svg.jsx
+│  │  │  │  │  ├─ ⚛️OptionsList.jsx
+│  │  │  │  │  ├─ ⚛️PlayButton.jsx
+│  │  │  │  │  ├─ ⚛️PostComponent.jsx
+│  │  │  │  │  ├─ postTypesComponents
+│  │  │  │  │  │  ├─ ⚛️AskPost.jsx
+│  │  │  │  │  │  ├─ ⚛️AudioPost.jsx
+│  │  │  │  │  │  ├─ ⚛️ImageList.jsx
+│  │  │  │  │  │  ├─ ⚛️TextPost.jsx
+│  │  │  │  │  │  └─ ⚛️VideoPost.jsx
+│  │  │  │  │  ├─ SVG
+│  │  │  │  │  │  ├─ ⚛️CopyLink.svg.jsx
+│  │  │  │  │  │  ├─ ...
+│  │  │  │  │  │  └─ ⚛️ToggleSound.svg.jsx
+│  │  │  │  │  └─ ⚛️Tags.jsx
+│  │  │  │  ├─ ⚛️Controller.jsx
+│  │  │  │  ├─ 🧪PostComponent.test.js
+│  │  │  │  ├─ ⚛️Services.jsx
+│  │  │  │  └─ ⚛️View.jsx
+│  │  │  ├─ ⚛️Radar.jsx
+│  │  │  └─ ⚛️VerticalPostsView.jsx
+│  │  ├─ profileViews
+│  │  │  ├─ fullView
+│  │  │  │  ├─ containers
+│  │  │  │  │  ├─ content
+│  │  │  │  │  │  ├─ ⚛️InProfileMiniView.jsx
+│  │  │  │  │  │  ├─ ⚛️ProfileContent.jsx
+│  │  │  │  │  │  ├─ ⚛️ProfileFollowing.jsx
+│  │  │  │  │  │  └─ ⚛️ProfileLikes.jsx
+│  │  │  │  │  └─ ⚛️ProfileFull.jsx
+│  │  │  │  ├─ ⚛️Controller.jsx
+│  │  │  │  ├─ 🧪ProfileFull.test.js
+│  │  │  │  └─ ⚛️View.jsx
+│  │  │  └─ mini&sideViews
+│  │  │     ├─ miniView
+│  │  │     │  ├─ ⚛️ProfileMini.jsx
+│  │  │     │  ├─ 🧪ProfileMini.test.js
+│  │  │     │  ├─ ⚛️ProfileMiniBody.jsx
+│  │  │     │  ├─ ⚛️ProfileMiniHoverInnerWrapper.jsx
+│  │  │     │  └─ ⚛️ProfileMiniImages.jsx
+│  │  │     ├─ ⚛️Service.jsx
+│  │  │     ├─ sideView
+│  │  │     │  ├─ ⚛️ProfileSide.jsx
+│  │  │     │  ├─ 🧪ProfileSide.test.js
+│  │  │     │  ├─ ⚛️ProfileSideAllPosts.jsx
+│  │  │     │  ├─ ⚛️ProfileSideOnePost.jsx
+│  │  │     │  ├─ ⚛️ProfileSideSettings.jsx
+│  │  │     │  └─ ⚛️ProfilsSideContainer.jsx
+│  │  │     └─ ⚛️View.jsx
 │  │  ├─ registerComponent
 │  │  │  ├─ containers
 │  │  │  │  ├─ ⚛️RegisterCard.jsx
 │  │  │  │  ├─ ⚛️RegisterStepOne.jsx
 │  │  │  │  └─ ⚛️RegisterStepTwo.jsx
+│  │  │  ├─ ⚛️Controller.jsx
+│  │  │  ├─ ⚛️GoogleCard.jsx
 │  │  │  ├─ 🧪Register.test.js
+│  │  │  ├─ ⚛️Service.jsx
 │  │  │  └─ ⚛️View.jsx
 │  │  ├─ resetPasswordComponent
 │  │  │  ├─ containers
 │  │  │  │  └─ ⚛️ResetPasswordCard.jsx
+│  │  │  ├─ ⚛️Controller.jsx
 │  │  │  ├─ 🧪ResetPassword.test.js
+│  │  │  ├─ ⚛️Service.jsx
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ RichTextEditor
+│  │  │  ├─ ⚛️Controller.jsx
+│  │  │  ├─ ⚛️Service.jsx
 │  │  │  └─ ⚛️View.jsx
 │  │  ├─ routes
 │  │  │  └─ ⚛️Routes.jsx
-│  │  ├─ shortcuts
+│  │  ├─ settingsComponent
 │  │  │  ├─ containers
-│  │  │  │  ├─ ⚛️Shortcut.jsx
-│  │  │  │  ├─ ⚛️ShortcutGroup.jsx
-│  │  │  │  └─ ⚛️ShortcutsContainer.jsx
-│  │  │  ├─ shortcutController.js
-│  │  │  ├─ 🧪shortcuts.test.js
+│  │  │  │  ├─ account
+│  │  │  │  │  ├─ ⚛️DeleteSection.jsx
+│  │  │  │  │  ├─ ⚛️EmailSection.jsx
+│  │  │  │  │  ├─ ⚛️EmailSectionVersion1.jsx
+│  │  │  │  │  ├─ ⚛️EmailSectionVersion2.jsx
+│  │  │  │  │  ├─ ⚛️FilteringSection.jsx
+│  │  │  │  │  ├─ ⚛️FilteringSectionVersion1.jsx
+│  │  │  │  │  ├─ ⚛️FilteringSectionVersion2.jsx
+│  │  │  │  │  ├─ ⚛️PasswordSection.jsx
+│  │  │  │  │  ├─ ⚛️PasswordSectionVersion1.jsx
+│  │  │  │  │  ├─ ⚛️PasswordSectionVersion2.jsx
+│  │  │  │  │  ├─ ⚛️SecuritySection.jsx
+│  │  │  │  │  └─ ⚛️SettingsAccount.jsx
+│  │  │  │  ├─ dashboard
+│  │  │  │  │  ├─ ⚛️InterfaceSection.jsx
+│  │  │  │  │  ├─ ⚛️PreferencesSection.jsx
+│  │  │  │  │  ├─ ⚛️SettingsDashboard.jsx
+│  │  │  │  │  └─ ⚛️SoundsSection.jsx
+│  │  │  │  ├─ notfications
+│  │  │  │  │  ├─ ⚛️ConversationalNotificationsSection.jsx
+│  │  │  │  │  ├─ ⚛️SettingsNotifications.jsx
+│  │  │  │  │  └─ ⚛️TumblrNewsSection.jsx
+│  │  │  │  └─ settingsApps
+│  │  │  │     ├─ ⚛️AppsSection.jsx
+│  │  │  │     └─ ⚛️SettingsApps.jsx
+│  │  │  ├─ ⚛️Controller.jsx
+│  │  │  ├─ ⚛️PagesList.jsx
+│  │  │  ├─ ⚛️Service.jsx
+│  │  │  ├─ 🧪Settings.test.js
 │  │  │  └─ ⚛️View.jsx
-│  │  └─ ⚛️ThemeToggle.jsx
+│  │  └─ verifyEmail
+│  │     ├─ ⚛️Service.jsx
+│  │     ├─ ⚛️VerifyEmailWelcome.jsx
+│  │     └─ ⚛️View.jsx
 │  ├─ config.json
 │  ├─ contexts
+│  │  ├─ blogSettingsContext
+│  │  │  └─ 💻BlogSettingsContext.js
+│  │  ├─ chatContext
+│  │  │  └─ 💻chatContext.js
+│  │  ├─ settingsContext
+│  │  │  └─ 💻SettingsContext.js
 │  │  ├─ themeContext
-│  │  │  └─ ThemeContext.js
+│  │  │  └─ 💻ThemeContext.js
 │  │  └─ userContext
-│  │     └─ UserContext.js
-│  ├─ dockerfile
-│  ├─ index.js
-│  ├─ reportWebVitals.js
-│  ├─ setupTests.js
+│  │     ├─ ⚛️ProtectedRoutes.jsx
+│  │     ├─ ⚛️UnProtectedRoutes.jsx
+│  │     └─ 💻UserContext.js
+│  ├─ 💻fiberbaseInit.js
+│  ├─ hooks
+│  │  ├─ 💻useFetch.js
+│  │  ├─ 💻useInfiniteScrolling.js
+│  │  └─ 💻useInfinteScrollingChat.js
+│  ├─ 💻index.js
+│  ├─ 💻reportWebVitals.js
+│  ├─ 💻setupTests.js
 │  ├─ styles
+│  │  ├─ fonts
+│  │  │  └─ Favorit.ttf
 │  │  ├─ scss
+│  │  │  ├─ accountpopupComponent
+│  │  │  │  └─ 🎨_accountpopup.scss
+│  │  │  ├─ activityStyles
+│  │  │  │  └─ 🎨_activityStyles.scss
+│  │  │  ├─ askStyles
+│  │  │  │  └─ 🎨_askStyles.scss
+│  │  │  ├─ blogSettingsStyles
+│  │  │  │  ├─ 🎨_blogSettingsStyles.scss
+│  │  │  │  └─ 🎨_createBlogStyles.scss
+│  │  │  ├─ chatStyles
+│  │  │  │  └─ 🎨_chatStyles.scss
+│  │  │  ├─ createPostStyles
+│  │  │  │  ├─ 🎨_createPostPopup.scss
+│  │  │  │  └─ 🎨_createPostStyles.scss
+│  │  │  ├─ dashboardStyles
+│  │  │  │  └─ 🎨_dashboardStyles.scss
+│  │  │  ├─ deleteAccountStyles
+│  │  │  │  └─ 🎨_deleteAccountStyles.scss
+│  │  │  ├─ exploreStyles
+│  │  │  │  └─ 🎨_expolre.scss
+│  │  │  ├─ followingStyles
+│  │  │  │  └─ 🎨following.scss
 │  │  │  ├─ forgetPasswordStyles
 │  │  │  │  └─ 🎨_forgetPasswordStyles.scss
+│  │  │  ├─ hashtagsStyles
+│  │  │  │  ├─ 🎨hashtagMobStyles.scss
+│  │  │  │  ├─ 🎨hashtagPosts.scss
+│  │  │  │  └─ 🎨hashtagsStyles.scss
+│  │  │  ├─ helpCenter
+│  │  │  │  └─ 🎨_HelpCenter.scss
 │  │  │  ├─ homeStyles
 │  │  │  │  └─ 🎨_homeStyles.scss
 │  │  │  ├─ loginStyles
 │  │  │  │  ├─ 🎨LoginCard.scss
 │  │  │  │  └─ 🎨LoginView.scss
+│  │  │  ├─ myProfileStyles
+│  │  │  │  └─ 🎨_myProfile.scss
 │  │  │  ├─ navbarComponent
 │  │  │  │  └─ 🎨_Navbar.scss
+│  │  │  ├─ navbarProfileViewsStyles
+│  │  │  │  └─ 🎨_NavbarProfileView.scss
+│  │  │  ├─ notfoundStyles
+│  │  │  │  └─ 🎨notfound.scss
 │  │  │  ├─ partials
 │  │  │  │  ├─ 🎨authAlert.scss
 │  │  │  │  ├─ 🎨AuthBtn.scss
 │  │  │  │  ├─ 🎨AuthFooter.scss
 │  │  │  │  ├─ 🎨AuthInput.scss
 │  │  │  │  ├─ 🎨OrBar.scss
-│  │  │  │  └─ 🎨_authAlert.scss
+│  │  │  │  ├─ 🎨_onOffSwitch.scss
+│  │  │  │  └─ 🎨_postComponent.scss
+│  │  │  ├─ profileViews
+│  │  │  │  ├─ 🎨_ProfileFull.scss
+│  │  │  │  ├─ 🎨_ProfileMini.scss
+│  │  │  │  └─ 🎨_ProfileSide.scss
 │  │  │  ├─ registerStyles
-│  │  │  │  ├─ 🎨exploreAnchor.scss
-│  │  │  │  └─ 🎨_exploreAnchor.scss
+│  │  │  │  └─ 🎨exploreAnchor.scss
+│  │  │  ├─ richTextEditorStyles
+│  │  │  │  └─ 🎨rich.scss
+│  │  │  ├─ settingsStyles
+│  │  │  │  └─ 🎨_settingsStyles.scss
 │  │  │  ├─ shortcutsStyles
 │  │  │  │  └─ 🎨shortcuts.scss
-│  │  │  └─ 🎨styles.scss
+│  │  │  ├─ 🎨styles.scss
+│  │  │  └─ verifyEmailStyles
+│  │  │     └─ 🎨verifyEmail.scss
 │  │  └─ 🎨styles.css
 │  └─ __mock_database
-│     └─ db.json
-├─ yarn.lock
-├─ .env
-├─ .eslintrc.js
-├─ .gitignore
-├─ .prettierrc
-├─ Dockerfile
-├─ docs
-├─ jsdoc.json
-├─ nginx
-│  └─ nginx.conf
-├─ package-lock.json
-├─ package.json
-├─ public
-│  ├─ index.html
-│  ├─ manifest.json
-│  └─ robots.txt
-└─ README.md
+│     ├─ db.json
+│     └─ routes.json
+└─ yarn.lock
 
 ```
