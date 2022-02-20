@@ -24,17 +24,17 @@ Responsive Frontend which mocks tumbler ui/ux.
 </div>
 
 <div align="center">
-  A scroll through the getting started page
+  <b>A scroll through the getting started page</b>
 </div>
 <br/>
 
 <div align="center">
-<img src="./ReadmeGIFs/SignUp.JPG" alt="Signup" style="width:400px; margin-right: 40px;">
-<img src="./ReadmeGIFs/Login.JPG" alt="Login" style="width:400px;">
+<img src="./ReadmeGIFs/SignUp.JPG" alt="Signup" style="width:350px; margin-right: 40px;">
+<img src="./ReadmeGIFs/Login.JPG" alt="Login" style="width:350px;">
 </div>
 
 <div align="center">
-  Sign Up & Login Pages in mobile view
+  <b>Sign Up & Login Pages in mobile view</b>
 </div>
 <br/>
 
@@ -43,7 +43,7 @@ Responsive Frontend which mocks tumbler ui/ux.
 </div>
 
 <div align="center">
-  A scroll through Posts in Dashboard showing infinite scrolling
+  <b>A scroll through Posts in Dashboard showing infinite scrolling</b>
 </div>
 <br/>
 
@@ -52,6 +52,6 @@ Responsive Frontend which mocks tumbler ui/ux.
 </div>
 
 <div align="center">
-  Showing 9 different themes, they are changed by Alt + P shortcut (or from account popup in nav)
+  <b>Showing 9 different themes, they are changed by Alt + P shortcut (or from account popup in nav)</b>
 </div>
 <br/>
