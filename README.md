@@ -124,3 +124,185 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molest
 ## Mobile Resoponsivity
 
 ## Chatting && Notifications
+
+```
+CMPLR-Frontend
+├─ src
+│  ├─ App.js
+│  ├─ 🧪App.testjs
+│  ├─ assets
+│  │  ├─ backgrounds
+│  │  │  ├─ 🖼️b1.jpg
+│  │  │  ├─ ...
+│  │  │  └─ 🖼️b4.jpg
+│  │  ├─ images
+│  │  │  ├─ 🖼️bg1.jpg
+│  │  │  ├─ ...
+│  │  │  ├─ 🖼️bg7.jpg
+│  │  │  ├─ 🖼️blogs.jpeg
+│  │  │  ├─ 🖼️logo.svg
+│  │  │  └─ posts.jpeg
+│  │  └─ js
+│  │     └─ backgroundImages.js
+│  ├─ components
+│  │  ├─ forgetPasswordComponent
+│  │  │  ├─ containers
+│  │  │  │  ├─ ⚛️ForgetPassword.jsx
+│  │  │  │  └─ ⚛️ResetPassword.jsx
+│  │  │  ├─ 🧪ForgetPassword.test.js
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ homeComponent
+│  │  │  ├─ containers
+│  │  │  │  ├─ Sec1
+│  │  │  │  │  ├─ ⚛️Button.jsx
+│  │  │  │  │  ├─ ⚛️ExploreBtn.svg.jsx
+│  │  │  │  │  ├─ ⚛️Footer.jsx
+│  │  │  │  │  ├─ ⚛️GoogleButton.svg.jsx
+│  │  │  │  │  └─ ⚛️HomeSec1.jsx
+│  │  │  │  ├─ Sec2
+│  │  │  │  │  ├─ ⚛️Background.svg.jsx
+│  │  │  │  │  └─ ⚛️HomeSec2.jsx
+│  │  │  │  ├─ Sec3
+│  │  │  │  │  └─ ⚛️HomeSec3.jsx
+│  │  │  │  ├─ Sec4
+│  │  │  │  │  └─ ⚛️HomeSec4.jsx
+│  │  │  │  ├─ Sec5
+│  │  │  │  │  ├─ ⚛️Audio.svg.jsx
+│  │  │  │  │  ├─ ⚛️Chat.svg.jsx
+│  │  │  │  │  ├─ ⚛️HomeSec5.jsx
+│  │  │  │  │  ├─ ⚛️Link.svg.jsx
+│  │  │  │  │  ├─ ⚛️Photo.svg.jsx
+│  │  │  │  │  ├─ ⚛️PostType.jsx
+│  │  │  │  │  ├─ ⚛️Quote.svg.jsx
+│  │  │  │  │  ├─ ⚛️Text.svg.jsx
+│  │  │  │  │  └─ ⚛️Video.svg.jsx
+│  │  │  │  └─ SideNav
+│  │  │  │     ├─ ⚛️CircledNavLink.jsx
+│  │  │  │     └─ ⚛️SideNav.jsx
+│  │  │  ├─ Controller.js
+│  │  │  ├─ 🧪Home.test.js
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ loginComponent
+│  │  │  ├─ containers
+│  │  │  │  └─ ⚛️LoginCard.jsx
+│  │  │  ├─ ⚛️Controller.jsx
+│  │  │  ├─ 🧪Login.test.js
+│  │  │  ├─ ⚛️Service.jsx
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ navbarComponent
+│  │  │  ├─ containers
+│  │  │  │  ├─ navbarLinks
+│  │  │  │  │  ├─ links
+│  │  │  │  │  │  ├─ ⚛️AuthLinks.jsx
+│  │  │  │  │  │  └─ ⚛️UnAuthLinks.jsx
+│  │  │  │  │  ├─ MessagesPopup
+│  │  │  │  │  │  ├─ ⚛️MessageItem.jsx
+│  │  │  │  │  │  ├─ ⚛️Messages.jsx
+│  │  │  │  │  │  ├─ ⚛️MessagesContainer.jsx
+│  │  │  │  │  │  ├─ ⚛️MessagesPageMobile.jsx
+│  │  │  │  │  │  ├─ ⚛️MessagesPopUp.jsx
+│  │  │  │  │  │  └─ ⚛️SearchNewMessage.jsx
+│  │  │  │  │  ├─ ⚛️NavbarLinks.jsx
+│  │  │  │  │  └─ newPost
+│  │  │  │  │     ├─ ⚛️NewPostPopup.jsx
+│  │  │  │  │     └─ ⚛️NewPostPopupItem.jsx
+│  │  │  │  ├─ searchBar
+│  │  │  │  │  ├─ ⚛️SearchBar.jsx
+│  │  │  │  │  └─ searchBarResults
+│  │  │  │  │     ├─ ⚛️SearchResult.jsx
+│  │  │  │  │     ├─ ⚛️SearchResultItemBlog.jsx
+│  │  │  │  │     └─ ⚛️SearchResultItemContent.jsx
+│  │  │  │  └─ section1
+│  │  │  │     ├─ ⚛️NavbarMenuMobile.jsx
+│  │  │  │     ├─ ⚛️NavbarSection1.jsx
+│  │  │  │     └─ ⚛️Section1.jsx
+│  │  │  ├─ Controller.js
+│  │  │  ├─ 🧪Navbar.test.js
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ partials
+│  │  │  ├─ ⚛️AuthAlert.jsx
+│  │  │  ├─ ⚛️AuthBtn.jsx
+│  │  │  ├─ ⚛️AuthFooter.jsx
+│  │  │  ├─ ⚛️AuthInput.jsx
+│  │  │  ├─ ⚛️MockedComponent.jsx
+│  │  │  ├─ ⚛️OrBar.jsx
+│  │  │  └─ ⚛️PlaystoreApplestore.jsx
+│  │  ├─ registerComponent
+│  │  │  ├─ containers
+│  │  │  │  ├─ ⚛️RegisterCard.jsx
+│  │  │  │  ├─ ⚛️RegisterStepOne.jsx
+│  │  │  │  └─ ⚛️RegisterStepTwo.jsx
+│  │  │  ├─ 🧪Register.test.js
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ resetPasswordComponent
+│  │  │  ├─ containers
+│  │  │  │  └─ ⚛️ResetPasswordCard.jsx
+│  │  │  ├─ 🧪ResetPassword.test.js
+│  │  │  └─ ⚛️View.jsx
+│  │  ├─ routes
+│  │  │  └─ ⚛️Routes.jsx
+│  │  ├─ shortcuts
+│  │  │  ├─ containers
+│  │  │  │  ├─ ⚛️Shortcut.jsx
+│  │  │  │  ├─ ⚛️ShortcutGroup.jsx
+│  │  │  │  └─ ⚛️ShortcutsContainer.jsx
+│  │  │  ├─ shortcutController.js
+│  │  │  ├─ 🧪shortcuts.test.js
+│  │  │  └─ ⚛️View.jsx
+│  │  └─ ⚛️ThemeToggle.jsx
+│  ├─ config.json
+│  ├─ contexts
+│  │  ├─ themeContext
+│  │  │  └─ ThemeContext.js
+│  │  └─ userContext
+│  │     └─ UserContext.js
+│  ├─ dockerfile
+│  ├─ index.js
+│  ├─ reportWebVitals.js
+│  ├─ setupTests.js
+│  ├─ styles
+│  │  ├─ scss
+│  │  │  ├─ forgetPasswordStyles
+│  │  │  │  └─ 🎨_forgetPasswordStyles.scss
+│  │  │  ├─ homeStyles
+│  │  │  │  └─ 🎨_homeStyles.scss
+│  │  │  ├─ loginStyles
+│  │  │  │  ├─ 🎨LoginCard.scss
+│  │  │  │  └─ 🎨LoginView.scss
+│  │  │  ├─ navbarComponent
+│  │  │  │  └─ 🎨_Navbar.scss
+│  │  │  ├─ partials
+│  │  │  │  ├─ 🎨authAlert.scss
+│  │  │  │  ├─ 🎨AuthBtn.scss
+│  │  │  │  ├─ 🎨AuthFooter.scss
+│  │  │  │  ├─ 🎨AuthInput.scss
+│  │  │  │  ├─ 🎨OrBar.scss
+│  │  │  │  └─ 🎨_authAlert.scss
+│  │  │  ├─ registerStyles
+│  │  │  │  ├─ 🎨exploreAnchor.scss
+│  │  │  │  └─ 🎨_exploreAnchor.scss
+│  │  │  ├─ shortcutsStyles
+│  │  │  │  └─ 🎨shortcuts.scss
+│  │  │  └─ 🎨styles.scss
+│  │  └─ 🎨styles.css
+│  └─ __mock_database
+│     └─ db.json
+├─ yarn.lock
+├─ .env
+├─ .eslintrc.js
+├─ .gitignore
+├─ .prettierrc
+├─ Dockerfile
+├─ docs
+├─ jsdoc.json
+├─ nginx
+│  └─ nginx.conf
+├─ package-lock.json
+├─ package.json
+├─ public
+│  ├─ index.html
+│  ├─ manifest.json
+│  └─ robots.txt
+└─ README.md
+
+```
