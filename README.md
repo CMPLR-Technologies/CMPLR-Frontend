@@ -27,7 +27,7 @@
 
 # Overview
 
-Responsive Frontend which mocks tumbler ui/ux.
+Responsive Frontend which mocks tumbler ui/ux. !!TODO
 
 # Built With
 
@@ -57,9 +57,9 @@ Below are brief descriptions of highlighted features with GIFs showing results.
 
 ## Getting Started
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem.
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. !!TODO
 
-Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid.
+Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. !!TODO
 
 <div align="center">
 <img src="./ReadmeGIFs/Home.gif" alt="Home GIF">
@@ -82,7 +82,7 @@ Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate al
 
 ## Dashboard & Posts
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem.
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. !!TODO
 
 Also, as shown below, we implemented 9 different themes using React's contexts (last one is our original :D).
 
@@ -92,6 +92,24 @@ Also, as shown below, we implemented 9 different themes using React's contexts (
 
 <div align="center">
   <b>A scroll through Posts in Dashboard showing infinite scrolling</b>
+</div>
+<br/>
+
+<div align="center">
+<img src="./ReadmeGIFs/Post.gif" alt="Post GIF">
+</div>
+
+<div align="center">
+  <b>Showing different types of interactions with posts in Dashboard</b>
+</div>
+<br/>
+
+<div align="center">
+<img src="./ReadmeGIFs/Create.gif" alt="Create Post GIF">
+</div>
+
+<div align="center">
+  <b>Showing how to create a post and customize it (for example: alt + b on first word). </b>
 </div>
 <br/>
 
@@ -117,13 +135,121 @@ On hovering on any username or avatar, anywhere in our website, a mini popup com
 </div>
 <br/>
 
-## Navbar & Actions
+<div align="center">
+<img src="./ReadmeGIFs/FullView.gif" alt="Fullview GIF">
+</div>
+
+<div align="center">
+  <b>Blog Full window View showing blog posts and follow actions</b>
+</div>
+<br/>
+
+<div align="center">
+<img src="./ReadmeGIFs/FullView2.gif" alt="Fullview GIF">
+</div>
+
+<div align="center">
+  <b>Blog Full window View showing blog likes and followings</b>
+</div>
+<br/>
+
+## Account Actions
+
+On hovering on any username or avatar, anywhere in our website, a mini popup comes up showing blog's data and images from recent posts. By clicking on this popup pr the username, a side view of the blog slides in (supporting only post of the recent images). By clicking on the user from this view, you can navigate the the full blog view, showing his posts, liked posts, followed blogs & more. Both of the latter views have a navigation bar allowing the user to block, follow the blog and more. !!TODO
+
+<div align="center">
+<img src="./ReadmeGIFs/MyBlog.gif" alt="My Blog GIF">
+</div>
+
+<div align="center">
+  <b>My Blog Posts and Activity Graphs</b>
+</div>
+<br/>
+
+<div align="center">
+<img src="./ReadmeGIFs/Following.gif" alt="Following GIF">
+</div>
+
+<div align="center">
+  <b>Shows Blogs that the user is following</b>
+</div>
+<br/>
+
+<div align="center">
+<img src="./ReadmeGIFs/Help.gif" alt="Help Center GIF">
+</div>
+
+<div align="center">
+  <b>Showing articles in the help center</b>
+</div>
+<br/>
+
+<div align="center">
+<img src="./ReadmeGIFs/Settings.JPG" alt="Blog Settings Image">
+</div>
+
+<div align="center">
+  <b>Blog Settings</b>
+</div>
+<br/>
 
 ## Explore & Trending
 
-## Mobile Resoponsivity
+On hovering on any username or avatar, anywhere in our website, a mini popup comes up showing blog's data and images from recent posts. By clicking on this popup pr the username, a side view of the blog slides in (supporting only post of the recent images). By clicking on the user from this view, you can navigate the the full blog view, showing his posts, liked posts, followed blogs & more. Both of the latter views have a navigation bar allowing the user to block, follow the blog and more. !!TODO
+
+<div align="center">
+<img src="./ReadmeGIFs/Explore.gif" alt="Explore GIF">
+</div>
+
+<div align="center">
+  <b>Showing Different types of views in the Explore pages</b>
+</div>
+<br/>
+
+<div align="center">
+<img src="./ReadmeGIFs/Tag.JPG" alt="Tags Image">
+</div>
+
+<div align="center">
+  <b>An Example of Tag page</b>
+</div>
+<br/>
 
 ## Chatting & Notifications
+
+On hovering on any username or avatar, anywhere in our website, a mini popup comes up showing blog's data and images from recent posts. By clicking on this popup pr the username, a side view of the blog slides in (supporting only post of the recent images). By clicking on the user from this view, you can navigate the the full blog view, showing his posts, liked posts, followed blogs & more. Both of the latter views have a navigation bar allowing the user to block, follow the blog and more. !!TODO
+
+<div align="center">
+<img src="./ReadmeGIFs/Notifications.gif" alt="Notifications GIF">
+</div>
+
+<div align="center">
+  <b>Notifications Example</b>
+</div>
+<br/>
+
+<div align="center">
+<img src="./ReadmeGIFs/Chat.gif" alt="Chatting GIF">
+</div>
+
+<div align="center">
+  <b>Chatting Example</b>
+</div>
+<br/>
+
+## Mobile Resoponsivity
+
+On hovering on any username or avatar, anywhere in our website, a mini popup comes up showing blog's data and images from recent posts. By clicking on this popup pr the username, a side view of the blog slides in (supporting only post of the recent images). By clicking on the user from this view, you can navigate the the full blog view, showing his posts, liked posts, followed blogs & more. Both of the latter views have a navigation bar allowing the user to block, follow the blog and more. !!TODO
+
+<div align="center">
+<img src="./ReadmeGIFs/Resp1.gif" alt="Responsivity" style="width:350px; margin-right: 40px;">
+<img src="./ReadmeGIFs/Resp2.gif" alt="Responsivity" style="width:350px;">
+</div>
+
+<div align="center">
+  <b>Showing different themes and pages like dashboard, likes and activity in mobile view</b>
+</div>
+<br/>
 
 # Project Structure (minified)
 
@@ -154,109 +280,37 @@ CMPLR-Frontend
 │  │  └─ 📁js
 │  │     └─ 💻backgroundImages.js
 │  ├─ 📁components
-│  │  ├─ 📁activityPageComponent
-│  │  ├─ 📁askComponent
-│  │  │  ├─ 🧪Ask.test.js
-│  │  │  ├─ 📁containers
-│  │  │  ├─ ⚛️Controller.jsx
-│  │  │  ├─ ⚛️Service.jsx
-│  │  │  └─ ⚛️View.jsx
-│  │  ├─ 📁blogSettingsComponent
-│  │  │  ├─ 🧪BlogSettings.test.js
-│  │  │  ├─ 📁containers
-│  │  │  ├─ ⚛️Controller.jsx
-│  │  │  ├─ ⚛️Service.jsx
-│  │  │  └─ ⚛️View.jsx
-│  │  ├─ 📁chatComponent
-│  │  │  ├─ 🧪Chat.test.js
-│  │  │  ├─ 📁containers
-│  │  │  ├─ ⚛️Service.jsx
-│  │  │  └─ ⚛️View.jsx
-│  │  ├─ 📁createPost
-│  │  │  ├─ 📁containers
-│  │  │  ├─ ⚛️Controller.jsx
-│  │  │  ├─ 🧪CreatePost.test.js
-│  │  │  ├─ ⚛️Service.jsx
-│  │  │  └─ ⚛️View.jsx
-│  │  ├─ 📁dashboardComponent
-│  │  │  ├─ 📁containers
-│  │  │  ├─ ⚛️Controller.jsx
-│  │  │  ├─ 🧪Dashboard.test.js
-│  │  │  ├─ ⚛️Service.jsx
-│  │  │  └─ ⚛️View.jsx
-│  │  ├─ 📁deleteAccountComponent
-│  │  ├─ 📁desktopNotifications
-│  │  ├─ 📁explore
-│  │  │  ├─ 📁containers
-│  │  │  ├─ 💻Controller.js
-│  │  │  ├─ 💻Data.js
-│  │  │  ├─ 🧪Explore.test.js
-│  │  │  ├─ ⚛️Service.jsx
-│  │  │  └─ ⚛️View.jsx
-│  │  ├─ 📁followingComponent
-│  │  │  ├─ 📁containers
-│  │  │  ├─ ⚛️Controller.jsx
-│  │  │  ├─ 🧪Folowing.test.js
-│  │  │  ├─ ⚛️Service.jsx
-│  │  │  └─ ⚛️View.jsx
-│  │  ├─ 📁forgetPasswordComponent
-│  │  │  ├─ 📁containers
-│  │  │  ├─ ⚛️Controller.jsx
-│  │  │  ├─ 🧪ForgetPassword.test.js
-│  │  │  ├─ ⚛️Service.jsx
-│  │  │  └─ ⚛️View.jsx
-│  │  ├─ 📁hashtagsComponent
-│  │  │  ├─ 📁containers
-│  │  │  ├─ ⚛️Controller.jsx
-│  │  │  ├─ 🧪Hashtags.test.js
-│  │  │  ├─ ⚛️Service.jsx
-│  │  │  └─ ⚛️View.jsx
-│  │  ├─ 📁HelpCenter
-│  │  ├─ 📁homeComponent
-│  │  │  ├─ 📁containers
-│  │  │  ├─ 💻Controller.js
-│  │  │  ├─ 🧪Home.test.js
-│  │  │  └─ ⚛️View.jsx
-│  │  ├─ 📁inboxComponent
-│  │  ├─ 📁likesComponent
-│  │  ├─ 📁loginComponent
-│  │  │  ├─ 📁containers
-│  │  │  ├─ ⚛️Controller.jsx
-│  │  │  ├─ 🧪Login.test.js
-│  │  │  ├─ ⚛️Service.jsx
-│  │  │  └─ ⚛️View.jsx
-│  │  ├─ 📁MyProfileComponent
-│  │  │  ├─ 📁container
-│  │  │  ├─ ⚛️Controller.jsx
-│  │  │  ├─ 🧪MyProfile.test.js
-│  │  │  ├─ ⚛️Service.jsx
-│  │  │  └─ ⚛️View.jsx
-│  │  ├─ 📁navbar2Files
-│  │  │  ├─ ⚛️Controller.jsx
-│  │  │  ├─ 🧪Navbar2.test.js
-│  │  │  ├─ 📁navbar2MainView
-│  │  │  └─ 📁navbar2SideView
+│  │  ├─ ⚛️activityPageComponent
+│  │  ├─ ⚛️askComponent
+│  │  ├─ ⚛️blogSettingsComponent
+│  │  ├─ ⚛️chatComponent
+│  │  ├─ ⚛️createPost
+│  │  ├─ ⚛️dashboardComponent
+│  │  ├─ ⚛️deleteAccountComponent
+│  │  ├─ ⚛️desktopNotifications
+│  │  ├─ ⚛️explore
+│  │  ├─ ⚛️followingComponent
+│  │  ├─ ⚛️forgetPasswordComponent
+│  │  ├─ ⚛️hashtagsComponent
+│  │  ├─ ⚛️HelpCenter
+│  │  ├─ ⚛️homeComponent
+│  │  ├─ ⚛️inboxComponent
+│  │  ├─ ⚛️likesComponent
+│  │  ├─ ⚛️loginComponent
+│  │  ├─ ⚛️MyProfileComponent
+│  │  ├─ ⚛️navbar2Files
+│  │  │  ├─ ⚛️navbar2MainView
+│  │  │  └─ ⚛️navbar2SideView
 │  │  ├─ 📁navbarComponent
 │  │  │  ├─ 📁containers
 │  │  │  │  ├─ 📁navbarLinks
-│  │  │  │  │  ├─ 📁AccountPopup
-│  │  │  │  │  │  ├─ ⚛️AccountPopup.jsx
-│  │  │  │  │  │  ├─ 🧪AccountPopup.test.js
-│  │  │  │  │  │  ├─ 📁Actions
-│  │  │  │  │  │  ├─ 📁Blogs
-│  │  │  │  │  │  └─ 📁Seperators
-│  │  │  │  │  ├─ 📁links
-│  │  │  │  │  ├─ 📁MessagesPopup
-│  │  │  │  │  ├─ ⚛️NavbarLinks.jsx
-│  │  │  │  │  └─ 📁newPost
-│  │  │  │  ├─ 📁Notifications
-│  │  │  │  ├─ 📁searchBar
-│  │  │  │  └─ 📁section1
-│  │  │  ├─ 💻Controller.js
-│  │  │  ├─ 🧪Navbar.test.js
-│  │  │  ├─ ⚛️Service.jsx
-│  │  │  └─ ⚛️View.jsx
-│  │  ├─ 📁notfoundComponent
+│  │  │  │  │  ├─ ⚛️AccountPopup
+│  │  │  │  │  ├─ ⚛️links
+│  │  │  │  │  ├─ ⚛️MessagesPopup
+│  │  │  │  │  └─ ⚛️newPost
+│  │  │  │  ├─ ⚛️Notifications
+│  │  │  │  └─ ⚛️searchBar
+│  │  ├─ ⚛️notfoundComponent
 │  │  ├─ 📁partials
 │  │  │  ├─ ⚛️AuthAlert.jsx
 │  │  │  ├─ ⚛️AuthBtn.jsx
@@ -267,62 +321,27 @@ CMPLR-Frontend
 │  │  │  ├─ ⚛️Modal.jsx
 │  │  │  ├─ ⚛️OrBar.jsx
 │  │  │  ├─ ⚛️PlaystoreApplestore.jsx
-│  │  │  ├─ 📁postComponent
-│  │  │  │  ├─ 📁containers
-│  │  │  │  ├─ ⚛️Controller.jsx
-│  │  │  │  ├─ 🧪PostComponent.test.js
-│  │  │  │  ├─ ⚛️Services.jsx
-│  │  │  │  └─ ⚛️View.jsx
+│  │  │  ├─ ⚛️postComponent
 │  │  │  ├─ ⚛️Radar.jsx
 │  │  │  └─ ⚛️VerticalPostsView.jsx
 │  │  ├─ 📁profileViews
-│  │  │  ├─ 📁fullView
-│  │  │  │  ├─ 📁containers
-│  │  │  │  ├─ ⚛️Controller.jsx
-│  │  │  │  ├─ 🧪ProfileFull.test.js
-│  │  │  │  └─ ⚛️View.jsx
+│  │  │  ├─ ⚛️fullView
 │  │  │  └─ 📁mini&sideViews
-│  │  │     ├─ 📁miniView
-│  │  │     ├─ ⚛️Service.jsx
-│  │  │     ├─ 📁sideView
-│  │  │     └─ ⚛️View.jsx
-│  │  ├─ 📁registerComponent
-│  │  │  ├─ 📁containers
-│  │  │  ├─ ⚛️Controller.jsx
-│  │  │  ├─ ⚛️GoogleCard.jsx
-│  │  │  ├─ 🧪Register.test.js
-│  │  │  ├─ ⚛️Service.jsx
-│  │  │  └─ ⚛️View.jsx
-│  │  ├─ 📁resetPasswordComponent
-│  │  │  ├─ 📁containers
-│  │  │  ├─ ⚛️Controller.jsx
-│  │  │  ├─ 🧪ResetPassword.test.js
-│  │  │  ├─ ⚛️Service.jsx
-│  │  │  └─ ⚛️View.jsx
-│  │  ├─ 📁RichTextEditor
-│  │  ├─ 📁routes
-│  │  ├─ 📁settingsComponent
-│  │  │  ├─ 📁containers
-│  │  │  │  ├─ 📁account
-│  │  │  │  ├─ 📁dashboard
-│  │  │  │  ├─ 📁notfications
-│  │  │  │  └─ 📁settingsApps
-│  │  │  ├─ ⚛️Controller.jsx
-│  │  │  ├─ ⚛️PagesList.jsx
-│  │  │  ├─ ⚛️Service.jsx
-│  │  │  ├─ 🧪Settings.test.js
-│  │  │  └─ ⚛️View.jsx
-│  │  └─ 📁verifyEmail
+│  │  │     ├─ ⚛️miniView
+│  │  │     └─ ⚛️sideView
+│  │  ├─ ⚛️registerComponent
+│  │  ├─ ⚛️resetPasswordComponent
+│  │  ├─ ⚛️RichTextEditor
+│  │  ├─ ⚛️routes
+│  │  ├─ ⚛️settingsComponent
+│  │  └─ ⚛️verifyEmail
 │  ├─ 📊config.json
 │  ├─ 📁contexts
-│  │  ├─ 📁blogSettingsContext
-│  │  ├─ 📁chatContext
-│  │  ├─ 📁settingsContext
-│  │  ├─ 📁themeContext
-│  │  └─ 📁userContext
-│  │     ├─ ⚛️ProtectedRoutes.jsx
-│  │     ├─ ⚛️UnProtectedRoutes.jsx
-│  │     └─ 💻UserContext.js
+│  │  ├─ ⚛️blogSettingsContext
+│  │  ├─ ⚛️chatContext
+│  │  ├─ ⚛️settingsContext
+│  │  ├─ ⚛️themeContext
+│  │  └─ ⚛️userContext
 │  ├─ 💻fiberbaseInit.js
 │  ├─ 📁hooks
 │  │  ├─ 💻useFetch.js
@@ -335,25 +354,25 @@ CMPLR-Frontend
 │  │  ├─ 📁fonts
 │  │  │  └─ 🖼️Favorit.ttf
 │  │  ├─ 📁scss
-│  │  │  ├─ 📁accountpopupComponent
-│  │  │  ├─ 📁activityStyles
-│  │  │  ├─ 📁askStyles
-│  │  │  ├─ 📁blogSettingsStyles
-│  │  │  ├─ 📁chatStyles
-│  │  │  ├─ 📁createPostStyles
-│  │  │  ├─ 📁dashboardStyles
-│  │  │  ├─ 📁deleteAccountStyles
-│  │  │  ├─ 📁exploreStyles
-│  │  │  ├─ 📁followingStyles
-│  │  │  ├─ 📁forgetPasswordStyles
-│  │  │  ├─ 📁hashtagsStyles
-│  │  │  ├─ 📁helpCenter
-│  │  │  ├─ 📁homeStyles
-│  │  │  ├─ 📁loginStyles
-│  │  │  ├─ 📁myProfileStyles
-│  │  │  ├─ 📁navbarComponent
-│  │  │  ├─ 📁navbarProfileViewsStyles
-│  │  │  ├─ 📁notfoundStyles
+│  │  │  ├─ 🎨accountpopupComponent
+│  │  │  ├─ 🎨activityStyles
+│  │  │  ├─ 🎨askStyles
+│  │  │  ├─ 🎨blogSettingsStyles
+│  │  │  ├─ 🎨chatStyles
+│  │  │  ├─ 🎨createPostStyles
+│  │  │  ├─ 🎨dashboardStyles
+│  │  │  ├─ 🎨deleteAccountStyles
+│  │  │  ├─ 🎨exploreStyles
+│  │  │  ├─ 🎨followingStyles
+│  │  │  ├─ 🎨forgetPasswordStyles
+│  │  │  ├─ 🎨hashtagsStyles
+│  │  │  ├─ 🎨helpCenter
+│  │  │  ├─ 🎨homeStyles
+│  │  │  ├─ 🎨loginStyles
+│  │  │  ├─ 🎨myProfileStyles
+│  │  │  ├─ 🎨navbarComponent
+│  │  │  ├─ 🎨navbarProfileViewsStyles
+│  │  │  ├─ 🎨notfoundStyles
 │  │  │  ├─ 📁partials
 │  │  │  │  ├─ 🎨authAlert.scss
 │  │  │  │  ├─ 🎨AuthBtn.scss
@@ -362,13 +381,13 @@ CMPLR-Frontend
 │  │  │  │  ├─ 🎨OrBar.scss
 │  │  │  │  ├─ 🎨_onOffSwitch.scss
 │  │  │  │  └─ 🎨_postComponent.scss
-│  │  │  ├─ 📁profileViews
-│  │  │  ├─ 📁registerStyles
-│  │  │  ├─ 📁richTextEditorStyles
-│  │  │  ├─ 📁settingsStyles
-│  │  │  ├─ 📁shortcutsStyles
+│  │  │  ├─ 🎨profileViews
+│  │  │  ├─ 🎨registerStyles
+│  │  │  ├─ 🎨richTextEditorStyles
+│  │  │  ├─ 🎨settingsStyles
+│  │  │  ├─ 🎨shortcutsStyles
 │  │  │  ├─ 🎨styles.scss
-│  │  │  └─ 📁verifyEmailStyles
+│  │  │  └─ 🎨verifyEmailStyles
 │  │  └─ 🎨styles.css
 │  └─ 📁__mock_database
 │     ├─ 📊db.json
