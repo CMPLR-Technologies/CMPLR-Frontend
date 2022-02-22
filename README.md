@@ -84,7 +84,7 @@ Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate al
 
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem.
 
-Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid.
+Also, as shown below, we implemented 9 different themes using React's contexts (last one is our original :D).
 
 <div align="center">
 <img src="./ReadmeGIFs/Dashboard.gif" alt="Dashboard GIF">
@@ -106,7 +106,7 @@ Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate al
 
 ## Blog Views
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid.
+On hovering on any username or avatar, anywhere in our website, a mini popup comes up showing blog's data and images from recent posts. By clicking on this popup pr the username, a side view of the blog slides in (supporting only post of the recent images). By clicking on the user from this view, you can navigate the the full blog view, showing his posts, liked posts, followed blogs & more. Both of the latter views have a navigation bar allowing the user to block, follow the blog and more.
 
 <div align="center">
 <img src="./ReadmeGIFs/MiniSideView.gif" alt="MiniSideView GIF">
