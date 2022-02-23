@@ -82,9 +82,18 @@ Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate al
 
 ## Dashboard & Posts
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. !!TODO
+In Dashboard, you can follow recommended blogs on the sidebar, see a featured post, create posts from the top panel or simply scroll through the latest posts from your followed blogs. Just once you reach the last post, more posts are loaded for you to see.
 
-Also, as shown below, we implemented 9 different themes using React's contexts (last one is our original :D).
+When creating posts from the top panel (or from the pencil icon from nav bar), you can fully customize your post:
+
+-   Add a title to the post.
+-   Change formatting, size and/or color of text by either shortcuts or editor.
+-   Attach images, videos and/or links to the post
+-   Add tags to associate the post with other relevant posts
+
+When viewing posts, you can follow the user, block them, like the post, comment on it and/or copy the link in order to save it.
+
+Also, as shown below, we implemented 9 different themes for the whole website using React's contexts (last one is our original :D).
 
 <div align="center">
 <img src="./ReadmeGIFs/Dashboard.gif" alt="Dashboard GIF">
@@ -155,7 +164,21 @@ On hovering on any username or avatar, anywhere in our website, a mini popup com
 
 ## Account Actions
 
-On hovering on any username or avatar, anywhere in our website, a mini popup comes up showing blog's data and images from recent posts. By clicking on this popup pr the username, a side view of the blog slides in (supporting only post of the recent images). By clicking on the user from this view, you can navigate the the full blog view, showing his posts, liked posts, followed blogs & more. Both of the latter views have a navigation bar allowing the user to block, follow the blog and more. !!TODO
+<div align="center">
+<img src="./ReadmeGIFs/Account.JPG" style="width:300px;" alt="Account image">
+</div>
+
+As shown above, in the navbar, when you click on the account icon, a popup shows up where you can:
+
+-   Log out
+-   Create new blogs for the same account
+-   Change account settings
+-   View the posts you liked & the blogs you follow
+-   Visit Help Center or veiw Shortcuts
+-   Change Palette (or alt + P)
+-   View your blogs along with their **posts, activiy and followers**
+
+In the Settings pages, you can change account settings, dashboard settings, notification settings and blog settings.In the activity page you can see a history of new followers, new likes and ineteractions.
 
 <div align="center">
 <img src="./ReadmeGIFs/MyBlog.gif" alt="My Blog GIF">
@@ -217,7 +240,7 @@ On hovering on any username or avatar, anywhere in our website, a mini popup com
 
 ## Chatting & Notifications
 
-On hovering on any username or avatar, anywhere in our website, a mini popup comes up showing blog's data and images from recent posts. By clicking on this popup pr the username, a side view of the blog slides in (supporting only post of the recent images). By clicking on the user from this view, you can navigate the the full blog view, showing his posts, liked posts, followed blogs & more. Both of the latter views have a navigation bar allowing the user to block, follow the blog and more. !!TODO
+When your posts get interactions or someone follows you, you get a notification about it. Moreover, you can check all notifications from the navbar. You can also find new messages in the nav bar and click on the user to chat with them as shown below.
 
 <div align="center">
 <img src="./ReadmeGIFs/Notifications.gif" alt="Notifications GIF">
@@ -239,7 +262,7 @@ On hovering on any username or avatar, anywhere in our website, a mini popup com
 
 ## Mobile Resoponsivity
 
-On hovering on any username or avatar, anywhere in our website, a mini popup comes up showing blog's data and images from recent posts. By clicking on this popup pr the username, a side view of the blog slides in (supporting only post of the recent images). By clicking on the user from this view, you can navigate the the full blog view, showing his posts, liked posts, followed blogs & more. Both of the latter views have a navigation bar allowing the user to block, follow the blog and more. !!TODO
+We have implemented tumblr's whole website design while making sure it looks good across different screen sizes, below are some simple examples of how it looks on mobile screens in some of the website pages.
 
 <div align="center">
 <img src="./ReadmeGIFs/Resp1.gif" alt="Responsivity" style="width:350px; margin-right: 40px;">
