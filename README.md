@@ -27,7 +27,7 @@
 
 # Overview
 
-Responsive Frontend which mocks tumbler ui/ux. !!TODO
+A customizable social media platform mimiking tumblr which enables users to: post, follow blogs, chat with them and more.
 
 # Built With
 
